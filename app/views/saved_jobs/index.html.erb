@@ -1,0 +1,46 @@
+<div class="container" data-controller="styling-selected-job job-index-toggle">
+  <%= form_tag apply_jobs_path, method: :post do %>
+
+    <div class="d-flex align-items-center justify-content-between">
+      <h3 id="saved-jobs-index-title">My Saved Jobs</h3>
+      <div><%= submit_tag "Apply to 0 Jobs", id: "apply-button", "data": {job_index_toggle_target: "applyButton"}, class: "btn btn-apply" %></div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card job-list-header">
+          <div class="card-body">
+            <div class="row text-center">
+              <div class="col">Company</div>
+              <div class="col-2">Role</div>
+              <div class="col-2 d-none" data-job-index-toggle-target="newColumn1">Description</div>
+              <div class="col">Salary</div>
+              <div class="col">Status</div>
+              <div class="col">Deadline</div>
+              <div class="col">Details</div>
+              <div class="col">Save</div>
+              <div class="col">Select</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="job-cards-container pt-0" data-controller="load-more">
+      <% @initial_jobs.each do |saved_job| %>
+
+        <%= render 'jobs/row', job: saved_job.job %>
+      <% end %>
+      <div data-load-more-target="remaining" class="d-none">
+        <% @remaining_jobs.each do |saved_job| %>
+          <%= render 'jobs/row', job: saved_job.job %>
+        <% end %>
+      </div>
+      <% if (@saved_jobs.count > 5)%>
+        <div class="d-flex justify-content-start">
+          <%= link_to "Show More", "#", data: { action: "click->load-more#showMore" }, class: "btn btn-cheddar-secondary", "data-load-more-target": "button" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

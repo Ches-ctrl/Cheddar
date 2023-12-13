@@ -1,0 +1,57 @@
+body, html {
+  height: 50%;
+  background-color: white;
+}
+
+.slider-container {
+  color: rgba(123, 119, 119, 0.3);
+  overflow: hidden;
+}
+
+.container .slider {
+  animation: slidein 30s linear infinite;
+  white-space: nowrap;
+
+}
+
+.container .slider .logos {
+  display: inline-block;
+  margin-right: calc(2rem * 5);
+}
+
+.container .slider .logos .logo{
+  aspect-ratio: 1/1;
+  height: auto;
+  width: calc(80% / 5); /* Evenly space out images */
+  margin-left: 4rem;
+  animation: fade-in 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards;
+  filter: saturate(0);
+  opacity: 0.5;
+  // animation-play-state: paused;
+  }
+
+
+
+@keyframes slidein {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.logos {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  }

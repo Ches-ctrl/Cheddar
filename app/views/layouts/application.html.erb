@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cheddar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <%= favicon_link_tag asset_path("cheddar_logo_icon.svg") %>
+  </head>
+
+  <body id="page-container">
+    <div class="flex-grow-1">
+      <div id="content-wrap">
+        <%= render "shared/navbar" %>
+        <%= render "shared/flashes" %>
+        <%= yield %>
+      </div>
+    </div>
+    <div data-controller="chatbot">
+      <div>
+        <%= render partial: "messages/cheddargpt_modal" %>
+        <div class="CheddarGPTmodal d-flex justify-content-center align-items-center" data-action="click->chatbot#open" >
+          <div class="yellow-circle d-none"></div>
+          <%= image_tag("cheddar_logo_icon.svg", alt: "Cheddar Logo", style: "max-height: 50px; max-width: 50px;") %>
+          <%# <p class="mb-0">CheddarGPT</p> %>
+        </div>
+      </div>
+    </div>
+    <%= render "pages/footer" %>
+    <%# <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script> %>
+  </body>
+</html>

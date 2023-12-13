@@ -1,0 +1,132 @@
+
+<%# TODO: Import Fonts, Update Background Image, Add Navbar Buttons, Update Links %>
+<section id="animated-cta-bar">
+  <div class="cta-content">
+    <div class="background" id="landing-page-background">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 d-flex flex-column justify-content-center align-items-center mx-auto">
+            <div id="punchline" class="d-flex flex-column align-items-center landing-page-container text-center ">
+              <h1 class="mb-0">Submit all your job applications with one click</h1>
+              <h1 class="mt-4 mb-0"><strong>...and get hired!<strong></h1>
+              <%= link_to "Apply now", jobs_path, class: "btn-main mt-4 text-center" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul class="floating-icons">
+    <li class="drift drift-1 delay-1"><div class="float float-1"><i <i class="fa-brands fa-aws fa-lg"></i></div></li>
+    <li class="drift drift-2 delay-3"><div class="float float-2"><i <i class="fa-brands fa-apple fa-lg"></i></div></li>
+    <li class="drift drift-3"><div class="float float-3"><i <i class="fa-brands fa-google fa-lg"></i></div></li>
+    <li class="drift drift-4 delay-2"><div class="float float-4"><i <i class="fa-brands fa-amazon fa-lg"></i></div></li>
+    <li class="drift drift-5"><div class="float float-5"><i <i class="fa-brands fa-ebay fa-lg"></i></div></li>
+    <li class="drift drift-6 delay-2"><div class="float float-6"><i <i class="fa-brands fa-x-twitter fa-lg"></i></div></li>
+    <li class="drift drift-7"><div class="float float-7"><i <i class="fa-brands fa-paypal fa-lg"></i></div></li>
+    <li class="drift drift-8 delay-5"><div class="float float-8"><i <i class="fa-brands fa-btc fa-2xl"></i></div></li>
+    <li class="drift drift-9 delay-5"><div class="float float-9"><i <i class="fa-brands fa-tiktok fa-lg"></i></div></li>
+    <li class="drift drift-10 delay-3"><div class="float float-10"><i <i class="fa-brands fa-linkedin fa-sm"></i></div></li>
+    <li class="drift drift-5 delay-4"><div class="float float-7"><i <i class="fa-brands fa-youtube fa-lg"></i></div></li>
+    <li class="drift drift-2 delay-5"><div class="float float-3"><i <i class="fa-brands fa-shopify"></i></div></li>
+    <li class="drift drift-3 delay-1"><div class="float float-9"><i <i class="fa-brands fa-slack"></i></div></li>
+    <li class="drift drift-6 delay-5"><div class="float float-1"><i <i class="fa-brands fa-yahoo"></i></div></li>
+    <li class="drift drift-9 delay-2"><div class="float float-10"><i <i class="fa-brands fa-playstation"></i></div></li>
+  </ul>
+</section>
+
+<div class="spacer">
+</div>
+
+<div class="container-md">
+  <h3 class="text-center mb-5", style="color: #6007C6;">Steps to apply:</h3>
+  <div class="row justify-content-around">
+    <div class="col-md-3 mb-3">
+      <div class="box p-3 text-center" style="color: #6007C6;">
+        <div>
+          <i class="fa-solid fa-magnifying-glass fa-3x mb-3" style="color: #6007C6;"></i>
+          <p style="color: #000;">Search for many jobs.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="box p-3 text-center" style="color: #FF5733;">
+        <div>
+          <i class="fa-solid fa-user-plus fa-3x mb-3" style="color: #6007C6;"></i>
+          <p style="color: #000;">Create a profile.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="box p-3 text-center" style="color: #6007C6;">
+        <div>
+          <i class="fa-solid fa-file-arrow-up fa-3x mb-3" style="color: #6007C6;"></i>
+          <p style="color: #000;">Upload your CV</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="box p-3 text-center" style="color: #FF5733;">
+        <div>
+          <i class="fa-solid fa-check-double fa-3x mb-3" style="color: #6007C6;"></i>
+          <p style="color: #000;">Apply for many jobs at once!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="spacer">
+</div>
+
+<div class="container vh-50">
+  <div class="row align-items-center vh-50">
+    <div class="container rounded slider-container">
+      <h3 class="text-center pb-3 mb-5" style="color: #a8a8a8;">Used by students at</h3>
+      <div class="slider">
+        <div class="logos">
+          <%= image_tag 'stanford.svg', class: 'stanford-icon-svg logo'%>
+          <%= image_tag 'oxford.svg', class: 'oxford-icon-svg logo'%>
+          <%= image_tag 'mit.svg', class: 'mit-icon-svg logo'%>
+          <%= image_tag 'cali.svg', class: 'cali-icon-svg logo'%>
+          <%= image_tag 'arkansas.svg', class: 'cambridge-icon-svg logo'%>
+        </div>
+        <div class="logos">
+          <%= image_tag 'stanford.svg', class: 'stanford-icon-svg logo' %>
+          <%= image_tag 'oxford.svg', class: 'oxford-icon-svg logo' %>
+          <%= image_tag 'mit.svg', class: 'mit-icon-svg logo' %>
+          <%= image_tag 'cali.svg', class: 'cali-icon-svg logo' %>
+          <%= image_tag 'arkansas.svg', class: 'cambridge-icon-svg logo' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="spacer">
+</div>
+
+<div class="container h-100">
+  <div class="row align-items-center h-100">
+    <div class="container rounded slider-container">
+      <h3 class="text-center mb-3" style="color: #a8a8a8;">Featured in</h3>
+      <div class="slider">
+        <div class="logos">
+          <%= image_tag 'bbc.svg', class: 'bbc-icon-svg logo' %>
+          <%= image_tag 'economist.svg', class: 'spiegel-icon-svg logo' %>
+          <%= image_tag 'oxfordpress.svg', class: 'sputnik-icon-svg logo' %>
+          <%= image_tag 'guardian.svg', class: 'guardian-icon-svg logo' %>
+          <%= image_tag 'routers.svg', class: 'routers-icon-svg logo' %>
+        </div>
+        <div class="logos">
+          <%= image_tag 'bbc.svg', class: 'bbc-icon-svg logo' %>
+          <%= image_tag 'economist.svg', class: 'spiegel-icon-svg logo' %>
+          <%= image_tag 'oxfordpress.svg', class: 'sputnik-icon-svg logo' %>
+          <%= image_tag 'guardian.svg', class: 'guardian-icon-svg logo' %>
+          <%= image_tag 'routers.svg', class: 'routers-icon-svg logo' %>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

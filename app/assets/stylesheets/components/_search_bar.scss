@@ -1,0 +1,43 @@
+#jobs-search-bar {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+#search-jobs {
+  width: 600px;
+  border-radius: 10px;
+}
+
+.clear-search-icon {
+  color: grey;
+  position: relative;
+  right: 28px;
+  top: 10px;
+}
+
+.search-bar-background {
+  background-color: #f2f0f2; /* Replace with your desired color */
+  border-radius: 10px; /* Adjust for desired roundness */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: auto; /* Center align if needed */
+  width: fit-content; /* Adjust width as needed */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+// #4c4747
+
+.sticky-top {
+  top: 0;
+  z-index: 1020; /* High enough to stay above other content */
+}
+
+.job-cards-container {
+  overflow-y: auto;
+  max-height: calc(100vh - HEIGHT_OF_STICKY_TOP); /* Adjust based on the height of the sticky header */
+  padding-top: 1rem; /* Optional, for spacing */
+}

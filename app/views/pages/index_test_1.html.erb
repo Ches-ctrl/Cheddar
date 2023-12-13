@@ -1,0 +1,60 @@
+<!-- Job List Header -->
+<div class="container">
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card job-list-header">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">Company</div>
+            <div class="col">Role</div>
+            <div class="col">Description</div>
+            <div class="col">Est. Salary</div>
+            <div class="col">Status</div>
+            <div class="col">Deadline</div>
+            <div class="col">CV</div>
+            <div class="col">Cover Letter</div>
+            <div class="col">1st Round</div>
+            <div class="col">2nd Round</div>
+            <div class="col">Job Details</div>
+            <div class="col">Select Job</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jobs List -->
+  <% 5.times do |i| %>
+  <div class="row mb-3">
+    <div class="col-12">
+      <div class="card job-card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col"><img src="placeholder_logo.png" alt="Company Logo" class="img-fluid"></div>
+            <div class="col">Associate Consultant</div>
+            <div class="col">Lorem ipsum dolor sit amet...</div>
+            <div class="col">£40K (+10%)</div>
+            <div class="col">
+              <button class="btn btn-status">OPEN</button>
+            </div>
+            <div class="col">10/11/2023</div>
+            <div class="col text-center"><input type="checkbox"></div>
+            <div class="col text-center"><input type="checkbox"></div>
+            <div class="col text-center">...</div>
+            <div class="col text-center">...</div>
+            <div class="col text-center"><a href="https://external-link.com" target="_blank">Details</a></div>
+            <div class="col text-center"><input type="checkbox"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <!-- Apply Button -->
+  <div class="row">
+    <div class="col-12 text-center">
+      <button class="btn btn-success">Apply now to all [5] jobs</button>
+    </div>
+  </div>
+</div>

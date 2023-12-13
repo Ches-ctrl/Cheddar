@@ -1,0 +1,125 @@
+#profile-scroll-boxes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 32px 0;
+}
+
+.scroll-box {
+  width: 600px;
+  height: 600px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e3e6f0;
+  padding: 16px;
+  overflow: auto;
+
+  a {
+    text-decoration: none;
+  }
+
+  p {
+    color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+    margin-left: 16px;
+  }
+
+  h5, h6 {
+    margin: 0;
+    margin-bottom: 16px;
+    margin-top: 16px;
+  }
+
+  h6 {
+    margin-left: 16px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+  }
+
+  .education-card {
+    display: flex;
+    margin: 16px auto;
+    justify-content: start;
+    align-items: center;
+    gap: 8px;
+    width: 95%;
+    height: 115px;
+    padding: 16px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e3e6f0;
+  }
+
+  .education-card h6 {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .btn-apply {
+    margin-left: 16px;
+  }
+}
+
+.application-card-small {
+  display: flex;
+  width: 95%;
+  height: 115px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px auto;
+  padding: 16px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e3e6f0;
+
+  .profile-application-details {
+    width: 60%
+  }
+
+  .semi-donut {
+    width: 100px;
+    height: 50px;
+    position: relative;
+    font-size: 12px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    box-sizing: border-box;
+    --percentage: 0;
+    --fill: #00f;
+    object-fit: contain;
+
+    &:after {
+      content: "";
+      box-sizing: border-box;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100px;
+      height: 100px;
+      border: 20px solid;
+      border-color: #f4f4f4 #f4f4f4 var(--fill) var(--fill);
+      border-radius: 50%;
+      transform: rotate( calc(1deg * (-45 + var(--percentage) * 1.8 )));
+    }
+  }
+}
+
+.education-card img {
+  object-fit: contain;
+  width: 60px;
+  height: 60px;
+}
+
+.application-card-small img {
+    object-fit: contain;
+    width: 60px;
+    height: 60px;
+}
+
+.application-card-small strong {
+  color: black;
+}

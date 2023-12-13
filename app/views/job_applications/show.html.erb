@@ -1,0 +1,35 @@
+<div class="confirmation-container mt-3" data-controller="confetti">
+  <div class="success-box">
+    <div class="confirmation-header">
+        <h1>🎉 Well done 🎉</h1>
+        <% @job_applications = JobApplication.all %>
+        <% apps_submitted = @job_applications.where(user_id: current_user.id).all.count %>
+        <% hours_saved = (apps_submitted * 0.2).ceil %>
+        <h4>You've now applied to <strong><%= apps_submitted %> jobs</strong> with Cheddar... saving <strong>~<%= hours_saved %></strong> <%= hours_saved == 1 ? "hour" : "hours" %> of your time</h4>
+        <% dog_names = ["Biscuit", "Cookie", "Muffin", "Brownie", "Cupcake", "Pretzel", "Waffle", "Pancake", "Donut"] %>
+        <h4 class="pt-3"><%= dog_names.sample.capitalize %> is proud of you</h4>
+    </div>
+    <div class="confirmation-body mt-0 pb-3 d-flex align-items-center" data-action="click->confetti#click" style="cursor:pointer; max-height: 400px; overflow: hidden; border-radius: 10px; object-fit: cover;">
+        <%= link_to image_tag('https://source.unsplash.com/random/900%C3%97700/?dog', alt: 'Happy dog unsplash', class: 'confirmation-body-img') %>
+    </div>
+    <div class="confirmation-actions pb-2">
+      <h5 class="pt-2">Next steps</h5>
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <%= link_to 'Apply again', new_job_application_path, class: "btn btn-apply" %>
+        </div>
+        <button id="confetti-btn" data-action="click->confetti#click" class="btn btn-cheddar-secondary">More confetti!</button>
+        <div>
+          <%= link_to 'Tell a friend', '#', class: "btn btn-apply" %>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center" style="width: auto;">
+        <div class="mx-auto" style="text-align: left; width: 350px;">
+          <p class="text-left">1. Check your inbox for confirmation emails</p>
+          <p class="text-left">2. Apply to more jobs</p>
+          <p class="text-left">3. Tell a friend about Cheddar</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

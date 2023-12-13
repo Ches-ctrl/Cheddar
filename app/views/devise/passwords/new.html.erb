@@ -1,0 +1,24 @@
+<div class="container vh-100 d-flex align-items-center justify-content-center">
+  <div class="d-flex justify-content-center align-items-center w-50 border shadow rounded-5 p-2 m-2">
+    <div class="col-md-10 p-0 m-0 "> <!-- Adjust the column size as needed -->
+      <div class="login-box text-center rounded-1">
+        <h2>Forgot your password?</h2>
+        <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+          <%= f.error_notification %>
+
+          <div class="form-inputs">
+            <%= f.input :email,
+                        required: true,
+                        autofocus: true,
+                        input_html: { autocomplete: "email" } %>
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Send me reset password instructions" %>
+          </div>
+        <% end %>
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>

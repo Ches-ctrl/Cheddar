@@ -1,0 +1,39 @@
+<div class="container">
+  <h3 class="my-applications">My Applications</h3>
+  <% @job_applications.each do |application| %>
+    <div class='application-wrapper' data-controller="reveal-myapplication-details">
+      <div class="application-main-info">
+        <button class="toggle-reveal-application-details" data-reveal-myapplication-details-target="toggleReveal" data-action="click->reveal-myapplication-details#revealApplicationDetails">
+          <i class="fa-solid fa-caret-right"></i>
+        </button>
+        <h5 class="m-0"><%= application.job.job_title %> @
+        <%= application.job.company.company_name %> </h5> -
+        <%= application.status %>
+      </div>
+
+      <div id="<%= application.id %>" class="application-secondary-info" data-reveal-myapplication-details-target="applicationDetails">
+
+        <div class="application-secondary-info-left">
+          <p><%= application.job.job_description %></p>
+          <div>
+            <span class="meta-info">Applications Close: <%= application.job.application_deadline.strftime('%d %B %Y') %> - </span>
+            <span class="meta-info">Date Applied: <%= application.updated_at.strftime('%d %B %Y') %></span>
+          </div>
+          <hr class="d-none">
+        </div>
+        <div class="my-applications-screenshot">
+          <% if application.screenshot.attached? %>
+            <div class="image-overlay">
+              <%= image_tag(cl_image_path application.screenshot.key) %>
+              <div class="overlay-text">
+                <p>No image available - here's a happy doggo instead</p>
+              </div>
+            </div>
+          <% else %>
+            <%= image_tag("job_app_complete_default.jpg") %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

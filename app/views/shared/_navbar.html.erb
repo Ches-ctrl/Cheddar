@@ -1,0 +1,63 @@
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container">
+    <div class="d-flex justify-content-start">
+    <%= link_to "/#", class: "navbar-brand" do %>
+      <%= image_tag("cheddar_logo_icon.svg", alt: "Logo") %>
+    <% end %>
+      <%= image_tag("cheddar_logo_text.svg", alt: "logo", class: "larger-image mt-3") %>
+  </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <%# TODO: Fix spacing on elements when hovered %>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto d-flex flex-row align-items-center">
+        <li class="pe-4 rounded-pill">
+          <div class="btn btn-light rounded-pill">Demo Mode</div>
+        </li>
+        <li class="nav-item active">
+          <%= link_to "How It Works", how_it_works_path, class: "nav-link d-none" %>
+        </li>
+        <li class="nav-item active">
+          <%= link_to "Find Jobs", jobs_path, class: "nav-link" %>
+        </li>
+
+        <% if user_signed_in? %>
+          <li class="nav-item active d-none">
+            <%= link_to "Find Jobs", jobs_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to "Dashboard", profile_path(current_user), class: "nav-link" %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to "My Apps", job_applications_path, class: "nav-link d-none" %>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <% if current_user.photo.key %>
+                <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+              <% else %>
+                <%= image_tag "avatar_default.png", class: "avatar", alt: "dropdown menu" %>
+              <% end %>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "My Applications", job_applications_path, class: "dropdown-item" %>
+              <%= link_to "My Saved Jobs", saved_jobs_path, class: "dropdown-item" %>
+              <%= link_to "My Profile", profile_path(current_user), class: "dropdown-item d-none" %>
+              <%= link_to "Job Preferences", profile_path(current_user), class: "dropdown-item d-none" %>
+              <%= link_to "Settings", profile_path(current_user), class: "dropdown-item d-none" %>
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+            </div>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,207 @@
+.job-list-header {
+  background-color: $main-color;
+  // opacity: 0.4;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+.job-description-small {
+  display: flex;
+  text-align: left;
+  font-size: 14px;
+}
+
+.job-card {
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e3e6f0;
+
+  .card-body {
+    padding: 10px;
+    .col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // text-align: left;
+      height: 70px;
+      overflow-y: scroll;
+      width: auto;
+      padding-bottom: 0px;
+      // padding-left: 2px;
+      // padding-right: 2px;
+      padding-top: 0px;
+    }
+
+    .col-2 {
+      padding: 0px
+    }
+
+    .role {
+      text-align: left;
+      // vertical-align: middle !important;
+      display: flex;
+      align-items: center;
+    }
+
+  }
+}
+
+.card-logo {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.selected-job-card {
+  background: linear-gradient(to bottom right, rgba(255,198,90, 0.4), rgba(255,198,90, 1));
+  background-color: rgba(255,198,90, 0.4);
+}
+
+.btn-status {
+  border: none;
+  color: #fff;
+  background-color: #28a745;
+  cursor: default;
+  border-radius: 20px;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.btn-closing-soon {
+  border: none;
+  color: #fff;
+  background-color: orange;
+  opacity: 0.5;
+  cursor: default;
+  border-radius: 20px;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.btn-closed {
+  border: none;
+  color: #fff;
+  background-color: red;
+  opacity: 0.5;
+  cursor: default;
+  border-radius: 20px;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.btn-success {
+  border-radius: 20px;
+  padding: 0.5rem 1.5rem;
+}
+
+// Custom checkbox styles
+input[type="checkbox"] {
+  // -webkit-appearance: none;
+  // -moz-appearance: none;
+  // appearance: none;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-clip: content-box;
+  border: 2px solid #dee2e6;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+
+  &:checked {
+    // border-color: #007bff;
+  }
+}
+
+.saved-job-heart-icon {
+  font-size: 20px;
+  color: $red;
+}
+
+.not-saved-job-heart-icon {
+  font-size: 20px;
+  color: $red;
+}
+
+// Logo sizing
+.img-fluid {
+  max-width: 50px; // Adjust as needed
+  height: auto;
+}
+
+// Responsive adjustments
+
+// @media (max-height: 800px) {
+//   .container {
+//     height: 80vh;
+//     overflow-y: auto;
+//   }
+// }
+
+/* Hide the default checkbox */
+.custom-checkbox input[type="checkbox"] {
+  visibility: hidden;
+  position: absolute;
+}
+
+/* Create a custom box */
+.custom-checkbox .checkmark {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: #eee; /* Background color */
+  position: relative;
+  cursor: pointer;
+  border-radius: 4px; /* Optional: for rounded corners */
+  border: 1px solid #dcdcdc; /* Optional: for border */
+}
+
+/* When the checkbox is checked, change the background color */
+.custom-checkbox input[type="checkbox"]:checked + .checkmark {
+  background: $main-color; /* New background color when checked */
+}
+
+/* Optional: Add a checkmark icon or any other indicator */
+.custom-checkbox input[type="checkbox"]:checked + .checkmark::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background-size: cover;
+}
+
+.job-card img {
+  object-fit: contain;
+  width: 60px;
+  height: 60px;
+}
+
+#jobs-index-right-section {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.already-applied-tick {
+  color: $main-color;
+  font-size: 22px;
+  font-weight: bold;
+}

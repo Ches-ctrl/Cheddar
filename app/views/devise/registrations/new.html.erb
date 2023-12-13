@@ -1,0 +1,37 @@
+<div class="container vh-100 d-flex align-items-center justify-content-center">
+  <div class="d-flex justify-content-center align-items-center w-50 border shadow rounded-5 p-2 m-2">
+    <div class="col-md-10 p-0 m-0"> <!-- Adjust the column size as needed -->
+      <div class="login-box text-center">
+        <h2>Sign up now</h2>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :first_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "first-name" }%>
+    <%= f.input :last_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "last-name" }%>
+    <%= f.input :email,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "email" }%>
+    <%= f.input :photo, as: :file %>
+    <%= f.input :password,
+                required: true,
+                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                input_html: { autocomplete: "new-password" } %>
+    <%= f.input :password_confirmation,
+                required: true,
+                input_html: { autocomplete: "new-password" } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Sign up" %>
+  </div>
+  </div>
+</div>
+<% end %>

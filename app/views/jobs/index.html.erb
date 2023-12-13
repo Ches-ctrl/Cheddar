@@ -1,0 +1,129 @@
+<div class="container" data-controller="select-by-job-type styling-selected-job">
+  <div class="search-container d-flex justify-content-center align-items-center">
+    <%= render 'search' %>
+  </div>
+    <div class="row" data-controller="job-index-toggle">
+
+      <%# LHS Section Divider %>
+      <div class="col-sm-3" id="jobs-index-left-section" data-job-index-toggle-target="leftSection">
+
+        <%# LHS Section - Title and Search  %>
+        <div class="d-flex justify-content-between">
+          <h6 id="jobs-index-left-section-title">
+            <% if params[:query].present? %>
+              <%= @jobs.count %>
+            <% else %>
+              <%= @jobs.count - @job_applications.count %>
+            <% end %>
+            Jobs
+          </h6>
+        </div>
+
+        <%# TODO: Add icons %>
+        <h5 class="mt-4 mb-3", style="color: #6007C6;"><i class="fa-solid fa-building-user"></i> Companies</h5>
+        <ul id="companies-select">
+          <div>
+            <% Company.all.each do |company| %>
+              <% if Job.where(company: company).any? %>
+                <div class="companies-select-item">
+                  <label for="<%= company.company_name %>" class="companies-select-item-label">
+                  <input class="companies-select-item-checkbox" type="checkbox" name="<%= company.company_name %>" id="<%= company.company_name %>" <%= params[:company] && params[:company].downcase.include?(company.company_name.downcase) ? "checked" : "" %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="company">
+                  <%= company.company_name %>
+                  </label><br>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </ul>
+
+        <%# TODO: Add icons %>
+        <%# LHS Section - Search by Job Type %>
+        <h5 class="mt-4 mb-3", style="color: #6007C6;"><i class="fa-solid fa-person-chalkboard"></i> Job Roles</h5>
+        <ul id="job-types-select">
+          <div class="job-types-select-item">
+
+            <label for="Full Stack" class="job-types-select-item-label">
+            <input class="job-types-select-item-checkbox" type="checkbox" name="Full Stack" id="full stack" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
+            Full Stack
+            </label>
+
+            <label for="Back End" class="job-types-select-item-label">
+            <input class="job-types-select-item-checkbox" type="checkbox" name="Back End" id="back end" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
+            Back End
+            </label>
+
+            <label for="Front End" class="job-types-select-item-label">
+            <input class="job-types-select-item-checkbox" type="checkbox" name="Front End" id="front end" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
+            Front End
+            </label>
+
+          </div>
+        </ul>
+
+      </div>
+
+      <%# RHS Section Divider %>
+      <div class="col-sm-9 p-0" id="jobs-index-right-section" data-job-index-toggle-target="rightSection">
+        <%= form_tag apply_jobs_path, method: :post do %>
+          <div class="sticky-top bg-white">
+            <div class="d-flex justify-content-between align-items-center pt-1">
+              <div class="d-flex align-items-center cursor-pointer" data-action="click->job-index-toggle#toggleView" data-job-index-toggle-target="toggleButton1">
+                <i class="fa-solid fa-circle-left"></i>
+                <p class="my-0 ms-1">Hide Categories</p>
+              </div>
+              <div class="d-flex align-items-center d-none cursor-pointer" data-action="click->job-index-toggle#toggleView" data-job-index-toggle-target="toggleButton2">
+                <i class="fa-solid fa-circle-right"></i>
+                <p class="my-0 ms-1">Show Categories</p>
+              </div>
+              <div>
+                <%= submit_tag "Apply to 0 Jobs", id: "apply-button", "data": {job_index_toggle_target: "applyButton"}, class: "btn btn-apply" %>
+              </div>
+            </div>
+
+            <%# RHS Section - Job Table Headers %>
+            <div class="row">
+              <div class="col-12">
+                <div class="card job-list-header">
+                  <div class="card-body">
+                    <div class="row text-center">
+                      <div class="col">Company</div>
+                      <div class="col-2">Role</div>
+                      <div class="col-2 d-none" data-job-index-toggle-target="newColumn1">Description</div>
+                      <div class="col">Salary</div>
+                      <div class="col">Status</div>
+                      <div class="col">Deadline</div>
+                      <div class="col">Details</div>
+                      <div class="col">Save</div>
+                      <div class="col">Select</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <%# RHS Section - Job Table %>
+          <div class="job-cards-container pt-0" data-controller="load-more">
+            <% @initial_jobs.each do |job| %>
+              <% if JobApplication.where(job_id: job.id, user_id: current_user.id).blank? %>
+                <%= render 'row', job: job %>
+              <% end %>
+            <% end %>
+            <div data-load-more-target="remaining" class="d-none">
+              <% @remaining_jobs.each do |job| %>
+                <%= render 'row', job: job %>
+              <% end %>
+            </div>
+            <div class="d-flex justify-content-start">
+              <%= link_to "Show More", "#", data: { action: "click->load-more#showMore" }, class: "btn btn-apply", "data-load-more-target": "button" %>
+            </div>
+          </div>
+        <% end %>
+
+      <div data-controller="new-job-form">
+        <button id="btn-add-job" class="d-none" data-action="click->new-job-form#displayForm" data-new-job-form-target="button">Add a Job</button>
+        <%= render 'form', job: @job %>
+      </div>
+    </div>
+  </div>
+</div>

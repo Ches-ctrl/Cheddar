@@ -1,0 +1,24 @@
+.demo-modal {
+  position: fixed; /* Keeps it in the same place on the screen */
+  top: 100px; /* Distance from the bottom of the viewport */
+  right: 30px; /* Distance from the right of the viewport */
+  z-index: 1001; /* Ensures it stays on top of other elements */
+  height: 80px;
+  width: 80px;
+
+  /* Additional Styling (Optional but recommended for better UX) */
+  cursor: pointer; /* Changes the cursor to signify it's clickable */
+  background-color: $secondary-color; /* Background color */
+  color: white; /* Text color */
+  border-radius: 50%; /* Rounded corners */
+  text-align: center; /* Center the text inside the div */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  font-size: 14px; /* Adjust font size as needed */
+  font-weight: 700;
+  user-select: none; /* Prevents the text from being selectable */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.demo-modal:hover {
+  background-color: $main-color; /* Darker shade on hover for feedback */
+}

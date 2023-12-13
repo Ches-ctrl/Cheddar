@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="job-show-title">
+    <h3><%= @job.job_title %></h3>
+    <%= link_to 'Apply to this job', job_job_applications_path(@job), data: {turbo_method: :post}, class: "btn-apply" %>
+    <div class="icon-save-job">
+      <%= simple_form_for [@job, @saved_job] do |f| %>
+        <%= button_tag type: 'submit' do %>
+          <i class="fa-regular fa-heart"></i>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <p>Company: <%= @job.company.company_name %></p>
+  <p>Job title: <%= @job.job_title %></p>
+  <p>Job description: <%= @job.job_description %></p>
+  <p>Salary: £<%= number_with_delimiter(@job.salary, :delimiter => ',') %></p>
+
+</div>

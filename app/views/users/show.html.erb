@@ -1,0 +1,124 @@
+<div class="container">
+  <div id="profile-info">
+    <% if current_user.photo.key %>
+      <%= image_tag current_user.photo, class: "avatar-large" %>
+    <% else %>
+      <%= image_tag "avatar_default.png", class: "avatar-large" %>
+    <% end %>
+    <div class="name-status">
+      <h2><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h2>
+      <% if current_user.preferred_pronoun_select.present? || current_user.preferred_pronoun_text.present? %>
+        <h2 style="color: rgba(0, 0, 0, 0.5);">
+          <% if current_user.preferred_pronoun_select != "Prefer not to say" && current_user.preferred_pronoun_select != "Other" %>
+            <%= current_user.preferred_pronoun_select %>
+          <% elsif current_user.preferred_pronoun_select == "Other" && current_user.preferred_pronoun_text != "N/A" %>
+            <%= current_user.preferred_pronoun_text %>
+          <% end %>
+        </h2>
+      <% end %>
+    </div>
+    <% if current_user.linkedin_profile.present? %>
+    <h1>
+      <%= link_to current_user.linkedin_profile, target: "_blank", style: "color: #0a66c2" do %>
+        <i class="fa-brands fa-linkedin"></i>
+      <% end %>
+    </h1>
+    <% end %>
+    <% if current_user.github_profile_url.present? %>
+    <h1>
+      <%= link_to current_user.github_profile_url, target: "_blank", style: "color: black" do %>
+        <i class="fa-brands fa-github"></i>
+      <% end %>
+    </h1>
+    <% end %>
+    <% if current_user.website_url.present? %>
+      <h1>
+        <%= link_to current_user.website_url, target: "_blank" do %>
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        <% end %>
+      </h1>
+    <% end %>
+    <div class="d-flex ms-auto">
+      <h3>My Saved Jobs</h3>
+      <%= link_to saved_jobs_path do %>
+        <i class="arrow-right fa-solid fa-right-long"></i>
+    </div>
+
+    <% end %>
+  </div>
+
+  <div id="profile-scroll-boxes">
+    <div class="scroll-box">
+      <h3 class="text-center">
+        My Details
+        <%= link_to edit_user_registration_path(current_user), data: {turbo_method: :post} do %>
+            <i class="fa-regular fa-pen-to-square"></i>
+        <% end %>
+      </h3>
+      <div id="contact-info">
+        <h5>Contact Information</h5>
+        <% if current_user.address_first.present?|| current_user.address_second.present? || current_user.city.present? || current_user.post_code.present? %>
+          <h6>Address</h6>
+          <p><%= "#{current_user.address_first}" if current_user.address_first.present? %><%=", #{current_user.address_second}" if current_user.address_second.present? %><%= ", #{current_user.city}" if current_user.city.present? %></p>
+          <p><%= current_user.post_code if current_user.post_code.present? %></p>
+        <% end %>
+        <h6>Email</h6>
+        <p><%= current_user.email %></p>
+        <% if current_user.phone_number.present? %>
+          <h6>Phone</h6>
+          <p><%= current_user.phone_number %></p>
+        <% end %>
+      </div>
+      <div id="education">
+        <h5>
+          Education
+          <%= link_to new_education_path(current_user), data: {turbo_method: :post} do %>
+            <i class="fa-solid fa-plus"></i>
+          <% end %>
+        </h5>
+        <% current_user.educations.each do |education| %>
+          <div class="education-card">
+            <% university_hash = Education::UNIVERSITIES.find { |hash| hash.key?(education.university) } %>
+            <% university_domain = university_hash[education.university].strip %>
+            <%= image_tag("https://logo.clearbit.com/#{university_domain}?size=60", onerror: "this.src='https://cdn-icons-png.flaticon.com/512/1656/1656819.png'") %>
+            <div class="" id="education-details">
+              <h6><%= education.university %></h6>
+              <p style="color:black"><%= education.degree %> in <%= education.field_study %></p>
+              <p>Graduation Year: <%= education.graduation_year %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div id="documents">
+        <% if current_user.resume.url.present? %>
+          <h5>Documents</h5>
+          <%= link_to "CV", current_user.resume.url, class: "btn-apply", target: "_blank" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="scroll-box">
+      <%# <h3 class="text-center"><%= link_to "My Applications", job_applications_path, style: "color: black;" %>
+      <div class="d-flex justify-content-center">
+        <h3>My Applications</h3>
+        <%= link_to job_applications_path do %>
+          <i class="arrow-right fa-solid fa-right-long"></i>
+        <% end %>
+      </div>
+
+      <% current_user.job_applications.each do |application| %>
+        <div class="application-card-small">
+        <%= image_tag("https://logo.clearbit.com/#{application.job.company.company_website_url}?size=60", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'") %>
+          <div class="profile-application-details">
+            <p><strong><%= application.job.job_title %></strong></p>
+            <p><%= application.job.company.company_name %><p>
+          </div>
+          <% if application.status == "Application pending" %>
+            <div class="semi-donut" style="--percentage: 50; --fill:#FFC300">Pending</div>
+          <% elsif application.status == "Applied" %>
+            <div class="semi-donut" style="--percentage: 100; --fill:#6007C6">Applied</div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

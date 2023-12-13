@@ -1,0 +1,53 @@
+.btn-apply {
+  background-color: $main-color;
+  color: white;
+  border-radius: 8px;
+  padding: 10px 20px;
+  text-decoration: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-cheddar-secondary {
+  background-color: grey;
+  opacity: 0.5;
+  color: white;
+  border-radius: 8px;
+  padding: 12px 20px;
+  text-decoration: none;
+}
+
+#search-button {
+  background-color: $main-color;
+  color: white;
+  // font-weight: 500;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  // margin-right: 6px;
+  margin-left: 6px;
+}
+
+#search-button:hover {
+  background-color: $tertiary-color;
+  color: white;
+}
+
+
+.btn-add-info, #btn-add-job {
+  background-color: $main-color;
+  opacity: 0.7;
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 12px 18px;
+  margin: 12px;
+}
+
+#btn-edit-info {
+  color: $main-color;
+  font-size: 28px;
+  position: absolute;
+  right: 180px;
+}

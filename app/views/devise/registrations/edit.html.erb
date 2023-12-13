@@ -1,0 +1,60 @@
+<style>
+  .form-inputs select {
+    width: 100%;
+  }
+</style>
+
+<div class="container vh-180 d-flex align-items-center justify-content-center">
+  <div class="d-flex justify-content-center align-items-center w-50 border shadow rounded p-2 m-4">
+    <div class="col-md-10 p-0 m-0"> <!-- Adjust the column size as needed -->
+      <div class="login-box text-center">
+        <h2>Add/ Edit your Information </h2>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= f.error_notification %>
+
+          <div class="form-inputs">
+            <%= f.input :first_name, required: false, autofocus: true, label_html: { style: 'font-style: italic;' } %>
+            <%= f.input :last_name, required: false, autofocus: true, label_html: { style: 'font-style: italic;' } %>
+            <%= f.label :preferred_pronoun_select, "What are your prefered pronouns?", style: 'font-style: italic;' %>
+            <div class="form-group my-2">
+              <%= f.select :preferred_pronoun_select, options_for_select(['He/Him', 'She/Her', 'They/Them', 'Other', 'Prefer not to say']), required: true, autofocus: true %>
+            </div>
+            <%= f.input :preferred_pronoun_text, required: false, autofocus: true, label: 'If other then please specify:', label_html: { style: 'font-style: italic;' } %>
+            <%= f.input :email, required: false, autofocus: true, label_html: { style: 'font-style: italic;' } %>
+            <%= f.input :phone_number, required: false, autofocus: true, label_html: { style: 'font-style: italic;' } %>
+            <%= f.input :address_first, required: false, autofocus: true, label_html: { style: 'font-style: italic;' } %>
+            <%= f.input :address_second, required: false, autofocus: true, label_html: { style: 'font-style: italic;' } %>
+            <%= f.input :post_code, required: false, autofocus: true, label_html: { style: 'font-style: italic;' } %>
+            <%= f.input :city, required: false, autofocus: true, label_html: { style: 'font-style: italic;' } %>
+            <%= f.input :linkedin_profile, required: false, autofocus: true, label_html: { style: 'font-style: italic;' } %>
+            <%= f.input :github_profile_url, required: false, autofocus: true, label_html: { style: 'font-style: italic;' } %>
+            <%= f.input :website_url, required: false, autofocus: true, label_html: { style: 'font-style: italic;' } %>
+            <%= f.input :salary_expectation_figure, required: false, autofocus: true, label: "What is you annual salary expectation?", label_html: { style: 'font-style: italic;' } %>
+            <%= f.input :right_to_work, required: false, autofocus: true, label: "Do you have the right to work in the UK without a visa?", label_html: { style: 'font-style: italic;' }  %>
+            <%= f.input :notice_period, required: false, autofocus: true, label: "What is your notice period in weeks?", label_html: { style: 'font-style: italic;' }  %>
+            <%= f.input :resume, as: :file, label: 'Resume/CV (PDF)', input_html: {accept: ('application/pdf') }, required: true, label_html: { style: 'font-style: italic;' } %>
+            <%# <%= f.input :cover_letter_template_url, required: false, autofocus: true, label_html: { style: 'font-style: italic;' } %>
+            <%= f.input :photo, as: :file, label_html: { style: 'font-style: italic;' } %>
+
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+            <% end %>
+
+            <%= f.input :password,
+                        hint: "leave it blank if you don't want to change it",
+                        required: false,
+                        input_html: { autocomplete: "new-password" }, label_html: { style: 'font-style: italic;' } %>
+            <%= f.input :password_confirmation,
+                        required: false,
+                        input_html: { autocomplete: "new-password" }, label_html: { style: 'font-style: italic;' } %>
+            <%= f.input :current_password,
+                        hint: "we need your current password to confirm your changes",
+                        required: true,
+                        input_html: { autocomplete: "current-password" }, label_html: { style: 'font-style: italic;' } %>
+          </div>
+          <%= f.submit "Update", class: 'btn-add-info' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

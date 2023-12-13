@@ -1,0 +1,17 @@
+<div id="jobs-search-bar" class="search-bar-background">
+  <%= form_tag jobs_path, method: :get, class: 'd-flex' do %>
+    <%= text_field_tag :query,
+        params[:query],
+        class: 'form-control',
+        placeholder: 'Search for any job, company or role... ', style: 'font-style: italic;', id: 'search-jobs' %>
+
+    <%= link_to jobs_path, class: 'clear-search-icon' do %>
+      <i class="fa-solid fa-x"></i>
+    <% end %>
+
+    <%= submit_tag 'Search', id: 'search-button' %>
+  <% end %>
+
+
+
+</div>

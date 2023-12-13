@@ -1,0 +1,36 @@
+#profile-main-section {
+  display: flex;
+  margin: 32px 0;
+}
+
+#profile-second-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+#education-info-title {
+  display: flex;
+  position: relative;
+}
+
+#btn-add-educ {
+  color: $main-color;
+  font-size: 22px;
+  position: absolute;
+  right: 0px;
+}
+
+#profile-second-section-sub-left, #profile-second-section-sub-right {
+  height: 500px;
+  margin: 16px;
+  border-radius: 20px;
+}
+
+.arrow-right {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  margin: 7px;
+  margin-right: 0;
+  // margin on the right hand side in the profile info is due to profile info gap
+}

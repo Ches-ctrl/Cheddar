@@ -1,0 +1,70 @@
+/* custom font from google fonts */
+
+/* Basic styling and positioning of elements */
+// body {color:#444;font-size:16px;}
+
+.how-works-container{
+  display: flex;
+  margin: 24px auto;
+  width: 76%;
+  flex-direction: column;
+  font-size: 24px ;
+  justify-content: center;
+}
+
+.how-it-works-object {
+  width: fit-content;
+  // height: fit-content;
+}
+
+.how-works-text{
+  font-family: $body-font;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #490596;
+  width: 500px;
+}
+// #some-box {background:#fff;padding:40px 0px 80px;font-family:'Helvetica', sans-serif;}
+// #some-box h1 {text-align:center;}
+// #some-box h3 {font-size:26px;}
+// #some-box a {color:#70BCB8;text-decoration:none;display:block;font-weight:bold;}
+// #some-box a:hover {color:#8E7BB2;}
+
+// article.row {width:100%;max-width:800px;margin:0 auto;padding:45px 0;}
+// article.row div {width:49.4%;display:inline-block;position:relative;border:1px solid white;}
+
+// /**** For your reference ****/
+// // article.row {border:1px solid white;}
+// // article.row:hover {border:1px solid yellow;}
+// // article.row div:hover {border:1px solid green;}
+// /* Your divs won't expand to contain absolute positioned images */
+
+
+// #idea-one img, #idea-two img, #idea-three img {position:absolute;bottom:-20px;left:50px;}
+
+// /* Here's the column repositioning magic. This media query says "Apply these styles only until page width is greater than 750px"
+
+// ***To make this work, your media query has to be beneath your other styles to keep it from being overwritten later on by your general styles*** */
+// @media(max-width:750px){
+
+//   /* This resizes the divs that contain your content to fill the width of the page so that they stack vertically */
+//   article.row div {min-width:300px;width:90%;margin:0 5%;text-align:center;display:block;}
+
+//   /* Center your text */
+// 	#some-other-box h3 {text-align:center;}
+
+//   /* Center your image */
+// 	// #idea-one img, #idea-two img, #idea-three img, #idea-four img {position:relative;margin:auto;left:inherit;bottom:inherit;}
+
+//   /* This tells the browswer to stack the content vertically */
+//   #idea-two {display:-webkit-box;display:-moz-box;display:box;-webkit-box-orient:vertical;-moz-box-orient:vertical;box-orient:vertical;}
+
+//   /* This tells the browswer to draw the first box (div:first-of-type) within our stacked content block (identified in the previous rule) in the second position ([...]box-ordinal-group:2;)
+//   This gives us a nice arrangement of alternating text and images, and allows us two have a custom layout for smaller or wider screens.*/
+// 	#idea-two div:first-of-type {-webkit-box-ordinal-group:2;-moz-box-ordinal-group:2;box-ordinal-group:2;}
+// }
+
+//   /*
+// If we had 3 boxes, we could draw them in order C, A, B by writing div:first-of-type{[...]group:2;} and div:nth-of-type(2) {[...]group:3;}, and so on.
+//   */

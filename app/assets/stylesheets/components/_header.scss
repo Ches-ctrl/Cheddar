@@ -1,0 +1,21 @@
+.job-show-title {
+  display: flex;
+  align-items: center;
+  margin: 36px 0;
+  position: relative;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.icon-save-job {
+  border: none;
+  position: absolute;
+  right: 0;
+  font-size: 22px;
+}
+
+#saved-jobs-index-title, #my-application-index-title {
+  margin: 36px 0;
+}

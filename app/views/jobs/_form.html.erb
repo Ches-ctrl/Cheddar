@@ -1,0 +1,19 @@
+
+  <div class="container vh-180 d-flex align-items-center justify-content-center">
+    <div class="d-flex justify-content-center align-items-center w-50 border shadow rounded p-2 m-4 d-none" data-new-job-form-target="form">
+      <div class="col-md-10 p-0 m-0"> <!-- Adjust the column size as needed -->
+        <div class="form-box text-center">
+                <%= simple_form_for [@job] do |f| %>
+                <%= f.association :company, collection: Company.all, :label_method => lambda { |company| "#{company.company_name}"}, prompt: "Choose a company", label_html: { style: 'font-style: italic;' } %>
+                <%= f.input :job_title, label_html: { style: 'font-style: italic;' } %>
+                <%= f.input :job_description, label_html: { style: 'font-style: italic;' } %>
+                <%= f.input :salary, label_html: { style: 'font-style: italic;' } %>
+                <%= f.input :job_posting_url, label_html: { style: 'font-style: italic;' } %>
+                <%= f.input :application_deadline, label_html: { style: 'font-style: italic;' } %>
+                <%= f.input :date_created, label_html: { style: 'font-style: italic;' } %>
+                <%= f.submit 'Add this job', class: 'btn-add-info'%>
+              <% end %>
+        </div>
+      </div>
+    </div>
+  </div>

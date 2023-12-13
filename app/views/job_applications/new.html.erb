@@ -1,0 +1,95 @@
+<%= provide(:title, 'New Job Applications') %>
+
+<div class="container mt-5 col-sm-6" data-controller="all-application-forms">
+  <div class="d-flex justify-content-between align-items-center ">
+      <div class="companies d-flex flex-column justify-content-start mb-4">
+        <%# Dynamically load the company logos based on selected jobs %>
+        <p class="mb-1">Current applications:</p>
+
+        <div class="company-apply-summary bg-body-secondary p-2 d-flex">
+          <%# TODO: Update company logos once pulling from TrueUp (clearbit) %>
+          <% @selected_jobs.each_with_index do |job, index| %>
+            <div><%= index + 1 %></div>
+              <%= link_to image_tag("https://logo.clearbit.com/#{job.company.company_website_url}?size=60", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", class: 'img-fluid'), '#', class: 'apply-company-logo mr-3' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end align-items-center">
+        <div class="btn btn-apply mt-1" data-all-application-forms-target="button" data-action="click->all-application-forms#submitAllForms">Apply All</div>
+      </div>
+  </div>
+
+  <%# Iterate over each selected job %>
+  <div class="all-application-forms m-auto" data-controller=" response-input">
+    <% @job_applications.each_with_index do |job, index| %>
+      <details class="application-form bg-body-secondary mb-3" open>
+        <summary class="pb-1" style="display: block"><h2><%= index + 1 %>. <%= job.first.job_title %></h2></summary>
+        <%= simple_form_for job, html: { class: 'needs-validation', 'data-controller': 'application-form', 'data-application-form-target': 'form', 'data-action': 'submit->application-form#submitForm', 'data-all-application-forms-target': "form",  novalidate: true } do |f| %>
+
+          <%# Dynamically create form elements based on application_criteria %>
+          <%# Convert to simple_fields_for application_responses. Then use those to create the input fields below. %>
+          <% job.last.application_responses.each_with_index do |response, response_index| %>
+
+            <% if response_index == 0 %>
+              <details class="core-details bg-light" open>
+              <summary class="mb-2 bolded">Core details:</summary>
+            <% end %>
+
+            <%= f.simple_fields_for "application_responses", response do |ff| %>
+              <div class="form-group row mb-3">
+                <label  class="apply-label col-sm-3 col-form-label text-center rounded-pill" for=""><%= response.field_name.humanize %></label>
+                <% case ff.object.interaction %>
+                <% when "input" %>
+                  <div class="col-sm-9 mr-2">
+                    <%= ff.input :field_name, as: :hidden, input_html: { class: 'mb-0', style: "margin-bottom: 0px;"}, wrapper_html: { class: 'wrapper-mb-0' }, label: false %>
+                    <%= ff.input :field_locator, as: :hidden, input_html: { class: 'mb-0' }, wrapper_html: { class: 'wrapper-mb-0' }, label: false %>
+                    <%= ff.input :interaction, as: :hidden, input_html: { class: 'mb-0' }, wrapper_html: { class: 'wrapper-mb-0' }, label: false %>
+                    <%= ff.input :field_option, as: :hidden, input_html: { class: 'mb-0' }, wrapper_html: { class: 'wrapper-mb-0' }, label: false %>
+                    <%= ff.input :field_value , label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-pill", data: { label: response.field_name, response_input_target: "input", action: "keyup->response-input#handleChange change->response-input#handleChange"} } %>
+                  </div>
+                <% when "upload" %>
+                  <div class="col-sm-9 mr-2">
+                    <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%= ff.input :field_value, label_html: { class: "d-none"}, input_html: { class: "rounded-pill", data: { label: response.field_name, response_input_target: "input", action: "keyup->response-input#handleChange change->response-input#handleChange"}, value: current_user.resume.attached? ? current_user.resume.filename : nil }, wrapper_html: { class: 'wrapper-mb-0' } %>
+                  </div>
+                <% when "combobox" %>
+                  <div class="col-sm-9">
+                    <%= ff.input :field_name, as: :hidden %>
+                    <%= ff.input :field_locator, as: :hidden %>
+                    <%= ff.input :interaction, as: :hidden %>
+                    <%= ff.input :field_option, as: :hidden %>
+                      <p>TODO: Add a COmbobox handler. Value is combobox field_option.</p>
+
+                    <%= ff.input :field_value, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-pill", data: { label: response.field_name, response_input_target: "input", action: "keyup->response-input#handleChange change->response-input#handleChange"} } %>
+                  </div>
+                <% end %>
+
+              </div>
+            <% end %>
+
+            <% if response.field_name == "resume" %> <%# This is the last CORE APPLICATION FIELD%>
+              </details>
+              <details class="core-details bg-light" open> <%# Add a new details tag for additional details %>
+                <summary class="mb-2 bolded">Additional details:</summary> <%# Close the additional details tag %>
+            <% end %>
+            <% if response_index + 1 == job.last.application_responses.length %>
+              </details>
+            <% end %>
+          <% end %>
+          <%# TODO: Map data types here.s %>
+          <%# TODO: Handle File uploads %>
+
+
+          <div class="d-flex justify-content-end align-items-end">
+            <%= f.submit 'Submit this application', class: 'btn btn-apply', 'data-action': 'click->application-form#submitForm' %>
+          </div>
+        <% end %>
+        </details>
+    <% end %>
+  </div>
+</div>
+
+<%# job.last.application_responses[4].field_name %>
