@@ -3,8 +3,11 @@ require "json"
 require "net/http"
 
 # TODO: Add error handling and surface error to user/admin
+# TODO: Wrap in transaction so the method can be rolled back
+# TODO: Add Rails.logger to log errors
 # TODO: Add ability to handle multiple apis
 # TODO: Add ability to handle multiple company names with slight variations
+# TODO: Add ability to handle multiple requests based on job title, location and characteristics
 # TODO: Add this to admin panel so you can run it manually
 # TODO: Setup a cron job to run this every 24 hours
 
@@ -19,7 +22,7 @@ class CallJobApiJob < ApplicationJob
 
     data = collect_job_ids(https, url)
 
-    data.each do |job_id|
+    data.first(5).each do |job_id|
       job_data = collect_job_details(https, job_id)
       company_id = create_company(job_data)
       create_job(company_id, job_data)
@@ -29,12 +32,16 @@ class CallJobApiJob < ApplicationJob
 
   private
 
+  TITLES_DEV = "(Full Stack Developer) OR (Web Developer) OR (Full Stack Web Developer) OR (Graduate Developer)"
+  TITLES_ENG = "(Full Stack Software Engineer) OR (Software Engineer) OR (Software Developer) OR (Graduate Software Engineer) OR (Junior Software Engineer)"
+  TITLES_CON = "(Consultant) OR (Associate Consultant) OR (Junior Consultant) OR (Graduate Consultant)"
+
   def collect_job_ids(https, url)
     request = Net::HTTP::Post.new(url)
     request["Content-Type"] = "application/json"
     request["Authorization"] = "Bearer #{ENV['CORESIGNAL_API_KEY']}"
     request.body = JSON.dump(
-      {"title":"(Full Stack Developer) OR (Full Stack Software Engineer) OR (Full Stack Web Developer)","application_active":false,"deleted":false,"country":"(United Kingdom)","location":"London"}
+      {"title":"(Full Stack Developer) OR (Full Stack Software Engineer) OR (Full Stack Web Developer)","application_active":true,"deleted":false,"country":"(United Kingdom)","location":"London"}
     )
 
     response = https.request(request)
@@ -126,65 +133,6 @@ end
 
 
 # ---------------------
-# Job Schema:
-# ---------------------
-#
-# create_table "jobs", force: :cascade do |t|
-#   t.string "job_title"
-#   t.string "job_description", default: "n/a"
-#   t.integer "salary"
-#   t.date "date_created"
-#   t.text "application_criteria"
-#   t.date "application_deadline", default: "2023-12-08"
-#   t.string "job_posting_url"
-#   t.bigint "company_id", null: false
-#   t.datetime "created_at", null: false
-#   t.datetime "updated_at", null: false
-#   t.integer "applicant_tracking_system_id"
-#   t.integer "ats_format_id"
-#   t.text "application_details"
-#   t.text "description_long"
-#   t.text "responsibilities"
-#   t.text "requirements"
-#   t.text "benefits"
-#   t.text "application_process"
-#   t.boolean "captcha"
-#   t.string "employment_type"
-#   t.string "location"
-#   t.string "country"
-#   t.string "industry"
-#   t.string "seniority"
-#   t.integer "applicants_count"
-#   t.integer "cheddar_applicants_count"
-#   t.index ["company_id"], name: "index_jobs_on_company_id"
-# end
-
-
-# ---------------------
-# Coresignal Job Search Schema:
-# ---------------------
-# {
-#   "created_at_gte": "string",
-#   "created_at_lte": "string",
-#   "last_updated_gte": "string",
-#   "last_updated_lte": "string",
-#   "title": "string",
-#   "keyword_description": "string",
-#   "employment_type": "string",
-#   "location": "string",
-#   "company_id": 0,
-#   "company_name": "string",
-#   "company_domain": "string",
-#   "company_exact_website": "string",
-#   "company_professional_network_url": "string",
-#   "deleted": true,
-#   "application_active": true,
-#   "country": "string",
-#   "industry": "string"
-# }
-
-
-# ---------------------
 # CoreSignal API Request Response:
 # ---------------------
 #
@@ -210,10 +158,3 @@ end
 # "linkedin_job_id":3764916792,"country":"United Kingdom",
 # "redirected_url":"https://www.linkedin.com/jobs/view/junior-full-stack-developer-net-core-at-apidura-3764916792",
 # "job_industry_collection":[{"job_industry_list":{"industry":"Retail"}}]}
-
-
-# ---------------------
-# CoreSignal API Request Response II:
-# ---------------------
-#
-# {"id":191967799,"created":"2023-10-14 07:11:58","last_updated":"2023-12-14 04:59:41","time_posted":"2 months ago","title":"Senior Sustainability & Energy Consultant – Strategy","description":"Click here to apply: Job Openings (peoplehr.net)\n\nSENIOR STRATEGY CONSULTANT\n\nLongevity Partners is a multi-disciplinary energy and sustainability consultancy and investment business. Established in 2015 to support the transition to a low carbon economy in the UK, Europe and worldwide, we have since grown to a multi-million leading advisory firm with offices in London, Paris, Amsterdam, Munich, New York, Austin and San Francisco.\n\nOur clients are among the world’s largest real estate investors, leaders in their sectors and seeking excellence in carbon neutrality. Longevity Partners assists its clients with European and global portfolios with services ranging from ESG Strategy definition, assistance and advisory in international reporting, green building certification and large-scale carbon reduction implementation.\n\nThe company is recruiting an ambitious Sustainability Strategy Consultant who can take a client through the journey from strategy creation to implementation, through well-crafted goals, action plans and stakeholder engagement. The role will involve overseeing and working on sustainability reporting for clients, analysing data to identify opportunities for improvement and providing advice and support to help clients deliver on their ambitious sustainability strategies. This role is expected to project manage several clients. This position is based principally in our office in London, UK.\n\nTHE SENIOR STRATEGY ANALYST/ CONSULTANT IS RESPONSIBLE FOR\n\n• Developing a sustainability strategy from scratch, from setting vision statements to performing materiality reviews. \n• Understanding clients’ sustainability impacts and carbon footprints, to advise on setting and delivering on ambitious carbon reduction and broader sustainability targets \n• Helping clients in the delivery of projects from compliance, setting targets to delivering on ambitious goals such as Net Zero or Science-Based Targets \n• Being able to provide insights, future trends, and articulate the value of sustainability to businesses, with an understanding of future value creation. \n• Creating thought leadership pieces for communication, enhancing client offerings, and ensuring the team remains at the forefront of emerging thinking. \n• Building a strong working relationship with client sustainability teams through the provision of accurate and timely advice and deliverables. \n• Developing client relationships and the effective delivery of sustainability services on time and on budget. \n• Supporting the business development of our ESG services to a range of listed investors and corporate client base. \n• Working in a rigorous manner to deliver accurate, high quality, engaging and client-ready outputs. \n• Support the professional development of others within the team.\n\n\nTHE SUCCESSFUL INDIVIDUAL WILL HAVE\n\n• Relevant degree and/or master’s degree or equivalent 3-5 years work experience \n• Experience in strategy planning, building business cases, and demonstrating the value of sustainability and the business imperative for tackling climate change \n• Strong analytical skills, with an ability to manage and interpret data to inform effective decision making \n• Experience in initiatives such as CDP, GRESB, Science-Based Targets, Net Positive approaches are desirable \n• Proven project management experience and excellent communication skills \n• Attention to detail and accuracy in written, visual and numeric work \n• Personable character with an ability to foster good working relationships and good experience of leading individuals or small teams \n• Ability to obtain buy-in and engagement from employees at all levels \n• Experience liaising with, engaging and presenting to senior business leaders \n• Good awareness of a broad range of corporate social and environmental sustainability programs, including areas such as Science Based Targets and Net Positive goals \n• Passionate about tackling climate change and promoting the broader sustainability agenda","seniority":"Mid-Senior level","employment_type":"Full-time","location":"London, England, United Kingdom","url":"https://www.linkedin.com/jobs/view/senior-sustainability-energy-consultant-%25E2%2580%2593-strategy-at-longevity-partners-3733094971","hash":"45b5bba589457ac264731a9d3cf993c7","company_id":8544524,"company_name":"Longevity Partners","company_url":"https://www.linkedin.com/company/longevity-partners","external_url":"https://longevity-partners.com/careers/senior-sustainability-energy-consultant-strategy/","deleted":0,"application_active":0,"salary":null,"applicants_count":"Be among the first 25 applicants","linkedin_job_id":3733094971,"country":"United Kingdom","redirected_url":"https://www.linkedin.com/jobs/view/senior-sustainability-energy-consultant-%25E2%2580%2593-strategy-at-longevity-partners-3733094971","job_industry_collection":[{"job_industry_list":{"industry":"Environmental Services"}}]}
