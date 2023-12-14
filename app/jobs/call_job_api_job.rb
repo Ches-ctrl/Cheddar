@@ -2,102 +2,109 @@ require "uri"
 require "json"
 require "net/http"
 
-# NB. Not yet tested to be working
-
-# TODO: Test API Request
-# TODO: Add error handling
-# TODO: Add logging
-# TODO: Add fields to job table
-# TODO: Save data to job table
-# TODO: Create company if company doesn't exist
-# TODO: Create industry table
-# TODO: Evaluate Job vs Service and implications on application performance
+# TODO: Add error handling and surface error to user/admin
+# TODO: Add ability to handle multiple apis
+# TODO: Add ability to handle multiple company names with slight variations
+# TODO: Add this to admin panel so you can run it manually
+# TODO: Setup a cron job to run this every 24 hours
 
 class CallJobApiJob < ApplicationJob
   # TODO: change queue_as to deprioritised relative to job applications
   queue_as :default
 
   def perform(*args)
-    # Do something later
     url = URI("https://api.coresignal.com/cdapi/v1/linkedin/job/search/filter")
-
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
 
-    p "HTTPS: #{https}"
+    data = collect_job_ids(https, url)
 
+    data.each do |job_id|
+      job_data = collect_job_details(https, job_id)
+      company_id = create_company(job_data)
+      create_job(company_id, job_data)
+      p "completed"
+    end
+  end
+
+  private
+
+  def collect_job_ids(https, url)
     request = Net::HTTP::Post.new(url)
     request["Content-Type"] = "application/json"
     request["Authorization"] = "Bearer #{ENV['CORESIGNAL_API_KEY']}"
     request.body = JSON.dump(
       {"title":"(Full Stack Developer) OR (Full Stack Software Engineer) OR (Full Stack Web Developer)","application_active":false,"deleted":false,"country":"(United Kingdom)","location":"London"}
     )
-    # p "Request: #{request}"
 
     response = https.request(request)
-    # p "Response: #{response.read_body}"
-
     data = JSON.parse(response.body)
-    # p "Data: #{data}"
-
-    data.first(2).each do |job_id|
-      job_data = collect_job_details(https, job_id)
-      p job_data
-      create_job(job_data)
-      p "ended"
-    end
-
-    # create_job_from_api_data(data)
-  end
-
-  private
-
-  def collect_job_ids
   end
 
   def collect_job_details(https, job_id)
     details_url = URI("https://api.coresignal.com/cdapi/v1/linkedin/job/collect/#{job_id}")
-
     details_request = Net::HTTP::Get.new(details_url)
     details_request["Content-Type"] = "application/json"
     details_request["Authorization"] = "Bearer #{ENV['CORESIGNAL_API_KEY']}"
 
     details_response = https.request(details_request)
     job_data = JSON.parse(details_response.body)
-
-    p job_data
   end
 
-  def create_company
+  def create_company(job_data)
+    existing_company = Company.find_by(company_name: job_data["company_name"])
+
+    if existing_company.nil?
+      company = Company.new(
+        company_name: job_data["company_name"],
+        company_website_url: job_data["company_url"],
+        location: job_data["location"],
+        industry: job_data["job_industry_collection"].first["job_industry_list"]["industry"],
+      )
+
+      if company.save!
+        puts "Company #{company.company_name} created successfully."
+        return company.id
+      else
+        puts "Company creation failed."
+      end
+    else
+      puts "A Company with the same external_url already exists."
+      return Company.find_by(company_name: job_data["company_name"]).id
+    end
   end
 
-  def create_job(job_data)
-    # TODO: If job url is from linkedin, go to linkedin and get the actual job posting url
+  def create_job(company_id, job_data)
+    if job_data["external_url"].nil?
+      # TODO: If job url is from linkedin, go to linkedin and get the actual job posting url
+      # TODO: Create linkedin scrape account
+      job_url = job_data["url"]
+      # if job_data["external_url"].include?("linkedin")
+      #   get_job_url(job_data)
+      # end
+    else
+      job_url = job_data["external_url"]
+    end
 
-    existing_job = Job.find_by(job_posting_url: job_data["external_url"])
+    existing_job = Job.find_by(job_posting_url: job_url)
 
     if existing_job.nil?
-      job = Job.create(
+      job = Job.new(
         job_title: job_data["title"],
-        job_description: job_data["description"],
-        date_created: DateTime.parse(job_data["created"]),
-        application_deadline: DateTime.parse(job_data["last_updated"]),
-        job_posting_url: job_data["url"],
-        company_id: job_data["company_id"],
+        job_description: job_data["description"], # TODO: handle \n in job descriptions
+        job_posting_url: job_url,
         employment_type: job_data["employment_type"],
         location: job_data["location"],
         country: job_data["country"],
         industry: job_data["job_industry_collection"].first["job_industry_list"]["industry"],
         seniority: job_data["seniority"],
         applicants_count: job_data["applicants_count"],
-        job_posting_url: job_data["external_url"]
-        # Add other attributes from your schema as needed
+        company_id: company_id,
+        cheddar_applicants_count: 0,
       )
 
-      p job
-
-      if job.persisted?
-        puts "Job created successfully."
+      if job.save!
+        puts "Job #{job.job_title} created successfully."
       else
         puts "Job creation failed."
       end
@@ -106,25 +113,17 @@ class CallJobApiJob < ApplicationJob
     end
   end
 
-  def get_job_details
+  def get_job_url(job_data)
+    # TODO: Go to linkedin and get the actual job posting url
   end
 
-  def get_application_criteria
+  def get_job_details(job_data)
+  end
+
+  def get_application_criteria(job_data)
   end
 end
 
-
-
-
-
-
-
-
-
-
-# rails g migration AddColumnsToJobs employment_type:string location:string country:string industry:string
-
-# rails g migration AddAddtlColumnsToJobs seniority:string salary:integer applicants_count:integer cheddar_applicants_count:integer
 
 # ---------------------
 # Job Schema:
@@ -218,22 +217,3 @@ end
 # ---------------------
 #
 # {"id":191967799,"created":"2023-10-14 07:11:58","last_updated":"2023-12-14 04:59:41","time_posted":"2 months ago","title":"Senior Sustainability & Energy Consultant – Strategy","description":"Click here to apply: Job Openings (peoplehr.net)\n\nSENIOR STRATEGY CONSULTANT\n\nLongevity Partners is a multi-disciplinary energy and sustainability consultancy and investment business. Established in 2015 to support the transition to a low carbon economy in the UK, Europe and worldwide, we have since grown to a multi-million leading advisory firm with offices in London, Paris, Amsterdam, Munich, New York, Austin and San Francisco.\n\nOur clients are among the world’s largest real estate investors, leaders in their sectors and seeking excellence in carbon neutrality. Longevity Partners assists its clients with European and global portfolios with services ranging from ESG Strategy definition, assistance and advisory in international reporting, green building certification and large-scale carbon reduction implementation.\n\nThe company is recruiting an ambitious Sustainability Strategy Consultant who can take a client through the journey from strategy creation to implementation, through well-crafted goals, action plans and stakeholder engagement. The role will involve overseeing and working on sustainability reporting for clients, analysing data to identify opportunities for improvement and providing advice and support to help clients deliver on their ambitious sustainability strategies. This role is expected to project manage several clients. This position is based principally in our office in London, UK.\n\nTHE SENIOR STRATEGY ANALYST/ CONSULTANT IS RESPONSIBLE FOR\n\n• Developing a sustainability strategy from scratch, from setting vision statements to performing materiality reviews. \n• Understanding clients’ sustainability impacts and carbon footprints, to advise on setting and delivering on ambitious carbon reduction and broader sustainability targets \n• Helping clients in the delivery of projects from compliance, setting targets to delivering on ambitious goals such as Net Zero or Science-Based Targets \n• Being able to provide insights, future trends, and articulate the value of sustainability to businesses, with an understanding of future value creation. \n• Creating thought leadership pieces for communication, enhancing client offerings, and ensuring the team remains at the forefront of emerging thinking. \n• Building a strong working relationship with client sustainability teams through the provision of accurate and timely advice and deliverables. \n• Developing client relationships and the effective delivery of sustainability services on time and on budget. \n• Supporting the business development of our ESG services to a range of listed investors and corporate client base. \n• Working in a rigorous manner to deliver accurate, high quality, engaging and client-ready outputs. \n• Support the professional development of others within the team.\n\n\nTHE SUCCESSFUL INDIVIDUAL WILL HAVE\n\n• Relevant degree and/or master’s degree or equivalent 3-5 years work experience \n• Experience in strategy planning, building business cases, and demonstrating the value of sustainability and the business imperative for tackling climate change \n• Strong analytical skills, with an ability to manage and interpret data to inform effective decision making \n• Experience in initiatives such as CDP, GRESB, Science-Based Targets, Net Positive approaches are desirable \n• Proven project management experience and excellent communication skills \n• Attention to detail and accuracy in written, visual and numeric work \n• Personable character with an ability to foster good working relationships and good experience of leading individuals or small teams \n• Ability to obtain buy-in and engagement from employees at all levels \n• Experience liaising with, engaging and presenting to senior business leaders \n• Good awareness of a broad range of corporate social and environmental sustainability programs, including areas such as Science Based Targets and Net Positive goals \n• Passionate about tackling climate change and promoting the broader sustainability agenda","seniority":"Mid-Senior level","employment_type":"Full-time","location":"London, England, United Kingdom","url":"https://www.linkedin.com/jobs/view/senior-sustainability-energy-consultant-%25E2%2580%2593-strategy-at-longevity-partners-3733094971","hash":"45b5bba589457ac264731a9d3cf993c7","company_id":8544524,"company_name":"Longevity Partners","company_url":"https://www.linkedin.com/company/longevity-partners","external_url":"https://longevity-partners.com/careers/senior-sustainability-energy-consultant-strategy/","deleted":0,"application_active":0,"salary":null,"applicants_count":"Be among the first 25 applicants","linkedin_job_id":3733094971,"country":"United Kingdom","redirected_url":"https://www.linkedin.com/jobs/view/senior-sustainability-energy-consultant-%25E2%2580%2593-strategy-at-longevity-partners-3733094971","job_industry_collection":[{"job_industry_list":{"industry":"Environmental Services"}}]}
-
-
-  #   # Check if data already exists in the database (via unique identifier e.g. external_url)
-  #   return if Job.exists?(external_url: data["external_url"])
-
-  #   # Create job in jobs table based on external values
-  #   # TODO: update mapping of fields
-  #   Job.create(
-  #     job_title: data["title"],
-  #     job_description: data["description"],
-  #     location: data["location"],
-  #     seniority: data["seniority"],
-  #     employment_type: data["employment_type"],
-  #     company_name: data["company_name"],
-  #     company_url: data["company_url"],
-  #     external_url: data["external_url"],
-  #     # Map other fields as necessary
-  #   )
-  # end

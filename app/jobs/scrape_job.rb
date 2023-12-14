@@ -61,6 +61,8 @@ class ScrapeJob < ApplicationJob
         job_title = job_card.first('div.fw-bold.mb-1 a.text-dark')&.text&.strip
         p "Job Title: #{job_title}"
 
+        # TODO: First check if company (with alternative spellings) already exists in the database)
+
         company_attributes = {
           company_name: job_card.first('div.mb-2.align-items-baseline a.text-dark')&.text&.strip,
           location: job_card.first("div.text-secondary[style='width: 100%; font-size: 12px; font-weight: 500;']")&.text&.strip,
