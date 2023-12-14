@@ -50,17 +50,31 @@ class ScrapeJob < ApplicationJob
 
       job_cards.each do |job_card|
         job_url = job_card.first('div.fw-bold.mb-1 a.text-dark')&.[](:href)
+        p "Job URL: #{job_url}"
+
         job_url = job_url.split('?').first if job_url.include?('?')
+        p "Job URL: #{job_url}"
+
         job_url = job_url.chomp('apply/') if job_url.end_with?('/apply/')
+        p "Job URL: #{job_url}"
+
         job_title = job_card.first('div.fw-bold.mb-1 a.text-dark')&.text&.strip
+        p "Job Title: #{job_title}"
+
+        # TODO: First check if company (with alternative spellings) already exists in the database)
+
         company_attributes = {
           company_name: job_card.first('div.mb-2.align-items-baseline a.text-dark')&.text&.strip,
           location: job_card.first("div.text-secondary[style='width: 100%; font-size: 12px; font-weight: 500;']")&.text&.strip,
           industry: "Tech"
         }
+        p company_attributes
 
         company = Company.find_or_create_by(company_name: company_attributes[:company_name])
+        p "Find or create by complete: "
+
         company.update(company_attributes)
+        p company
 
         if company.save
           puts "New company created: #{company.company_name}"
@@ -115,8 +129,14 @@ class ScrapeJob < ApplicationJob
 
     fill_in 'username', with: scrape_emails[random_index]
     fill_in 'password', with: scrape_passwords[random_index]
-    find_button('Continue', class: ['c5fa977b5','cf576c2dc'] ).click
+    # click_button('Continue')
+    click_button('Continue', class: ['c1939bbc3'])
+
+
+    # find_button('Continue', type: "submit").click
+    # , class: ['c1939bbc3']
     # cb8dcbc41 c5fa977b5 c3419c4cf cf576c2dc cdb91ebae
+    # <button type="submit" name="action" value="default" class="c1939bbc3 cc78b8bf3 ce1155df5 c1d2ca6e3 c331afe93" data-action-button-primary="true">Continue</button>
 
  end
 

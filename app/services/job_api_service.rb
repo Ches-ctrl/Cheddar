@@ -20,6 +20,8 @@ class JobApiService
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
 
+    p https
+
     request = Net::HTTP::Post.new(url)
     request["Content-Type"] = "application/json"
     request["Authorization"] = "Bearer #{ENV['CORESIGNAL_API_KEY']}"
@@ -27,11 +29,15 @@ class JobApiService
     {"title":"(Full Stack Developer) OR (Full Stack Software Engineer) OR (Full Stack Web Developer)","application_active":false,"deleted":false,"country":"(United Kingdom)","location":"London"}
     )
 
+    p request
+
     response = https.request(request)
-    puts response.read_body
+    p response.read_body
 
     # Parsing the data into json and calling the method to output the jobs
     data = JSON.parse(response.body)
+    p data
+
     create_job_from_api_data(data)
   end
 
