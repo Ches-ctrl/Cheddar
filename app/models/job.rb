@@ -1,23 +1,25 @@
 class Job < ApplicationRecord
   include Ats::Greenhouse
   include Ats::Workable
-  serialize :application_criteria, JSON
+  include PgSearch::Model
+
+  serialize :application_criteria, coder: JSON
+
   belongs_to :company
   belongs_to :applicant_tracking_system, optional: true
   belongs_to :ats_format, optional: true
+
   has_many :job_applications, dependent: :destroy
   has_many :saved_jobs, dependent: :destroy
   has_many :playlist_jobs
   has_many :job_playlists, through: :playlist_jobs
+
   before_create :set_application_criteria
 
   validates :job_title, presence: true
   # validates :job_posting_url, uniqueness: true
-
-  # TODO: Add validations to job model
   # validates :applicant_tracking_system_id, :ats_format_id, presence: true
-
-  include PgSearch::Model
+  # TODO: Add further validations to job model
 
   pg_search_scope :global_search,
     against: [:job_title, :salary, :job_description],

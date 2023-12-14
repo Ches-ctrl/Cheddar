@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_07_170607) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_14_144719) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -131,6 +131,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_07_170607) do
     t.text "benefits"
     t.text "application_process"
     t.boolean "captcha"
+    t.string "employment_type"
+    t.string "location"
+    t.string "country"
+    t.string "industry"
+    t.string "seniority"
+    t.integer "applicants_count"
+    t.integer "cheddar_applicants_count"
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
