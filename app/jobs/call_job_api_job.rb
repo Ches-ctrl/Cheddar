@@ -32,6 +32,8 @@ class CallJobApiJob < ApplicationJob
 
   private
 
+  # "(Full Stack Developer) OR (Full Stack Software Engineer) OR (Full Stack Web Developer)"
+
   TITLES_DEV = "(Full Stack Developer) OR (Web Developer) OR (Full Stack Web Developer) OR (Graduate Developer)"
   TITLES_ENG = "(Full Stack Software Engineer) OR (Software Engineer) OR (Software Developer) OR (Graduate Software Engineer) OR (Junior Software Engineer)"
   TITLES_CON = "(Consultant) OR (Associate Consultant) OR (Junior Consultant) OR (Graduate Consultant)"
@@ -41,7 +43,7 @@ class CallJobApiJob < ApplicationJob
     request["Content-Type"] = "application/json"
     request["Authorization"] = "Bearer #{ENV['CORESIGNAL_API_KEY']}"
     request.body = JSON.dump(
-      {"title":"(Full Stack Developer) OR (Full Stack Software Engineer) OR (Full Stack Web Developer)","application_active":true,"deleted":false,"country":"(United Kingdom)","location":"London"}
+      {"title":"(Consultant) OR (Associate Consultant) OR (Junior Consultant) OR (Graduate Consultant)","application_active":true,"deleted":false,"country":"(United Kingdom)","location":"London"}
     )
 
     response = https.request(request)
@@ -60,6 +62,8 @@ class CallJobApiJob < ApplicationJob
 
   def create_company(job_data)
     existing_company = Company.find_by(company_name: job_data["company_name"])
+
+    # TODO: Remove additional parts of URL before saving to DB
 
     if existing_company.nil?
       company = Company.new(
@@ -109,6 +113,19 @@ class CallJobApiJob < ApplicationJob
         company_id: company_id,
         cheddar_applicants_count: 0,
       )
+
+      p job
+      p job.job_title
+      p job.job_description
+      p job.job_posting_url
+      p job.employment_type
+      p job.location
+      p job.country
+      p job.industry
+      p job.seniority
+      p job.applicants_count
+      p job.company_id
+      p job.cheddar_applicants_count
 
       if job.save!
         puts "Job #{job.job_title} created successfully."
