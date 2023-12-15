@@ -197,7 +197,7 @@ Company.create(
   company_website_url: "https://kroo.com/"
 )
 
-  puts "Created company - #{Company.last.company_name}"
+puts "Created company - #{Company.last.company_name}"
 
 Company.create(
   company_name: "Deliveroo",
@@ -205,7 +205,7 @@ Company.create(
   company_website_url: "https://deliveroo.co.uk/"
 )
 
-  puts "Created company - #{Company.last.company_name}"
+puts "Created company - #{Company.last.company_name}"
 
 Company.create(
   company_name: "BCG Digital Ventures",
@@ -259,131 +259,135 @@ Company.create(
   company_website_url: "https://www.quantexa.com/"
 )
 
-  puts "Created company - #{Company.last.company_name}"
+puts "Created company - #{Company.last.company_name}"
 
 Company.create(
   company_name: "Apple Inc",
   company_category: "Tech",
   company_website_url: "https://apple.com/uk")
 
-  puts "Created company - #{Company.last.company_name}"
+puts "Created company - #{Company.last.company_name}"
 
 Company.create(
   company_name: "Google",
   company_category: "Tech",
   company_website_url: "https://google.com/")
 
-  puts "Created company - #{Company.last.company_name}"
+puts "Created company - #{Company.last.company_name}"
 
 Company.create(
   company_name: "Meta",
   company_category: "Tech",
   company_website_url: "https://meta.com/")
 
-  puts "Created company - #{Company.last.company_name}"
+puts "Created company - #{Company.last.company_name}"
 
 Company.create(
   company_name: "Amazon Web Services",
   company_category: "Tech",
   company_website_url: "https://aws.com/")
 
-  puts "Created company - #{Company.last.company_name}"
+puts "Created company - #{Company.last.company_name}"
 
 Company.create(
   company_name: "Netflix",
   company_category: "Tech",
   company_website_url: "https://Netflix.com/")
 
-  puts "Created company - #{Company.last.company_name}"
+puts "Created company - #{Company.last.company_name}"
 
 Company.create(
   company_name: "EBay",
   company_category: "E-Commerce",
   company_website_url: "https://bcgdv.com/")
 
-  puts "Created company - #{Company.last.company_name}"
+puts "Created company - #{Company.last.company_name}"
 
 Company.create(
   company_name: "Microsoft",
   company_category: "Tech",
   company_website_url: "https://Microsoft.com/")
 
-  puts "Created company - #{Company.last.company_name}"
+puts "Created company - #{Company.last.company_name}"
 
 Company.create(
   company_name: "OpenAI",
   company_category: "Tech",
   company_website_url: "https://openai.com/")
 
-  puts "Created company - #{Company.last.company_name}"
+puts "Created company - #{Company.last.company_name}"
 
 Company.create(
   company_name: "Tesla",
   company_category: "Automotive",
   company_website_url: "https://tesla.com/")
 
-  puts "Created company - #{Company.last.company_name}"
+puts "Created company - #{Company.last.company_name}"
 
 Company.create(
   company_name: "BCG Digital Ventures",
   company_category: "Tech",
   company_website_url: "https://bcgdv.com/")
 
-  puts "Created company - #{Company.last.company_name}"
+puts "Created company - #{Company.last.company_name}"
 
 Company.create(
   company_name: "Uber",
   company_category: "Transportation Mobility",
   company_website_url: "https://bcgdv.com/")
 
-  puts "Created company - #{Company.last.company_name}"
+puts "Created company - #{Company.last.company_name}"
 
 Company.create(
   company_name: "Samsung",
   company_category: "Tech",
   company_website_url: "https://samsung.com/")
 
-  puts "Created company - #{Company.last.company_name}"
+puts "Created company - #{Company.last.company_name}"
 
 Company.create(
   company_name: "Intel",
   company_category: "Tech",
   company_website_url: "https://intel.com/")
 
-  puts "Created company - #{Company.last.company_name}"
+puts "Created company - #{Company.last.company_name}"
 
 Company.create(
   company_name: "Shopify",
   company_category: "E-Commerce",
   company_website_url: "https://Shopify.com/")
 
-  puts "Created company - #{Company.last.company_name}"
+puts "Created company - #{Company.last.company_name}"
 
 Company.create(
   company_name: "Intel",
   company_category: "Tech",
   company_website_url: "https://intel.com/")
 
-  puts "Created company - #{Company.last.company_name}"
+puts "Created company - #{Company.last.company_name}"
 
 Company.create(
   company_name: "Sony",
   company_category: "Electronics",
   company_website_url: "https://Sony.com/")
 
-  puts "Created company - #{Company.last.company_name}"
+puts "Created company - #{Company.last.company_name}"
 
-  puts "creating more companies just in case :)"
+puts "creating more companies just in case :)"
 
 Company.create(
   company_name: "Etsy",
   company_category: "E-Commerce",
   company_website_url: "https://Etsy.com/")
 
+puts "Created company - #{Company.last.company_name}"
+
 Company.create(
   company_name: "Reliance Health",
   company_category: "Healthcare",
   company_website_url: "https://reliancehealth.com/")
+
+puts "Created company - #{Company.last.company_name}"
 
 Company.create(
   company_name: "OXK",
@@ -475,79 +479,77 @@ Company.create(
   company_category: "Finance",
   company_website_url: "https://monzo.com/")
 
-  Company.create(
-      company_name: "Jobber",
-      company_category: "Tech",
-      company_website_url: "https://jobber.com/")
+Company.create(
+  company_name: "Jobber",
+  company_category: "Tech",
+  company_website_url: "https://jobber.com/")
 
-  Company.create(
-    company_name: "Tele Health",
-    company_category: "Healthcare",
-    company_website_url: "https://telehealth.com/")
+Company.create(
+  company_name: "Tele Health",
+  company_category: "Healthcare",
+  company_website_url: "https://telehealth.com/")
 
-  Company.create(
-    company_name: "Knowde",
-    company_category: "Tech",
-    company_website_url: "https://knowde.com/")
+Company.create(
+  company_name: "Knowde",
+  company_category: "Tech",
+  company_website_url: "https://knowde.com/")
 
-  Company.create(
-    company_name: "Code Path",
-    company_category: "Tech",
-    company_website_url: "https://codepath.com/")
+Company.create(
+  company_name: "Code Path",
+  company_category: "Tech",
+  company_website_url: "https://codepath.com/")
 
-  Company.create(
-    company_name: "Workato",
-    company_category: "Tech",
-    company_website_url: "https://workato.com/")
+Company.create(
+  company_name: "Workato",
+  company_category: "Tech",
+  company_website_url: "https://workato.com/")
 
-    Company.create(
-      company_name: "Opendoor",
-      company_category: "Tech",
-      company_website_url: "https://opendoor.com/")
+Company.create(
+  company_name: "Opendoor",
+  company_category: "Tech",
+  company_website_url: "https://opendoor.com/")
 
-      Company.create(
-        company_name: "Culture Amp",
-        company_category: "Tech",
-        company_website_url: "https://cultureamp.com/")
+Company.create(
+  company_name: "Culture Amp",
+  company_category: "Tech",
+  company_website_url: "https://cultureamp.com/")
 
+Company.create(
+  company_name: "Narvar",
+  company_category: "Tech",
+  company_website_url: "https://narvar.com/")
 
-    Company.create(
-      company_name: "Narvar",
-        company_category: "Tech",
-        company_website_url: "https://narvar.com/")
+Company.create(
+  company_name: "Grammarly",
+  company_category: "Tech",
+  company_website_url: "https://grammarly.com/")
 
+Company.create(
+  company_name: "Halcyon",
+  company_category: "Tech",
+  company_website_url: "https://halcyon.com/")
 
-        Company.create(
-          company_name: "Grammarly",
-            company_category: "Tech",
-            company_website_url: "https://grammarly.com/")
+Company.create(
+  company_name: "Motive",
+  company_category: "Tech",
+  company_website_url: "https://motive.com/")
 
+Company.create(
+  company_name: "Synack",
+  company_category: "Tech",
+  company_website_url: "https://synack.com/")
 
-            Company.create(
-              company_name: "Halcyon",
-                company_category: "Tech",
-                company_website_url: "https://halcyon.com/")
+Company.create(
+  company_name: "SoSafe GmbH",
+  company_category: "Tech",
+  company_website_url: "https://sosafe.com/"
+)
 
-                Company.create(
-                  company_name: "Motive",
-                    company_category: "Tech",
-                    company_website_url: "https://motive.com/")
-
-                    Company.create(
-                      company_name: "Synack",
-                        company_category: "Tech",
-                        company_website_url: "https://synack.com/")
-
-                        Company.create(
-                          company_name: "SoSafe GmbH",
-                            company_category: "Tech",
-                            company_website_url: "https://sosafe.com/")
-
-                            Company.create(
-                              company_name: "Gemini",
-                                company_category: "Tech",
-company_website_url: "https://gemini.com/")
-
+Company.create(
+  company_name: "Gemini",
+  company_category: "Tech",
+  company_website_url: "https://gemini.com/"
+)
 
 puts "Created company - #{Company.last.company_name}"
 
