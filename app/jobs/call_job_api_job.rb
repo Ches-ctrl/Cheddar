@@ -114,18 +114,7 @@ class CallJobApiJob < ApplicationJob
         cheddar_applicants_count: 0,
       )
 
-      p job
-      p job.job_title
-      p job.job_description
-      p job.job_posting_url
-      p job.employment_type
-      p job.location
-      p job.country
-      p job.industry
-      p job.seniority
-      p job.applicants_count
-      p job.company_id
-      p job.cheddar_applicants_count
+      # TODO: Add image to job from clearbit
 
       if job.save!
         puts "Job #{job.job_title} created successfully."
@@ -142,11 +131,26 @@ class CallJobApiJob < ApplicationJob
   end
 
   def get_job_details(job_data)
+    # TODO: get job details from job posting url
   end
 
   def get_application_criteria(job_data)
+    # TODO: Add application criteria to job
   end
 end
+
+# p job
+# p job.job_title
+# p job.job_description
+# p job.job_posting_url
+# p job.employment_type
+# p job.location
+# p job.country
+# p job.industry
+# p job.seniority
+# p job.applicants_count
+# p job.company_id
+# p job.cheddar_applicants_count
 
 
 # ---------------------
