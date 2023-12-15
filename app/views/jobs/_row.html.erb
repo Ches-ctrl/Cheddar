@@ -3,10 +3,13 @@
     <div class="card job-card">
       <div class="card-body">
         <div class="row text-center">
+
           <div class="col card-logo companyname" data-name="<%= job.company.company_name %>"><%= image_tag("https://logo.clearbit.com/#{job.company.company_website_url}?size=60", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'") %><p class="d-none"><%= job.company.company_name%></p></div>
+
           <div class="col-2 role pe-2 " data-role="<%= job.job_title %>"><%= job.job_title.truncate(50) %></div>
           <div class="col-2 d-none job-description-small" data-job-index-toggle-target="newColumn2"><%= job.job_description.truncate(90) %></div>
           <div class="col salaryBudget"><%= job.salary ? "£#{number_with_delimiter(job.salary, delimiter: ',')}" : "n/a" %></div>
+
           <div class="col">
             <% if (Time.now.next_day(7)) >= job.application_deadline %>
               <button class="btn btn-closing-soon">CLOSING SOON</button>
@@ -17,6 +20,7 @@
             <% end %>
           </div>
           <div class="col"><%= job.application_deadline.strftime("%d/%m") %></div>
+
           <div class="col d-none">
             <% if job.application_criteria.instance_of?(Hash) && job.application_criteria["resume"].any? %>
               YES
@@ -24,14 +28,15 @@
               NO
             <% end %>
           </div>
+
           <div class="col">
             <%= link_to job.job_posting_url, target: "_blank" do %>
               <i class="fa-solid fa-external-link-alt"></i>
             <% end %>
           </div>
+
           <div class="col ">
             <% if SavedJob.where(job_id: job.id).present? %>
-
               <%= link_to saved_job_path(job.saved_job_ids), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to remove this job from your list?"} do %>
                 <i class="fa-solid fa-heart saved-job-heart-icon"></i>
               <% end %>
