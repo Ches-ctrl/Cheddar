@@ -2,6 +2,8 @@ class AtsFormat < ApplicationRecord
   belongs_to :applicant_tracking_system
   has_many :jobs, dependent: :destroy
 
+  validates :name, presence: true, uniqueness: true
+
   # On each ATS format you store the method for filling it in
   # May require filling in privacy notices - have that as part of any ATS format
 
