@@ -45,10 +45,11 @@ namespace :import_csv do
       ats = ApplicantTrackingSystem.find_by(name: ats_name)
 
       if ats
-        ApplicantTrackingSystem.update!(
-          name: row["Applicant Tracking System"],
-        )
-        p "#{ats.name} was updated with the following fields: #{ats.attributes}!"
+        # ApplicantTrackingSystem.update!(
+        #   name: row["Applicant Tracking System"],
+        # )
+        # p "#{ats.name} was updated with the following fields: #{ats.attributes}!"
+        p "#{ats.name} already exists with the following fields: #{ats.attributes}!"
       else
         ApplicantTrackingSystem.create!(
           name: row["Applicant Tracking System"],
@@ -76,12 +77,13 @@ namespace :import_csv do
       p "ATS Format: #{ats_format}"
 
       if ats_format
-        ats_system = ats_format.applicant_tracking_system
+        ats_system = ApplicantTrackingSystem.find_by(name: row["Applicant Tracking System"])
+
         p "ATS System: #{ats_system}"
 
         if ats_system
           AtsFormat.update!(
-            applicant_tracking_system_id: ApplicantTrackingSystem.find_by(name: row["Applicant Tracking System"]).id,
+            applicant_tracking_system_id: ats_system.id,
             name: row["ATS Format"],
           )
           p "#{ats_format.name} was updated with the following fields: #{ats_format.attributes}!"
@@ -89,11 +91,17 @@ namespace :import_csv do
           p "Error: Applicant Tracking System '#{row["Applicant Tracking System"]}' not found for ATS Format '#{ats_format_name}'."
         end
       else
-        AtsFormat.create!(
-          applicant_tracking_system_id: ApplicantTrackingSystem.find_by(name: row["Applicant Tracking System"]).id,
-          name: row["ATS Format"],
-        )
-        p "#{AtsFormat.last.name} was created with the following fields: #{AtsFormat.last.attributes}!"
+        ats_system = ApplicantTrackingSystem.find_by(name: row["Applicant Tracking System"])
+
+        if ats_system
+          AtsFormat.create!(
+            applicant_tracking_system_id: ats_system.id,
+            name: row["ATS Format"],
+          )
+          p "#{AtsFormat.last.name} was created with the following fields: #{AtsFormat.last.attributes}!"
+        else
+          p "Error: ATS Format '#{ats_format_name}' not found, and Applicant Tracking System '#{row["Applicant Tracking System"]}' not found."
+        end
       end
     end
 
@@ -102,20 +110,36 @@ namespace :import_csv do
 
   desc "Import jobs data from CSV file"
   task jobs: :environment do
-    csv_file_path = 'storage/csv/Cheddar_Consulting_Test_Companies.csv'
+    csv_file_path = 'storage/csv/Cheddar_Consulting_Test_Jobs.csv'
 
     CSV.foreach(csv_file_path, headers: true) do |row|
       job_title = row["Title"]
-      job = Job.find_by(title: job_title)
+      job = Job.find_by(job_title: job_title)
+
+
+      company = Company.find_by(company_name: row["Company Name"])
+      ats_system = ApplicantTrackingSystem.find_by(name: row["Applicant Tracking System"])
+
+      # ats_format_name = row["ATS Format"]
+      # p "ATS Format Name: #{ats_format_name}"
+
+      # ats_format = AtsFormat.find_by(name: ats_format_name)
+      # p "ATS Format: #{ats_format}"
+
+      # ats_format = AtsFormat.find_by(name: row["ATS Format"])
+
+      p "Company: #{company.company_name}"
+      # p "ATS System: #{ats_system.name}"
+      # p "ATS Format: #{ats_format.name}"
 
       if job
         job.update!(
-          company_id: Company.find_by(name: row["Company Name"]).id,
+          company_id: company.id,
           job_posting_url: row["Url"],
-          job_description: row["Description"],
+          job_description: "N/A",
           salary: row["Salary"].to_i,
           bonus: row["Bonus"].to_i,
-          application_deadline: row["Application Deadline"],
+          # application_deadline: row["Application Deadline"],
           employment_type: row["Employment Type (FT/PT)"],
           location: row["Location"],
           country: row["Country"],
@@ -123,8 +147,8 @@ namespace :import_csv do
           industry_subcategory: row["Industry Sub-Category"],
           seniority: row["Seniority"],
           office_status: row["Office Status"],
-          applicant_tracking_system_id: ATS.find_by(name: row["ATS"]).id,
-          ats_format_id: ATSFormat.find_by(name: row["ATS Format"]).id,
+          # applicant_tracking_system_id: ats_system.id,
+          # ats_format_id: ats_format.id,
           create_account: row["Create Account"],
           req_cv: row["CV"],
           req_cover_letter: row["Cover Letter"],
@@ -136,13 +160,13 @@ namespace :import_csv do
         )
       else
         Job.create!(
-          company_id: Company.find_by(name: row["Company Name"]).id,
+          company_id: company.id,
           job_title: row["Title"],
           job_posting_url: row["Url"],
-          job_description: row["Description"],
+          job_description: "N/A",
           salary: row["Salary"].to_i,
           bonus: row["Bonus"].to_i,
-          application_deadline: row["Application Deadline"],
+          # application_deadline: row["Application Deadline"],
           employment_type: row["Employment Type (FT/PT)"],
           location: row["Location"],
           country: row["Country"],
@@ -150,8 +174,8 @@ namespace :import_csv do
           industry_subcategory: row["Industry Sub-Category"],
           seniority: row["Seniority"],
           office_status: row["Office Status"],
-          applicant_tracking_system_id: ATS.find_by(name: row["ATS"]).id,
-          ats_format_id: ATSFormat.find_by(name: row["ATS Format"]).id,
+          # applicant_tracking_system_id: ats_system.id,
+          # ats_format_id: ats_format.id,
           create_account: row["Create Account"],
           req_cv: row["CV"],
           req_cover_letter: row["Cover Letter"],
@@ -161,7 +185,7 @@ namespace :import_csv do
           req_second_round: row["2nd Round Interview"],
           req_assessment_centre: row["Assessment Centre"]
         )
-        p "#{Job.last.title} was created with the following attributes: #{Job.last.attributes}"
+        p "#{Job.last.job_title} was created with the following attributes: #{Job.last.attributes}"
       end
     end
 

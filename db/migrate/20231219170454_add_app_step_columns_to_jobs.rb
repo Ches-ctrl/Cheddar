@@ -10,6 +10,6 @@ class AddAppStepColumnsToJobs < ActiveRecord::Migration[7.1]
     add_column :jobs, :req_online_assessment, :boolean
     add_column :jobs, :req_first_round, :boolean, default: true
     add_column :jobs, :req_second_round, :boolean, default: true
-    add_column :jobs, :assessment_centre, :boolean
+    add_column :jobs, :req_assessment_centre, :boolean
   end
 end

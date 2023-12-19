@@ -151,7 +151,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_19_170454) do
     t.boolean "req_online_assessment"
     t.boolean "req_first_round", default: true
     t.boolean "req_second_round", default: true
-    t.boolean "assessment_centre"
+    t.boolean "req_assessment_centre"
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
