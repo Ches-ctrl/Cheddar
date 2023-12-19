@@ -66,6 +66,7 @@ gem "cloudinary"
 gem "pg_search"
 gem "nokogiri"
 # gem "open-uri"
+gem 'csv'
 
 group :development, :test do
   gem "dotenv-rails"
