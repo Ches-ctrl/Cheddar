@@ -14,7 +14,8 @@ class ScraperTest < ApplicationJob
 
   def perform(url)
     visit(url)
-    find_apply_button.click
+    return if page.has_selector?('#flash_pending')
+    find_apply_button.click rescue nil
 
     # page_html = page.html
     form = find('form', text: /apply|application/i)
