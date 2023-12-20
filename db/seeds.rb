@@ -2970,6 +2970,7 @@ Job.create!(
   company_id: Company.find_by(company_name: 'Culture Amp').id
 )
 puts "Created job - #{Job.last.job_title}"
+
 # 41. Culture Amp
 Job.create!(
   job_title: "Automation Engineer @ Culture Amp",
@@ -3033,6 +3034,7 @@ Job.create!(
   company_id: Company.find_by(company_name: 'Culture Amp').id
 )
 puts "Created job - #{Job.last.job_title}"
+
 # 42. Narvar
 Job.create!(
   job_title: "Staff Engineer, Ruby on Rails and React @ Narvar",
@@ -3096,6 +3098,7 @@ Job.create!(
   company_id: Company.find_by(company_name: 'Narvar').id
 )
 puts "Created job - #{Job.last.job_title}"
+
 # 43.Narvar
 Job.create!(
   job_title: "Director of Machine Learning @ Narvar",
@@ -3159,6 +3162,7 @@ Job.create!(
   company_id: Company.find_by(company_name: 'Narvar').id
 )
 puts "Created job - #{Job.last.job_title}"
+
 # 44. Synack
 Job.create!(
   job_title: "Senior Backend Engineer - Ruby on Rails @ Synack",
@@ -3222,69 +3226,7 @@ Job.create!(
   company_id: Company.find_by(company_name: 'Synack').id
 )
 puts "Created job - #{Job.last.job_title}"
-# 45. grammarly
-Job.create!(
-  job_title: " Software Engineer, Back-End (Cloud Product Platform) -  @ Grammarly",
-  job_description: "We are looking for a Software Engineer, Back-End (Cloud Product Platform) -  to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 110000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/grammarly/jobs/5349293",
-  company_id: Company.find_by(company_name: 'Grammarly').id
-)
-puts "Created job - #{Job.last.job_title}"
+
 # 46. grammarly
 Job.create!(
   job_title: " AI Security Researcher -  @ Grammarly",
@@ -3348,6 +3290,7 @@ Job.create!(
   company_id: Company.find_by(company_name: 'Grammarly').id
 )
 puts "Created job - #{Job.last.job_title}"
+
 # 47. Halcyon
 Job.create!(
   job_title: " Cloud Backend Engineer -  @ Halcyon",
@@ -3411,69 +3354,7 @@ Job.create!(
   company_id: Company.find_by(company_name: 'Halcyon').id
 )
 puts "Created job - #{Job.last.job_title}"
-# 48. Halcyon
-Job.create!(
-  job_title: " Windows Kernel Engineer -  @ Halcyon",
-  job_description: "We are looking for a Windows Kernel Engineer -  to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 87000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/halcyon/jobs/4891571004",
-  company_id: Company.find_by(company_name: 'Halcyon').id
-)
-puts "Created job - #{Job.last.job_title}"
+
 # 49. Motive
 Job.create!(
   job_title: " Cloud Infrastructure Engineer -  @ Motive",
@@ -3537,6 +3418,7 @@ Job.create!(
   company_id: Company.find_by(company_name: 'Motive').id
 )
 puts "Created job - #{Job.last.job_title}"
+
 # 50. Motive
 Job.create!(
   job_title: " Data Engineer -  @ Motive",
@@ -3601,18 +3483,9 @@ Job.create!(
 )
 puts "Created job - #{Job.last.job_title}"
 
-
-
-
-
-
-
 puts "Created #{Job.count} jobs..."
 
 puts "-------------------------------------"
-
-
-
 
 puts "Creating admins..."
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_14_144719) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_19_170454) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -82,6 +82,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_14_144719) do
     t.datetime "updated_at", null: false
     t.string "location", default: "n/a"
     t.string "industry", default: "n/a"
+    t.string "url_careers"
+    t.string "url_linkedin"
+    t.string "industry_subcategory", default: "n/a"
   end
 
   create_table "educations", force: :cascade do |t|
@@ -138,6 +141,17 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_14_144719) do
     t.string "seniority"
     t.integer "applicants_count"
     t.integer "cheddar_applicants_count"
+    t.integer "bonus"
+    t.string "industry_subcategory"
+    t.string "office_status"
+    t.boolean "create_account"
+    t.boolean "req_cv", default: true
+    t.boolean "req_cover_letter"
+    t.boolean "req_video_interview"
+    t.boolean "req_online_assessment"
+    t.boolean "req_first_round", default: true
+    t.boolean "req_second_round", default: true
+    t.boolean "req_assessment_centre"
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 

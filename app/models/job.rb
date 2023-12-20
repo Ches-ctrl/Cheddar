@@ -17,9 +17,8 @@ class Job < ApplicationRecord
   before_create :set_application_criteria
 
   validates :job_title, presence: true
-  # validates :job_posting_url, uniqueness: true
+  validates :job_posting_url, uniqueness: true
   # validates :applicant_tracking_system_id, :ats_format_id, presence: true
-  # TODO: Add further validations to job model
 
   pg_search_scope :global_search,
     against: [:job_title, :salary, :job_description],
