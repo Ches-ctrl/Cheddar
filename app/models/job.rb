@@ -1,24 +1,23 @@
 class Job < ApplicationRecord
   include Ats::Greenhouse
   include Ats::Workable
-  include PgSearch::Model
-
-  serialize :application_criteria, coder: JSON
-
+  serialize :application_criteria, JSON
   belongs_to :company
   belongs_to :applicant_tracking_system, optional: true
   belongs_to :ats_format, optional: true
-
   has_many :job_applications, dependent: :destroy
   has_many :saved_jobs, dependent: :destroy
   has_many :playlist_jobs
   has_many :job_playlists, through: :playlist_jobs
-
   before_create :set_application_criteria
 
   validates :job_title, presence: true
-  validates :job_posting_url, uniqueness: true
+  # validates :job_posting_url, uniqueness: true
+
+  # TODO: Add validations to job model
   # validates :applicant_tracking_system_id, :ats_format_id, presence: true
+
+  include PgSearch::Model
 
   pg_search_scope :global_search,
     against: [:job_title, :salary, :job_description],
@@ -32,6 +31,12 @@ class Job < ApplicationRecord
   def set_application_criteria
     if job_posting_url.include?('greenhouse')
       self.application_criteria = Job::GREENHOUSE_FIELDS
+      extra_fields = ScraperTest.new.perform(job_posting_url)
+      unless extra_fields.nil?
+        self.application_criteria = application_criteria.merge(extra_fields)
+        p application_criteria
+      end
+      Capybara.send(:session_pool).each { |name, ses| ses.driver.quit }
     elsif job_posting_url.include?('workable')
       self.application_criteria = Job::WORKABLE_FIELDS
     else
