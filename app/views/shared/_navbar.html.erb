@@ -7,6 +7,7 @@
     <% end %>
       <%= image_tag("cheddar_logo_text.svg", alt: "logo", class: "larger-image mt-3") %>
     </div>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -15,21 +16,31 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto d-flex flex-row align-items-center">
-        <li class="nav-item active d-flex flex-column align-items-center me-2">
-          <i class="fa-solid fa-screwdriver-wrench"></i>
-          <%= link_to "How It Works", how_it_works_path, class: "nav-link pt-1 pb-0" %>
+
+        <li class="nav-item active d-flex flex-column align-items-center" style="min-width: 80px">
+          <%= link_to how_it_works_path, class: "nav-link d-flex flex-column align-items-center pt-1 pb-0" do %>
+            <i class="fa-solid fa-screwdriver-wrench pb-1"></i>
+            <span>How It Works</span>
+          <% end %>
         </li>
-        <li class="nav-item active d-flex flex-column align-items-center me-2">
-          <i class="fa-regular fa-circle-play"></i>
-          <%= link_to "All Jobs", jobs_path, class: "nav-link pt-1 pb-0" %>
+
+        <li class="nav-item active d-flex flex-column align-items-center" style="min-width: 80px">
+          <%= link_to jobs_path, class: "nav-link d-flex flex-column align-items-center pt-1 pb-0" do %>
+            <i class="fa-regular fa-circle-play pb-1"></i>
+            <span>All Jobs</span>
+          <% end %>
         </li>
-        <li class="nav-item active d-flex flex-column align-items-center me-2">
-          <i class="fa-regular fa-heart"></i>
-          <%= link_to "My Jobs", saved_jobs_path, class: "nav-link pt-1 pb-0" %>
+
+        <li class="nav-item active d-flex flex-column align-items-center" style="min-width: 80px">
+          <%= link_to saved_jobs_path, class: "nav-link d-flex flex-column align-items-center pt-1 pb-0" do %>
+            <i class="fa-regular fa-heart pb-1"></i>
+            <span>My Jobs</span>
+          <% end %>
         </li>
 
         <% if user_signed_in? %>
           <li class="nav-item dropdown pb-1">
+
             <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <% if current_user.photo.key %>
                 <%= cl_image_tag current_user.photo.key, class: "avatar" %>
@@ -38,7 +49,7 @@
               <% end %>
             </a>
 
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="z-index: 1100;">
               <%= link_to "My Profile", profile_path(current_user), class: "dropdown-item" %>
               <%= link_to "My Apps", job_applications_path, class: "dropdown-item" %>
               <%= link_to "Job Prefs", profile_path(current_user), class: "dropdown-item" %>
@@ -47,8 +58,9 @@
             </div>
           </li>
         <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          <li class="nav-item d-flex flex-column align-items-center" style="min-width: 80px">
+            <i class="fa-regular fa-user"></i>
+            <%= link_to "Log In / Sign Up", new_user_session_path, class: "nav-link pt-1 pb-0" %>
           </li>
         <% end %>
       </ul>
