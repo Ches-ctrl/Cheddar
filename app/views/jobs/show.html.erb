@@ -16,4 +16,8 @@
   <p>Job description: <%= @job.job_description %></p>
   <p>Salary: £<%= number_with_delimiter(@job.salary, :delimiter => ',') %></p>
 
+  <%= link_to @job.job_posting_url, target: "_blank" do %>
+    <i class="fa-solid fa-external-link-alt"></i>
+  <% end %>
+
 </div>
