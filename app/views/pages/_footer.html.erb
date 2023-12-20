@@ -1,12 +1,14 @@
 <div class="footer">
   <div class="container">
     <div class="d-flex justify-content-between">
-      <div class="footer-links">
-        <a href="https://github.com/Ches-ctrl/Cheddar"><i class="fab fa-github"></i></a>
-        <a href="#"><i class="fab fa-linkedin"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
+      <div class="d-flex flex-column align-items-start justify-content-center">
+        <div class="footer-links">
+          <a href="https://github.com/Ches-ctrl/Cheddar"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
       </div>
-      <div class="page-links d-flex flex-column align-items-end">
+      <div class="page-links d-flex flex-column align-items-end justify-content-center">
         <div>
           <%= link_to "How It Works", how_it_works_path %>
           <a href="/about">About</a>
@@ -24,3 +26,5 @@
     </div>
   </div>
 </div>
+
+<%# TODO: Change this to vertical columns on RHS for better alignnment %>
