@@ -7,7 +7,6 @@
         <p class="mb-1">Current applications:</p>
 
         <div class="company-apply-summary bg-body-secondary p-2 d-flex">
-          <%# TODO: Update company logos once pulling from TrueUp (clearbit) %>
           <% @selected_jobs.each_with_index do |job, index| %>
             <div><%= index + 1 %></div>
               <%= link_to image_tag("https://logo.clearbit.com/#{job.company.company_website_url}?size=60", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", class: 'img-fluid'), '#', class: 'apply-company-logo mr-3' %>
