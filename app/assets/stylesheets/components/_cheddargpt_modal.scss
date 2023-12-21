@@ -3,13 +3,13 @@
   bottom: 30px; /* Distance from the bottom of the viewport */
   right: 30px; /* Distance from the right of the viewport */
   z-index: 1000; /* Ensures it stays on top of other elements */
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
 
   /* Additional Styling (Optional but recommended for better UX) */
   cursor: pointer; /* Changes the cursor to signify it's clickable */
   // padding: 10px 20px; /* Padding for better appearance */
-  background-color: $secondary-color; /* Background color */
+  background-color: $main-color; /* Background color */
   color: white; /* Text color */
   border-radius: 50%; /* Rounded corners */
   text-align: center; /* Center the text inside the div */
@@ -21,7 +21,7 @@
 }
 
 .CheddarGPTmodal:hover {
-  background-color: $main-color; /* Darker shade on hover for feedback */
+  background-color: $secondary-color; /* Darker shade on hover for feedback */
 }
 
 .yellow-circle {
@@ -89,7 +89,7 @@
 /* Adjusting the style when the button is hovered */
 
 .btn-apply:hover {
-  background-color: $tertiary-color;
+  background-color: $main-color;
   // font-weight: 700;
   color: white;
 }

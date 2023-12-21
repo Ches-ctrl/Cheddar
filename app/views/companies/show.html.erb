@@ -1,0 +1,13 @@
+<div class="container">
+  <h1><%= @company.company_name %></h1>
+  <div class="row">
+    <div class="col-md-4">
+      <!-- Company Logo -->
+      <%= image_tag("https://logo.clearbit.com/#{@company.company_website_url}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", style: "width: 60px; height: 60px;") %>
+    </div>
+    <div class="col-md-8">
+      <!-- Company Description -->
+      <p>Placeholder for description</p>
+    </div>
+  </div>
+</div>

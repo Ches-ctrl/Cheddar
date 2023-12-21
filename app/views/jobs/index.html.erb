@@ -8,7 +8,7 @@
       <div class="col-sm-3" id="jobs-index-left-section" data-job-index-toggle-target="leftSection">
 
         <%# LHS Section - Title and Search  %>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between bg-white pt-1">
           <h6 id="jobs-index-left-section-title">
             <% if params[:query].present? %>
               <%= @jobs.count %>
@@ -19,26 +19,99 @@
           </h6>
         </div>
 
-        <%# TODO: Add icons %>
-        <h5 class="mt-4 mb-3", style="color: #6007C6;"><i class="fa-solid fa-building-user"></i> Companies</h5>
-        <ul id="companies-select">
-          <div>
-            <% Company.all.each do |company| %>
-              <% if Job.where(company: company).any? %>
-                <div class="companies-select-item">
-                  <label for="<%= company.company_name %>" class="companies-select-item-label">
-                  <input class="companies-select-item-checkbox" type="checkbox" name="<%= company.company_name %>" id="<%= company.company_name %>" <%= params[:company] && params[:company].downcase.include?(company.company_name.downcase) ? "checked" : "" %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="company">
-                  <%= company.company_name %>
-                  </label><br>
-                </div>
-              <% end %>
-            <% end %>
+        <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-regular fa-calendar"></i></i> Date Posted</h5>
+        <ul id="job-types-select">
+          <div class="job-types-select-item">
+
+            <label for="Last 24 Hours" class="job-types-select-item-label">
+            <input class="job-types-select-item-checkbox" type="checkbox" name="Last 24 Hours" id="last 24 hours" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="date">
+            Last 24 Hours
+            </label>
+
+            <label for="Last 3 Days" class="job-types-select-item-label">
+            <input class="job-types-select-item-checkbox" type="checkbox" name="Last 3 Days" id="last 3 days" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="date">
+            Last 3 Days
+            </label>
+
+            <label for="Last 7 Days" class="job-types-select-item-label">
+            <input class="job-types-select-item-checkbox" type="checkbox" name="Last 7 Days" id="last 7 days" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="date">
+            Last 7 Days
+            </label>
+
           </div>
         </ul>
 
-        <%# TODO: Add icons %>
+        <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-list"></i> Job Playlist</h5>
+        <ul id="job-types-select">
+          <div class="job-types-select-item">
+
+            <label for="Playlist 1" class="job-types-select-item-label">
+            <input class="job-types-select-item-checkbox" type="checkbox" name="Playlist 1" id="Playlist 1" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="playlist">
+            Playlist 1
+            </label>
+
+            <label for="Playlist 2" class="job-types-select-item-label">
+            <input class="job-types-select-item-checkbox" type="checkbox" name="Playlist 2" id="Playlist 2" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="playlist">
+            Playlist 2
+            </label>
+
+            <label for="Playlist 3" class="job-types-select-item-label">
+            <input class="job-types-select-item-checkbox" type="checkbox" name="Playlist 3" id="Playlist 3" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="playlist">
+            Playlist 3
+            </label>
+
+          </div>
+        </ul>
+
+        <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-industry"></i> Industry</h5>
+        <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-location-dot"></i> Location</h5>
+
+
+        <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-stairs"></i> Seniority</h5>
+        <ul id="job-types-select">
+          <div class="job-types-select-item">
+
+            <label for="Internship" class="job-types-select-item-label">
+              <input class="job-types-select-item-checkbox" type="checkbox" name="Internship" id="Internship" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
+              Internship
+            </label>
+
+            <label for="Entry Level" class="job-types-select-item-label">
+              <input class="job-types-select-item-checkbox" type="checkbox" name="Entry Level" id="Entry Level" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
+              Entry Level
+            </label>
+
+            <label for="Mid Level" class="job-types-select-item-label">
+              <input class="job-types-select-item-checkbox" type="checkbox" name="Mid Level" id="Mid Level" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
+              Mid Level
+            </label>
+
+            <label for="Senior Level" class="job-types-select-item-label">
+              <input class="job-types-select-item-checkbox" type="checkbox" name="Senior Level" id="Senior Level" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
+              Senior Level
+            </label>
+
+            <label for="Director" class="job-types-select-item-label">
+              <input class="job-types-select-item-checkbox" type="checkbox" name="Director" id="Director" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
+              Director
+            </label>
+
+            <label for="VP" class="job-types-select-item-label">
+              <input class="job-types-select-item-checkbox" type="checkbox" name="VP" id="VP" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
+              VP
+            </label>
+
+            <label for="SVP / Partner" class="job-types-select-item-label">
+              <input class="job-types-select-item-checkbox" type="checkbox" name="SVP / Partner" id="SVP / Partner" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
+              SVP / Partner
+            </label>
+
+          </div>
+        </ul>
+
+        <%# TODO: Add icons to individual list items %>
         <%# LHS Section - Search by Job Type %>
-        <h5 class="mt-4 mb-3", style="color: #6007C6;"><i class="fa-solid fa-person-chalkboard"></i> Job Roles</h5>
+        <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-person-chalkboard"></i> Job Roles</h5>
         <ul id="job-types-select">
           <div class="job-types-select-item">
 
@@ -59,6 +132,51 @@
 
           </div>
         </ul>
+
+        <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-person-chalkboard"></i> Office Status</h5>
+        <ul id="job-types-select">
+          <div class="job-types-select-item">
+
+            <li class="job-types-select-item-label">
+              <label for="Full Stack">
+                <input class="job-types-select-item-checkbox" type="checkbox" name="In Office" id="full stack" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
+                Office-based
+              </label>
+            </li>
+
+            <li class="job-types-select-item-label">
+              <label for="Back End">
+                <input class="job-types-sdelect-item-checkbox" type="checkbox" name="Hybrid" id="back end" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
+                Hybrid
+              </label>
+            </li>
+
+            <li class="job-types-select-item-label">
+              <label for="Front End">
+                <input class="job-types-select-item-checkbox" type="checkbox" name="Remote" id="front end" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
+                Remote
+              </label>
+            </li>
+          </div>
+        </ul>
+
+        <%# TODO: Add icons to individual list item %>
+        <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-building-user"></i> Companies</h5>
+        <ul id="companies-select">
+          <div>
+            <% Company.all.each do |company| %>
+              <% if Job.where(company: company).any? %>
+                <div class="companies-select-item">
+                  <label for="<%= company.company_name %>" class="companies-select-item-label">
+                  <input class="companies-select-item-checkbox" type="checkbox" name="<%= company.company_name %>" id="<%= company.company_name %>" <%= params[:company] && params[:company].downcase.include?(company.company_name.downcase) ? "checked" : "" %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="company">
+                  <%= company.company_name %>
+                  </label><br>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </ul>
+
       </div>
 
       <%# RHS Section Divider %>
@@ -86,12 +204,12 @@
                   <div class="card-body">
                     <div class="row text-center">
                       <div class="col">Company</div>
-                      <div class="col-2">Role</div>
+                      <div class="col-3">Role</div>
                       <div class="col-2 d-none" data-job-index-toggle-target="newColumn1">Description</div>
                       <div class="col">Salary</div>
                       <div class="col">Status</div>
                       <div class="col">Deadline</div>
-                      <div class="col">Details</div>
+                      <%# <div class="col">Details</div> %>
                       <div class="col">Save</div>
                       <div class="col">Select</div>
                     </div>
@@ -107,6 +225,7 @@
             <%# Placeholders whilst the jobs cards load %>
             <% if @initial_jobs.blank? %>
               <% 10.times do %>
+              <%# TODO: At the moment, placeholder will not show as @initial_jobs is always true %>
                 <%= render 'placeholder' %>
               <% end %>
             <% else %>

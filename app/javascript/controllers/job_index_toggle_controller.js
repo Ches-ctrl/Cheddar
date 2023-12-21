@@ -38,6 +38,7 @@ export default class extends Controller {
     const selectedCount = this.jobCheckboxTargets.filter(checkbox => checkbox.querySelector("input").checked).length;
     console.log(selectedCount);
     console.log(this.applyButtonTarget)
-    this.applyButtonTarget.value = `Apply to ${selectedCount} Job${selectedCount > 1 ? "s" : ""}`;
+    this.applyButtonTarget.value = `Shortlist ${selectedCount} Job${selectedCount > 1 ? "s" : ""}`;
+    this.applyButtonTarget.value = `Shortlist ${selectedCount} Job${selectedCount === 0 ? "s" : ""}`;
   }
 }

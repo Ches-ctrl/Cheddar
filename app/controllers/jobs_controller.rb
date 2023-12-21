@@ -4,12 +4,12 @@ class JobsController < ApplicationController
   def index
     if params[:query].present?
       @jobs = Job.global_search(params[:query])
-      @initial_jobs = Job.global_search(params[:query]).limit(10)
-      @remaining_jobs = Job.global_search(params[:query]).offset(10)
+      @initial_jobs = Job.global_search(params[:query]).limit(20)
+      @remaining_jobs = Job.global_search(params[:query]).offset(20)
     else
       @jobs = Job.all
-      @initial_jobs = Job.limit(10)
-      @remaining_jobs = Job.offset(10)
+      @initial_jobs = Job.limit(20)
+      @remaining_jobs = Job.offset(20)
     end
     @job = Job.new
     @saved_job = SavedJob.new
