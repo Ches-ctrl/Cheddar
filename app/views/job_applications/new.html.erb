@@ -41,9 +41,9 @@
   </div>
 
   <%# Iterate over each selected job %>
-  <div class="all-application-forms m-auto carousel-container" data-controller=" response-input">
+  <div class="all-application-forms m-auto" data-controller="response-input">
     <% @job_applications.each_with_index do |job, index| %>
-      <details class="application-form bg-body-secondary mb-3 carousel-form" open>
+      <details class="application-form bg-body-secondary mb-3" open>
         <summary class="pb-1" style="display: block"><h2><%= index + 1 %>. <%= job.first.job_title %></h2></summary>
         <%= simple_form_for job, html: { class: 'needs-validation', 'data-controller': 'application-form', 'data-application-form-target': 'form', 'data-action': 'submit->application-form#submitForm', 'data-all-application-forms-target': "form",  novalidate: true } do |f| %>
 

@@ -1,5 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
+// At the moment this isn't connected to anything!
+
 // Connects to data-controller="carousel"
 export default class extends Controller {
   static targets = ["form"];
