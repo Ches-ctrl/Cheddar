@@ -39,5 +39,6 @@ export default class extends Controller {
     console.log(selectedCount);
     console.log(this.applyButtonTarget)
     this.applyButtonTarget.value = `Shortlist ${selectedCount} Job${selectedCount > 1 ? "s" : ""}`;
+    this.applyButtonTarget.value = `Shortlist ${selectedCount} Job${selectedCount === 0 ? "s" : ""}`;
   }
 }
