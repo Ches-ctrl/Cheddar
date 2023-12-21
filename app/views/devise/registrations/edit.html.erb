@@ -122,10 +122,10 @@
                         label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
                         input_html: { class: 'rounded-4' }  %>
 
-            <%= f.input :password,
-                        required: false,
-                        hint: "Confirm changes by entering your password",
-                        input_html: { autocomplete: "new-password" }, label_html: { style: 'font-style: italic; margin-bottom: 0px;' }, input_html: { class: 'rounded-4' }  %>
+            <%= f.input :current_password,
+                        hint: "we need your current password to confirm your changes",
+                        required: true,
+                        input_html: { autocomplete: "current-password" }, label_html: { style: 'font-style: italic;' } %>
 
           </div>
           <%= f.submit "Update", class: 'btn-add-info flex-grow-1' %>
