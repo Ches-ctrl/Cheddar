@@ -52,8 +52,10 @@ class JobsController < ApplicationController
 
   private
 
+  # TODO: Check if more params are needed
+
   def job_params
-    params.require(:job).permit(:job_title, :job_description, :salary, :job_posting_url, :application_deadline, :date_created, :company_id)
+    params.require(:job).permit(:job_title, :job_description, :salary, :job_posting_url, :application_deadline, :date_created, :company_id, :applicant_tracking_system_id, :ats_format_id)
   end
 end
 
@@ -66,3 +68,22 @@ end
 #   end
 #   redirect_to job_applications_path
 # end
+
+
+# {"first_name"=>{"interaction"=>"input", "locators"=>"first_name"},
+#  "last_name"=>{"interaction"=>"input", "locators"=>"last_name"},
+#  "email"=>{"interaction"=>"input", "locators"=>"email"},
+#  "phone_number"=>{"interaction"=>"input", "locators"=>"phone"},
+#  "resume"=>{"interaction"=>"upload", "locators"=>"button[aria-describedby=\"resume-allowable-file-types\""},
+#  "city"=>{"interaction"=>"input", "locators"=>"job_application[location]"},
+#  "location_click"=>{"interaction"=>"listbox", "locators"=>"ul#location_autocomplete-items-popup"},
+#  "linkedin_profile"=>{"interaction"=>"input", "locators"=>"input[autocomplete=\"custom-question-linkedin-profile\"]"},
+#  "personal_website"=>{"interaction"=>"input", "locators"=>"input[autocomplete=\"custom-question-website\"], input[autocomplete=\"custom-question-portfolio-linkwebsite\"]"},
+#  "heard_from"=>{"interaction"=>"input", "locators"=>"input[autocomplete=\"custom-question-how-did-you-hear-about-this-job\"]"},
+#  "require_visa?"=>{"interaction"=>"input", "locators"=>"textarea[autocomplete=\"custom-question-would-you-need-sponsorship-to-work-in-the-uk-\"]"},
+#  "LinkedIn Profile"=>{"interaction"=>"input", "locators"=>"job_application_answers_attributes_0_text_value"},
+#  "Website"=>{"interaction"=>"input", "locators"=>"job_application_answers_attributes_1_text_value"},
+#  "How did you hear about this job? *"=>{"interaction"=>"input", "locators"=>"job_application_answers_attributes_2_text_value"},
+#  "Do you need visa sponsorship now or in the future? *\n    \n    \n    \n\n\n   --"=>
+#   {"interaction"=>"select", "locators"=>"job_application_answers_attributes_3_boolean_value", "option"=>"option", "options"=>["--", "Yes", "No"]},
+#  "What is your state/province of residence? *"=>{"interaction"=>"input", "locators"=>"job_application_answers_attributes_4_text_value"}}

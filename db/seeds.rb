@@ -3229,7 +3229,7 @@ puts "Created job - #{Job.last.job_title}"
 
 # 46. grammarly
 Job.create!(
-  job_title: " AI Security Researcher -  @ Grammarly",
+  job_title: "AI Security Researcher -  @ Grammarly",
   job_description: "We are looking for a AI Security Researcher -  to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
   salary: 120000,
   date_created: date_created.sample,
@@ -3293,7 +3293,7 @@ puts "Created job - #{Job.last.job_title}"
 
 # 47. Halcyon
 Job.create!(
-  job_title: " Cloud Backend Engineer -  @ Halcyon",
+  job_title: "Cloud Backend Engineer -  @ Halcyon",
   job_description: "We are looking for a Cloud Backend Engineer -  to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
   salary: 112000,
   date_created: date_created.sample,
@@ -3357,7 +3357,7 @@ puts "Created job - #{Job.last.job_title}"
 
 # 49. Motive
 Job.create!(
-  job_title: " Cloud Infrastructure Engineer -  @ Motive",
+  job_title: "Cloud Infrastructure Engineer -  @ Motive",
   job_description: "We are looking for a Cloud Infrastructure Engineer -  to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
   salary: 102000,
   date_created: date_created.sample,
@@ -3421,7 +3421,7 @@ puts "Created job - #{Job.last.job_title}"
 
 # 50. Motive
 Job.create!(
-  job_title: " Data Engineer -  @ Motive",
+  job_title: "Data Engineer -  @ Motive",
   job_description: "We are looking for a Data Engineer -  to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
   salary: 101000,
   date_created: date_created.sample,

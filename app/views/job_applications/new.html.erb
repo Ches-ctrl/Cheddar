@@ -55,6 +55,7 @@
           <%# Dynamically create form elements based on application_criteria %>
           <%# Convert to simple_fields_for application_responses. Then use those to create the input fields below. %>
           <% job.last.application_responses.each_with_index do |response, response_index| %>
+            <%# Console.log the hash of application responses %>
 
             <% if response_index == 0 %>
               <details class="core-details bg-light" closed>
