@@ -1,5 +1,11 @@
 require 'nokogiri'
 
+# TODO: On job create, create company
+# TODO: On company create, queue a background job to add company description to company
+# TODO: On job create, queue a background job to add description to job
+# TODO: On job create, queue a background job to add application criteria to job
+# TODO: Add staging variable to job
+
 class AiFindFormFieldsJob < ApplicationJob
   include Capybara::DSL
 

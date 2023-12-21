@@ -83,14 +83,41 @@
                   </div>
                 <% when "combobox" %>
                   <div class="col-sm-9">
-                    <%= ff.input :field_name, as: :hidden %>
-                    <%= ff.input :field_locator, as: :hidden %>
-                    <%= ff.input :interaction, as: :hidden %>
-                    <%= ff.input :field_option, as: :hidden %>
+                    <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                       <p>TODO: Add a COmbobox handler. Value is combobox field_option.</p>
 
                     <%= ff.input :field_value, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-pill", data: { label: response.field_name, response_input_target: "input", action: "keyup->response-input#handleChange change->response-input#handleChange"} } %>
                   </div>
+                <% when "radiogroup" %>
+                  <div class="col-sm-9">
+                    <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                      <p>TODO: Add a Radiogroup handler. Value is radiogroup field_option.</p>
+
+                    <%= ff.input :field_value, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-pill", data: { label: response.field_name, response_input_target: "input", action: "keyup->response-input#handleChange change->response-input#handleChange"} } %>
+                  </div>
+                <% when "listbox" %>
+                  <div class="col-sm-9">
+                    <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%= ff.input :field_value, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-pill", data: { label: response.field_name, response_input_target: "input", action: "keyup->response-input#handleChange change->response-input#handleChange"} } %>
+                  </div>
+                <% when "select" %>
+                  <div class="col-sm-9">
+                    <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%= ff.input :field_value, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-pill", data: { label: response.field_name, response_input_target: "input", action: "keyup->response-input#handleChange change->response-input#handleChange"} } %>
+                  </div>
+                  <%# Input, Combobox, Radiogroup, Listbox, Select %>
                 <% end %>
 
               </div>
@@ -113,6 +140,7 @@
         </details>
     <% end %>
   </div>
-</div>
 
-<%# job.last.application_responses[4].field_name %>
+  <%= render 'loading' %>
+
+</div>

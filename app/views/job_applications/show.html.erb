@@ -1,4 +1,8 @@
-<div class="confirmation-container mt-3" data-controller="confetti">
+<%# TODO: Update number of jobs to be this application session (create a session or keep in params?) %>
+<%# TODO: Note that dog picture is currently slow to load %>
+<%# TODO: Update happy dog to another measure of success %>
+
+<div class="confirmation-container mt-5" data-controller="confetti">
   <div class="success-box">
     <div class="confirmation-header">
         <h1>🎉 Well done 🎉</h1>
@@ -16,18 +20,11 @@
       <h5 class="pt-2">Next steps</h5>
       <div class="d-flex justify-content-between align-items-center">
         <div>
-          <%= link_to 'Apply again', new_job_application_path, class: "btn btn-apply" %>
+          <%= link_to 'More jobs', new_job_application_path, class: "btn btn-apply" %>
         </div>
         <button id="confetti-btn" data-action="click->confetti#click" class="btn btn-cheddar-secondary">More confetti!</button>
         <div>
           <%= link_to 'Tell a friend', '#', class: "btn btn-apply" %>
-        </div>
-      </div>
-      <div class="d-flex justify-content-between align-items-center" style="width: auto;">
-        <div class="mx-auto" style="text-align: left; width: 350px;">
-          <p class="text-left">1. Check your inbox for confirmation emails</p>
-          <p class="text-left">2. Apply to more jobs</p>
-          <p class="text-left">3. Tell a friend about Cheddar</p>
         </div>
       </div>
     </div>

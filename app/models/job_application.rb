@@ -20,27 +20,27 @@ class JobApplication < ApplicationRecord
     resume: {
       interaction: :upload,
     },
-    # city: {
-    #   interaction: :input,
-    # },
-    # location_click: {
-    #   interaction: :listbox,
-    # },
-    # linkedin_profile: {
-    #   interaction: :input,
-    # },
-    # personal_website: {
-    #   interaction: :input,
-    # },
-    # heard_from: {
-    #   interaction: :input,
-    # },
-    # # right_to_work: {
-    # #   interaction: :select,
-    # # },
-    # require_visa?: {
+    city: {
+      interaction: :input,
+    },
+    location_click: {
+      interaction: :listbox,
+    },
+    linkedin_profile: {
+      interaction: :input,
+    },
+    personal_website: {
+      interaction: :input,
+    },
+    heard_from: {
+      interaction: :input,
+    },
+    # right_to_work: {
     #   interaction: :select,
     # },
+    require_visa?: {
+      interaction: :select,
+    },
   }
 
   belongs_to :user

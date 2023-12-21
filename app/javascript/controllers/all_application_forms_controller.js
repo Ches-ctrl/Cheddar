@@ -1,15 +1,18 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["form", "button"]
+  static targets = ["form", "button", "overlay", "modal"]
+
   connect() {
-    // console.log('Parent controller connected');
+    console.log('Parent controller connected');
     // console.log(this.formTargets);
   }
 
   async submitAllForms(event) {
     event.preventDefault();
     this.buttonTarget.disabled = true;
+    this.overlayTarget.classList.remove("d-none");
+    this.modalTarget.classList.remove("d-none");
 
     try {
       await new Promise((resolve) => {
@@ -30,6 +33,8 @@ export default class extends Controller {
         })
       );
 
+      // TODO: Link with the job application so that the page only redirects after all forms have been submitted successfully
+
       // console.log("All forms submitted");
       window.location.href = "/job_applications/success";
     } catch (error) {
@@ -38,31 +43,3 @@ export default class extends Controller {
     }
   }
 }
-
-
-// Louis Original Code:
-// submitAllForms(event) {
-//   event.preventDefault();
-//   this.buttonTarget.disabled = true;
-//   // this.triggerSubmissions();
-//   // Open the modal here
-//   Promise.all(
-//     this.formTargets.map((form) => {
-//       console.log(form);
-//       new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//           form.requestSubmit();
-//           // render modal to show that the form has been submitted
-//         }, 2000);
-//       });
-//     })
-//   ).then(() => {
-//     console.log("All forms submitted");
-//     window.location.href = "/job_applications/success";
-//   });
-//   // this.application.controllers.forEach(controller => {
-//   //   if (controller.identifier === "application-form") {
-//   //     controller.submitForm();
-//   //   }
-//   // });
-// }
