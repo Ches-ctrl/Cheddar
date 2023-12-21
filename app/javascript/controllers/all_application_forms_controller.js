@@ -3,8 +3,8 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["form", "button"]
   connect() {
-    console.log('Parent controller connected');
-    console.log(this.formTargets);
+    // console.log('Parent controller connected');
+    // console.log(this.formTargets);
   }
 
   async submitAllForms(event) {
@@ -15,7 +15,7 @@ export default class extends Controller {
       await new Promise((resolve) => {
         setTimeout(() => {
           resolve();
-        }, 10000);
+        }, 2000);
       });
 
       await Promise.all(
@@ -30,7 +30,7 @@ export default class extends Controller {
         })
       );
 
-      console.log("All forms submitted");
+      // console.log("All forms submitted");
       window.location.href = "/job_applications/success";
     } catch (error) {
       console.error("Error submitting forms:", error);
