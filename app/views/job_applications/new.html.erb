@@ -9,12 +9,12 @@
         <div class="company-apply-summary bg-body-secondary p-2 d-flex">
           <% @selected_jobs.each_with_index do |job, index| %>
             <div><%= index + 1 %></div>
-              <%= link_to image_tag("https://logo.clearbit.com/#{job.company.company_website_url}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", class: 'img-fluid', style: "width: 60px; height: 60px;"), '#', class: 'apply-company-logo mr-3' %>
+            <%= link_to image_tag("https://logo.clearbit.com/#{job.company.company_website_url}?size=60px", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", class: 'img-fluid'), job.company.company_website_url, target: '_blank', class: 'apply-company-logo' %>
           <% end %>
         </div>
       </div>
       <div class="d-flex justify-content-end align-items-center">
-        <div class="btn btn-apply mt-1" data-all-application-forms-target="button" data-action="click->all-application-forms#submitAllForms">Apply All</div>
+        <div class="btn btn-apply mt-1" data-all-application-forms-target="button" data-action="click->all-application-forms#submitAllForms">Apply to All</div>
       </div>
   </div>
 
@@ -83,7 +83,7 @@
 
 
           <div class="d-flex justify-content-end align-items-end">
-            <%= f.submit 'Submit this application', class: 'btn btn-apply', 'data-action': 'click->application-form#submitForm' %>
+            <%= f.submit 'Submit this app', class: 'btn btn-cheddar-secondary', 'data-action': 'click->application-form#submitForm' %>
           </div>
         <% end %>
         </details>
