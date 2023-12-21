@@ -1,3 +1,20 @@
+# ------------
+# Instructions
+# ------------
+
+# Part I
+# 1. Remove all duplicate jobs
+# 2. Put jobs in alphabetical order (in the New Seed File Section, taking from the Old Seed File Section)
+# 3. Add the application_criteria and application_details hashes to all jobs (it is currently missing from many of them)
+# 4. Fill in the application_criteria hash by inspecting the job application form via the job_posting_url
+# 5. Similarly, fill in the application_details hash by inspecting the job application form via the job_posting_url
+# 6. NB. Each element in each hash must be uniquely identifiable by the scraper
+
+# Part II
+# 7. Add 5 additional jobs for each ATS: Taleo, Workday, Ambertrack, Tal.net, SmartRecruiters, Ashby
+# 8. NB. Jobs must be from: https://www.trueup.io/
+# 8. Repeat the process completed in Part I
+
 puts "Deleting previous (1) users, (2) jobs, (3)companies, (4) ATS Formats and (5) Applicant Tracking Systems..."
 
 puts "-------------------------------------"

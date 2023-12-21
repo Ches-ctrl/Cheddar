@@ -15,7 +15,6 @@ class Job < ApplicationRecord
 
   validates :job_title, presence: true
   validates :job_posting_url, uniqueness: true
-  # validates :applicant_tracking_system_id, :ats_format_id, presence: true
 
   before_create :set_application_criteria
 
