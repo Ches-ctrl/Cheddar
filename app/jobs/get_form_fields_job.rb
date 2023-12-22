@@ -5,7 +5,10 @@ class GetFormFieldsJob < ApplicationJob
 
   queue_as :default
 
-  # TODO: add test filling out the form fields
+  # TODO: Add scrape of job description and other details to this background job (so that it all executes in one capybara session)
+  # TODO: Potentially change to scraping all fields from the job posting
+  # TODO: Add cv required based on this scrape
+  # TODO: add test of filling out the form fields before job goes live
 
   def perform(url)
     visit(url)
@@ -22,7 +25,13 @@ class GetFormFieldsJob < ApplicationJob
 
     attributes = {}
     labels.each do |label|
-      label_text = label.xpath('descendant-or-self::text()[not(parent::select or parent::option or parent::ul or parent::label/input[@type="checkbox"])]').text.strip
+      # Could do this based off of name of ID
+
+      # TODO: Add ability to deal with boolean required fields. Input will have an asterisk in a span class in that case
+      # TODO: Fix issue where additional core fields will be shown to the user even if not required when included in the core greenhouse set
+
+      # Stripping text, downcasing and replacing spaces with underscores to act as primary keys
+      label_text = label.xpath('descendant-or-self::text()[not(parent::select or parent::option or parent::ul or parent::label/input[@type="checkbox"])]').text.strip.downcase.gsub(" ", "_")
 
       name = label_text # not perfect
       next if name == ""
@@ -54,7 +63,7 @@ class GetFormFieldsJob < ApplicationJob
       end
     end
 
-    # Check that including this here doesn't cause issues
+    # TODO: Check that including this here doesn't cause issues
     Capybara.current_session.driver.quit
     return attributes
     # attributes.delete(attributes.keys.last)
@@ -66,3 +75,21 @@ class GetFormFieldsJob < ApplicationJob
     find(:xpath, "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')] | //button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')]")
   end
 end
+
+# {"first_name"=>{"interaction"=>"input", "locators"=>"first_name"},
+#  "last_name"=>{"interaction"=>"input", "locators"=>"last_name"},
+#  "email"=>{"interaction"=>"input", "locators"=>"email"},
+#  "phone_number"=>{"interaction"=>"input", "locators"=>"phone"},
+#  "resume"=>{"interaction"=>"upload", "locators"=>"button[aria-describedby=\"resume-allowable-file-types\""},
+#  "city"=>{"interaction"=>"input", "locators"=>"job_application[location]"},
+#  "location_click"=>{"interaction"=>"listbox", "locators"=>"ul#location_autocomplete-items-popup"},
+#  "linkedin_profile"=>{"interaction"=>"input", "locators"=>"input[autocomplete=\"custom-question-linkedin-profile\"]"},
+#  "personal_website"=>{"interaction"=>"input", "locators"=>"input[autocomplete=\"custom-question-website\"], input[autocomplete=\"custom-question-portfolio-linkwebsite\"]"},
+#  "heard_from"=>{"interaction"=>"input", "locators"=>"input[autocomplete=\"custom-question-how-did-you-hear-about-this-job\"]"},
+#  "require_visa?"=>{"interaction"=>"input", "locators"=>"textarea[autocomplete=\"custom-question-would-you-need-sponsorship-to-work-in-the-uk-\"]"},
+#  "LinkedIn Profile"=>{"interaction"=>"input", "locators"=>"job_application_answers_attributes_0_text_value"},
+#  "Website"=>{"interaction"=>"input", "locators"=>"job_application_answers_attributes_1_text_value"},
+#  "How did you hear about this job? *"=>{"interaction"=>"input", "locators"=>"job_application_answers_attributes_2_text_value"},
+#  "Do you need visa sponsorship now or in the future? *\n    \n    \n    \n\n\n   --"=>
+#   {"interaction"=>"select", "locators"=>"job_application_answers_attributes_3_boolean_value", "option"=>"option", "options"=>["--", "Yes", "No"]},
+#  "What is your state/province of residence? *"=>{"interaction"=>"input", "locators"=>"job_application_answers_attributes_4_text_value"}}

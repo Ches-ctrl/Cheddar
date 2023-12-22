@@ -47,6 +47,8 @@ class JobApplicationsController < ApplicationController
 
       ids = cookies[:selected_job_ids].split("&")
       ids.delete("#{job.id}")
+
+      # Believe this automatically adds & between the cookies?
       cookies[:selected_job_ids] = ids
 
       redirect_to job_applications_path, notice: 'Your applications have been submitted.'

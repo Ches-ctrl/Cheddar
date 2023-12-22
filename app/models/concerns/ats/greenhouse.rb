@@ -19,14 +19,14 @@ module Ats::Greenhouse
       interaction: :input,
       locators: 'phone'
     },
+    city: {
+      interaction: :input,
+      locators: 'job_application[location]'
+    },
     resume: {
       interaction: :upload,
       locators: 'button[aria-describedby="resume-allowable-file-types"'
     },
-    # city: {
-    #   interaction: :input,
-    #   locators: 'job_application[location]'
-    # },
     # location_click: {
     #   interaction: :listbox,
     #   locators: 'ul#location_autocomplete-items-popup'

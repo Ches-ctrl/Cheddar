@@ -629,23 +629,23 @@ Job.create!(
   salary: 40000,
   date_created: date_created.sample,
   application_deadline: deadlines.sample,
-  application_details: {
-    description: {
-      locators: 'TODO'
-    },
-    other_keys: {
-      locators: 'TODO'
-    }
-  },
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'TODO'
-    },
-    other_keys: {
-      locators: 'TODO'
-    },
-  },
+  # application_details: {
+  #   description: {
+  #     locators: 'TODO'
+  #   },
+  #   other_keys: {
+  #     locators: 'TODO'
+  #   }
+  # },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'TODO'
+  #   },
+  #   other_keys: {
+  #     locators: 'TODO'
+  #   },
+  # },
   job_posting_url: "https://apply.workable.com/9fin/j/437E57E57C/",
   company_id: Company.find_by(company_name: '9fin').id,
   # applicant_tracking_system_id: ApplicantTrackingSystem.find_by(name: 'Workable').id,
@@ -663,23 +663,23 @@ Job.create!(
   salary: 42000,
   date_created: date_created.sample,
   application_deadline: deadlines.sample,
-  application_details: {
-    description: {
-      locators: 'TODO'
-    },
-    other_keys: {
-      locators: 'TODO'
-    }
-  },
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'TODO'
-    },
-    other_keys: {
-      locators: 'TODO'
-    },
-  },
+  # application_details: {
+  #   description: {
+  #     locators: 'TODO'
+  #   },
+  #   other_keys: {
+  #     locators: 'TODO'
+  #   }
+  # },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'TODO'
+  #   },
+  #   other_keys: {
+  #     locators: 'TODO'
+  #   },
+  # },
   job_posting_url: "https://apply.workable.com/builderai/j/DD834B7F18/",
   company_id: Company.find_by(company_name: 'Builder.ai').id,
   # applicant_tracking_system_id: ApplicantTrackingSystem.find_by(name: 'Workable').id,
@@ -697,58 +697,58 @@ Job.create!(
    salary: 98000,
   date_created: date_created.sample,
   application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'firstname'
+  #   },
+  #   last_name: {
+  #     interaction: :input,
+  #     locators: 'lastname'
+  #   },
+  #   email: {
+  #     interaction: :input,
+  #     locators: 'email'
+  #   },
+  #   phone_number: {
+  #     interaction: :input,
+  #     locators: 'phone'
+  #   },
+  #   resume: {
+  #     interaction: :upload,
+  #     locators: 'input[type="file"]'
+  #   },
+  #   salary_expectation_text: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   right_to_work: {
+  #     interaction: :radiogroup,
+  #     locators: '',
+  #     option: "",
+  #   },
+  #   salary_expectation_figure: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   notice_period: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   preferred_pronoun_select: {
+  #     interaction: :combobox,
+  #     locators: '',
+  #     option: ""
+  #   },
+  #   preferred_pronoun_text: {
+  #     interaction: :input,
+  #     locators: '',
+  #   },
+  #   employee_referral: {
+  #     interaction: :input,
+  #     locators: ''
+  #   }
+  # },
   job_posting_url: "https://boards.greenhouse.io/embed/job_app?for=gemini&token=5203656",
   company_id: Company.find_by(company_name: 'Gemini').id,
   # applicant_tracking_system_id: ApplicantTrackingSystem.find_by(name: 'Workable').id,
@@ -766,23 +766,23 @@ Job.create!(
   salary: 40000,
   date_created: date_created.sample,
   application_deadline: deadlines.sample,
-  application_details: {
-    description: {
-      locators: 'TODO'
-    },
-    other_keys: {
-      locators: 'TODO'
-    }
-  },
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'TODO'
-    },
-    other_keys: {
-      locators: 'TODO'
-    },
-  },
+  # application_details: {
+  #   description: {
+  #     locators: 'TODO'
+  #   },
+  #   other_keys: {
+  #     locators: 'TODO'
+  #   }
+  # },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'TODO'
+  #   },
+  #   other_keys: {
+  #     locators: 'TODO'
+  #   },
+  # },
   job_posting_url: "https://apply.workable.com/joinblink/j/C75195FF87/",
   company_id: Company.find_by(company_name: 'Blink').id,
   # applicant_tracking_system_id: ApplicantTrackingSystem.find_by(name: 'Workable').id,
@@ -800,58 +800,58 @@ Job.create!(
   salary: 30000,
   date_created: date_created.sample,
   application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: 'CA_18698'
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: 'fieldset[data-ui="QA_6308627"]',
-      option: "label",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: 'QA_6308628'
-    },
-    notice_period: {
-      interaction: :input,
-      locators: 'QA_6308629'
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: 'input#input_QA_6308630_input',
-      option: "li"
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: 'QA_6308631',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: 'QA_6427777'
-    }
-  },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'firstname'
+  #   },
+  #   last_name: {
+  #     interaction: :input,
+  #     locators: 'lastname'
+  #   },
+  #   email: {
+  #     interaction: :input,
+  #     locators: 'email'
+  #   },
+  #   phone_number: {
+  #     interaction: :input,
+  #     locators: 'phone'
+  #   },
+  #   resume: {
+  #     interaction: :upload,
+  #     locators: 'input[type="file"]'
+  #   },
+  #   salary_expectation_text: {
+  #     interaction: :input,
+  #     locators: 'CA_18698'
+  #   },
+  #   right_to_work: {
+  #     interaction: :radiogroup,
+  #     locators: 'fieldset[data-ui="QA_6308627"]',
+  #     option: "label",
+  #   },
+  #   salary_expectation_figure: {
+  #     interaction: :input,
+  #     locators: 'QA_6308628'
+  #   },
+  #   notice_period: {
+  #     interaction: :input,
+  #     locators: 'QA_6308629'
+  #   },
+  #   preferred_pronoun_select: {
+  #     interaction: :combobox,
+  #     locators: 'input#input_QA_6308630_input',
+  #     option: "li"
+  #   },
+  #   preferred_pronoun_text: {
+  #     interaction: :input,
+  #     locators: 'QA_6308631',
+  #   },
+  #   employee_referral: {
+  #     interaction: :input,
+  #     locators: 'QA_6427777'
+  #   }
+  # },
   job_posting_url: "https://apply.workable.com/kroo/j/C51C29B6C0",
   company_id: Company.find_by(company_name: 'Kroo').id,
   # applicant_tracking_system_id: ApplicantTrackingSystem.find_by(name: 'Workable').id,
@@ -867,23 +867,23 @@ Job.create!(
   salary: 40000,
   date_created: date_created.sample,
   application_deadline: deadlines.sample,
-  application_details: {
-    description: {
-      locators: 'TODO'
-    },
-    other_keys: {
-      locators: 'TODO'
-    }
-  },
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'TODO'
-    },
-    other_keys: {
-      locators: 'TODO'
-    },
-  },
+  # application_details: {
+  #   description: {
+  #     locators: 'TODO'
+  #   },
+  #   other_keys: {
+  #     locators: 'TODO'
+  #   }
+  # },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'TODO'
+  #   },
+  #   other_keys: {
+  #     locators: 'TODO'
+  #   },
+  # },
   job_posting_url: "https://apply.workable.com/quantexa/j/BFDDA845A0",
   company_id: Company.find_by(company_name: 'Quantexa').id
   # applicant_tracking_system_id: ApplicantTrackingSystem.find_by(name: 'Workable').id,
@@ -903,58 +903,58 @@ Job.create!(
   salary: 48000,
   date_created: date_created.sample,
   application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'firstname'
+  #   },
+  #   last_name: {
+  #     interaction: :input,
+  #     locators: 'lastname'
+  #   },
+  #   email: {
+  #     interaction: :input,
+  #     locators: 'email'
+  #   },
+  #   phone_number: {
+  #     interaction: :input,
+  #     locators: 'phone'
+  #   },
+  #   resume: {
+  #     interaction: :upload,
+  #     locators: 'input[type="file"]'
+  #   },
+  #   salary_expectation_text: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   right_to_work: {
+  #     interaction: :radiogroup,
+  #     locators: '',
+  #     option: "",
+  #   },
+  #   salary_expectation_figure: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   notice_period: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   preferred_pronoun_select: {
+  #     interaction: :combobox,
+  #     locators: '',
+  #     option: ""
+  #   },
+  #   preferred_pronoun_text: {
+  #     interaction: :input,
+  #     locators: '',
+  #   },
+  #   employee_referral: {
+  #     interaction: :input,
+  #     locators: ''
+  #   }
+  # },
   job_posting_url: "https://boards.eu.greenhouse.io/ably30/jobs/4183821101",
   company_id: Company.find_by(company_name: 'Alby').id
 )
@@ -971,58 +971,58 @@ Job.create!(
 
   # NB: THIS ALL CONVERTS TO STRING WHEN PARSED TO JSON IN THE DATABASE!
 
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'firstname'
+  #   },
+  #   last_name: {
+  #     interaction: :input,
+  #     locators: 'lastname'
+  #   },
+  #   email: {
+  #     interaction: :input,
+  #     locators: 'email'
+  #   },
+  #   phone_number: {
+  #     interaction: :input,
+  #     locators: 'phone'
+  #   },
+  #   resume: {
+  #     interaction: :upload,
+  #     locators: 'input[type="file"]'
+  #   },
+  #   salary_expectation_text: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   right_to_work: {
+  #     interaction: :radiogroup,
+  #     locators: '',
+  #     option: "",
+  #   },
+  #   salary_expectation_figure: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   notice_period: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   preferred_pronoun_select: {
+  #     interaction: :combobox,
+  #     locators: '',
+  #     option: ""
+  #   },
+  #   preferred_pronoun_text: {
+  #     interaction: :input,
+  #     locators: '',
+  #   },
+  #   employee_referral: {
+  #     interaction: :input,
+  #     locators: ''
+  #   }
+  # },
   job_posting_url: "https://boards.eu.greenhouse.io/synthesia/jobs/4250474101",
   company_id: Company.find_by(company_name: 'Synthesia').id
 )
@@ -1036,58 +1036,58 @@ Job.create!(
   salary: 40000,
   date_created: date_created.sample,
   application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'first_name'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'last_name'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    city: {
-      interaction: :input,
-      locators: 'job_application[location]'
-    },
-    location_click: {
-      interaction: :listbox,
-      locators: 'ul#location_autocomplete-items-popup'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'button[aria-describedby="resume-allowable-file-types"'
-    },
-    linkedin_profile: {
-      interaction: :input,
-      locators: 'job_application_answers_attributes_0_text_value'
-    },
-    personal_website: {
-      interaction: :input,
-      locators: 'job_application_answers_attributes_1_text_value'
-    },
-    heard_from: {
-      interaction: :input,
-      locators: 'job_application_answers_attributes_2_text_value'
-    },
-    right_to_work: {
-      interaction: :select,
-      locators: 'select#job_application_answers_attributes_3_boolean_value',
-      option: 'option'
-    },
-    require_visa?: {
-      interaction: :select,
-      locators: 'select#job_application_answers_attributes_4_boolean_value',
-      option: 'option'
-    }
-  },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'first_name'
+  #   },
+  #   last_name: {
+  #     interaction: :input,
+  #     locators: 'last_name'
+  #   },
+  #   email: {
+  #     interaction: :input,
+  #     locators: 'email'
+  #   },
+  #   phone_number: {
+  #     interaction: :input,
+  #     locators: 'phone'
+  #   },
+  #   city: {
+  #     interaction: :input,
+  #     locators: 'job_application[location]'
+  #   },
+  #   location_click: {
+  #     interaction: :listbox,
+  #     locators: 'ul#location_autocomplete-items-popup'
+  #   },
+  #   resume: {
+  #     interaction: :upload,
+  #     locators: 'button[aria-describedby="resume-allowable-file-types"'
+  #   },
+  #   linkedin_profile: {
+  #     interaction: :input,
+  #     locators: 'job_application_answers_attributes_0_text_value'
+  #   },
+  #   personal_website: {
+  #     interaction: :input,
+  #     locators: 'job_application_answers_attributes_1_text_value'
+  #   },
+  #   heard_from: {
+  #     interaction: :input,
+  #     locators: 'job_application_answers_attributes_2_text_value'
+  #   },
+  #   right_to_work: {
+  #     interaction: :select,
+  #     locators: 'select#job_application_answers_attributes_3_boolean_value',
+  #     option: 'option'
+  #   },
+  #   require_visa?: {
+  #     interaction: :select,
+  #     locators: 'select#job_application_answers_attributes_4_boolean_value',
+  #     option: 'option'
+  #   }
+  # },
   job_posting_url: "https://boards.greenhouse.io/bcgdv/jobs/6879714002?gh_jid=6879714002",
   company_id: Company.find_by(company_name: 'BCG Digital Ventures').id
 )
@@ -1131,58 +1131,58 @@ Job.create!(
 
   # NB: THIS ALL CONVERTS TO STRING WHEN PARSED TO JSON IN THE DATABASE!
 
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'firstname'
+  #   },
+  #   last_name: {
+  #     interaction: :input,
+  #     locators: 'lastname'
+  #   },
+  #   email: {
+  #     interaction: :input,
+  #     locators: 'email'
+  #   },
+  #   phone_number: {
+  #     interaction: :input,
+  #     locators: 'phone'
+  #   },
+  #   resume: {
+  #     interaction: :upload,
+  #     locators: 'input[type="file"]'
+  #   },
+  #   salary_expectation_text: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   right_to_work: {
+  #     interaction: :radiogroup,
+  #     locators: '',
+  #     option: "",
+  #   },
+  #   salary_expectation_figure: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   notice_period: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   preferred_pronoun_select: {
+  #     interaction: :combobox,
+  #     locators: '',
+  #     option: ""
+  #   },
+  #   preferred_pronoun_text: {
+  #     interaction: :input,
+  #     locators: '',
+  #   },
+  #   employee_referral: {
+  #     interaction: :input,
+  #     locators: ''
+  #   }
+  # },
   job_posting_url: "https://boards.greenhouse.io/coreweave/jobs/4241710006",
   company_id: Company.find_by(company_name: 'Kubernetes').id
 )
@@ -1197,50 +1197,50 @@ Job.create!(
   salary: 31000,
   date_created: date_created.sample,
   application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'first_name'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'last_name'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    city: {
-      interaction: :input,
-      locators: 'job_application[location]'
-    },
-    location_click: {
-      interaction: :listbox,
-      locators: 'ul#location_autocomplete-items-popup'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'button[aria-describedby="resume-allowable-file-types"'
-    },
-    linkedin_profile: {
-      interaction: :input,
-      locators: 'job_application_answers_attributes_0_text_value'
-    },
-    require_visa?: {
-      interaction: :select,
-      locators: 'select#job_application_answers_attributes_1_boolean_value',
-      option: 'option'
-    },
-    heard_of_company?: {
-      interaction: :select,
-      locators: 'select#job_application_answers_attributes_2_boolean_value',
-      option: 'option'
-    }
-  },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'first_name'
+  #   },
+  #   last_name: {
+  #     interaction: :input,
+  #     locators: 'last_name'
+  #   },
+  #   email: {
+  #     interaction: :input,
+  #     locators: 'email'
+  #   },
+  #   phone_number: {
+  #     interaction: :input,
+  #     locators: 'phone'
+  #   },
+  #   city: {
+  #     interaction: :input,
+  #     locators: 'job_application[location]'
+  #   },
+  #   location_click: {
+  #     interaction: :listbox,
+  #     locators: 'ul#location_autocomplete-items-popup'
+  #   },
+  #   resume: {
+  #     interaction: :upload,
+  #     locators: 'button[aria-describedby="resume-allowable-file-types"'
+  #   },
+  #   linkedin_profile: {
+  #     interaction: :input,
+  #     locators: 'job_application_answers_attributes_0_text_value'
+  #   },
+  #   require_visa?: {
+  #     interaction: :select,
+  #     locators: 'select#job_application_answers_attributes_1_boolean_value',
+  #     option: 'option'
+  #   },
+  #   heard_of_company?: {
+  #     interaction: :select,
+  #     locators: 'select#job_application_answers_attributes_2_boolean_value',
+  #     option: 'option'
+  #   }
+  # },
   job_posting_url: "https://boards.greenhouse.io/deliveroo/jobs/5447359",
   company_id: Company.find_by(company_name: 'Deliveroo').id
 )
@@ -1270,58 +1270,58 @@ Job.create!(
 
   # NB: THIS ALL CONVERTS TO STRING WHEN PARSED TO JSON IN THE DATABASE!
 
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'firstname'
+  #   },
+  #   last_name: {
+  #     interaction: :input,
+  #     locators: 'lastname'
+  #   },
+  #   email: {
+  #     interaction: :input,
+  #     locators: 'email'
+  #   },
+  #   phone_number: {
+  #     interaction: :input,
+  #     locators: 'phone'
+  #   },
+  #   resume: {
+  #     interaction: :upload,
+  #     locators: 'input[type="file"]'
+  #   },
+  #   salary_expectation_text: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   right_to_work: {
+  #     interaction: :radiogroup,
+  #     locators: '',
+  #     option: "",
+  #   },
+  #   salary_expectation_figure: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   notice_period: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   preferred_pronoun_select: {
+  #     interaction: :combobox,
+  #     locators: '',
+  #     option: ""
+  #   },
+  #   preferred_pronoun_text: {
+  #     interaction: :input,
+  #     locators: '',
+  #   },
+  #   employee_referral: {
+  #     interaction: :input,
+  #     locators: ''
+  #   }
+  # },
   job_posting_url: "https://boards.greenhouse.io/drweng/jobs/5345753",
   company_id: Company.find_by(company_name: 'DRW').id
 )
@@ -1338,58 +1338,58 @@ Job.create!(
 
   # NB: THIS ALL CONVERTS TO STRING WHEN PARSED TO JSON IN THE DATABASE!
 
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'firstname'
+  #   },
+  #   last_name: {
+  #     interaction: :input,
+  #     locators: 'lastname'
+  #   },
+  #   email: {
+  #     interaction: :input,
+  #     locators: 'email'
+  #   },
+  #   phone_number: {
+  #     interaction: :input,
+  #     locators: 'phone'
+  #   },
+  #   resume: {
+  #     interaction: :upload,
+  #     locators: 'input[type="file"]'
+  #   },
+  #   salary_expectation_text: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   right_to_work: {
+  #     interaction: :radiogroup,
+  #     locators: '',
+  #     option: "",
+  #   },
+  #   salary_expectation_figure: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   notice_period: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   preferred_pronoun_select: {
+  #     interaction: :combobox,
+  #     locators: '',
+  #     option: ""
+  #   },
+  #   preferred_pronoun_text: {
+  #     interaction: :input,
+  #     locators: '',
+  #   },
+  #   employee_referral: {
+  #     interaction: :input,
+  #     locators: ''
+  #   }
+  # },
   job_posting_url: "https://boards.greenhouse.io/elementalexcelerator/jobs/5027131004",
   company_id: Company.find_by(company_name: 'Elemental Excelerator').id
 )
@@ -1403,58 +1403,58 @@ Job.create!(
   salary: 43000,
   date_created: date_created.sample,
   application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'firstname'
+  #   },
+  #   last_name: {
+  #     interaction: :input,
+  #     locators: 'lastname'
+  #   },
+  #   email: {
+  #     interaction: :input,
+  #     locators: 'email'
+  #   },
+  #   phone_number: {
+  #     interaction: :input,
+  #     locators: 'phone'
+  #   },
+  #   resume: {
+  #     interaction: :upload,
+  #     locators: 'input[type="file"]'
+  #   },
+  #   salary_expectation_text: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   right_to_work: {
+  #     interaction: :radiogroup,
+  #     locators: '',
+  #     option: "",
+  #   },
+  #   salary_expectation_figure: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   notice_period: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   preferred_pronoun_select: {
+  #     interaction: :combobox,
+  #     locators: '',
+  #     option: ""
+  #   },
+  #   preferred_pronoun_text: {
+  #     interaction: :input,
+  #     locators: '',
+  #   },
+  #   employee_referral: {
+  #     interaction: :input,
+  #     locators: ''
+  #   }
+  # },
   job_posting_url: "https://boards.greenhouse.io/forter/jobs/6889370002",
   company_id: Company.find_by(company_name: 'Forter').id
 )
@@ -1471,58 +1471,58 @@ Job.create!(
 
   # NB: THIS ALL CONVERTS TO STRING WHEN PARSED TO JSON IN THE DATABASE!
 
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'firstname'
+  #   },
+  #   last_name: {
+  #     interaction: :input,
+  #     locators: 'lastname'
+  #   },
+  #   email: {
+  #     interaction: :input,
+  #     locators: 'email'
+  #   },
+  #   phone_number: {
+  #     interaction: :input,
+  #     locators: 'phone'
+  #   },
+  #   resume: {
+  #     interaction: :upload,
+  #     locators: 'input[type="file"]'
+  #   },
+  #   salary_expectation_text: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   right_to_work: {
+  #     interaction: :radiogroup,
+  #     locators: '',
+  #     option: "",
+  #   },
+  #   salary_expectation_figure: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   notice_period: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   preferred_pronoun_select: {
+  #     interaction: :combobox,
+  #     locators: '',
+  #     option: ""
+  #   },
+  #   preferred_pronoun_text: {
+  #     interaction: :input,
+  #     locators: '',
+  #   },
+  #   employee_referral: {
+  #     interaction: :input,
+  #     locators: ''
+  #   }
+  # },
   job_posting_url: "https://boards.greenhouse.io/janestreet/jobs/4274809002",
   company_id: Company.find_by(company_name: 'Jane Street').id
 )
@@ -1539,58 +1539,58 @@ Job.create!(
 
   # NB: THIS ALL CONVERTS TO STRING WHEN PARSED TO JSON IN THE DATABASE!
 
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'firstname'
+  #   },
+  #   last_name: {
+  #     interaction: :input,
+  #     locators: 'lastname'
+  #   },
+  #   email: {
+  #     interaction: :input,
+  #     locators: 'email'
+  #   },
+  #   phone_number: {
+  #     interaction: :input,
+  #     locators: 'phone'
+  #   },
+  #   resume: {
+  #     interaction: :upload,
+  #     locators: 'input[type="file"]'
+  #   },
+  #   salary_expectation_text: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   right_to_work: {
+  #     interaction: :radiogroup,
+  #     locators: '',
+  #     option: "",
+  #   },
+  #   salary_expectation_figure: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   notice_period: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   preferred_pronoun_select: {
+  #     interaction: :combobox,
+  #     locators: '',
+  #     option: ""
+  #   },
+  #   preferred_pronoun_text: {
+  #     interaction: :input,
+  #     locators: '',
+  #   },
+  #   employee_referral: {
+  #     interaction: :input,
+  #     locators: ''
+  #   }
+  # },
 
 
   job_posting_url: "https://boards.greenhouse.io/joinforage/jobs/4155367007",
@@ -1609,58 +1609,58 @@ Job.create!(
 
   # NB: THIS ALL CONVERTS TO STRING WHEN PARSED TO JSON IN THE DATABASE!
 
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'firstname'
+  #   },
+  #   last_name: {
+  #     interaction: :input,
+  #     locators: 'lastname'
+  #   },
+  #   email: {
+  #     interaction: :input,
+  #     locators: 'email'
+  #   },
+  #   phone_number: {
+  #     interaction: :input,
+  #     locators: 'phone'
+  #   },
+  #   resume: {
+  #     interaction: :upload,
+  #     locators: 'input[type="file"]'
+  #   },
+  #   salary_expectation_text: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   right_to_work: {
+  #     interaction: :radiogroup,
+  #     locators: '',
+  #     option: "",
+  #   },
+  #   salary_expectation_figure: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   notice_period: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   preferred_pronoun_select: {
+  #     interaction: :combobox,
+  #     locators: '',
+  #     option: ""
+  #   },
+  #   preferred_pronoun_text: {
+  #     interaction: :input,
+  #     locators: '',
+  #   },
+  #   employee_referral: {
+  #     interaction: :input,
+  #     locators: ''
+  #   }
+  # },
   job_posting_url: "https://boards.greenhouse.io/mozilla/jobs/5448569",
   company_id: Company.find_by(company_name: 'Mozilla').id
 )
@@ -1675,58 +1675,58 @@ Job.create!(
   date_created: date_created.sample,
   application_deadline: deadlines.sample,
 
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'firstname'
+  #   },
+  #   last_name: {
+  #     interaction: :input,
+  #     locators: 'lastname'
+  #   },
+  #   email: {
+  #     interaction: :input,
+  #     locators: 'email'
+  #   },
+  #   phone_number: {
+  #     interaction: :input,
+  #     locators: 'phone'
+  #   },
+  #   resume: {
+  #     interaction: :upload,
+  #     locators: 'input[type="file"]'
+  #   },
+  #   salary_expectation_text: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   right_to_work: {
+  #     interaction: :radiogroup,
+  #     locators: '',
+  #     option: "",
+  #   },
+  #   salary_expectation_figure: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   notice_period: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   preferred_pronoun_select: {
+  #     interaction: :combobox,
+  #     locators: '',
+  #     option: ""
+  #   },
+  #   preferred_pronoun_text: {
+  #     interaction: :input,
+  #     locators: '',
+  #   },
+  #   employee_referral: {
+  #     interaction: :input,
+  #     locators: ''
+  #   }
+  # },
   job_posting_url: "https://boards.greenhouse.io/okx/jobs/5552949003",
   company_id: Company.find_by(company_name: 'OXK').id
 )
@@ -1743,58 +1743,58 @@ Job.create!(
 
   # NB: THIS ALL CONVERTS TO STRING WHEN PARSED TO JSON IN THE DATABASE!
 
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'firstname'
+  #   },
+  #   last_name: {
+  #     interaction: :input,
+  #     locators: 'lastname'
+  #   },
+  #   email: {
+  #     interaction: :input,
+  #     locators: 'email'
+  #   },
+  #   phone_number: {
+  #     interaction: :input,
+  #     locators: 'phone'
+  #   },
+  #   resume: {
+  #     interaction: :upload,
+  #     locators: 'input[type="file"]'
+  #   },
+  #   salary_expectation_text: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   right_to_work: {
+  #     interaction: :radiogroup,
+  #     locators: '',
+  #     option: "",
+  #   },
+  #   salary_expectation_figure: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   notice_period: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   preferred_pronoun_select: {
+  #     interaction: :combobox,
+  #     locators: '',
+  #     option: ""
+  #   },
+  #   preferred_pronoun_text: {
+  #     interaction: :input,
+  #     locators: '',
+  #   },
+  #   employee_referral: {
+  #     interaction: :input,
+  #     locators: ''
+  #   }
+  # },
   job_posting_url: "https://boards.greenhouse.io/relativity/jobs/6916371002",
   company_id: Company.find_by(company_name: 'Relativity Space').id
 )
@@ -1808,1663 +1808,1663 @@ Job.create!(
   salary: 35000,
   date_created: date_created.sample,
   application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
+  # application_criteria: {
+  #   first_name: {
+  #     interaction: :input,
+  #     locators: 'firstname'
+  #   },
+  #   last_name: {
+  #     interaction: :input,
+  #     locators: 'lastname'
+  #   },
+  #   email: {
+  #     interaction: :input,
+  #     locators: 'email'
+  #   },
+  #   phone_number: {
+  #     interaction: :input,
+  #     locators: 'phone'
+  #   },
+  #   resume: {
+  #     interaction: :upload,
+  #     locators: 'input[type="file"]'
+  #   },
+  #   salary_expectation_text: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   right_to_work: {
+  #     interaction: :radiogroup,
+  #     locators: '',
+  #     option: "",
+  #   },
+  #   salary_expectation_figure: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   notice_period: {
+  #     interaction: :input,
+  #     locators: ''
+  #   },
+  #   preferred_pronoun_select: {
+  #     interaction: :combobox,
+  #     locators: '',
+  #     option: ""
+  #   },
+  #   preferred_pronoun_text: {
+  #     interaction: :input,
+  #     locators: '',
+  #   },
+  #   employee_referral: {
+  #     interaction: :input,
+  #     locators: ''
+  #   }
+  # },
   job_posting_url: "https://boards.greenhouse.io/tenstorrent/jobs/4120628007",
   company_id: Company.find_by(company_name: 'Tenstorrent').id
 )
 
 puts "Created job - #{Job.last.job_title}"
 
-# 24. Wise
-Job.create!(
-  job_title: "Senior Backend Engineer - Fraud @ Wise",
-  job_description: "We'’'re looking for a Senior Backend Engineer to join our Fraud team in London. You'’'ll be working on building and improving our fraud detection systems, which are used to protect our customers and Wise from fraudsters. You'’'ll be working in a cross-functional team with other engineers, product managers, data scientists and analysts to build and improve our fraud detection systems.",
-  salary: 55000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/transferwise/jobs/5082330",
-  company_id: Company.find_by(company_name: 'Wise').id
-)
+# # 24. Wise
+# Job.create!(
+#   job_title: "Senior Backend Engineer - Fraud @ Wise",
+#   job_description: "We'’'re looking for a Senior Backend Engineer to join our Fraud team in London. You'’'ll be working on building and improving our fraud detection systems, which are used to protect our customers and Wise from fraudsters. You'’'ll be working in a cross-functional team with other engineers, product managers, data scientists and analysts to build and improve our fraud detection systems.",
+#   salary: 55000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/transferwise/jobs/5082330",
+#   company_id: Company.find_by(company_name: 'Wise').id
+# )
 
-puts "Created job - #{Job.last.job_title}"
+# puts "Created job - #{Job.last.job_title}"
 
-# 25. Zscaler
-Job.create!(
-  job_title: "Senior Infrastructure Deployment Engineer @ Zscaler ",
-  job_description: "We are looking for a Senior Infrastructure Deployment Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application. ",
-  salary: 45000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/zscaler/jobs/4092460007",
-  company_id: Company.find_by(company_name: 'Zscaler').id
-)
-puts "Created job - #{Job.last.job_title}"
-# 26. GWI
-Job.create!(
-  job_title: "Data Science Talent Pool @ GWI ",
-  job_description: "Our Data Science department is split between the Data Analytics Engineering and Data Science teams consisting of Data Scientists and Machine Learning Engineers reporting to the Team Leads under the VP of Data Science or the Director of Data Analytics Engineering. The teams mainly work with GCP, Python and SQL. ",
-  salary: 66000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/globalwebindex/jobs/6940363002",
-  company_id: Company.find_by(company_name: 'GWI').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 25. Zscaler
+# Job.create!(
+#   job_title: "Senior Infrastructure Deployment Engineer @ Zscaler ",
+#   job_description: "We are looking for a Senior Infrastructure Deployment Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application. ",
+#   salary: 45000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/zscaler/jobs/4092460007",
+#   company_id: Company.find_by(company_name: 'Zscaler').id
+# )
+# puts "Created job - #{Job.last.job_title}"
+# # 26. GWI
+# Job.create!(
+#   job_title: "Data Science Talent Pool @ GWI ",
+#   job_description: "Our Data Science department is split between the Data Analytics Engineering and Data Science teams consisting of Data Scientists and Machine Learning Engineers reporting to the Team Leads under the VP of Data Science or the Director of Data Analytics Engineering. The teams mainly work with GCP, Python and SQL. ",
+#   salary: 66000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/globalwebindex/jobs/6940363002",
+#   company_id: Company.find_by(company_name: 'GWI').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 27. Monzo
-Job.create!(
-  job_title: "Director of Data Science, Financial Crime @ Monzo ",
-  job_description: "We are looking for a Director of Data Science, Financial Crime to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
-  salary: 120000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/monzo/jobs/5463167",
-  company_id: Company.find_by(company_name: 'Monzo').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 27. Monzo
+# Job.create!(
+#   job_title: "Director of Data Science, Financial Crime @ Monzo ",
+#   job_description: "We are looking for a Director of Data Science, Financial Crime to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
+#   salary: 120000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/monzo/jobs/5463167",
+#   company_id: Company.find_by(company_name: 'Monzo').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 28. Monzo
-Job.create!(
-  job_title: "Data science manager @ Monzo ",
-  job_description: "We are looking for a Data science manager to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
-  salary: 100000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/monzo/jobs/5482027",
-  company_id: Company.find_by(company_name: 'Monzo').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 28. Monzo
+# Job.create!(
+#   job_title: "Data science manager @ Monzo ",
+#   job_description: "We are looking for a Data science manager to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
+#   salary: 100000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/monzo/jobs/5482027",
+#   company_id: Company.find_by(company_name: 'Monzo').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 29. Jobber
-Job.create!(
-  job_title: "Senior Data Science Manager @ Jobber ",
-  job_description: "We are looking for a Senior Data Science Manager to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
-  salary: 90000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/jobber/jobs/7023846002",
-  company_id: Company.find_by(company_name: 'Jobber').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 29. Jobber
+# Job.create!(
+#   job_title: "Senior Data Science Manager @ Jobber ",
+#   job_description: "We are looking for a Senior Data Science Manager to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
+#   salary: 90000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/jobber/jobs/7023846002",
+#   company_id: Company.find_by(company_name: 'Jobber').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 30. tele health
-Job.create!(
-  job_title: "Software Engineer @ Tele Health ",
-  job_description: "We are looking for a Software Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
-  salary: 90000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/doctolib/jobs/5811790003",
-  company_id: Company.find_by(company_name: 'Tele Health').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 30. tele health
+# Job.create!(
+#   job_title: "Software Engineer @ Tele Health ",
+#   job_description: "We are looking for a Software Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
+#   salary: 90000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/doctolib/jobs/5811790003",
+#   company_id: Company.find_by(company_name: 'Tele Health').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 31. Knowde
-Job.create!(
-  job_title: "Back-End Software Engineer - Ruby/Rails @ Knowde ",
-  job_description: "We are looking for a Back-End Software Engineer - Ruby/Rails to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
-  salary: 92000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/knowde/jobs/4378100003",
-  company_id: Company.find_by(company_name: 'Knowde').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 31. Knowde
+# Job.create!(
+#   job_title: "Back-End Software Engineer - Ruby/Rails @ Knowde ",
+#   job_description: "We are looking for a Back-End Software Engineer - Ruby/Rails to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
+#   salary: 92000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/knowde/jobs/4378100003",
+#   company_id: Company.find_by(company_name: 'Knowde').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 32. Knowde
-Job.create!(
-  job_title: "Engineering Manager @ Knowde ",
-  job_description: "We are looking for a Engineering Manager to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
-  salary: 88000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/knowde/jobs/5808402003",
-  company_id: Company.find_by(company_name: 'Knowde').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 32. Knowde
+# Job.create!(
+#   job_title: "Engineering Manager @ Knowde ",
+#   job_description: "We are looking for a Engineering Manager to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
+#   salary: 88000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/knowde/jobs/5808402003",
+#   company_id: Company.find_by(company_name: 'Knowde').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 33. Knowde
-Job.create!(
-  job_title: "Front-End Software Engineer @ Knowde ",
-  job_description: "We are looking for a Front-End Software Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
-  salary: 99000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/knowde/jobs/4576119003",
-  company_id: Company.find_by(company_name: 'Knowde').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 33. Knowde
+# Job.create!(
+#   job_title: "Front-End Software Engineer @ Knowde ",
+#   job_description: "We are looking for a Front-End Software Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
+#   salary: 99000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/knowde/jobs/4576119003",
+#   company_id: Company.find_by(company_name: 'Knowde').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 34. Knowde
-Job.create!(
-  job_title: "Senior Back-End Software Engineer @ Knowde ",
-  job_description: "We are looking for a Senior Back-End Software Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 93000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/knowde/jobs/4129896003",
-  company_id: Company.find_by(company_name: 'Knowde').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 34. Knowde
+# Job.create!(
+#   job_title: "Senior Back-End Software Engineer @ Knowde ",
+#   job_description: "We are looking for a Senior Back-End Software Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
+#   salary: 93000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/knowde/jobs/4129896003",
+#   company_id: Company.find_by(company_name: 'Knowde').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 35. Code path
-Job.create!(
-  job_title: "Senior Ruby Engineer @ Codepath ",
-  job_description: "We are looking for a Senior Back-End Software Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 89000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/codepath/jobs/4035988007",
-  company_id: Company.find_by(company_name: 'Code Path').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 35. Code path
+# Job.create!(
+#   job_title: "Senior Ruby Engineer @ Codepath ",
+#   job_description: "We are looking for a Senior Back-End Software Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
+#   salary: 89000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/codepath/jobs/4035988007",
+#   company_id: Company.find_by(company_name: 'Code Path').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 36. Code path
-Job.create!(
-  job_title: "Lead Web Development Instructor @ Codepath ",
-  job_description: "We are looking for a Lead Web Development Instructor to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 97000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/codepath/jobs/4059099007",
-  company_id: Company.find_by(company_name: 'Code Path').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 36. Code path
+# Job.create!(
+#   job_title: "Lead Web Development Instructor @ Codepath ",
+#   job_description: "We are looking for a Lead Web Development Instructor to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
+#   salary: 97000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/codepath/jobs/4059099007",
+#   company_id: Company.find_by(company_name: 'Code Path').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 37. Code path
-Job.create!(
-  job_title: "Cloud Infrastructure Engineer @ Codepath",
-  job_description: "We are looking for a Cloud Infrastructure Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 97000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/codepath/jobs/4141438007",
-  company_id: Company.find_by(company_name: 'Code Path').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 37. Code path
+# Job.create!(
+#   job_title: "Cloud Infrastructure Engineer @ Codepath",
+#   job_description: "We are looking for a Cloud Infrastructure Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
+#   salary: 97000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/codepath/jobs/4141438007",
+#   company_id: Company.find_by(company_name: 'Code Path').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 38. workato
-Job.create!(
-  job_title: "Senior Ruby Engineer @ Workato",
-  job_description: "We are looking for a Senior Ruby Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 97000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/workato/jobs/7016061002",
-  company_id: Company.find_by(company_name: 'Workato').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 38. workato
+# Job.create!(
+#   job_title: "Senior Ruby Engineer @ Workato",
+#   job_description: "We are looking for a Senior Ruby Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
+#   salary: 97000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/workato/jobs/7016061002",
+#   company_id: Company.find_by(company_name: 'Workato').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 39. Open door
-Job.create!(
-  job_title: "Staff Software Engineer - Ruby on rails OR Golang @ Opendoor",
-  job_description: "We are looking for a Staff Software Engineer - Ruby on rails OR Golang to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 91000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/opendoor/jobs/4255190006",
-  company_id: Company.find_by(company_name: 'Opendoor').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 39. Open door
+# Job.create!(
+#   job_title: "Staff Software Engineer - Ruby on rails OR Golang @ Opendoor",
+#   job_description: "We are looking for a Staff Software Engineer - Ruby on rails OR Golang to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
+#   salary: 91000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/opendoor/jobs/4255190006",
+#   company_id: Company.find_by(company_name: 'Opendoor').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 40. Culture Amp
-Job.create!(
-  job_title: "Senior Engineer - Ruby @ Culture Amp",
-  job_description: "We are looking for a Senior Engineer - Ruby to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 89000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/cultureamp/jobs/5538191",
-  company_id: Company.find_by(company_name: 'Culture Amp').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 40. Culture Amp
+# Job.create!(
+#   job_title: "Senior Engineer - Ruby @ Culture Amp",
+#   job_description: "We are looking for a Senior Engineer - Ruby to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
+#   salary: 89000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/cultureamp/jobs/5538191",
+#   company_id: Company.find_by(company_name: 'Culture Amp').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 41. Culture Amp
-Job.create!(
-  job_title: "Automation Engineer @ Culture Amp",
-  job_description: "We are looking for a Automation Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 97000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/cultureamp/jobs/5496553",
-  company_id: Company.find_by(company_name: 'Culture Amp').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 41. Culture Amp
+# Job.create!(
+#   job_title: "Automation Engineer @ Culture Amp",
+#   job_description: "We are looking for a Automation Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
+#   salary: 97000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/cultureamp/jobs/5496553",
+#   company_id: Company.find_by(company_name: 'Culture Amp').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 42. Narvar
-Job.create!(
-  job_title: "Staff Engineer, Ruby on Rails and React @ Narvar",
-  job_description: "We are looking for a Staff Engineer, Ruby on Rails and React to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 89000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/narvar/jobs/5388111",
-  company_id: Company.find_by(company_name: 'Narvar').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 42. Narvar
+# Job.create!(
+#   job_title: "Staff Engineer, Ruby on Rails and React @ Narvar",
+#   job_description: "We are looking for a Staff Engineer, Ruby on Rails and React to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
+#   salary: 89000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/narvar/jobs/5388111",
+#   company_id: Company.find_by(company_name: 'Narvar').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 43.Narvar
-Job.create!(
-  job_title: "Director of Machine Learning @ Narvar",
-  job_description: "We are looking for a Director of Machine Learning to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 120000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/narvar/jobs/5436866",
-  company_id: Company.find_by(company_name: 'Narvar').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 43.Narvar
+# Job.create!(
+#   job_title: "Director of Machine Learning @ Narvar",
+#   job_description: "We are looking for a Director of Machine Learning to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
+#   salary: 120000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/narvar/jobs/5436866",
+#   company_id: Company.find_by(company_name: 'Narvar').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 44. Synack
-Job.create!(
-  job_title: "Senior Backend Engineer - Ruby on Rails @ Synack",
-  job_description: "We are looking for a Senior Backend Engineer - Ruby on Rails to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 110000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/synack/jobs/5469197",
-  company_id: Company.find_by(company_name: 'Synack').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 44. Synack
+# Job.create!(
+#   job_title: "Senior Backend Engineer - Ruby on Rails @ Synack",
+#   job_description: "We are looking for a Senior Backend Engineer - Ruby on Rails to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
+#   salary: 110000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/synack/jobs/5469197",
+#   company_id: Company.find_by(company_name: 'Synack').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 46. grammarly
-Job.create!(
-  job_title: "AI Security Researcher -  @ Grammarly",
-  job_description: "We are looking for a AI Security Researcher -  to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 120000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/grammarly/jobs/5523286",
-  company_id: Company.find_by(company_name: 'Grammarly').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 46. grammarly
+# Job.create!(
+#   job_title: "AI Security Researcher -  @ Grammarly",
+#   job_description: "We are looking for a AI Security Researcher -  to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
+#   salary: 120000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/grammarly/jobs/5523286",
+#   company_id: Company.find_by(company_name: 'Grammarly').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 47. Halcyon
-Job.create!(
-  job_title: "Cloud Backend Engineer -  @ Halcyon",
-  job_description: "We are looking for a Cloud Backend Engineer -  to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 112000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/halcyon/jobs/4891571004",
-  company_id: Company.find_by(company_name: 'Halcyon').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 47. Halcyon
+# Job.create!(
+#   job_title: "Cloud Backend Engineer -  @ Halcyon",
+#   job_description: "We are looking for a Cloud Backend Engineer -  to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
+#   salary: 112000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/halcyon/jobs/4891571004",
+#   company_id: Company.find_by(company_name: 'Halcyon').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 49. Motive
-Job.create!(
-  job_title: "Cloud Infrastructure Engineer -  @ Motive",
-  job_description: "We are looking for a Cloud Infrastructure Engineer -  to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 102000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/gomotive/jobs/7030195002",
-  company_id: Company.find_by(company_name: 'Motive').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 49. Motive
+# Job.create!(
+#   job_title: "Cloud Infrastructure Engineer -  @ Motive",
+#   job_description: "We are looking for a Cloud Infrastructure Engineer -  to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
+#   salary: 102000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/gomotive/jobs/7030195002",
+#   company_id: Company.find_by(company_name: 'Motive').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
-# 50. Motive
-Job.create!(
-  job_title: "Data Engineer -  @ Motive",
-  job_description: "We are looking for a Data Engineer -  to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 101000,
-  date_created: date_created.sample,
-  application_deadline: deadlines.sample,
-  application_criteria: {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname'
-    },
-    last_name: {
-      interaction: :input,
-      locators: 'lastname'
-    },
-    email: {
-      interaction: :input,
-      locators: 'email'
-    },
-    phone_number: {
-      interaction: :input,
-      locators: 'phone'
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[type="file"]'
-    },
-    salary_expectation_text: {
-      interaction: :input,
-      locators: ''
-    },
-    right_to_work: {
-      interaction: :radiogroup,
-      locators: '',
-      option: "",
-    },
-    salary_expectation_figure: {
-      interaction: :input,
-      locators: ''
-    },
-    notice_period: {
-      interaction: :input,
-      locators: ''
-    },
-    preferred_pronoun_select: {
-      interaction: :combobox,
-      locators: '',
-      option: ""
-    },
-    preferred_pronoun_text: {
-      interaction: :input,
-      locators: '',
-    },
-    employee_referral: {
-      interaction: :input,
-      locators: ''
-    }
-  },
-  job_posting_url: "https://boards.greenhouse.io/gomotive/jobs/7025455002",
-  company_id: Company.find_by(company_name: 'Motive').id
-)
-puts "Created job - #{Job.last.job_title}"
+# # 50. Motive
+# Job.create!(
+#   job_title: "Data Engineer -  @ Motive",
+#   job_description: "We are looking for a Data Engineer -  to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
+#   salary: 101000,
+#   date_created: date_created.sample,
+#   application_deadline: deadlines.sample,
+#   application_criteria: {
+#     first_name: {
+#       interaction: :input,
+#       locators: 'firstname'
+#     },
+#     last_name: {
+#       interaction: :input,
+#       locators: 'lastname'
+#     },
+#     email: {
+#       interaction: :input,
+#       locators: 'email'
+#     },
+#     phone_number: {
+#       interaction: :input,
+#       locators: 'phone'
+#     },
+#     resume: {
+#       interaction: :upload,
+#       locators: 'input[type="file"]'
+#     },
+#     salary_expectation_text: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     right_to_work: {
+#       interaction: :radiogroup,
+#       locators: '',
+#       option: "",
+#     },
+#     salary_expectation_figure: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     notice_period: {
+#       interaction: :input,
+#       locators: ''
+#     },
+#     preferred_pronoun_select: {
+#       interaction: :combobox,
+#       locators: '',
+#       option: ""
+#     },
+#     preferred_pronoun_text: {
+#       interaction: :input,
+#       locators: '',
+#     },
+#     employee_referral: {
+#       interaction: :input,
+#       locators: ''
+#     }
+#   },
+#   job_posting_url: "https://boards.greenhouse.io/gomotive/jobs/7025455002",
+#   company_id: Company.find_by(company_name: 'Motive').id
+# )
+# puts "Created job - #{Job.last.job_title}"
 
 puts "Created #{Job.count} jobs..."
 

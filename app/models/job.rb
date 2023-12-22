@@ -50,8 +50,3 @@ class Job < ApplicationRecord
     read_attribute(:application_criteria).with_indifferent_access
   end
 end
-
-# Commented out as not required - converts symbols to strings in the JSONB object
-# def application_criteria
-#   super.transform_keys(&:to_sym)
-# end
