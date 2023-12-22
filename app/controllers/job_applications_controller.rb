@@ -19,6 +19,14 @@ class JobApplicationsController < ApplicationController
         application_response.field_locator = details["locators"]
         application_response.interaction = details["interaction"]
         application_response.field_option = details["option"]
+
+        p details["options"]
+        p details["options"].class
+
+
+        if details["options"].present?
+          application_response.field_options = details["options"]
+        end
         application_response.field_value = current_user.try(field) || ""
         p application_response
       end
@@ -66,6 +74,6 @@ class JobApplicationsController < ApplicationController
   # TODO: Update job_application_params to include the user inputs
 
   def job_application_params
-    params.require(:job_application).permit(application_responses_attributes: [:field_name, :field_value, :field_locator, :interaction, :field_option])
+    params.require(:job_application).permit(application_responses_attributes: [:field_name, :field_value, :field_locator, :interaction, :field_option, :field_options])
   end
 end

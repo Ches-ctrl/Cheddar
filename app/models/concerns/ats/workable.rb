@@ -21,9 +21,9 @@ module Ats::Workable
       interaction: :upload,
       locators: 'input[data-ui="resume"]'
     },
-    address: {
-      interaction: :input,
-      locators: 'address'
-    },
+    # address: {
+    #   interaction: :input,
+    #   locators: 'address'
+    # },
   }
 end
