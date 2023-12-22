@@ -17,6 +17,7 @@ class Job < ApplicationRecord
   validates :job_posting_url, uniqueness: true
 
   before_create :set_application_criteria
+  after_create :update_application_criteria
 
   include PgSearch::Model
 
@@ -32,16 +33,25 @@ class Job < ApplicationRecord
   def set_application_criteria
     if job_posting_url.include?('greenhouse')
       self.application_criteria = Job::GREENHOUSE_FIELDS
-      extra_fields = ScraperTest.new.perform(job_posting_url)
-      unless extra_fields.nil?
-        self.application_criteria = application_criteria.merge(extra_fields)
-        p application_criteria
-      end
-      Capybara.send(:session_pool).each { |name, ses| ses.driver.quit }
+      # extra_fields = GetFormFieldsJob.perform_later(job_posting_url)
+      # extra_fields = ScraperTest.new.perform(job_posting_url)
+      # unless extra_fields.nil?
+      #   self.application_criteria = application_criteria.merge(extra_fields)
+      #   p application_criteria
+      # end
+      # Capybara.send(:session_pool).each { |name, ses| ses.driver.quit }
     elsif job_posting_url.include?('workable')
       self.application_criteria = Job::WORKABLE_FIELDS
     else
       self.application_criteria = {}
+    end
+  end
+
+  def update_application_criteria
+    if job_posting_url.include?('greenhouse')
+      extra_fields = GetFormFieldsJob.perform_later(job_posting_url)
+    else
+      p "No additional fields to add"
     end
   end
 

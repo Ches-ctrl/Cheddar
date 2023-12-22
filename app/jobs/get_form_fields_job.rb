@@ -4,6 +4,7 @@ class GetFormFieldsJob < ApplicationJob
   include Capybara::DSL
 
   queue_as :default
+  sidekiq_options retry: false
 
   # TODO: Add scrape of job description and other details to this background job (so that it all executes in one capybara session)
   # TODO: Potentially change to scraping all fields from the job posting
@@ -31,7 +32,12 @@ class GetFormFieldsJob < ApplicationJob
       # TODO: Fix issue where additional core fields will be shown to the user even if not required when included in the core greenhouse set
 
       # Stripping text, downcasing and replacing spaces with underscores to act as primary keys
+
       label_text = label.xpath('descendant-or-self::text()[not(parent::select or parent::option or parent::ul or parent::label/input[@type="checkbox"])]').text.strip.downcase.gsub(" ", "_")
+
+      required = label_text.include?("*") ? true : false
+
+      label_text = label_text.split("*")[0]
 
       name = label_text # not perfect
       next if name == ""
@@ -63,8 +69,19 @@ class GetFormFieldsJob < ApplicationJob
       end
     end
 
-    # TODO: Check that including this here doesn't cause issues
     Capybara.current_session.driver.quit
+
+    extra_fields = attributes
+
+    p extra_fields
+
+    unless extra_fields.nil?
+      job = Job.find_by(job_posting_url: url)
+      job.application_criteria = job.application_criteria.merge(extra_fields)
+      p job.application_criteria
+    end
+
+    # TODO: Check that including this here doesn't cause issues
     return attributes
     # attributes.delete(attributes.keys.last)
   end

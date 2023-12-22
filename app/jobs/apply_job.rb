@@ -3,6 +3,7 @@ class ApplyJob < ApplicationJob
   include Defaults::DefaultFemale
 
   queue_as :default
+  sidekiq_options retry: false
 
   def perform(job_application_id, user_id)
     job = JobApplication.find(job_application_id).job
