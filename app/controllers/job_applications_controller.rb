@@ -1,4 +1,6 @@
 class JobApplicationsController < ApplicationController
+  # before_action :authenticate_user!, except: [:new]
+  # TODO: Update this to allow unregistered users to test job applications
 
   def index
     @job_applications = JobApplication.all.where(user_id: current_user.id)
@@ -8,32 +10,36 @@ class JobApplicationsController < ApplicationController
   end
 
   def new
-    @selected_jobs = Job.find(cookies[:selected_job_ids].split("&"))
+    if current_user.present?
+      @selected_jobs = Job.find(cookies[:selected_job_ids].split("&"))
 
-    @job_applications = @selected_jobs.map do |job|
-      job_application = JobApplication.new(user: current_user, status: "Pre-application")
+      @job_applications = @selected_jobs.map do |job|
+        job_application = JobApplication.new(user: current_user, status: "Pre-application")
 
-      job.application_criteria.each do |field, details|
-        application_response = job_application.application_responses.build
-        application_response.field_name = field
-        application_response.field_locator = details["locators"]
-        application_response.interaction = details["interaction"]
-        application_response.field_option = details["option"]
+        job.application_criteria.each do |field, details|
+          application_response = job_application.application_responses.build
+          application_response.field_name = field
+          application_response.field_locator = details["locators"]
+          application_response.interaction = details["interaction"]
+          application_response.field_option = details["option"]
 
-        p details["options"]
-        p details["options"].class
+          p details["options"]
+          p details["options"].class
 
-
-        if details["options"].present?
-          application_response.field_options = details["options"]
+          if details["options"].present?
+            application_response.field_options = details["options"]
+          end
+          application_response.field_value = current_user.try(field) || ""
+          p application_response
         end
-        application_response.field_value = current_user.try(field) || ""
-        p application_response
-      end
 
-      [job, job_application]
+        [job, job_application]
+      end
+      # Renders the staging page where the user can review and confirm applications
+    else
+      @selected_jobs = Job.find(cookies[:selected_job_ids].split("&"))
+      flash[:alert] = "You need to be logged in to create job applications."
     end
-    # Renders the staging page where the user can review and confirm applications
   end
 
   # TODO: Split out core application criteria that is common to all job applications
@@ -48,21 +54,39 @@ class JobApplicationsController < ApplicationController
     @job_application.job = job
     @job_application.status = "Application pending"
 
-    if @job_application.save
-      # TODO: Move this to be a service that we wait for when the user is applying? At the moment we don't validate the application
+    if current_user.resume.attached?
+      puts "Moving you along the user has a resume attached path."
+      # TODO: Add validation to check that the user has filled in their core details
 
-      ApplyJob.perform_later(@job_application.id, current_user.id)
-      @job_application.update(status: "Applied")
+      if @job_application.save
+        # TODO: Move this to be a service that we wait for when the user is applying? At the moment we don't validate the application
 
-      ids = cookies[:selected_job_ids].split("&")
-      ids.delete("#{job.id}")
+        p "Performing ApplyJob"
 
-      # Believe this automatically adds & between the cookies?
-      cookies[:selected_job_ids] = ids
+        ApplyJob.perform_later(@job_application.id, current_user.id)
+        @job_application.update(status: "Applied")
 
-      redirect_to job_applications_path, notice: 'Your applications have been submitted.'
+        p "Job Application Status: #{@job_application.status}"
+
+        ids = cookies[:selected_job_ids].split("&")
+        ids.delete("#{job.id}")
+
+        p "IDs: #{ids}"
+
+        # Believe this automatically adds & between the cookies?
+        cookies[:selected_job_ids] = ids
+
+        p "Cookies: #{cookies[:selected_job_ids]}"
+
+        redirect_to job_applications_path, notice: 'Your applications have been submitted.'
+      else
+        p "Rendering new"
+        render :new
+      end
     else
-      render :new
+      puts "User doesn't have a resume attached."
+      redirect_to edit_user_registration_path(current_user), alert: 'Please update your core details and attach a CV before applying.'
+      return
     end
   end
 

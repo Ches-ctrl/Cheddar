@@ -12,11 +12,7 @@
         <%# LHS Section - Title and Search  %>
         <div class="d-flex justify-content-between bg-white pt-1">
           <h6 id="jobs-index-left-section-title">
-            <% if params[:query].present? %>
-              <%= @jobs.count %>
-            <% else %>
-              <%= @jobs.count - @job_applications.count %>
-            <% end %>
+            <%= @jobs.count %>
             Jobs
           </h6>
         </div>
@@ -234,9 +230,7 @@
               <%# Actual job content here %>
               <%# Once the actual content is loaded, it should replace the placeholders %>
               <% @initial_jobs.each do |job| %>
-                <% if JobApplication.where(job_id: job.id, user_id: current_user.id).blank? %>
                   <%= render 'row', job: job %>
-                <% end %>
               <% end %>
               <div data-load-more-target="remaining" class="d-none">
                 <% @remaining_jobs.each do |job| %>

@@ -4,8 +4,9 @@ export default class extends Controller {
   static targets = ["form", "button", "overlay", "modal"]
 
   connect() {
-    console.log('Parent controller connected');
+    // console.log('Parent controller connected');
     // console.log(this.formTargets);
+    console.log("All forms controller connected")
   }
 
   async submitAllForms(event) {
@@ -18,7 +19,7 @@ export default class extends Controller {
       await new Promise((resolve) => {
         setTimeout(() => {
           resolve();
-        }, 2000);
+        }, 1000);
       });
 
       await Promise.all(
@@ -28,14 +29,14 @@ export default class extends Controller {
               form.requestSubmit();
               // You can render a modal here to show that the form has been submitted
               resolve();
-            }, 2000);
+            }, 1000);
           });
         })
       );
 
       // TODO: Link with the job application so that the page only redirects after all forms have been submitted successfully
 
-      // console.log("All forms submitted");
+      console.log("All forms submitted");
       window.location.href = "/job_applications/success";
     } catch (error) {
       console.error("Error submitting forms:", error);

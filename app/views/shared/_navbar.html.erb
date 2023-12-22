@@ -58,9 +58,10 @@
             </div>
           </li>
         <% else %>
+          <%# TODO: Fix alignment of log in / sign up button %>
           <li class="nav-item d-flex flex-column align-items-center" style="min-width: 80px">
             <i class="fa-regular fa-user"></i>
-            <%= link_to "Log In / Sign Up", new_user_session_path, class: "nav-link pt-1 pb-0" %>
+            <%= link_to "Log In / Sign Up", new_user_session_path, class: "nav-link pt-1 pb-0"%>
           </li>
         <% end %>
       </ul>

@@ -1,4 +1,4 @@
-module Defaults::DefaultMale
+module Defaults::DefaultFemale
   extend ActiveSupport::Concern
 
   # TODO: Update defaults

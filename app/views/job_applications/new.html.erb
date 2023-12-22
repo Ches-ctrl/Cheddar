@@ -3,11 +3,10 @@
 <%# TODO: Add to core details so additional requirements appears less %>
 <%# TODO: Add mark done/complete to each form %>
 
-<%# TODO: Add checkbox functionality %>
-<%# TODO: Hide core details as standard %>
 <%# TODO: Truncate/reword long-worded fields %>
 <%# TODO: Remove additional fields which don't require user input %>
 <%# TODO: Make CV field clickable to review CV %>
+<%# TODO: Hide additional requirements if empty %>
 
 <%# TODO: Add ability that editing one form field edits others %>
 <%# TODO: Add ability to upload CV directly in page %>
@@ -40,7 +39,10 @@
     </div>
 
     <div class="d-flex justify-content-end align-items-center">
-      <div class="btn btn-apply mt-1" data-all-application-forms-target="button" data-action="click->all-application-forms#submitAllForms">Apply to All</div>
+      <div class="btn btn-apply mt-1 <%= 'disabled' unless current_user.resume.attached? %>"
+           data-all-application-forms-target="button"
+           data-action="click->all-application-forms#submitAllForms">Apply to All
+      </div>
     </div>
 
   </div>
@@ -80,7 +82,7 @@
                     <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                     <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                     <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-                    <%= ff.input :field_value, label_html: { class: "d-none"}, input_html: { class: "rounded-pill", data: { label: response.field_name, response_input_target: "input", action: "keyup->response-input#handleChange change->response-input#handleChange"}, value: current_user.resume.attached? ? current_user.resume.filename : nil, disabled: true }, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%= ff.input :field_value, label_html: { class: "d-none"}, input_html: { class: "rounded-pill", data: { label: response.field_name, response_input_target: "input", action: "keyup->response-input#handleChange change->response-input#handleChange"}, value: current_user.resume.attached? ? current_user.resume.filename : "No resume attached", disabled: true }, wrapper_html: { class: 'wrapper-mb-0' } %>
                   </div>
                 <% when "combobox" %>
                   <div class="col-sm-9">
@@ -120,6 +122,7 @@
                     <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                     <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                     <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                    <%# TODO: Add stimulus controller to be able to click on core details and go to edit page if not filled in %>
                     <%# TODO: Update schema so that field_options is an array rather than string to prevent current need for JSON.parse %>
                     <% field_options = JSON.parse(response.field_options) %>
                     <%= ff.input :field_value, as: :select, collection: field_options.map { |option| [option, option] }, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-pill", data: { label: response.field_name, response_input_target: "input", action: "keyup->response-input#handleChange change->response-input#handleChange"} } %>
@@ -141,7 +144,7 @@
           <% end %>
 
           <div class="d-flex justify-content-end align-items-end">
-            <%= f.submit 'Submit this app', class: 'btn btn-cheddar-secondary', 'data-action': 'click->application-form#submitForm' %>
+            <%= f.submit 'Submit this app', class: 'btn btn-cheddar-secondary', 'data-action': 'click->application-form#submitForm', disabled: !current_user.resume.attached? %>
           </div>
         <% end %>
         </details>

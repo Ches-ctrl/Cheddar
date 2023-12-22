@@ -93,6 +93,8 @@ class GetFormFieldsJob < ApplicationJob
   end
 end
 
+# TODO: Don't pull empty input fields
+
 # {"first_name"=>{"interaction"=>"input", "locators"=>"first_name"},
 #  "last_name"=>{"interaction"=>"input", "locators"=>"last_name"},
 #  "email"=>{"interaction"=>"input", "locators"=>"email"},

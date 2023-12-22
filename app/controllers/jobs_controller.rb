@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show, :apply_to_selected_jobs]
 
   def index
     # TODO: Fix search functionality so that 20 jobs are always shown
@@ -16,7 +16,9 @@ class JobsController < ApplicationController
     @job = Job.new
     @saved_job = SavedJob.new
     @saved_jobs = SavedJob.all
-    @job_applications = JobApplication.where(user_id: current_user.id)
+    if current_user.present?
+      @job_applications = JobApplication.where(user_id: current_user.id)
+    end
     # TODO: Check this is setup correctly
   end
 
@@ -42,6 +44,8 @@ class JobsController < ApplicationController
   def apply_to_selected_jobs
     selected_job_ids = params[:job_ids]
     cookies[:selected_job_ids] = selected_job_ids
+
+    # TODO: Check if user has filled in their core details, if not redirect to edit their information, then redirect to new_job_application_path
     redirect_to new_job_application_path
   end
 
