@@ -36,7 +36,6 @@ class GetFormFieldsJob < ApplicationJob
       label_text = label.xpath('descendant-or-self::text()[not(parent::select or parent::option or parent::ul or parent::label/input[@type="checkbox"])]').text.strip.downcase.gsub(" ", "_")
 
       required = label_text.include?("*") ? true : false
-
       label_text = label_text.split("*")[0]
 
       name = label_text # not perfect
@@ -78,6 +77,7 @@ class GetFormFieldsJob < ApplicationJob
     unless extra_fields.nil?
       job = Job.find_by(job_posting_url: url)
       job.application_criteria = job.application_criteria.merge(extra_fields)
+      job.save
       p job.application_criteria
     end
 

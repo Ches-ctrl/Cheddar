@@ -20,6 +20,7 @@ class JobApplicationsController < ApplicationController
         application_response.interaction = details["interaction"]
         application_response.field_option = details["option"]
         application_response.field_value = current_user.try(field) || ""
+        p application_response
       end
 
       [job, job_application]

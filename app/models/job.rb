@@ -50,6 +50,7 @@ class Job < ApplicationRecord
   def update_application_criteria
     if job_posting_url.include?('greenhouse')
       extra_fields = GetFormFieldsJob.perform_later(job_posting_url)
+      p extra_fields
     else
       p "No additional fields to add"
     end
