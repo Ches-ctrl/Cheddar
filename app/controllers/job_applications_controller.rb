@@ -91,18 +91,18 @@ class JobApplicationsController < ApplicationController
     end
   end
 
-  def status
-    # TODO: JobApplication won't be in params as it hasn't been created yet - needs to be retried based on the job and user ids
-    job_application = JobApplication.find(params[:id])
-    p "Job Application: #{job_application}"
-    # You need to implement the logic here to check the status of job_application
-    # You can use job_application.status or any other method to determine the status
-    # You should return a JSON response with the status
-    # TODO: Install sidekiq status gem and use this to check the status of the job application
-    status = job_application.status
-    p "Job Application Status: #{status}"
-    render json: { status: status }
-  end
+  # def status
+  #   # TODO: JobApplication won't be in params as it hasn't been created yet - needs to be retried based on the job and user ids
+  #   job_application = JobApplication.find(params[:id])
+  #   p "Job Application: #{job_application}"
+  #   # You need to implement the logic here to check the status of job_application
+  #   # You can use job_application.status or any other method to determine the status
+  #   # You should return a JSON response with the status
+  #   # TODO: Install sidekiq status gem and use this to check the status of the job application
+  #   status = job_application.status
+  #   p "Job Application Status: #{status}"
+  #   render json: { status: status }
+  # end
 
   def success
   end

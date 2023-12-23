@@ -49,28 +49,28 @@ class JobsController < ApplicationController
     redirect_to new_job_application_path
   end
 
-  def find_job_application
-    user_id = params[:user_id]
-    job_id = params[:id]
+  # def find_job_application
+  #   user_id = params[:user_id]
+  #   job_id = params[:id]
 
-    p "+++++++++++++++++++++++"
-    p "+++++++++++++++++++++++"
-    p "+++++++++++++++++++++++"
-    p "+++++++++++++++++++++++"
+  #   p "+++++++++++++++++++++++"
+  #   p "+++++++++++++++++++++++"
+  #   p "+++++++++++++++++++++++"
+  #   p "+++++++++++++++++++++++"
 
-    p "User ID: #{user_id}"
-    p "Job ID: #{job_id}"
+  #   p "User ID: #{user_id}"
+  #   p "Job ID: #{job_id}"
 
-    job_application = JobApplication.find_by(user_id: user_id, job_id: job_id)
+  #   job_application = JobApplication.find_by(user_id: user_id, job_id: job_id)
 
-    p "Job Application: #{job_application}"
+  #   p "Job Application: #{job_application}"
 
-    if job_application
-      render json: job_application
-    else
-      render json: { error: 'Job application not found' }, status: :not_found
-    end
-  end
+  #   if job_application
+  #     render json: job_application
+  #   else
+  #     render json: { error: 'Job application not found' }, status: :not_found
+  #   end
+  # end
 
   private
 
