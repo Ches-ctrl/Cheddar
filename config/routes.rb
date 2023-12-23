@@ -35,6 +35,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/jobs/:id/find_job_application/:user_id', to: 'jobs#find_job_application', as: :find_job_application
+
   resources :saved_jobs, only: [:index, :show, :destroy]
   resources :educations, only: [:new, :create]
 

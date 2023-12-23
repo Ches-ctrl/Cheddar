@@ -31,7 +31,7 @@
 <%# TODO: Add did you know pop up - you can check the actual application forms... %>
 <%# TODO: Add CheddarGPT assistance for long-text inputs/cover letter %>
 
-<div class="container mt-3 col-sm-6" data-controller="all-application-forms">
+<div class="container mt-3 col-sm-6" data-controller="all-application-forms" data-all-application-forms-user-id="<%= current_user.id %>">
   <div class="d-flex justify-content-between align-items-center sticky-top bg-white">
     <div class="companies d-flex flex-column justify-content-start">
       <%# Dynamically load the company logos based on selected jobs %>

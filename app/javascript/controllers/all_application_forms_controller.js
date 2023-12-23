@@ -1,12 +1,10 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["form", "button", "overlay", "success"]
+  static targets = ["form", "button", "overlay", "success"];
 
   connect() {
     console.log("All forms controller connected");
-    this.completedJobApplications = new Set();
-    this.startStatusChecks();
   }
 
   async submitAllForms(event) {
@@ -18,7 +16,7 @@ export default class extends Controller {
       await new Promise((resolve) => {
         setTimeout(() => {
           resolve();
-        }, 1000);
+        }, 200);
       });
 
       await Promise.all(
@@ -27,7 +25,7 @@ export default class extends Controller {
             setTimeout(() => {
               form.requestSubmit();
               resolve();
-            }, 1000);
+            }, 200);
           });
         })
       );
@@ -39,55 +37,12 @@ export default class extends Controller {
       console.error("Error submitting forms:", error);
     }
   }
-
-  startStatusChecks() {
-    const interval = 1000;
-
-    const statusCheck = () => {
-      document.querySelectorAll("[data-all-application-forms-target='overlay'] [data-all-application-forms-id]").forEach(async (spinner) => {
-        const jobId = spinner.getAttribute("data-all-application-forms-id");
-        console.log("Job application ID:", jobId);
-        if (jobId && !this.completedJobApplications.has(jobId)) {
-          try {
-            const response = await fetch(`/job_applications/${jobId}/status`);
-            if (response.ok) {
-              const data = await response.json();
-              this.updateStatus(jobId, data.status);
-              // Add the completed job application to the set
-              if (data.status === "applied") {
-                this.completedJobApplications.add(jobId);
-                console.log("Completed job applications:", this.completedJobApplications);
-              }
-              // Check if all job applications are completed
-              const totalSpiners = document.querySelectorAll("[data-all-application-forms-target='overlay'] [data-all-application-forms-id]").length;
-              if (this.completedJobApplications.size === totalSpiners) {
-                // Redirect only when all are done
-                console.log("All job applications completed");
-                window.location.href = "/job_applications/success";
-              }
-            }
-          } catch (error) {
-            console.error("Error fetching status:", error);
-          }
-        }
-      });
-    };
-
-    // Start status checks at regular intervals
-    const statusInterval = setInterval(statusCheck, interval);
-  }
-
-
-  updateStatus(jobId, status) {
-    // Update the loading modal with the received status data for the corresponding job application
-    // You can implement the logic to update individual modals here
-    // This could include showing a loading icon for each job application and updating it based on the status
-    const spinner = document.querySelector(`[data-job-application-id="${jobId}"]`);
-    if (spinner) {
-      spinner.classList.add("d-none");
-      const tickIcon = document.createElement("i");
-      tickIcon.classList.add("fa", "fa-check"); // Assuming you're using Font Awesome for icons
-      spinner.parentNode.replaceChild(tickIcon, spinner);
-    }
-  }
 }
+
+// 1. connect
+// 2. Submit all forms
+// 3. Get job ids based on the data attributes of the spinners
+// 4. Using the job id and user id (also a data attribute), find the job application id
+// 5. Periodically check the status of the job application based on the job application id
+// 6. Change the spinner to a tick when the job application has status "Applied"
+// 7. Redirect to the success page once all job applications have been submitted
