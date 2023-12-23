@@ -29,7 +29,12 @@ Rails.application.routes.draw do
   end
 
   resources :companies, only: [:index, :show]
-  resources :job_applications, only: [:index, :show, :new, :success]
+  resources :job_applications, only: [:index, :show, :new, :success] do
+    member do
+      get :status
+    end
+  end
+
   resources :saved_jobs, only: [:index, :show, :destroy]
   resources :educations, only: [:new, :create]
 

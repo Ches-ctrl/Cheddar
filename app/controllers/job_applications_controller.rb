@@ -54,6 +54,7 @@ class JobApplicationsController < ApplicationController
     @job_application.job = job
     @job_application.status = "Application pending"
 
+    # TODO: Fix as at the moment this logic doesn't work as it is overwritten by the front-end javascript redirects
     if current_user.resume.attached?
       puts "Moving you along the user has a resume attached path."
       # TODO: Add validation to check that the user has filled in their core details
@@ -88,6 +89,19 @@ class JobApplicationsController < ApplicationController
       redirect_to edit_user_registration_path(current_user), alert: 'Please update your core details and attach a CV before applying.'
       return
     end
+  end
+
+
+  def status
+    job_application = JobApplication.find(params[:id])
+    p "Job Application: #{job_application}"
+    # You need to implement the logic here to check the status of job_application
+    # You can use job_application.status or any other method to determine the status
+    # You should return a JSON response with the status
+    # TODO: Install sidekiq status gem and use this to check the status of the job application
+    status = job_application.status
+    p "Job Application Status: #{status}"
+    render json: { status: status }
   end
 
   def success

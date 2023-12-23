@@ -3,6 +3,8 @@ require 'open-uri'
 class FormFiller
   include Capybara::DSL
 
+  # TODO: Handle job posting becoming closed
+
   # TODO: Review code for inefficient loops and potential optimisations
   # TODO: Add ruby monitoring tools to monitor performance and execution
   # TODO: Implement caching for both user and form inputs. At the moment we request the database every time we want an input
@@ -67,6 +69,10 @@ class FormFiller
       end
 
     end
+
+    # TODO: Add submit form capability to the FormFiller
+    # TODO: Add check on whether form has been submitted successfully
+
     # Return a screenshot of the submitted form
     take_screenshot_and_store(job_application_id)
     close_session(job_application_id)
