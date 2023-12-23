@@ -23,14 +23,10 @@ class JobApplicationsController < ApplicationController
           application_response.interaction = details["interaction"]
           application_response.field_option = details["option"]
 
-          p details["options"]
-          p details["options"].class
-
           if details["options"].present?
             application_response.field_options = details["options"]
           end
           application_response.field_value = current_user.try(field) || ""
-          p application_response
         end
 
         [job, job_application]
@@ -60,11 +56,15 @@ class JobApplicationsController < ApplicationController
       # TODO: Add validation to check that the user has filled in their core details
 
       if @job_application.save
-        # TODO: Move this to be a service that we wait for when the user is applying? At the moment we don't validate the application
+        p "======================="
+        p "======================="
+        p "======================="
+        p "======================="
+        p "======================="
 
         p "Performing ApplyJob"
 
-        ApplyJob.perform_later(@job_application.id, current_user.id)
+        # ApplyJob.perform_later(@job_application.id, current_user.id)
         @job_application.update(status: "Applied")
 
         p "Job Application Status: #{@job_application.status}"
@@ -91,18 +91,18 @@ class JobApplicationsController < ApplicationController
     end
   end
 
-
-  def status
-    job_application = JobApplication.find(params[:id])
-    p "Job Application: #{job_application}"
-    # You need to implement the logic here to check the status of job_application
-    # You can use job_application.status or any other method to determine the status
-    # You should return a JSON response with the status
-    # TODO: Install sidekiq status gem and use this to check the status of the job application
-    status = job_application.status
-    p "Job Application Status: #{status}"
-    render json: { status: status }
-  end
+  # def status
+  #   # TODO: JobApplication won't be in params as it hasn't been created yet - needs to be retried based on the job and user ids
+  #   job_application = JobApplication.find(params[:id])
+  #   p "Job Application: #{job_application}"
+  #   # You need to implement the logic here to check the status of job_application
+  #   # You can use job_application.status or any other method to determine the status
+  #   # You should return a JSON response with the status
+  #   # TODO: Install sidekiq status gem and use this to check the status of the job application
+  #   status = job_application.status
+  #   p "Job Application Status: #{status}"
+  #   render json: { status: status }
+  # end
 
   def success
   end
