@@ -1,7 +1,9 @@
 class JobsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show, :apply_to_selected_jobs]
 
   def index
+    # TODO: Fix search functionality so that 20 jobs are always shown
+
     if params[:query].present?
       @jobs = Job.global_search(params[:query])
       @initial_jobs = Job.global_search(params[:query]).limit(20)
@@ -14,7 +16,10 @@ class JobsController < ApplicationController
     @job = Job.new
     @saved_job = SavedJob.new
     @saved_jobs = SavedJob.all
-    @job_applications = JobApplication.where(user_id: current_user.id)
+    if current_user.present?
+      @job_applications = JobApplication.where(user_id: current_user.id)
+    end
+    # TODO: Check this is setup correctly
   end
 
   def show
@@ -37,32 +42,18 @@ class JobsController < ApplicationController
   end
 
   def apply_to_selected_jobs
-    # Fetch the selected job IDs from the parameters
-    p params
     selected_job_ids = params[:job_ids]
-    p cookies[:selected_job_ids]
-    p selected_job_ids
-
-    # Instead of directly creating job applications, store the selected jobs in the session or another temporary store
     cookies[:selected_job_ids] = selected_job_ids
-    # raise
-    # Redirect to a new action that will display the staging page
+
+    # TODO: Check if user has filled in their core details, if not redirect to edit their information, then redirect to new_job_application_path
     redirect_to new_job_application_path
   end
 
   private
 
+  # TODO: Check if more params are needed
+
   def job_params
-    params.require(:job).permit(:job_title, :job_description, :salary, :job_posting_url, :application_deadline, :date_created, :company_id)
+    params.require(:job).permit(:job_title, :job_description, :salary, :job_posting_url, :application_deadline, :date_created, :company_id, :applicant_tracking_system_id, :ats_format_id)
   end
 end
-
-# def apply_to_selected_jobs
-#   selected_job_ids = params[:job_ids]
-#   selected_job_ids.each do |job_id|
-#     job_app = JobApplication.create(job_id: job_id, user_id: current_user.id, status: "Pre-application")
-#     ApplyJob.perform_now(job_app.id, current_user.id)
-#     # flash[:notice] = "You applied to #{Job.find(job_id).job_title}!"
-#   end
-#   redirect_to job_applications_path
-# end

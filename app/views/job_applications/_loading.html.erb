@@ -1,0 +1,27 @@
+<div data-all-application-forms-target="overlay" class="modal-overlay d-none">
+  <div class="container d-flex align-items-center justify-content-center pt-5">
+    <div class="d-flex justify-content-center align-items-center w-75 border shadow-sm rounded-4 p-2 m-4 bg-white">
+      <div class="login-box">
+        <h2 class="text-center pb-2">Processing your job applications</h2>
+        <div class="company-apply-summary bg-body-secondary p-2 d-flex">
+          <% @selected_jobs.each_with_index do |job, index| %>
+            <div class="company-item d-flex flex-column align-items-center justify-content-center">
+              <div class="d-flex pb-2">
+                <div><%= index + 1 %></div>
+                <%= link_to image_tag("https://logo.clearbit.com/#{job.company.company_website_url}?size=60px", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", class: 'img-fluid'), job.job_posting_url, target: '_blank', class: 'apply-company-logo' %>
+              </div>
+              <div class="d-flex">
+                <div style="color: #E8ECEF;" ><%= index + 1 %></div>
+                <div data-all-application-forms-id="<%= job.id %>" class="spinner-border text-light" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <i data-all-application-forms-target="success" class="fa-solid fa-check d-none" style="color: #7eed8b;"></i>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <h3 class="text-center pt-2">Surface tips/quotes here...</h3>
+      </div>
+    </div>
+  </div>
+</div>

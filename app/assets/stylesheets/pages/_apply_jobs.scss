@@ -17,10 +17,12 @@
   overflow: hidden;
   vertical-align: middle;
 }
+
 .company-logo img {
   width: 100%;
   height: auto;
 }
+
 .application-form {
   width: 100%;
   padding: 20px;
@@ -60,28 +62,3 @@
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   border: 1px solid #ddd;
 }
-
-// input[type="text"],
-// input[type="password"],
-// input[type="url"],
-// input[type="file"] {
-//   width: calc(100% - 22px);
-//   padding: 10px;
-//   border: 1px solid #ddd;
-//   border-radius: 5px;
-//   margin-bottom: 10px;
-// }
-
-// input[type="submit"] {
-//   background-color: #4CAF50;
-//   color: white;
-//   padding: 10px 20px;
-//   border: none;
-//   border-radius: 5px;
-//   cursor: pointer;
-//   width: 100%;
-// }
-
-// input[type="submit"]:hover {
-//   background-color: #45a049;
-// }

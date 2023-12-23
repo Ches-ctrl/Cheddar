@@ -5,11 +5,11 @@ export default class extends Controller {
   static targets = ["input", "messages", "modal"]
 
   connect() {
-    console.log("Hello, Stimulus!", this.element)
+    // console.log("Hello, Stimulus!", this.element)
   }
 
   open() {
-    console.log("Open modal")
+    // console.log("Open modal")
     this.modalTarget.style.display = "block";
     setTimeout(() => {
       this.modalTarget.classList.add("show");
@@ -18,7 +18,7 @@ export default class extends Controller {
   }
 
   close() {
-    console.log("Close modal")
+    // console.log("Close modal")
     this.modalTarget.classList.remove("show");
     setTimeout(() => {
       this.modalTarget.style.display = "none";
@@ -27,7 +27,7 @@ export default class extends Controller {
 
   initializeOpenAIClient() {
     // Code to initialize or flag the OpenAI client
-    console.log("Initializing OpenAI client");
+    // console.log("Initializing OpenAI client");
     // Actual initialization should be done server-side
   }
 
@@ -61,13 +61,13 @@ export default class extends Controller {
   }
 
   appendMessage(sender, text) {
-    console.log(sender)
-    console.log(text)
+    // console.log(sender)
+    // console.log(text)
 
     let messageElement = document.createElement("div");
-    console.log('---------');
+    // console.log('---------');
     messageElement.innerHTML = `<p class="m-2">${text}</p>`;
-    console.log(messageElement.innerHTML)
+    // console.log(messageElement.innerHTML)
     sender === "User" ? messageElement.classList.add('message-card', 'self') : messageElement.classList.add('message-card');
     console.log(messageElement)
 

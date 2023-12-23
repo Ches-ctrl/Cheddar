@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_19_170454) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_22_111825) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,6 +58,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_19_170454) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "interaction"
+    t.string "field_options"
     t.index ["job_application_id"], name: "index_application_responses_on_job_application_id"
   end
 
