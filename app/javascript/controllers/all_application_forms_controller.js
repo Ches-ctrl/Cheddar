@@ -11,56 +11,8 @@ export default class extends Controller {
     // Establish an Action Cable connection for form submissions
     this.consumer = createConsumer();
 
-    console.log(`this consumer: ${this.consumer}`)
-    console.log(`this user value: ${this.userValue}`)
-
-    // Subscribe to the JobApplicationsChannel, providing necessary params
-    this.channel = this.consumer.subscriptions.create(
-      {
-        channel: "JobApplicationsChannel",
-        user_id: this.userValue, // Add the user ID if needed
-      },
-      {
-        connected() {
-          // Handle connection established
-          console.log("Connected to JobApplicationsChannel")
-        },
-        disconnected() {
-          // Handle connection disconnected
-          console.log("Disconnected from JobApplicationsChannel")
-        },
-        received(data) {
-          console.log("Received data from JobApplicationsChannel")
-          // console.log(data)
-          if (data.event === "job-application-created") {
-            console.log("Received job-application-created event")
-            console.log(data)
-
-            const jobId = data.job_id;
-            const status = data.status;
-
-            console.log(jobId)
-            console.log(status)
-
-            // Find the spinner element with the corresponding job ID
-            const spinner = this.element.querySelector(`[data-all-application-forms-id="${jobId}"]`);
-            // Find the checkmark element
-            const checkmark = this.successTarget;
-
-            if (spinner && checkmark) {
-              // Update the UI based on the job application status
-              if (status === "Applied") {
-                // Hide the spinner and show the checkmark
-                spinner.classList.add("d-none");
-                checkmark.classList.remove("d-none");
-              } else {
-                // Handle other statuses if needed
-              }
-            }
-          }
-        },
-      }
-    );
+    console.log(`this consumer: ${this.consumer}`);
+    console.log(`this user value: ${this.userValue}`);
   }
 
   async submitAllForms(event) {
@@ -87,13 +39,70 @@ export default class extends Controller {
       );
 
       console.log("All forms submitted");
-      // Do not redirect here; it will be handled based on job application status checks
-      // window.location.href = "/job_applications/success";
+
+      // Create the WebSocket channel after all forms have been submitted
+      this.createWebSocketChannel();
     } catch (error) {
       console.error("Error submitting forms:", error);
     }
   }
 
+  createWebSocketChannel() {
+    // Subscribe to the JobApplicationsChannel, providing necessary params
+    this.channel = this.consumer.subscriptions.create(
+      {
+        channel: "JobApplicationsChannel",
+        id: this.userValue, // Add the user ID if needed
+      },
+      {
+        connected() {
+          // Handle connection established
+          console.log("Connected to JobApplicationsChannel");
+        },
+        disconnected() {
+          // Handle connection disconnected
+          console.log("Disconnected from JobApplicationsChannel");
+        },
+        received(data) {
+          console.log(data.job_application_id)
+          console.log(data.status)
+          console.log(data.event)
+          console.log(data.job_id)
+          console.log("Received data from JobApplicationsChannel");
+          if (data.event === "job-application-created") {
+            console.log("Received job-application-created event");
+            console.log(data);
+
+            const jobId = data.job_id;
+            const status = data.status;
+
+            console.log(jobId);
+            console.log(status);
+
+            // Find the spinner element with the corresponding job ID
+            const spinner = this.element.querySelector(
+              `[data-all-application-forms-id="${jobId}"]`
+            );
+            // Find the checkmark element
+            const checkmark = this.successTarget;
+
+            if (spinner && checkmark) {
+              // Update the UI based on the job application status
+              if (status === "Applied") {
+                // Hide the spinner and show the checkmark
+                spinner.classList.add("d-none");
+                checkmark.classList.remove("d-none");
+              } else {
+                // Handle other statuses if needed
+              }
+            }
+          }
+        },
+      }
+    );
+  }
+
+  // Disconnecting from the WebSocket channel can be done as needed
   disconnect() {
     console.log("Disconnecting from JobApplicationsChannel");
     this.channel.unsubscribe();
