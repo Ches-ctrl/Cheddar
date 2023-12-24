@@ -1,10 +1,66 @@
 import { Controller } from "@hotwired/stimulus";
+import { createConsumer } from "@rails/actioncable";
 
 export default class extends Controller {
   static targets = ["form", "button", "overlay", "success"];
+  static values = { user: Number }; // Add a user value if needed
 
   connect() {
     console.log("All forms controller connected");
+
+    // Establish an Action Cable connection for form submissions
+    this.consumer = createConsumer();
+
+    console.log(`this consumer: ${this.consumer}`)
+    console.log(`this user value: ${this.userValue}`)
+
+    // Subscribe to the JobApplicationsChannel, providing necessary params
+    this.channel = this.consumer.subscriptions.create(
+      {
+        channel: "JobApplicationsChannel",
+        user_id: this.userValue, // Add the user ID if needed
+      },
+      {
+        connected() {
+          // Handle connection established
+          console.log("Connected to JobApplicationsChannel")
+        },
+        disconnected() {
+          // Handle connection disconnected
+          console.log("Disconnected from JobApplicationsChannel")
+        },
+        received(data) {
+          console.log("Received data from JobApplicationsChannel")
+          // console.log(data)
+          if (data.event === "job-application-created") {
+            console.log("Received job-application-created event")
+            console.log(data)
+
+            const jobId = data.job_id;
+            const status = data.status;
+
+            console.log(jobId)
+            console.log(status)
+
+            // Find the spinner element with the corresponding job ID
+            const spinner = this.element.querySelector(`[data-all-application-forms-id="${jobId}"]`);
+            // Find the checkmark element
+            const checkmark = this.successTarget;
+
+            if (spinner && checkmark) {
+              // Update the UI based on the job application status
+              if (status === "Applied") {
+                // Hide the spinner and show the checkmark
+                spinner.classList.add("d-none");
+                checkmark.classList.remove("d-none");
+              } else {
+                // Handle other statuses if needed
+              }
+            }
+          }
+        },
+      }
+    );
   }
 
   async submitAllForms(event) {
@@ -37,23 +93,10 @@ export default class extends Controller {
       console.error("Error submitting forms:", error);
     }
   }
+
+  disconnect() {
+    console.log("Disconnecting from JobApplicationsChannel");
+    this.channel.unsubscribe();
+    this.consumer.disconnect();
+  }
 }
-
-// 1. connect
-// 2. Submit all forms
-// 3. Get job ids based on the data attributes of the spinners
-// 4. Using the job id and user id (also a data attribute), find the job application id
-// 5. Periodically check the status of the job application based on the job application id
-// 6. Change the spinner to a tick when the job application has status "Applied"
-// 7. Redirect to the success page once all job applications have been submitted
-
-// Statement of the problem
-// - I want to update the status of my spinners in my loading modal
-// - But we don't have the job application IDs
-// - So we query the database with the job IDs and user IDs for the job application IDs
-// - But the job applications haven't been created at the point of querying the database
-// - So it returns null and we have nothing to update the spinners with
-// - How do I ensure that we wait for the job applications to be created before we query the database for their IDs
-// - The job applications are created off the back of multiple form submissions
-
-// The context is a rails app with stimulus
