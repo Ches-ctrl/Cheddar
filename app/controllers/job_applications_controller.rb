@@ -65,14 +65,17 @@ class JobApplicationsController < ApplicationController
         p "Performing ApplyJob"
         p "current user id: #{current_user.id}"
 
+        user_channel_name = "job_applications_#{current_user.id}"
+
         ActionCable.server.broadcast(
-          "JobApplicationsChannel",
+          user_channel_name,
           {
             event: "job-application-created",
             job_application_id: @job_application.id,
+            user_id: @job_application.user_id,
             job_id: @job_application.job_id,
             status: @job_application.status,
-          # Include any additional data you want to send to the frontend
+            # Include any additional data you want to send to the frontend
           }
         )
 

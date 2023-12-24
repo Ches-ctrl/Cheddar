@@ -13,6 +13,9 @@ export default class extends Controller {
 
     console.log(`this consumer: ${this.consumer}`);
     console.log(`this user value: ${this.userValue}`);
+
+    // Create the WebSocket channel after the controller is connected
+    this.createWebSocketChannel(this.userValue);
   }
 
   async submitAllForms(event) {
@@ -39,36 +42,36 @@ export default class extends Controller {
       );
 
       console.log("All forms submitted");
-
-      // Create the WebSocket channel after all forms have been submitted
-      this.createWebSocketChannel();
     } catch (error) {
       console.error("Error submitting forms:", error);
     }
   }
 
-  createWebSocketChannel() {
+  createWebSocketChannel(userValue) {
     // Subscribe to the JobApplicationsChannel, providing necessary params
+    console.log("Creating websocket channel");
+
     this.channel = this.consumer.subscriptions.create(
       {
         channel: "JobApplicationsChannel",
-        id: this.userValue, // Add the user ID if needed
+        id: userValue, // Add the user ID if needed
       },
       {
         connected() {
           // Handle connection established
-          console.log("Connected to JobApplicationsChannel");
+          console.log(`Connected to JobApplicationsChannel with ID: ${userValue}`);
+          console.log(this);
         },
         disconnected() {
           // Handle connection disconnected
           console.log("Disconnected from JobApplicationsChannel");
         },
         received(data) {
-          console.log(data.job_application_id)
-          console.log(data.status)
-          console.log(data.event)
-          console.log(data.job_id)
           console.log("Received data from JobApplicationsChannel");
+          console.log(data.job_application_id);
+          console.log(data.status);
+          console.log(data.event);
+          console.log(data.job_id);
           if (data.event === "job-application-created") {
             console.log("Received job-application-created event");
             console.log(data);
