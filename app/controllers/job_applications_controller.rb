@@ -56,15 +56,6 @@ class JobApplicationsController < ApplicationController
       # TODO: Add validation to check that the user has filled in their core details
 
       if @job_application.save
-        p "======================="
-        p "======================="
-        p "======================="
-        p "======================="
-        p "======================="
-
-        p "Performing ApplyJob"
-        p "current user id: #{current_user.id}"
-
         user_channel_name = "job_applications_#{current_user.id}"
 
         ActionCable.server.broadcast(
@@ -72,35 +63,46 @@ class JobApplicationsController < ApplicationController
           {
             event: "job-application-created",
             job_application_id: @job_application.id,
-            user_id: @job_application.user_id,
+            # user_id: @job_application.user_id,
             job_id: @job_application.job_id,
             status: @job_application.status,
-            # Include any additional data you want to send to the frontend
           }
         )
 
         ApplyJob.perform_later(@job_application.id, current_user.id)
         @job_application.update(status: "Applied")
 
-        p "Job Application Status: #{@job_application.status}"
+        # ActionCable.server.broadcast(
+        #   user_channel_name,
+        #   {
+        #     event: "job-application-submitted",
+        #     job_application_id: @job_application.id,
+        #     user_id: @job_application.user_id,
+        #     job_id: @job_application.job_id,
+        #     status: @job_application.status,
+        #     # Include any additional data you want to send to the frontend
+        #   }
+        # )
+
+        # p "Job Application Status: #{@job_application.status}"
 
         ids = cookies[:selected_job_ids].split("&")
         ids.delete("#{job.id}")
 
-        p "IDs: #{ids}"
+        # p "IDs: #{ids}"
 
         # Believe this automatically adds & between the cookies?
         cookies[:selected_job_ids] = ids
 
-        p "Cookies: #{cookies[:selected_job_ids]}"
+        # p "Cookies: #{cookies[:selected_job_ids]}"
 
         redirect_to job_applications_path, notice: 'Your applications have been submitted.'
       else
-        p "Rendering new"
+        # p "Rendering new"
         render :new
       end
     else
-      puts "User doesn't have a resume attached."
+      # p "User doesn't have a resume attached."
       redirect_to edit_user_registration_path(current_user), alert: 'Please update your core details and attach a CV before applying.'
       return
     end

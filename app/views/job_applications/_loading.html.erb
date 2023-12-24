@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-center align-items-center w-75 border shadow-sm rounded-4 p-2 m-4 bg-white">
       <div class="login-box">
         <h2 class="text-center pb-2">Processing your job applications</h2>
-        <div class="company-apply-summary bg-body-secondary p-2 d-flex">
+        <div class="company-apply-summary bg-body-secondary p-2 d-flex mx-auto">
           <% @selected_jobs.each_with_index do |job, index| %>
             <div class="company-item d-flex flex-column align-items-center justify-content-center">
               <div class="d-flex pb-2">
@@ -15,12 +15,18 @@
                 <div data-all-application-forms-id="<%= job.id %>" class="spinner-border text-light" role="status">
                   <span class="visually-hidden">Loading...</span>
                 </div>
-                <i data-all-application-forms-target="success" class="fa-solid fa-check d-none" style="color: #7eed8b;"></i>
+                <i data-all-application-forms-id="<%= job.id %>-success" class="fa-solid fa-check d-none" style="color: #7eed8b;"></i>
               </div>
             </div>
           <% end %>
         </div>
-        <h3 class="text-center pt-2">Surface tips/quotes here...</h3>
+        <br>
+        <br>
+        <div class="login-box pt-3">
+          <h5 class="text-center">Tips from Cheddar</h5>
+          <p class="text-center">Check your inbox for confirmation emails</p>
+          <p class="text-center">You can track your job applications from your profile</p>
+        </div>
       </div>
     </div>
   </div>

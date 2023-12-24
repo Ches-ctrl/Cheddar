@@ -2,19 +2,13 @@ import { Controller } from "@hotwired/stimulus";
 import { createConsumer } from "@rails/actioncable";
 
 export default class extends Controller {
-  static targets = ["form", "button", "overlay", "success"];
+  static targets = ["form", "button", "overlay"];
   static values = { user: Number }; // Add a user value if needed
 
   connect() {
-    console.log("All forms controller connected");
-
-    // Establish an Action Cable connection for form submissions
+    // console.log("All forms controller connected");
     this.consumer = createConsumer();
-
-    console.log(`this consumer: ${this.consumer}`);
-    console.log(`this user value: ${this.userValue}`);
-
-    // Create the WebSocket channel after the controller is connected
+    // console.log(`this user value: ${this.userValue}`);
     this.createWebSocketChannel(this.userValue);
   }
 
@@ -48,9 +42,7 @@ export default class extends Controller {
   }
 
   createWebSocketChannel(userValue) {
-    // Subscribe to the JobApplicationsChannel, providing necessary params
-    console.log("Creating websocket channel");
-
+    // console.log("Creating websocket channel");
     this.channel = this.consumer.subscriptions.create(
       {
         channel: "JobApplicationsChannel",
@@ -58,41 +50,30 @@ export default class extends Controller {
       },
       {
         connected() {
-          // Handle connection established
-          console.log(`Connected to JobApplicationsChannel with ID: ${userValue}`);
-          console.log(this);
+          // console.log(`Connected to JobApplicationsChannel with ID: ${userValue}`);
         },
         disconnected() {
-          // Handle connection disconnected
-          console.log("Disconnected from JobApplicationsChannel");
+          // console.log("Disconnected from JobApplicationsChannel");
         },
         received(data) {
-          console.log("Received data from JobApplicationsChannel");
-          console.log(data.job_application_id);
-          console.log(data.status);
-          console.log(data.event);
-          console.log(data.job_id);
-          if (data.event === "job-application-created") {
-            console.log("Received job-application-created event");
-            console.log(data);
+          // console.log("Received data from JobApplicationsChannel");
+          if (data.event === "job-application-submitted") {
+            // console.log("Received job-application-created event");
 
             const jobId = data.job_id;
             const status = data.status;
 
-            console.log(jobId);
-            console.log(status);
+            // console.log(jobId);
+            // console.log(status);
+            // console.log(this.element);
 
-            // Find the spinner element with the corresponding job ID
-            const spinner = this.element.querySelector(
-              `[data-all-application-forms-id="${jobId}"]`
-            );
-            // Find the checkmark element
-            const checkmark = this.successTarget;
+            const spinner = document.querySelector(`[data-all-application-forms-id="${jobId}"]`);
+            const checkmark = document.querySelector(`[data-all-application-forms-id="${jobId}-success"]`);
 
             if (spinner && checkmark) {
-              // Update the UI based on the job application status
+              // console.log("Updating UI")
               if (status === "Applied") {
-                // Hide the spinner and show the checkmark
+                // console.log("Status is correct")
                 spinner.classList.add("d-none");
                 checkmark.classList.remove("d-none");
               } else {
@@ -105,7 +86,6 @@ export default class extends Controller {
     );
   }
 
-  // Disconnecting from the WebSocket channel can be done as needed
   disconnect() {
     console.log("Disconnecting from JobApplicationsChannel");
     this.channel.unsubscribe();
