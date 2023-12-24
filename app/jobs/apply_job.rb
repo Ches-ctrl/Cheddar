@@ -16,7 +16,19 @@ class ApplyJob < ApplicationJob
     form_filler.fill_out_form(job.job_posting_url, fields_to_fill, job_application_id)
 
     Capybara.send(:session_pool).each { |name, ses| ses.driver.quit }
-    p "You applied to #{job.job_title}!"
+    # p "You applied to #{job.job_title}!"
+
+    user_channel_name = "job_applications_#{user.id}"
+
+    ActionCable.server.broadcast(
+      user_channel_name,
+      {
+        event: "job-application-submitted",
+        job_id: job.id,
+        status: "Applied",
+        # Include any additional data you want to send to the frontend
+      }
+    )
   end
 
   private
