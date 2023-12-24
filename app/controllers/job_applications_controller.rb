@@ -69,20 +69,20 @@ class JobApplicationsController < ApplicationController
           }
         )
 
-        ApplyJob.perform_later(@job_application.id, current_user.id)
+        # ApplyJob.perform_later(@job_application.id, current_user.id)
         @job_application.update(status: "Applied")
 
-        # ActionCable.server.broadcast(
-        #   user_channel_name,
-        #   {
-        #     event: "job-application-submitted",
-        #     job_application_id: @job_application.id,
-        #     user_id: @job_application.user_id,
-        #     job_id: @job_application.job_id,
-        #     status: @job_application.status,
-        #     # Include any additional data you want to send to the frontend
-        #   }
-        # )
+        ActionCable.server.broadcast(
+          user_channel_name,
+          {
+            event: "job-application-submitted",
+            job_application_id: @job_application.id,
+            user_id: @job_application.user_id,
+            job_id: @job_application.job_id,
+            status: @job_application.status,
+            # Include any additional data you want to send to the frontend
+          }
+        )
 
         # p "Job Application Status: #{@job_application.status}"
 
