@@ -20,10 +20,18 @@ class ApplyJob < ApplicationJob
 
     user_channel_name = "job_applications_#{user.id}"
 
+    p "-----------------"
+    p "-----------------"
+    p "-----------------"
+    p "-----------------"
+    p "-----------------"
+
     ActionCable.server.broadcast(
       user_channel_name,
       {
         event: "job-application-submitted",
+        job_application_id: @job_application.id,
+        user_id: @job_application.user_id,
         job_id: job.id,
         status: "Applied",
         # Include any additional data you want to send to the frontend

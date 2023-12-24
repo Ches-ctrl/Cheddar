@@ -12,10 +12,11 @@ export default class extends Controller {
     this.consumer = createConsumer();
     // console.log(this)
     // console.log(`this user value: ${this.userValue}`);
-    this.jobsCount = this.data.get("jobsCount");
+    this.jobsCount = parseInt(this.data.get("jobsCount"), 10);
+    this.appliedJobCount = 0;
     console.log(`Jobs count: ${this.jobsCount}`);
-    this.jobStatusMap = new Map();
-    console.log(this.jobStatusMap);
+    console.log(`Applied job count 0: ${this.appliedJobCount}`)
+
     this.createWebSocketChannel(this.userValue);
     // debugger;
   }
@@ -51,41 +52,61 @@ export default class extends Controller {
 
   createWebSocketChannel(userValue) {
     // console.log("Creating websocket channel");
+    console.log(`Jobs count: ${this.jobsCount}`);
+    console.log(`Applied job count 1: ${this.appliedJobCount}`)
+
     this.channel = this.consumer.subscriptions.create(
       {
         channel: "JobApplicationsChannel",
         id: userValue, // Add the user ID if needed
       },
       {
-        connected() {
-          // console.log(`Connected to JobApplicationsChannel with ID: ${userValue}`);
+        connected: () => {
+          console.log(`Connected to JobApplicationsChannel with ID: ${userValue}`);
         },
-        disconnected() {
-          // console.log("Disconnected from JobApplicationsChannel");
+        disconnected: () => {
+          console.log("Disconnected from JobApplicationsChannel");
         },
-        received(data) {
-          // console.log("Received data from JobApplicationsChannel");
+        received: (data) => {
+          console.log("Received data from JobApplicationsChannel");
           if (data.event === "job-application-submitted") {
-            // console.log("Received job-application-created event");
+            console.log("Received job-application-created event");
 
             const jobId = data.job_id;
             const status = data.status;
 
-            this.trackJobApplicationStatus(jobId, status);
-
-            // console.log(jobId);
-            // console.log(status);
+            console.log(jobId);
+            console.log(status);
             // console.log(this.element);
 
             const spinner = document.querySelector(`[data-all-application-forms-id="${jobId}"]`);
             const checkmark = document.querySelector(`[data-all-application-forms-id="${jobId}-success"]`);
 
             if (spinner && checkmark) {
-              // console.log("Updating UI")
+              console.log("Updating UI")
               if (status === "Applied") {
-                // console.log("Status is correct")
+                console.log("Status is correct")
                 spinner.classList.add("d-none");
                 checkmark.classList.remove("d-none");
+
+                console.log(this)
+                console.log(`Applied job count before increment: ${this.appliedJobCount}`)
+
+                this.appliedJobCount++;
+                console.log(`Applied job count 2: ${this.appliedJobCount}`)
+                console.log(`Class of Applied Job Count: ${this.appliedJobCount.constructor.name}`);
+
+                console.log(`Jobs count: ${this.jobsCount}`);
+                console.log(`Class of Jobs Count: ${this.jobsCount.constructor.name}`);
+                console.log(this.appliedJobCount === this.jobsCount)
+
+                if (this.appliedJobCount === this.jobsCount) {
+                  console.log("All jobs applied to");
+                  console.log("Redirecting you...");
+                  // console.log(this.redirectToSuccessPage());
+                  // this.redirectToSuccessPage();
+                  window.location.href = "/job_applications/success";
+                }
               } else {
                 // Handle other statuses if needed
               }
@@ -96,27 +117,7 @@ export default class extends Controller {
     );
   }
 
-  trackJobApplicationStatus(jobId, status) {
-    // You can use a Map to store the status of each job application
-    if (!this.jobStatusMap) {
-      this.jobStatusMap = new Map();
-    }
-
-    // Store the status of the job application
-    this.jobStatusMap.set(jobId, status);
-
-    // Check if all job applications have "Applied" status
-    const allApplied = Array.from(this.jobStatusMap.values()).every((s) => s === "Applied");
-
-    if (allApplied) {
-      // Redirect to the success page when all job applications are applied
-      this.redirectToSuccessPage();
-    }
-  }
-
-  // Add this method to redirect to the success page
   redirectToSuccessPage() {
-    // Replace 'YOUR_SUCCESS_PAGE_URL' with the actual URL of your success page
     window.location.href = "/job_applications/success";
   }
 
