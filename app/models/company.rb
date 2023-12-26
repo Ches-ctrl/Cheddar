@@ -3,6 +3,7 @@ class Company < ApplicationRecord
 
   validates :company_name, presence: true
   validates :company_name, uniqueness: true
+  validates :company_website_url, uniqueness: true
 
   # include PgSearch::Model
 

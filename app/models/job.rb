@@ -2,6 +2,9 @@ class Job < ApplicationRecord
   include Ats::Greenhouse
   include Ats::Workable
 
+  # TODO: Number of questions in job form
+  # TODO: Estimated time to complate job application based on form length/type
+
   serialize :application_criteria, coder: JSON
 
   belongs_to :company

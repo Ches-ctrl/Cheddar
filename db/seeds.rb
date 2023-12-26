@@ -317,7 +317,7 @@ puts "Created company - #{Company.last.company_name}"
 Company.create(
   company_name: "Uber",
   company_category: "Transportation Mobility",
-  company_website_url: "https://bcgdv.com/")
+  company_website_url: "https://uber.com/")
 
 puts "Created company - #{Company.last.company_name}"
 

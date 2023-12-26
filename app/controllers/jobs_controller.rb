@@ -49,6 +49,14 @@ class JobsController < ApplicationController
     redirect_to new_job_application_path
   end
 
+  def add
+    @job = Job.new
+  end
+
+  def add_job
+    @job = Job.new
+  end
+
   # def find_job_application
   #   user_id = params[:user_id]
   #   job_id = params[:id]
@@ -74,7 +82,7 @@ class JobsController < ApplicationController
 
   private
 
-  # TODO: Check if more params are needed
+  # TODO: Check if more params are needed on Job.create
 
   def job_params
     params.require(:job).permit(:job_title, :job_description, :salary, :job_posting_url, :application_deadline, :date_created, :company_id, :applicant_tracking_system_id, :ats_format_id)
