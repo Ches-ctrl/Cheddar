@@ -1,3 +1,7 @@
+# require 'uri'
+# require 'net/http'
+# require 'json'
+
 puts "Deleting previous (1) users, (2) jobs, (3)companies, (4) ATS Formats and (5) Applicant Tracking Systems..."
 
 puts "-------------------------------------"
@@ -164,17 +168,19 @@ deadline_4 = Date.today.next_week(:friday) + rand(1..7).days
 
 deadlines = [deadline_1, deadline_2, deadline_3, deadline_4,]
 
+# TODO: Setup iframe for external embeds?
+
 
 # -----------------
 # Greenhouse ATS
 # -----------------
 
-# https://boards.greenhouse.io/embed/job_app?for=gemini&token=5203656
+# Alternative URL structure: https://boards.greenhouse.io/embed/job_app?for=gemini&token=5203656
 
 job_urls = [
   "https://boards.greenhouse.io/ably30/jobs/4183821101",
   "https://boards.greenhouse.io/synthesia/jobs/4250474101",
-  "https://boards.greenhouse.io/bcgdv/jobs/6879714002?gh_jid=6879714002",
+  "https://boards.greenhouse.io/bcgdv/jobs/6879714002",
   "https://boards.greenhouse.io/cleoai/jobs/5033034002",
   "https://boards.greenhouse.io/codepath/jobs/4035988007",
   "https://boards.greenhouse.io/codepath/jobs/4059099007",
@@ -215,7 +221,69 @@ job_urls = [
   "https://boards.greenhouse.io/zscaler/jobs/4092460007"
 ]
 
+job_urls.each do |url|
+  match = url.match(%r{https://boards\.greenhouse\.io/([^/]+)/jobs/\d+})
+  if match
+    company_name = match[1]
+    p company_name
 
+    company_api_url = "https://boards-api.greenhouse.io/v1/boards/#{company_name}"
+    p company_api_url
+
+    uri = URI(company_api_url)
+    response = Net::HTTP.get(uri)
+    data = JSON.parse(response)
+
+    # Extract the company name
+    company_name = data['name']
+
+    # TODO: Get properly capitalised company name from API
+    # TODO: Get company url (not available from API)
+
+    company = Company.find_or_create_by(company_name: company_name)
+
+    # Create a Job record
+    Job.create!(
+      job_title: "Job Title Placeholder",
+      job_posting_url: url,
+      company_id: company.id
+    )
+  else
+    puts "Unable to extract company name from URL: #{url}"
+  end
+end
+
+puts "Created #{job_urls.count} jobs based on the provided URLs."
+
+job_urls_2 = [
+  "https://boards.greenhouse.io/ambientai/jobs/4301104006",
+  "https://boards.greenhouse.io/css/jobs/6975614002",
+  "https://boards.greenhouse.io/doctolib/jobs/5828747003",
+  "https://boards.greenhouse.io/getir/jobs/4258936101",
+  "https://boards.greenhouse.io/gusto/jobs/5535268",
+  "https://boards.greenhouse.io/janestreet/jobs/6102180002",
+  "https://boards.greenhouse.io/monzo/jobs/5410348",
+  "https://boards.greenhouse.io/niantic/jobs/7068655002",
+  "https://boards.greenhouse.io/phonepe/jobs/5816286003",
+  "https://boards.greenhouse.io/remotecom/jobs/5756728003",
+  "https://boards.greenhouse.io/samsara/jobs/5580492",
+  "https://boards.greenhouse.io/settle/jobs/4350962005",
+  "https://boards.greenhouse.io/springhealth66/jobs/4336742005",
+  "https://boards.greenhouse.io/teads/jobs/5529600",
+]
+
+job_urls_3 = [
+  "https://bolt.eu/en/careers/positions/6989975002",
+  "https://careers.datadoghq.com/detail/4452892",
+  "https://jobs.elastic.co/form?gh_jid=5518454",
+  "https://ripple.com/careers/all-jobs/job/5144512",
+  "https://www.hubspot.com/careers/jobs/5402223",
+  "https://www.mongodb.com/careers/jobs/5424409",
+  "https://www.noredink.com/job_post?gh_jid=5586486",
+  "https://www.onemedical.com/careers/all-departments/5433427",
+  "https://www.sumup.com/careers/positions/london-united-kingdom/engineering/engineering-manager-mobile-global-bank/6970735002",
+  "https://www.zilch.com/uk/job/?gh_jid=5045377004",
+]
 
 
 # 6. Gemini
@@ -245,9 +313,6 @@ Job.create!(
   job_title: "Webflow Developer @ Synthesia ",
   job_description: "Support full-stack engineering teams, Communicate across functions and drive engineering initiatives,Empathise with and help define product strategy for our target audience.",
   salary: 41000,
-
-  # NB: THIS ALL CONVERTS TO STRING WHEN PARSED TO JSON IN THE DATABASE!
-
   job_posting_url: "https://boards.eu.greenhouse.io/synthesia/jobs/4250474101",
   company_id: Company.find_by(company_name: 'Synthesia').id
 )
