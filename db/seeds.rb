@@ -53,6 +53,8 @@ ats_formats_data = [
   { name: "Ashby_1", ats_name: 'Ashby' }
 ]
 
+# TODO: Check logic here
+
 ats_formats_data.each do |ats_format_data|
   ats_name = ats_format_data[:ats_name]
   ats_id = ApplicantTrackingSystem.find_by(name: ats_name).id
@@ -69,64 +71,64 @@ puts "-------------------------------------"
 puts "Creating new companies..."
 
 companies_data = [
-  { name: "Kroo", category: "Tech", website_url: "https://kroo.com/" },
-  { name: "Deliveroo", category: "Tech", website_url: "https://deliveroo.co.uk/" },
-  { name: "BCG Digital Ventures", category: "Tech", website_url: "https://bcgdv.com/" },
-  { name: "Cleo", category: "FinTech", website_url: "https://web.meetcleo.com/" },
-  { name: "BrainStation", category: "Tech", website_url: "https://brainstation.io/" },
-  { name: "Blink", category: "Tech", website_url: "https://www.joinblink.com/" },
-  { name: "Builder.ai", category: "Tech", website_url: "https://www.builder.ai/" },
-  { name: "9fin", category: "Tech", website_url: "https://9fin.com/" },
-  { name: "Quantexa", category: "Tech", website_url: "https://www.quantexa.com/" },
-  { name: "Apple Inc", category: "Tech", website_url: "https://apple.com/uk" },
-  { name: "Google", category: "Tech", website_url: "https://google.com/" },
-  { name: "Meta", category: "Tech", website_url: "https://meta.com/" },
-  { name: "Amazon Web Services", category: "Tech", website_url: "https://aws.com/" },
-  { name: "Netflix", category: "Tech", website_url: "https://Netflix.com/" },
-  { name: "Microsoft", category: "Tech", website_url: "https://Microsoft.com/" },
-  { name: "OpenAI", category: "Tech", website_url: "https://openai.com/" },
-  { name: "Tesla", category: "Automotive", website_url: "https://tesla.com/" },
-  { name: "BCG Digital Ventures", category: "Tech", website_url: "https://bcgdv.com/" },
-  { name: "Uber", category: "Transportation Mobility", website_url: "https://uber.com/" },
-  { name: "Samsung", category: "Tech", website_url: "https://samsung.com/" },
-  { name: "Intel", category: "Tech", website_url: "https://intel.com/" },
-  { name: "Shopify", category: "E-Commerce", website_url: "https://Shopify.com/" },
-  { name: "Intel", category: "Tech", website_url: "https://intel.com/" },
-  { name: "Sony", category: "Electronics", website_url: "https://Sony.com/" },
-  { name: "Etsy", category: "E-Commerce", website_url: "https://Etsy.com/" },
-  { name: "Reliance Health", category: "Healthcare", website_url: "https://reliancehealth.com/" },
-  { name: "OXK", category: "Crypto", website_url: "https://okx.com/" },
-  { name: "Cleo", category: "Finance", website_url: "https://cleo.com/" },
-  { name: "Kubernetes", category: "Tech", website_url: "https://kubernetes.com/" },
-  { name: "Forter", category: "Tech", website_url: "https://forter.com/" },
-  { name: "Synthesia", category: "Tech", website_url: "https://synthesia.com/" },
-  { name: "DRW", category: "Finance", website_url: "https://drw.com/" },
-  { name: "Wise", category: "Finance", website_url: "https://wise.com/" },
-  { name: "Elemental Excelerator", category: "Tech", website_url: "https://elementalexcelerator.com/" },
-  { name: "Relativity Space", category: "Tech", website_url: "https://relativityspace.com/" },
-  { name: "Zscaler", category: "Tech", website_url: "https://zscaler.com/" },
-  { name: "Mozilla", category: "Tech", website_url: "https://mozilla.com/" },
-  { name: "Alby", category: "Tech", website_url: "https://alby.com/" },
-  { name: "Forage", category: "Tech", website_url: "https://forage.com/" },
-  { name: "Tenstorrent", category: "Tech", website_url: "https://tenstorrent.com/" },
-  { name: "Jane Street", category: "Finance", website_url: "https://janestreet.com/" },
-  { name: "Brain Station", category: "Tech", website_url: "https://brainstation.com/" },
-  { name: "GWI", category: "Tech", website_url: "https://gwi.com/" },
-  { name: "Monzo", category: "Finance", website_url: "https://monzo.com/" },
-  { name: "Jobber", category: "Tech", website_url: "https://jobber.com/" },
-  { name: "Tele Health", category: "Healthcare", website_url: "https://telehealth.com/" },
-  { name: "Knowde", category: "Tech", website_url: "https://knowde.com/" },
-  { name: "Code Path", category: "Tech", website_url: "https://codepath.com/" },
-  { name: "Workato", category: "Tech", website_url: "https://workato.com/" },
-  { name: "Opendoor", category: "Tech", website_url: "https://opendoor.com/" },
-  { name: "Culture Amp", category: "Tech", website_url: "https://cultureamp.com/" },
-  { name: "Narvar", category: "Tech", website_url: "https://narvar.com/" },
-  { name: "Grammarly", category: "Tech", website_url: "https://grammarly.com/" },
-  { name: "Halcyon", category: "Tech", website_url: "https://halcyon.com/" },
-  { name: "Motive", category: "Tech", website_url: "https://motive.com/" },
-  { name: "Synack", category: "Tech", website_url: "https://synack.com/" },
-  { name: "SoSafe GmbH", category: "Tech", website_url: "https://sosafe.com/" },
-  { name: "Gemini", category: "Tech", website_url: "https://gemini.com/" }
+  {:name=>"9fin", :category=>"Tech", :website_url=>"https://9fin.com/"},
+  {:name=>"Alby", :category=>"Tech", :website_url=>"https://alby.com/"},
+  {:name=>"Amazon Web Services", :category=>"Tech", :website_url=>"https://aws.com/"},
+  {:name=>"Apple Inc", :category=>"Tech", :website_url=>"https://apple.com/uk"},
+  {:name=>"BCG Digital Ventures", :category=>"Tech", :website_url=>"https://bcgdv.com/"},
+  # {:name=>"BCG Digital Ventures", :category=>"Tech", :website_url=>"https://bcgdv.com/"},
+  {:name=>"Blink", :category=>"Tech", :website_url=>"https://www.joinblink.com/"},
+  {:name=>"Brain Station", :category=>"Tech", :website_url=>"https://brainstation.com/"},
+  # {:name=>"BrainStation", :category=>"Tech", :website_url=>"https://brainstation.io/"},
+  {:name=>"Builder.ai", :category=>"Tech", :website_url=>"https://www.builder.ai/"},
+  {:name=>"Cleo", :category=>"Finance", :website_url=>"https://cleo.com/"},
+  # {:name=>"Cleo", :category=>"FinTech", :website_url=>"https://web.meetcleo.com/"},
+  {:name=>"Code Path", :category=>"Tech", :website_url=>"https://codepath.com/"},
+  {:name=>"Culture Amp", :category=>"Tech", :website_url=>"https://cultureamp.com/"},
+  {:name=>"DRW", :category=>"Finance", :website_url=>"https://drw.com/"},
+  {:name=>"Deliveroo", :category=>"Tech", :website_url=>"https://deliveroo.co.uk/"},
+  {:name=>"Elemental Excelerator", :category=>"Tech", :website_url=>"https://elementalexcelerator.com/"},
+  {:name=>"Etsy", :category=>"E-Commerce", :website_url=>"https://Etsy.com/"},
+  {:name=>"Forage", :category=>"Tech", :website_url=>"https://forage.com/"},
+  {:name=>"Forter", :category=>"Tech", :website_url=>"https://forter.com/"},
+  {:name=>"GWI", :category=>"Tech", :website_url=>"https://gwi.com/"},
+  {:name=>"Gemini", :category=>"Tech", :website_url=>"https://gemini.com/"},
+  {:name=>"Google", :category=>"Tech", :website_url=>"https://google.com/"},
+  {:name=>"Grammarly", :category=>"Tech", :website_url=>"https://grammarly.com/"},
+  {:name=>"Halcyon", :category=>"Tech", :website_url=>"https://halcyon.com/"},
+  {:name=>"Intel", :category=>"Tech", :website_url=>"https://intel.com/"},
+  # {:name=>"Intel", :category=>"Tech", :website_url=>"https://intel.com/"},
+  {:name=>"Jane Street", :category=>"Finance", :website_url=>"https://janestreet.com/"},
+  {:name=>"Jobber", :category=>"Tech", :website_url=>"https://jobber.com/"},
+  {:name=>"Knowde", :category=>"Tech", :website_url=>"https://knowde.com/"},
+  {:name=>"Kroo", :category=>"Tech", :website_url=>"https://kroo.com/"},
+  {:name=>"Kubernetes", :category=>"Tech", :website_url=>"https://kubernetes.com/"},
+  {:name=>"Meta", :category=>"Tech", :website_url=>"https://meta.com/"},
+  {:name=>"Microsoft", :category=>"Tech", :website_url=>"https://Microsoft.com/"},
+  {:name=>"Monzo", :category=>"Finance", :website_url=>"https://monzo.com/"},
+  {:name=>"Motive", :category=>"Tech", :website_url=>"https://motive.com/"},
+  {:name=>"Mozilla", :category=>"Tech", :website_url=>"https://mozilla.com/"},
+  {:name=>"Narvar", :category=>"Tech", :website_url=>"https://narvar.com/"},
+  {:name=>"Netflix", :category=>"Tech", :website_url=>"https://Netflix.com/"},
+  {:name=>"OXK", :category=>"Crypto", :website_url=>"https://okx.com/"},
+  {:name=>"OpenAI", :category=>"Tech", :website_url=>"https://openai.com/"},
+  {:name=>"Opendoor", :category=>"Tech", :website_url=>"https://opendoor.com/"},
+  {:name=>"Quantexa", :category=>"Tech", :website_url=>"https://www.quantexa.com/"},
+  {:name=>"Relativity Space", :category=>"Tech", :website_url=>"https://relativityspace.com/"},
+  {:name=>"Reliance Health", :category=>"Healthcare", :website_url=>"https://reliancehealth.com/"},
+  {:name=>"Samsung", :category=>"Tech", :website_url=>"https://samsung.com/"},
+  {:name=>"Shopify", :category=>"E-Commerce", :website_url=>"https://Shopify.com/"},
+  {:name=>"SoSafe GmbH", :category=>"Tech", :website_url=>"https://sosafe.com/"},
+  {:name=>"Sony", :category=>"Electronics", :website_url=>"https://Sony.com/"},
+  {:name=>"Synack", :category=>"Tech", :website_url=>"https://synack.com/"},
+  {:name=>"Synthesia", :category=>"Tech", :website_url=>"https://synthesia.com/"},
+  {:name=>"Tele Health", :category=>"Healthcare", :website_url=>"https://telehealth.com/"},
+  {:name=>"Tenstorrent", :category=>"Tech", :website_url=>"https://tenstorrent.com/"},
+  {:name=>"Tesla", :category=>"Automotive", :website_url=>"https://tesla.com/"},
+  {:name=>"Uber", :category=>"Transportation Mobility", :website_url=>"https://uber.com/"},
+  {:name=>"Wise", :category=>"Finance", :website_url=>"https://wise.com/"},
+  {:name=>"Workato", :category=>"Tech", :website_url=>"https://workato.com/"},
+  {:name=>"Zscaler", :category=>"Tech", :website_url=>"https://zscaler.com/"}
 ]
 
 companies_data.each do |company_data|
@@ -178,6 +180,7 @@ deadlines = [deadline_1, deadline_2, deadline_3, deadline_4,]
 # Greenhouse Main URLs:
 # https://boards.greenhouse.io/#{company_name}/jobs/#{job_id}
 # https://boards.greenhouse.io/embed/job_app?for=#{company_name}&token=#{job_id}
+# https://boards.#{region_code}.greenhouse.io/embed/job_app?for=#{company_name}&token=#{job_id}
 
 # Greenhouse API URLs:
 # https://boards-api.greenhouse.io/v1/boards/#{company_name} # Sometimes redirects
@@ -228,60 +231,16 @@ job_urls = [
   "https://boards.greenhouse.io/zscaler/jobs/4092460007"
 ]
 
-# TODO: Add ATS System to Company Model
-# TODO: Add ATS System Company Identifier to Company Model
-# rails g migration AddAtsSystemToCompanies applicant_tracking_system_id:bigint url_ats:string ats_identifier:string
-
-company_data = {}
+# TODO: Add collect additional company postings functionality
 
 job_urls.each do |url|
-  match = url.match(%r{https://boards\.greenhouse\.io/([^/]+)/jobs/\d+})
-  if match
-    ats_identifier = match[1]
-    company_api_url = "https://boards-api.greenhouse.io/v1/boards/#{ats_identifier}"
-
-    uri = URI(company_api_url)
-    response = Net::HTTP.get(uri)
-    data = JSON.parse(response)
-
-    # Extract the company name
-    company_name = data['name']
-    description = data['content']
-
-    # TODO: Get properly capitalised company name from API
-    # TODO: Get company url (not available from API)
-
-    company = Company.find_or_create_by(company_name: company_name)
-    company.update(description: description)
-    p company
-  else
-    puts "Unable to extract company name from URL: #{url}"
-  end
-
-  cleaned_url = url.gsub(/\/jobs\/.*/, '')
-  original_url = URI.parse(cleaned_url)
-  company.update(url_ats: original_url)
-
-  http = Net::HTTP.new(original_url.host, original_url.port)
-  http.use_ssl = true if original_url.scheme == 'https'
-
-  request = Net::HTTP::Get.new(original_url.request_uri)
-  response = http.request(request)
-
-  if response.is_a?(Net::HTTPRedirection)
-    redirected_url = URI.parse(response['Location'])
-    company_website_url = redirected_url.host
-    p company_website_url
-    company.update(company_website_url: company_website_url)
-  else
-    company_website_url = original_url.host
-    p "No redirect for #{company_website_url}"
-  end
-
+  p "creating a job"
+  company = CompanyCreator.new(url).find_or_create_company
+  p "company created"
   Job.create!(
     job_title: "Job Title Placeholder",
     job_posting_url: url,
-    company_id: company.id
+    company_id: company.id,
   )
 end
 

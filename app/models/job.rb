@@ -22,8 +22,8 @@ class Job < ApplicationRecord
   validates :job_title, presence: true
   validates :job_posting_url, uniqueness: true
 
+  # before_create :find_or_create_company
   before_create :set_application_criteria
-  # before_create: :find_or_create_company
   after_create :update_application_criteria
 
   pg_search_scope :global_search,
@@ -37,22 +37,16 @@ class Job < ApplicationRecord
 
   private
 
-  # def find_or_create_company(company_name)
-  #   return if company_name.blank?
-  #   company = Company.find_or_create_by(company_name: company_name)
+  # def find_or_create_company
+  #   p "Finding or creating company"
+  #   company_creator = CompanyCreator.new(url)
+  #   company = company_creator.find_or_create_company
   #   self.company_id = company.id
   # end
 
   def set_application_criteria
     if job_posting_url.include?('greenhouse')
       self.application_criteria = Job::GREENHOUSE_CORE_FIELDS
-      # extra_fields = GetFormFieldsJob.perform_later(job_posting_url)
-      # extra_fields = ScraperTest.new.perform(job_posting_url)
-      # unless extra_fields.nil?
-      #   self.application_criteria = application_criteria.merge(extra_fields)
-      #   p application_criteria
-      # end
-      # Capybara.send(:session_pool).each { |name, ses| ses.driver.quit }
     elsif job_posting_url.include?('workable')
       self.application_criteria = Job::WORKABLE_FIELDS
     else
