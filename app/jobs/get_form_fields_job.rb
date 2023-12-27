@@ -6,6 +6,8 @@ class GetFormFieldsJob < ApplicationJob
   queue_as :default
   sidekiq_options retry: false
 
+  # TODO: Calculate total number of input fields and implied difficulty of application
+
   # TODO: Potentially change to scraping all fields from the job posting
   # TODO: Add boolean cv required based on this scrape
   # TODO: add test of filling out the form fields before job goes live

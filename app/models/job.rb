@@ -35,7 +35,7 @@ class Job < ApplicationRecord
 
   def set_application_criteria
     if job_posting_url.include?('greenhouse')
-      self.application_criteria = Job::GREENHOUSE_FIELDS
+      self.application_criteria = Job::GREENHOUSE_CORE_FIELDS
       # extra_fields = GetFormFieldsJob.perform_later(job_posting_url)
       # extra_fields = ScraperTest.new.perform(job_posting_url)
       # unless extra_fields.nil?
