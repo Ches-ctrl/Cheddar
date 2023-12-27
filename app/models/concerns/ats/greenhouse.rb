@@ -2,6 +2,46 @@ module Ats::Greenhouse
   # TODO: Update greenhouse fields to be just the core set, with the additional set to be scraped each time
   extend ActiveSupport::Concern
 
+  # Greenhouse Main URLs:
+  # https://boards.greenhouse.io/#{company_name}/jobs/#{job_id}
+  # https://boards.greenhouse.io/embed/job_app?for=#{company_name}&token=#{job_id}
+  # https://boards.#{region_code}.greenhouse.io/embed/job_app?for=#{company_name}&token=#{job_id}
+
+  # Greenhouse API URLs:
+  # https://boards-api.greenhouse.io/v1/boards/#{company_name} # Sometimes redirects
+  # https://boards-api.greenhouse.io/#{company_name}
+  # https://boards-api.greenhouse.io/#{company_name}/jobs
+  # https://boards-api.greenhouse.io/#{company_name}/jobs/#{job_id}
+
+  # TODO: Handle multiple greenhouse URL formats
+  # Not yet tested but included for reference
+  # def convert_greenhouse_url(url)
+  #   # Define regular expressions to match the URL formats
+  #   url_pattern_1 = %r{https://boards\.greenhouse\.io/([^/]+)/jobs/(\d+)}
+  #   url_pattern_2 = %r{https://boards\.greenhouse\.io/embed/job_app\?for=([^&]+)&token=(\w+)}
+  #   url_pattern_3 = %r{https://boards\.([^\.]+)\.greenhouse\.io/embed/job_app\?for=([^&]+)&token=(\w+)}
+
+  #   if (match = url.match(url_pattern_1))
+  #     # Extract company_name and job_id from the first URL format
+  #     company_name, job_id = match.captures
+  #   elsif (match = url.match(url_pattern_2))
+  #     # Extract company_name and job_id from the second URL format
+  #     company_name, job_id = match.captures
+  #   elsif (match = url.match(url_pattern_3))
+  #     # Extract region_code, company_name, and job_id from the third URL format
+  #     region_code, company_name, job_id = match.captures
+  #   else
+  #     # Handle invalid URL format or no match
+  #     return nil
+  #   end
+
+  #   # Construct the desired URL format
+  #   converted_url = "https://boards.greenhouse.io/#{company_name}/jobs/#{job_id}"
+
+  #   # Return the converted URL
+  #   converted_url
+  # end
+
   GREENHOUSE_CORE_FIELDS = {
     first_name: {
       interaction: :input,

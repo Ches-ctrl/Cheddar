@@ -146,86 +146,65 @@ puts "-------------------------------------"
 
 puts "Creating new jobs..."
 
-# Later: Add additional fields and change fields e.g. notice_period_weeks
-# NB. Whenever changing a field, you need to adjust 3 places: Job Model, User Model and Default Value
-# Ideas: access job description details via webpage meta properties rather than by scraping
-# May not need an additional hash for application_details if you can access it via the meta tags (provided these are consistent)
-# Later: Add capability to deal with recaptcha
-
-# window.careers = {"features":{"smartSEODescription":true,"talentPoolToggleOnACPSave":true,"acpi18n":true,"recaptcha":false,"indeedNewIntegration":true,"prerender":true,"surveys":false},"dimensions":{"i18n":false,"advanced":true,"hasCustomDomain":false}};
-
-# Date created variables
-date_created_1 = Date.today - rand(1..14).days
-date_created_2 = Date.today - rand(1..14).days
-date_created_3 = Date.today - rand(1..14).days
-date_created_4 = Date.today - rand(1..14).days
-date_created = [date_created_1, date_created_2, date_created_3, date_created_4,]
-
-# Deadline variables
-deadline_1 = Date.today.next_week(:friday) + rand(1..7).days
-deadline_2 = Date.today.next_week(:friday) + rand(1..7).days
-deadline_3 = Date.today.next_week(:friday) + rand(1..7).days
-deadline_4 = Date.today.next_week(:friday) + rand(1..7).days
-
-deadlines = [deadline_1, deadline_2, deadline_3, deadline_4,]
-
 # TODO: Setup iframe for external embeds?
 # TODO: Create aliases for company_names
-
 
 # -----------------
 # Greenhouse ATS
 # -----------------
 
-# Greenhouse Main URLs:
-# https://boards.greenhouse.io/#{company_name}/jobs/#{job_id}
-# https://boards.greenhouse.io/embed/job_app?for=#{company_name}&token=#{job_id}
-# https://boards.#{region_code}.greenhouse.io/embed/job_app?for=#{company_name}&token=#{job_id}
-
-# Greenhouse API URLs:
-# https://boards-api.greenhouse.io/v1/boards/#{company_name} # Sometimes redirects
-# https://boards-api.greenhouse.io/#{company_name}
-# https://boards-api.greenhouse.io/#{company_name}/jobs
-# https://boards-api.greenhouse.io/#{company_name}/jobs/#{job_id}
-
 job_urls = [
-  "https://boards.greenhouse.io/synthesia/jobs/4250474101",
+  "https://boards.greenhouse.io/ambientai/jobs/4301104006",
   "https://boards.greenhouse.io/bcgdv/jobs/6879714002",
   "https://boards.greenhouse.io/cleoai/jobs/5033034002",
   "https://boards.greenhouse.io/codepath/jobs/4035988007",
   "https://boards.greenhouse.io/codepath/jobs/4059099007",
   "https://boards.greenhouse.io/codepath/jobs/4141438007",
   "https://boards.greenhouse.io/coreweave/jobs/4241710006",
+  "https://boards.greenhouse.io/css/jobs/6975614002",
   "https://boards.greenhouse.io/cultureamp/jobs/5496553",
   "https://boards.greenhouse.io/cultureamp/jobs/5538191",
   "https://boards.greenhouse.io/deliveroo/jobs/5094403",
   "https://boards.greenhouse.io/deliveroo/jobs/5447359",
   "https://boards.greenhouse.io/doctolib/jobs/5811790003",
+  "https://boards.greenhouse.io/doctolib/jobs/5828747003",
   "https://boards.greenhouse.io/drweng/jobs/5345753",
   "https://boards.greenhouse.io/elementalexcelerator/jobs/5027131004",
   "https://boards.greenhouse.io/forter/jobs/6889370002",
   "https://boards.greenhouse.io/gemini/jobs/5203656",
+  "https://boards.greenhouse.io/getir/jobs/4258936101",
   "https://boards.greenhouse.io/globalwebindex/jobs/6940363002",
   "https://boards.greenhouse.io/gomotive/jobs/7025455002",
   "https://boards.greenhouse.io/gomotive/jobs/7030195002",
   "https://boards.greenhouse.io/grammarly/jobs/5523286",
+  "https://boards.greenhouse.io/gusto/jobs/5535268",
   "https://boards.greenhouse.io/halcyon/jobs/4891571004",
   "https://boards.greenhouse.io/janestreet/jobs/4274809002",
+  "https://boards.greenhouse.io/janestreet/jobs/6102180002",
   "https://boards.greenhouse.io/jobber/jobs/7023846002",
   "https://boards.greenhouse.io/joinforage/jobs/4155367007",
   "https://boards.greenhouse.io/knowde/jobs/4129896003",
   "https://boards.greenhouse.io/knowde/jobs/4378100003",
   "https://boards.greenhouse.io/knowde/jobs/4576119003",
   "https://boards.greenhouse.io/knowde/jobs/5808402003",
+  "https://boards.greenhouse.io/monzo/jobs/5410348",
   "https://boards.greenhouse.io/monzo/jobs/5463167",
   "https://boards.greenhouse.io/monzo/jobs/5482027",
   "https://boards.greenhouse.io/mozilla/jobs/5448569",
   "https://boards.greenhouse.io/narvar/jobs/5388111",
   "https://boards.greenhouse.io/narvar/jobs/5436866",
+  "https://boards.greenhouse.io/niantic/jobs/7068655002",
   "https://boards.greenhouse.io/okx/jobs/5552949003",
   "https://boards.greenhouse.io/opendoor/jobs/4255190006",
+  "https://boards.greenhouse.io/phonepe/jobs/5816286003",
   "https://boards.greenhouse.io/relativity/jobs/6916371002",
+  "https://boards.greenhouse.io/remotecom/jobs/5756728003",
+  "https://boards.greenhouse.io/samsara/jobs/5580492",
+  "https://boards.greenhouse.io/settle/jobs/4350962005",
+  "https://boards.greenhouse.io/springhealth66/jobs/4336742005",
   "https://boards.greenhouse.io/synack/jobs/5469197",
+  "https://boards.greenhouse.io/synthesia/jobs/4250474101",
+  "https://boards.greenhouse.io/teads/jobs/5529600",
   "https://boards.greenhouse.io/tenstorrent/jobs/4120628007",
   "https://boards.greenhouse.io/workato/jobs/7016061002",
   "https://boards.greenhouse.io/zscaler/jobs/4092460007"
@@ -234,9 +213,7 @@ job_urls = [
 # TODO: Add collect additional company postings functionality
 
 job_urls.each do |url|
-  p "creating a job"
   company = CompanyCreator.new(url).find_or_create_company
-  p "company created"
   Job.create!(
     job_title: "Job Title Placeholder",
     job_posting_url: url,
@@ -246,24 +223,7 @@ end
 
 puts "Created #{job_urls.count} jobs based on the provided URLs."
 
-job_urls_2 = [
-  "https://boards.greenhouse.io/ambientai/jobs/4301104006",
-  "https://boards.greenhouse.io/css/jobs/6975614002",
-  "https://boards.greenhouse.io/doctolib/jobs/5828747003",
-  "https://boards.greenhouse.io/getir/jobs/4258936101",
-  "https://boards.greenhouse.io/gusto/jobs/5535268",
-  "https://boards.greenhouse.io/janestreet/jobs/6102180002",
-  "https://boards.greenhouse.io/monzo/jobs/5410348",
-  "https://boards.greenhouse.io/niantic/jobs/7068655002",
-  "https://boards.greenhouse.io/phonepe/jobs/5816286003",
-  "https://boards.greenhouse.io/remotecom/jobs/5756728003",
-  "https://boards.greenhouse.io/samsara/jobs/5580492",
-  "https://boards.greenhouse.io/settle/jobs/4350962005",
-  "https://boards.greenhouse.io/springhealth66/jobs/4336742005",
-  "https://boards.greenhouse.io/teads/jobs/5529600",
-]
-
-job_urls_3 = [
+job_urls_embedded = [
   "https://bolt.eu/en/careers/positions/6989975002",
   "https://careers.datadoghq.com/detail/4452892",
   "https://jobs.elastic.co/form?gh_jid=5518454",

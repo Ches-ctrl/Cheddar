@@ -39,8 +39,7 @@ class Job < ApplicationRecord
 
   # def find_or_create_company
   #   p "Finding or creating company"
-  #   company_creator = CompanyCreator.new(url)
-  #   company = company_creator.find_or_create_company
+  #   company = CompanyCreator.new(url).find_or_create_company
   #   self.company_id = company.id
   # end
 
