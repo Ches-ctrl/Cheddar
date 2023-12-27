@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_22_111825) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_27_184314) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -86,6 +86,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_22_111825) do
     t.string "url_careers"
     t.string "url_linkedin"
     t.string "industry_subcategory", default: "n/a"
+    t.bigint "applicant_tracking_system_id"
+    t.string "url_ats"
+    t.string "ats_identifier"
+    t.string "description"
   end
 
   create_table "educations", force: :cascade do |t|

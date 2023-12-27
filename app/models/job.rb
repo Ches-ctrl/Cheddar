@@ -1,9 +1,12 @@
 class Job < ApplicationRecord
   include Ats::Greenhouse
   include Ats::Workable
+  include PgSearch::Model
 
   # TODO: Number of questions in job form
   # TODO: Estimated time to complate job application based on form length/type
+
+  # attr_accessor :company_name
 
   serialize :application_criteria, coder: JSON
 
@@ -20,9 +23,8 @@ class Job < ApplicationRecord
   validates :job_posting_url, uniqueness: true
 
   before_create :set_application_criteria
+  # before_create: :find_or_create_company
   after_create :update_application_criteria
-
-  include PgSearch::Model
 
   pg_search_scope :global_search,
     against: [:job_title, :salary, :job_description],
@@ -32,6 +34,14 @@ class Job < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+  private
+
+  # def find_or_create_company(company_name)
+  #   return if company_name.blank?
+  #   company = Company.find_or_create_by(company_name: company_name)
+  #   self.company_id = company.id
+  # end
 
   def set_application_criteria
     if job_posting_url.include?('greenhouse')
@@ -53,7 +63,7 @@ class Job < ApplicationRecord
   def update_application_criteria
     if job_posting_url.include?('greenhouse')
       extra_fields = GetFormFieldsJob.perform_later(job_posting_url)
-      p extra_fields
+      # p extra_fields
     else
       p "No additional fields to add"
     end

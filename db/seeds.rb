@@ -83,7 +83,6 @@ companies_data = [
   { name: "Meta", category: "Tech", website_url: "https://meta.com/" },
   { name: "Amazon Web Services", category: "Tech", website_url: "https://aws.com/" },
   { name: "Netflix", category: "Tech", website_url: "https://Netflix.com/" },
-  { name: "EBay", category: "E-Commerce", website_url: "https://bcgdv.com/" },
   { name: "Microsoft", category: "Tech", website_url: "https://Microsoft.com/" },
   { name: "OpenAI", category: "Tech", website_url: "https://openai.com/" },
   { name: "Tesla", category: "Automotive", website_url: "https://tesla.com/" },
@@ -169,16 +168,24 @@ deadline_4 = Date.today.next_week(:friday) + rand(1..7).days
 deadlines = [deadline_1, deadline_2, deadline_3, deadline_4,]
 
 # TODO: Setup iframe for external embeds?
+# TODO: Create aliases for company_names
 
 
 # -----------------
 # Greenhouse ATS
 # -----------------
 
-# Alternative URL structure: https://boards.greenhouse.io/embed/job_app?for=gemini&token=5203656
+# Greenhouse Main URLs:
+# https://boards.greenhouse.io/#{company_name}/jobs/#{job_id}
+# https://boards.greenhouse.io/embed/job_app?for=#{company_name}&token=#{job_id}
+
+# Greenhouse API URLs:
+# https://boards-api.greenhouse.io/v1/boards/#{company_name} # Sometimes redirects
+# https://boards-api.greenhouse.io/#{company_name}
+# https://boards-api.greenhouse.io/#{company_name}/jobs
+# https://boards-api.greenhouse.io/#{company_name}/jobs/#{job_id}
 
 job_urls = [
-  "https://boards.greenhouse.io/ably30/jobs/4183821101",
   "https://boards.greenhouse.io/synthesia/jobs/4250474101",
   "https://boards.greenhouse.io/bcgdv/jobs/6879714002",
   "https://boards.greenhouse.io/cleoai/jobs/5033034002",
@@ -221,14 +228,17 @@ job_urls = [
   "https://boards.greenhouse.io/zscaler/jobs/4092460007"
 ]
 
+# TODO: Add ATS System to Company Model
+# TODO: Add ATS System Company Identifier to Company Model
+# rails g migration AddAtsSystemToCompanies applicant_tracking_system_id:bigint url_ats:string ats_identifier:string
+
+company_data = {}
+
 job_urls.each do |url|
   match = url.match(%r{https://boards\.greenhouse\.io/([^/]+)/jobs/\d+})
   if match
-    company_name = match[1]
-    p company_name
-
-    company_api_url = "https://boards-api.greenhouse.io/v1/boards/#{company_name}"
-    p company_api_url
+    ats_identifier = match[1]
+    company_api_url = "https://boards-api.greenhouse.io/v1/boards/#{ats_identifier}"
 
     uri = URI(company_api_url)
     response = Net::HTTP.get(uri)
@@ -236,21 +246,43 @@ job_urls.each do |url|
 
     # Extract the company name
     company_name = data['name']
+    description = data['content']
 
     # TODO: Get properly capitalised company name from API
     # TODO: Get company url (not available from API)
 
     company = Company.find_or_create_by(company_name: company_name)
-
-    # Create a Job record
-    Job.create!(
-      job_title: "Job Title Placeholder",
-      job_posting_url: url,
-      company_id: company.id
-    )
+    company.update(description: description)
+    p company
   else
     puts "Unable to extract company name from URL: #{url}"
   end
+
+  cleaned_url = url.gsub(/\/jobs\/.*/, '')
+  original_url = URI.parse(cleaned_url)
+  company.update(url_ats: original_url)
+
+  http = Net::HTTP.new(original_url.host, original_url.port)
+  http.use_ssl = true if original_url.scheme == 'https'
+
+  request = Net::HTTP::Get.new(original_url.request_uri)
+  response = http.request(request)
+
+  if response.is_a?(Net::HTTPRedirection)
+    redirected_url = URI.parse(response['Location'])
+    company_website_url = redirected_url.host
+    p company_website_url
+    company.update(company_website_url: company_website_url)
+  else
+    company_website_url = original_url.host
+    p "No redirect for #{company_website_url}"
+  end
+
+  Job.create!(
+    job_title: "Job Title Placeholder",
+    job_posting_url: url,
+    company_id: company.id
+  )
 end
 
 puts "Created #{job_urls.count} jobs based on the provided URLs."
@@ -284,438 +316,6 @@ job_urls_3 = [
   "https://www.sumup.com/careers/positions/london-united-kingdom/engineering/engineering-manager-mobile-global-bank/6970735002",
   "https://www.zilch.com/uk/job/?gh_jid=5045377004",
 ]
-
-
-# 6. Gemini
-Job.create!(
-  job_title: "Cloud Network Engineer @ Gemini ",
-  job_description: "Gemini is a crypto exchange and custodian that allows customers to buy, sell, store, and earn more than 30 cryptocurrencies like bitcoin, bitcoin cash, ether, litecoin, and Zcash. Gemini is a New York trust company that is subject to the capital reserve requirements, cybersecurity requirements, and banking compliance standards set forth by the New York State Department of Financial Services and the New York Banking Law. Gemini was founded in 2014 by twin brothers Cameron and Tyler Winklevoss to empower the individual through crypto.",
-  salary: 98000,
-  job_posting_url: "https://boards.greenhouse.io/embed/job_app?for=gemini&token=5203656",
-  company_id: Company.find_by(company_name: 'Gemini').id,
-  captcha: false,
-  # About Us, Position Overview, Responsibilities, Requirements, Benefits, Application Process
-)
-
-# 7. Alby
-Job.create!(
-  job_title: "Web Engineer - Content @ Ably",
-  job_description: "You will be responsible for helping shape the future of our content marketing and publishing platforms. You'll draw on your broad range of expertise across the web stack to design, develop and deliver.",
-  salary: 48000,
-  job_posting_url: "https://boards.eu.greenhouse.io/ably30/jobs/4183821101",
-  company_id: Company.find_by(company_name: 'Alby').id
-)
-
-puts "Created job - #{Job.last.job_title}"
-
-# 8. Synthesia
-Job.create!(
-  job_title: "Webflow Developer @ Synthesia ",
-  job_description: "Support full-stack engineering teams, Communicate across functions and drive engineering initiatives,Empathise with and help define product strategy for our target audience.",
-  salary: 41000,
-  job_posting_url: "https://boards.eu.greenhouse.io/synthesia/jobs/4250474101",
-  company_id: Company.find_by(company_name: 'Synthesia').id
-)
-
-puts "Created job - #{Job.last.job_title}"
-
-# 9. BCG Digital Ventures
-Job.create!(
-  job_title: "Fullstack Engineer: Green-Tech Business",
-  job_description: "Part of a new team, we are hiring software engineers to work in squads on developing applications for the company'’'s digital portfolio, built in the Azure ecosystem. You will play a key role in designing, developing, maintaining and improving business'’' key product, thus enabling customers to measure their climate impact.",
-  salary: 40000,
-  job_posting_url: "https://boards.greenhouse.io/bcgdv/jobs/6879714002?gh_jid=6879714002",
-  company_id: Company.find_by(company_name: 'BCG Digital Ventures').id
-)
-
-puts "Created job - #{Job.last.job_title}"
-
-# 11. Cleo
-Job.create!(
-  job_title: "Backend Ruby Engineer",
-  job_description: "Most people come to Cleo to do work that matters. Every day, we empower people to build a life beyond their next paycheck, building a beloved AI that enables you to forge your own path toward financial well-being.",
-  salary: 40000,
-  job_posting_url: "https://boards.greenhouse.io/cleoai/jobs/5033034002",
-  company_id: Company.find_by(company_name: 'Cleo').id
-)
-
-puts "Created job - #{Job.last.job_title}"
-
-# 12. Coreweave
-
-Job.create!(
-  job_title: "Senior Engineer @ Kubernetes Core Interfacesat CoreWeave ",
-  job_description: "We are looking for a Senior Engineer - Java (Defi - DEX) to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application. ",
-  salary: 38000,
-  job_posting_url: "https://boards.greenhouse.io/coreweave/jobs/4241710006",
-  company_id: Company.find_by(company_name: 'Kubernetes').id
-)
-
-puts "Created job - #{Job.last.job_title}"
-
-# 13. Deliveroo
-
-Job.create!(
-  job_title: "Software Engineer II - Full-Stack",
-  job_description: "We're building the definitive online food company, transforming the way the world eats by making hyper-local food more convenient and accessible. We obsess about building the future of food, whilst using our network as a force for good. We're at the forefront of an industry, powered by our market-leading technology and unrivalled network to bring incredible convenience and selection to our customers.",
-  salary: 31000,
-  job_posting_url: "https://boards.greenhouse.io/deliveroo/jobs/5447359",
-  company_id: Company.find_by(company_name: 'Deliveroo').id
-)
-
-puts "Created job - #{Job.last.job_title}"
-
-# 14. Deliveroo
-Job.create!(
-  job_title: "Software Engineer - Golang",
-  job_description: "We're building the definitive online food company, transforming the way the world eats by making hyper-local food more convenient and accessible. We obsess about building the future of food, whilst using our network as a force for good. We're at the forefront of an industry, powered by our market-leading technology and unrivaled network to bring incredible convenience and selection to our customers.",
-  salary: 40000,
-  job_posting_url: "https://boards.greenhouse.io/deliveroo/jobs/5094403",
-  company_id: Company.find_by(company_name: 'Deliveroo').id
-)
-
-puts "Created job - #{Job.last.job_title}"
-
-# 15. DRW
-Job.create!(
-  job_title: "Software Engineer - Commodities @ DRW   ",
-  job_description: "DRW are looking for a Software Engineer to join the Commodities trading group to build and support data pipelines for the ingestion, management, and analysis of datasets used by analysts and traders.",
-  salary: 60000,
-  job_posting_url: "https://boards.greenhouse.io/drweng/jobs/5345753",
-  company_id: Company.find_by(company_name: 'DRW').id
-)
-
-puts "Created job - #{Job.last.job_title}"
-
-# 16. Elemental Excelerator
-Job.create!(
-  job_title: "Developer in Residence @ Elemental Excelerator ",
-  job_description: "We are looking for a Developer in Residence to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application. ",
-  salary: 29000,
-  job_posting_url: "https://boards.greenhouse.io/elementalexcelerator/jobs/5027131004",
-  company_id: Company.find_by(company_name: 'Elemental Excelerator').id
-)
-
-puts "Created job - #{Job.last.job_title}"
-
-# 17. Forter
-Job.create!(
-  job_title: "Backend Payment Architech @ Forter",
-  job_description: "Payment System Analysis: Conduct payment solution technical requirement deep dives with clients to understand their business goals",
-  salary: 43000,
-  job_posting_url: "https://boards.greenhouse.io/forter/jobs/6889370002",
-  company_id: Company.find_by(company_name: 'Forter').id
-)
-
-puts "Created job - #{Job.last.job_title}"
-
-# 18. Jane Street
-Job.create!(
-  job_title: "FPGA Engineer @ Jane Street",
-  job_description: "We are looking for a FPGA Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application. ",
-  salary: 43000,
-  job_posting_url: "https://boards.greenhouse.io/janestreet/jobs/4274809002",
-  company_id: Company.find_by(company_name: 'Jane Street').id
-)
-
-puts "Created job - #{Job.last.job_title}"
-
-# 19. Forage
-Job.create!(
-  job_title: "Principal Backend Engineer @ Forage",
-  job_description: "We are looking for a Principal Backend Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application. ",
-  salary: 55000,
-
-
-  job_posting_url: "https://boards.greenhouse.io/joinforage/jobs/4155367007",
-  company_id: Company.find_by(company_name: 'Forage').id
-)
-
-puts "Created job - #{Job.last.job_title}"
-
-# 20. Mozilla
-Job.create!(
-  job_title: "Staff Full Stack Software Engineer @ Mozilla",
-  job_description: "We are looking for a Staff Full Stack Software Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application. ",
-  salary: 81000,
-  job_posting_url: "https://boards.greenhouse.io/mozilla/jobs/5448569",
-  company_id: Company.find_by(company_name: 'Mozilla').id
-)
-
-puts "Created job - #{Job.last.job_title}"
-
-# 21. OKX
-Job.create!(
-  job_title: "Senior Engineer - Java (Defi - DEX) @ OKX ",
-  job_description: "We are looking for a Senior Engineer - Java (Defi - DEX) to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application. ",
-  salary: 34000,
-
-  job_posting_url: "https://boards.greenhouse.io/okx/jobs/5552949003",
-  company_id: Company.find_by(company_name: 'OXK').id
-)
-
-puts "Created job - #{Job.last.job_title}"
-
-# 22. Relativity
-Job.create!(
-  job_title: "Manager, Tooling Engineering @ Relativity Space",
-  job_description: "We are looking for a Manager, Tooling Engineering to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application. ",
-  salary: 60000,
-  job_posting_url: "https://boards.greenhouse.io/relativity/jobs/6916371002",
-  company_id: Company.find_by(company_name: 'Relativity Space').id
-)
-
-puts "Created job - #{Job.last.job_title}"
-
-# 23. Tenstorrent
-Job.create!(
-  job_title: "Staff Emulation Methodology and Infrastructure Engineer @ Tenstorrent",
-  job_description: "We are looking for a UI Developer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 35000,
-  job_posting_url: "https://boards.greenhouse.io/tenstorrent/jobs/4120628007",
-  company_id: Company.find_by(company_name: 'Tenstorrent').id
-)
-
-puts "Created job - #{Job.last.job_title}"
-
-# 24. Wise
-Job.create!(
-  job_title: "Senior Backend Engineer - Fraud @ Wise",
-  job_description: "We'’'re looking for a Senior Backend Engineer to join our Fraud team in London. You'’'ll be working on building and improving our fraud detection systems, which are used to protect our customers and Wise from fraudsters. You'’'ll be working in a cross-functional team with other engineers, product managers, data scientists and analysts to build and improve our fraud detection systems.",
-  salary: 55000,
-  job_posting_url: "https://boards.greenhouse.io/zscaler/jobs/4092460007",
-  company_id: Company.find_by(company_name: 'Zscaler').id
-)
-puts "Created job - #{Job.last.job_title}"
-# 26. GWI
-Job.create!(
-  job_title: "Data Science Talent Pool @ GWI ",
-  job_description: "Our Data Science department is split between the Data Analytics Engineering and Data Science teams consisting of Data Scientists and Machine Learning Engineers reporting to the Team Leads under the VP of Data Science or the Director of Data Analytics Engineering. The teams mainly work with GCP, Python and SQL. ",
-  salary: 66000,
-  job_posting_url: "https://boards.greenhouse.io/globalwebindex/jobs/6940363002",
-  company_id: Company.find_by(company_name: 'GWI').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 27. Monzo
-Job.create!(
-  job_title: "Director of Data Science, Financial Crime @ Monzo ",
-  job_description: "We are looking for a Director of Data Science, Financial Crime to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
-  salary: 120000,
-  job_posting_url: "https://boards.greenhouse.io/monzo/jobs/5463167",
-  company_id: Company.find_by(company_name: 'Monzo').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 28. Monzo
-Job.create!(
-  job_title: "Data science manager @ Monzo ",
-  job_description: "We are looking for a Data science manager to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
-  salary: 100000,
-  job_posting_url: "https://boards.greenhouse.io/monzo/jobs/5482027",
-  company_id: Company.find_by(company_name: 'Monzo').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 29. Jobber
-Job.create!(
-  job_title: "Senior Data Science Manager @ Jobber ",
-  job_description: "We are looking for a Senior Data Science Manager to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
-  salary: 90000,
-  job_posting_url: "https://boards.greenhouse.io/jobber/jobs/7023846002",
-  company_id: Company.find_by(company_name: 'Jobber').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 30. tele health
-Job.create!(
-  job_title: "Software Engineer @ Tele Health ",
-  job_description: "We are looking for a Software Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
-  salary: 90000,
-  job_posting_url: "https://boards.greenhouse.io/doctolib/jobs/5811790003",
-  company_id: Company.find_by(company_name: 'Tele Health').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 31. Knowde
-Job.create!(
-  job_title: "Back-End Software Engineer - Ruby/Rails @ Knowde ",
-  job_description: "We are looking for a Back-End Software Engineer - Ruby/Rails to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
-  salary: 92000,
-  job_posting_url: "https://boards.greenhouse.io/knowde/jobs/4378100003",
-  company_id: Company.find_by(company_name: 'Knowde').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 32. Knowde
-Job.create!(
-  job_title: "Engineering Manager @ Knowde ",
-  job_description: "We are looking for a Engineering Manager to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
-  salary: 88000,
-  job_posting_url: "https://boards.greenhouse.io/knowde/jobs/5808402003",
-  company_id: Company.find_by(company_name: 'Knowde').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 33. Knowde
-Job.create!(
-  job_title: "Front-End Software Engineer @ Knowde ",
-  job_description: "We are looking for a Front-End Software Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application ",
-  salary: 99000,
-  job_posting_url: "https://boards.greenhouse.io/knowde/jobs/4576119003",
-  company_id: Company.find_by(company_name: 'Knowde').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 34. Knowde
-Job.create!(
-  job_title: "Senior Back-End Software Engineer @ Knowde ",
-  job_description: "We are looking for a Senior Back-End Software Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 93000,
-  job_posting_url: "https://boards.greenhouse.io/knowde/jobs/4129896003",
-  company_id: Company.find_by(company_name: 'Knowde').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 35. Code path
-Job.create!(
-  job_title: "Senior Ruby Engineer @ Codepath ",
-  job_description: "We are looking for a Senior Back-End Software Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 89000,
-  job_posting_url: "https://boards.greenhouse.io/codepath/jobs/4035988007",
-  company_id: Company.find_by(company_name: 'Code Path').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 36. Code path
-Job.create!(
-  job_title: "Lead Web Development Instructor @ Codepath ",
-  job_description: "We are looking for a Lead Web Development Instructor to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 97000,
-  job_posting_url: "https://boards.greenhouse.io/codepath/jobs/4059099007",
-  company_id: Company.find_by(company_name: 'Code Path').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 37. Code path
-Job.create!(
-  job_title: "Cloud Infrastructure Engineer @ Codepath",
-  job_description: "We are looking for a Cloud Infrastructure Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 97000,
-  job_posting_url: "https://boards.greenhouse.io/codepath/jobs/4141438007",
-  company_id: Company.find_by(company_name: 'Code Path').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 38. workato
-Job.create!(
-  job_title: "Senior Ruby Engineer @ Workato",
-  job_description: "We are looking for a Senior Ruby Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 97000,
-  job_posting_url: "https://boards.greenhouse.io/workato/jobs/7016061002",
-  company_id: Company.find_by(company_name: 'Workato').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 39. Open door
-Job.create!(
-  job_title: "Staff Software Engineer - Ruby on rails OR Golang @ Opendoor",
-  job_description: "We are looking for a Staff Software Engineer - Ruby on rails OR Golang to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 91000,
-  job_posting_url: "https://boards.greenhouse.io/opendoor/jobs/4255190006",
-  company_id: Company.find_by(company_name: 'Opendoor').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 40. Culture Amp
-Job.create!(
-  job_title: "Senior Engineer - Ruby @ Culture Amp",
-  job_description: "We are looking for a Senior Engineer - Ruby to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 89000,
-  job_posting_url: "https://boards.greenhouse.io/cultureamp/jobs/5538191",
-  company_id: Company.find_by(company_name: 'Culture Amp').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 41. Culture Amp
-Job.create!(
-  job_title: "Automation Engineer @ Culture Amp",
-  job_description: "We are looking for a Automation Engineer to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 97000,
-  job_posting_url: "https://boards.greenhouse.io/cultureamp/jobs/5496553",
-  company_id: Company.find_by(company_name: 'Culture Amp').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 42. Narvar
-Job.create!(
-  job_title: "Staff Engineer, Ruby on Rails and React @ Narvar",
-  job_description: "We are looking for a Staff Engineer, Ruby on Rails and React to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 89000,
-  job_posting_url: "https://boards.greenhouse.io/narvar/jobs/5388111",
-  company_id: Company.find_by(company_name: 'Narvar').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 43.Narvar
-Job.create!(
-  job_title: "Director of Machine Learning @ Narvar",
-  job_description: "We are looking for a Director of Machine Learning to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 120000,
-  job_posting_url: "https://boards.greenhouse.io/narvar/jobs/5436866",
-  company_id: Company.find_by(company_name: 'Narvar').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 44. Synack
-Job.create!(
-  job_title: "Senior Backend Engineer - Ruby on Rails @ Synack",
-  job_description: "We are looking for a Senior Backend Engineer - Ruby on Rails to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 110000,
-  job_posting_url: "https://boards.greenhouse.io/synack/jobs/5469197",
-  company_id: Company.find_by(company_name: 'Synack').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 46. grammarly
-Job.create!(
-  job_title: "AI Security Researcher -  @ Grammarly",
-  job_description: "We are looking for a AI Security Researcher -  to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 120000,
-  job_posting_url: "https://boards.greenhouse.io/grammarly/jobs/5523286",
-  company_id: Company.find_by(company_name: 'Grammarly').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 47. Halcyon
-Job.create!(
-  job_title: "Cloud Backend Engineer -  @ Halcyon",
-  job_description: "We are looking for a Cloud Backend Engineer -  to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 112000,
-  job_posting_url: "https://boards.greenhouse.io/halcyon/jobs/4891571004",
-  company_id: Company.find_by(company_name: 'Halcyon').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 49. Motive
-Job.create!(
-  job_title: "Cloud Infrastructure Engineer -  @ Motive",
-  job_description: "We are looking for a Cloud Infrastructure Engineer -  to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 102000,
-  job_posting_url: "https://boards.greenhouse.io/gomotive/jobs/7030195002",
-  company_id: Company.find_by(company_name: 'Motive').id
-)
-puts "Created job - #{Job.last.job_title}"
-
-# 50. Motive
-Job.create!(
-  job_title: "Data Engineer -  @ Motive",
-  job_description: "We are looking for a Data Engineer -  to join our team and help us build the future of work. You will be working closely with our product and design teams to build and improve our web application",
-  salary: 101000,
-  job_posting_url: "https://boards.greenhouse.io/gomotive/jobs/7025455002",
-  company_id: Company.find_by(company_name: 'Motive').id
-)
-puts "Created job - #{Job.last.job_title}"
 
 puts "Created #{Job.count} jobs..."
 
