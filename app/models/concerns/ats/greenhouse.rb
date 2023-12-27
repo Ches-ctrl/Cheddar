@@ -5,27 +5,38 @@ module Ats::Greenhouse
   GREENHOUSE_FIELDS = {
     first_name: {
       interaction: :input,
-      locators: 'first_name'
+      locators: 'first_name',
+      required: true,
     },
     last_name: {
       interaction: :input,
-      locators: 'last_name'
+      locators: 'last_name',
+      required: true,
     },
     email: {
       interaction: :input,
-      locators: 'email'
+      locators: 'email',
+      required: true,
     },
     phone_number: {
       interaction: :input,
-      locators: 'phone'
+      locators: 'phone',
+      required: true,
     },
     city: {
       interaction: :input,
-      locators: 'job_application[location]'
+      locators: 'job_application[location]',
+      required: true,
     },
     resume: {
       interaction: :upload,
-      locators: 'button[aria-describedby="resume-allowable-file-types"'
+      locators: 'button[aria-describedby="resume-allowable-file-types"',
+      required: true,
+    },
+    cover_letter: {
+      interaction: :upload,
+      locators: 'button[aria-describedby="cover_letter-allowable-file-types"]',
+      required: false,
     },
     # location_click: {
     #   interaction: :listbox,

@@ -3,6 +3,10 @@ require 'json'
 
 url = 'http://universities.hipolabs.com/search?'
 
+# TODO: Parse all Greenhouse schools into JSON to use in form building
+# url_gh = 'https://boards-api.greenhouse.io/v1/boards/phonepe/education/schools'
+# url_gh = 'https://boards-api.greenhouse.io/v1/boards/phonepe/education/schools?page=2'
+
 response = URI.open(url).read
 data = JSON.parse(response)
 
