@@ -1,6 +1,12 @@
 class Job < ApplicationRecord
   include Ats::Greenhouse
   include Ats::Workable
+  include PgSearch::Model
+
+  # TODO: Number of questions in job form
+  # TODO: Estimated time to complate job application based on form length/type
+
+  # attr_accessor :company_name
 
   serialize :application_criteria, coder: JSON
 
@@ -16,10 +22,9 @@ class Job < ApplicationRecord
   validates :job_title, presence: true
   validates :job_posting_url, uniqueness: true
 
+  # before_create :find_or_create_company
   before_create :set_application_criteria
   after_create :update_application_criteria
-
-  include PgSearch::Model
 
   pg_search_scope :global_search,
     against: [:job_title, :salary, :job_description],
@@ -30,16 +35,15 @@ class Job < ApplicationRecord
       tsearch: { prefix: true }
     }
 
+  # def find_or_create_company
+  #   p "Finding or creating company"
+  #   company = CompanyCreator.new(url).find_or_create_company
+  #   self.company_id = company.id
+  # end
+
   def set_application_criteria
     if job_posting_url.include?('greenhouse')
-      self.application_criteria = Job::GREENHOUSE_FIELDS
-      # extra_fields = GetFormFieldsJob.perform_later(job_posting_url)
-      # extra_fields = ScraperTest.new.perform(job_posting_url)
-      # unless extra_fields.nil?
-      #   self.application_criteria = application_criteria.merge(extra_fields)
-      #   p application_criteria
-      # end
-      # Capybara.send(:session_pool).each { |name, ses| ses.driver.quit }
+      self.application_criteria = Job::GREENHOUSE_CORE_FIELDS
     elsif job_posting_url.include?('workable')
       self.application_criteria = Job::WORKABLE_FIELDS
     else
@@ -50,7 +54,7 @@ class Job < ApplicationRecord
   def update_application_criteria
     if job_posting_url.include?('greenhouse')
       extra_fields = GetFormFieldsJob.perform_later(job_posting_url)
-      p extra_fields
+      # p extra_fields
     else
       p "No additional fields to add"
     end

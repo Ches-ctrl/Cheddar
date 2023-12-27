@@ -14,14 +14,23 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get 'profile', to: 'users#show', as: 'profile'
   get "up" => "rails/health#show", as: :rails_health_check
+
+  # Pages
   get "about" => "pages#about"
   get "test" => "pages#test"
   get "faqs" => "pages#faqs"
   get "howitworks" => "pages#how_it_works", as: :how_it_works
   get "success" => "pages#success", as: :success
+
+  # Jobs
   get '/jobs', to: 'jobs#index', as: :jobs
+  get '/jobs/add', to: 'jobs#add'
+  get '/jobs/add_job', to: 'jobs#add_job'
+
+  # Chatbot
   post '/chatbot/chat', to: 'messages#chat'
 
+  # Resources
   resources :jobs, only: [:show, :create] do
     resources :saved_jobs, only: [:create]
     collection do

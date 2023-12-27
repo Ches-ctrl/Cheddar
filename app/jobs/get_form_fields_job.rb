@@ -6,15 +6,23 @@ class GetFormFieldsJob < ApplicationJob
   queue_as :default
   sidekiq_options retry: false
 
-  # TODO: Add scrape of job description and other details to this background job (so that it all executes in one capybara session)
+  # TODO: Calculate total number of input fields and implied difficulty of application
+
   # TODO: Potentially change to scraping all fields from the job posting
-  # TODO: Add cv required based on this scrape
+  # TODO: Add boolean cv required based on this scrape
   # TODO: add test of filling out the form fields before job goes live
 
   def perform(url)
     visit(url)
     return if page.has_selector?('#flash_pending')
     find_apply_button.click rescue nil
+
+    # Get Job Details, Company & Description
+
+    # TODO: Get details here
+
+
+    # Find Form Fields
 
     # page_html = page.html
     form = find('form', text: /apply|application/i)

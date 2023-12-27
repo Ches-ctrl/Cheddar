@@ -23,6 +23,8 @@ class JobApplicationsController < ApplicationController
           application_response.interaction = details["interaction"]
           application_response.field_option = details["option"]
 
+          # TODO: Add boolean required field (include in params and form submission page)
+
           if details["options"].present?
             application_response.field_options = details["options"]
           end
@@ -129,6 +131,6 @@ class JobApplicationsController < ApplicationController
   # TODO: Update job_application_params to include the user inputs
 
   def job_application_params
-    params.require(:job_application).permit(application_responses_attributes: [:field_name, :field_value, :field_locator, :interaction, :field_option, :field_options])
+    params.require(:job_application).permit(application_responses_attributes: [:field_name, :field_value, :field_locator, :interaction, :field_option, :field_options, :required])
   end
 end
