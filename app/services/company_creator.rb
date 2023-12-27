@@ -16,7 +16,7 @@ class CompanyCreator
     update_description_and_ats(company, description, ats_identifier)
     update_company_url_and_website(company) if company.url_ats.blank?
 
-    puts "Created company - #{company.company_name}"
+    puts "Created / Updated company - #{company.company_name}"
     company
   end
 
