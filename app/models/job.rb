@@ -35,8 +35,6 @@ class Job < ApplicationRecord
       tsearch: { prefix: true }
     }
 
-  private
-
   # def find_or_create_company
   #   p "Finding or creating company"
   #   company = CompanyCreator.new(url).find_or_create_company
