@@ -32,10 +32,15 @@ class JobsController < ApplicationController
   end
 
   def create
+    p "Creating job"
     @job = Job.new(job_params)
+    p "Started JobCreator"
+    JobCreator.new(@job).add_job_details
+    p @job
     if @job.save
       redirect_to job_path(@job), notice: 'Job was successfully added'
     else
+      p "Job not saved"
       @jobs = Job.all
       render 'jobs/index', status: :unprocessable_entity
     end
@@ -55,11 +60,6 @@ class JobsController < ApplicationController
 
   def add_job
     @job = Job.new
-  end
-
-  def create_with_background_job
-    job_posting_url = params[:job_posting_url]
-    AddJobToCheddarJob.perform_later(job_posting_url)
   end
 
   private

@@ -36,9 +36,9 @@ class JobCreator
     @job.update(
       job_title: data['title'],
       job_description: data['content'],
-      department: data['departments'][0]['name'],
-      location: data['location']['name'],
-      office: data['offices'][0]['name'],
     )
+    @job.update(location: data['location']['name']) if data['location'].present?
+    # @job.update(department: data['departments'][0]['name']) if data['departments'].present?
+    # @job.update(office: data['offices'][0]['name']) if data['offices'].present?
   end
 end
