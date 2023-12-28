@@ -3,11 +3,39 @@
   <div class="row">
     <div class="col-md-4">
       <!-- Company Logo -->
-      <%= image_tag("https://logo.clearbit.com/#{@company.company_website_url}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", style: "width: 60px; height: 60px;") %>
+      <%= image_tag("https://logo.clearbit.com/#{@company.company_website_url}",
+                    onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'",
+                    style: "width: 60px; height: 60px;") %>
     </div>
     <div class="col-md-8">
       <!-- Company Description -->
       <p>Placeholder for description</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <!-- External Company Links -->
+      <ul>
+        <%# TODO: Add favicons for these %>
+        <ul>
+          <% if @company.company_website_url.present? %>
+            <li><%= link_to "Website", @company.company_website_url %></li>
+          <% end %>
+          <% if @company.url_linkedin.present? %>
+            <li><%= link_to "LinkedIn", @company.url_linkedin %></li>
+          <% end %>
+          <% if @company.url_careers.present? %>
+            <li><%= link_to "Careers Site", @company.url_careers %></li>
+          <% end %>
+          <% if @company.url_ats.present? %>
+            <li><%= link_to "ATS Site", @company.url_ats %></li>
+          <% end %>
+        </ul>
+      </ul>
+    </div>
+  </div>
+</div>
+
     </div>
   </div>
 </div>
