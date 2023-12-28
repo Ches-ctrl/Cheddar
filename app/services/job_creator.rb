@@ -1,3 +1,5 @@
+require 'cgi'
+
 class JobCreator
   def initialize(job)
     @job = job
@@ -33,9 +35,13 @@ class JobCreator
   end
 
   def update_job_details(data)
+    # Note job description is HTML here
+    # TODO: Test Decoder
+    decoded_description = CGI.unescapeHTML(data['content'])
+
     @job.update(
       job_title: data['title'],
-      job_description: data['content'],
+      job_description: decoded_description,
     )
     @job.update(location: data['location']['name']) if data['location'].present?
     # @job.update(department: data['departments'][0]['name']) if data['departments'].present?
