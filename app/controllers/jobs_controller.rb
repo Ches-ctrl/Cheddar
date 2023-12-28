@@ -57,28 +57,10 @@ class JobsController < ApplicationController
     @job = Job.new
   end
 
-  # def find_job_application
-  #   user_id = params[:user_id]
-  #   job_id = params[:id]
-
-  #   p "+++++++++++++++++++++++"
-  #   p "+++++++++++++++++++++++"
-  #   p "+++++++++++++++++++++++"
-  #   p "+++++++++++++++++++++++"
-
-  #   p "User ID: #{user_id}"
-  #   p "Job ID: #{job_id}"
-
-  #   job_application = JobApplication.find_by(user_id: user_id, job_id: job_id)
-
-  #   p "Job Application: #{job_application}"
-
-  #   if job_application
-  #     render json: job_application
-  #   else
-  #     render json: { error: 'Job application not found' }, status: :not_found
-  #   end
-  # end
+  def create_with_background_job
+    job_posting_url = params[:job_posting_url]
+    AddJobToCheddarJob.perform_later(job_posting_url)
+  end
 
   private
 

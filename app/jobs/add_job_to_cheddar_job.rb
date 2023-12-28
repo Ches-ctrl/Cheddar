@@ -3,6 +3,18 @@ class AddJobToCheddarJob < ApplicationJob
 
   def perform(*args)
     # Do something later
+    p "Hello from the background job!"
+
+    # @company = CompanyCreator.new(url).find_or_create_company
+    # @job = Job.new(job_params, company_id: @company.id)
+
+    # if @job.save
+    #   AddJobToCheddarJob.perform_later(@job)
+    #   redirect_to job_path(@job), notice: 'Job was successfully added'
+    # else
+    #   # What should happen if the job doesn't save?
+    #   render :new
+    # end
   end
 
   # Peusdocode:

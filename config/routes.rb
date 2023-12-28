@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get '/jobs', to: 'jobs#index', as: :jobs
   get '/jobs/add', to: 'jobs#add'
   get '/jobs/add_job', to: 'jobs#add_job'
+  post '/jobs/create_with_background_job', to: 'jobs#create_with_background_job'
 
   # Chatbot
   post '/chatbot/chat', to: 'messages#chat'
