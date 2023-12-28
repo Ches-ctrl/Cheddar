@@ -214,11 +214,16 @@ job_urls = [
 
 job_urls.each do |url|
   company = CompanyCreator.new(url).find_or_create_company
-  Job.create!(
+  p "CompanyCreator complete: #{company.company_name}"
+
+  job = Job.create!(
     job_title: "Job Title Placeholder",
     job_posting_url: url,
     company_id: company.id,
   )
+
+  JobCreator.new(job).add_job_details
+  p "Created job - #{Job.last.job_title}"
 end
 
 puts "Created #{job_urls.count} jobs based on the provided URLs."

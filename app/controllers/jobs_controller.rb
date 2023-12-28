@@ -32,10 +32,15 @@ class JobsController < ApplicationController
   end
 
   def create
+    p "Creating job"
     @job = Job.new(job_params)
+    p "Started JobCreator"
+    JobCreator.new(@job).add_job_details
+    p @job
     if @job.save
       redirect_to job_path(@job), notice: 'Job was successfully added'
     else
+      p "Job not saved"
       @jobs = Job.all
       render 'jobs/index', status: :unprocessable_entity
     end
@@ -56,29 +61,6 @@ class JobsController < ApplicationController
   def add_job
     @job = Job.new
   end
-
-  # def find_job_application
-  #   user_id = params[:user_id]
-  #   job_id = params[:id]
-
-  #   p "+++++++++++++++++++++++"
-  #   p "+++++++++++++++++++++++"
-  #   p "+++++++++++++++++++++++"
-  #   p "+++++++++++++++++++++++"
-
-  #   p "User ID: #{user_id}"
-  #   p "Job ID: #{job_id}"
-
-  #   job_application = JobApplication.find_by(user_id: user_id, job_id: job_id)
-
-  #   p "Job Application: #{job_application}"
-
-  #   if job_application
-  #     render json: job_application
-  #   else
-  #     render json: { error: 'Job application not found' }, status: :not_found
-  #   end
-  # end
 
   private
 
