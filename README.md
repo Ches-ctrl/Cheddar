@@ -36,8 +36,13 @@ Also if you get a chromedriver error:
 
 ## Contributing
 
-* Get in touch if you're interested in getting involved - charles.cheesman1@gmail.com
+* Bug reports and pull requests are welcome on GitHub at https://github.com/Ches-Ctrl/Cheddar. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the code of conduct
+* Get in touch if you're interested in getting involved and to get a copy of the roadmap - charles.cheesman1@gmail.com
 
 ## License
 
-© Charlie Cheesman - All rights reserved (charles.cheesman1@gmail.com)
+© Charlie Cheesman - All rights reserved
+
+## Code of Conduct
+
+Everyone interacting in the Cheddar's codebases, issue trackers, chat rooms and mailing lists is expected to follow the code of conduct
