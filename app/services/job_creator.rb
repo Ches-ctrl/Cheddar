@@ -23,6 +23,8 @@ class JobCreator
 
   private
 
+  # TODO: Convert job_posting_url to standard format
+
   def parse_greenhouse_url
     @url.match(%r{https://boards\.greenhouse\.io/([^/]+)/jobs/(\d+)})
   end
@@ -36,7 +38,7 @@ class JobCreator
 
   def update_job_details(data)
     # Note job description is HTML here
-    # TODO: Test Decoder
+    # TODO: Test Decoder on job description
     decoded_description = CGI.unescapeHTML(data['content'])
 
     @job.update(

@@ -35,12 +35,14 @@ class JobsController < ApplicationController
     p "Starting Create method"
     @job = Job.new(job_params)
 
+    # TODO: check if job already exists in DB, if so, redirect to job_path(@job)
+
     p "Starting CompanyCreator"
     company = CompanyCreator.new(@job.job_posting_url).find_or_create_company
 
     p "CompanyCreator complete: #{company.company_name}"
     @job.company_id = company.id
-
+    
     p "Starting JobCreator"
     JobCreator.new(@job).add_job_details
 
