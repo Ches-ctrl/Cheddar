@@ -36,6 +36,7 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
 
     # TODO: check if job already exists in DB, if so, redirect to job_path(@job)
+    # TODO: convert job_posting_url to standard format
 
     p "Starting CompanyCreator"
     company = CompanyCreator.new(@job.job_posting_url).find_or_create_company

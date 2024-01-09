@@ -42,6 +42,13 @@ module Ats::Greenhouse
   #   converted_url
   # end
 
+  # Types of hosting a Jobs Board with Greenhouse:
+  # - Host a job board with Greenhouse
+  # - Embed a Greenhouse job board in your website
+  # - Embed an API-driven job board in your website and host job applications with Greenhouse
+  # - Embed an API-driven job board and application form in your website
+  # - Create a fully API-driven job board
+
   GREENHOUSE_CORE_FIELDS = {
     first_name: {
       interaction: :input,
