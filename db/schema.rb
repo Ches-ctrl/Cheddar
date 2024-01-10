@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_27_184314) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_10_083325) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -90,6 +90,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_27_184314) do
     t.string "url_ats"
     t.string "ats_identifier"
     t.string "description"
+    t.integer "total_live"
   end
 
   create_table "educations", force: :cascade do |t|
@@ -157,6 +158,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_27_184314) do
     t.boolean "req_first_round", default: true
     t.boolean "req_second_round", default: true
     t.boolean "req_assessment_centre"
+    t.boolean "live", default: false
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 

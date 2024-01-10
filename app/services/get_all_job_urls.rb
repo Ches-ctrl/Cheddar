@@ -12,12 +12,16 @@ class GetAllJobUrls
     total_live = total_live(data)
 
     @company.update(total_live: total_live)
-    add_jobs_to_cheddar(job_urls)
 
-    # TODO: Remove any existing URLs in database from job_urls before running method
+    # Remove any existing URLs in database from job_urls
+    job_urls.reject! { |job_url| Job.exists?(job_posting_url: job_url) }
+
+    p job_urls
+
+    jobs_to_add = add_jobs_to_cheddar(job_urls, @company)
 
     p "Total live jobs - #{total_live}"
-    p "Total new jobs added - ..."
+    p "Total new jobs to be updated with the background job - #{jobs_to_add}"
 
     p "Sourced all job urls for - #{@company.company_name}"
   end
@@ -29,7 +33,7 @@ class GetAllJobUrls
     uri = URI(company_api_url)
     response = Net::HTTP.get(uri)
     data = JSON.parse(response)
-    p data
+    # p data
   end
 
   def get_job_urls(data)
@@ -40,7 +44,9 @@ class GetAllJobUrls
     total_live = data['meta']['total']
   end
 
-  def add_jobs_to_cheddar(job_urls)
-    job_urls.each { |job_url| AddJobToCheddarJob.perform_later(job_url) } if job_urls.any?
+  def add_jobs_to_cheddar(job_urls, company)
+    p "Adding jobs to cheddar"
+    job_urls.each { |job_url| AddJobToCheddarJob.perform_later(job_url, company) } if job_urls.any?
+    job_urls.length
   end
 end

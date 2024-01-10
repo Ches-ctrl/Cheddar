@@ -11,10 +11,26 @@ class CompanyCreator
     ats_identifier = match[1]
 
     company_name, description = fetch_company_data(ats_identifier)
-    company = Company.find_or_create_by(company_name: company_name)
+
+    company = Company.find_by(company_name: company_name)
+    new_company = false
+
+    if company.nil?
+      company = Company.create(company_name: company_name)
+      new_company = true
+    end
+
+    p new_company
+
+    # Old method, splitting out create to call GetAllJobUrls function
+    # company = Company.find_or_create_by(company_name: company_name)
 
     update_description_and_ats(company, description, ats_identifier)
     update_company_url_and_website(company) if company.url_ats.blank?
+
+    p "Calling GetAllJobUrls"
+    GetAllJobUrls.new(company).get_all_job_urls if new_company
+    p "Finished GetAllJobUrls"
 
     puts "Created / Updated company - #{company.company_name}"
     company

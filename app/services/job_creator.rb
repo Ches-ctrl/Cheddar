@@ -1,3 +1,6 @@
+require 'cgi'
+# require 'net/http'
+
 class JobCreator
   def initialize(job)
     @job = job
@@ -7,19 +10,47 @@ class JobCreator
   def add_job_details
     return unless @url.include?('greenhouse')
 
+    p "Add job details"
+
     match = parse_greenhouse_url
     return unless match
     ats_identifier = match[1]
     job_posting_id = match[2]
 
-    data = fetch_job_data(ats_identifier, job_posting_id)
-    update_job_details(data)
+    p "parsed url"
+
+    check_job_is_live
+
+    p "checked job is live"
+
+    if @job.live
+      data = fetch_job_data(ats_identifier, job_posting_id)
+      update_job_details(data)
+      p "updated job details"
+    end
 
     puts "Updated job details - #{@job.job_title}"
     @job
   end
 
+  def check_job_is_live
+    uri = URI(@url)
+    response = Net::HTTP.get_response(uri)
+
+    if response.is_a?(Net::HTTPRedirection)
+      p "Job is not live"
+      @job.job_title = 'Job is no longer live'
+      @job.job_description = 'Job is no longer live'
+      @job.live = false
+    else
+      p "Job is live"
+      @job.live = true
+    end
+  end
+
   private
+
+  # TODO: Convert job_posting_url to standard format
 
   def parse_greenhouse_url
     @url.match(%r{https://boards\.greenhouse\.io/([^/]+)/jobs/(\d+)})
@@ -33,9 +64,18 @@ class JobCreator
   end
 
   def update_job_details(data)
+    # Note job description is HTML here
+    # TODO: Test Decoder on job description
+
+    p "Job description: #{data['content']}"
+
+    decoded_description = CGI.unescapeHTML(data['content'])
+
+    p "Decoded description: #{decoded_description}"
+
     @job.update(
       job_title: data['title'],
-      job_description: data['content'],
+      job_description: decoded_description,
     )
     @job.update(location: data['location']['name']) if data['location'].present?
     # @job.update(department: data['departments'][0]['name']) if data['departments'].present?
