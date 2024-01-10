@@ -1,4 +1,4 @@
-module Ats::XXX
+module Ats::Workday
   extend ActiveSupport::Concern
 
   # ATS Main URLs:
