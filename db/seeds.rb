@@ -136,7 +136,7 @@ companies_data.each do |company_data|
     company_name: company_data[:name],
     company_category: company_data[:category],
     company_website_url: company_data[:website_url]
-  )
+  )  
   puts "Created company - #{Company.last.company_name}"
 end
 
@@ -216,11 +216,15 @@ job_urls.each do |url|
   company = CompanyCreator.new(url).find_or_create_company
   p "CompanyCreator complete: #{company.company_name}"
 
+  # TODO: Add GetAllJobUrls functionality and queue background job to add jobs to site
+
   job = Job.create!(
     job_title: "Job Title Placeholder",
     job_posting_url: url,
     company_id: company.id,
   )
+
+  p "Job posting url: #{job.job_posting_url}"
 
   JobCreator.new(job).add_job_details
   p "Created job - #{Job.last.job_title}"
