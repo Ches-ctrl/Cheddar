@@ -3,6 +3,7 @@ class JobsController < ApplicationController
 
   def index
     # TODO: Fix search functionality so that 20 jobs are always shown
+    # TODO: Install Kaminari to fix long page load time on index page and add pagination
 
     if params[:query].present?
       @jobs = Job.global_search(params[:query])
