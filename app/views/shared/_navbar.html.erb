@@ -19,21 +19,21 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto d-flex flex-row align-items-center">
 
-        <li class="nav-item active d-flex flex-column align-items-center" style="min-width: 80px">
+        <li class="nav-item active d-flex flex-column align-items-center" style="min-width: 100px">
           <%= link_to how_it_works_path, class: "nav-link d-flex flex-column align-items-center pt-1 pb-0" do %>
             <i class="fa-solid fa-screwdriver-wrench pb-1"></i>
             <span>How It Works</span>
           <% end %>
         </li>
 
-        <li class="nav-item active d-flex flex-column align-items-center" style="min-width: 80px">
+        <li class="nav-item active d-flex flex-column align-items-center" style="min-width: 100px">
           <%= link_to jobs_path, class: "nav-link d-flex flex-column align-items-center pt-1 pb-0" do %>
             <i class="fa-regular fa-circle-play pb-1"></i>
             <span>All Jobs</span>
           <% end %>
         </li>
 
-        <li class="nav-item active d-flex flex-column align-items-center" style="min-width: 80px">
+        <li class="nav-item active d-flex flex-column align-items-center" style="min-width: 100px">
           <%= link_to saved_jobs_path, class: "nav-link d-flex flex-column align-items-center pt-1 pb-0" do %>
             <i class="fa-regular fa-heart pb-1"></i>
             <span>My Jobs</span>
@@ -47,7 +47,7 @@
               <% if current_user.photo.key %>
                 <%= cl_image_tag current_user.photo.key, class: "avatar" %>
               <% else %>
-                <%= image_tag "avatar_default.png", class: "avatar", alt: "dropdown menu" %>
+                <%= image_tag "ai_profile.png", class: "avatar", alt: "dropdown menu" %>
               <% end %>
             </a>
 
@@ -61,9 +61,11 @@
           </li>
         <% else %>
           <%# TODO: Fix alignment of log in / sign up button %>
-          <li class="nav-item d-flex flex-column align-items-center" style="min-width: 80px">
-            <i class="fa-regular fa-user"></i>
-            <%= link_to "Log In / Sign Up", new_user_session_path, class: "nav-link pt-1 pb-0"%>
+          <li class="nav-item active d-flex flex-column align-items-center" style="min-width: 100px">
+            <%= link_to new_user_session_path, class: "nav-link d-flex flex-column align-items-center pt-1 pb-0" do %>
+              <i class="fa-regular fa-user pb-1"></i>
+              <span>Sign Up</span>
+            <% end %>
           </li>
         <% end %>
       </ul>
