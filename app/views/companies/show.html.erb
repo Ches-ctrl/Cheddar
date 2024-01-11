@@ -1,23 +1,15 @@
-<div class="container">
-  <h1><%= @company.company_name %></h1>
-  <div class="row">
-    <div class="col-md-4">
-      <!-- Company Logo -->
-      <%= image_tag("https://logo.clearbit.com/#{@company.company_website_url}",
-                    onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'",
-                    style: "width: 60px; height: 60px;") %>
-    </div>
-    <div class="col-md-8">
-      <!-- Company Description -->
-      <p>Placeholder for description</p>
-    </div>
-  </div>
+<div class="container pt-5">
   <div class="row">
     <div class="col-md-12">
-      <!-- External Company Links -->
-      <ul>
-        <%# TODO: Add favicons for these %>
-        <ul>
+      <div class="d-flex align-items-center justify-content-between pb-4">
+        <div class="d-flex align-items-center">
+          <%= image_tag("https://logo.clearbit.com/#{@company.company_website_url}",
+                        onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'",
+                        style: "width: 60px; height: 60px;") %>
+          <h1 class="ms-4 mb-0"><%= @company.company_name %></h1>
+        </div>
+        <ul class="mb-0">
+          <%# TODO: Add favicons for these %>
           <% if @company.company_website_url.present? %>
             <li><%= link_to "Website", @company.company_website_url %></li>
           <% end %>
@@ -31,11 +23,23 @@
             <li><%= link_to "ATS Site", @company.url_ats %></li>
           <% end %>
         </ul>
-      </ul>
-    </div>
-  </div>
-</div>
-
+      </div>
+      <%# TODO: Setup Glassdoor & Trustpilot APIs %>
+      <div class="company-description">
+        <%= @company_description %>
+      </div>
+      <div>
+        <h2>Current Job Openings</h2>
+        <p>Total live jobs: <%= @jobs.count %></p>
+        <ul>
+          <% @jobs.each do |job| %>
+            <%= link_to job_path(job), target: "_blank" do %>
+              <li><%= job.job_title %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+      <%# TODO: Add gallery of images like Airbnb %>
     </div>
   </div>
 </div>

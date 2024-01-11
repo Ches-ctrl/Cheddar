@@ -61,6 +61,7 @@ gem "watir"
 gem 'sidekiq', '~> 6.5.5'
 gem "sidekiq-failures", "~> 1.0"
 gem 'sidekiq-scheduler', '~> 5.0', '>= 5.0.3'
+gem 'rails-html-sanitizer'
 
 # Additional Gems for API and Scrape features
 gem "cloudinary"

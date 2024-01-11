@@ -1,9 +1,7 @@
 body, html {
-  margin: 0;
-  // font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
+    margin: 0;
+    font-weight: 300;
 }
-
 
 @-webkit-keyframes drift {
   0% {
@@ -398,14 +396,14 @@ section#animated-cta-bar {
 	background: #c22525;
 	background: -webkit-linear-gradient(to left, rgb(255, 255, 255), #5b646b);
 	background: linear-gradient(to left, #ffffff, #ffffff);
-  height: 75vh;
+  	height: 75vh;
 
 	.cta-content {
 		display: block;
 		position: absolute;
 		z-index: 10;
 		text-align: center;
-		color: rgb(73, 5, 150,);
+		color: $main-color;
     top: 50%;
     left: 0;
     width: 100%;

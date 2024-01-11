@@ -360,6 +360,7 @@ DEPENDENCIES
   pg_search
   puma (>= 5.0)
   rails (~> 7.1.2)
+  rails-html-sanitizer
   ruby-openai
   sassc-rails
   selenium-webdriver (= 4.0)

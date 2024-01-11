@@ -11,65 +11,75 @@
             <p class="d-none"><%= job.company.company_name%></p>
           </div>
 
-          <div class="col-3 role pe-2" data-role="<%= job.job_title %>">
+          <div class="col-2 role pe-2 d-flex flex-column align-items-start justify-content-center" data-role="<%= job.job_title %>">
             <%= link_to job_path(job), target: "_blank" do %>
-              <%= job.job_title.truncate(75) %>
+              <strong><%= job.job_title.truncate(70) %></strong>
             <% end %>
+            <div class="d-flex small-text">
+              <%= link_to company_path(job.company), target: "_blank" do %>
+                <%= job.company.company_name %>
+              <% end %>
+              <%# TODO: Truncate properly %>
+              <% if job.location.present? %>
+                <div class="mx-1">•</div>
+                <div><%= job.location.truncate(20) %></div>
+              <% end %>
+            </div>
           </div>
 
           <div class="col-2 d-none job-description-small" data-job-index-toggle-target="newColumn2"><%= job.job_description.truncate(90) %></div>
 
-          <div class="col salaryBudget"><%= job.salary ? "£#{number_with_delimiter(job.salary, delimiter: ',')}" : "n/a" %></div>
-
-          <div class="col">
-            <% if (Time.now.next_day(7)) >= job.application_deadline %>
-              <button class="btn btn-closing-soon">CLOSING</button>
-            <% elsif Time.now < job.application_deadline %>
-              <button class="btn btn-status">OPEN</button>
-            <% else %>
-              <button class="btn btn-closed">CLOSED</button>
-            <% end %>
-          </div>
-          <div class="col"><%= job.application_deadline.strftime("%d/%m") %></div>
-
-          <div class="col d-none">
-            <% if job.application_criteria.instance_of?(Hash) && job.application_criteria["resume"].any? %>
-              YES
-            <% else %>
-              NO
-            <% end %>
+          <%# Job Details %>
+          <div class="col-2 d-flex flex-column align-items-center justify-content-center">
+            <div class="salaryBudget"><%= job.salary ? "£#{number_with_delimiter(job.salary, delimiter: ',')}" : "£ - " %></div>
+            <div><%= job.application_deadline ? job.application_deadline.strftime("%d/%m") : "n/a" %></div>
           </div>
 
-          <div class="col d-none">
-            <%= link_to job.job_posting_url, target: "_blank" do %>
-              <i class="fa-solid fa-external-link-alt"></i>
-            <% end %>
+          <%# Impact Assessment of Company %>
+          <div class="col-2 d-flex flex-column align-items-center justify-content-center">
+            <p class="pb-0">No target</p>
+
           </div>
 
-          <div class="col">
-            <% if SavedJob.where(job_id: job.id).present? %>
-              <%= link_to saved_job_path(job.saved_job_ids), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to remove this job from your list?"} do %>
-                <i class="fa-solid fa-heart saved-job-heart-icon"></i>
-              <% end %>
-            <% else %>
-              <%= link_to job_saved_jobs_path(job), data: {turbo_method: :post} do %>
-                <i class="fa-regular fa-heart not-saved-job-heart-icon"></i>
-              <% end %>
-            <% end %>
-          </div>
-
-          <% if defined?(current_user) && current_user.present? && JobApplication.where(job_id: job.id, user_id: current_user.id).present? %>
-            <div class="col already-applied-tick">
-              <i class="fa-solid fa-check"></i>
+          <%# Job Requirements %>
+          <div class="col-2 d-flex flex-column align-items-center justify-content-center">
+            <div class="d-flex flex-row justify-content-between mb-2">
+              <i class="fa-solid fa-file me-2"></i>
+              <i class="fa-solid fa-file me-2"></i>
+              <i class="fa-solid fa-file me-2"></i>
             </div>
-          <% else %>
-            <div class="col selectBox">
-              <label class="custom-checkbox" data-job-index-toggle-target="jobCheckbox" data-action="click->job-index-toggle#updateApplyButton">
-                <%= check_box_tag "job_ids[]", job.id, id: "job_id", class: 'select-job-box', data: { styling_selected_job_target: "checkBox", action: 'change->styling-selected-job#styleCard' } %>
-                <span class="checkmark"></span>
-              </label>
+            <div class="d-flex flex-row justify-content-between">
+              <i class="fa-solid fa-file me-2"></i>
+              <i class="fa-solid fa-file me-2"></i>
             </div>
-          <% end %>
+          </div>
+
+          <div class="col-2 d-flex align-items-center justify-content-center">
+            <div>
+              <% if SavedJob.where(job_id: job.id).present? %>
+                <%= link_to saved_job_path(job.saved_job_ids), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to remove this job from your list?"} do %>
+                  <i class="fa-solid fa-heart saved-job-heart-icon me-4"></i>
+                <% end %>
+              <% else %>
+                <%= link_to job_saved_jobs_path(job), data: {turbo_method: :post} do %>
+                  <i class="fa-regular fa-heart not-saved-job-heart-icon me-4"></i>
+                <% end %>
+              <% end %>
+            </div>
+            <% if defined?(current_user) && current_user.present? && JobApplication.where(job_id: job.id, user_id: current_user.id).present? %>
+              <div class="already-applied-tick">
+                <i class="fa-solid fa-check"></i>
+              </div>
+            <% else %>
+              <div class="selectBox">
+                <label class="custom-checkbox" data-job-index-toggle-target="jobCheckbox" data-action="click->job-index-toggle#updateApplyButton">
+                  <%= check_box_tag "job_ids[]", job.id, id: "job_id", class: 'select-job-box', data: { styling_selected_job_target: "checkBox", action: 'change->styling-selected-job#styleCard' } %>
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            <% end %>
+          </div>
+
         </div>
       </div>
     </div>

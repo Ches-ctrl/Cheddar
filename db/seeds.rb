@@ -153,25 +153,34 @@ puts "Creating new jobs..."
 # Greenhouse ATS
 # -----------------
 
-job_urls = [
+greenhouse_job_urls = [
+  "https://boards.greenhouse.io/11fs/jobs/4266126101",
   "https://boards.greenhouse.io/ambientai/jobs/4301104006",
   "https://boards.greenhouse.io/bcgdv/jobs/6879714002",
+  "https://boards.greenhouse.io/clearscoretechnologylimited/jobs/4269717101",
   "https://boards.greenhouse.io/cleoai/jobs/5033034002",
+  "https://boards.greenhouse.io/cloudflare/jobs/5533430",
   "https://boards.greenhouse.io/codepath/jobs/4035988007",
   "https://boards.greenhouse.io/codepath/jobs/4059099007",
   "https://boards.greenhouse.io/codepath/jobs/4141438007",
+  "https://boards.greenhouse.io/copperco/jobs/4243269101",
   "https://boards.greenhouse.io/coreweave/jobs/4241710006",
   "https://boards.greenhouse.io/css/jobs/6975614002",
   "https://boards.greenhouse.io/cultureamp/jobs/5496553",
   "https://boards.greenhouse.io/cultureamp/jobs/5538191",
+  "https://boards.greenhouse.io/dataiku/jobs/5043269004",
   "https://boards.greenhouse.io/deliveroo/jobs/5094403",
   "https://boards.greenhouse.io/deliveroo/jobs/5447359",
   "https://boards.greenhouse.io/doctolib/jobs/5811790003",
   "https://boards.greenhouse.io/doctolib/jobs/5828747003",
   "https://boards.greenhouse.io/drweng/jobs/5345753",
   "https://boards.greenhouse.io/elementalexcelerator/jobs/5027131004",
+  "https://boards.greenhouse.io/epicgames/jobs/4969053004",
+  "https://boards.greenhouse.io/featurespace/jobs/5472209",
+  "https://boards.greenhouse.io/figma/jobs/5039807004",
   "https://boards.greenhouse.io/forter/jobs/6889370002",
   "https://boards.greenhouse.io/gemini/jobs/5203656",
+  "https://boards.greenhouse.io/geniussports/jobs/5693417003",
   "https://boards.greenhouse.io/getir/jobs/4258936101",
   "https://boards.greenhouse.io/globalwebindex/jobs/6940363002",
   "https://boards.greenhouse.io/gomotive/jobs/7025455002",
@@ -179,6 +188,9 @@ job_urls = [
   "https://boards.greenhouse.io/grammarly/jobs/5523286",
   "https://boards.greenhouse.io/gusto/jobs/5535268",
   "https://boards.greenhouse.io/halcyon/jobs/4891571004",
+  "https://boards.greenhouse.io/helsing/jobs/4129902101",
+  "https://boards.greenhouse.io/intercom/jobs/4763765",
+  "https://boards.greenhouse.io/inyova/jobs/5042265004",
   "https://boards.greenhouse.io/janestreet/jobs/4274809002",
   "https://boards.greenhouse.io/janestreet/jobs/6102180002",
   "https://boards.greenhouse.io/jobber/jobs/7023846002",
@@ -195,28 +207,129 @@ job_urls = [
   "https://boards.greenhouse.io/narvar/jobs/5436866",
   "https://boards.greenhouse.io/niantic/jobs/7068655002",
   "https://boards.greenhouse.io/okx/jobs/5552949003",
+  "https://boards.greenhouse.io/openai/jobs/4907945004",
   "https://boards.greenhouse.io/opendoor/jobs/4255190006",
+  "https://boards.greenhouse.io/opentable/jobs/7083964002",
+  "https://boards.greenhouse.io/neo4j/jobs/4309978006",
   "https://boards.greenhouse.io/phonepe/jobs/5816286003",
+  "https://boards.greenhouse.io/point72/jobs/7061105002",
+  "https://boards.greenhouse.io/prolific/jobs/4272099101",
   "https://boards.greenhouse.io/relativity/jobs/6916371002",
   "https://boards.greenhouse.io/remotecom/jobs/5756728003",
   "https://boards.greenhouse.io/samsara/jobs/5580492",
   "https://boards.greenhouse.io/settle/jobs/4350962005",
+  # "https://boards.eu.greenhouse.io/speechmatics/jobs/4261341101",
   "https://boards.greenhouse.io/springhealth66/jobs/4336742005",
+  "https://boards.greenhouse.io/stenn/jobs/4262887101",
+  "https://boards.greenhouse.io/superpayments/jobs/4271055101",
   "https://boards.greenhouse.io/synack/jobs/5469197",
   "https://boards.greenhouse.io/synthesia/jobs/4250474101",
+  "https://boards.greenhouse.io/talos/jobs/5040783004",
   "https://boards.greenhouse.io/teads/jobs/5529600",
   "https://boards.greenhouse.io/tenstorrent/jobs/4120628007",
+  "https://boards.greenhouse.io/transferwise/jobs/5479877",
+  "https://boards.greenhouse.io/watershedclimate/jobs/4698719004",
   "https://boards.greenhouse.io/workato/jobs/7016061002",
-  "https://boards.greenhouse.io/zscaler/jobs/4092460007"
+  "https://boards.greenhouse.io/zscaler/jobs/4092460007",
 ]
 
-# TODO: Add collect additional company postings functionality
+greenhouse_job_urls_embedded = [
+  "https://bolt.eu/en/careers/positions/6989975002",
+  "https://careers.datadoghq.com/detail/4452892",
+  "https://jobs.elastic.co/form?gh_jid=5518454",
+  "https://ripple.com/careers/all-jobs/job/5144512",
+  "https://www.hubspot.com/careers/jobs/5402223",
+  "https://www.mongodb.com/careers/jobs/5424409",
+  "https://www.noredink.com/job_post?gh_jid=5586486",
+  "https://www.onemedical.com/careers/all-departments/5433427",
+  "https://ripple.com/careers/all-jobs/job/5558121/",
+  "https://stability.ai/careers?gh_jid=4246271101",
+  "https://www.sumup.com/careers/positions/london-united-kingdom/engineering/engineering-manager-mobile-global-bank/6970735002",
+  "https://tipalti.com/careers/jobs/?gh_jid=5029634004",
+  "https://business.trustpilot.com/jobs/5555044",
+  "https://www.westmonroe.com/careers/job-search/apply?gh_jid=5043104004",
+  "https://www.zilch.com/uk/job/?gh_jid=5045377004",
+  "https://www.zwift.com/uk/careers?gh_jid=7056412002#grnhse-job-details",
+]
 
-job_urls.each do |url|
+# TODO: Handle embedded job postings on Greenhouse
+
+
+# -----------------
+# Workable ATS
+# -----------------
+
+workable_job_urls = [
+  "https://apply.workable.com/starling-bank/j/7F5B223D0D/",
+  "https://apply.workable.com/vira-health/j/D60B851C7C/",
+]
+
+
+# -----------------
+# Lever ATS
+# -----------------
+
+lever_job_urls = [
+  "https://jobs.lever.co/quantcast/30055553-6f06-4d54-ae63-bc474009754c",
+]
+
+# -----------------
+# SmartRecruiters ATS
+# -----------------
+
+smartrecruiters_job_urls = [
+  "https://jobs.smartrecruiters.com/SSENSE1/743999955472143",
+]
+
+
+# -----------------
+# Ashby ATS
+# -----------------
+
+# Similar structure to greenhouse with listing all jobs
+# https://developers.ashbyhq.com/docs/public-job-posting-api
+# https://api.ashbyhq.com/posting-api/job-board/{JOB_BOARD_NAME}?includeCompensation=true
+
+ashby_job_urls = [
+  "https://jobs.ashbyhq.com/lilt/b1448632-738b-4de8-9991-06f32bb16bf1",
+  "https://jobs.ashbyhq.com/beamery/b4c4f8e7-e6cc-423b-8b8d-bb05c1ab050e",
+]
+
+
+# -----------------
+# Workday ATS
+# -----------------
+
+workday_job_urls = [
+  "https://www.accenture.com/gb-en/careers/jobdetails?id=R00190006_en&title=SAP%20Supply%20Chain%20Senior%20Manager",
+]
+
+
+# -----------------
+# Company-specific
+# -----------------
+
+comp_specific_job_urls = [
+  "https://jobs.apple.com/en-us/details/200525781/network-engineer-internship-apple-is-t",
+  "https://careers.tiktok.com/position/7298315322230229257/detail",
+]
+
+# -----------------
+#  ATS
+# -----------------
+
+# _job_urls = [
+#   "",
+# ]
+
+# job_urls = [greenhouse_job_urls, workable_job_urls, lever_job_urls, smartrecruiters_job_urls, ashby_job_urls]
+
+# TODO: Collect additional company postings functionality
+# TODO: Add jobs from all ATS systems
+
+greenhouse_job_urls.each do |url|
   company = CompanyCreator.new(url).find_or_create_company
   p "CompanyCreator complete: #{company.company_name}"
-
-  # TODO: Add GetAllJobUrls functionality and queue background job to add jobs to site
 
   job = Job.create!(
     job_title: "Job Title Placeholder",
@@ -230,20 +343,7 @@ job_urls.each do |url|
   p "Created job - #{Job.last.job_title}"
 end
 
-puts "Created #{job_urls.count} jobs based on the provided URLs."
-
-job_urls_embedded = [
-  "https://bolt.eu/en/careers/positions/6989975002",
-  "https://careers.datadoghq.com/detail/4452892",
-  "https://jobs.elastic.co/form?gh_jid=5518454",
-  "https://ripple.com/careers/all-jobs/job/5144512",
-  "https://www.hubspot.com/careers/jobs/5402223",
-  "https://www.mongodb.com/careers/jobs/5424409",
-  "https://www.noredink.com/job_post?gh_jid=5586486",
-  "https://www.onemedical.com/careers/all-departments/5433427",
-  "https://www.sumup.com/careers/positions/london-united-kingdom/engineering/engineering-manager-mobile-global-bank/6970735002",
-  "https://www.zilch.com/uk/job/?gh_jid=5045377004",
-]
+puts "Created #{greenhouse_job_urls.count} jobs based on the provided URLs."
 
 puts "Created #{Job.count} jobs..."
 

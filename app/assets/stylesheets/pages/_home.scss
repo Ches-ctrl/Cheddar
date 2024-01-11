@@ -1,7 +1,7 @@
 // Specific CSS for your home-page
 .btn-main {
   align-items: center;
-  background-image: linear-gradient(144deg, $main-color, $tertiary-color 50%, $quaternary-color);
+  background-image: linear-gradient(144deg, $oxford-blue, $main-color 98%);
   border: 0;
   border-radius: 8px;
   box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
@@ -25,7 +25,7 @@
 }
 
 #punchline {
-  box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.9);
 }
 
 .bg-image {
@@ -60,3 +60,7 @@ $container-max-widths: (
   xl: 1140px,
   xxl: 1320px
 );
+
+.steps-to-apply {
+  color: $main-color;
+}

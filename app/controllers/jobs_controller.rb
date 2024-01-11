@@ -1,8 +1,11 @@
 class JobsController < ApplicationController
+  include ActionView::Helpers::SanitizeHelper
+
   before_action :authenticate_user!, except: [:index, :show, :apply_to_selected_jobs]
 
   def index
     # TODO: Fix search functionality so that 20 jobs are always shown
+    # TODO: Install Kaminari to fix long page load time on index page and add pagination
 
     if params[:query].present?
       @jobs = Job.global_search(params[:query])
@@ -24,7 +27,9 @@ class JobsController < ApplicationController
 
   def show
     @job = Job.find(params[:id])
+    @company = @job.company
     @saved_job = SavedJob.new
+    @job_description = sanitize @job.job_description
   end
 
   def new
