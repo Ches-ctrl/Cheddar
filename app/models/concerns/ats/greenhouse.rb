@@ -75,16 +75,20 @@ module Ats::Greenhouse
       locators: 'job_application[location]',
       required: true,
     },
+    location_click: {
+      interaction: :listbox,
+      locators: 'ul#location_autocomplete-items-popup'
+    },
     resume: {
       interaction: :upload,
       locators: 'button[aria-describedby="resume-allowable-file-types"',
       required: true,
     },
-    cover_letter: {
-      interaction: :upload,
-      locators: 'button[aria-describedby="cover_letter-allowable-file-types"]',
-      required: false,
-    },
+    # cover_letter: {
+    #   interaction: :upload,
+    #   locators: 'button[aria-describedby="cover_letter-allowable-file-types"]',
+    #   required: false
+    # }
   }
 
   # Add labels?

@@ -27,7 +27,7 @@ class CompanyCreator
 
     update_description_and_ats(company, description, ats_identifier)
     update_company_url_and_website(company) if company.url_ats.blank?
-
+    
     # p "Calling GetAllJobUrls"
     # GetAllJobUrls.new(company).get_all_job_urls if new_company
     # p "Finished GetAllJobUrls"
