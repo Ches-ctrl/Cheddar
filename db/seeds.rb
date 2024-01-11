@@ -273,7 +273,6 @@ lever_job_urls = [
   "https://jobs.lever.co/quantcast/30055553-6f06-4d54-ae63-bc474009754c",
 ]
 
-
 # -----------------
 # SmartRecruiters ATS
 # -----------------

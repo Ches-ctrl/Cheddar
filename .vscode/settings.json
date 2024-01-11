@@ -1,5 +1,12 @@
 {
     "html.autoCreateQuotes": true,
     "html.format.extraLiners": "",
-    "html.autoClosingTags": true
+    "html.autoClosingTags": true,
+    "editor.linkedEditing": true,
+    "editor.tabCompletion": "on",
+    "emmet.triggerExpansionOnTab": true,
+    "emmet.includeLanguages": { 
+        "erb": "html", 
+        "ruby": "html"
+    },
 }
