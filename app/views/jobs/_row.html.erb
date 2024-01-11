@@ -11,10 +11,20 @@
             <p class="d-none"><%= job.company.company_name%></p>
           </div>
 
-          <div class="col-3 role pe-2" data-role="<%= job.job_title %>">
+          <div class="col-3 role pe-2 d-flex flex-column align-items-start justify-content-center" data-role="<%= job.job_title %>">
             <%= link_to job_path(job), target: "_blank" do %>
-              <%= job.job_title.truncate(75) %>
+              <strong><%= job.job_title.truncate(70) %></strong>
             <% end %>
+            <div class="d-flex small-text">
+              <%= link_to company_path(job.company), target: "_blank" do %>
+                <%= job.company.company_name %>
+              <% end %>
+              <%# TODO: Truncate properly %>
+              <% if job.location.present? %>
+                <div class="mx-1">•</div>
+                <div><%= job.location.truncate(20) %></div>
+              <% end %>
+            </div>
           </div>
 
           <div class="col-2 d-none job-description-small" data-job-index-toggle-target="newColumn2"><%= job.job_description.truncate(90) %></div>

@@ -2,7 +2,7 @@
   <div class="search-container d-flex justify-content-center align-items-center">
     <%= render 'search' %>
   </div>
-    <div class="row" data-controller="job-index-toggle">
+    <div class="row d-flex justify-content-between" data-controller="job-index-toggle">
 
       <%# TODO: Fix show more issue where no jobs show up on page load sometimes %>
 
@@ -17,7 +17,7 @@
           </h6>
         </div>
 
-        <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-regular fa-calendar"></i></i> Date Posted</h5>
+        <%# <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-regular fa-calendar"></i></i> Date Posted</h5>
         <ul id="job-types-select">
           <div class="job-types-select-item">
 
@@ -37,9 +37,9 @@
             </label>
 
           </div>
-        </ul>
+        </ul> %>
 
-        <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-list"></i> Job Playlist</h5>
+        <%# <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-list"></i> Job Playlist</h5>
         <ul id="job-types-select">
           <div class="job-types-select-item">
 
@@ -59,11 +59,10 @@
             </label>
 
           </div>
-        </ul>
+        </ul> %>
 
-        <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-industry"></i> Industry</h5>
-        <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-location-dot"></i> Location</h5>
-
+        <%# <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-industry"></i> Industry</h5>
+        <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-location-dot"></i> Location</h5> %>
 
         <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-stairs"></i> Seniority</h5>
         <ul id="job-types-select">
@@ -131,7 +130,7 @@
           </div>
         </ul>
 
-        <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-person-chalkboard"></i> Office Status</h5>
+        <%# <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-person-chalkboard"></i> Office Status</h5>
         <ul id="job-types-select">
           <div class="job-types-select-item">
 
@@ -156,7 +155,7 @@
               </label>
             </li>
           </div>
-        </ul>
+        </ul> %>
 
         <%# TODO: Add icons to individual list item %>
         <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-building-user"></i> Companies</h5>
