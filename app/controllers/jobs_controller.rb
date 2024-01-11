@@ -1,4 +1,6 @@
 class JobsController < ApplicationController
+  include ActionView::Helpers::SanitizeHelper
+
   before_action :authenticate_user!, except: [:index, :show, :apply_to_selected_jobs]
 
   def index
@@ -25,7 +27,9 @@ class JobsController < ApplicationController
 
   def show
     @job = Job.find(params[:id])
+    @company = @job.company
     @saved_job = SavedJob.new
+    @job_description = sanitize @job.job_description
   end
 
   def new

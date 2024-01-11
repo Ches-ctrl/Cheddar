@@ -218,7 +218,7 @@ greenhouse_job_urls = [
   "https://boards.greenhouse.io/remotecom/jobs/5756728003",
   "https://boards.greenhouse.io/samsara/jobs/5580492",
   "https://boards.greenhouse.io/settle/jobs/4350962005",
-  "https://boards.eu.greenhouse.io/speechmatics/jobs/4261341101",
+  # "https://boards.eu.greenhouse.io/speechmatics/jobs/4261341101",
   "https://boards.greenhouse.io/springhealth66/jobs/4336742005",
   "https://boards.greenhouse.io/stenn/jobs/4262887101",
   "https://boards.greenhouse.io/superpayments/jobs/4271055101",
@@ -230,7 +230,7 @@ greenhouse_job_urls = [
   "https://boards.greenhouse.io/transferwise/jobs/5479877",
   "https://boards.greenhouse.io/watershedclimate/jobs/4698719004",
   "https://boards.greenhouse.io/workato/jobs/7016061002",
-  "https://boards.greenhouse.io/zscaler/jobs/4092460007"
+  "https://boards.greenhouse.io/zscaler/jobs/4092460007",
 ]
 
 greenhouse_job_urls_embedded = [

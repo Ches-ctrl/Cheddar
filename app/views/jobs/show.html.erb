@@ -1,23 +1,45 @@
-<div class="container">
-  <div class="job-show-title">
-    <h3><%= @job.job_title %></h3>
-    <%= link_to 'Apply to this job', job_job_applications_path(@job), data: {turbo_method: :post}, class: "btn-apply" %>
-    <div class="icon-save-job">
-      <%= simple_form_for [@job, @saved_job] do |f| %>
-        <%= button_tag type: 'submit' do %>
-          <i class="fa-regular fa-heart"></i>
-        <% end %>
-      <% end %>
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-flex align-items-center justify-content-between pb-4">
+        <div class="d-flex align-items-center">
+          <%= image_tag("https://logo.clearbit.com/#{@company.company_website_url}",
+                        onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'",
+                        style: "width: 60px; height: 60px;") %>
+          <h1 class="ms-4 mb-0"><%= @job.job_title %></h1>
+        </div>
+        <ul class="mb-0">
+          <%# TODO: Add favicons for these %>
+          <%= link_to @job.job_posting_url, target: "_blank" do %>
+            <i class="fa-solid fa-external-link-alt"></i>
+          <% end %>
+          <% if @company.company_website_url.present? %>
+            <li><%= link_to "Website", @company.company_website_url %></li>
+          <% end %>
+          <% if @company.url_linkedin.present? %>
+            <li><%= link_to "LinkedIn", @company.url_linkedin %></li>
+          <% end %>
+          <% if @company.url_careers.present? %>
+            <li><%= link_to "Careers Site", @company.url_careers %></li>
+          <% end %>
+          <% if @company.url_ats.present? %>
+            <li><%= link_to "ATS Site", @company.url_ats %></li>
+          <% end %>
+          <%= simple_form_for [@job, @saved_job] do |f| %>
+            <%= button_tag type: 'submit' do %>
+              <i class="fa-regular fa-heart"></i>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+      <%# TODO: Setup Glassdoor & Trustpilot APIs %>
+      <%= link_to 'Apply to this job', job_job_applications_path(@job), data: {turbo_method: :post}, class: "btn-apply" %>
+      <p class="mt-4">Salary: £<%= number_with_delimiter(@job.salary, :delimiter => ',') %></p>
+      <div class="job-description">
+        <%= @job_description %>
+      </div>
+      <%# TODO: Add gallery of images like Airbnb %>
     </div>
   </div>
-
-  <p>Company: <%= @job.company.company_name %></p>
-  <p>Job title: <%= @job.job_title %></p>
-  <p>Job description: <%= @job.job_description %></p>
-  <p>Salary: £<%= number_with_delimiter(@job.salary, :delimiter => ',') %></p>
-
-  <%= link_to @job.job_posting_url, target: "_blank" do %>
-    <i class="fa-solid fa-external-link-alt"></i>
-  <% end %>
-
 </div>
+
