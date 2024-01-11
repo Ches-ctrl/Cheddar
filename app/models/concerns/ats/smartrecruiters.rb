@@ -1,4 +1,4 @@
-module Ats::XXX
+module Ats::Smartrecruiters
   extend ActiveSupport::Concern
 
   # ATS Main URLs:

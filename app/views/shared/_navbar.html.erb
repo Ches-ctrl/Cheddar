@@ -1,11 +1,13 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container">
 
-    <div class="d-flex justify-content-start">
-    <%= link_to "/#", class: "navbar-brand" do %>
-      <%= image_tag("cheddar_logo_icon.svg", alt: "Logo") %>
-    <% end %>
-      <%= image_tag("cheddar_logo_text.svg", alt: "logo", class: "larger-image mt-3") %>
+    <div class="d-flex justify-content-start align-items-center">
+      <%= link_to "/#", class: "navbar-brand me-1" do %>
+        <%= image_tag("cheddar_logo_new_3.svg", alt: "Logo") %>
+      <% end %>
+      <%= link_to "/#" do %>
+        <%= image_tag("cheddar_logo_text.svg", alt: "logo", class: "larger-image") %>
+      <% end %>
     </div>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
