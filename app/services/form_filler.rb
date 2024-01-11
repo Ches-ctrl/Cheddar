@@ -20,6 +20,8 @@ class FormFiller
     visit(url)
     find_apply_button.click rescue nil
 
+    pp fields # for testing purposes
+
     fields.each do |field|
       field = field[1]
       p field
@@ -113,16 +115,21 @@ class FormFiller
 
   def select_option_from_select(listbox_locator, option_locator, option_text)
     begin
-      within listbox_locator do
+      p "Printing some info for testing..."
+      p listbox_locator, option_locator, option_text
+      within "##{listbox_locator}" do
         find(option_locator, text: option_text).click
       end
+      p "checkpoint"
     rescue Selenium::WebDriver::Error::ElementNotInteractableError
       p 'cannot interact with hidden element'
       p listbox_locator
-      new_locator = page.find("label #{listbox_locator}")
+      new_locator = page.find("label ##{listbox_locator}")
       p new_locator
       new_locator.ancestor("label").find("a").click
-      find("div.select2-drop li", text: option_text).click
+      p "Select box clicked"
+      find("li", text: option_text).click
+      p "checkpoint two"
     end
   end
 

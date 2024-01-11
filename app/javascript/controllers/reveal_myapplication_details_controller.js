@@ -32,6 +32,6 @@ export default class extends Controller {
 }
 
 
-document.addEventListener('click', (e) => {
-  console.log(e.target);
-})
+// document.addEventListener('click', (e) => {
+//   console.log(e.target);
+// })
