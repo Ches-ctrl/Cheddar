@@ -48,6 +48,7 @@ class JobApplicationsController < ApplicationController
     job = Job.find(params[:job_id])
 
     @job_application = JobApplication.new(job_application_params)
+    pp @job_application # testing
     @job_application.user = current_user
     @job_application.job = job
     @job_application.status = "Application pending"
@@ -71,7 +72,7 @@ class JobApplicationsController < ApplicationController
           }
         )
 
-        # ApplyJob.perform_later(@job_application.id, current_user.id)
+        ApplyJob.perform_later(@job_application.id, current_user.id)
         @job_application.update(status: "Applied")
 
         ActionCable.server.broadcast(

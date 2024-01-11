@@ -29,7 +29,7 @@ class CompanyCreator
     update_company_url_and_website(company) if company.url_ats.blank?
 
     p "Calling GetAllJobUrls"
-    GetAllJobUrls.new(company).get_all_job_urls if new_company
+    # GetAllJobUrls.new(company).get_all_job_urls if new_company
     p "Finished GetAllJobUrls"
 
     puts "Created / Updated company - #{company.company_name}"

@@ -136,7 +136,7 @@ companies_data.each do |company_data|
     company_name: company_data[:name],
     company_category: company_data[:category],
     company_website_url: company_data[:website_url]
-  )  
+  )
   puts "Created company - #{Company.last.company_name}"
 end
 
