@@ -3,7 +3,7 @@
     <%= text_field_tag :query,
         params[:query],
         class: 'form-control',
-        placeholder: 'Search for any job, company or role... ', style: 'font-style: italic;', id: 'search-jobs' %>
+        placeholder: 'Search for any job, company or role... ', id: 'search-jobs' %>
 
     <%= link_to jobs_path, class: 'clear-search-icon' do %>
       <i class="fa-solid fa-x"></i>
@@ -11,7 +11,6 @@
 
     <%= submit_tag 'Search', id: 'search-button' %>
   <% end %>
-
 
 
 </div>
