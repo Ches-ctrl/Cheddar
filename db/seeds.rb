@@ -254,14 +254,58 @@ greenhouse_job_urls_embedded = [
 
 # TODO: Handle embedded job postings on Greenhouse
 
+rails_job_urls = [
+  "https://boards.greenhouse.io/cleoai/jobs/4628944002", # greenhouse # senior"
+  "https://boards.eu.greenhouse.io/ably30/jobs/4229668101", # greenhouse # senior
+  "https://apply.workable.com/papier/j/F2D67EF125/", # workable # senior
+  "https://apply.workable.com/builderai/j/D157ED0496/", # workable # mid
+  "https://apply.workable.com/builderai/j/E417F55824/", # workable # senior
+  "https://jobs.lever.co/zeneducate/e02e26bc-dd34-477b-a3e7-612c9422dccd", # lever # senior
+  "https://jobs.lever.co/zeneducate/3422d04b-963a-4cc7-91e0-85ee315c2007", # lever # senior
+  "https://jobs.smartrecruiters.com/Billetto/80023032-backend-web-developer", # smartrecruiters # mid
+  "https://jobs.smartrecruiters.com/Canva/743999942402703", # smartrecruiters # senior
+  "https://jobs.smartrecruiters.com/Billetto/80023032-backend-web-developer", # smartrecruiters # mid
+  "https://www.totaljobs.com/job/101793572/apply", # totaljobs # senior
+  "https://www.totaljobs.com/job/full-stack-ruby-on-rails-developer/movement-8-job101778422", # totaljobs # mid
+  "https://www.linkedin.com/jobs/view/ruby-on-rails-2-hands-on-engineering-manager-lead-developer-london-twice-a-week-up-to-%C2%A3100-000-offers-sponsorship-at-opus-recruitment-solutions-3756503864/", # linkedin # senior
+  "https://www.linkedin.com/jobs/view/3799028903/", # linkedin # mid
+  "https://www.linkedin.com/jobs/view/fullstack-ruby-on-rails-developer-at-movement8-3798307820/", # linkedin # mid
+  "https://uk.indeed.com/viewjob?jk=36cda28dd190bc72", # indeed # senior
+  "https://www.simplyhired.co.uk/job/K0OD6J_mQAkEV2xH5ktIzSbCDjCzpj7yYtGh9w6TiCyPLg2dLaALPw", # simplyhired # mid # create account
+  "https://www.simplyhired.co.uk/job/n26j_p5HaCBjI8iYuRBBTL9sUQFIfUhIi-w-sZeuRh3HY0YWtIHqpg", # simplyhired # mid # create account
+  "https://www.simplyhired.co.uk/job/3eJ7KIbUJzmvyGwP8nYZQOn-AYcUkLk7jDAofeTImguEW-OQ0dlh3g", # simplyhired # mid # create account
+  "https://www.reed.co.uk/jobs/junior-software-developer-ruby-on-rails/51872078", # reed # junior
+  "https://careers.judge.me/jobs/t7THEE3YAvBh/fullstack-ruby-on-rails-developer", # freshteam # mid
+  "https://www.oho.co.uk/job-details/?id=mid-level-ruby-on-rails-developer-876454", # oho # mid
+  "https://alphasights.hire.trakstar.com/jobs/fk0zzt/", # trakstar # mid
+  "https://www.aplitrak.com/?adid=bWF4bS41NzI2Mi41NDAzQG5vaXJjb25zdWx0aW5nLmFwbGl0cmFrLmNvbQ", # aplitrak # mid # create account
+  "https://www.recruit.net/job/ruby-on-rails-developer-jobs/F02F2507F39B18DD", # recruit.net # mid # create account
+  "https://5ivetech.co.uk/apply-job/?job_id=ODU5NDI=", # 5ivetech # mid
+  "https://www.internwise.co.uk/job/33389/ruby-on-rails-developer-internship", # internwise # intern
+  "https://www.robertwalters.co.uk/technologydigital/jobs/softwaredevelopmentengineering/1705516-fullstack-developer-12month.html", # robertwalters # mid # create account
+]
+
+soft_eng_job_urls = [
+  "https://careers.justeattakeaway.com/global/en/apply?jobSeqNo=TAKEGLOBALR035518ENGLOBAL&step=1", # phenom # requires full scrape
+  "https://moonpay.wd1.myworkdayjobs.com/GTI/job/London-United-Kingdom/Full-Stack-Engineer_JR100014", # workday # not public
+]
+
+# totaljobs - create account
+
 
 # -----------------
 # Workable ATS
 # -----------------
 
+# https://workable.readme.io/reference/generate-an-access-token
+# https://apply.workable.com/api/v1/widget/accounts/#{company_id}
+# https://www.workable.com/api/accounts/#{company_id}/locations
+# https://www.workable.com/api/accounts/#{company_id}/departments
+
 workable_job_urls = [
   "https://apply.workable.com/starling-bank/j/7F5B223D0D/",
   "https://apply.workable.com/vira-health/j/D60B851C7C/",
+  # "https://apply.workable.com/papier/j/F2D67EF125/",
 ]
 
 
@@ -269,13 +313,25 @@ workable_job_urls = [
 # Lever ATS
 # -----------------
 
+# https://api.lever.co/v0/postings/#{company_id} # gives links to list of jobs (not JSON)
+# https://api.lever.co/v0/postings/#{company_id}?mode=json # can also do HTML and iframe
+# https://api.lever.co/v0/postings/#{company_id}/#{job_id}
+
+
 lever_job_urls = [
   "https://jobs.lever.co/quantcast/30055553-6f06-4d54-ae63-bc474009754c",
+  # "https://jobs.lever.co/zeneducate/e02e26bc-dd34-477b-a3e7-612c9422dccd", # lever # senior
+  # "https://jobs.lever.co/zeneducate/3422d04b-963a-4cc7-91e0-85ee315c2007", # lever # senior
+  "https://jobs.lever.co/cloudwalk/657c121e-99f4-48e9-9fdf-4b0b37fefcf8",
 ]
 
 # -----------------
 # SmartRecruiters ATS
 # -----------------
+
+# https://developers.smartrecruiters.com/docs/the-smartrecruiters-platform
+# https://api.smartrecruiters.com/v1/companies/#{company_id}/postings
+# https://api.smartrecruiters.com/v1/companies/#{company_id}/postings/#{job_id}
 
 smartrecruiters_job_urls = [
   "https://jobs.smartrecruiters.com/SSENSE1/743999955472143",
@@ -286,22 +342,34 @@ smartrecruiters_job_urls = [
 # Ashby ATS
 # -----------------
 
-# Similar structure to greenhouse with listing all jobs
 # https://developers.ashbyhq.com/docs/public-job-posting-api
 # https://api.ashbyhq.com/posting-api/job-board/{JOB_BOARD_NAME}?includeCompensation=true
+# Individual listings - N/A
 
 ashby_job_urls = [
   "https://jobs.ashbyhq.com/lilt/b1448632-738b-4de8-9991-06f32bb16bf1",
   "https://jobs.ashbyhq.com/beamery/b4c4f8e7-e6cc-423b-8b8d-bb05c1ab050e",
 ]
 
+# -----------------
+# Bamboo HR ATS
+# -----------------
+
+
+
 
 # -----------------
 # Workday ATS
 # -----------------
 
+# Not public
+# https://impl.workday.com/#{company}/d/home.html
+# https://workdaysuv.com/api/recruiting/v3/#{company}/jobPostings
+# https://wd2-impl-services1.workday.com/ccx/api/v1/#{company}/jobpostings
+
 workday_job_urls = [
   "https://www.accenture.com/gb-en/careers/jobdetails?id=R00190006_en&title=SAP%20Supply%20Chain%20Senior%20Manager",
+  "https://moonpay.wd1.myworkdayjobs.com/GTI/job/London-United-Kingdom/Full-Stack-Engineer_JR100014",
 ]
 
 
@@ -313,6 +381,61 @@ comp_specific_job_urls = [
   "https://jobs.apple.com/en-us/details/200525781/network-engineer-internship-apple-is-t",
   "https://careers.tiktok.com/position/7298315322230229257/detail",
 ]
+
+# -----------------
+# Taleo ATS
+# -----------------
+
+taleo_job_urls = [
+  "",
+]
+
+# -----------------
+# Breezy HR ATS
+# -----------------
+
+breezyhr_job_urls = [
+  "",
+]
+
+# -----------------
+# Bamboo HR ATS
+# -----------------
+
+bamboohr_job_urls = [
+  "",
+]
+
+# -----------------
+# Jobvite ATS
+# -----------------
+
+jobvite_job_urls = [
+  "",
+]
+
+# -----------------
+# Freshteam ATS
+# -----------------
+
+# https://#{company}.freshteam.com/api/job_postings # requires authentication
+
+freshteam_job_urls = [
+  "",
+]
+
+# -----------------
+# Phenom ATS
+# -----------------
+
+# https://api.phenom.com/
+# https://api.phenompeople.com/
+
+phenom_job_urls = [
+  "",
+]
+
+
 
 # -----------------
 #  ATS

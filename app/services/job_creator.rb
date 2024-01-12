@@ -10,23 +10,16 @@ class JobCreator
   def add_job_details
     return unless @url.include?('greenhouse')
 
-    p "Add job details"
-
     match = parse_greenhouse_url
     return unless match
     ats_identifier = match[1]
     job_posting_id = match[2]
 
-    p "parsed url"
-
     check_job_is_live
-
-    p "checked job is live"
 
     if @job.live
       data = fetch_job_data(ats_identifier, job_posting_id)
       update_job_details(data)
-      p "updated job details"
     end
 
     puts "Updated job details - #{@job.job_title}"
@@ -64,14 +57,7 @@ class JobCreator
   end
 
   def update_job_details(data)
-    # Note job description is HTML here
-    # TODO: Test Decoder on job description
-
-    p "Job description: #{data['content']}"
-
     decoded_description = CGI.unescapeHTML(data['content'])
-
-    p "Decoded description: #{decoded_description}"
 
     @job.update(
       job_title: data['title'],
