@@ -72,10 +72,6 @@ class JobCreator
     end
   end
 
-  private
-
-  # TODO: Convert job_posting_url to standard format
-
   def parse_greenhouse_url
     @url.match(%r{https://boards\.greenhouse\.io/([^/]+)/jobs/(\d+)})
   end
