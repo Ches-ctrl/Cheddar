@@ -19,7 +19,7 @@ class JobCreator
 
   def pull_job_details
     if ats_system
-      ats_module.get_job_details(@job)
+      ats_module('JobDetails').get_job_details(@job)
     else
       p "Unable to detect ATS system for URL: #{@url}"
       return nil

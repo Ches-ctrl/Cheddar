@@ -32,16 +32,16 @@ module Ats::AtsHandler
 
   # TODO: Update module to handle submodules when splitting out ATS capabilities
 
-  def ats_module
-    module_name = "Ats::#{ats_system.capitalize}"
+  def ats_module(action)
+    module_name = "Ats::#{ats_system.capitalize}::#{action}"
     Object.const_get(module_name) if Object.const_defined?(module_name)
   end
 
   def get_company_details
-    ats_module&.get_company_details(@url)
+    ats_module.get_company_details(@url)
   end
 
   def get_job_details
-    ats_module&.get_job_details(@job)
+    ats_module.get_job_details(@job)
   end
 end

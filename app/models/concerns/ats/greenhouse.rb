@@ -149,12 +149,6 @@ module Ats::Greenhouse
   end
 
   # ---------------
-  # GetFormFieldsJob
-  # ---------------
-
-  # TODO: Add Greenhouse code here
-
-  # ---------------
   # Application Fields
   # ---------------
 
@@ -387,8 +381,3 @@ module Ats::Greenhouse
     "Other",
   ]
 end
-
-#  Issue with standard form fields - 2x being cross-added
-#  Reconcile standard set of form fields
-#  Then add additional fields
-#  Move service to be a background job after job.create
