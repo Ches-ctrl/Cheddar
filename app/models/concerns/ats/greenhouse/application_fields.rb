@@ -1,6 +1,9 @@
 module Ats::Greenhouse::ApplicationFields
   extend ActiveSupport::Concern
 
+# TODO: Update greenhouse fields to be just the core set, with the additional set to be scraped each time
+# TODO: Handle multiple greenhouse URL formats
+
   # Options:
   # Just scrape required fields
   # Scrape all fields, minimal characteristics

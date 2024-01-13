@@ -45,3 +45,8 @@ module Ats::AtsHandler
     ats_module.get_job_details(@job)
   end
 end
+
+# Potential Errors on CompanyCreator and JobCreator:
+# - User inputs embedded URL
+# - User inputs URL without job_id
+# - User inputs URL for unsupported ATS
