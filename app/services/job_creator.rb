@@ -11,6 +11,7 @@ class JobCreator
     'totaljobs',
     'simplyhired',
     'workday',
+    'tal.net',
     # 'indeed',
     # 'freshteam',
     # 'phenom',

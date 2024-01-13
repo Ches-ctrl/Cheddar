@@ -15,18 +15,56 @@ ApplicantTrackingSystem.destroy_all
 puts "Creating new Applicant Tracking Systems..."
 
 ats_data = [
-  { name: "Greenhouse", website_url: "https://greenhouse.io/", base_url_main: "https://boards.greenhouse.io/", base_url_api: "https://boards-api.greenhouse.io/v1/boards/" },
-  { name: "Workable", website_url: "https://workable.com/", all_jobs_url: "https://jobs.workable.com/", base_url_main: "https://apply.workable.com/", base_url_api: "https://apply.workable.com/api/v1/accounts/"},
-  { name: "Lever", website_url: "https://lever.co/", base_url_main: "https://jobs.lever.co/", base_url_api: "https://api.lever.co/v0/postings/"},
-  { name: "SmartRecruiters", website_url: "https://smartrecruiters.com/", all_jobs_url: "https://jobs.smartrecruiters.com/", base_url_main: "https://jobs.smartrecruiters.com/", base_url_api: "https://api.smartrecruiters.com/v1/companies/" },
-  { name: "Ashby", website_url: "https://ashbyhq.com/", base_url_main: "https://jobs.ashbyhq.com/", base_url_api: "https://api.ashbyhq.com/posting-api/job-board/" },
-  { name: "Workday", website_url: "https://www.workday.com/", base_url_main: "https://XXX.wd1.myworkdayjobs.com/en-US/GTI" },
-  { name: "Tal.net", website_url: "https://tal.net/" },
-  { name: "TotalJobs", website_url: "https://www.totaljobs.com/" },
-  { name: "Simplyhired", website_url: "https://www.simplyhired.co.uk/" },
-  { name: "Jobvite", website_url: "https://jobvite.com/" },
-  { name: "Taleo", website_url: "https://taleo.com/" },
-  { name: "Ambertrack", website_url: "https://ambertrack.com/" },
+  { name: "Greenhouse",
+    website_url: "https://greenhouse.io/",
+    base_url_main: "https://boards.greenhouse.io/",
+    base_url_api: "https://boards-api.greenhouse.io/v1/boards/"
+  },
+  { name: "Workable",
+    website_url: "https://workable.com/",
+    all_jobs_url: "https://jobs.workable.com/",
+    base_url_main: "https://apply.workable.com/",
+    base_url_api: "https://apply.workable.com/api/v1/accounts/"
+  },
+  { name: "Lever",
+    website_url: "https://lever.co/",
+    base_url_main: "https://jobs.lever.co/",
+    base_url_api: "https://api.lever.co/v0/postings/"
+  },
+  { name: "SmartRecruiters",
+    website_url: "https://smartrecruiters.com/",
+    all_jobs_url: "https://jobs.smartrecruiters.com/",
+    base_url_main: "https://jobs.smartrecruiters.com/",
+    base_url_api: "https://api.smartrecruiters.com/v1/companies/"
+  },
+  { name: "Ashby",
+    website_url: "https://ashbyhq.com/",
+    base_url_main: "https://jobs.ashbyhq.com/",
+    base_url_api: "https://api.ashbyhq.com/posting-api/job-board/"
+  },
+  { name: "Workday",
+    website_url: "https://www.workday.com/",
+    base_url_main: "https://XXX.wd1.myworkdayjobs.com/en-US/GTI"
+  },
+  { name: "Tal.net",
+    website_url: "https://tal.net/",
+    all_jobs_url: "https://XXX.tal.net/candidate"
+  },
+  { name: "TotalJobs",
+    website_url: "https://www.totaljobs.com/"
+  },
+  { name: "Simplyhired",
+    website_url: "https://www.simplyhired.co.uk/"
+  },
+  { name: "Jobvite",
+    website_url: "https://jobvite.com/"
+  },
+  { name: "Taleo",
+    website_url: "https://taleo.com/"
+  },
+  { name: "Ambertrack",
+    website_url: "https://ambertrack.com/"
+  },
 ]
 
 # Tal.net clients: FCO, Houses of Parliament, Police
@@ -39,6 +77,8 @@ end
 puts "Created #{ApplicantTrackingSystem.count} ATSs"
 
 puts "-------------------------------------"
+
+# TODO: Remove ATS formats from seeds and schema - no longer required
 
 puts "Creating new ATS formats..."
 
