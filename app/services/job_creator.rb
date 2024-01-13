@@ -2,13 +2,32 @@ require 'cgi'
 # require 'net/http'
 
 class JobCreator
+  SUPPORTED_ATS_SYSTEMS = [
+    'greenhouse',
+    'workable',
+    'lever',
+    'smartrecruiters',
+    'ashby',
+    'totaljobs',
+    'simplyhired',
+    'workday',
+    # 'indeed',
+    # 'freshteam',
+    # 'phenom',
+    # 'jobvite',
+    # 'icims',
+  ].freeze
+
   def initialize(job)
     @job = job
     @url = job.job_posting_url
   end
 
   def add_job_details
-    return unless @url.include?('greenhouse')
+    # return unless @url.include?('greenhouse')
+    return unless SUPPORTED_ATS_SYSTEMS.any? { |ats| @url.include?(ats) }
+
+    ats_system = SUPPORTED_ATS_SYSTEMS.find { |ats| @url.include?(ats) }
 
     match = parse_greenhouse_url
     return unless match

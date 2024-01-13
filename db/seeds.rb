@@ -15,19 +15,21 @@ ApplicantTrackingSystem.destroy_all
 puts "Creating new Applicant Tracking Systems..."
 
 ats_data = [
-  { name: "Greenhouse", website_url: "https://greenhouse.io/" },
-  { name: "Workable", website_url: "https://workable.com/" },
-  { name: "Lever", website_url: "https://lever.co/" },
+  { name: "Greenhouse", website_url: "https://greenhouse.io/", base_url_main: "https://boards.greenhouse.io/", base_url_api: "https://boards-api.greenhouse.io/v1/boards/" },
+  { name: "Workable", website_url: "https://workable.com/", all_jobs_url: "https://jobs.workable.com/", base_url_main: "https://apply.workable.com/", base_url_api: "https://apply.workable.com/api/v1/accounts/"},
+  { name: "Lever", website_url: "https://lever.co/", base_url_main: "https://jobs.lever.co/", base_url_api: "https://api.lever.co/v0/postings/"},
+  { name: "SmartRecruiters", website_url: "https://smartrecruiters.com/", all_jobs_url: "https://jobs.smartrecruiters.com/", base_url_main: "https://jobs.smartrecruiters.com/", base_url_api: "https://api.smartrecruiters.com/v1/companies/" },
+  { name: "Ashby", website_url: "https://ashbyhq.com/", base_url_main: "https://jobs.ashbyhq.com/", base_url_api: "https://api.ashbyhq.com/posting-api/job-board/" },
+  { name: "Workday", website_url: "https://www.workday.com/", base_url_main: "https://XXX.wd1.myworkdayjobs.com/en-US/GTI" },
+  { name: "Tal.net", website_url: "https://tal.net/" },
   { name: "TotalJobs", website_url: "https://www.totaljobs.com/" },
   { name: "Simplyhired", website_url: "https://www.simplyhired.co.uk/" },
-  { name: "SmartRecruiters", website_url: "https://smartrecruiters.com/" },
-  { name: "Ashby", website_url: "https://ashbyhq.com/" },
   { name: "Jobvite", website_url: "https://jobvite.com/" },
   { name: "Taleo", website_url: "https://taleo.com/" },
-  { name: "Workday", website_url: "https://workday.com/" },
   { name: "Ambertrack", website_url: "https://ambertrack.com/" },
-  { name: "Tal.net", website_url: "https://tal.net/" },
 ]
+
+# Tal.net clients: FCO, Houses of Parliament, Police
 
 ats_data.each do |ats|
   ApplicantTrackingSystem.create(ats)
@@ -364,6 +366,30 @@ workday_job_urls = [
   "https://www.accenture.com/gb-en/careers/jobdetails?id=R00190006_en&title=SAP%20Supply%20Chain%20Senior%20Manager",
   "https://moonpay.wd1.myworkdayjobs.com/GTI/job/London-United-Kingdom/Full-Stack-Engineer_JR100014",
 ]
+
+# -----------------
+# Tal.net ATS
+# -----------------
+
+tal_site_urls = [
+  "https://fco.tal.net/candidate",
+  "https://justicejobs.tal.net/candidate",
+  "https://homeofficejobs.tal.net/candidate",
+  "https://theroyalhousehold.tal.net/candidate",
+  "https://housesofparliament.tal.net/candidate",
+  "https://environmentagencyjobs.tal.net/candidate",
+  "https://policecareers.tal.net/candidate",
+  "https://thamesvalleypolice.tal.net/candidate",
+  "https://ual.tal.net/candidate/",
+]
+
+gov_uk_site_urls = [
+  "https://www.civilservicejobs.service.gov.uk/csr/index.cgi",
+  "https://jobs.justice.gov.uk/",
+  "https://careers.homeoffice.gov.uk/",
+  "https://www.jobs.nhs.uk/candidate",
+]
+
 
 # -----------------
 # Freshteam ATS
