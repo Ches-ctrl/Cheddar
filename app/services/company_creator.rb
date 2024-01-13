@@ -1,10 +1,47 @@
 class CompanyCreator
+  SUPPORTED_ATS_SYSTEMS = [
+    'greenhouse',
+    'workable',
+    'lever',
+    'smartrecruiters',
+    'ashby',
+    'totaljobs',
+    'simplyhired',
+    'workday',
+    'tal.net',
+    # 'indeed',
+    # 'freshteam',
+    # 'phenom',
+    # 'jobvite',
+    # 'icims',
+  ].freeze
+
   def initialize(url)
     @url = url
   end
 
+  # def create_company
+  #   ats_system = SUPPORTED_ATS_SYSTEMS.find { |ats| @url.include?(ats) }
+
+  #   if ats_system
+  #     ats_module = get_ats_module(ats_system)
+  #     ats_module.get_company_details(@url)
+  #   else
+  #     p "Unable to detect ATS system for URL: #{@url}"
+  #     return nil
+  #   end
+  # end
+
   def find_or_create_company
-    return unless @url.include?('greenhouse')
+    ats_system = SUPPORTED_ATS_SYSTEMS.find { |ats| @url.include?(ats) }
+
+    if ats_system
+      ats_module = get_ats_module(ats_system)
+      ats_module.get_company_details(@url)
+    else
+      p "Unable to detect ATS system for URL: #{@url}"
+      return nil
+    end
 
     match = parse_greenhouse_url
     return unless match
@@ -27,7 +64,7 @@ class CompanyCreator
 
     update_description_and_ats(company, description, ats_identifier)
     update_company_url_and_website(company) if company.url_ats.blank?
-    
+
     # p "Calling GetAllJobUrls"
     # GetAllJobUrls.new(company).get_all_job_urls if new_company
     # p "Finished GetAllJobUrls"
@@ -75,5 +112,10 @@ class CompanyCreator
     else
       p "No redirect for #{company_website_url}"
     end
+  end
+
+  def get_ats_module(ats_system)
+    module_name = "Ats::#{ats_system.capitalize}"
+    Object.const_get(module_name) if Object.const_defined?(module_name)
   end
 end

@@ -4,28 +4,13 @@ module Ats::Greenhouse
   # TODO: Update greenhouse fields to be just the core set, with the additional set to be scraped each time
   # TODO: Handle multiple greenhouse URL formats
 
-  # Greenhouse Main URLs:
-  # https://boards.greenhouse.io/#{company_name}/jobs/#{job_id}
-  # https://boards.greenhouse.io/embed/job_app?for=#{company_name}&token=#{job_id}
-  # https://boards.#{region_code}.greenhouse.io/embed/job_app?for=#{company_name}&token=#{job_id}
+  def self.get_company_details(company)
+    p "Getting greenhouse company details: #{company}"
+  end
 
-  # Greenhouse API URLs:
-  # https://boards-api.greenhouse.io/v1/boards/#{company_name} # Sometimes redirects
-  # https://boards-api.greenhouse.io/#{company_name}
-  # https://boards-api.greenhouse.io/#{company_name}/jobs
-  # https://boards-api.greenhouse.io/#{company_name}/jobs/#{job_id}
-
-  # Regular Expression Matching:
-  #   url_pattern_1 = %r{https://boards\.greenhouse\.io/([^/]+)/jobs/(\d+)}
-  #   url_pattern_2 = %r{https://boards\.greenhouse\.io/embed/job_app\?for=([^&]+)&token=(\w+)}
-  #   url_pattern_3 = %r{https://boards\.([^\.]+)\.greenhouse\.io/embed/job_app\?for=([^&]+)&token=(\w+)}
-
-  # Types of hosting a Jobs Board with Greenhouse:
-  # - Host a job board with Greenhouse
-  # - Embed a Greenhouse job board in your website
-  # - Embed an API-driven job board in your website and host job applications with Greenhouse
-  # - Embed an API-driven job board and application form in your website
-  # - Create a fully API-driven job board
+  def self.get_job_details(job)
+    p "Getting greenhouse job details: #{job}"
+  end
 
   GREENHOUSE_CORE_FIELDS = {
     first_name: {

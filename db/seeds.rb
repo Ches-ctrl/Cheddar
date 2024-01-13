@@ -518,7 +518,8 @@ greenhouse_job_urls.each do |url|
 
   p "Job posting url: #{job.job_posting_url}"
 
-  JobCreator.new(job).add_job_details
+  JobCreator.new(job).create_job
+  # JobCreator.new(job).add_job_details
   p "Created job - #{Job.last.job_title}"
 end
 

@@ -1,5 +1,4 @@
 require 'cgi'
-# require 'net/http'
 
 class JobCreator
   SUPPORTED_ATS_SYSTEMS = [
@@ -22,6 +21,18 @@ class JobCreator
   def initialize(job)
     @job = job
     @url = job.job_posting_url
+  end
+
+  def create_job
+    ats_system = SUPPORTED_ATS_SYSTEMS.find { |ats| @url.include?(ats) }
+
+    if ats_system
+      ats_module = get_ats_module(ats_system)
+      ats_module.get_job_details(@job)
+    else
+      p "Unable to detect ATS system for URL: #{@url}"
+      return nil
+    end
   end
 
   def add_job_details
@@ -86,5 +97,10 @@ class JobCreator
     @job.update(location: data['location']['name']) if data['location'].present?
     # @job.update(department: data['departments'][0]['name']) if data['departments'].present?
     # @job.update(office: data['offices'][0]['name']) if data['offices'].present?
+  end
+
+  def get_ats_module(ats_system)
+    module_name = "Ats::#{ats_system.capitalize}"
+    Object.const_get(module_name) if Object.const_defined?(module_name)
   end
 end
