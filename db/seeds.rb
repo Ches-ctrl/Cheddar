@@ -15,16 +15,18 @@ ApplicantTrackingSystem.destroy_all
 puts "Creating new Applicant Tracking Systems..."
 
 ats_data = [
-  { name: "Workable", website_url: "https://workable.com/" },
   { name: "Greenhouse", website_url: "https://greenhouse.io/" },
+  { name: "Workable", website_url: "https://workable.com/" },
   { name: "Lever", website_url: "https://lever.co/" },
-  { name: "Jobvite", website_url: "https://jobvite.com/" },
+  { name: "TotalJobs", website_url: "https://www.totaljobs.com/" },
+  { name: "Simplyhired", website_url: "https://www.simplyhired.co.uk/" },
   { name: "SmartRecruiters", website_url: "https://smartrecruiters.com/" },
+  { name: "Ashby", website_url: "https://ashbyhq.com/" },
+  { name: "Jobvite", website_url: "https://jobvite.com/" },
   { name: "Taleo", website_url: "https://taleo.com/" },
   { name: "Workday", website_url: "https://workday.com/" },
   { name: "Ambertrack", website_url: "https://ambertrack.com/" },
   { name: "Tal.net", website_url: "https://tal.net/" },
-  { name: "Ashby", website_url: "https://ashbyhq.com/" }
 ]
 
 ats_data.each do |ats|
@@ -254,9 +256,14 @@ greenhouse_job_urls_embedded = [
 
 # TODO: Handle embedded job postings on Greenhouse
 
+# -----------------
+# Rails Jobs
+# -----------------
+
 rails_job_urls = [
   "https://boards.greenhouse.io/cleoai/jobs/4628944002", # greenhouse # senior"
-  "https://boards.eu.greenhouse.io/ably30/jobs/4229668101", # greenhouse # senior
+  "https://boards.greenhouse.io/ably30/jobs/4229668101", # greenhouse # senior
+  "https://boards.greenhouse.io/algolia/jobs/4989661004", # greenhouse # junior
   "https://apply.workable.com/papier/j/F2D67EF125/", # workable # senior
   "https://apply.workable.com/builderai/j/D157ED0496/", # workable # mid
   "https://apply.workable.com/builderai/j/E417F55824/", # workable # senior
@@ -264,16 +271,16 @@ rails_job_urls = [
   "https://jobs.lever.co/zeneducate/3422d04b-963a-4cc7-91e0-85ee315c2007", # lever # senior
   "https://jobs.smartrecruiters.com/Billetto/80023032-backend-web-developer", # smartrecruiters # mid
   "https://jobs.smartrecruiters.com/Canva/743999942402703", # smartrecruiters # senior
-  "https://jobs.smartrecruiters.com/Billetto/80023032-backend-web-developer", # smartrecruiters # mid
   "https://www.totaljobs.com/job/101793572/apply", # totaljobs # senior
+  "https://www.totaljobs.com/job/junior-software-developer/sparta-global-limited-job101695431", # totaljobs # junior
   "https://www.totaljobs.com/job/full-stack-ruby-on-rails-developer/movement-8-job101778422", # totaljobs # mid
-  "https://www.linkedin.com/jobs/view/ruby-on-rails-2-hands-on-engineering-manager-lead-developer-london-twice-a-week-up-to-%C2%A3100-000-offers-sponsorship-at-opus-recruitment-solutions-3756503864/", # linkedin # senior
-  "https://www.linkedin.com/jobs/view/3799028903/", # linkedin # mid
-  "https://www.linkedin.com/jobs/view/fullstack-ruby-on-rails-developer-at-movement8-3798307820/", # linkedin # mid
-  "https://uk.indeed.com/viewjob?jk=36cda28dd190bc72", # indeed # senior
   "https://www.simplyhired.co.uk/job/K0OD6J_mQAkEV2xH5ktIzSbCDjCzpj7yYtGh9w6TiCyPLg2dLaALPw", # simplyhired # mid # create account
   "https://www.simplyhired.co.uk/job/n26j_p5HaCBjI8iYuRBBTL9sUQFIfUhIi-w-sZeuRh3HY0YWtIHqpg", # simplyhired # mid # create account
   "https://www.simplyhired.co.uk/job/3eJ7KIbUJzmvyGwP8nYZQOn-AYcUkLk7jDAofeTImguEW-OQ0dlh3g", # simplyhired # mid # create account
+  "https://uk.indeed.com/viewjob?jk=36cda28dd190bc72", # indeed # senior
+  "https://www.linkedin.com/jobs/view/ruby-on-rails-2-hands-on-engineering-manager-lead-developer-london-twice-a-week-up-to-%C2%A3100-000-offers-sponsorship-at-opus-recruitment-solutions-3756503864/", # linkedin # senior
+  "https://www.linkedin.com/jobs/view/3799028903/", # linkedin # mid
+  "https://www.linkedin.com/jobs/view/fullstack-ruby-on-rails-developer-at-movement8-3798307820/", # linkedin # mid
   "https://www.reed.co.uk/jobs/junior-software-developer-ruby-on-rails/51872078", # reed # junior
   "https://careers.judge.me/jobs/t7THEE3YAvBh/fullstack-ruby-on-rails-developer", # freshteam # mid
   "https://www.oho.co.uk/job-details/?id=mid-level-ruby-on-rails-developer-876454", # oho # mid
@@ -285,13 +292,14 @@ rails_job_urls = [
   "https://www.robertwalters.co.uk/technologydigital/jobs/softwaredevelopmentengineering/1705516-fullstack-developer-12month.html", # robertwalters # mid # create account
 ]
 
+# -----------------
+# Software Engineering Jobs
+# -----------------
+
 soft_eng_job_urls = [
   "https://careers.justeattakeaway.com/global/en/apply?jobSeqNo=TAKEGLOBALR035518ENGLOBAL&step=1", # phenom # requires full scrape
   "https://moonpay.wd1.myworkdayjobs.com/GTI/job/London-United-Kingdom/Full-Stack-Engineer_JR100014", # workday # not public
 ]
-
-# totaljobs - create account
-
 
 # -----------------
 # Workable ATS
@@ -308,7 +316,6 @@ workable_job_urls = [
   # "https://apply.workable.com/papier/j/F2D67EF125/",
 ]
 
-
 # -----------------
 # Lever ATS
 # -----------------
@@ -316,7 +323,6 @@ workable_job_urls = [
 # https://api.lever.co/v0/postings/#{company_id} # gives links to list of jobs (not JSON)
 # https://api.lever.co/v0/postings/#{company_id}?mode=json # can also do HTML and iframe
 # https://api.lever.co/v0/postings/#{company_id}/#{job_id}
-
 
 lever_job_urls = [
   "https://jobs.lever.co/quantcast/30055553-6f06-4d54-ae63-bc474009754c",
@@ -337,7 +343,6 @@ smartrecruiters_job_urls = [
   "https://jobs.smartrecruiters.com/SSENSE1/743999955472143",
 ]
 
-
 # -----------------
 # Ashby ATS
 # -----------------
@@ -352,66 +357,12 @@ ashby_job_urls = [
 ]
 
 # -----------------
-# Bamboo HR ATS
-# -----------------
-
-
-
-
-# -----------------
 # Workday ATS
 # -----------------
-
-# Not public
-# https://impl.workday.com/#{company}/d/home.html
-# https://workdaysuv.com/api/recruiting/v3/#{company}/jobPostings
-# https://wd2-impl-services1.workday.com/ccx/api/v1/#{company}/jobpostings
 
 workday_job_urls = [
   "https://www.accenture.com/gb-en/careers/jobdetails?id=R00190006_en&title=SAP%20Supply%20Chain%20Senior%20Manager",
   "https://moonpay.wd1.myworkdayjobs.com/GTI/job/London-United-Kingdom/Full-Stack-Engineer_JR100014",
-]
-
-
-# -----------------
-# Company-specific
-# -----------------
-
-comp_specific_job_urls = [
-  "https://jobs.apple.com/en-us/details/200525781/network-engineer-internship-apple-is-t",
-  "https://careers.tiktok.com/position/7298315322230229257/detail",
-]
-
-# -----------------
-# Taleo ATS
-# -----------------
-
-taleo_job_urls = [
-  "",
-]
-
-# -----------------
-# Breezy HR ATS
-# -----------------
-
-breezyhr_job_urls = [
-  "",
-]
-
-# -----------------
-# Bamboo HR ATS
-# -----------------
-
-bamboohr_job_urls = [
-  "",
-]
-
-# -----------------
-# Jobvite ATS
-# -----------------
-
-jobvite_job_urls = [
-  "",
 ]
 
 # -----------------
@@ -428,14 +379,53 @@ freshteam_job_urls = [
 # Phenom ATS
 # -----------------
 
-# https://api.phenom.com/
-# https://api.phenompeople.com/
+# https://api.phenom.com/ # requires authentication
+# https://api.phenompeople.com/ # requires authentication
 
 phenom_job_urls = [
   "",
 ]
 
+# -----------------
+# Company-specific
+# -----------------
 
+comp_specific_job_urls = [
+  "https://jobs.apple.com/en-us/details/200525781/network-engineer-internship-apple-is-t",
+  "https://careers.tiktok.com/position/7298315322230229257/detail",
+]
+
+# -----------------
+# Taleo ATS
+# -----------------
+
+# taleo_job_urls = [
+#   "",
+# ]
+
+# -----------------
+# Breezy HR ATS
+# -----------------
+
+# breezyhr_job_urls = [
+#   "",
+# ]
+
+# -----------------
+# Bamboo HR ATS
+# -----------------
+
+# bamboohr_job_urls = [
+#   "",
+# ]
+
+# -----------------
+# Jobvite ATS
+# -----------------
+
+# jobvite_job_urls = [
+#   "",
+# ]
 
 # -----------------
 #  ATS

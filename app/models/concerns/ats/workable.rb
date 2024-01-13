@@ -1,5 +1,6 @@
 module Ats::Workable
   extend ActiveSupport::Concern
+
   WORKABLE_FIELDS = {
     first_name: {
       interaction: :input,
