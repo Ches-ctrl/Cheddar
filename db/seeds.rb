@@ -520,9 +520,14 @@ greenhouse_job_urls.each do |url|
 
   p "Job posting url: #{job.job_posting_url}"
 
-  JobCreator.new(job).create_job
-  # JobCreator.new(job).add_job_details
-  p "Created job - #{Job.last.job_title}"
+  live = JobCreator.new(job).check_job_is_live
+
+  if live
+    JobCreator.new(job).pull_job_details
+    p "Created job - #{Job.last.job_title}"
+  else
+    p "Job posting is not live"
+  end
 end
 
 puts "Created #{greenhouse_job_urls.count} jobs based on the provided URLs."
