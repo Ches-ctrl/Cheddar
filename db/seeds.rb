@@ -332,6 +332,7 @@ rails_job_urls = [
   "https://5ivetech.co.uk/apply-job/?job_id=ODU5NDI=", # 5ivetech # mid
   "https://www.internwise.co.uk/job/33389/ruby-on-rails-developer-internship", # internwise # intern
   "https://www.robertwalters.co.uk/technologydigital/jobs/softwaredevelopmentengineering/1705516-fullstack-developer-12month.html", # robertwalters # mid # create account
+  "https://sittercity.applytojob.com/apply/bVigxNJAWt/Engineering-Manager-Sitter-Engagement", # jazzhr # mid
 ]
 
 # -----------------
