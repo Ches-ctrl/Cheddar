@@ -505,11 +505,8 @@ comp_specific_job_urls = [
 
 # job_urls = [greenhouse_job_urls, workable_job_urls, lever_job_urls, smartrecruiters_job_urls, ashby_job_urls]
 
-# TODO: Collect additional company postings functionality
-# TODO: Add jobs from all ATS systems
-
 greenhouse_job_urls.each do |url|
-  company, job_id = CompanyCreator.new(url).find_or_create_company
+  company, ats_job_id = CompanyCreator.new(url).find_or_create_company
   p "CompanyCreator complete: #{company.company_name}"
 
   job = Job.create!(
@@ -517,7 +514,7 @@ greenhouse_job_urls.each do |url|
     job_posting_url: url,
     company_id: company.id,
     applicant_tracking_system_id: company.applicant_tracking_system_id,
-    ats_job_id: job_id,
+    ats_job_id: ats_job_id,
   )
 
   if JobCreator.new(job).check_job_is_live

@@ -53,4 +53,9 @@ module AtsRouter
   def get_job_details
     ats_module.get_job_details(@job)
   end
+
+  def get_application_criteria
+    p "Getting application criteria"
+    ats_module.get_application_criteria(@job)
+  end
 end

@@ -44,11 +44,13 @@ class JobsController < ApplicationController
     # TODO: convert job_posting_url to standard format
 
     p "Starting CompanyCreator"
-    company = CompanyCreator.new(@job.job_posting_url).find_or_create_company
-
+    company, ats_job_id = CompanyCreator.new(@job.job_posting_url).find_or_create_company
     p "CompanyCreator complete: #{company.company_name}"
+
     @job.company_id = company.id
-    
+    @job.applicant_tracking_system_id = company.applicant_tracking_system_id
+    @job.ats_job_id = ats_job_id
+
     p "Starting JobCreator"
     JobCreator.new(@job).add_job_details
 
@@ -85,6 +87,6 @@ class JobsController < ApplicationController
   # TODO: Check if more params are needed on Job.create
 
   def job_params
-    params.require(:job).permit(:job_title, :job_description, :salary, :job_posting_url, :application_deadline, :date_created, :company_id, :applicant_tracking_system_id, :ats_format_id)
+    params.require(:job).permit(:job_title, :job_description, :salary, :job_posting_url, :application_deadline, :date_created, :company_id, :applicant_tracking_system_id, :ats_format_id, :ats_job_id, :location, :department, :office, :live)
   end
 end

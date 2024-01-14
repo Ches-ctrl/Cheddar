@@ -1,15 +1,20 @@
 module Ats::Greenhouse::ApplicationFields
   extend ActiveSupport::Concern
 
-# TODO: Update greenhouse fields to be just the core set, with the additional set to be scraped each time
-# TODO: Handle multiple greenhouse URL formats
+  # Question - scrape all fields or add standard set each time?
 
-  # Options:
-  # Just scrape required fields
-  # Scrape all fields, minimal characteristics
-  # Scrape all fields, all characteristics
+  def self.get_application_criteria(job)
+    p "Getting greenhouse application criteria"
+    job.application_criteria = CORE_FIELDS
+    job.save
+    # GetFormFieldsJob.perform_later(job.job_posting_url)
+  end
 
-  GREENHOUSE_CORE_FIELDS = {
+  def self.update_requirements(job)
+    p "Updating job requirements"
+  end
+
+  CORE_FIELDS = {
     first_name: {
       interaction: :input,
       locators: 'first_name',
@@ -51,7 +56,7 @@ module Ats::Greenhouse::ApplicationFields
     # }
   }
 
-  GREENHOUSE_ADDITIONAL_FIELDS = {
+  ADDITIONAL_FIELDS = {
     school: {
       interaction: :select,
       locators: 's2id_education_school_name_0',
@@ -139,7 +144,7 @@ module Ats::Greenhouse::ApplicationFields
     # },
   }
 
-  GREENHOUSE_DEGREE_OPTIONS = [
+  DEGREE_OPTIONS = [
     "High School",
     "Associate's Degree",
     "Bachelor's Degree",
@@ -152,7 +157,7 @@ module Ats::Greenhouse::ApplicationFields
     "Other",
   ]
 
-  GREENHOUSE_DISCIPLINE_OPTIONS = [
+  DISCIPLINE_OPTIONS = [
     "Accounting",
     "African Studies",
     "Agriculture",

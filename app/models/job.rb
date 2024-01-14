@@ -1,6 +1,7 @@
 class Job < ApplicationRecord
-  include Ats::Greenhouse
-  include Ats::Workable
+  # include Ats::Greenhouse
+  # include Ats::Workable
+  # include AtsRouter
   include PgSearch::Model
 
   # TODO: Number of questions in job form
@@ -20,10 +21,7 @@ class Job < ApplicationRecord
   has_many :job_playlists, through: :playlist_jobs
 
   validates :job_title, presence: true
-  validates :job_posting_url, uniqueness: true
-
-  before_create :set_application_criteria
-  after_create :update_application_criteria
+  validates :job_posting_url, uniqueness: true, presence: true
 
   pg_search_scope :global_search,
     against: [:job_title, :salary, :job_description],
@@ -34,24 +32,7 @@ class Job < ApplicationRecord
       tsearch: { prefix: true }
     }
 
-  def set_application_criteria
-    if job_posting_url.include?('greenhouse')
-      self.application_criteria = Job::GREENHOUSE_CORE_FIELDS
-    elsif job_posting_url.include?('workable')
-      self.application_criteria = Job::WORKABLE_FIELDS
-    else
-      self.application_criteria = {}
-    end
-  end
-
-  def update_application_criteria
-    if job_posting_url.include?('greenhouse')
-      extra_fields = GetFormFieldsJob.perform_later(job_posting_url)
-      # p extra_fields
-    else
-      p "No additional fields to add"
-    end
-  end
+  # TODO: Question - set application_criteria = {} as default?
 
   # Enables access to application_criteria via strings or symbols
   def application_criteria
