@@ -1,33 +1,20 @@
-module Ats::Greenhouse
+module Ats::Greenhouse::ApplicationFields
   extend ActiveSupport::Concern
 
-  # TODO: Update greenhouse fields to be just the core set, with the additional set to be scraped each time
-  # TODO: Handle multiple greenhouse URL formats
+  # Question - scrape all fields or add standard set each time?
 
-  # Greenhouse Main URLs:
-  # https://boards.greenhouse.io/#{company_name}/jobs/#{job_id}
-  # https://boards.greenhouse.io/embed/job_app?for=#{company_name}&token=#{job_id}
-  # https://boards.#{region_code}.greenhouse.io/embed/job_app?for=#{company_name}&token=#{job_id}
+  def self.get_application_criteria(job)
+    p "Getting greenhouse application criteria"
+    job.application_criteria = CORE_FIELDS
+    job.save
+    # GetFormFieldsJob.perform_later(job.job_posting_url)
+  end
 
-  # Greenhouse API URLs:
-  # https://boards-api.greenhouse.io/v1/boards/#{company_name} # Sometimes redirects
-  # https://boards-api.greenhouse.io/#{company_name}
-  # https://boards-api.greenhouse.io/#{company_name}/jobs
-  # https://boards-api.greenhouse.io/#{company_name}/jobs/#{job_id}
+  def self.update_requirements(job)
+    p "Updating job requirements"
+  end
 
-  # Regular Expression Matching:
-  #   url_pattern_1 = %r{https://boards\.greenhouse\.io/([^/]+)/jobs/(\d+)}
-  #   url_pattern_2 = %r{https://boards\.greenhouse\.io/embed/job_app\?for=([^&]+)&token=(\w+)}
-  #   url_pattern_3 = %r{https://boards\.([^\.]+)\.greenhouse\.io/embed/job_app\?for=([^&]+)&token=(\w+)}
-
-  # Types of hosting a Jobs Board with Greenhouse:
-  # - Host a job board with Greenhouse
-  # - Embed a Greenhouse job board in your website
-  # - Embed an API-driven job board in your website and host job applications with Greenhouse
-  # - Embed an API-driven job board and application form in your website
-  # - Create a fully API-driven job board
-
-  GREENHOUSE_CORE_FIELDS = {
+  CORE_FIELDS = {
     first_name: {
       interaction: :input,
       locators: 'first_name',
@@ -69,18 +56,7 @@ module Ats::Greenhouse
     # }
   }
 
-  # Add labels?
-  # Add placeholders?
-
-  # TODO: Add Job Application Question to DB Schema
-  # TODO: Clarify which characteristics of a question are required in order to properly allow user input
-
-  # Options:
-  # Just scrape required fields
-  # Scrape all fields, minimal characteristics
-  # Scrape all fields, all characteristics
-
-  GREENHOUSE_ADDITIONAL_FIELDS = {
+  ADDITIONAL_FIELDS = {
     school: {
       interaction: :select,
       locators: 's2id_education_school_name_0',
@@ -168,7 +144,7 @@ module Ats::Greenhouse
     # },
   }
 
-  GREENHOUSE_DEGREE_OPTIONS = [
+  DEGREE_OPTIONS = [
     "High School",
     "Associate's Degree",
     "Bachelor's Degree",
@@ -181,7 +157,7 @@ module Ats::Greenhouse
     "Other",
   ]
 
-  GREENHOUSE_DISCIPLINE_OPTIONS = [
+  DISCIPLINE_OPTIONS = [
     "Accounting",
     "African Studies",
     "Agriculture",
@@ -256,8 +232,3 @@ module Ats::Greenhouse
     "Other",
   ]
 end
-
-#  Issue with standard form fields - 2x being cross-added
-#  Reconcile standard set of form fields
-#  Then add additional fields
-#  Move service to be a background job after job.create

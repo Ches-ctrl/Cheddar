@@ -1,18 +1,13 @@
 module Ats::Workday
   extend ActiveSupport::Concern
 
-  # ATS Main URLs:
-  # 
+  def self.get_company_details(company)
+    p "Getting Workday company details: #{company}"
+  end
 
-  # ATS API URLs:
-  # 
-
-  # Types of hosting a Jobs Board with XXX:
-  # - Host a job board with XXX
-  # - Embed a XXX job board in your website
-  # - Embed an API-driven job board in your website and host job applications with XXX
-  # - Embed an API-driven job board and application form in your website
-  # - Create a fully API-driven job board
+  def self.get_job_details(job)
+    p "Getting Workday job details: #{job}"
+  end
 
   XXX_CORE_FIELDS = {
     # first_name: {

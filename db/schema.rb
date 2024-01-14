@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_13_143426) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_14_131921) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -90,10 +90,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_13_143426) do
     t.string "url_linkedin"
     t.string "industry_subcategory", default: "n/a"
     t.bigint "applicant_tracking_system_id"
-    t.string "url_ats"
     t.string "ats_identifier"
     t.string "description"
-    t.integer "total_live"
+    t.integer "total_live", default: 0
+    t.string "url_ats_main"
+    t.string "url_ats_api"
   end
 
   create_table "educations", force: :cascade do |t|
@@ -135,13 +136,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_13_143426) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "applicant_tracking_system_id"
-    t.integer "ats_format_id"
     t.text "application_details"
     t.text "description_long"
     t.text "responsibilities"
     t.text "requirements"
     t.text "benefits"
-    t.text "application_process"
     t.boolean "captcha"
     t.string "employment_type"
     t.string "location"
@@ -162,6 +161,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_13_143426) do
     t.boolean "req_second_round", default: true
     t.boolean "req_assessment_centre"
     t.boolean "live", default: false
+    t.string "ats_job_id"
+    t.integer "ats_format_id"
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
@@ -238,7 +239,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_13_143426) do
   add_foreign_key "job_applications", "jobs"
   add_foreign_key "job_applications", "users"
   add_foreign_key "jobs", "applicant_tracking_systems"
-  add_foreign_key "jobs", "ats_formats"
   add_foreign_key "jobs", "companies"
   add_foreign_key "playlist_jobs", "job_playlists"
   add_foreign_key "playlist_jobs", "jobs"

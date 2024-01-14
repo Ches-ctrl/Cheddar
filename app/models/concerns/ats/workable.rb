@@ -1,6 +1,14 @@
 module Ats::Workable
   extend ActiveSupport::Concern
 
+  def self.get_company_details(company)
+    p "Getting workable company details: #{company}"
+  end
+
+  def self.get_job_details(job)
+    p "Getting workable job details: #{job}"
+  end
+
   WORKABLE_FIELDS = {
     first_name: {
       interaction: :input,
