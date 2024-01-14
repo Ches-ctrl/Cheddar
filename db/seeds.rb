@@ -112,10 +112,11 @@ puts "Created #{AtsFormat.count} ATS formats"
 
 puts "-------------------------------------"
 
-# puts "Creating new companies..."
+puts "Creating new companies..."
 
-# companies_data = [
-#   {:name=>"9fin", :category=>"Tech", :website_url=>"https://9fin.com/"},
+companies_data = [
+  {:name=>"9fin", :category=>"Tech", :website_url=>"https://9fin.com/"},
+  {:name=>"11:FS", :category=>"Tech", :website_url=>"https://www.11fs.com/"},
 #   {:name=>"Alby", :category=>"Tech", :website_url=>"https://alby.com/"},
 #   {:name=>"Amazon Web Services", :category=>"Tech", :website_url=>"https://aws.com/"},
 #   {:name=>"Apple Inc", :category=>"Tech", :website_url=>"https://apple.com/uk"},
@@ -173,20 +174,20 @@ puts "-------------------------------------"
 #   {:name=>"Wise", :category=>"Finance", :website_url=>"https://wise.com/"},
 #   {:name=>"Workato", :category=>"Tech", :website_url=>"https://workato.com/"},
 #   {:name=>"Zscaler", :category=>"Tech", :website_url=>"https://zscaler.com/"}
-# ]
+]
 
-# companies_data.each do |company_data|
-#   Company.create(
-#     company_name: company_data[:name],
-#     company_category: company_data[:category],
-#     company_website_url: company_data[:website_url]
-#   )
-#   puts "Created company - #{Company.last.company_name}"
-# end
+companies_data.each do |company_data|
+  Company.create(
+    company_name: company_data[:name],
+    company_category: company_data[:category],
+    company_website_url: company_data[:website_url]
+  )
+  puts "Created company - #{Company.last.company_name}"
+end
 
-# puts "Created #{Company.count} companies"
+puts "Created #{Company.count} companies"
 
-# puts "-------------------------------------"
+puts "-------------------------------------"
 
 puts "Creating new jobs..."
 
@@ -508,26 +509,26 @@ comp_specific_job_urls = [
 # TODO: Add jobs from all ATS systems
 
 greenhouse_job_urls.each do |url|
-  company = CompanyCreator.new(url).find_or_create_company
+  company, job_id = CompanyCreator.new(url).find_or_create_company
   p "CompanyCreator complete: #{company.company_name}"
 
   job = Job.create!(
     job_title: "Job Title Placeholder",
     job_posting_url: url,
     company_id: company.id,
+    applicant_tracking_system_id: company.applicant_tracking_system_id,
+    ats_job_id: job_id,
   )
 
-  company.total_live += 1 if job
-
-  p "Job posting url: #{job.job_posting_url}"
-
-  live = JobCreator.new(job).check_job_is_live
-
-  if live
-    JobCreator.new(job).pull_job_details
-    p "Created job - #{Job.last.job_title}"
+  if JobCreator.new(job).check_job_is_live
+    if JobCreator.new(job).find_or_create_job
+      company.total_live += 1
+      p "Created job - #{Job.last.job_title}"
+    else
+      p "Failed to create job"
+    end
   else
-    p "Job posting is not live"
+    p "Job posting is no longer live"
   end
 end
 

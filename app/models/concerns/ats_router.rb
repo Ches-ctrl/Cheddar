@@ -1,4 +1,6 @@
-module Ats::AtsHandler
+module AtsRouter
+  # TODO: Handle embedded pages with differing URL structures
+
   SUPPORTED_ATS_SYSTEMS = [
     'greenhouse',
     'workable',
@@ -26,15 +28,22 @@ module Ats::AtsHandler
     end
   end
 
-  def ats_system
-    @ats_system ||= SUPPORTED_ATS_SYSTEMS.find { |ats| @url.include?(ats) }
+  def ats_system_name
+    @ats_system_name ||= SUPPORTED_ATS_SYSTEMS.find { |ats| @url.include?(ats) }
   end
 
-  # TODO: Update module to handle submodules when splitting out ATS capabilities
+  def ats_system
+    @ats_system = ApplicantTrackingSystem.find_by(name: ats_system_name.capitalize)
+  end
 
   def ats_module(action)
-    module_name = "Ats::#{ats_system.capitalize}::#{action}"
-    Object.const_get(module_name) if Object.const_defined?(module_name)
+    module_name = "Ats::#{ats_system_name.capitalize}::#{action}"
+    @ats_module = Object.const_get(module_name) if Object.const_defined?(module_name)
+  end
+
+  def ats_identifier_and_job_id
+    @ats_identifier, @job_id = ats_module('ParseUrl').parse_url(@url)
+    [@ats_identifier, @job_id]
   end
 
   def get_company_details
@@ -45,8 +54,3 @@ module Ats::AtsHandler
     ats_module.get_job_details(@job)
   end
 end
-
-# Potential Errors on CompanyCreator and JobCreator:
-# - User inputs embedded URL
-# - User inputs URL without job_id
-# - User inputs URL for unsupported ATS

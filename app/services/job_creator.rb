@@ -1,24 +1,23 @@
 class JobCreator
-  include Ats::AtsHandler
+  include AtsRouter
 
   def check_job_is_live
     uri = URI(@url)
     response = Net::HTTP.get_response(uri)
 
+    # TODO: Add additional logic for checking job is live
     if response.is_a?(Net::HTTPRedirection)
-      p "Job is not live"
       @job.job_title = 'Job is no longer live'
       @job.job_description = 'Job is no longer live'
       @job.live = false
     else
-      p "Job is live"
       @job.live = true
     end
-    @job.live
   end
 
-  def pull_job_details
-    if ats_system
+  def find_or_create_job
+    if ats_system_name
+      # ats_system
       ats_module('JobDetails').get_job_details(@job)
     else
       p "Unable to detect ATS system for URL: #{@url}"
