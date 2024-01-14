@@ -23,6 +23,8 @@ class Job < ApplicationRecord
   validates :job_title, presence: true
   validates :job_posting_url, uniqueness: true, presence: true
 
+  # TODO: Update validate uniqueness as same job can have both a normal url and api url
+
   pg_search_scope :global_search,
     against: [:job_title, :salary, :job_description],
     associated_against: {
