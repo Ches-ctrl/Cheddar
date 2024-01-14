@@ -1,6 +1,6 @@
 class Company < ApplicationRecord
-  has_many :jobs, dependent: :destroy
   belongs_to :applicant_tracking_system, optional: true
+  has_many :jobs, dependent: :destroy
 
   validates :company_name, presence: true, uniqueness: true
   # validates :company_website_url, uniqueness: true

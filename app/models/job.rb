@@ -22,7 +22,6 @@ class Job < ApplicationRecord
   validates :job_title, presence: true
   validates :job_posting_url, uniqueness: true
 
-  # before_create :find_or_create_company
   before_create :set_application_criteria
   after_create :update_application_criteria
 
@@ -34,12 +33,6 @@ class Job < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
-
-  # def find_or_create_company
-  #   p "Finding or creating company"
-  #   company = CompanyCreator.new(url).find_or_create_company
-  #   self.company_id = company.id
-  # end
 
   def set_application_criteria
     if job_posting_url.include?('greenhouse')
