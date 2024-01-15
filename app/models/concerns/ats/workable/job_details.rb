@@ -2,7 +2,7 @@ module Ats::Workable::JobDetails
   extend ActiveSupport::Concern
 
   # TODO: Check if job already exists in database
-  # TODO: Change office status to boolean
+  # TODO: Change office status to accept booleans
   # TODO: Update job to be able to handle departments and offices
   # TODO: Update job to handle workplace (hybrid)
   # TODO: Update description to handle html and non-html
@@ -30,7 +30,6 @@ module Ats::Workable::JobDetails
       location: data['location']['city'] + ', ' + data['location']['country'],
       country: data['location']['country'],
       # department: data['department'],
-      job_description: data['description'],
       requirements: data['requirements'],
       benefits: data['benefits'],
     )

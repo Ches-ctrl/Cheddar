@@ -2,6 +2,7 @@ module Ats::Workable::ApplicationFields
   extend ActiveSupport::Concern
 
   # Question - scrape all fields or add standard set each time?
+  # TODO: Handle labels from form fields
 
   def self.get_application_criteria(job)
     p "Getting greenhouse application criteria"
@@ -14,41 +15,67 @@ module Ats::Workable::ApplicationFields
     p "Updating job requirements"
   end
 
-  CORE_FIELDS = {
-    # first_name: {
-    #   interaction: :input,
-    #   locators: 'first_name',
-    #   required: true,
-    # },
-    # last_name: {
-    #   interaction: :input,
-    #   locators: 'last_name',
-    #   required: true,
-    # },
-    # email: {
-    #   interaction: :input,
-    #   locators: 'email',
-    #   required: true,
-    # },
-    # phone_number: {
-    #   interaction: :input,
-    #   locators: 'phone',
-    #   required: true,
-    # },
-    # city: {
-    #   interaction: :input,
-    #   locators: 'job_application[location]',
-    #   required: true,
-    # },
-    # location_click: {
-    #   interaction: :listbox,
-    #   locators: 'ul#location_autocomplete-items-popup'
-    # },
-    # resume: {
-    #   interaction: :upload,
-    #   locators: 'button[aria-describedby="resume-allowable-file-types"',
-    #   required: true,
-    # },
+  PERSONAL_FIELDS = {
+    first_name: {
+      interaction: :input,
+      locators: 'firstname',
+      required: true,
+    },
+    last_name: {
+      interaction: :input,
+      locators: 'lastname',
+      required: true,
+    },
+    email: {
+      interaction: :input,
+      locators: 'email',
+      required: true,
+    },
+    headline: {
+      interaction: :input,
+      locators: 'headline',
+      required: true,
+    },
+    phone_number: {
+      interaction: :input,
+      locators: 'phone',
+      required: true,
+    },
+    address: {
+      interaction: :input,
+      locators: 'address',
+      required: false,
+    },
+    avatar: {
+      interaction: :upload,
+      locators: 'input[data-ui="avatar"]',
+      required: false,
+    },
+    work_eligibility: {
+      interaction: :input,
+      locators: 'input[data-ui="avatar"]',
+      required: true,
+      # label: "Are you eligible to work in the country that the role is listed?"
+    },
+    salary_expectations: {
+      interaction: :input,
+      locators: 'input[data-ui="avatar"]',
+      required: true,
+      # label: "What are your annual salary expectations?"
+    },
+  }
+
+  PROFILE_FIELDS = {
+    summary: {
+      interaction: :textarea,
+      locators: 'summary',
+      required: false,
+    },
+    resume: {
+      interaction: :upload,
+      locators: 'input[data-ui="resume"]',
+      required: true,
+    },
     # cover_letter: {
     #   interaction: :upload,
     #   locators: 'button[aria-describedby="cover_letter-allowable-file-types"]',
@@ -57,91 +84,6 @@ module Ats::Workable::ApplicationFields
   }
 
   ADDITIONAL_FIELDS = {
-    # school: {
-    #   interaction: :select,
-    #   locators: 's2id_education_school_name_0',
-    #   required: true,
-    #   placeholder: 'Select a School',
-    #   data_url: 'https://boards-api.greenhouse.io/v1/boards/phonepe/education/schools',
-    # },
-    # degree: {
-    #   interaction: :select,
-    #   locators: 's2id_education_degree_0',
-    #   required: false,
-    # },
-    # discipline: {
-    #   interaction: :select,
-    #   locators: 's2id_education_discipline_0',
-    #   required: false,
-    # },
-    # ed_start_date_year: {
-    #   interaction: :input,
-    #   locators: 'job_application[educations][][start_date][year]',
-    #   required: true,
-    # },
-    # ed_end_date_year: {
-    #   interaction: :input,
-    #   locators: 'job_application[educations][][end_date][year]',
-    #   required: true,
-    # },
-    # company_name: {
-    #   interaction: :input,
-    #   locators: 'job_application[employments][][company_name]',
-    #   required: true,
-    # },
-    # title: {
-    #   interaction: :input,
-    #   locators: 'job_application[employments][][title]',
-    #   required: true,
-    # },
-    # emp_start_date_month: {
-    #   interaction: :input,
-    #   locators: 'job_application[employments][][start_date][month]',
-    #   required: true,
-    # },
-    # emp_start_date_year: {
-    #   interaction: :input,
-    #   locators: 'job_application[employments][][start_date][year]',
-    #   required: true,
-    # },
-    # emp_end_date_month: {
-    #   interaction: :input,
-    #   locators: 'job_application[employments][][end_date][month]',
-    #   required: true,
-    # },
-    # emp_end_date_year: {
-    #   interaction: :input,
-    #   locators: 'job_application[employments][][end_date][year]',
-    #   required: true,
-    # },
-    # linkedin_profile: {
-    #   interaction: :input,
-    #   locators: 'input[autocomplete="custom-question-linkedin-profile"]',
-    #   required: false,
-    # },
-    # personal_website: {
-    #   interaction: :input,
-    #   locators: 'input[autocomplete="custom-question-website"], input[autocomplete="custom-question-portfolio-linkwebsite"]',
-    #   required: false,
-    # },
-    # gender: {
-    #   interaction: :input,
-    #   locators: 'input[autocomplete="custom-question-website"], input[autocomplete="custom-question-portfolio-linkwebsite"]',
-    #   required: false,
-    # },
-    # location_click: {
-    #   interaction: :listbox,
-    #   locators: 'ul#location_autocomplete-items-popup'
-    # },
-
-    # heard_from: {
-    #   interaction: :input,
-    #   locators: 'input[autocomplete="custom-question-how-did-you-hear-about-this-job"]'
-    # },
-    # require_visa?: {
-    #   interaction: :input,
-    #   locators: 'textarea[autocomplete="custom-question-would-you-need-sponsorship-to-work-in-the-uk-"]'
-    # },
   }
 
   DEGREE_OPTIONS = []
