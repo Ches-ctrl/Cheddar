@@ -2,11 +2,12 @@ module Ats::Workable::ApplicationFields
   extend ActiveSupport::Concern
 
   # Question - scrape all fields or add standard set each time?
+  # TODO: Check validatity of fields (not yet tested)
   # TODO: Handle labels from form fields
 
   def self.get_application_criteria(job)
     p "Getting greenhouse application criteria"
-    job.application_criteria = CORE_FIELDS
+    job.application_criteria = PERSONAL_FIELDS.merge(PROFILE_FIELDS).merge(DETAILS_FIELDS).merge(ADDITIONAL_FIELDS)
     job.save
     # GetFormFieldsJob.perform_later(job.job_posting_url)
   end
@@ -14,6 +15,8 @@ module Ats::Workable::ApplicationFields
   def self.update_requirements(job)
     p "Updating job requirements"
   end
+
+  # Organised into sections (sections have labels)
 
   PERSONAL_FIELDS = {
     first_name: {
@@ -76,11 +79,31 @@ module Ats::Workable::ApplicationFields
       locators: 'input[data-ui="resume"]',
       required: true,
     },
-    # cover_letter: {
-    #   interaction: :upload,
-    #   locators: 'button[aria-describedby="cover_letter-allowable-file-types"]',
-    #   required: false
-    # }
+    role_fit: {
+      interaction: :textarea,
+      locators: 'CA_18008',
+      required: true,
+      # label: "Why do you think you'd be a good fit for the role based on the requirements listed?",
+    },
+    company_interest: {
+      interaction: :textarea,
+      locators: 'CA_18009',
+      required: true,
+      # label: "Why do you think you'd be a good fit for the role based on the requirements listed?",
+    },
+  }
+
+  DETAILS_FIELDS = {
+    cover_letter: {
+      interaction: :textarea,
+      locators: 'cover_letter',
+      required: false,
+    },
+    visa_sponsorship: {
+      interaction: :radiogroup,
+      locators: 'QA_6167680',
+      required: false
+    }
   }
 
   ADDITIONAL_FIELDS = {
