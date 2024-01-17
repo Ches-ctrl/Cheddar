@@ -121,7 +121,8 @@
                     <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                     <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                     <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-                    <%= ff.input :field_value, as: :boolean, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-pill", data: { label: response.field_name, response_input_target: "input"} } %>
+                    <% field_options = JSON.parse(response.field_options) %>
+                    <%= ff.input :field_value, as: :check_boxes, collection: field_options, legend_tag: false, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-pill", data: { label: response.field_name, response_input_target: "input"} } %>
                   </div>
                 <% when "select" %>
                   <div class="col-sm-9">

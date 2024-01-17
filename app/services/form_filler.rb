@@ -61,6 +61,13 @@ class FormFiller
           p "Field locator #{field['locators']} is not found"
           @errors = true
         end
+      when 'checkbox'
+        begin
+          select_options_from_checkbox(field['locators'], field['value'])
+        rescue Capybara::ElementNotFound
+          p "Field locator #{field['locators']} is not found"
+          @errors = true
+        end
       when 'upload'
         begin
           upload_file(field['locators'], field['value'])
@@ -130,6 +137,16 @@ class FormFiller
       p "Select box clicked"
       find("li", text: option_text).click
       p "checkpoint two"
+    end
+  end
+
+  def select_options_from_checkbox(checkbox_locator, option_text)
+    p checkbox_locator, option_text
+    within('label', text: checkbox_locator.humanize) do
+      p "I am within the #{checkbox_locator} checkbox"
+      option_text.each do |option|
+        check('option')
+      end
     end
   end
 

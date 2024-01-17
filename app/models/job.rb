@@ -23,6 +23,8 @@ class Job < ApplicationRecord
   validates :job_title, presence: true
   validates :job_posting_url, uniqueness: true, presence: true
 
+  after_create :update_application_criteria
+
   pg_search_scope :global_search,
     against: [:job_title, :salary, :job_description],
     associated_against: {
@@ -37,5 +39,14 @@ class Job < ApplicationRecord
   # Enables access to application_criteria via strings or symbols
   def application_criteria
     read_attribute(:application_criteria).with_indifferent_access
+  end
+
+  def update_application_criteria
+    if job_posting_url.include?('greenhouse')
+      extra_fields = ScraperTest.perform_later(job_posting_url)
+      # p extra_fields
+    else
+      p "No additional fields to add"
+    end
   end
 end
