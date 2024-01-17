@@ -42,6 +42,7 @@ class JobCreator
 
   # TODO: Search job description for salary information
   # TODO: Search job description for seniority (or match on job title)
+  # TODO: add other relevant job characteristics e.g. stock options, bonus, etc.
 
   def update_requirements(job)
     # TODO: Add this logic to the background job for scraping fields as well

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_17_224436) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_17_225015) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -153,6 +153,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_17_224436) do
     t.boolean "work_eligibility", default: true
     t.string "department"
     t.string "api_url"
+    t.string "office"
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 

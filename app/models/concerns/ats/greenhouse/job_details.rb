@@ -13,6 +13,7 @@ module Ats::Greenhouse::JobDetails
 
   def self.fetch_job_data(job, ats)
     job_url_api = "#{ats.base_url_api}#{job.company.ats_identifier}/jobs/#{job.ats_job_id}"
+    job.api_url = job_url_api
     uri = URI(job_url_api)
     response = Net::HTTP.get(uri)
     data = JSON.parse(response)
@@ -24,9 +25,9 @@ module Ats::Greenhouse::JobDetails
     job.update(
       job_title: data['title'],
       job_description: decoded_description,
+      location: data['location']['name'],
+      department: data['departments'][0]['name'],
+      office: data['offices'][0]['name'],
     )
-    job.update(location: data['location']['name']) if data['location'].present?
-    # @job.update(department: data['departments'][0]['name']) if data['departments'].present?
-    # @job.update(office: data['offices'][0]['name']) if data['offices'].present?
   end
 end
