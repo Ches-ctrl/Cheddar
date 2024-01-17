@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_14_131921) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_17_225015) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,19 +63,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_14_131921) do
     t.string "interaction"
     t.string "field_options"
     t.index ["job_application_id"], name: "index_application_responses_on_job_application_id"
-  end
-
-  create_table "ats_formats", force: :cascade do |t|
-    t.bigint "applicant_tracking_system_id", null: false
-    t.string "core_input_key"
-    t.string "interaction"
-    t.string "locator"
-    t.string "option"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "required"
-    t.string "name"
-    t.index ["applicant_tracking_system_id"], name: "index_ats_formats_on_applicant_tracking_system_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -141,28 +128,32 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_14_131921) do
     t.text "responsibilities"
     t.text "requirements"
     t.text "benefits"
-    t.boolean "captcha"
-    t.string "employment_type"
+    t.boolean "captcha", default: false
+    t.string "employment_type", default: "Full-time"
     t.string "location"
     t.string "country"
     t.string "industry"
     t.string "seniority"
-    t.integer "applicants_count"
-    t.integer "cheddar_applicants_count"
+    t.integer "applicants_count", default: 0
+    t.integer "cheddar_applicants_count", default: 0
     t.integer "bonus"
     t.string "industry_subcategory"
     t.string "office_status"
-    t.boolean "create_account"
+    t.boolean "create_account", default: false
     t.boolean "req_cv", default: true
-    t.boolean "req_cover_letter"
-    t.boolean "req_video_interview"
-    t.boolean "req_online_assessment"
+    t.boolean "req_cover_letter", default: false
+    t.boolean "req_video_interview", default: false
+    t.boolean "req_online_assessment", default: false
     t.boolean "req_first_round", default: true
     t.boolean "req_second_round", default: true
-    t.boolean "req_assessment_centre"
+    t.boolean "req_assessment_centre", default: false
     t.boolean "live", default: false
     t.string "ats_job_id"
-    t.integer "ats_format_id"
+    t.integer "no_of_questions", default: 0
+    t.boolean "work_eligibility", default: true
+    t.string "department"
+    t.string "api_url"
+    t.string "office"
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
@@ -234,7 +225,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_14_131921) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "application_responses", "job_applications"
-  add_foreign_key "ats_formats", "applicant_tracking_systems"
   add_foreign_key "educations", "users"
   add_foreign_key "job_applications", "jobs"
   add_foreign_key "job_applications", "users"

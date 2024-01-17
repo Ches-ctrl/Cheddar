@@ -79,60 +79,11 @@ namespace :import_csv do
 
 
   # -----------------------------
-  # ATS Formats
-  # -----------------------------
-
-  desc "Import ATS Format data from CSV file"
-  task ats_formats: [:environment, :applicant_tracking_systems] do
-    csv_file_path = 'storage/csv/Cheddar_Consulting_Test_Jobs.csv'
-    counter = 0
-
-    CSV.foreach(csv_file_path, headers: true) do |row|
-      ats_format_name = row["ATS Format"]
-      ats_system_name = row["Applicant Tracking System"]
-      ats_format = find_or_create_ats_format(ats_format_name, ats_system_name)
-
-      if ats_format
-        p "#{ats_format.new_record? ? 'Created' : 'Updated'} ATS Format - #{ats_format.name}"
-        counter += 1
-      else
-        p "Error creating ATS Format: #{ats_format_name}"
-      end
-    end
-
-    p "Created / Updated #{counter} ATS Formats."
-    p "-----------------------------"
-  end
-
-  def find_or_create_ats_format(name, ats_system_name)
-
-    # p "ATS System Name: #{ats_system_name}"
-    # p "ATS System Name ID: #{ats_system_name.id}"
-    ats_system = ApplicantTrackingSystem.find_by(name: ats_system_name)
-
-    # p "ATS System: #{ats_system}"
-    # p "ATS System ID: #{ats_system.id}"
-
-    if ats_system
-      ats_format = AtsFormat.find_or_initialize_by(name: name)
-      # p "ATS Format: #{ats_format}"
-      ats_format.applicant_tracking_system_id = ats_system.id
-      ats_format.save
-      # p ats_format
-      ats_format
-    else
-      p "Error: Applicant Tracking System '#{ats_system_name}' not found for ATS Format '#{name}'."
-      nil
-    end
-  end
-
-
-  # -----------------------------
   # Jobs
   # -----------------------------
 
   desc "Import jobs data from CSV file"
-  task jobs: [:environment, :ats_formats, :companies] do
+  task jobs: [:environment, :companies] do
     csv_file_path = 'storage/csv/Cheddar_Consulting_Test_Jobs.csv'
     counter = 0
 
@@ -152,52 +103,54 @@ namespace :import_csv do
     puts "CSV import completed."
   end
 
-  def find_or_create_job(job_title, row)
-    company = Company.find_by(company_name: row["Company Name"])
-    # p "Company: #{company}"
-    ats_format = AtsFormat.find_by(name: row["ATS Format"])
-    # p "ATS Format: #{ats_format}"
-    ats_system = ApplicantTrackingSystem.find_by(id: ats_format.applicant_tracking_system_id)
-    # ats_system = ApplicantTrackingSystem.find_by(name: row["Applicant Tracking System"])
-    # p "ATS System: #{ats_system}"
+  # TODO: Fix this now that we no longer have ATS Format as a separate model
 
-    job_attributes = {
-      company_id: company.id,
-      job_posting_url: row["Url"],
-      job_description: "N/A",
-      salary: row["Salary"].to_i,
-      bonus: row["Bonus"].to_i,
-      employment_type: row["Employment Type (FT/PT)"],
-      location: row["Location"],
-      country: row["Country"],
-      industry: row["Industry"],
-      industry_subcategory: row["Industry Sub-Category"],
-      seniority: row["Seniority"],
-      office_status: row["Office Status"],
-      create_account: row["Create Account"],
-      req_cv: row["CV"],
-      req_cover_letter: row["Cover Letter"],
-      req_online_assessment: row["Online Assessment"],
-      req_video_interview: row["Video Interview"],
-      req_first_round: row["1st Round Interview"],
-      req_second_round: row["2nd Round Interview"],
-      req_assessment_centre: row["Assessment Centre"]
-    }
+  # def find_or_create_job(job_title, row)
+  #   company = Company.find_by(company_name: row["Company Name"])
+  #   # p "Company: #{company}"
+  #   ats_format = AtsFormat.find_by(name: row["ATS Format"])
+  #   # p "ATS Format: #{ats_format}"
+  #   ats_system = ApplicantTrackingSystem.find_by(id: ats_format.applicant_tracking_system_id)
+  #   # ats_system = ApplicantTrackingSystem.find_by(name: row["Applicant Tracking System"])
+  #   # p "ATS System: #{ats_system}"
 
-    if ats_system
-      # p "ATS System: #{ats_system}"
-      job_attributes[:applicant_tracking_system_id] = ats_system.id
-      # p "Job ATS System ID: #{job_attributes[:applicant_tracking_system_id]}"
-    end
+  #   job_attributes = {
+  #     company_id: company.id,
+  #     job_posting_url: row["Url"],
+  #     job_description: "N/A",
+  #     salary: row["Salary"].to_i,
+  #     bonus: row["Bonus"].to_i,
+  #     employment_type: row["Employment Type (FT/PT)"],
+  #     location: row["Location"],
+  #     country: row["Country"],
+  #     industry: row["Industry"],
+  #     industry_subcategory: row["Industry Sub-Category"],
+  #     seniority: row["Seniority"],
+  #     office_status: row["Office Status"],
+  #     create_account: row["Create Account"],
+  #     req_cv: row["CV"],
+  #     req_cover_letter: row["Cover Letter"],
+  #     req_online_assessment: row["Online Assessment"],
+  #     req_video_interview: row["Video Interview"],
+  #     req_first_round: row["1st Round Interview"],
+  #     req_second_round: row["2nd Round Interview"],
+  #     req_assessment_centre: row["Assessment Centre"]
+  #   }
 
-    if ats_format
-      # p "ATS Format: #{ats_format}"
-      job_attributes[:ats_format_id] = ats_format.id
-      # p "Job ATS Format ID: #{job_attributes[:ats_format_id]}"
-    end
+  #   if ats_system
+  #     # p "ATS System: #{ats_system}"
+  #     job_attributes[:applicant_tracking_system_id] = ats_system.id
+  #     # p "Job ATS System ID: #{job_attributes[:applicant_tracking_system_id]}"
+  #   end
 
-    job = Job.find_or_initialize_by(job_title: job_title)
-    job.update(job_attributes)
-    job
-  end
+  #   if ats_format
+  #     # p "ATS Format: #{ats_format}"
+  #     job_attributes[:ats_format_id] = ats_format.id
+  #     # p "Job ATS Format ID: #{job_attributes[:ats_format_id]}"
+  #   end
+
+  #   job = Job.find_or_initialize_by(job_title: job_title)
+  #   job.update(job_attributes)
+  #   job
+  # end
 end
