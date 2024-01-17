@@ -142,7 +142,7 @@ class FormFiller
 
   def select_options_from_checkbox(checkbox_locator, option_text)
     p checkbox_locator, option_text
-    within('label', text: checkbox_locator.humanize) do
+    within('label', text: checkbox_locator) do
       p "I am within the #{checkbox_locator} checkbox"
       option_text.each do |option|
         check('option')
