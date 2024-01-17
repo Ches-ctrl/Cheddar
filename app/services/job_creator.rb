@@ -40,19 +40,14 @@ class JobCreator
     end
   end
 
-  # TODO: Handle job.date_created - have as the day scraped (this will work when cheddar is up and running)
-  # TODO: Add default employment type of full-time
-  # TODO: Add job industry as company's industry
-  # TODO: Add no_of_questions and work_eligibility to job model
-  # TODO: Set applicants_count and cheddar_applicants_count to 0 by default
-  # TODO: Add create_account as false by default
-  # TODO: Add this logic to the background job for scraping fields as well
-  # TODO: Handle fields not found (will be more relevant when scraping fields each time)
-  # TODO: Update defaults for req_cv and req_cover_letter, req_video_interview, req_online_assessment, req_first_round, req_second_round, req_assessment_centre
+  # TODO: Search job description for salary information
+  # TODO: Search job description for seniority (or match on job title)
 
   def update_requirements(job)
-    field_count = job.application_criteria.size
-    p "Number of fields: #{field_count}"
+    # TODO: Add this logic to the background job for scraping fields as well
+
+    job.industry = job.company.industry
+    job.no_of_questions = job.application_criteria.size
 
     job.application_criteria.each do |field, criteria|
       case field
@@ -62,9 +57,9 @@ class JobCreator
       when 'cover_letter'
         job.req_cover_letter = criteria['required']
         p "Cover letter requirement: #{job.req_cover_letter}"
-      # when 'work_eligibility'
-      #   job.req_work_eligibility = criteria['required']
-      #   p "Work eligibility requirement: #{job.req_work_eligibility}"
+      when 'work_eligibility'
+        job.work_eligibility = criteria['required']
+        p "Work eligibility requirement: #{job.work_eligibility}"
       end
     end
   end

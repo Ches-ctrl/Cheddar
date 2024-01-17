@@ -87,6 +87,6 @@ class JobsController < ApplicationController
   # TODO: Check if more params are needed on Job.create
 
   def job_params
-    params.require(:job).permit(:job_title, :job_description, :salary, :job_posting_url, :application_deadline, :date_created, :company_id, :applicant_tracking_system_id, :ats_format_id, :ats_job_id, :location, :department, :office, :live)
+    params.require(:job).permit(:job_title, :job_description, :salary, :job_posting_url, :application_deadline, :date_created, :company_id, :applicant_tracking_system_id, :ats_job_id, :location, :department, :office, :live)
   end
 end

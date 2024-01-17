@@ -2,10 +2,9 @@ module Ats::Workable::JobDetails
   extend ActiveSupport::Concern
 
   # TODO: Check if job already exists in database
-  # TODO: Change office status to accept booleans
   # TODO: Update job to be able to handle departments and offices
   # TODO: Update job to handle workplace (hybrid)
-  # TODO: Update description to handle html and non-html
+  # TODO: Update description to handle html and non-html, add labelling for this characteristic
 
   def self.get_job_details(job)
     ats = job.company.applicant_tracking_system
@@ -26,10 +25,10 @@ module Ats::Workable::JobDetails
     job.update(
       job_title: data['title'],
       job_description: data['description'],
-      office_status: data['remote'],
+      office_status: data['remote'] ? 'Remote' : 'On-site',
       location: data['location']['city'] + ', ' + data['location']['country'],
       country: data['location']['country'],
-      # department: data['department'],
+      department: data['department'],
       requirements: data['requirements'],
       benefits: data['benefits'],
     )

@@ -9,7 +9,7 @@ puts "-------------------------------------"
 User.destroy_all
 Job.destroy_all
 Company.destroy_all
-AtsFormat.destroy_all
+# AtsFormat.destroy_all
 ApplicantTrackingSystem.destroy_all
 
 puts "Creating new Applicant Tracking Systems..."
@@ -75,40 +75,6 @@ ats_data.each do |ats|
 end
 
 puts "Created #{ApplicantTrackingSystem.count} ATSs"
-
-puts "-------------------------------------"
-
-# TODO: Remove ATS formats from seeds and schema - no longer required
-
-puts "Creating new ATS formats..."
-
-ats_formats_data = [
-  { name: "Workable_1", ats_name: 'Workable' },
-  { name: "Workable_2", ats_name: 'Workable' },
-  { name: "Greenhouse_1", ats_name: 'Greenhouse' },
-  { name: "Greenhouse_2", ats_name: 'Greenhouse' },
-  { name: "Lever_1", ats_name: 'Lever' },
-  { name: "Jobvite_1", ats_name: 'Jobvite' },
-  { name: "SmartRecruiters_1", ats_name: 'SmartRecruiters' },
-  { name: "Taleo_1", ats_name: 'Taleo' },
-  { name: "Workday_1", ats_name: 'Workday' },
-  { name: "Ambertrack_1", ats_name: 'Ambertrack' },
-  { name: "Tal.net_1", ats_name: 'Tal.net' },
-  { name: "Ashby_1", ats_name: 'Ashby' }
-]
-
-# TODO: Check logic here
-
-ats_formats_data.each do |ats_format_data|
-  ats_name = ats_format_data[:ats_name]
-  ats_id = ApplicantTrackingSystem.find_by(name: ats_name).id
-  ats_format_data[:applicant_tracking_system_id] = ats_id
-  ats_format_data.delete(:ats_name)
-  AtsFormat.create(ats_format_data)
-  puts "Created ATS format - #{AtsFormat.last.name}"
-end
-
-puts "Created #{AtsFormat.count} ATS formats"
 
 puts "-------------------------------------"
 
@@ -660,9 +626,6 @@ puts "-------------------------------------"
 
 puts ApplicantTrackingSystem.all
 puts ApplicantTrackingSystem.count
-puts "-------------------------------------"
-puts AtsFormat.all
-puts AtsFormat.count
 puts "-------------------------------------"
 puts Company.all
 puts Company.count
