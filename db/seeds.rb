@@ -167,7 +167,6 @@ puts "Creating new jobs..."
 greenhouse_job_urls = [
   "https://boards.greenhouse.io/11fs/jobs/4266126101",
   "https://boards.greenhouse.io/ambientai/jobs/4301104006",
-  "https://boards.greenhouse.io/bcgdv/jobs/6879714002",
   "https://boards.greenhouse.io/clearscoretechnologylimited/jobs/4269717101",
   "https://boards.greenhouse.io/cleoai/jobs/5033034002",
   "https://boards.greenhouse.io/cloudflare/jobs/5533430",

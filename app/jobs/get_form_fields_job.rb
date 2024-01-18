@@ -63,7 +63,7 @@ class GetFormFieldsJob < ApplicationJob
       checkbox_input = label.css('label:has(input[type="checkbox"])')
       unless checkbox_input.empty?
         attributes[name][:interaction] = :checkbox
-        attributes[name][:locators] = name
+        attributes[name][:locators] = name.humanize.chars.reject { |char| char.ord == 160 }.join
         attributes[name][:options] = label.css('label:has(input[type="checkbox"])').map { |option| option.text.strip }
       end
 

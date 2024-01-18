@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'json'
 
 class FormFiller
   include Capybara::DSL
@@ -56,6 +57,13 @@ class FormFiller
       when 'select'
         begin
           select_option_from_select(field['locators'], field['option'], field['value'])
+        rescue Capybara::ElementNotFound
+          p "Field locator #{field['locators']} is not found"
+          @errors = true
+        end
+      when 'checkbox'
+        begin
+          select_options_from_checkbox(field['locators'], field['value'])
         rescue Capybara::ElementNotFound
           p "Field locator #{field['locators']} is not found"
           @errors = true
@@ -129,6 +137,22 @@ class FormFiller
       p "Select box clicked"
       find("li", text: option_text).click
       p "checkpoint two"
+    end
+  end
+
+  def select_options_from_checkbox(checkbox_locator, option_text)
+    p checkbox_locator, option_text
+    option_text = JSON.parse(option_text)
+    # option_text.shift
+    within('label', text: checkbox_locator) do
+      p "I am within the #{checkbox_locator} checkbox"
+      option_text.each do |option|
+        begin
+          check(option)
+        rescue Capybara::ElementNotFound
+          p "Unable to check #{option}"
+        end
+      end
     end
   end
 
