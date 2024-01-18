@@ -273,12 +273,12 @@ rails_job_urls = [
   # "https://boards.greenhouse.io/cleoai/jobs/4628944002", # greenhouse # senior"
   # "https://boards.greenhouse.io/ably30/jobs/4229668101", # greenhouse # senior
   # "https://boards.greenhouse.io/algolia/jobs/4989661004", # greenhouse # junior
-  "https://apply.workable.com/papier/j/F2D67EF125/", # workable # senior
-  "https://apply.workable.com/builderai/j/D157ED0496/", # workable # mid
-  # "https://apply.workable.com/api/v1/accounts/papier/jobs/F2D67EF125?details=true" # alternative url to test
-  "https://apply.workable.com/builderai/j/E417F55824/", # workable # senior
-  # "https://jobs.lever.co/zeneducate/e02e26bc-dd34-477b-a3e7-612c9422dccd", # lever # senior
-  # "https://jobs.lever.co/zeneducate/3422d04b-963a-4cc7-91e0-85ee315c2007", # lever # senior
+  # "https://apply.workable.com/papier/j/F2D67EF125/", # workable # senior
+  # "https://apply.workable.com/builderai/j/D157ED0496/", # workable # mid
+  # # "https://apply.workable.com/api/v1/accounts/papier/jobs/F2D67EF125?details=true" # alternative url to test
+  # "https://apply.workable.com/builderai/j/E417F55824/", # workable # senior
+  # # "https://jobs.lever.co/zeneducate/e02e26bc-dd34-477b-a3e7-612c9422dccd", # lever # senior # no longer live
+  "https://jobs.lever.co/zeneducate/3422d04b-963a-4cc7-91e0-85ee315c2007", # lever # senior
   # "https://jobs.smartrecruiters.com/Billetto/80023032-backend-web-developer", # smartrecruiters # mid
   # "https://jobs.smartrecruiters.com/Canva/743999942402703", # smartrecruiters # senior
   # "https://www.totaljobs.com/job/101793572/apply", # totaljobs # senior

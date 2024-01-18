@@ -1,7 +1,7 @@
 class JobCreator
   include AtsRouter
 
-  # TODO: Add req_work_eligibility to job model
+  # TODO: Change column order on jobs model once stable
 
   def check_existing_job
     existing_job = Job.find_by(job_posting_url: @url)
@@ -18,7 +18,7 @@ class JobCreator
     uri = URI(@url)
     response = Net::HTTP.get_response(uri)
 
-    # TODO: Add additional logic for checking job is live when not a redirect
+    # TODO: Add additional logic for checking job is live when not a redirect e.g. 404 response
     if response.is_a?(Net::HTTPRedirection)
       @job.job_title = 'Job is no longer live'
       @job.job_description = 'Job is no longer live'
