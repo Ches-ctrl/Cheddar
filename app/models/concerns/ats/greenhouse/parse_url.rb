@@ -1,6 +1,8 @@
 module Ats::Greenhouse::ParseUrl
   extend ActiveSupport::Concern
 
+  # TODO: Possible to combine this for all ATS systems and make it more DRY?
+
   def self.parse_url(url)
     # Doesn't yet handle urls without a job_id due to conflict with embedded urls
     regex_formats = [

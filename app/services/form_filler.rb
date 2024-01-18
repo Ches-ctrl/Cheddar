@@ -4,8 +4,7 @@ require 'json'
 class FormFiller
   include Capybara::DSL
 
-  # TODO: Handle job posting becoming closed
-
+  # TODO: Handle job posting becoming closed (redirect or notification on page)
   # TODO: Review code for inefficient loops and potential optimisations
   # TODO: Add ruby monitoring tools to monitor performance and execution
   # TODO: Implement caching for both user and form inputs. At the moment we request the database every time we want an input
@@ -172,8 +171,7 @@ class FormFiller
     # File.delete(file_path)
   end
 
-  # TODO: Decide whether to include screenshot. Auto-email from the company may be sufficient evidence
-  # TODO: Check whether new screenshot method works
+  # TODO: Update screenshot to bypass need for save
 
   # ------------
   # New method for taking screenshots - saves screenshot in memory rather than to disk
