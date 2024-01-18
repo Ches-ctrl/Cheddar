@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'json'
 
 class FormFiller
   include Capybara::DSL
@@ -142,10 +143,16 @@ class FormFiller
 
   def select_options_from_checkbox(checkbox_locator, option_text)
     p checkbox_locator, option_text
+    option_text = JSON.parse(option_text)
+    # option_text.shift
     within('label', text: checkbox_locator) do
       p "I am within the #{checkbox_locator} checkbox"
       option_text.each do |option|
-        check('option')
+        begin
+          check(option)
+        rescue Capybara::ElementNotFound
+          p "Unable to check #{option}"
+        end
       end
     end
   end
