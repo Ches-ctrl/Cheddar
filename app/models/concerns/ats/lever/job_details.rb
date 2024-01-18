@@ -32,6 +32,7 @@ module Ats::Lever::JobDetails
       department: data['department'],
       requirements: data['requirements'],
       benefits: data['benefits'],
+      industry: job.company.industry,
     )
   end
 end

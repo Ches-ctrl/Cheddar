@@ -10,10 +10,6 @@ module Ats::Greenhouse::ApplicationFields
     # GetFormFieldsJob.perform_later(job.job_posting_url)
   end
 
-  def self.update_requirements(job)
-    p "Updating job requirements"
-  end
-
   CORE_FIELDS = {
     first_name: {
       interaction: :input,

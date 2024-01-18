@@ -32,7 +32,6 @@ class JobCreator
     if ats_system_name
       ats_module('JobDetails').get_job_details(@job)
       ats_module('ApplicationFields').get_application_criteria(@job)
-      ats_module('ApplicationFields').update_requirements(@job)
       update_requirements(@job)
     else
       p "Unable to detect ATS system for URL: #{@url}"
@@ -42,12 +41,10 @@ class JobCreator
 
   # TODO: Search job description for salary information
   # TODO: Search job description for seniority (or match on job title)
-  # TODO: add other relevant job characteristics e.g. stock options, bonus, benefits, days leave etc.
+  # TODO: Add other relevant job characteristics e.g. stock options, bonus, benefits, days leave etc.
 
   def update_requirements(job)
     # TODO: Add this logic to the background job for scraping fields as well
-
-    job.industry = job.company.industry
     job.no_of_questions = job.application_criteria.size
 
     job.application_criteria.each do |field, criteria|
@@ -63,6 +60,10 @@ class JobCreator
         p "Work eligibility requirement: #{job.work_eligibility}"
       end
     end
+  end
+
+  def categorise_by_yoe(job)
+
   end
 
   # TODO: Find a way to handle these fields (won't get detail from ATS system)

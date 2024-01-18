@@ -8,10 +8,6 @@ module Ats::Lever::ApplicationFields
     # GetFormFieldsJob.perform_later(job.job_posting_url)
   end
 
-  def self.update_requirements(job)
-    p "Updating job requirements"
-  end
-
   PERSONAL_FIELDS = {
     first_name: {
       interaction: :input,
