@@ -19,12 +19,20 @@ class JobCreator
     response = Net::HTTP.get_response(uri)
 
     # TODO: Add additional logic for checking job is live when not a redirect e.g. 404 response
-    if response.is_a?(Net::HTTPRedirection)
-      @job.job_title = 'Job is no longer live'
-      @job.job_description = 'Job is no longer live'
+    if response.is_a?(Net::HTTPNotFound)
+      p "Job link 404 error"
+      @job.job_title = 'Job not found - 404'
+      @job.job_description = 'The job page does not exist - 404'
       @job.live = false
-    else
+    elsif response.is_a?(Net::HTTPRedirection)
+      p "Job link redirect"
+      @job.job_title = 'Job not found - Redirect'
+      @job.job_description = 'The job page does not exist - Redirect'
+      @job.live = false
+    elsif response.is_a?(Net::HTTPSuccess)
       @job.live = true
+    else
+      p "unexpected response: #{response.inspect}"
     end
   end
 

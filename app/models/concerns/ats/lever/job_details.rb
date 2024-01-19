@@ -30,6 +30,9 @@ module Ats::Lever::JobDetails
 
     lines = data['descriptionPlain'].split("\n")
 
+    salary = nil
+    full_time = nil
+
     lines.each do |line|
       line.strip!
       if line =~ /^Salary: (.+)/i
