@@ -3,100 +3,59 @@ module Ats::Lever::ApplicationFields
 
   def self.get_application_criteria(job)
     p "Getting lever application criteria"
-    job.application_criteria = PERSONAL_FIELDS.merge(PROFILE_FIELDS).merge(DETAILS_FIELDS).merge(ADDITIONAL_FIELDS)
+    job.application_criteria = SUBMIT_FIELDS.merge(SOURCE_FIELDS).merge(DETAILS_FIELDS).merge(ADDITIONAL_FIELDS)
     job.save
     # GetFormFieldsJob.perform_later(job.job_posting_url)
   end
 
-  PERSONAL_FIELDS = {
-    first_name: {
-      interaction: :input,
-      locators: 'firstname',
+  SUBMIT_FIELDS = {
+    resume: {
+      interaction: :upload,
+      locators: 'input-resume',
       required: true,
     },
-    last_name: {
+    full_name: {
       interaction: :input,
-      locators: 'lastname',
+      locators: 'name-input',
       required: true,
+    },
+    pronouns: {
+      interaction: :checkbox,
+      locators: 'candidatePronounsCheckboxes',
+      required: false,
     },
     email: {
       interaction: :input,
-      locators: 'email',
+      locators: 'email-input',
       required: true,
     },
-    headline: {
+    phone: {
       interaction: :input,
-      locators: 'headline',
+      locators: 'phone-input',
       required: true,
     },
-    phone_number: {
+    current_company: {
       interaction: :input,
-      locators: 'phone',
-      required: true,
-    },
-    address: {
-      interaction: :input,
-      locators: 'address',
+      locators: 'org-input',
       required: false,
-    },
-    avatar: {
-      interaction: :upload,
-      locators: 'input[data-ui="avatar"]',
-      required: false,
-    },
-    work_eligibility: {
-      interaction: :input,
-      locators: 'input[data-ui="avatar"]',
-      required: true,
-      # label: "Are you eligible to work in the country that the role is listed?"
-    },
-    salary_expectations: {
-      interaction: :input,
-      locators: 'input[data-ui="avatar"]',
-      required: true,
-      # label: "What are your annual salary expectations?"
     },
   }
 
-  PROFILE_FIELDS = {
-    summary: {
-      interaction: :textarea,
-      locators: 'summary',
-      required: false,
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[data-ui="resume"]',
-      required: true,
-    },
-    role_fit: {
-      interaction: :textarea,
-      locators: 'CA_18008',
-      required: true,
-      # label: "Why do you think you'd be a good fit for the role based on the requirements listed?",
-    },
-    company_interest: {
-      interaction: :textarea,
-      locators: 'CA_18009',
-      required: true,
-      # label: "Why do you think you'd be a good fit for the role based on the requirements listed?",
-    },
-  }
+  # TODO: Add categories for source fields to match form?
 
-  DETAILS_FIELDS = {
-    cover_letter: {
-      interaction: :textarea,
-      locators: 'cover_letter',
-      required: false,
+  CUSTOM_FIELDS = {
+    hear_about: {
+      interaction: :input,
+      locators: 'cards[4d3da8ca-48dc-4ff6-8164-c5dc617b1172][field0]',
+      required: true,
+      # label: "How did you hear about Zeneducate?",
     },
-    visa_sponsorship: {
-      interaction: :radiogroup,
-      locators: 'QA_6167680',
-      required: false
-    }
-  }
-
-  ADDITIONAL_FIELDS = {
+    domain_yoe: {
+      interaction: :input,
+      locators: '',
+      required: true,
+      # label: "",
+    },
   }
 
   DEGREE_OPTIONS = []
