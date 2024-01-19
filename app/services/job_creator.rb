@@ -32,8 +32,10 @@ class JobCreator
     if ats_system_name
       ats_module('JobDetails').get_job_details(@job)
       ats_module('ApplicationFields').get_application_criteria(@job)
-      ats_module('ApplicationFields').update_requirements(@job)
+      # ats_module('ApplicationFields').update_requirements(@job)
       update_requirements(@job)
+      p "job fields getting"
+      GetFormFieldsJob.perform_later(@job.job_posting_url)
     else
       p "Unable to detect ATS system for URL: #{@url}"
       return nil
