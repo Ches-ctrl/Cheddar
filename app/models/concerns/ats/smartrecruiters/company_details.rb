@@ -1,8 +1,8 @@
-module Ats::Lever::CompanyDetails
+module Ats::Smartrecruiters::CompanyDetails
   extend ActiveSupport::Concern
 
   def self.get_company_details(url, ats_system, ats_identifier)
-    p "Getting lever company details - #{url}"
+    p "Getting smartrecruiters company details - #{url}"
 
     # TODO: Update to scrape company details given lack of API endpoint for company information
     # TODO: Add total live based on total number of jobs returned by API call (for each ATS system)

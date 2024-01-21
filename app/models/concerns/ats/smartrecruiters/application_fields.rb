@@ -1,8 +1,8 @@
-module Ats::Lever::ApplicationFields
+module Ats::Smartrecruiters::ApplicationFields
   extend ActiveSupport::Concern
 
   def self.get_application_criteria(job)
-    p "Getting lever application criteria"
+    p "Getting smartrecruiters application criteria"
     job.application_criteria = CORE_FIELDS.merge(CUSTOM_FIELDS)
     job.save
     # GetFormFieldsJob.perform_later(job.job_posting_url)
