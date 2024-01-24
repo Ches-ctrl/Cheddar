@@ -143,16 +143,30 @@ class FormFiller
   def select_options_from_checkbox(checkbox_locator, option_text)
     p checkbox_locator, option_text
     option_text = JSON.parse(option_text)
-    # option_text.shift
-    within('label', text: checkbox_locator) do
-      p "I am within the #{checkbox_locator} checkbox"
-      option_text.each do |option|
-        begin
-          check(option)
-        rescue Capybara::ElementNotFound
-          p "Unable to check #{option}"
+    begin
+      within('label', text: checkbox_locator) do
+        p "I am within the #{checkbox_locator} checkbox"
+        option_text.each do |option|
+          begin
+            check(option)
+          rescue Capybara::ElementNotFound
+            p "Unable to check #{option}"
+          end
         end
       end
+    rescue Capybara::ElementNotFound
+      p "Dem section"
+      within(:xpath, "//div[contains(text(), '#{checkbox_locator}')]") do
+        p "I am within the #{checkbox_locator} checkbox"
+        option_text.each do |option|
+          begin
+            check(option)
+          rescue Capybara::ElementNotFound
+            p "Unable to check #{option}"
+          end
+        end
+      end
+      @errors = true
     end
   end
 
@@ -170,12 +184,6 @@ class FormFiller
     end
     # File.delete(file_path)
   end
-
-  # TODO: Update screenshot to bypass need for save
-
-  # ------------
-  # New method for taking screenshots - saves screenshot in memory rather than to disk
-  # ------------
 
   def take_screenshot_and_store(job_application_id)
     screenshot_path = Rails.root.join('tmp', "screenshot-#{job_application_id}.png")
