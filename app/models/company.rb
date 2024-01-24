@@ -9,3 +9,5 @@ class Company < ApplicationRecord
 
   # multisearchable against: [:company_name]
 end
+
+# TODO: Clarify why we have company_name and company_website_url rather than name and website as column names
