@@ -31,7 +31,7 @@ ats_data = [
     base_url_main: "https://jobs.lever.co/",
     base_url_api: "https://api.lever.co/v0/postings/"
   },
-  { name: "SmartRecruiters",
+  { name: "Smartrecruiters",
     website_url: "https://smartrecruiters.com/",
     all_jobs_url: "https://jobs.smartrecruiters.com/",
     base_url_main: "https://jobs.smartrecruiters.com/",
