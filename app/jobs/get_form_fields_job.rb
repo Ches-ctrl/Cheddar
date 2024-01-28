@@ -29,8 +29,7 @@ class GetFormFieldsJob < ApplicationJob
     form_html = page.evaluate_script("arguments[0].outerHTML", form.native)
     nokogiri_form = Nokogiri::HTML.fragment(form_html)
 
-    fields = nokogiri_form.css('#custom_fields')
-    labels = fields.css('label')
+    labels = nokogiri_form.css('label')
 
     attributes = {}
     labels.each do |label|
@@ -63,7 +62,7 @@ class GetFormFieldsJob < ApplicationJob
       checkbox_input = label.css('label:has(input[type="checkbox"])')
       unless checkbox_input.empty?
         attributes[name][:interaction] = :checkbox
-        attributes[name][:locators] = name
+        attributes[name][:locators] = name.humanize.chars.reject { |char| char.ord == 160 }.join
         attributes[name][:options] = label.css('label:has(input[type="checkbox"])').map { |option| option.text.strip }
       end
 
@@ -74,6 +73,29 @@ class GetFormFieldsJob < ApplicationJob
         attributes[name][:option] = 'option'
         attributes[name][:options] = label.css('option').map { |option| option.text.strip }
       end
+    end
+
+    begin
+      demographics = nokogiri_form.css("#demographic_questions")
+      p "Got demographics"
+      demographics_questions = demographics.css(".demographic_question")
+      p "Got questions"
+      demographics_questions.each do |question|
+        name = question.children.select { |c| c.text? }.map(&:text).join.strip.downcase.gsub(" ", "_")
+        attributes[name] = {
+          interaction: :checkbox
+        }
+        demographics_input = question.css('label:has(input[type="checkbox"])')
+        p "The dem input is #{demographics_input}"
+        unless demographics_input.empty?
+          attributes[name][:locators] = attributes[name][:locators] = question.children.select { |c| c.text? }.map(&:text).join.gsub("\n", ' ').strip
+          attributes[name][:options] = question.css('label:has(input[type="checkbox"])').map { |option| option.text.strip }
+          p attributes[name]
+        end
+      end
+    rescue Capybara::ElementNotFound
+      p "There is no demographics section in this application"
+      @errors = true
     end
 
     Capybara.current_session.driver.quit

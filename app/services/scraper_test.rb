@@ -51,7 +51,7 @@ class ScraperTest < ApplicationJob
 
     attributes = {}
     labels.each do |label|
-      label_text = label.xpath('descendant-or-self::text()[not(parent::select or parent::option or parent::ul or parent::label/input[@type="checkbox"])]').text.strip
+      label_text = label.xpath('descendant-or-self::text()[not(parent::select or parent::option or parent::ul or parent::label/input[@type="checkbox"]) and not(parent::span)]').text.strip
 
       name = label_text # not perfect
       next if name == ""

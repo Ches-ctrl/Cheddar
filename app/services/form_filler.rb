@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'json'
 
 class FormFiller
   include Capybara::DSL
@@ -56,6 +57,13 @@ class FormFiller
       when 'select'
         begin
           select_option_from_select(field['locators'], field['option'], field['value'])
+        rescue Capybara::ElementNotFound
+          p "Field locator #{field['locators']} is not found"
+          @errors = true
+        end
+      when 'checkbox'
+        begin
+          select_options_from_checkbox(field['locators'], field['value'])
         rescue Capybara::ElementNotFound
           p "Field locator #{field['locators']} is not found"
           @errors = true
@@ -132,6 +140,36 @@ class FormFiller
     end
   end
 
+  def select_options_from_checkbox(checkbox_locator, option_text)
+    p checkbox_locator, option_text
+    option_text = JSON.parse(option_text)
+    begin
+      within('label', text: checkbox_locator) do
+        p "I am within the #{checkbox_locator} checkbox"
+        option_text.each do |option|
+          begin
+            check(option)
+          rescue Capybara::ElementNotFound
+            p "Unable to check #{option}"
+          end
+        end
+      end
+    rescue Capybara::ElementNotFound
+      p "Dem section"
+      within(:xpath, "//div[contains(text(), '#{checkbox_locator}')]") do
+        p "I am within the #{checkbox_locator} checkbox"
+        option_text.each do |option|
+          begin
+            check(option)
+          rescue Capybara::ElementNotFound
+            p "Unable to check #{option}"
+          end
+        end
+      end
+      @errors = true
+    end
+  end
+
   def upload_file(upload_locator, file)
     file_path = Rails.root.join('tmp', "#{file.filename}")
     File.open(file_path, 'wb') do |temp_file|
@@ -146,12 +184,6 @@ class FormFiller
     end
     # File.delete(file_path)
   end
-
-  # TODO: Update screenshot to bypass need for save
-
-  # ------------
-  # New method for taking screenshots - saves screenshot in memory rather than to disk
-  # ------------
 
   def take_screenshot_and_store(job_application_id)
     screenshot_path = Rails.root.join('tmp', "screenshot-#{job_application_id}.png")

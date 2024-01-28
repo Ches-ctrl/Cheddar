@@ -7,7 +7,9 @@ module Ats::Greenhouse::ApplicationFields
     p "Getting greenhouse application criteria"
     job.application_criteria = CORE_FIELDS
     job.save
+    p "Getting additional form fields"
     # GetFormFieldsJob.perform_later(job.job_posting_url)
+    p "Got the fields"
   end
 
   CORE_FIELDS = {

@@ -21,6 +21,8 @@ class Job < ApplicationRecord
   validates :job_title, presence: true
   validates :job_posting_url, uniqueness: true, presence: true
 
+  # after_create :update_application_criteria
+
   # TODO: Update validate uniqueness as same job can have both a normal url and api url
 
   pg_search_scope :global_search,
@@ -42,4 +44,13 @@ class Job < ApplicationRecord
   def application_criteria
     read_attribute(:application_criteria).with_indifferent_access
   end
+
+  # def update_application_criteria
+  #   if job_posting_url.include?('greenhouse')
+  #     extra_fields = GetFormFieldsJob.perform_later(job_posting_url)
+  #     # p extra_fields
+  #   else
+  #     p "No additional fields to add"
+  #   end
+  # end
 end
