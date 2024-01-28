@@ -34,3 +34,14 @@
   margin-right: 0;
   // margin on the right hand side in the profile info is due to profile info gap
 }
+
+#documents {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  .btn-apply {
+    margin-bottom: 16px;
+  }
+}

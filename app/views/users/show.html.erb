@@ -90,9 +90,16 @@
         <% end %>
       </div>
       <div id="documents">
-        <% if current_user.resume.url.present? %>
+        <% if current_user.resume.url.present? || current_user.cover_letter_templates.present? %>
           <h5>Documents</h5>
-          <%= link_to "CV", current_user.resume.url, class: "btn-apply", target: "_blank" %>
+          <% if current_user.resume.url.present? %>
+            <%= link_to "CV/Résumé", current_user.resume.url, class: "btn-apply", target: "_blank" %>
+          <% end %>
+          <% if current_user.cover_letter_templates.present? %>
+            <% current_user.cover_letter_templates.each do |cover_letter| %>
+              <%= link_to cover_letter.filename, cover_letter.url, class: "btn-apply", target: "_blank" %>
+            <% end %>
+          <% end %>
         <% end %>
       </div>
     </div>
