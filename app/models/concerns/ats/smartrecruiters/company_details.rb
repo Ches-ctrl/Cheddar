@@ -18,8 +18,12 @@ module Ats::Smartrecruiters::CompanyDetails
         ats_identifier: ats_identifier,
         applicant_tracking_system_id: ats_system.id,
         url_ats_api: "#{ats_system.base_url_api}#{ats_identifier}",
-        url_ats_main: "#{ats_system.base_url_main}#{ats_identifier}"
+        url_ats_main: "#{ats_system.base_url_main}#{ats_identifier}",
       )
+
+      company.total_live = fetch_total_live(ats_system, ats_identifier)
+      # p "Total live - #{company.total_live}"
+
       p "Created company - #{company.company_name}" if company.persisted?
 
       # p "Calling GetAllJobUrls"
@@ -30,4 +34,14 @@ module Ats::Smartrecruiters::CompanyDetails
     end
     company
   end
+
+  def self.fetch_total_live(ats_system, ats_identifier)
+    company_api_url = "#{ats_system.base_url_api}#{ats_identifier}/postings"
+    uri = URI(company_api_url)
+    response = Net::HTTP.get(uri)
+    data = JSON.parse(response)
+    data['totalFound']
+  end
+
+  # TODO: Add fetch company description off first job posting if there
 end

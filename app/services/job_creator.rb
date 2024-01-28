@@ -71,7 +71,6 @@ class JobCreator
   end
 
   def categorise_by_yoe(job)
-
   end
 
   # TODO: Find a way to handle these fields (won't get detail from ATS system)

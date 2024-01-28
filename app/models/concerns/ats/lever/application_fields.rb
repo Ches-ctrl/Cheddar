@@ -69,8 +69,4 @@ module Ats::Lever::ApplicationFields
       # placeholder: "Add a cover letter or anything else you want to share.",
     },
   }
-
-  DEGREE_OPTIONS = []
-
-  DISCIPLINE_OPTIONS = []
 end

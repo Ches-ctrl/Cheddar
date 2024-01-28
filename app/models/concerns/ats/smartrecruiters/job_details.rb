@@ -4,6 +4,7 @@ module Ats::Smartrecruiters::JobDetails
   # TODO: Check if job already exists in database
   # TODO: Update job to handle workplace (hybrid)
   # TODO: Update description to handle html and non-html, add labelling for this characteristic
+  # TODO: Change default application deadline
 
   def self.get_job_details(job)
     ats = job.company.applicant_tracking_system
@@ -24,26 +25,25 @@ module Ats::Smartrecruiters::JobDetails
 
   def self.update_job_details(job, data)
     # TODO: add logic for office
+    # TODO: handle additional information
 
     p "Updating job details - #{job.job_title}"
 
-  #   timestamp = data['createdAt'] / 1000
-  #   created_at_time = Time.at(timestamp)
-  #   p "Job created at: #{created_at_time}"
+    country_custom_field = data['customField'].find { |field| field['fieldId'] == "COUNTRY" }
 
-  #   job.update(
-  #     job_title: data['text'],
-  #     job_description: data['descriptionPlain'],
-  #     office_status: data['workplaceType'],
-  #     location: data['categories']['location'] + ', ' + data['country'],
-  #     country: data['country'],
-  #     department: data['categories']['team'],
-  #     requirements: data['requirements'],
-  #     benefits: data['benefits'],
-  #     date_created: created_at_time,
-  #     industry: job.company.industry,
-  #     salary: salary,
-  #     employment_type: full_time,
-  #   )
+    job.update(
+      job_title: data['name'],
+      job_description: data['jobAd']['sections']['jobDescription']['text'],
+      office_status: data['location']['remote'] ? 'Remote' : 'Office',
+      location: data['location']['city'] + ', ' + country_custom_field['valueLabel'],
+      country: data['customField'][1]['valueLabel'],
+      seniority: data['experienceLevel']['label'],
+      department: data['function']['label'],
+      requirements: data['jobAd']['sections']['qualifications']['text'],
+      date_created: data['releasedDate'],
+      industry: data['industry']['label'],
+      employment_type: data['typeOfEmployment']['label'],
+      ats_job_id: data['id'],
+    )
   end
 end

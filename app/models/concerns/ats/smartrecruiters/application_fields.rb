@@ -3,74 +3,87 @@ module Ats::Smartrecruiters::ApplicationFields
 
   def self.get_application_criteria(job)
     p "Getting smartrecruiters application criteria"
-    job.application_criteria = CORE_FIELDS.merge(CUSTOM_FIELDS)
+    job.application_criteria = CORE_FIELDS.merge(WEB_FIELDS).merge(ADDITIONAL_FIELDS)
     job.save
     # GetFormFieldsJob.perform_later(job.job_posting_url)
   end
 
   CORE_FIELDS = {
-    resume: {
-      interaction: :upload,
-      locators: 'input-resume',
-      required: true,
-    },
-    full_name: {
+    first_name: {
       interaction: :input,
       locators: 'name-input',
       required: true,
     },
-    pronouns: {
-      interaction: :checkbox,
-      locators: 'candidatePronounsCheckboxes',
-      required: false,
+    last_name: {
+      interaction: :input,
+      locators: 'name-input',
+      required: true,
     },
     email: {
       interaction: :input,
       locators: 'email-input',
       required: true,
     },
+    email_confirm: {
+      interaction: :input,
+      locators: 'confirm-email-input',
+      required: true,
+    },
+    residence: {
+      interaction: :select,
+      locators: 'sr-location-autocomplete',
+      required: false,
+    },
+    country: {
+      interaction: :text,
+      locators: 'sr-location-country-required',
+      required: true,
+    },
+    city: {
+      interaction: :select,
+      locators: 'sr-location-city-required',
+      required: true,
+    },
     phone: {
       interaction: :input,
-      locators: 'phone-input',
+      locators: 'phone-number-input',
       required: true,
     },
-    current_company: {
+  }
+
+  WEB_FIELDS = {
+    linkedin: {
       interaction: :input,
-      locators: 'org-input',
+      locators: 'linkedin-input',
+      required: false,
+    },
+    facebook: {
+      interaction: :input,
+      locators: 'linkedin-input',
+      required: false,
+    },
+    twitter: {
+      interaction: :input,
+      locators: 'twitter-input',
+      required: false,
+    },
+    website: {
+      interaction: :input,
+      locators: 'website-input',
       required: false,
     },
   }
 
-  # TODO: Add categories for source fields to match form?
-
-  CUSTOM_FIELDS = {
-    hear_about: {
-      interaction: :input,
-      locators: 'cards[4d3da8ca-48dc-4ff6-8164-c5dc617b1172][field0]',
+  ADDITIONAL_FIELDS = {
+    resume: {
+      interaction: :upload,
+      locators: 'resume-upload',
       required: true,
-      # label: "How did you hear about Zeneducate?",
     },
-    domain_yoe: {
-      interaction: :input,
-      locators: 'cards[fe9a213f-b5c3-4e95-86c3-c02b1767b8d4][field0]',
-      required: true,
-      # label: "How many years of experience do you have with Ruby on Rails?",
-    },
-    tech_yoe: {
-      interaction: :input,
-      locators: 'cards[fe9a213f-b5c3-4e95-86c3-c02b1767b8d4][field1]',
-      required: true,
-      # label: "How many years of experience do you have with React?",
-    },
-    additional_information: {
+    hiring_manager_message: {
       interaction: :textarea,
-      locators: 'additional-information',
+      locators: 'hiring-manager-message-input',
       required: false,
-      # placeholder: "Add a cover letter or anything else you want to share.",
     },
   }
-
-  DEGREE_OPTIONS = []
-
-  DISCIPLINE_OPTIONS = []
 end
