@@ -31,7 +31,7 @@ ats_data = [
     base_url_main: "https://jobs.lever.co/",
     base_url_api: "https://api.lever.co/v0/postings/"
   },
-  { name: "SmartRecruiters",
+  { name: "Smartrecruiters",
     website_url: "https://smartrecruiters.com/",
     all_jobs_url: "https://jobs.smartrecruiters.com/",
     base_url_main: "https://jobs.smartrecruiters.com/",
@@ -269,23 +269,23 @@ greenhouse_job_urls_embedded = [
 # -----------------
 
 rails_job_urls = [
-  "https://boards.greenhouse.io/cleoai/jobs/4628944002", # greenhouse # senior"
-  "https://boards.greenhouse.io/ably30/jobs/4229668101", # greenhouse # senior
-  "https://boards.greenhouse.io/algolia/jobs/4989661004", # greenhouse # junior
-  "https://apply.workable.com/papier/j/F2D67EF125/", # workable # senior
-  "https://apply.workable.com/builderai/j/D157ED0496/", # workable # mid
-  # "https://apply.workable.com/api/v1/accounts/papier/jobs/F2D67EF125?details=true" # alternative url to test
-  "https://apply.workable.com/builderai/j/E417F55824/", # workable # senior
-  # "https://jobs.lever.co/zeneducate/e02e26bc-dd34-477b-a3e7-612c9422dccd", # lever # senior
+  # "https://boards.greenhouse.io/cleoai/jobs/4628944002", # greenhouse # senior"
+  # "https://boards.greenhouse.io/ably30/jobs/4229668101", # greenhouse # senior
+  # "https://boards.greenhouse.io/algolia/jobs/4989661004", # greenhouse # junior
+  # "https://apply.workable.com/papier/j/F2D67EF125/", # workable # senior
+  # "https://apply.workable.com/builderai/j/D157ED0496/", # workable # mid
+  # # "https://apply.workable.com/api/v1/accounts/papier/jobs/F2D67EF125?details=true" # alternative url to test
+  # "https://apply.workable.com/builderai/j/E417F55824/", # workable # senior
+  # # "https://jobs.lever.co/zeneducate/e02e26bc-dd34-477b-a3e7-612c9422dccd", # lever # senior # no longer live
   # "https://jobs.lever.co/zeneducate/3422d04b-963a-4cc7-91e0-85ee315c2007", # lever # senior
   # "https://jobs.smartrecruiters.com/Billetto/80023032-backend-web-developer", # smartrecruiters # mid
   # "https://jobs.smartrecruiters.com/Canva/743999942402703", # smartrecruiters # senior
   # "https://www.totaljobs.com/job/101793572/apply", # totaljobs # senior
   # "https://www.totaljobs.com/job/junior-software-developer/sparta-global-limited-job101695431", # totaljobs # junior
   # "https://www.totaljobs.com/job/full-stack-ruby-on-rails-developer/movement-8-job101778422", # totaljobs # mid
-  # "https://www.simplyhired.co.uk/job/K0OD6J_mQAkEV2xH5ktIzSbCDjCzpj7yYtGh9w6TiCyPLg2dLaALPw", # simplyhired # mid # create account
-  # "https://www.simplyhired.co.uk/job/n26j_p5HaCBjI8iYuRBBTL9sUQFIfUhIi-w-sZeuRh3HY0YWtIHqpg", # simplyhired # mid # create account
-  # "https://www.simplyhired.co.uk/job/3eJ7KIbUJzmvyGwP8nYZQOn-AYcUkLk7jDAofeTImguEW-OQ0dlh3g", # simplyhired # mid # create account
+  # # "https://www.simplyhired.co.uk/job/K0OD6J_mQAkEV2xH5ktIzSbCDjCzpj7yYtGh9w6TiCyPLg2dLaALPw", # simplyhired # mid # create account # expired
+  # # "https://www.simplyhired.co.uk/job/n26j_p5HaCBjI8iYuRBBTL9sUQFIfUhIi-w-sZeuRh3HY0YWtIHqpg", # simplyhired # mid # create account # expired
+  # # "https://www.simplyhired.co.uk/job/3eJ7KIbUJzmvyGwP8nYZQOn-AYcUkLk7jDAofeTImguEW-OQ0dlh3g", # simplyhired # mid # create account # expired
   # "https://uk.indeed.com/viewjob?jk=36cda28dd190bc72", # indeed # senior
   # "https://www.linkedin.com/jobs/view/ruby-on-rails-2-hands-on-engineering-manager-lead-developer-london-twice-a-week-up-to-%C2%A3100-000-offers-sponsorship-at-opus-recruitment-solutions-3756503864/", # linkedin # senior
   # "https://www.linkedin.com/jobs/view/3799028903/", # linkedin # mid
@@ -342,8 +342,10 @@ smartrecruiters_job_urls = [
 # -----------------
 
 ashby_job_urls = [
-  "https://jobs.ashbyhq.com/lilt/b1448632-738b-4de8-9991-06f32bb16bf1",
-  "https://jobs.ashbyhq.com/beamery/b4c4f8e7-e6cc-423b-8b8d-bb05c1ab050e",
+  "https://jobs.ashbyhq.com/lilt/b1448632-738b-4de8-9991-06f32bb16bf1", # expired
+  "https://jobs.ashbyhq.com/beamery/b4c4f8e7-e6cc-423b-8b8d-bb05c1ab050e", # expired
+  "https://jobs.ashbyhq.com/lilt/1f2aeca1-098f-42ee-a68a-37f824b6779f",
+  "https://jobs.ashbyhq.com/beamery/44ff9937-f026-467d-b8dc-935c49f22b52",
 ]
 
 # -----------------
@@ -376,6 +378,10 @@ gov_uk_site_urls = [
   "https://jobs.justice.gov.uk/",
   "https://careers.homeoffice.gov.uk/",
   "https://www.jobs.nhs.uk/candidate",
+]
+
+tal_job_urls = [
+  "https://kornferry.tal.net/vx/lang-en-GB/mobile-0/appcentre-1/brand-4/user-72902/xf-eeb733132400/candidate/so/pm/1/pl/2/opp/15864-Digital-Delivery-Total-Rewards-Intern-Analyst-1-Year-Contract/en-GB",
 ]
 
 # -----------------
@@ -443,9 +449,18 @@ puts "-------------------------------------"
 puts "Creating admins..."
 
 # Admin user
+
+if Rails.env.production?
+  email = ENV['ADMIN_EMAIL']
+  password = ENV['ADMIN_PASSWORD']
+else
+  email = 'admin@cheddarjobs.com'
+  password = 'password'
+end
+
 User.create(
-  email: ENV['ADMIN_EMAIL'],
-  password: ENV['ADMIN_PASSWORD'],
+  email: email,
+  password: password,
   first_name: "Charlotte",
   last_name: "Boyd",
   phone_number: "+447874943555",

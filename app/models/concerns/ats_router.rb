@@ -1,5 +1,6 @@
 module AtsRouter
   # TODO: Handle embedded pages with differing URL structures
+  # TODO: Create mapping (based on JobsAPIs) that maps the different information structures for each ATS system
 
   SUPPORTED_ATS_SYSTEMS = [
     'greenhouse',

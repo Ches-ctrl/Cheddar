@@ -12,10 +12,6 @@ module Ats::Greenhouse::ApplicationFields
     p "Got the fields"
   end
 
-  def self.update_requirements(job)
-    p "Updating job requirements"
-  end
-
   CORE_FIELDS = {
     first_name: {
       interaction: :input,

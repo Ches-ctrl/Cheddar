@@ -1,40 +1,45 @@
-Welcome to Cheddar! The only site you need to get hired
+Welcome to Cheddar 🧀!
 
-## Get Started
+## Problem 🌍
 
-In order to get setup:
+Getting a job is super difficult. Getting a job at a company committed to Net Zero is almost impossible.
+
+In the UK alone, 1m students graduate each year. 37% of them list climate change as their 'No.1 concern'.
+
+This means that 370k graduates each year cannot make career choices matching their No.1 Concern.
+
+And this is just in the UK...
+
+## Solution 🌱
+
+Cheddar 🧀! The frictionless climate-first job site. The only site you need to get hired.
+
+## Basic Setup 🛠️
+
 1. Clone the repo
 2. Bundle install
-3. Add a .env file
+3. Run: `rails db:create db:migrate db:seed`
+4. Run the server: `bin/dev` (runs server + sidekiq automatically)
+5. You're up and running 🎉
 
-========
+## Additional Setup 🧰
 
-.env file contents:
-* ADMIN_EMAIL=“add email here”
-* ADMIN_PASSWORD=“add password here”
-* SCRAPE_EMAIL_1=“add email here”
-* SCRAPE_PASSWORD_1=“add password here”
-* Repeat for other accounts/passwords or remove from the Seed file
+To make full use of Cheddar's features (scraping, cloundinary files, chatgpt):
 
-========
+6. Add a .env file:
+```shell
+# Scraper functionality
+* SCRAPE_EMAIL_1 = "your_email"
+* SCRAPE_PASSWORD_1 = "your_password"
 
-4. Run: rails db:create db:migrate db:seed
-5. Run the server - NB. You cannot run rails s to get the server going, please instead run bin/dev. This runs sidekiq as well as the server automatically for you so you can complete the job applications as background jobs
+# File uploads
+* CLOUDINARY_URL = "your_cloudinary_api_key"
 
-You’ll also need to add the following API keys to get all the features working:
-* CLOUDINARY_URL
-* OPENAI_ACCESS_TOKEN
+# AI functionality
+* OPENAI_ACCESS_TOKEN = "your_openai_api_key"
+```
 
-If you get an error on load, you may need to install redis:
-* brew install redis - installs redis for your local server
-* redis-server - starts it in the background
-* bin/dev - runs the server
-
-Also if you get a chromedriver error:
-* brew install cask chromedriver
-* Go to Security & Privacy and click ‘Allow Anyway’
-
-## The Tech Stack
+## Tech Stack 🧑‍💻
 
 <p align="left">
   <a href="https://www.ruby-lang.org/en/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/ruby/ruby-original.svg" alt="ruby" width="40" height="40"/> </a>
@@ -49,15 +54,56 @@ Also if you get a chromedriver error:
   <a href="https://heroku.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg" alt="heroku" width="40" height="40"/> </a>
 </p>
 
-## Contributing
+## Team 👫
+<div style="display: flex; flex-direction: row; align-items: center;">
+  <a href="https://github.com/Ches-ctrl"><img src="https://avatars.githubusercontent.com/u/65985457?v=4" title="charlie-cheesman" width="50" height="50"></a>
+  <a href="https://github.com/obreil54"><img src="https://avatars.githubusercontent.com/u/89271092?v=4" title="ilya-obretetskiy" width="50" height="50"></a>
+  <a href="https://github.com/daniel-sussman"><img src="https://avatars.githubusercontent.com/u/56164007?v=4" title="dan-sussman" width="50" height="50"></a>
+  <a href="https://github.com/chrisgeek"><img src="https://avatars.githubusercontent.com/u/12730606?v=4" title="chris-opara" width="50" height="50"></a>
+  <a href="https://github.com/Alejndrosanz"><img src="https://avatars.githubusercontent.com/u/64278497?v=4" title="alejandro-sanz" width="50" height="50"></a>
+</div>
 
-* Bug reports and pull requests are welcome on GitHub at https://github.com/Ches-Ctrl/Cheddar. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the code of conduct
-* Get in touch if you're interested in getting involved and to get a copy of the roadmap - charles.cheesman1@gmail.com
+## Roadmap 🛣️
+* Get in touch for the `Product Roadmap` and `Notion Workspace` 👉 charles.cheesman1@gmail.com
 
-## License
+## Getting Involved 👋
 
-© Charlie Cheesman - All rights reserved
+### Contributing 🧑‍💻
+* Bug reports and pull requests welcome 👉 https://github.com/Ches-Ctrl/Cheddar
 
-## Code of Conduct
+### Collecting Net Zero data 📊
+* We have a volunteer team collecting Net Zero data, similar to 👉 [Net Zero Tracker](https://zerotracker.net/)
 
-Everyone interacting in the Cheddar's codebases, issue trackers, chat rooms and mailing lists is expected to follow the code of conduct
+### Supporting the project 💚
+* Help us make companies Net Zero! Coming soon
+
+## License 📜
+
+© Charlie Cheesman - All rights reserved.
+
+## Code of Conduct 😇
+
+Summary - Be nice! Everyone interacting in the Cheddar's codebases, issue trackers, chat rooms and mailing lists is expected to follow the code of conduct
+
+## Troubleshooting 😵
+
+If you get an error on load, you may need to install redis:
+```shell
+# install redis for your local server
+* brew install redis
+
+# start redis in the background
+* redis-server
+
+# run the server
+* bin/dev
+```
+
+Also if you get a chromedriver error:
+```shell
+# install chromedriver
+* brew install cask chromedriver
+
+# allow it for your system
+* Go to Security & Privacy and click ‘Allow Anyway’
+```

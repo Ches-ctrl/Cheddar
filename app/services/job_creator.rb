@@ -1,7 +1,7 @@
 class JobCreator
   include AtsRouter
 
-  # TODO: Add req_work_eligibility to job model
+  # TODO: Change column order on jobs model once stable
 
   def check_existing_job
     existing_job = Job.find_by(job_posting_url: @url)
@@ -18,13 +18,21 @@ class JobCreator
     uri = URI(@url)
     response = Net::HTTP.get_response(uri)
 
-    # TODO: Add additional logic for checking job is live when not a redirect
-    if response.is_a?(Net::HTTPRedirection)
-      @job.job_title = 'Job is no longer live'
-      @job.job_description = 'Job is no longer live'
+    # TODO: Add additional logic for checking job is live when not a redirect e.g. 404 response
+    if response.is_a?(Net::HTTPNotFound)
+      p "Job link 404 error"
+      @job.job_title = 'Job not found - 404'
+      @job.job_description = 'The job page does not exist - 404'
       @job.live = false
-    else
+    elsif response.is_a?(Net::HTTPRedirection)
+      p "Job link redirect"
+      @job.job_title = 'Job not found - Redirect'
+      @job.job_description = 'The job page does not exist - Redirect'
+      @job.live = false
+    elsif response.is_a?(Net::HTTPSuccess)
       @job.live = true
+    else
+      p "unexpected response: #{response.inspect}"
     end
   end
 
@@ -44,12 +52,10 @@ class JobCreator
 
   # TODO: Search job description for salary information
   # TODO: Search job description for seniority (or match on job title)
-  # TODO: add other relevant job characteristics e.g. stock options, bonus, etc.
+  # TODO: Add other relevant job characteristics e.g. stock options, bonus, benefits, days leave etc.
 
   def update_requirements(job)
     # TODO: Add this logic to the background job for scraping fields as well
-
-    job.industry = job.company.industry
     job.no_of_questions = job.application_criteria.size
 
     job.application_criteria.each do |field, criteria|
@@ -65,6 +71,9 @@ class JobCreator
         p "Work eligibility requirement: #{job.work_eligibility}"
       end
     end
+  end
+
+  def categorise_by_yoe(job)
   end
 
   # TODO: Find a way to handle these fields (won't get detail from ATS system)
