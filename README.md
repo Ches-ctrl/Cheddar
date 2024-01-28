@@ -55,37 +55,31 @@ To make full use of Cheddar's features (scraping, cloundinary files, chatgpt):
 </p>
 
 ## Team 👫
-[//]: contributor-faces
-
+<div style="display: flex; flex-direction: row; align-items: center;">
   <a href="https://github.com/Ches-ctrl"><img src="https://avatars.githubusercontent.com/u/65985457?v=4" title="charlie-cheesman" width="50" height="50"></a>
   <a href="https://github.com/obreil54"><img src="https://avatars.githubusercontent.com/u/89271092?v=4" title="ilya-obretetskiy" width="50" height="50"></a>
   <a href="https://github.com/daniel-sussman"><img src="https://avatars.githubusercontent.com/u/56164007?v=4" title="dan-sussman" width="50" height="50"></a>
   <a href="https://github.com/chrisgeek"><img src="https://avatars.githubusercontent.com/u/12730606?v=4" title="chris-opara" width="50" height="50"></a>
   <a href="https://github.com/Alejndrosanz"><img src="https://avatars.githubusercontent.com/u/64278497?v=4" title="alejandro-sanz" width="50" height="50"></a>
-
-[//]: contributor-faces
-
-
+</div>
 
 ## Roadmap 🛣️
-* For access to `Product Roadmap` and `Notion Workspace`, get in touch 👉 charles.cheesman1@gmail.com
+* Get in touch for the `Product Roadmap` and `Notion Workspace` 👉 charles.cheesman1@gmail.com
 
 ## Getting Involved 👋
 
 ### Contributing 🧑‍💻
 * Bug reports and pull requests welcome 👉 https://github.com/Ches-Ctrl/Cheddar
-* Get in touch if you'd like to be involved 👉 charles.cheesman1@gmail.com
 
 ### Collecting Net Zero data 📊
 * We have a volunteer team collecting Net Zero data, similar to 👉 [Net Zero Tracker](https://zerotracker.net/)
-* If you'd like to join those volunteers, get in touch 👉 charles.cheesman1@gmail.com
 
 ### Supporting the project 💚
-* Money means we achieve our mission more quickly! You can support us here 👉
+* Help us make companies Net Zero! Coming soon
 
 ## License 📜
 
-© Charlie Cheesman - All rights reserved
+© Charlie Cheesman - All rights reserved.
 
 ## Code of Conduct 😇
 
