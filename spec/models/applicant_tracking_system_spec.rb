@@ -2,7 +2,6 @@ RSpec.describe ApplicantTrackingSystem do
   describe 'Associations' do
     it { is_expected.to have_many(:companies) }
     it { is_expected.to have_many(:jobs).dependent(:destroy) }
-    it { is_expected.to have_many(:ats_formats).dependent(:destroy) }
   end
 
   describe 'Validations' do

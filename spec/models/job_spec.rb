@@ -1,7 +1,6 @@
 RSpec.describe Job do
   describe 'Associations' do
     it { is_expected.to belong_to(:company) }
-    it { is_expected.to belong_to(:ats_format).optional(:true) }
     it { is_expected.to belong_to(:applicant_tracking_system).optional(:true) }
     it { is_expected.to have_many(:playlist_jobs) }
     it { is_expected.to have_many(:job_playlists).through(:playlist_jobs) }
