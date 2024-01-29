@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
 
   mount ActionCable.server => "/cable"
+  mount Avo::Engine, at: '/avo'
 
   devise_for :users
 

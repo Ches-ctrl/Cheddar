@@ -12,7 +12,7 @@ And this is just in the UK...
 
 ## Solution 🌱
 
-Cheddar 🧀! The frictionless climate-first job site. The only site you need to get hired.
+Cheddar 🧀 - the frictionless climate-first job site. The only site you need to get hired.
 
 ## Basic Setup 🛠️
 
@@ -24,7 +24,7 @@ Cheddar 🧀! The frictionless climate-first job site. The only site you need to
 
 ## Additional Setup 🧰
 
-To make full use of Cheddar's features (scraping, cloundinary files, chatgpt):
+To make full use of Cheddar's features (scraping, cloudinary files, chatgpt):
 
 6. Add a .env file:
 ```shell
