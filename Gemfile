@@ -69,6 +69,7 @@ gem "pg_search"
 gem "nokogiri"
 # gem "open-uri"
 gem 'csv'
+gem 'avo'
 
 group :development, :test do
   gem "dotenv-rails"
