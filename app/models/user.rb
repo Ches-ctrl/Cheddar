@@ -15,4 +15,5 @@ class User < ApplicationRecord
 
   has_one_attached :photo
   has_one_attached :resume
+  has_many_attached :cover_letter_templates
 end

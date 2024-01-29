@@ -110,11 +110,15 @@
                         as: :file,
                         required: true,
                         label: 'CV (PDF)',
-                        input_html: {accept: ('application/pdf') },
-                        label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                        input_html: { class: 'rounded-4' }  %>
+                        input_html: { accept: 'application/pdf', class: 'rounded-4' },
+                        label_html: { style: 'font-style: italic; margin-bottom: 0px;' } %>
 
-            <%# <%= f.input :cover_letter_template_url, required: false, autofocus: true, label_html: { style: 'font-style: italic; margin-bottom: 0px;' } %>
+            <%= f.input :cover_letter_templates,
+                        as: :file,
+                        required: false,
+                        label: 'Cover Letter Template (PDF)',
+                        input_html: { accept: 'application/pdf', class: 'rounded-4', multiple: true },
+                        label_html: { style: 'font-style: italic; margin-bottom: 0px;' } %>
 
             <%= f.input :photo,
                         required: false,
