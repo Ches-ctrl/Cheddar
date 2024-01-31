@@ -7,11 +7,10 @@
 
   a {
     color: white;
-    // font-weight: 600;
   }
 
   a:hover {
-    color: white;
+    color: #0d84a2;
     text-decoration: none;
   }
 
@@ -29,13 +28,41 @@
       }
     }
   }
+
+  ul li{
+    list-style:none;
+    transition:0.5s;
+  }
+
+  ul li a{
+    display: block;
+    position:relative;
+    text-decoration:none;
+    padding:5px;
+    color:#fff;
+    transition:0.5s;
+  }
+
+  ul:hover li a{
+    transform:scale(1);
+    opacity:0.2;
+  }
+
+  ul li a:hover{
+    transform:scale(1);
+    opacity:1;
+    filter:blur(0);
+    text-decoration:none;
+    color:#fff;
+  }
 }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
   border-radius: 5px;
-  padding: 5px;
+  padding-left: 50px;
   border: 1px;
+  margin-top: 2px;
   // color: white;
 }
 
@@ -44,7 +71,9 @@
   padding: 0.6rem 0;
   // color: white;
 }
-
+.navbar .container {
+  justify-content: space-between;
+}
 .avatar {
   margin-left: 5px;
 }
@@ -53,7 +82,73 @@
   width: 120px;
   height: 25px;
 }
+.lgin-sgup-btn {
+  a {
+    margin-inline: 0.8rem;
+    font-weight: 600;
+  }
+}
+.lgin-sgup-btn .login-btn, .signup-btn {
+  border-radius: 8px;
+  width: 100px;
+  line-height: 40px;
+  text-align: center;
+  $border: 2px;
+  border: solid $border transparent;
+  background-origin: border-box;
+	background-clip: content-box, border-box;
+  box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.20), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
+  &:hover {
+    animation: play 4.5s ease-in infinite;
+    cursor: pointer;
+  }
+}
+
+@keyframes play {
+	0% {
+		background-position: -390px;
+	}
+
+	10% {
+		background-position: -350px;
+	}
+
+	20% {
+		background-position: -290px;
+	}
+
+	35% {
+		background-position: -210px;
+	}
+
+	50% {
+		background-position: -180px;
+	}
+
+	65% {
+		background-position: -110px;
+	}
+
+	80% {
+		background-position: -70px;
+	}
+
+	100% {
+		background-position: 0px;
+	}
+}
+
+.login-btn {
+  background-image: linear-gradient(rgba(3, 68, 107, 1), rgba(3, 68, 107, 1)),
+  linear-gradient(134deg, #FF7F0A 24.6%, #FFE352 94.77%);
+  color: #fff !important;
+}
+.signup-btn {
+  color: #03446B !important;
+  background-image: linear-gradient(#fff, #fff),
+  linear-gradient(134deg, #FF7F0A 24.6%, #FFE352 94.77%);
+}
 // .navbar-nav {
 //   width: 500px;
 // }
