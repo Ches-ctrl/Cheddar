@@ -21,10 +21,28 @@ export default class extends Controller {
     // debugger;
   }
 
+  updateCoverLetterContent() {
+    console.log("Updating cover letter content");
+    const editor = tinymce.get("coverLetterEditor");
+    console.log(editor);
+    const editorContent = editor.getContent();
+    const form = editor.targetElm.closest("form");
+    console.log(form);
+    console.log(document.getElementById("hiddenCoverLetterField"));
+    const hiddenField = document.getElementById("hiddenCoverLetterField");
+    console.log(hiddenField);
+    if (hiddenField) {
+      hiddenField.value = editorContent;
+      console.log(hiddenField.value);
+    }
+  }
+
   async submitAllForms(event) {
     event.preventDefault();
     this.buttonTarget.disabled = true;
     this.overlayTarget.classList.remove("d-none");
+
+    this.updateCoverLetterContent();
 
     try {
       await new Promise((resolve) => {

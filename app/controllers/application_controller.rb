@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :photo, :resume])
 
     # For additional in app/views/devise/registrations/edit.html.erb
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :address_first, :address_second, :city, :post_code, :phone_number, :github_profile_url, :website_url, :photo, :resume, :cover_letter_templates, :linkedin_profile, :preferred_pronoun_select, :preferred_pronoun_text, :salary_expectation_figure, :right_to_work, cover_letter_templates: []])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :address_first, :address_second, :city, :post_code, :phone_number, :github_profile_url, :website_url, :photo, :resume, :linkedin_profile, :preferred_pronoun_select, :preferred_pronoun_text, :salary_expectation_figure, :right_to_work, cover_letter_templates: []])
   end
 
   def user_root_path
