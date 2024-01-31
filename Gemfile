@@ -70,6 +70,8 @@ gem "nokogiri"
 # gem "open-uri"
 gem 'csv'
 gem 'avo'
+gem 'yomu'
+gem 'tinymce-rails'
 
 group :development, :test do
   gem "dotenv-rails"

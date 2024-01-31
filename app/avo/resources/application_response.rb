@@ -13,6 +13,7 @@ class Avo::Resources::ApplicationResponse < Avo::BaseResource
     field :field_option, as: :text
     field :interaction, as: :text
     field :field_options, as: :text
+    field :cover_letter_content, as: :text
     field :job_application, as: :belongs_to
   end
 end

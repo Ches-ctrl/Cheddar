@@ -171,9 +171,14 @@ class FormFiller
   end
 
   def upload_file(upload_locator, file)
-    file_path = Rails.root.join('tmp', "#{file.filename}")
-    File.open(file_path, 'wb') do |temp_file|
-      temp_file.write(URI.open(file.url).read)
+    if file.instance_of?(String)
+      file_path = Rails.root.join('tmp', "Cover Letter.docx")
+      File.binwrite(file_path, file)
+    else
+      file_path = Rails.root.join('tmp', "#{file.filename}")
+      File.open(file_path, 'wb') do |temp_file|
+        temp_file.write(URI.open(file.url).read)
+      end
     end
     begin
       find(upload_locator).attach_file(file_path)
@@ -182,7 +187,6 @@ class FormFiller
         page.find(upload_locator).click
       end
     end
-    # File.delete(file_path)
   end
 
   def take_screenshot_and_store(job_application_id)
