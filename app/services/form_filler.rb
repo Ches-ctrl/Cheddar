@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'json'
+require 'htmltoword'
 
 class FormFiller
   include Capybara::DSL
@@ -16,6 +17,8 @@ class FormFiller
 
   def fill_out_form(url, fields, job_application_id)
     # SETUP Capybara
+    @user = JobApplication.find_by_id(job_application_id).user
+    @job = JobApplication.find_by_id(job_application_id).job
     @errors = nil
     visit(url)
     find_apply_button.click rescue nil
@@ -86,9 +89,12 @@ class FormFiller
     take_screenshot_and_store(job_application_id)
     close_session(job_application_id)
     fields.each do |field|
-      field = field[1]
-      if field['interaction'] == 'upload'
-        file_path = Rails.root.join('tmp', "#{field['value'].filename}")
+      attribute = field[1]
+      if field[0] == 'resume'
+        file_path = Rails.root.join('tmp', "Cover Letter - #{@user.first_name} #{@user.last_name}.pdf")
+        File.delete(file_path) if File.exists?(file_path)
+      elsif field[0] == 'cover_letter_'
+        file_path = Rails.root.join('tmp', "Cover Letter - #{@job.job_title} - #{@job.company.company_name} - #{@user.first_name} #{@user.last_name}.docx")
         File.delete(file_path) if File.exists?(file_path)
       end
     end
@@ -172,10 +178,13 @@ class FormFiller
 
   def upload_file(upload_locator, file)
     if file.instance_of?(String)
-      file_path = Rails.root.join('tmp', "Cover Letter.docx")
-      File.binwrite(file_path, file)
+      docx = Htmltoword::Document.create(file)
+      file_path = Rails.root.join('tmp', "Cover Letter - #{@job.job_title} - #{@job.company.company_name} - #{@user.first_name} #{@user.last_name}.docx")
+      File.open(file_path, 'wb') do |temp_file|
+        temp_file.write(docx)
+      end
     else
-      file_path = Rails.root.join('tmp', "#{file.filename}")
+      file_path = Rails.root.join('tmp', "Cover Letter - #{@user.first_name} #{@user.last_name}.pdf")
       File.open(file_path, 'wb') do |temp_file|
         temp_file.write(URI.open(file.url).read)
       end

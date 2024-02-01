@@ -72,6 +72,7 @@ gem 'csv'
 gem 'avo'
 gem 'yomu'
 gem 'tinymce-rails'
+gem 'htmltoword'
 
 group :development, :test do
   gem "dotenv-rails"

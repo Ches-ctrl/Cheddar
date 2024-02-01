@@ -38,7 +38,7 @@ export default class extends Controller {
         }),
       }).then((response) => response.json())
         .then((data) => {
-          const formattedContent = data["template"].replace(/ /g, '&nbsp;').replace(/\t/g, '&emsp;').replace(/\r\n|\n|\r/g, '<br>')
+          const formattedContent = data["template"].replace(/ /g, '&nbsp;').replace(/\t/g, '&emsp;').replace(/\r\n|\n|\r/g, '<br>').replace(/-/g, '&#8209;')
           this.editor_content(formattedContent)
       })
     } else {
