@@ -270,8 +270,8 @@ greenhouse_job_urls_embedded = [
 
 rails_job_urls = [
   "https://boards.greenhouse.io/cleoai/jobs/4628944002", # greenhouse # senior"
-  # "https://boards.greenhouse.io/ably30/jobs/4229668101", # greenhouse # senior
-  # "https://boards.greenhouse.io/algolia/jobs/4989661004", # greenhouse # junior
+  "https://boards.greenhouse.io/ably30/jobs/4229668101", # greenhouse # senior
+  "https://boards.greenhouse.io/algolia/jobs/4989661004", # greenhouse # junior
   # "https://apply.workable.com/papier/j/F2D67EF125/", # workable # senior
   # "https://apply.workable.com/builderai/j/D157ED0496/", # workable # mid
   # # "https://apply.workable.com/api/v1/accounts/papier/jobs/F2D67EF125?details=true" # alternative url to test

@@ -184,7 +184,7 @@ class FormFiller
         temp_file.write(docx)
       end
     else
-      file_path = Rails.root.join('tmp', "Cover Letter - #{@user.first_name} #{@user.last_name}.pdf")
+      file_path = Rails.root.join('tmp', "Resume - #{@user.first_name} #{@user.last_name}.pdf")
       File.open(file_path, 'wb') do |temp_file|
         temp_file.write(URI.open(file.url).read)
       end
