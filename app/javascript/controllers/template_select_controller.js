@@ -2,18 +2,20 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
 
+  static targets = ['editor']
+
   connect() {
     console.log("Template Select Controller Active")
   }
 
   editor_content(data) {
-    const editor = tinymce.get("coverLetterEditor")
+    const editor = tinymce.get(this.editorTarget.id)
 
     if (editor) {
       editor.setContent(data);
     } else {
       tinymce.init({
-        selector: '#coverLetterEditor',
+        selector: `#${this.editorTarget.id}`,
         setup: function (editor) {
           editor.on('init', function () {
             editor.setContent(data);
@@ -44,7 +46,7 @@ export default class extends Controller {
     } else {
       this.editor_content("")
       }
-    const editor = document.getElementById("coverLetterEditor")
+    const editor = this.editorTarget
     editor.classList.remove("d-none")
 
   }

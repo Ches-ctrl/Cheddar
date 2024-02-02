@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 import { createConsumer } from "@rails/actioncable";
 
 export default class extends Controller {
-  static targets = ["form", "button", "overlay"];
+  static targets = ["form", "button", "overlay", "editor", "content"];
   static values = { user: Number };
 
   // RESET POINT
@@ -16,20 +16,20 @@ export default class extends Controller {
     this.appliedJobCount = 0;
     console.log(`Jobs count: ${this.jobsCount}`);
     console.log(`Applied job count 0: ${this.appliedJobCount}`)
-
+    console.log(this.contentTarget)
     this.createWebSocketChannel(this.userValue);
     // debugger;
   }
 
   updateCoverLetterContent() {
     console.log("Updating cover letter content");
-    const editor = tinymce.get("coverLetterEditor");
+    const editor = tinymce.get(this.editorTarget.id);
     console.log(editor);
     const editorContent = editor.getContent();
     const form = editor.targetElm.closest("form");
     console.log(form);
-    console.log(document.getElementById("hiddenCoverLetterField"));
-    const hiddenField = document.getElementById("hiddenCoverLetterField");
+    console.log(document.getElementById(this.contentTarget.id));
+    const hiddenField = document.getElementById(this.contentTarget.id);
     console.log(hiddenField);
     if (hiddenField) {
       hiddenField.value = editorContent;
