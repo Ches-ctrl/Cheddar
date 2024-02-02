@@ -123,7 +123,7 @@ export default class extends Controller {
                   console.log("Redirecting you...");
                   console.log(this.redirectToSuccessPage());
                   this.redirectToSuccessPage();
-                  window.location.href = "/job_applications/success";
+                  window.location.href = "/job_applications/success"; // this line redundant?
                 }
               } else {
                 // Handle other statuses if needed
