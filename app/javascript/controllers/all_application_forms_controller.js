@@ -57,7 +57,7 @@ export default class extends Controller {
             setTimeout(() => {
               form.requestSubmit();
               resolve();
-            }, 200);
+            }, 10000);
           });
         })
       );
@@ -121,9 +121,9 @@ export default class extends Controller {
                 if (this.appliedJobCount === this.jobsCount) {
                   console.log("All jobs applied to");
                   console.log("Redirecting you...");
-                  // console.log(this.redirectToSuccessPage());
-                  // this.redirectToSuccessPage();
-                  window.location.href = "/job_applications/success";
+                  console.log(this.redirectToSuccessPage());
+                  this.redirectToSuccessPage();
+                  window.location.href = "/job_applications/success"; // this line redundant?
                 }
               } else {
                 // Handle other statuses if needed
