@@ -17,8 +17,9 @@ class FormFiller
 
   def fill_out_form(url, fields, job_application_id)
     # SETUP Capybara
-    @user = JobApplication.find_by_id(job_application_id).user
-    @job = JobApplication.find_by_id(job_application_id).job
+    @job_application = JobApplication.find_by_id(job_application_id)
+    @user = @job_application.user
+    @job = @job_application.job
     @errors = nil
     visit(url)
     find_apply_button.click rescue nil
@@ -98,6 +99,7 @@ class FormFiller
         File.delete(file_path) if File.exists?(file_path)
       end
     end
+    @job_application.update(status: 'Applied')
   end
 
   private

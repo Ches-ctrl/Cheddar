@@ -48,10 +48,9 @@ class JobApplicationsController < ApplicationController
     job = Job.find(params[:job_id])
 
     @job_application = JobApplication.new(job_application_params)
-    pp @job_application # testing
     @job_application.user = current_user
     @job_application.job = job
-    @job_application.status = "Application pending"
+    @job_application.status = "Application queued"
 
     # TODO: Fix as at the moment this logic doesn't work as it is overwritten by the front-end javascript redirects
     if current_user.resume.attached?
@@ -87,7 +86,7 @@ class JobApplicationsController < ApplicationController
         )
 
         ApplyJob.perform_later(@job_application.id, current_user.id)
-        @job_application.update(status: "Applied")
+        @job_application.update(status: "Application pending")
 
         ActionCable.server.broadcast(
           user_channel_name,
@@ -101,19 +100,19 @@ class JobApplicationsController < ApplicationController
           }
         )
 
-        # p "Job Application Status: #{@job_application.status}"
+        p "Job Application Status: #{@job_application.status}"
 
         ids = cookies[:selected_job_ids].split("&")
         ids.delete("#{job.id}")
 
-        # p "IDs: #{ids}"
+        p "IDs: #{ids}"
 
         # Believe this automatically adds & between the cookies?
         cookies[:selected_job_ids] = ids
 
-        # p "Cookies: #{cookies[:selected_job_ids]}"
-
-        redirect_to job_applications_path, notice: 'Your applications have been submitted.'
+        p "Cookies: #{cookies[:selected_job_ids]}"
+        # Not necessary to redirect after each individual #create
+        # redirect_to job_applications_path, notice: 'Your applications have been submitted.'
       else
         # p "Rendering new"
         render :new
