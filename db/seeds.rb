@@ -385,6 +385,17 @@ tal_job_urls = [
 ]
 
 # -----------------
+# Ambertrack ATS
+# -----------------
+
+ambertrack_site_urls = [
+  "https://eycareers.ambertrack.global/studentrecruitment2024/candidatelogin.aspx?cookieCheck=true",
+  "https://networkrailcandidate.ambertrack.global/apprenticeshipsspring2022/Login.aspx?cookieCheck=true",
+  "https://kentgraduates.ambertrack.co.uk/kentgraduates2024/CandidateLogin.aspx?e=401&cookieCheck=true",
+  "https://atkinscandidate.ambertrack.co.uk/graduates2023/login.aspx?cookieCheck=true",
+]
+
+# -----------------
 # Freshteam ATS
 # -----------------
 
@@ -409,8 +420,17 @@ tal_job_urls = [
 # Screenloop ATS
 # -----------------
 
-# pinpointhq_job_urls = [
+# screenloop_job_urls = [
 #   "https://app.screenloop.com/careers/atlast/job_posts/122",
+# ]
+
+# -----------------
+# BambooHR ATS
+# -----------------
+
+# bamboohr_job_urls = [
+#   "https://gravyanalytics.bamboohr.com/careers/51",
+#   "https://avidbots.bamboohr.com/careers/750",
 # ]
 
 # -----------------

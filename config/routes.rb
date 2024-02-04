@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get "faqs" => "pages#faqs"
   get "howitworks" => "pages#how_it_works", as: :how_it_works
   get "success" => "pages#success", as: :success
+  get "temp" => "pages#temp"
 
   # Jobs
   get '/jobs', to: 'jobs#index', as: :jobs
