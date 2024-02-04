@@ -303,6 +303,53 @@ rails_job_urls = [
 ]
 
 # -----------------
+# Consulting Jobs
+# -----------------
+
+consulting_job_urls = [
+  "https://bambusdev.my.site.com/s/details?jobReq=Fixed-Income-Quantitative-Analyst-%E2%80%93-Macro---Commodities-Investment-Teams-_REQ5179",
+  "https://baringa.csod.com/ux/ats/careersite/4/home/requisition/1369?c=baringa",
+  "https://barings.wd1.myworkdayjobs.com/en-US/Barings/job/London-United-Kingdom/Barings-Investment-Management-Summer-Internship_JR_004872",
+  "https://bnymellon.eightfold.ai/careers?pid=17632073&domain=bnymellon.com",
+  "https://boards.greenhouse.io/embed/job_app?for=charlesriverassociates&token=5395642",
+  "https://careers.accuracy.com/",
+  "https://careers.ardian.com/en-GB/jobs/2455619-legal-intern",
+  "https://careers.bdo.co.uk/job/birmingham/2024-summer-internship-programme/1469/6522969600?source=BrightNetwork&utm_source=BrightNetwork&utm_medium=JobPosting&utm_campaign=33_543901_EarlyCareers_Graduates_2023&utm_term=1x1&utm_content=SummerPlacementProgramme",
+  "https://careers.lcp.com/search-all-vacancies/job-vacancy?id=219839",
+  "https://careers.marshmclennan.com/eu/en/apply?jobSeqNo=MAMCGLOBALR249605EXTERNALENGLOBAL&step=1",
+  "https://careers.occstrategy.com/vacancies/243/graduate-summer-internship-2024-london-office.html",
+  "https://cdpq.wd10.myworkdayjobs.com/en-US/CDPQ-recrutement-universitaire/job/Intern--Private-Equity_R02982?locations=1ae8f3a46c3f01272bab23d7d109ab10",
+  "https://cerberus.wd1.myworkdayjobs.com/en-US/CerberusCareers/job/London-United-Kingdom/XMLNAME-2024-UK-Summer-CES-Asset-Management-Internship_R1172?locations=220ccf21815501decd9e5d469507c05f",
+  "https://cerberus.wd1.myworkdayjobs.com/en-US/CerberusCareers/job/London-United-Kingdom/XMLNAME-2024-UK-Summer-Legal---Compliance-Internship_R1177",
+  "https://dws.groupgti.com/2024-dws-internship---investment-division---uk/19/viewdetails",
+  "https://fticonsult.referrals.selectminds.com/ftistudentcareers/jobs/2024-summer-internship-economic-financial-consulting-17434",
+  "https://goldmansachs.tal.net/vx/lang-en-GB/mobile-0/brand-2/xf-d5711d1afb50/candidate/register",
+  "https://groupecreditagricole.jobs/en/apply-without-account/summer-internship-programme-2024---legal-department-reference--2023-83705--/",
+  "https://hymans.current-vacancies.com/Jobs/Advert/3264996?cid=2054&t=Summer-Internship-Programme",
+  "https://jobs.gartner.com/jobs/job/79739-european-consulting-internship-summer-2024-masters-2025-graduates-multiple-locations?source=UNV-10349",
+  "https://jobs.natwestgroup.com/jobs/13295700-internal-audit-risk-internship",
+  "https://jobs.pwc.co.uk/student/uk/en/apply?jobSeqNo=PUDPUNUK473968WDEXTERNALENUK&step=1",
+  "https://jobs.smartrecruiters.com/LegalAndGeneral/743999949816273-investment-summer-internship-2024?trid=4556ca14-794c-4023-bd62-6813e288177e",
+  "https://jobs.smartrecruiters.com/Verisk/743999946517680-consulting-intern",
+  "https://kornferry.tal.net/vx/appcentre-ext/brand-4/spa-1/candidate/so/pm/1/pl/2/opp/15717-Summer-2024-Internship-London/en-GB",
+  "https://lek.tal.net/vx/lang-en-GB/mobile-0/appcentre-1/brand-2/candidate/so/pm/1/pl/1/opp/3343-Summer-Associate-London-Office-2024/en-GB",
+  "https://mavenswood.freshteam.com/jobs/coz0TIxB5MVS/private-equity-analyst",
+  "https://moelis-careers.tal.net/vx/lang-en-GB/mobile-0/appcentre-1/brand-4/user-7/xf-807238d10272/wid-2/candidate/so/pm/1/pl/2/opp/36-2024-Summer-Analyst-Investment-Banking-London/en-GB",
+  "https://mufgub.wd3.myworkdayjobs.com/en-US/MUFG-Careers/job/London/MUFG-2024-UK-Coverage---Investment-Banking-Summer-Internship_10061826-WD-1",
+  "https://nb.wd1.myworkdayjobs.com/en-US/nbcareers/job/London/Intern_R0008830?locations=7bfa81f3f1a101929a3b77afc3985976&locations=0c6af06679b4012c714901a28e49b060",
+  "https://rbccmgraduates.gtisolutions.co.uk/2024summer-analyst---global-investment-banking/255/viewdetails",
+  "https://rbccmgraduates.gtisolutions.co.uk/2024summer-analyst---global-investment-banking/255/viewdetails",
+  "https://rbccmgraduates.gtisolutions.co.uk/2024summer-analystcorporate-banking/260/viewdetails",
+  "https://seagatecareers.com/job/DerryLondonderry-Legal-Summer-Intern-%28EMEA%29/1104871300/",
+  "https://trkr.app/vacancy/finance-intern-2024/",
+  "https://www.coventrycareers.co.uk/vacancies/7603/graduate-internship--legal-risk--control-legal-counsel.html",
+  "https://www.mckinsey.com/careers/search-jobs/jobs/associateintern-14918",
+  "https://www.verition.com/open-positions?gh_jid=4041599007&gh_src=f2276b3d7us",
+  "https://www.werkenbijabnamro.nl/en/vacancy/5964/internship-programme-2024-uk-legal#vacancy-application-form"
+]
+
+
+# -----------------
 # Software Engineering Jobs
 # -----------------
 
