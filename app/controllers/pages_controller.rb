@@ -18,4 +18,7 @@ class PagesController < ApplicationController
 
   def temp
   end
+
+  def climate
+  end
 end
