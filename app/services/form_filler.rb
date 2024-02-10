@@ -74,7 +74,9 @@ class FormFiller
         end
       when 'upload'
         begin
-          upload_file(field['locators'], field['value'])
+          unless field['value'] == ''
+            upload_file(field['locators'], field['value'])
+          end
         rescue Capybara::ElementNotFound
           p "Field locator #{field['locators']} is not found"
           @errors = true
@@ -87,6 +89,9 @@ class FormFiller
     # TODO: Add check on whether form has been submitted successfully
 
     # Return a screenshot of the submitted form
+    submit = find_submit_button.click rescue nil
+    p "submit button is #{submit}"
+    find_submit_button.click rescue nil
     take_screenshot_and_store(job_application_id)
     close_session(job_application_id)
     fields.each do |field|
@@ -111,6 +116,10 @@ class FormFiller
 
   def find_apply_button
     find(:xpath, "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')] | //button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')]")
+  end
+
+  def find_submit_button
+    find(:xpath, "//button[contains(translate(@value, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'submit')] | //input[contains(translate(@value, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'submit')]")
   end
 
   def select_option_from_combobox(combobox_locator, option_locator, option_text)
