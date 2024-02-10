@@ -15,4 +15,10 @@ class PagesController < ApplicationController
 
   def jobs
   end
+
+  def temp
+  end
+
+  def climate
+  end
 end

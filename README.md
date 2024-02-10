@@ -14,6 +14,14 @@ And this is just in the UK...
 
 Cheddar 🧀 - the frictionless climate-first job site. The only site you need to get hired.
 
+## Graduate Ruby on Rails Jobs in London 💎
+
+<a href="https://www.cheddarjobs.com/temp">See graduate Ruby on Rails jobs in London</a>
+
+## Sign up to the waitlist 🚀
+
+<a href="https://blocksurvey.io/cheddar-job-site-signup-form-rR5ZN6QFSxyQu4gFR1r9BQ?v=o">Sign up to the waitlist</a>
+
 ## Basic Setup 🛠️
 
 1. Clone the repo

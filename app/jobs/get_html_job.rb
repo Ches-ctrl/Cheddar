@@ -12,6 +12,7 @@ class GetHtmlJob < ApplicationJob
 
     begin
       # page_html = page.html
+      # p "Page HTML: #{page_html}"
       # element = find(required_html_element)
 
       # TODO: Impersonate a user agent to get the full HTML as currently appears to be 'locked'
@@ -22,12 +23,15 @@ class GetHtmlJob < ApplicationJob
       # element = find (class: class_arr_of_required_html_element, visible: :all)
 
       # Second solution:
-      class_arr_of_required_html_element = ['col-12', 'col-sm-12', 'col-md-10', 'col-lg-8', 'col-xl-8']
-      selector = class_arr_of_required_html_element.map { |cls| ".#{cls}" }.join
-      element = find(selector, visible: :all)
+      # class_arr_of_required_html_element = ['main']
+      # selector = class_arr_of_required_html_element.map { |cls| ".#{cls}" }.join
 
-      # p "Element:"
-      # p element
+      # element = find('styles--2ZUgk')
+      element = find('form', visible: :all)
+      # element = find(selector, visible: :all)
+
+      p "Element:"
+      p element
 
       # Extract element HTML from Capybara element
       element_html = page.evaluate_script("arguments[0].outerHTML", element.native)
@@ -55,6 +59,8 @@ class GetHtmlJob < ApplicationJob
 
     rescue Capybara::ElementNotFound => e
       puts "Element not found: #{e.message}"
+    ensure
+      Capybara.current_session.driver.quit
     end
   end
 end
