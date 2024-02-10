@@ -113,11 +113,15 @@
                         input_html: { accept: 'application/pdf', class: 'rounded-4' },
                         label_html: { style: 'font-style: italic; margin-bottom: 0px;' } %>
 
+            <% current_user.cover_letter_templates.each do |cover_letter_template| %>
+              <%= f.input :cover_letter_templates, as: :hidden, input_html: { multiple: true, value: cover_letter_template.signed_id } %>
+            <% end %>
+
             <%= f.input :cover_letter_templates,
                         as: :file,
                         required: false,
-                        label: 'Cover Letter Template (PDF)',
-                        input_html: { accept: 'application/pdf', class: 'rounded-4', multiple: true },
+                        label: 'Cover Letter Template(s) (DOCX)',
+                        input_html: { accept: 'application/docx', class: 'rounded-4', multiple: true },
                         label_html: { style: 'font-style: italic; margin-bottom: 0px;' } %>
 
             <%= f.input :photo,

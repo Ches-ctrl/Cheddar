@@ -174,6 +174,10 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    htmltoword (1.1.1)
+      actionpack
+      nokogiri
+      rubyzip (>= 1.0)
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
@@ -245,7 +249,7 @@ GEM
     psych (5.1.1.1)
       stringio
     public_suffix (5.0.4)
-    puma (6.4.0)
+    puma (6.4.2)
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.7.3)
@@ -324,7 +328,7 @@ GEM
       faraday (>= 1)
       faraday-multipart (>= 1)
     ruby2_keywords (0.0.5)
-    rubyzip (2.3.2)
+    rubyzip (1.3.0)
     rufus-scheduler (3.9.1)
       fugit (~> 1.1, >= 1.1.6)
     sassc (2.4.0)
@@ -367,6 +371,8 @@ GEM
     thor (1.3.0)
     tilt (2.3.0)
     timeout (0.4.1)
+    tinymce-rails (6.8.2)
+      railties (>= 3.1.1)
     turbo-rails (1.5.0)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -395,6 +401,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    yomu (0.1.5)
     zeitwerk (2.6.12)
 
 PLATFORMS
@@ -420,12 +427,13 @@ DEPENDENCIES
   factory_bot_rails (= 6.4.3)
   faker
   font-awesome-sass
+  htmltoword
   importmap-rails
   jbuilder
   nokogiri
   pg (~> 1.1)
   pg_search
-  puma (>= 5.0)
+  puma (>= 6.4.2)
   rails (~> 7.1.2)
   rails-html-sanitizer
   rspec-rails (~> 6.1.0)
@@ -439,10 +447,12 @@ DEPENDENCIES
   simple_form
   sprockets-rails
   stimulus-rails
+  tinymce-rails
   turbo-rails
   tzinfo-data
   watir
   web-console
+  yomu
 
 RUBY VERSION
    ruby 3.1.2p20

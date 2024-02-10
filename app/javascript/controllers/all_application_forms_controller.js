@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 import { createConsumer } from "@rails/actioncable";
 
 export default class extends Controller {
-  static targets = ["form", "button", "overlay"];
+  static targets = ["form", "button", "overlay", "editor", "content"];
   static values = { user: Number };
 
   // RESET POINT
@@ -16,15 +16,33 @@ export default class extends Controller {
     this.appliedJobCount = 0;
     console.log(`Jobs count: ${this.jobsCount}`);
     console.log(`Applied job count 0: ${this.appliedJobCount}`)
-
+    console.log(this.contentTarget)
     this.createWebSocketChannel(this.userValue);
     // debugger;
+  }
+
+  updateCoverLetterContent() {
+    console.log("Updating cover letter content");
+    const editor = tinymce.get(this.editorTarget.id);
+    console.log(editor);
+    const editorContent = editor.getContent();
+    const form = editor.targetElm.closest("form");
+    console.log(form);
+    console.log(document.getElementById(this.contentTarget.id));
+    const hiddenField = document.getElementById(this.contentTarget.id);
+    console.log(hiddenField);
+    if (hiddenField) {
+      hiddenField.value = editorContent;
+      console.log(hiddenField.value);
+    }
   }
 
   async submitAllForms(event) {
     event.preventDefault();
     this.buttonTarget.disabled = true;
     this.overlayTarget.classList.remove("d-none");
+
+    this.updateCoverLetterContent();
 
     try {
       await new Promise((resolve) => {
@@ -39,7 +57,7 @@ export default class extends Controller {
             setTimeout(() => {
               form.requestSubmit();
               resolve();
-            }, 200);
+            }, 10000);
           });
         })
       );
@@ -103,9 +121,9 @@ export default class extends Controller {
                 if (this.appliedJobCount === this.jobsCount) {
                   console.log("All jobs applied to");
                   console.log("Redirecting you...");
-                  // console.log(this.redirectToSuccessPage());
-                  // this.redirectToSuccessPage();
-                  window.location.href = "/job_applications/success";
+                  console.log(this.redirectToSuccessPage());
+                  this.redirectToSuccessPage();
+                  window.location.href = "/job_applications/success"; // this line redundant?
                 }
               } else {
                 // Handle other statuses if needed

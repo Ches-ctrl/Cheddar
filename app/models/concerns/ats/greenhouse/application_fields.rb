@@ -47,11 +47,11 @@ module Ats::Greenhouse::ApplicationFields
       locators: 'button[aria-describedby="resume-allowable-file-types"',
       required: true,
     },
-    # cover_letter: {
-    #   interaction: :upload,
-    #   locators: 'button[aria-describedby="cover_letter-allowable-file-types"]',
-    #   required: false
-    # }
+    cover_letter_: {
+      interaction: :upload,
+      locators: 'button[aria-describedby="cover_letter-allowable-file-types"]',
+      required: true
+    }
   }
 
   ADDITIONAL_FIELDS = {

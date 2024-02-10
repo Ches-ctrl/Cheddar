@@ -48,15 +48,28 @@ class JobApplicationsController < ApplicationController
     job = Job.find(params[:job_id])
 
     @job_application = JobApplication.new(job_application_params)
-    pp @job_application # testing
     @job_application.user = current_user
     @job_application.job = job
-    @job_application.status = "Application pending"
+    @job_application.status = "Application queued"
 
     # TODO: Fix as at the moment this logic doesn't work as it is overwritten by the front-end javascript redirects
     if current_user.resume.attached?
       puts "Moving you along the user has a resume attached path."
       # TODO: Add validation to check that the user has filled in their core details
+      params[:job_application][:application_responses_attributes].each do |key, response_attributes|
+        if response_attributes[:field_name] == "cover_letter_"
+          cover_letter_content = response_attributes[:cover_letter_content]
+          if cover_letter_content
+            p "Cover letter content present"
+              @job_application.application_responses.each do |response|
+              if response.field_name == "cover_letter_"
+                response.field_value = cover_letter_content
+              end
+            end
+          end
+        end
+      end
+
 
       if @job_application.save
         user_channel_name = "job_applications_#{current_user.id}"
@@ -73,7 +86,7 @@ class JobApplicationsController < ApplicationController
         )
 
         ApplyJob.perform_later(@job_application.id, current_user.id)
-        @job_application.update(status: "Applied")
+        @job_application.update(status: "Application pending")
 
         ActionCable.server.broadcast(
           user_channel_name,
@@ -87,19 +100,19 @@ class JobApplicationsController < ApplicationController
           }
         )
 
-        # p "Job Application Status: #{@job_application.status}"
+        p "Job Application Status: #{@job_application.status}"
 
         ids = cookies[:selected_job_ids].split("&")
         ids.delete("#{job.id}")
 
-        # p "IDs: #{ids}"
+        p "IDs: #{ids}"
 
         # Believe this automatically adds & between the cookies?
         cookies[:selected_job_ids] = ids
 
-        # p "Cookies: #{cookies[:selected_job_ids]}"
-
-        redirect_to job_applications_path, notice: 'Your applications have been submitted.'
+        p "Cookies: #{cookies[:selected_job_ids]}"
+        # Not necessary to redirect after each individual #create
+        # redirect_to job_applications_path, notice: 'Your applications have been submitted.'
       else
         # p "Rendering new"
         render :new
@@ -132,6 +145,6 @@ class JobApplicationsController < ApplicationController
   # TODO: Update job_application_params to include the user inputs
 
   def job_application_params
-    params.require(:job_application).permit(application_responses_attributes: [:field_name, { field_value: [] }, :field_value, :field_locator, :interaction, :field_option, :field_options, :required])
+    params.require(:job_application).permit(application_responses_attributes: [:field_name, { field_value: [] }, :field_value, :field_locator, :interaction, :field_option, :field_options, :cover_letter_content, :required])
   end
 end
