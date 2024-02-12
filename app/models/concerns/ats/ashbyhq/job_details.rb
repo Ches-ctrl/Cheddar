@@ -14,9 +14,10 @@ module Ats::Ashbyhq::JobDetails
   end
 
   def self.fetch_job_data(job, ats)
-    job_url_api = "#{job.company.url_ats_api}"
+    job_url_api = "#{job.company.url_ats_api}?includeCompensation=true"
     job.api_url = job_url_api
     job_id = job.ats_job_id
+
     uri = URI(job_url_api)
     response = Net::HTTP.get(uri)
     all_jobs_data = JSON.parse(response)
@@ -34,13 +35,11 @@ module Ats::Ashbyhq::JobDetails
   def self.update_job_details(job, data)
     job.update(
       job_title: data['title'],
-      job_description: data['description'],
+      job_description: data['descriptionHtml'],
       office_status: data['remote'] ? 'Remote' : 'On-site',
-      location: data['location']['city'] + ', ' + data['location']['country'],
-      country: data['location']['country'],
+      location: data['location'],
+      country: data['address']['addressCountry'],
       department: data['department'],
-      requirements: data['requirements'],
-      benefits: data['benefits'],
     )
   end
 end

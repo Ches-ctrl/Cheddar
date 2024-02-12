@@ -42,10 +42,10 @@ ats_data = [
     base_url_main: "https://jobs.ashbyhq.com/",
     base_url_api: "https://api.ashbyhq.com/posting-api/job-board/",
   },
-  { name: "PinpointHQ",
+  { name: "Pinpointhq",
     website_url: "https://www.pinpointhq.com/",
     base_url_main: "https://XXX.pinpointhq.com/en/postings/",
-    base_url_api: "https://XXX.pinpointhq.com/api/v1/",
+    base_url_api: "https://XXX.pinpointhq.com/",
   },
   { name: "BambooHR",
     website_url: "https://www.bamboohr.com/",
@@ -468,9 +468,9 @@ ambertrack_site_urls = [
 # PinpointHQ ATS
 # -----------------
 
-# pinpointhq_job_urls = [
-#   "https://field.pinpointhq.com/en/postings/6b079493-f5ed-42d5-b78a-acbf97985521",
-# ]
+pinpointhq_job_urls = [
+  "https://field.pinpointhq.com/en/postings/6b079493-f5ed-42d5-b78a-acbf97985521",
+]
 
 # -----------------
 # Screenloop ATS
@@ -517,7 +517,7 @@ comp_specific_job_urls = [
 
 # job_urls = [greenhouse_job_urls, workable_job_urls, lever_job_urls, smartrecruiters_job_urls, ashby_job_urls]
 
-ashby_job_urls.each do |url|
+pinpointhq_job_urls.each do |url|
   company, ats_job_id = CompanyCreator.new(url).find_or_create_company
   p "CompanyCreator complete: #{company.company_name}"
 

@@ -3,7 +3,7 @@ module Ats::Ashbyhq::ApplicationFields
 
   def self.get_application_criteria(job)
     p "Getting AshbyHQ application criteria"
-    job.application_criteria = CANDIDATE_FIELDS.merge(LOCATION_FIELDS).merge(WORKAUTH_FIELDS)
+    job.application_criteria = CANDIDATE_FIELDS
     job.save
     # GetFormFieldsJob.perform_later(job.job_posting_url)
   end
@@ -13,49 +13,45 @@ module Ats::Ashbyhq::ApplicationFields
   end
 
   # Organised into sections (sections have labels)
+  # May need to do this off of labels rather than locators given form structure
 
   CANDIDATE_FIELDS = {
-    first_name: {
+    full_name: {
       interaction: :input,
-      locators: 'firstname',
+      locators: '_systemfield_name',
       required: true,
     },
-    last_name: {
+    pref_name: {
       interaction: :input,
-      locators: 'lastname',
+      locators: '_input_1xsmr_28 _input_1dgff_33',
+      required: true,
+    },
+    phone_number: {
+      interaction: :input,
+      locators: 'tel',
       required: true,
     },
     email: {
       interaction: :input,
-      locators: 'email',
+      locators: '_systemfield_email',
+      required: true,
+    },
+    resume: {
+      interaction: :input,
+      locators: '_systemfield_resume',
+      required: true,
+    },
+    linkedin: {
+      interaction: :input,
+      locators: '_input_1xsmr_28 _input_1dgff_33',
       required: true,
     },
   }
 
   LOCATION_FIELDS = {
-    summary: {
-      interaction: :textarea,
-      locators: 'summary',
-      required: false,
-    },
-    resume: {
-      interaction: :upload,
-      locators: 'input[data-ui="resume"]',
-      required: true,
-    },
   }
 
   WORKAUTH_FIELDS = {
-    cover_letter: {
-      interaction: :textarea,
-      locators: 'cover_letter',
-      required: false,
-    },
-    visa_sponsorship: {
-      interaction: :radiogroup,
-      locators: 'QA_6167680',
-      required: false
-    }
   }
 
   DEGREE_OPTIONS = []
