@@ -1,8 +1,8 @@
-module Ats::Pinpointhq::CompanyDetails
+module Ats::Bamboohr::CompanyDetails
   extend ActiveSupport::Concern
 
   def self.get_company_details(url, ats_system, ats_identifier)
-    p "Getting PinpointHQ company details - #{url}"
+    p "Getting Bamboohr company details - #{url}"
 
     company_name = ats_identifier.capitalize
     company = Company.find_by(company_name: company_name)
@@ -18,6 +18,9 @@ module Ats::Pinpointhq::CompanyDetails
         url_ats_api: api_url,
         url_ats_main: main_url,
       )
+
+      company.total_live = fetch_total_live(company, ats_identifier)
+      p "Total live - #{company.total_live}"
 
       p "Created company - #{company.company_name}" if company.persisted?
 
@@ -37,5 +40,14 @@ module Ats::Pinpointhq::CompanyDetails
     api_url.gsub!("XXX", ats_identifier)
     main_url.gsub!("XXX", ats_identifier)
     [api_url, main_url]
+  end
+
+  def self.fetch_total_live(company, ats_identifier)
+    company_api_url = "#{company.url_ats_api}"
+    p "Company API URL - #{company_api_url}"
+    uri = URI(company_api_url)
+    response = Net::HTTP.get(uri)
+    data = JSON.parse(response)
+    data['meta']['totalCount']
   end
 end

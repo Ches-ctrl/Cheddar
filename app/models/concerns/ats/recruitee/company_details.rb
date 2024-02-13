@@ -1,8 +1,8 @@
-module Ats::Pinpointhq::CompanyDetails
+module Ats::Recruitee::CompanyDetails
   extend ActiveSupport::Concern
 
   def self.get_company_details(url, ats_system, ats_identifier)
-    p "Getting PinpointHQ company details - #{url}"
+    p "Getting Recruitee company details - #{url}"
 
     company_name = ats_identifier.capitalize
     company = Company.find_by(company_name: company_name)
@@ -20,12 +20,6 @@ module Ats::Pinpointhq::CompanyDetails
       )
 
       p "Created company - #{company.company_name}" if company.persisted?
-
-      # p "Calling GetAllJobUrls"
-      # GetAllJobUrls.new(company).get_all_job_urls if new_company
-      # p "Finished GetAllJobUrls"
-
-      # TODO: Handle logic for GetAllJobUrls via web scrape or API call depending on ATS system
     end
     company
   end

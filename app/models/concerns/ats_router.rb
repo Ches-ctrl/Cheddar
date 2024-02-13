@@ -10,6 +10,8 @@ module AtsRouter
     'ashbyhq',
     'pinpointhq',
     'bamboohr',
+    'recruitee',
+    'manatal',
     # 'totaljobs',
     # 'simplyhired',
     # 'workday',
@@ -33,6 +35,7 @@ module AtsRouter
 
   def ats_system_name
     @ats_system_name ||= SUPPORTED_ATS_SYSTEMS.find { |ats| @url.include?(ats) }
+    @ats_system_name ||= 'manatal' if @url.include?('careers-page')
   end
 
   def ats_system

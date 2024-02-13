@@ -47,10 +47,20 @@ ats_data = [
     base_url_main: "https://XXX.pinpointhq.com/en/postings/",
     base_url_api: "https://XXX.pinpointhq.com/",
   },
-  { name: "BambooHR",
+  { name: "Bamboohr",
     website_url: "https://www.bamboohr.com/",
     base_url_main: "https://XXX.bamboohr.com/careers/",
-    base_url_api: "https://api.bamboohr.com/",
+    base_url_api: "https://XXX.bamboohr.com/careers/list",
+  },
+  { name: "Recruitee",
+    website_url: "https://recruitee.com/",
+    base_url_main: "https://XXX.recruitee.com/",
+    base_url_api: "https://XXX.recruitee.com/api/offers/",
+  },
+  { name: "Manatal",
+    website_url: "https://www.manatal.com/",
+    base_url_main: "https://www.careers-page.com/",
+    base_url_api: "https://api.manatal.com/open/v3/career-page/",
   },
   { name: "Workday",
     website_url: "https://www.workday.com/",
@@ -76,8 +86,6 @@ ats_data = [
     website_url: "https://ambertrack.com/",
   },
 ]
-
-# Tal.net clients: FCO, Houses of Parliament, Police
 
 ats_data.each do |ats|
   ApplicantTrackingSystem.create(ats)
@@ -484,10 +492,27 @@ pinpointhq_job_urls = [
 # BambooHR ATS
 # -----------------
 
-# bamboohr_job_urls = [
-#   "https://gravyanalytics.bamboohr.com/careers/51",
-#   "https://avidbots.bamboohr.com/careers/750",
-# ]
+bamboohr_job_urls = [
+  "https://gravyanalytics.bamboohr.com/careers/51",
+  "https://avidbots.bamboohr.com/careers/750",
+]
+
+# -----------------
+# Recruitee ATS
+# -----------------
+
+recruitee_job_urls = [
+  "https://yays.recruitee.com/o/acquisition-development-intern-amsterdam",
+]
+
+# -----------------
+# Manatal ATS
+# -----------------
+
+manatal_job_urls = [
+  "https://www.careers-page.com/ptc-group/job/L775X55X",
+]
+
 
 # -----------------
 # Other ATS
@@ -517,7 +542,7 @@ comp_specific_job_urls = [
 
 # job_urls = [greenhouse_job_urls, workable_job_urls, lever_job_urls, smartrecruiters_job_urls, ashby_job_urls]
 
-pinpointhq_job_urls.each do |url|
+manatal_job_urls.each do |url|
   company, ats_job_id = CompanyCreator.new(url).find_or_create_company
   p "CompanyCreator complete: #{company.company_name}"
 
