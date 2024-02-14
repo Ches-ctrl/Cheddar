@@ -326,7 +326,7 @@ rails_job_urls = [
 
 consulting_job_urls = [
   "https://bambusdev.my.site.com/s/details?jobReq=Fixed-Income-Quantitative-Analyst-%E2%80%93-Macro---Commodities-Investment-Teams-_REQ5179",
-  "https://baringa.csod.com/ux/ats/careersite/4/home/requisition/1369?c=baringa",
+  "https://baringa.csod.com/ux/ats/careersite/4/home/requisition/1369?c=baringa", # expired
   "https://barings.wd1.myworkdayjobs.com/en-US/Barings/job/London-United-Kingdom/Barings-Investment-Management-Summer-Internship_JR_004872",
   "https://bnymellon.eightfold.ai/careers?pid=17632073&domain=bnymellon.com",
   "https://boards.greenhouse.io/embed/job_app?for=charlesriverassociates&token=5395642",
@@ -520,7 +520,11 @@ manatal_job_urls = [
 
 other_ats_job_urls = [
   "https://nucamp.breezy.hr/p/ac8a9f22ce28-cybersecurity-fundamentals-teaching-assistant-coding-instructor-online-central-timezone/apply", # requires authentication
-  "https://jobs.bettyblocks.com/o/full-stack-developer-2-3" # recruitee # frequent redirects
+  "https://jobs.bettyblocks.com/o/full-stack-developer-2-3", # recruitee # frequent redirects
+  "https://baringa.csod.com/ux/ats/careersite/4/home/requisition/1474?c=baringa",
+  "https://careers.pageuppeople.com/754/ci/en/job/496892/store-manager", # pageuppeople
+  "https://krb-sjobs.brassring.com/tgnewui/search/home/home?partnerid=26059&siteid=5016#jobDetails=704679_5016", # brassring
+  "https://dws.groupgti.com/Account/Register?ReturnUrl=%2F2024-dws-graduate-program-pace--client-coverage-division---us%2F23%2Fapply", # groupgti
 ]
 
 # -----------------
