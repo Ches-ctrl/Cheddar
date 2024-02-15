@@ -13,11 +13,13 @@ class JobsController < ApplicationController
       @remaining_jobs = Job.global_search(params[:query]).offset(20)
     else
       @jobs = Job.all
-      @initial_jobs = Job.limit(20)
+      # @initial_jobs = Job.limit(20)
+      # @initial_jobs = Job.page.per(1)
+      @initial_jobs = Job.paginate(page: params[:page], per_page: 4)
       @remaining_jobs = Job.offset(20)
     end
-    @job = Job.new
-    @saved_job = SavedJob.new
+    @job = Job.new # why do we have this here?
+    @saved_job = SavedJob.new # why initialize SavedJob here?
     @saved_jobs = SavedJob.all
     if current_user.present?
       @job_applications = JobApplication.where(user_id: current_user.id)
