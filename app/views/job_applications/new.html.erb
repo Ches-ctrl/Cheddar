@@ -73,7 +73,7 @@
 
             <%= f.simple_fields_for "application_responses", response do |ff| %>
               <div class="form-group row mb-3">
-                <label  class="col-sm-3 col-form-label text-sm" for=""><%= response.field_name.humanize %></label>
+                <label class="col-sm-3 col-form-label text-sm<%= " d-none" if response.field_name == 'location_click' %>" for=""><%= response.field_name.humanize %></label>
                 <% case ff.object.interaction %>
                 <% when "input" %>
                   <div class="col-sm-12 mr-2">
@@ -122,7 +122,7 @@
                     <%= ff.input :field_value, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input"} } %>
                   </div>
                 <% when "listbox" %>
-                  <div class="col-sm-12">
+                  <div class="col-sm-12<%= " d-none" if response.field_name == 'location_click' %>">
                     <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                     <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                     <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>

@@ -1,5 +1,7 @@
 require 'nokogiri'
 
+# This file is properly specific to Greenhouse
+
 class GetFormFieldsJob < ApplicationJob
   include Capybara::DSL
 
@@ -18,6 +20,7 @@ class GetFormFieldsJob < ApplicationJob
     find_apply_button.click rescue nil
 
     # Get Job Details, Company & Description
+    job = Job.find_by(job_posting_url: url)
 
     # TODO: Get details here
 
@@ -46,7 +49,8 @@ class GetFormFieldsJob < ApplicationJob
       label_text = label_text.split("*")[0]
 
       name = label_text # not perfect
-      next if name == ""
+      standard_fields = ['first_name', 'last_name', 'email', 'phone', 'resume/cv', 'cover_letter', 'city']
+      next if !name || name == "" || standard_fields.include?(remove_trailing_underscore(name))
       next if label.parent.name == 'label'
 
       attributes[name] = {
@@ -105,7 +109,6 @@ class GetFormFieldsJob < ApplicationJob
     p extra_fields
 
     unless extra_fields.nil?
-      job = Job.find_by(job_posting_url: url)
       job.application_criteria = job.application_criteria.merge(extra_fields)
       job.save
       p job.application_criteria
@@ -120,5 +123,9 @@ class GetFormFieldsJob < ApplicationJob
 
   def find_apply_button
     find(:xpath, "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')] | //button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')]")
+  end
+
+  def remove_trailing_underscore(string)
+    string[-1] == '_' ? string[...-1] : string
   end
 end
