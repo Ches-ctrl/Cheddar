@@ -17,15 +17,8 @@ class ApplyJob < ApplicationJob
     form_filler.fill_out_form(job.job_posting_url, fields_to_fill, job_application_id)
 
     Capybara.send(:session_pool).each { |name, ses| ses.driver.quit }
-    # p "You applied to #{job.job_title}!"
 
     user_channel_name = "job_applications_#{user.id}"
-
-    p "-----------------"
-    p "-----------------"
-    p "-----------------"
-    p "-----------------"
-    p "-----------------"
 
     ActionCable.server.broadcast(
       user_channel_name,
@@ -51,19 +44,13 @@ class ApplyJob < ApplicationJob
 
     application_criteria.each do |key, value|
       if user.respond_to?(key) && user.send(key).present?
-        p "Using USER value for #{key}"
         application_criteria[key]['value'] = user.send(key)
-      elsif DEFAULT_MALE.key?(key) && DEFAULT_MALE[key].key?('value')
-        p "Warning: User does not have a method or attribute '#{key}'. Using DEFAULT value instead"
-        application_criteria[key]['value'] = DEFAULT_MALE.dig(key, 'value')
       else
         application_criteria[key]['value'] = custom_fields[key]
-        p "Gave #{key} a value of #{custom_fields[key]}"
         # p "Warning: defaults does not have a method or attribute '#{key}'. Using NIL value instead"
         # application_criteria[key]['value'] = nil
       end
     end
-    p "Application criteria with values: #{application_criteria}"
     return application_criteria
   end
 end

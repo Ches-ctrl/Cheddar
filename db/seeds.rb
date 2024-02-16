@@ -497,7 +497,7 @@ comp_specific_job_urls = [
 
 # job_urls = [greenhouse_job_urls, workable_job_urls, lever_job_urls, smartrecruiters_job_urls, ashby_job_urls]
 
-rails_job_urls.each do |url|
+(rails_job_urls + greenhouse_job_urls).each do |url|
   company, ats_job_id = CompanyCreator.new(url).find_or_create_company
   p "CompanyCreator complete: #{company.company_name}"
 
