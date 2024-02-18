@@ -231,6 +231,12 @@
               <% @initial_jobs.each do |job| %>
                   <%= render 'row', job: job %>
               <% end %>
+              <div class="digg_pagination">
+                <div class="page_info">
+                  <%= page_entries_info @initial_jobs %>
+                </div>
+                <%= will_paginate @initial_jobs, container: false %>
+              </div>
               <div data-load-more-target="remaining" class="d-none">
                 <% @remaining_jobs.each do |job| %>
                   <%= render 'row', job: job %>

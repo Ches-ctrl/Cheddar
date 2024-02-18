@@ -62,6 +62,7 @@ gem 'sidekiq', '~> 6.5.5'
 gem "sidekiq-failures", "~> 1.0"
 gem 'sidekiq-scheduler', '~> 5.0', '>= 5.0.3'
 gem 'rails-html-sanitizer'
+gem 'will_paginate', '~> 4.0'
 
 # Additional Gems for API and Scrape features
 gem "cloudinary"
@@ -85,6 +86,8 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "better_errors"
+  gem "binding_of_caller"
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
