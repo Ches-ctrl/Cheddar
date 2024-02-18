@@ -22,6 +22,7 @@ class JobApplicationsController < ApplicationController
           application_response.field_locator = details["locators"]
           application_response.interaction = details["interaction"]
           application_response.field_option = details["option"]
+          application_response.required = details["required"]
 
           # TODO: Add boolean required field (include in params and form submission page)
 

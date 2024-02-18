@@ -55,11 +55,11 @@
   </div>
 
   <%# Iterate over each selected job %>
-  <div class="all-application-forms m-auto" data-controller="response-input">
+  <div class="all-application-forms m-auto">
     <% @job_applications.each_with_index do |job, index| %>
       <details class="application-form bg-body-secondary mb-3" open>
         <summary class="pb-1" style="display: block"><h2><%= index + 1 %>. <%= job.first.job_title %></h2></summary>
-        <%= simple_form_for job, html: { class: 'needs-validation', 'data-controller': 'application-form', 'data-application-form-target': 'form', 'data-action': 'submit->application-form#submitForm', 'data-all-application-forms-target': "form",  novalidate: true } do |f| %>
+        <%= simple_form_for job, html: { class: 'needs-validation', 'data-all-application-forms-target': "form", 'data-action': 'submit->all-application-forms#submitForm' } do |f| %>
 
           <%# Dynamically create form elements based on application_criteria %>
           <%# Convert to simple_fields_for application_responses. Then use those to create the input fields below. %>
@@ -73,7 +73,7 @@
 
             <%= f.simple_fields_for "application_responses", response do |ff| %>
               <div class="form-group row mb-3">
-                <label class="col-sm-3 col-form-label text-sm<%= " d-none" if response.field_name == 'location_click' %>" for=""><%= response.field_name.humanize %></label>
+                <label class="col-sm-3 col-form-label text-sm<%= " d-none" if response.field_name == 'location_click' %>"><%= response.field_name.humanize %><%= " *" if response.required %></label>
                 <% case ff.object.interaction %>
                 <% when "input" %>
                   <div class="col-sm-12 mr-2">
@@ -81,7 +81,7 @@
                     <%= ff.input :field_locator, as: :hidden, input_html: { class: 'mb-0' }, wrapper_html: { class: 'wrapper-mb-0' }, label: false %>
                     <%= ff.input :interaction, as: :hidden, input_html: { class: 'mb-0' }, wrapper_html: { class: 'wrapper-mb-0' }, label: false %>
                     <%= ff.input :field_option, as: :hidden, input_html: { class: 'mb-0' }, wrapper_html: { class: 'wrapper-mb-0' }, label: false %>
-                    <%= ff.input :field_value, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input", action: "keyup->response-input#handleChange change->response-input#handleChange"} } %>
+                    <%= ff.input :field_value, required: response.required, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name } } %>
                   </div>
                 <% when "upload" %>
                   <% if response.field_name == "resume" %>
@@ -90,7 +90,7 @@
                       <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                       <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                       <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-                      <%= ff.input :field_value, label_html: { class: "d-none"}, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input", action: "keyup->response-input#handleChange change->response-input#handleChange"}, value: current_user.resume.attached? ? current_user.resume.filename : "No CV / resume attached", disabled: true }, wrapper_html: { class: 'wrapper-mb-0' } %>
+                      <%= ff.input :field_value, required: response.required, label_html: { class: "d-none"}, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input" }, value: current_user.resume.attached? ? current_user.resume.filename : "No CV / resume attached", disabled: true }, wrapper_html: { class: 'wrapper-mb-0' } %>
                     </div>
                   <% elsif response.field_name == "cover_letter_" %>
                     <div class="col-sm-9 mr-2", data-controller="template-select">
@@ -100,7 +100,7 @@
                       <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                       <% templates = ["Write from Scratch"] %>
                       <% current_user.cover_letter_templates.each { |cover_letter| templates << cover_letter.filename } %>
-                      <%= ff.input :field_value, as: :select, collection: templates, label: false, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input", action: "change->template-select#select"} }, wrapper_html: { class: 'wrapper-mb-0' } %>
+                      <%= ff.input :field_value, as: :select, required: response.required, collection: templates, label: false, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input", action: "change->template-select#select"} }, wrapper_html: { class: 'wrapper-mb-0' } %>
                       <textarea id=<%= "coverLetterEditor-#{job[0].id}" %> class = "d-none" data-template-select-target="editor" data-all-application-forms-target="editor"></textarea>
                       <%= ff.hidden_field :cover_letter_content, id: "hiddenCoverLetterField-#{job[0].id}", data: { all_application_forms_target: "content" } %>
                     </div>
@@ -111,7 +111,7 @@
                     <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                     <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                     <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-                    <%= ff.input :field_value, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input", action: "keyup->response-input#handleChange change->response-input#handleChange"} } %>
+                    <%= ff.input :field_value, required: response.required, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name } } %>
                   </div>
                 <% when "radiogroup" %>
                   <div class="col-sm-12">
@@ -119,7 +119,7 @@
                     <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                     <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                     <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-                    <%= ff.input :field_value, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input"} } %>
+                    <%= ff.input :field_value, required: response.required, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input"} } %>
                   </div>
                 <% when "listbox" %>
                   <div class="col-sm-12<%= " d-none" if response.field_name == 'location_click' %>">
@@ -127,7 +127,7 @@
                     <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                     <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                     <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-                    <%= ff.input :field_value, as: :boolean, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input"} } %>
+                    <%= ff.input :field_value, as: :boolean, required: response.required, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input"} } %>
                   </div>
                 <% when "checkbox" %>
                   <div class="col-sm-12">
@@ -147,7 +147,7 @@
                     <%# TODO: Add stimulus controller to be able to click on core details and go to edit page if not filled in %>
                     <%# TODO: Update schema so that field_options is an array rather than string to prevent current need for JSON.parse %>
                     <% field_options = JSON.parse(response.field_options) %>
-                    <%= ff.input :field_value, as: :select, collection: field_options, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input"} } %>
+                    <%= ff.input :field_value, as: :select, required: response.required, collection: field_options, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input"} } %>
                   </div>
                   <%# Input, Combobox, Radiogroup, Listbox, Select %>
                 <% end %>
@@ -166,7 +166,7 @@
           <% end %>
 
           <div class="d-flex justify-content-end align-items-end">
-            <%= f.submit 'Submit this app', class: 'btn btn-cheddar-secondary', 'data-action': 'click->application-form#submitForm', disabled: !current_user.resume.attached? %>
+            <%= f.submit 'Submit this app', class: 'btn btn-cheddar-secondary', disabled: !current_user.resume.attached? %>
           </div>
         <% end %>
         </details>
@@ -176,5 +176,3 @@
   <%= render 'loading' %>
 
 </div>
-
-<%# removed this code: action: "keyup->response-input#handleChange change->response-input#handleChange" %>

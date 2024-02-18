@@ -13,9 +13,6 @@ export default class extends Controller {
     this.jobsCount = parseInt(this.data.get("jobsCount"), 10);
     this.appliedJobCount = 0;
     this.createWebSocketChannel(this.userValue);
-    console.log("editors: " + this.editorTargets)
-    console.log("content: " + this.contentTargets)
-    console.log("forms: " + this.formTargets)
   }
 
   updateCoverLetterContent(i) {
@@ -27,9 +24,21 @@ export default class extends Controller {
       const hiddenField = document.getElementById(this.contentTargets[i].id);
       if (hiddenField) {
         hiddenField.value = editorContent;
-        console.log(hiddenField.value);
       }
     }
+  }
+
+  submitForm(event) {
+    event.preventDefault();
+    const thisForm = event.target
+    for (let i = 0; i < this.formTargets.length; i++) {
+      if (this.formTargets[i] === thisForm) {
+        this.updateCoverLetterContent(i);
+        break;
+      }
+    }
+    console.log(thisForm)
+    thisForm.submit();
   }
 
   async submitAllForms(event) {

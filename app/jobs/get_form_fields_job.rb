@@ -54,7 +54,8 @@ class GetFormFieldsJob < ApplicationJob
       next if label.parent.name == 'label'
 
       attributes[name] = {
-        interaction: :input
+        interaction: :input,
+        required: required
       }
 
       inputs = label.css('input', 'textarea').reject { |input| input['type'] == 'hidden' || !input['id'] }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_31_122049) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_16_152057) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_31_122049) do
     t.string "interaction"
     t.string "field_options"
     t.text "cover_letter_content"
+    t.boolean "required"
     t.index ["job_application_id"], name: "index_application_responses_on_job_application_id"
   end
 
@@ -118,7 +119,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_31_122049) do
     t.string "salary"
     t.date "date_created"
     t.text "application_criteria"
-    t.date "application_deadline", default: "2023-12-08"
+    t.date "application_deadline", default: "2023-12-14"
     t.string "job_posting_url"
     t.bigint "company_id", null: false
     t.datetime "created_at", null: false
