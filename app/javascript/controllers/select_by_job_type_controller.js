@@ -10,39 +10,58 @@ export default class extends Controller {
   combinedSearch() {
     const checkedRoles = this.roleTargets.filter(role => role.checked)
       .map(role => role.id)
-      console.log(checkedRoles);
     const checkedCompanies = this.companyTargets.filter(company => company.checked)
     .map(company => company.attributes.id.value)
 
-    const patternStrings = []
+    const filterQueryString = this.buildQueryString(checkedRoles, checkedCompanies)
+    window.location.href = `/jobs${filterQueryString}`;
 
-    checkedRoles.forEach((query) => {
-      const regexd_query = '(' + query.replace(' ', '(-| )?') + ')'
-      // console.log(regexd_query)
-      patternStrings.push(regexd_query)
-    })
+    // The code below is unnecessary if fetching jobs using a GET request, but has the advantage of not requiring page reload
+    // const patternStrings = []
 
-    const pattern = new RegExp(patternStrings.join('|'), 'i');
+    // checkedRoles.forEach((query) => {
+    //   const regexd_query = '(' + query.replace(' ', '(-| )?') + ')'
+    //   patternStrings.push(regexd_query)
+    // })
 
-    this.jobRowTargets.forEach((jobRow) => {
-      const jobTitle = jobRow.querySelector(".role").dataset.role;
-      // console.log(jobRow.querySelector(".role"))
-      // console.log(jobRow.querySelector(".role").dataset)
-      // console.log(pattern);
-      // console.log(checkedCompanies);
-      if (pattern.test(jobTitle)) {
-        if (checkedCompanies.length > 0) {
-          if (checkedCompanies.includes(jobRow.querySelector(".companyname").dataset.name)) {
-            jobRow.classList.remove('d-none')
-          } else {
-            jobRow.classList.add('d-none')
-          }
-        } else {
-          jobRow.classList.remove('d-none')
-        }
-      } else {
-        jobRow.classList.add('d-none')
+    // const pattern = new RegExp(patternStrings.join('|'), 'i');
+
+    // this.jobRowTargets.forEach((jobRow) => {
+    //   const jobTitle = jobRow.querySelector(".role").dataset.role;
+    //   if (pattern.test(jobTitle)) {
+    //     if (checkedCompanies.length > 0) {
+    //       if (checkedCompanies.includes(jobRow.querySelector(".companyname").dataset.name)) {
+    //         jobRow.classList.remove('d-none')
+    //       } else {
+    //         jobRow.classList.add('d-none')
+    //       }
+    //     } else {
+    //       jobRow.classList.remove('d-none')
+    //     }
+    //   } else {
+    //     jobRow.classList.add('d-none')
+    //   }
+    // })
+  }
+
+  buildQueryString(checkedRoles, checkedCompanies) {
+    let queryString = "";
+
+    if (checkedRoles.length > 0 || checkedCompanies.length > 0) {
+      queryString += "?";
+
+      if (checkedRoles.length > 0) {
+        queryString += "roles=" + checkedRoles.join("+");
       }
-    })
+
+      if (checkedCompanies.length > 0) {
+        if (checkedRoles.length > 0) {
+          queryString += "&";
+        }
+        queryString += "companies=" + checkedCompanies.join("+");
+      }
+    }
+
+    return queryString
   }
 }
