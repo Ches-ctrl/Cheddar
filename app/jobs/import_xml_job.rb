@@ -4,6 +4,7 @@ class ImportXmlJob < ApplicationJob
   queue_as :default
 
   # TODO: At the moment doesn't handle company websites or ATS
+  # TODO: Unified data format for all job sources to persist to the database
 
   def perform
     url = 'https://devitjobs.uk/job_feed.xml'
