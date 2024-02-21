@@ -18,56 +18,74 @@ ats_data = [
   { name: "Greenhouse",
     website_url: "https://greenhouse.io/",
     base_url_main: "https://boards.greenhouse.io/",
-    base_url_api: "https://boards-api.greenhouse.io/v1/boards/"
+    base_url_api: "https://boards-api.greenhouse.io/v1/boards/",
   },
   { name: "Workable",
     website_url: "https://workable.com/",
     all_jobs_url: "https://jobs.workable.com/",
     base_url_main: "https://apply.workable.com/",
-    base_url_api: "https://apply.workable.com/api/v1/accounts/"
+    base_url_api: "https://apply.workable.com/api/v1/accounts/",
   },
   { name: "Lever",
     website_url: "https://lever.co/",
     base_url_main: "https://jobs.lever.co/",
-    base_url_api: "https://api.lever.co/v0/postings/"
+    base_url_api: "https://api.lever.co/v0/postings/",
   },
   { name: "Smartrecruiters",
     website_url: "https://smartrecruiters.com/",
     all_jobs_url: "https://jobs.smartrecruiters.com/",
     base_url_main: "https://jobs.smartrecruiters.com/",
-    base_url_api: "https://api.smartrecruiters.com/v1/companies/"
+    base_url_api: "https://api.smartrecruiters.com/v1/companies/",
   },
-  { name: "Ashby",
+  { name: "Ashbyhq",
     website_url: "https://ashbyhq.com/",
     base_url_main: "https://jobs.ashbyhq.com/",
-    base_url_api: "https://api.ashbyhq.com/posting-api/job-board/"
+    base_url_api: "https://api.ashbyhq.com/posting-api/job-board/",
+  },
+  { name: "Pinpointhq",
+    website_url: "https://www.pinpointhq.com/",
+    base_url_main: "https://XXX.pinpointhq.com/en/postings/",
+    base_url_api: "https://XXX.pinpointhq.com/",
+  },
+  { name: "Bamboohr",
+    website_url: "https://www.bamboohr.com/",
+    base_url_main: "https://XXX.bamboohr.com/careers/",
+    base_url_api: "https://XXX.bamboohr.com/careers/list",
+  },
+  { name: "Recruitee",
+    website_url: "https://recruitee.com/",
+    base_url_main: "https://XXX.recruitee.com/",
+    base_url_api: "https://XXX.recruitee.com/api/offers/",
+  },
+  { name: "Manatal",
+    website_url: "https://www.manatal.com/",
+    base_url_main: "https://www.careers-page.com/",
+    base_url_api: "https://api.manatal.com/open/v3/career-page/",
   },
   { name: "Workday",
     website_url: "https://www.workday.com/",
-    base_url_main: "https://XXX.wd1.myworkdayjobs.com/en-US/GTI"
+    base_url_main: "https://XXX.wd1.myworkdayjobs.com/en-US/GTI/",
   },
   { name: "Tal.net",
     website_url: "https://tal.net/",
-    all_jobs_url: "https://XXX.tal.net/candidate"
+    all_jobs_url: "https://XXX.tal.net/candidate/",
   },
   { name: "TotalJobs",
-    website_url: "https://www.totaljobs.com/"
+    website_url: "https://www.totaljobs.com/",
   },
   { name: "Simplyhired",
-    website_url: "https://www.simplyhired.co.uk/"
+    website_url: "https://www.simplyhired.co.uk/",
   },
   { name: "Jobvite",
-    website_url: "https://jobvite.com/"
+    website_url: "https://jobvite.com/",
   },
   { name: "Taleo",
-    website_url: "https://taleo.com/"
+    website_url: "https://taleo.com/",
   },
   { name: "Ambertrack",
-    website_url: "https://ambertrack.com/"
+    website_url: "https://ambertrack.com/",
   },
 ]
-
-# Tal.net clients: FCO, Houses of Parliament, Police
 
 ats_data.each do |ats|
   ApplicantTrackingSystem.create(ats)
@@ -303,7 +321,7 @@ rails_job_urls = [
 
 consulting_job_urls = [
   "https://bambusdev.my.site.com/s/details?jobReq=Fixed-Income-Quantitative-Analyst-%E2%80%93-Macro---Commodities-Investment-Teams-_REQ5179",
-  "https://baringa.csod.com/ux/ats/careersite/4/home/requisition/1369?c=baringa",
+  "https://baringa.csod.com/ux/ats/careersite/4/home/requisition/1369?c=baringa", # expired
   "https://barings.wd1.myworkdayjobs.com/en-US/Barings/job/London-United-Kingdom/Barings-Investment-Management-Summer-Internship_JR_004872",
   "https://bnymellon.eightfold.ai/careers?pid=17632073&domain=bnymellon.com",
   "https://boards.greenhouse.io/embed/job_app?for=charlesriverassociates&token=5395642",
@@ -453,9 +471,9 @@ ambertrack_site_urls = [
 # PinpointHQ ATS
 # -----------------
 
-# pinpointhq_job_urls = [
-#   "https://field.pinpointhq.com/en/postings/6b079493-f5ed-42d5-b78a-acbf97985521",
-# ]
+pinpointhq_job_urls = [
+  "https://field.pinpointhq.com/en/postings/6b079493-f5ed-42d5-b78a-acbf97985521",
+]
 
 # -----------------
 # Screenloop ATS
@@ -469,10 +487,40 @@ ambertrack_site_urls = [
 # BambooHR ATS
 # -----------------
 
-# bamboohr_job_urls = [
-#   "https://gravyanalytics.bamboohr.com/careers/51",
-#   "https://avidbots.bamboohr.com/careers/750",
-# ]
+bamboohr_job_urls = [
+  "https://gravyanalytics.bamboohr.com/careers/51",
+  "https://avidbots.bamboohr.com/careers/750",
+]
+
+# -----------------
+# Recruitee ATS
+# -----------------
+
+recruitee_job_urls = [
+  "https://yays.recruitee.com/o/acquisition-development-intern-amsterdam",
+]
+
+# -----------------
+# Manatal ATS
+# -----------------
+
+manatal_job_urls = [
+  "https://www.careers-page.com/ptc-group/job/L775X55X",
+]
+
+
+# -----------------
+# Other ATS
+# -----------------
+
+other_ats_job_urls = [
+  "https://nucamp.breezy.hr/p/ac8a9f22ce28-cybersecurity-fundamentals-teaching-assistant-coding-instructor-online-central-timezone/apply", # requires authentication
+  "https://jobs.bettyblocks.com/o/full-stack-developer-2-3", # recruitee # frequent redirects
+  "https://baringa.csod.com/ux/ats/careersite/4/home/requisition/1474?c=baringa",
+  "https://careers.pageuppeople.com/754/ci/en/job/496892/store-manager", # pageuppeople
+  "https://krb-sjobs.brassring.com/tgnewui/search/home/home?partnerid=26059&siteid=5016#jobDetails=704679_5016", # brassring
+  "https://dws.groupgti.com/Account/Register?ReturnUrl=%2F2024-dws-graduate-program-pace--client-coverage-division---us%2F23%2Fapply", # groupgti
+]
 
 # -----------------
 # Company-specific

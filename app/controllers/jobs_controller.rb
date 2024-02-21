@@ -6,6 +6,8 @@ class JobsController < ApplicationController
   def index
     # TODO: Fix search functionality so that 20 jobs are always shown
     # TODO: Install Kaminari to fix long page load time on index page and add pagination
+    # TODO: Add bullet gem to solve N+1 queries, implement pagination
+    # TODO: Implement pagination for the remaining jobs
 
     @jobs = Job.all
 
