@@ -9,17 +9,23 @@ class JobsController < ApplicationController
     # TODO: Add bullet gem to solve N+1 queries, implement pagination
     # TODO: Implement pagination for the remaining jobs
 
-    if params[:query].present?
-      @jobs = Job.global_search(params[:query])
-      @initial_jobs = Job.global_search(params[:query]).limit(20)
-      @remaining_jobs = Job.global_search(params[:query]).offset(20)
-    else
-      @jobs = Job.all
-      @initial_jobs = Job.limit(20)
-      @remaining_jobs = Job.offset(20)
+    @jobs = Job.all
+
+    if params[:roles].present?
+      regex_query = params[:roles].split.map { |role| role.gsub('_', '(-| |)') }.join('|')
+      @jobs = @jobs.where("job_title ~* ?", regex_query)
+
     end
-    @job = Job.new
-    @saved_job = SavedJob.new
+    if params[:companies].present?
+      companies = params[:companies].split
+      @jobs = @jobs.where(company: companies)
+    end
+
+    @initial_jobs = @jobs.paginate(page: params[:page], per_page: 4)
+    @remaining_jobs = @jobs.offset(20)
+
+    @job = Job.new # why do we have this here?
+    @saved_job = SavedJob.new # why initialize SavedJob here?
     @saved_jobs = SavedJob.all
     if current_user.present?
       @job_applications = JobApplication.where(user_id: current_user.id)

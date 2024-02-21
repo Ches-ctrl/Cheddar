@@ -4,12 +4,8 @@ module Ats::Greenhouse::ApplicationFields
   # Question - scrape all fields or add standard set each time?
 
   def self.get_application_criteria(job)
-    p "Getting greenhouse application criteria"
     job.application_criteria = CORE_FIELDS
     job.save
-    p "Getting additional form fields"
-    # GetFormFieldsJob.perform_later(job.job_posting_url)
-    p "Got the fields"
   end
 
   CORE_FIELDS = {

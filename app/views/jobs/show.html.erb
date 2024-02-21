@@ -22,8 +22,8 @@
           <% if @company.url_careers.present? %>
             <li><%= link_to "Careers Site", @company.url_careers %></li>
           <% end %>
-          <% if @company.url_ats.present? %>
-            <li><%= link_to "ATS Site", @company.url_ats %></li>
+          <% if @company.url_ats_api.present? %>
+            <li><%= link_to "ATS Site", @company.url_ats_api %></li>
           <% end %>
           <%= simple_form_for [@job, @saved_job] do |f| %>
             <%= button_tag type: 'submit' do %>

@@ -187,18 +187,14 @@ greenhouse_job_urls = [
   "https://boards.greenhouse.io/ambientai/jobs/4301104006",
   "https://boards.greenhouse.io/clearscoretechnologylimited/jobs/4269717101",
   "https://boards.greenhouse.io/cleoai/jobs/5033034002",
-  "https://boards.greenhouse.io/cloudflare/jobs/5533430",
   "https://boards.greenhouse.io/codepath/jobs/4035988007",
-  # "https://boards.greenhouse.io/codepath/jobs/4059099007",
-  # "https://boards.greenhouse.io/codepath/jobs/4141438007",
-  # "https://boards.greenhouse.io/copperco/jobs/4243269101",
-  # "https://boards.greenhouse.io/coreweave/jobs/4241710006",
-  # "https://boards.greenhouse.io/css/jobs/6975614002",
-  # "https://boards.greenhouse.io/cultureamp/jobs/5496553",
-  # "https://boards.greenhouse.io/cultureamp/jobs/5538191",
-  # "https://boards.greenhouse.io/dataiku/jobs/5043269004",
-  # "https://boards.greenhouse.io/deliveroo/jobs/5094403",
-  # "https://boards.greenhouse.io/deliveroo/jobs/5447359",
+  "https://boards.greenhouse.io/codepath/jobs/4059099007",
+  "https://boards.greenhouse.io/copperco/jobs/4243269101",
+  "https://boards.greenhouse.io/coreweave/jobs/4241710006",
+  "https://boards.greenhouse.io/css/jobs/6975614002",
+  "https://boards.greenhouse.io/cultureamp/jobs/5538191",
+  "https://boards.greenhouse.io/deliveroo/jobs/5094403",
+  "https://boards.greenhouse.io/deliveroo/jobs/5447359",
   # "https://boards.greenhouse.io/doctolib/jobs/5811790003",
   # "https://boards.greenhouse.io/doctolib/jobs/5828747003",
   # "https://boards.greenhouse.io/drweng/jobs/5345753",
@@ -289,8 +285,7 @@ greenhouse_job_urls_embedded = [
 rails_job_urls = [
   "https://boards.greenhouse.io/cleoai/jobs/4628944002", # greenhouse # senior"
   "https://boards.greenhouse.io/ably30/jobs/4229668101", # greenhouse # senior
-  "https://boards.greenhouse.io/algolia/jobs/4989661004", # greenhouse # junior
-  # "https://apply.workable.com/papier/j/F2D67EF125/", # workable # senior
+  # "https://apply.workable.com/papier/j/F2D67EF125/", # workable # seniors
   # "https://apply.workable.com/builderai/j/D157ED0496/", # workable # mid
   # # "https://apply.workable.com/api/v1/accounts/papier/jobs/F2D67EF125?details=true" # alternative url to test
   # "https://apply.workable.com/builderai/j/E417F55824/", # workable # senior
@@ -546,7 +541,7 @@ comp_specific_job_urls = [
 
 # job_urls = [greenhouse_job_urls, workable_job_urls, lever_job_urls, smartrecruiters_job_urls, ashby_job_urls]
 
-manatal_job_urls.each do |url|
+(rails_job_urls + greenhouse_job_urls).each do |url|
   company, ats_job_id = CompanyCreator.new(url).find_or_create_company
   p "CompanyCreator complete: #{company.company_name}"
 
