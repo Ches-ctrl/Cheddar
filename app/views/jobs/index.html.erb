@@ -156,20 +156,30 @@
             </li>
           </div>
         </ul> %>
-
+        <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-person-chalkboard"></i> Location</h5>
+        <ul id="locations-select">
+          <div>
+            <% @locations.each do |location, count| %>
+              <div class="locations-select-item">
+                <label for="<%= location %>" class="locations-select-item-label">
+                <input class="locations-select-item-checkbox" type="checkbox" name="<%= location %>" id="<%= location.strip.downcase.gsub(' ', '_') %>" <%= params[:locations].present? && params[:locations].include?(location.strip.downcase.gsub(' ', '_')) ? "checked " : "" %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="location">
+                <%= "#{location} (#{count})" %>
+                </label><br>
+              </div>
+            <% end %>
+          </div>
+        </ul>
         <%# TODO: Add icons to individual list item %>
         <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-building-user"></i> Companies</h5>
         <ul id="companies-select">
           <div>
-            <% Company.all.each do |company| %>
-              <% if Job.where(company: company).any? %>
-                <div class="companies-select-item">
-                  <label for="<%= company.company_name %>" class="companies-select-item-label">
-                  <input class="companies-select-item-checkbox" type="checkbox" name="<%= company.company_name %>" id="<%= company.id %>" <%= params[:companies].present? && params[:companies].include?(company.id.to_s) ? "checked " : "" %><%= params[:company] && params[:company].downcase.include?(company.company_name.downcase) ? "checked" : "" %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="company">
-                  <%= company.company_name %>
-                  </label><br>
-                </div>
-              <% end %>
+            <% @companies.each do |company, count| %>
+              <div class="companies-select-item">
+                <label for="<%= company.company_name %>" class="companies-select-item-label">
+                <input class="companies-select-item-checkbox" type="checkbox" name="<%= company.company_name %>" id="<%= company.id %>" <%= params[:companies].present? && params[:companies].include?(company.id.to_s) ? "checked " : "" %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="company">
+                <%= "#{company.company_name} (#{count})" %>
+                </label><br>
+              </div>
             <% end %>
           </div>
         </ul>
