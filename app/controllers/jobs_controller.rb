@@ -9,7 +9,14 @@ class JobsController < ApplicationController
     # TODO: Add bullet gem to solve N+1 queries, implement pagination
     # TODO: Implement pagination for the remaining jobs
 
-    @jobs = Job.all
+    @jobs = Job.where.not(location: "")
+    # When a job doesn't actually exist, its location is nil.
+
+    @companies = @jobs.map(&:company)
+    @companies = @companies.map { |company| [company, @companies.count(company)] }.sort_by{ |pair| pair[1] }.reverse.uniq
+
+    @locations = @jobs.map(&:location)
+    @locations = @locations.map { |location| [location, @locations.count(location)] }.sort_by{ |pair| pair[1] }.reverse.uniq
 
     if params[:roles].present?
       regex_query = params[:roles].split.map { |role| role.gsub('_', '(-| |)') }.join('|')
@@ -19,6 +26,10 @@ class JobsController < ApplicationController
     if params[:companies].present?
       companies = params[:companies].split
       @jobs = @jobs.where(company: companies)
+    end
+    if params[:locations].present?
+      locations_regex = params[:locations].gsub(' ', '|')
+      @jobs = @jobs.where("REPLACE(location, ' ', '_') ~* ?", locations_regex)
     end
 
     @initial_jobs = @jobs.paginate(page: params[:page], per_page: 4)
