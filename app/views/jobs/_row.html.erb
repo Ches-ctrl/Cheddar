@@ -22,7 +22,7 @@
               <%# TODO: Truncate properly %>
               <% if job.location.present? %>
                 <div class="mx-1">•</div>
-                <div><%= job.location.truncate(20) %></div>
+                <div><%= [job.city, job.country].compact.join(', ').truncate(20) %></div>
               <% end %>
             </div>
           </div>

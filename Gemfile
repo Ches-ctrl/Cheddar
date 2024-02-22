@@ -68,6 +68,7 @@ gem 'will_paginate', '~> 4.0'
 gem "cloudinary"
 gem "pg_search"
 gem "nokogiri"
+gem 'geocoder'
 # gem "open-uri"
 gem 'csv'
 gem 'avo'

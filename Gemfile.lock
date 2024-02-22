@@ -179,6 +179,7 @@ GEM
     fugit (1.9.0)
       et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
+    geocoder (1.8.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     htmltoword (1.1.1)
@@ -438,6 +439,7 @@ DEPENDENCIES
   factory_bot_rails (= 6.4.3)
   faker
   font-awesome-sass
+  geocoder
   htmltoword
   importmap-rails
   jbuilder
