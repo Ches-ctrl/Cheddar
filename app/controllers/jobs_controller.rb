@@ -72,9 +72,6 @@ class JobsController < ApplicationController
 
     p "Starting JobCreator"
     JobCreator.new(@job).add_job_details
-
-    p @job
-
     if @job.save
       p "Saved job - #{@job.job_title}"
       redirect_to job_path(@job), notice: 'Job was successfully added'
