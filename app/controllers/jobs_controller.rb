@@ -15,7 +15,7 @@ class JobsController < ApplicationController
     @companies = @jobs.map(&:company)
     @companies = @companies.map { |company| [company, @companies.count(company)] }.sort_by{ |pair| pair[1] }.reverse.uniq
 
-    @locations = @jobs.map(&:location)
+    @locations = @jobs.map { |job| [job.city, job.country].compact.join(', ') }
     @locations = @locations.map { |location| [location, @locations.count(location)] }.sort_by{ |pair| pair[1] }.reverse.uniq
 
     if params[:roles].present?
@@ -28,8 +28,11 @@ class JobsController < ApplicationController
       @jobs = @jobs.where(company: companies)
     end
     if params[:locations].present?
-      locations_regex = params[:locations].gsub(' ', '|')
-      @jobs = @jobs.where("REPLACE(location, ' ', '_') ~* ?", locations_regex)
+      locations = params[:locations].split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') }
+      @jobs = @jobs.where("city IN (?) OR country IN (?)", locations, locations)
+      # p nonsense
+      # locations_regex = params[:locations].gsub(' ', '|')
+      # @jobs = @jobs.where("REPLACE(location, ' ', '_') ~* ?", locations_regex)
     end
 
     @initial_jobs = @jobs.paginate(page: params[:page], per_page: 4)

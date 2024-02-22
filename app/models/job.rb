@@ -8,6 +8,14 @@ class Job < ApplicationRecord
 
   serialize :application_criteria, coder: JSON
 
+  geocoded_by :location do |obj, results|
+    if geo = results.first
+      obj.city = geo.city || (obj.location.split(',').first if obj.location.split(',').first != geo.country_code)
+      obj.country = geo.country_code
+    end
+  end
+  after_validation :geocode, if: :location_changed?
+
   belongs_to :company
   belongs_to :applicant_tracking_system, optional: true
 

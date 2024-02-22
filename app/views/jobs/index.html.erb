@@ -113,17 +113,17 @@
           <div class="job-types-select-item">
 
             <label for="Full Stack" class="job-types-select-item-label">
-            <input class="job-types-select-item-checkbox" type="checkbox" name="Full Stack" id="full_stack" <%= params[:roles].present? && params[:roles].include?("full_stack") ? "checked " : "" %>data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
+            <input class="job-types-select-item-checkbox" type="checkbox" name="Full Stack" id="full_stack" <%= "checked " if params[:roles].present? && params[:roles].include?("full_stack") %>data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
             Full Stack
             </label>
 
             <label for="Back End" class="job-types-select-item-label">
-            <input class="job-types-select-item-checkbox" type="checkbox" name="Back End" id="back_end" <%= params[:roles].present? && params[:roles].include?("back_end") ? "checked " : "" %>data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
+            <input class="job-types-select-item-checkbox" type="checkbox" name="Back End" id="back_end" <%= "checked " if params[:roles].present? && params[:roles].include?("back_end") %>data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
             Back End
             </label>
 
             <label for="Front End" class="job-types-select-item-label">
-            <input class="job-types-select-item-checkbox" type="checkbox" name="Front End" id="front_end" <%= params[:roles].present? && params[:roles].include?("front_end") ? "checked " : "" %>data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
+            <input class="job-types-select-item-checkbox" type="checkbox" name="Front End" id="front_end" <%= "checked " if params[:roles].present? && params[:roles].include?("front_end") %>data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
             Front End
             </label>
 
@@ -162,7 +162,7 @@
             <% @locations.each do |location, count| %>
               <div class="locations-select-item">
                 <label for="<%= location %>" class="locations-select-item-label">
-                <input class="locations-select-item-checkbox" type="checkbox" name="<%= location %>" id="<%= location.strip.downcase.gsub(' ', '_') %>" <%= params[:locations].present? && params[:locations].include?(location.strip.downcase.gsub(' ', '_')) ? "checked " : "" %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="location">
+                <input class="locations-select-item-checkbox" type="checkbox" name="<%= location %>" id="<%= location.split(', ').first.downcase.gsub(' ', '_') %>" <%= "checked " if params[:locations].present? && params[:locations].include?(location.split(', ').first.downcase.gsub(' ', '_')) %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="location">
                 <%= "#{location} (#{count})" %>
                 </label><br>
               </div>
@@ -176,7 +176,7 @@
             <% @companies.each do |company, count| %>
               <div class="companies-select-item">
                 <label for="<%= company.company_name %>" class="companies-select-item-label">
-                <input class="companies-select-item-checkbox" type="checkbox" name="<%= company.company_name %>" id="<%= company.id %>" <%= params[:companies].present? && params[:companies].include?(company.id.to_s) ? "checked " : "" %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="company">
+                <input class="companies-select-item-checkbox" type="checkbox" name="<%= company.company_name %>" id="<%= company.id %>" <%= "checked " if params[:companies].present? && params[:companies].include?(company.id.to_s) %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="company">
                 <%= "#{company.company_name} (#{count})" %>
                 </label><br>
               </div>
