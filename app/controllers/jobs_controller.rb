@@ -18,21 +18,31 @@ class JobsController < ApplicationController
     @locations = @jobs.map { |job| [job.city, job.country].compact.join(', ') }
     @locations = @locations.map { |location| [location, @locations.count(location)] }.sort_by{ |pair| pair[1] }.reverse.uniq
 
+    @seniorities = @jobs.map(&:seniority)
+    @seniorities = @seniorities.map { |seniority| [seniority, @seniorities.count(seniority)] }.sort_by{ |pair| pair[1] }.reverse.uniq
+
     if params[:roles].present?
       regex_query = params[:roles].split.map { |role| role.gsub('_', '(-| |)') }.join('|')
       @jobs = @jobs.where("job_title ~* ?", regex_query)
 
     end
+
     if params[:companies].present?
       companies = params[:companies].split
       @jobs = @jobs.where(company: companies)
     end
+
     if params[:locations].present?
       locations = params[:locations].split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') }
       @jobs = @jobs.where("city IN (?) OR country IN (?)", locations, locations)
       # p nonsense
       # locations_regex = params[:locations].gsub(' ', '|')
       # @jobs = @jobs.where("REPLACE(location, ' ', '_') ~* ?", locations_regex)
+    end
+
+    if params[:seniorities].present?
+      seniorities = params[:seniorities].split.map { |seniority| seniority.split('_').map(&:capitalize).join('-') }
+      @jobs = @jobs.where(seniority: seniorities)
     end
 
     @initial_jobs = @jobs.paginate(page: params[:page], per_page: 4)

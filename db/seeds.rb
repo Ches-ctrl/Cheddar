@@ -183,7 +183,7 @@ puts "Creating new jobs..."
 # -----------------
 
 greenhouse_job_urls = [
-  "https://boards.greenhouse.io/11fs/jobs/4266126101",
+  "https://boards.greenhouse.io/11fs/jobs/4296543101",
   "https://boards.greenhouse.io/ambientai/jobs/4301104006",
   "https://boards.greenhouse.io/clearscoretechnologylimited/jobs/4269717101",
   "https://boards.greenhouse.io/cleoai/jobs/5033034002",
@@ -204,8 +204,8 @@ greenhouse_job_urls = [
   # "https://boards.greenhouse.io/figma/jobs/5039807004",
   # "https://boards.greenhouse.io/forter/jobs/6889370002",
   # "https://boards.greenhouse.io/gemini/jobs/5203656",
-  # "https://boards.greenhouse.io/geniussports/jobs/5693417003",
-  # "https://boards.greenhouse.io/getir/jobs/4258936101",
+  "https://boards.greenhouse.io/geniussports/jobs/5693417003",
+  "https://boards.greenhouse.io/getir/jobs/4258936101",
   # "https://boards.greenhouse.io/globalwebindex/jobs/6940363002",
   # "https://boards.greenhouse.io/gomotive/jobs/7025455002",
   # "https://boards.greenhouse.io/gomotive/jobs/7030195002",
@@ -296,9 +296,9 @@ rails_job_urls = [
   # "https://www.totaljobs.com/job/101793572/apply", # totaljobs # senior
   # "https://www.totaljobs.com/job/junior-software-developer/sparta-global-limited-job101695431", # totaljobs # junior
   # "https://www.totaljobs.com/job/full-stack-ruby-on-rails-developer/movement-8-job101778422", # totaljobs # mid
-  # # "https://www.simplyhired.co.uk/job/K0OD6J_mQAkEV2xH5ktIzSbCDjCzpj7yYtGh9w6TiCyPLg2dLaALPw", # simplyhired # mid # create account # expired
-  # # "https://www.simplyhired.co.uk/job/n26j_p5HaCBjI8iYuRBBTL9sUQFIfUhIi-w-sZeuRh3HY0YWtIHqpg", # simplyhired # mid # create account # expired
-  # # "https://www.simplyhired.co.uk/job/3eJ7KIbUJzmvyGwP8nYZQOn-AYcUkLk7jDAofeTImguEW-OQ0dlh3g", # simplyhired # mid # create account # expired
+  # "https://www.simplyhired.co.uk/job/K0OD6J_mQAkEV2xH5ktIzSbCDjCzpj7yYtGh9w6TiCyPLg2dLaALPw", # simplyhired # mid # create account # expired
+  # "https://www.simplyhired.co.uk/job/n26j_p5HaCBjI8iYuRBBTL9sUQFIfUhIi-w-sZeuRh3HY0YWtIHqpg", # simplyhired # mid # create account # expired
+  # "https://www.simplyhired.co.uk/job/3eJ7KIbUJzmvyGwP8nYZQOn-AYcUkLk7jDAofeTImguEW-OQ0dlh3g", # simplyhired # mid # create account # expired
   # "https://uk.indeed.com/viewjob?jk=36cda28dd190bc72", # indeed # senior
   # "https://www.linkedin.com/jobs/view/ruby-on-rails-2-hands-on-engineering-manager-lead-developer-london-twice-a-week-up-to-%C2%A3100-000-offers-sponsorship-at-opus-recruitment-solutions-3756503864/", # linkedin # senior
   # "https://www.linkedin.com/jobs/view/3799028903/", # linkedin # mid
