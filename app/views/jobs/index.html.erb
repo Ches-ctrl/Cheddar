@@ -69,38 +69,43 @@
           <div class="job-types-select-item">
 
             <label for="0 - Internship" class="job-types-select-item-label">
-              <input class="job-types-select-item-checkbox" type="checkbox" name="Internship" id="Internship" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
+              <input class="job-types-select-item-checkbox" type="checkbox" name="Internship" id="internship" <%= "checked " if params[:seniorities].present? && params[:seniorities].include?("internship") %>data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
               <span>0 - Internship</span>
             </label>
 
             <label for="1 - Entry Level" class="job-types-select-item-label">
-              <input class="job-types-select-item-checkbox" type="checkbox" name="Entry Level" id="Entry Level" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
+              <input class="job-types-select-item-checkbox" type="checkbox" name="Entry Level" id="entry_level" <%= "checked " if params[:seniorities].present? && params[:seniorities].include?("entry_level") %>data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
               <span>1 - Entry Level</span>
             </label>
 
-            <label for="2 - Mid Level" class="job-types-select-item-label">
-              <input class="job-types-select-item-checkbox" type="checkbox" name="Mid Level" id="Mid Level" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
-              <span>2 - Mid Level</span>
+            <label for="2 - Junior" class="job-types-select-item-label">
+              <input class="job-types-select-item-checkbox" type="checkbox" name="Junior" id="junior" <%= "checked " if params[:seniorities].present? && params[:seniorities].include?("junior") %>data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
+              <span>2 - Junior</span>
             </label>
 
-            <label for="3 - Senior Level" class="job-types-select-item-label">
-              <input class="job-types-select-item-checkbox" type="checkbox" name="Senior Level" id="Senior Level" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
-              <span>3 - Senior Level</span>
+            <label for="3 - Mid-Level" class="job-types-select-item-label">
+              <input class="job-types-select-item-checkbox" type="checkbox" name="Mid-Level" id="mid_level" <%= "checked " if params[:seniorities].present? && params[:seniorities].include?("mid_level") %>data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
+              <span>3 - Mid-Level</span>
             </label>
 
-            <label for="4 - Director" class="job-types-select-item-label">
-              <input class="job-types-select-item-checkbox" type="checkbox" name="Director" id="Director" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
-              <span>4 - Director</span>
+            <label for="4 - Senior" class="job-types-select-item-label">
+              <input class="job-types-select-item-checkbox" type="checkbox" name="Senior" id="senior" <%= "checked " if params[:seniorities].present? && params[:seniorities].include?("senior") %>data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
+              <span>4 - Senior</span>
             </label>
 
-            <label for="5 - VP" class="job-types-select-item-label">
-              <input class="job-types-select-item-checkbox" type="checkbox" name="VP" id="VP" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
-              <span>5 - VP</span>
+            <label for="5 - Director" class="job-types-select-item-label">
+              <input class="job-types-select-item-checkbox" type="checkbox" name="Director" id="director" <%= "checked " if params[:seniorities].present? && params[:seniorities].include?("director") %>data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
+              <span>5 - Director</span>
             </label>
 
-            <label for="6 - SVP / Partner" class="job-types-select-item-label">
-              <input class="job-types-select-item-checkbox" type="checkbox" name="SVP / Partner" id="SVP / Partner" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
-              <span>6 - SVP / Partner</span>
+            <label for="6 - VP" class="job-types-select-item-label">
+              <input class="job-types-select-item-checkbox" type="checkbox" name="VP" id="vp" <%= "checked " if params[:seniorities].present? && params[:seniorities].include?("vp") %>data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
+              <span>6 - VP</span>
+            </label>
+
+            <label for="7 - SVP / Partner" class="job-types-select-item-label">
+              <input class="job-types-select-item-checkbox" type="checkbox" name="SVP / Partner" id="svp_partner" <%= "checked " if params[:seniorities].present? && params[:seniorities].include?("svp_partner") %>data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
+              <span>7 - SVP / Partner</span>
             </label>
 
           </div>
