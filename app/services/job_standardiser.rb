@@ -9,13 +9,16 @@ class JobStandardiser
     fetch_seniority
     fetch_location
     @job.save
+    p "New location is: #{@job.location}"
+    p "City is: #{@job.city}"
+    p "Country is: #{@job.country}"
   end
 
   def fetch_role
-
+    title_roles = []
     roles = []
 
-    title_roles = {
+    title_keywords = {
       /back[- ]?end/ => 'back_end',
       /front[- ]?end/ => 'front_end',
       /full[- ]?stack/ => 'full_stack',
@@ -61,21 +64,28 @@ class JobStandardiser
       /mobile/ => 'mobile',
       /\bios\b/ => 'mobile',
       /android/ => 'mobile',
-      /react native/ => 'mobile',
     }
 
-    title_roles.each do |keyword, role|
-      roles << role if @job.job_title.downcase.match(keyword)
+    title_keywords.each do |keyword, role|
+      title_roles << role if @job.job_title.downcase.match(keyword)
     end
 
     key_phrases.each do |phrase, role|
       roles << role if @job.job_description.downcase.match?(phrase)
     end
 
+    if title_roles.include?('front_end')
+      roles.delete('full_stack')
+      roles.delete('back_end')
+    elsif title_roles.include?('back_end')
+      roles.delete('full_stack')
+      roles.delete('front_end')
+    end
+
+    roles += title_roles
     roles.uniq!
 
     if roles.include?('full_stack') || (roles.include?('front_end') && roles.include?('back_end'))
-      roles << 'full_stack' unless roles.include?('full_stack')
       roles.delete('front_end')
       roles.delete('back_end')
     end
@@ -85,19 +95,19 @@ class JobStandardiser
 
   def fetch_seniority
     seniority_levels = {
-      'intern' => 'Internship',
-      'graduate' => 'Entry-Level',
-      'junior' => 'Junior',
-      ' i' => 'Junior',
-      'mid ' => 'Mid-Level',
-      'midweight' => 'Mid-Level',
-      'mid-level' => 'Mid-Level',
-      ' ii' => 'Mid-Level',
-      ' iii' => 'Mid-Level',
-      'senior' => 'Senior',
-      'lead' => 'Senior',
-      'principal' => 'Senior',
-      'staff' => 'Senior'
+      /intern/ => 'Internship',
+      /graduate/ => 'Entry-Level',
+      /junior/ => 'Junior',
+      /\bi\b/ => 'Junior',
+      /\bmid\b/ => 'Mid-Level',
+      /mid-?weight/ => 'Mid-Level',
+      /mid-?level/ => 'Mid-Level',
+      /\bii\b/ => 'Mid-Level',
+      /\biii\b/ => 'Mid-Level',
+      /senior/ => 'Senior',
+      /\blead\b/ => 'Senior',
+      /principal/ => 'Senior',
+      /staff/ => 'Senior'
     }
 
     experience_levels_digits = {
@@ -129,7 +139,7 @@ class JobStandardiser
     }
 
     seniority_levels.each do |keyword, level|
-      @job.seniority = level if @job.job_title.downcase.include?(keyword)
+      @job.seniority = level if @job.job_title.downcase.match?(keyword)
     end
     return if @job.seniority
 
@@ -148,16 +158,18 @@ class JobStandardiser
 
   def fetch_location
     if @job.location
+      p "Original location was: #{@job.location}"
       location = @job.location
       hybrid = location.downcase.include?('hybrid')
-      remote = location.downcase.include?('remote')
+      remote = location.downcase.match?(/(?<!\bor\s)remote/)
 
-      location_elements = location.split(',').map { |element| element.gsub(/[(\/].*/, '').strip }
-      @job.location = location_elements.join(', ')
+      location_elements = location.split(',').map { |element| element.gsub(/[-;(\/].*/, '').gsub(/([Rr]emote|[Hh]ybrid)\s*[,;:-]?\s*/, '').strip }
+      @job.location = location_elements.reject(&:empty?).join(', ')
 
       @job.hybrid = hybrid
       @job.remote_only = remote && !hybrid
 
+      @job.location = @job.country if @job.location.empty?
       @job.location += " (Remote)" if @job.remote_only
     end
   end
