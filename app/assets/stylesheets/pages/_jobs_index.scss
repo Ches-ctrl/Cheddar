@@ -44,7 +44,7 @@
 
 #job-types-select {
   border-top: 1px solid #e3e6f0;
-  height: 180px;
+  height: 100px;
   width: 250px;
   overflow: scroll;
   padding: 16px 8px;
@@ -53,21 +53,29 @@
   // border-radius: 20px;
 }
 
-.companies-select-item, .locations-select-item {
+#employments-select {
+  border-top: 1px solid #e3e6f0;
+  height: 100px;
+  width: 250px;
+  overflow: scroll;
+  padding: 16px 8px;
+}
+
+.companies-select-item, .locations-select-item, .employments-select-item {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
   padding-bottom: 0;
 }
 
-.companies-select-item-label, .job-types-select-item-label, .locations-select-item-label {
+.companies-select-item-label, .job-types-select-item-label, .locations-select-item-label, .employments-select-item-label {
   margin: 0;
   padding: 0;
   display: flex;
   align-content: center;
 }
 
-.companies-select-item-checkbox, .job-types-select-item-checkbox, .locations-select-item-checkbox {
+.companies-select-item-checkbox, .job-types-select-item-checkbox, .locations-select-item-checkbox, .employments-select-item-checkbox {
   width: 1em;
   height: 1em;
   padding-right: 6px;

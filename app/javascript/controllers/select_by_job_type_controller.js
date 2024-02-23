@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="select-by-job-type"
 export default class extends Controller {
-  static targets = [ 'role', 'jobRow', 'company', 'location', 'seniority' ]
+  static targets = [ 'role', 'jobRow', 'company', 'location', 'seniority', 'employment' ]
 
   connect() {
   }
@@ -16,12 +16,14 @@ export default class extends Controller {
       .map(location => location.id)
     const checkedSeniorities = this.seniorityTargets.filter(seniority => seniority.checked)
       .map(seniority => seniority.id)
+    const checkedEmployments = this.employmentTargets.filter(employment => employment.checked)
+      .map(employment => employment.id)
 
-    const filterQueryString = this.buildQueryString(checkedRoles, checkedCompanies, checkedLocations, checkedSeniorities)
+    const filterQueryString = this.buildQueryString(checkedRoles, checkedCompanies, checkedLocations, checkedSeniorities, checkedEmployments)
     window.location.href = `/jobs${filterQueryString}`;
   }
 
-  buildQueryString(checkedRoles, checkedCompanies, checkedLocations, checkedSeniorities) {
+  buildQueryString(checkedRoles, checkedCompanies, checkedLocations, checkedSeniorities, checkedEmployments) {
     const queryStringParams = [];
 
     if (checkedRoles.length > 0) {
@@ -38,6 +40,10 @@ export default class extends Controller {
 
     if (checkedSeniorities.length > 0) {
       queryStringParams.push("seniorities=" + checkedSeniorities.join("+"));
+    }
+
+    if (checkedEmployments.length > 0) {
+      queryStringParams.push("employments=" + checkedEmployments.join("+"));
     }
 
     return queryStringParams.length > 0 ? "?" + queryStringParams.join("&") : "";

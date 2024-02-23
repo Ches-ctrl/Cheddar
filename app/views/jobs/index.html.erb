@@ -110,57 +110,6 @@
 
           </div>
         </ul>
-
-        <%# TODO: Add icons to individual list items %>
-        <%# LHS Section - Search by Job Type %>
-        <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-person-chalkboard"></i> Job Roles</h5>
-        <ul id="job-types-select">
-          <div class="job-types-select-item">
-
-            <label for="Full Stack" class="job-types-select-item-label">
-            <input class="job-types-select-item-checkbox" type="checkbox" name="Full Stack" id="full_stack" <%= "checked " if params[:roles].present? && params[:roles].include?("full_stack") %>data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
-            Full Stack
-            </label>
-
-            <label for="Back End" class="job-types-select-item-label">
-            <input class="job-types-select-item-checkbox" type="checkbox" name="Back End" id="back_end" <%= "checked " if params[:roles].present? && params[:roles].include?("back_end") %>data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
-            Back End
-            </label>
-
-            <label for="Front End" class="job-types-select-item-label">
-            <input class="job-types-select-item-checkbox" type="checkbox" name="Front End" id="front_end" <%= "checked " if params[:roles].present? && params[:roles].include?("front_end") %>data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
-            Front End
-            </label>
-
-          </div>
-        </ul>
-
-        <%# <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-person-chalkboard"></i> Office Status</h5>
-        <ul id="job-types-select">
-          <div class="job-types-select-item">
-
-            <li class="job-types-select-item-label">
-              <label for="Full Stack">
-                <input class="job-types-select-item-checkbox" type="checkbox" name="In Office" id="full stack" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
-                Office-based
-              </label>
-            </li>
-
-            <li class="job-types-select-item-label">
-              <label for="Back End">
-                <input class="job-types-sdelect-item-checkbox" type="checkbox" name="Hybrid" id="back end" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
-                Hybrid
-              </label>
-            </li>
-
-            <li class="job-types-select-item-label">
-              <label for="Front End">
-                <input class="job-types-select-item-checkbox" type="checkbox" name="Remote" id="front end" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
-                Remote
-              </label>
-            </li>
-          </div>
-        </ul> %>
         <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-earth-americas"></i> Location</h5>
         <ul id="locations-select">
           <div>
@@ -169,6 +118,34 @@
                 <label for="<%= location %>" class="locations-select-item-label">
                 <input class="locations-select-item-checkbox" type="checkbox" name="<%= location %>" id="<%= location.split(', ').first.downcase.gsub(' ', '_') %>" <%= "checked " if params[:locations].present? && params[:locations].include?(location.split(', ').first.downcase.gsub(' ', '_')) %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="location">
                 <%= "#{location} (#{count})" %>
+                </label><br>
+              </div>
+            <% end %>
+          </div>
+        </ul>
+        <%# TODO: Add icons to individual list items %>
+        <%# LHS Section - Search by Job Type %>
+        <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-person-chalkboard"></i> Job Roles</h5>
+        <ul id="job-types-select">
+          <div class="job-types-select-item">
+            <% @roles.each do |role, count| %>
+              <div class="job-types-select-item">
+                <label for="<%= role %>" class="job-types-select-item-label">
+                <input class="job-types-select-item-checkbox" type="checkbox" name="<%= role %>" id="<%= role %>" <%= "checked " if params[:roles].present? && params[:roles].include?(role) %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
+                <%= "#{role.split('_').map(&:capitalize).join(' ')} (#{count})" %>
+                </label>
+              </div>
+            <% end %>
+          </div>
+        </ul>
+        <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-earth-americas"></i> Employment Type</h5>
+        <ul id="employments-select">
+          <div>
+            <% @employments.each do |employment, count| %>
+              <div class="employments-select-item">
+                <label for="<%= employment %>" class="employments-select-item-label">
+                <input class="employments-select-item-checkbox" type="checkbox" name="<%= employment %>" id="<%= employment %>" <%= "checked " if params[:employments].present? && params[:employments].include?(employment) %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="employment">
+                <%= "#{employment} (#{count})" %>
                 </label><br>
               </div>
             <% end %>
