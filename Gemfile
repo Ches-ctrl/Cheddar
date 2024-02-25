@@ -71,12 +71,13 @@ gem "nokogiri"
 # gem "open-uri"
 gem 'csv'
 gem 'avo'
-gem 'yomu'
+gem 'yomu' # this gem is no longer maintained
 gem 'tinymce-rails'
 gem 'htmltoword'
 
 group :development, :test do
   gem "dotenv-rails"
+  gem 'speg' # generate spec files
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
   gem "faker"

@@ -366,6 +366,8 @@ GEM
     simple_form (5.3.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
+    speg (1.0.2)
+      railties (~> 7.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -456,6 +458,7 @@ DEPENDENCIES
   sidekiq-failures (~> 1.0)
   sidekiq-scheduler (~> 5.0, >= 5.0.3)
   simple_form
+  speg
   sprockets-rails
   stimulus-rails
   tinymce-rails

@@ -1,9 +1,8 @@
 require 'open-uri'
 
-module Scrappers
+module Scrapers
   class MonsterService
     def scrape_page
-      jobs = []
       page_doc.css(".sc-dUWDJJ").css('.job-search-resultsstyle__CardGrid-sc-1wpt60k-3').
         css('ul').
         css('.job-cardstyle__JobCardComponent-sc-1mbmxes-0').each do |job|
@@ -18,11 +17,8 @@ module Scrappers
             location: job.css('.sc-gwZKzw').css('.sc-dABzDS').css('.sc-fICZUB').text,
             date_created: job.css('.sc-gwZKzw').css('.sc-keuYuY').text
           }
-          jobs << job_attributes
+          Job.create job_attributes
         end
-
-      # perform bulk insertion
-      Job.insert_all(jobs)
     end
 
     def page_doc

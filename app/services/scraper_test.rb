@@ -1,6 +1,6 @@
 require 'nokogiri'
 
-class ScraperTest < ApplicationJob
+class ScraperTest < ApplicationJob # why does a service class inherit ApplicationJob ? 
   include Capybara::DSL
 
   queue_as :default
