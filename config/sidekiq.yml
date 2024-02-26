@@ -9,3 +9,8 @@
   - mailers
   - active_storage_analysis
   - active_storage_purge
+:scheduler:
+  :schedule:
+    hello_world:
+      cron: '0 0 * * * *'   # Runs once per day(at midnight)
+      class: Scraper::MonsterJob
