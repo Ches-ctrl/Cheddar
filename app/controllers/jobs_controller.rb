@@ -13,7 +13,7 @@ class JobsController < ApplicationController
     # When a job doesn't actually exist, its location is nil.
 
     @companies = @jobs.map(&:company)
-    @companies = @companies.map { |company| [company, @companies.count(company)] }.sort_by{ |pair| pair[1] }.reverse.uniq
+    @companies = @companies.map { |company| [company.company_name, @companies.count(company)] }.sort_by{ |pair| pair[1] }.reverse.uniq
 
     @locations = @jobs.select { |job| job.city.present? && !job.city.include?("Remote") }.map { |job| [(job.city unless job.city == "#{job.country} (Remote)"), job.country].compact.join(', ') }
     @locations += @jobs.select { |job| job.remote_only }.map { |job| "Remote Only" }

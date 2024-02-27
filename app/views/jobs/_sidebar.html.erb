@@ -12,32 +12,7 @@
   <%= render partial: 'sidebar_section', locals: {resource: 'seniority', resources: @seniorities, icon: "fa-solid fa-stairs"} %>
   <%= render partial: 'sidebar_section', locals: {resource: 'location', resources: @locations, icon: "fa-solid fa-earth-americas"} %>
   <%= render partial: 'sidebar_section', locals: {title: 'Job Roles', resource: 'role', resources: @roles, icon: "fa-solid fa-person-chalkboard"} %>
+  <%= render partial: 'sidebar_section', locals: {title: 'Employment Type', resource: 'employment', resources: @employments, icon: "fa-solid fa-earth-americas"} %>
+  <%= render partial: 'sidebar_section', locals: {resource: 'company', resources: @companies, icon: "fa-solid fa-building-user"} %>
 
-  <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-earth-americas"></i> Employment Type</h5>
-  <ul id="employments-select">
-    <div>
-      <% @employments.each do |employment, count| %>
-        <div class="employments-select-item">
-          <label for="<%= employment %>" class="employments-select-item-label">
-          <input class="employments-select-item-checkbox" type="checkbox" name="<%= employment %>" id="<%= employment %>" <%= "checked " if params[:employments].present? && params[:employments].include?(employment) %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="employment">
-          <%= "#{employment} (#{count})" %>
-          </label><br>
-        </div>
-      <% end %>
-    </div>
-  </ul>
-  <%# TODO: Add icons to individual list item %>
-  <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-building-user"></i> Companies</h5>
-  <ul id="companies-select">
-    <div>
-      <% @companies.each do |company, count| %>
-        <div class="companies-select-item">
-          <label for="<%= company.company_name %>" class="companies-select-item-label">
-          <input class="companies-select-item-checkbox" type="checkbox" name="<%= company.company_name %>" id="<%= company.id %>" <%= "checked " if params[:companies].present? && params[:companies].include?(company.id.to_s) %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="company">
-          <%= "#{company.company_name} (#{count})" %>
-          </label><br>
-        </div>
-      <% end %>
-    </div>
-  </ul>
 </div>
