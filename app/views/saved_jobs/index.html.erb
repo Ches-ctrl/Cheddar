@@ -27,20 +27,8 @@
     </div>
 
     <div class="job-cards-container pt-0" data-controller="load-more">
-      <% @initial_jobs.each do |saved_job| %>
-
-        <%= render 'jobs/row', job: saved_job.job %>
-      <% end %>
-      <div data-load-more-target="remaining" class="d-none">
-        <% @remaining_jobs.each do |saved_job| %>
-          <%= render 'jobs/row', job: saved_job.job %>
-        <% end %>
-      </div>
-      <% if (@saved_jobs.count > 5)%>
-        <div class="d-flex justify-content-start">
-          <%= link_to "Show More", "#", data: { action: "click->load-more#showMore" }, class: "btn btn-cheddar-secondary", "data-load-more-target": "button" %>
-        </div>
-      <% end %>
+        <%= render partial: 'jobs/job_card', collection: @saved_jobs.map(&:job), as: :job %>
     </div>
+
   <% end %>
 </div>
