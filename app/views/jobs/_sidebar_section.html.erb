@@ -1,0 +1,14 @@
+<h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-stairs"></i> <%= resource %></h5>
+
+<ul id="<%= resource.pluralize.downcase %>-select">
+  <div>
+    <% @seniorities.each do |seniority, count| %>
+      <div class="seniorities-select-item">
+        <label for="<%= seniority %>" class="seniorities-select-item-label">
+        <input class="seniorities-select-item-checkbox" type="checkbox" name="<%= seniority %>" id="<%= seniority.downcase.gsub(' ', '_') %>" <%= "checked " if params[:seniorities].present? && params[:seniorities].include?(seniority.downcase) %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="seniority">
+        <%= "#{seniority.gsub('-', ' ')} (#{count})" %>
+        </label><br>
+      </div>
+    <% end %>
+  </div>
+</ul>
