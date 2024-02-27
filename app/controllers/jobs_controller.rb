@@ -60,7 +60,7 @@ class JobsController < ApplicationController
       @jobs = @jobs.where(employment_type: employments)
     end
 
-    @jobs = @jobs.paginate(page: params[:page], per_page: 4)
+    @jobs = @jobs.paginate(page: params[:page], per_page: 10)
 
     @job = Job.new # why do we have this here?
     @saved_job = SavedJob.new # why initialize SavedJob here?
