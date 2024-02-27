@@ -56,8 +56,8 @@ class SeniorityStandardizer
     years_experience = @job.job_description.downcase.match(/(one|two|three|four|five|ten).{0, 12} year.{0,40} experience/)
     return if years_experience && @job.seniority = EXPERIENCE_WRITTEN_NUMBERS[years_experience[1]]
 
-    SENIORITY_DESCRIPTORS.each do |phrase, level|
-      return if @job.seniority = level if @job.job_description.downcase.match(phrase)
+    SENIORITY_DESCRIPTORS.each do |phrase, level| # will return the highest level matched
+      @job.seniority = level if @job.job_description.downcase.match(phrase)
     end
   end
 end
