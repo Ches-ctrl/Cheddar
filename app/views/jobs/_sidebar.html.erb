@@ -7,37 +7,12 @@
     </h6>
   </div>
 
-  <%= render partial: 'sidebar_section', locals: {resource: 'seniority', resources: @seniorities} %>
-
-  <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-earth-americas"></i> Location</h5>
-  <ul id="locations-select">
-    <div>
-      <% @locations.each do |location, count| %>
-        <div class="locations-select-item">
-          <label for="<%= location %>" class="locations-select-item-label">
-          <input class="locations-select-item-checkbox" type="checkbox" name="<%= location %>" id="<%= location.split(', ').first.downcase.gsub(' ', '_') %>" <%= "checked " if params[:locations].present? && params[:locations].include?(location.split(', ').first.downcase.gsub(' ', '_')) %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="location">
-          <%= "#{location} (#{count})" %>
-          </label><br>
-        </div>
-      <% end %>
-    </div>
-  </ul>
-
   <%# TODO: Add icons to individual list items %>
-  <%# LHS Section - Search by Job Type %>
-  <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-person-chalkboard"></i> Job Roles</h5>
-  <ul id="job-types-select">
-    <div class="job-types-select-item">
-      <% @roles.each do |role, count| %>
-        <div class="job-types-select-item">
-          <label for="<%= role %>" class="job-types-select-item-label">
-          <input class="job-types-select-item-checkbox" type="checkbox" name="<%= role %>" id="<%= role %>" <%= "checked " if params[:roles].present? && params[:roles].include?(role) %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="role">
-          <%= "#{role.split('_').map(&:capitalize).join(' ')} (#{count})" %>
-          </label>
-        </div>
-      <% end %>
-    </div>
-  </ul>
+
+  <%= render partial: 'sidebar_section', locals: {resource: 'seniority', resources: @seniorities, icon: "fa-solid fa-stairs"} %>
+  <%= render partial: 'sidebar_section', locals: {resource: 'location', resources: @locations, icon: "fa-solid fa-earth-americas"} %>
+  <%= render partial: 'sidebar_section', locals: {title: 'Job Roles', resource: 'role', resources: @roles, icon: "fa-solid fa-person-chalkboard"} %>
+
   <h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="fa-solid fa-earth-americas"></i> Employment Type</h5>
   <ul id="employments-select">
     <div>
