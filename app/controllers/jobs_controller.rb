@@ -60,16 +60,15 @@ class JobsController < ApplicationController
       @jobs = @jobs.where(employment_type: employments)
     end
 
-    @initial_jobs = @jobs.paginate(page: params[:page], per_page: 4)
-    @remaining_jobs = @jobs.offset(20)
+    @jobs = @jobs.paginate(page: params[:page], per_page: 4)
 
     @job = Job.new # why do we have this here?
     @saved_job = SavedJob.new # why initialize SavedJob here?
     @saved_jobs = SavedJob.all
+
     if current_user.present?
       @job_applications = JobApplication.where(user_id: current_user.id)
     end
-    # TODO: Check this is setup correctly
   end
 
   def show

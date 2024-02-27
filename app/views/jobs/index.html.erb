@@ -51,33 +51,19 @@
           <%# RHS Section - Job Table %>
           <div class="job-cards-container pt-0" data-controller="load-more">
 
-            <%# Placeholders whilst the jobs cards load %>
-            <% if @initial_jobs.blank? %>
-              <% 10.times do %>
-              <%# TODO: At the moment, placeholder will not show as @initial_jobs is always true %>
-                <%= render 'placeholder' %>
-              <% end %>
-            <% else %>
-              <%# Actual job content here %>
-              <%# Once the actual content is loaded, it should replace the placeholders %>
-              <% @initial_jobs.each do |job| %>
-                  <%= render 'job_card', job: job %>
-              <% end %>
-              <div class="digg_pagination">
-                <div class="page_info">
-                  <%= page_entries_info @initial_jobs %>
-                </div>
-                <%= will_paginate @initial_jobs, container: false %>
+            <%= render partial: 'job_card', collection: @jobs, as: :job %>
+
+            <div class="digg_pagination">
+              <div class="page_info">
+                <%= page_entries_info @jobs %>
               </div>
-              <div data-load-more-target="remaining" class="d-none">
-                <% @remaining_jobs.each do |job| %>
-                  <%= render 'job_card', job: job %>
-                <% end %>
-              </div>
-              <div class="d-flex justify-content-start">
-                <%= link_to "Show More", "#", data: { action: "click->load-more#showMore" }, class: "btn btn-apply", "data-load-more-target": "button" %>
-              </div>
-            <% end %>
+              <%= will_paginate @jobs, container: false %>
+            </div>
+
+            <div class="d-flex justify-content-start">
+              <%= link_to "Show More", "#", data: { action: "click->load-more#showMore" }, class: "btn btn-apply", "data-load-more-target": "button" %>
+            </div>
+
           </div>
         <% end %>
     </div>
