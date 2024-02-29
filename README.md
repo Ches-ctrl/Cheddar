@@ -37,14 +37,17 @@ To make full use of Cheddar's features (scraping, cloudinary files, chatgpt):
 6. Add a .env file:
 ```shell
 # Scraper functionality
-* SCRAPE_EMAIL_1 = "your_email"
-* SCRAPE_PASSWORD_1 = "your_password"
+SCRAPE_EMAIL_1 = "your_email"
+SCRAPE_PASSWORD_1 = "your_password"
 
 # File uploads
-* CLOUDINARY_URL = "your_cloudinary_api_key"
+CLOUDINARY_URL = "your_cloudinary_api_key"
+
+# Map Functionality
+BING_API_KEY = "your_bing_api_key"
 
 # AI functionality
-* OPENAI_ACCESS_TOKEN = "your_openai_api_key"
+OPENAI_ACCESS_TOKEN = "your_openai_api_key"
 ```
 
 ## Tech Stack 🧑‍💻
@@ -98,19 +101,19 @@ Summary - Be nice! Everyone interacting in the Cheddar's codebases, issue tracke
 If you get an error on load, you may need to install redis:
 ```shell
 # install redis for your local server
-* brew install redis
+brew install redis
 
 # start redis in the background
-* redis-server
+redis-server
 
 # run the server
-* bin/dev
+bin/dev
 ```
 
 Also if you get a chromedriver error:
 ```shell
 # install chromedriver
-* brew install cask chromedriver
+brew install cask chromedriver
 
 # allow it for your system
 * Go to Security & Privacy and click ‘Allow Anyway’

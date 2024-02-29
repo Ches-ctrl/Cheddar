@@ -13,7 +13,7 @@ class JobsController < ApplicationController
     # When a job doesn't actually exist, its location is nil.
 
     @companies = @jobs.map(&:company)
-    @companies = @companies.map { |company| [company, @companies.count(company)] }.sort_by{ |pair| pair[1] }.reverse.uniq
+    @companies = @companies.map { |company| [company.company_name, @companies.count(company)] }.sort_by{ |pair| pair[1] }.reverse.uniq
 
     @locations = @jobs.select { |job| job.city.present? && !job.city.include?("Remote") }.map { |job| [(job.city unless job.city == "#{job.country} (Remote)"), job.country].compact.join(', ') }
     @locations += @jobs.select { |job| job.remote_only }.map { |job| "Remote Only" }
@@ -60,16 +60,15 @@ class JobsController < ApplicationController
       @jobs = @jobs.where(employment_type: employments)
     end
 
-    @initial_jobs = @jobs.paginate(page: params[:page], per_page: 4)
-    @remaining_jobs = @jobs.offset(20)
+    @jobs = @jobs.paginate(page: params[:page], per_page: 10)
 
     @job = Job.new # why do we have this here?
     @saved_job = SavedJob.new # why initialize SavedJob here?
     @saved_jobs = SavedJob.all
+
     if current_user.present?
       @job_applications = JobApplication.where(user_id: current_user.id)
     end
-    # TODO: Check this is setup correctly
   end
 
   def show

@@ -1,0 +1,16 @@
+<h5 class="mt-4 mb-3", style="color: #0b8aa7ff;"><i class="<%= icon %>"></i> <%= title || resource.titleize %></h5>
+
+<ul id="filter-category-select">
+  <div>
+    <% resources.each do |resource, count| %>
+      <div class="filter-category-select-item">
+        <label for="<%= resource %>" class="filter-category-select-item-label">
+
+        <input class="filter-category-select-item-checkbox" type="checkbox" name="<%= resource %>" id="<%= resource.gsub(' ', '_') %>" <%= "checked " if params[resource.pluralize.to_sym].present? && params[resource.pluralize.to_sym].include?(resource) %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target= "<%= resource %>"> <%= "#{resource.titleize} (#{count})" %>
+        </label>
+      </div>
+    <% end %>
+  </div>
+</ul>
+
+<%# Note - spacing mucked up on job roles because class names are job types %>
