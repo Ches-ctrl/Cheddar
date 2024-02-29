@@ -5,6 +5,9 @@
   padding: 10px 20px;
   text-decoration: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  &:hover {
+    opacity: 85%;
+  }
 }
 
 .btn-cheddar-secondary {
@@ -29,7 +32,7 @@
 }
 
 #search-button:hover {
-  background-color: $tertiary-color;
+  opacity: 85%;
   color: white;
 }
 

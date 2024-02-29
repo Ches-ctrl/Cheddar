@@ -1,10 +1,10 @@
 // Specific CSS for your home-page
 .btn-main {
   align-items: center;
-  background-image: linear-gradient(144deg, $oxford-blue, #0b8aa7ff 98%);
+  background-image: linear-gradient(144deg, $oxford-blue, rgb(15, 101, 159) 98%);
   border: 0;
   border-radius: 8px;
-  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-shadow: rgba(151, 65, 252, 0.1) 0 15px 30px -5px;
   box-sizing: border-box;
   color: #FFFFFF;
   display: flex;
@@ -21,6 +21,9 @@
   touch-action: manipulation;
   white-space: nowrap;
   cursor: pointer;
+  &:hover {
+    box-shadow: rgba(20, 52, 89, 0.3) 0 15px 30px -5px;
+  }
   // width: 250px;
 }
 
