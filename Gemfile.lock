@@ -109,13 +109,15 @@ GEM
     bindex (0.8.1)
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
-    birch (0.1.1)
     bootsnap (1.17.0)
       msgpack (~> 1.2)
     bootstrap (5.3.2)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.11.8, < 3)
     builder (3.2.4)
+    bullet (7.1.6)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     capybara (3.39.2)
       addressable
       matrix
@@ -255,7 +257,6 @@ GEM
       activerecord (>= 5.2)
       activesupport (>= 5.2)
     popper_js (2.11.8)
-    progressbar (1.13.0)
     psych (5.1.1.1)
       stringio
     public_suffix (5.0.4)
@@ -350,9 +351,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    schiphol (0.9.4)
-      progressbar (>= 0.10.0)
-      rubyzip (>= 0.9.6.1)
     selenium-webdriver (4.0.0)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -389,10 +387,6 @@ GEM
     timeout (0.4.1)
     tinymce-rails (6.8.2)
       railties (>= 3.1.1)
-    treat (2.1.0)
-      birch
-      schiphol
-      yomu
     turbo-rails (1.5.0)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -401,6 +395,7 @@ GEM
       turbo-rails (>= 1.3.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uniform_notifier (1.16.0)
     view_component (3.10.0)
       activesupport (>= 5.2.0, < 8.0)
       concurrent-ruby (~> 1.0)
@@ -424,7 +419,6 @@ GEM
       nokogiri (~> 1.8)
     yomu (0.1.5)
     zeitwerk (2.6.12)
-    zip (2.0.2)
 
 PLATFORMS
   arm64-darwin-22
@@ -441,6 +435,7 @@ DEPENDENCIES
   binding_of_caller
   bootsnap
   bootstrap
+  bullet
   capybara
   cloudinary
   csv
@@ -474,14 +469,12 @@ DEPENDENCIES
   sprockets-rails
   stimulus-rails
   tinymce-rails
-  treat
   turbo-rails
   tzinfo-data
   watir
   web-console
   will_paginate (~> 4.0)
   yomu
-  zip
 
 RUBY VERSION
    ruby 3.1.2p20

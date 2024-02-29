@@ -4,15 +4,16 @@ class JobsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :apply_to_selected_jobs]
 
   def index
+    # TODO: Refactor entire index action, should be 5 lines max
     # TODO: Fix search functionality so that 20 jobs are always shown
     # TODO: Install Kaminari to fix long page load time on index page and add pagination
-    # TODO: Add bullet gem to solve N+1 queries, implement pagination
+    # TODO: Add bullet gem to detect N+1 queries, implement pagination
     # TODO: Implement pagination for the remaining jobs
 
     @jobs = Job.where.not(location: "")
     # When a job doesn't actually exist, its location is nil.
 
-    @companies = @jobs.map(&:company)
+    @companies = @jobs.map(&:company) # N+1 problem alert!!
     @companies = @companies.map { |company| [company.company_name, @companies.count(company)] }.sort_by{ |pair| pair[1] }.reverse.uniq
 
     @locations = @jobs.select { |job| job.city.present? && !job.city.include?("Remote") }.map { |job| [(job.city unless job.city == "#{job.country} (Remote)"), job.country].compact.join(', ') }
@@ -69,6 +70,13 @@ class JobsController < ApplicationController
     if current_user.present?
       @job_applications = JobApplication.where(user_id: current_user.id)
     end
+
+    # Implemented pgsearch, this will be uncommented once the index action is cleaned up.
+    # @jobs = if params[:query].present?
+    #           Job.search_job(params[:query])
+    #         else
+    #           Job.all
+    #         end
   end
 
   def show
