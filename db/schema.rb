@@ -119,7 +119,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_23_142056) do
     t.string "salary"
     t.date "date_created"
     t.text "application_criteria"
-    t.date "application_deadline", default: "2023-12-08"
+    t.date "application_deadline", default: "2024-02-24"
     t.string "job_posting_url"
     t.bigint "company_id", null: false
     t.datetime "created_at", null: false

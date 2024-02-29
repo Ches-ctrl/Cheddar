@@ -44,7 +44,7 @@ class JobCreator
       update_requirements(@job)
       p "job fields getting"
       GetFormFieldsJob.perform_later(@job.job_posting_url)
-      JobStandardiser.new(@job).standardise_fields
+      JobStandardizer.new(@job).standardize
     else
       p "Unable to detect ATS system for URL: #{@url}"
       return nil
