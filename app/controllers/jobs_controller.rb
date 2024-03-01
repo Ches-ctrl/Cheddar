@@ -10,40 +10,41 @@ class JobsController < ApplicationController
     # TODO: Add bullet gem to detect N+1 queries, implement pagination
     # TODO: Implement pagination for the remaining jobs
 
-    @jobs = Job.where.not(location: "")
+    @jobs = Job.where.not(location: "").includes(:company)
     # When a job doesn't actually exist, its location is nil.
 
-    @companies = @jobs.map(&:company) # N+1 problem alert!!
-    @companies = @companies.map { |company| [company.company_name, @companies.count(company)] }.sort_by{ |pair| pair[1] }.reverse.uniq
+    # For each resource, store: [display_name, element_id, matching_jobs_count]
+    @companies = @jobs.map(&:company)
+    @companies = @companies.map { |company| [company.company_name, company.id, @companies.count(company)] }.sort_by{ |list| list[2] }.reverse.uniq
 
-    @locations = @jobs.select { |job| job.city.present? && !job.city.include?("Remote") }.map { |job| [(job.city unless job.city == "#{job.country} (Remote)"), job.country].compact.join(', ') }
-    @locations += @jobs.select { |job| job.remote_only }.map { |job| "Remote Only" }
-    @locations = @locations.map { |location| [location, @locations.count(location)] }.sort_by{ |pair| pair[1] }.reverse.uniq
+    @locations = @jobs.select { |job| job.city.present? && !job.city.include?("Remote") }.map { |job| [(job.city unless job.city == "#{job.country} (Remote)"), job.country].compact }
+    @locations += @jobs.select { |job| job.remote_only }.map { |job| ["Remote Only"] }
+    @locations = @locations.map { |location| [location.join(', '), location.first.downcase.gsub(' ', '_'), @locations.count(location)] }.sort_by{ |list| list[2] }.reverse.uniq
 
     @roles = @jobs.map { |job| job.role.split('&&') if job.role }.flatten.compact
-    @roles = @roles.map { |role| [role, @roles.count(role)] }.sort_by{ |pair| pair[1] }.reverse.uniq
+    @roles = @roles.map { |role| [role.split('_').map(&:titleize).join('-'), role, @roles.count(role)] }.sort_by{ |list| list[2] }.reverse.uniq
 
     @seniorities = ['Internship', 'Entry-Level', 'Junior', 'Mid-Level', 'Senior', 'Director', 'VP', 'SVP / Partner']
-    @seniorities = @seniorities.map { |seniority| [seniority, @jobs.count { |job| job.seniority == seniority }] }.reject { |pair| pair[1].zero? }
+    @seniorities = @seniorities.map { |seniority| [seniority, seniority.downcase.split(' ').first, @jobs.count { |job| job.seniority == seniority }] }.reject { |list| list[2].zero? }
 
-    @employments = @jobs.map(&:employment_type.downcase)
-    @employments = @employments.map { |employment| [employment, @employments.count(employment)] }.sort_by{ |pair| pair[1] }.reverse.uniq
+    @employments = @jobs.map(&:employment_type)
+    @employments = @employments.map { |employment| [employment, employment.downcase.gsub('-', '_'), @employments.count(employment)] }.sort_by{ |list| list[2] }.reverse.uniq
 
-    if params[:roles].present?
-      roles = params[:roles].split
+    if params[:role].present?
+      roles = params[:role].split
       conditions = roles.map { |role| "role LIKE ?" }.join(" OR ")
       values = roles.map { |role| "%#{role}%" }
 
       @jobs = @jobs.where(conditions, *values)
     end
 
-    if params[:companies].present?
-      companies = params[:companies].split
+    if params[:company].present?
+      companies = params[:company].split
       @jobs = @jobs.where(company: companies)
     end
 
-    if params[:locations].present?
-      locations = params[:locations].split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') }
+    if params[:location].present?
+      locations = params[:location].split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') }
       if locations.include?("Remote Only")
         @jobs = @jobs.where("city IN (?) OR country IN (?) OR remote_only = TRUE", locations, locations)
       else
@@ -51,13 +52,13 @@ class JobsController < ApplicationController
       end
     end
 
-    if params[:seniorities].present?
-      seniorities = params[:seniorities].split.map { |seniority| seniority.split('-').map(&:capitalize).join('-') }
+    if params[:seniority].present?
+      seniorities = params[:seniority].split.map { |seniority| seniority.split('-').map(&:capitalize).join('-') }
       @jobs = @jobs.where(seniority: seniorities)
     end
 
-    if params[:employments].present?
-      employments = params[:employments].split
+    if params[:employment].present?
+      employments = params[:employment].split.map { |employment| employment.gsub('_', '-').capitalize }
       @jobs = @jobs.where(employment_type: employments)
     end
 
