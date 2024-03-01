@@ -33,13 +33,13 @@ class Job < ApplicationRecord
 
   # TODO: Update validate uniqueness as same job can have both a normal url and api url
 
-  pg_search_scope :global_search,
+  pg_search_scope :search_job,
     against: [:job_title, :salary, :job_description],
     associated_against: {
       company: [ :company_name, :company_category ]
     },
     using: {
-      tsearch: { prefix: true }
+      tsearch: { prefix: true } # allow partial search
     }
 
   # TODO: Question - set application_criteria = {} as default?
