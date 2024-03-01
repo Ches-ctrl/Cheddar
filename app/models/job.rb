@@ -68,12 +68,13 @@ class Job < ApplicationRecord
   def new_job_application_for_user(user)
     job_application = JobApplication.new(user: user, job: self, status: "Pre-application")
       self.application_criteria.each do |field, details|
-        application_response = job_application.application_responses.build
-        application_response.field_name = field
-        application_response.field_locator = details["locators"]
-        application_response.interaction = details["interaction"]
-        application_response.field_option = details["option"]
-        application_response.required = details["required"]
+        application_response = job_application.application_responses.build(
+          field_name: field,
+          field_locator: details["locators"],
+          interaction: details["interaction"],
+          field_option: details["option"],
+          required: details["required"]
+        )
 
         # TODO: Add boolean required field (include in params and form submission page)
 
