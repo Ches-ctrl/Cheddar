@@ -14,6 +14,7 @@ class Job < ApplicationRecord
       obj.country = geo.country_code
     end
   end
+
   after_validation :geocode, if: :location_changed?
 
   belongs_to :company
@@ -50,6 +51,8 @@ class Job < ApplicationRecord
 
   # Enables access to application_criteria via strings or symbols
   def application_criteria
+    return [] if read_attribute(:application_criteria).nil?
+
     read_attribute(:application_criteria).with_indifferent_access
   end
 
@@ -61,4 +64,26 @@ class Job < ApplicationRecord
   #     p "No additional fields to add"
   #   end
   # end
+
+  def new_job_application_for_user(user)
+    job_application = JobApplication.new(user: user, job: self, status: "Pre-application")
+      self.application_criteria.each do |field, details|
+        application_response = job_application.application_responses.build(
+          field_name: field,
+          field_locator: details["locators"],
+          interaction: details["interaction"],
+          field_option: details["option"],
+          required: details["required"]
+        )
+
+        # TODO: Add boolean required field (include in params and form submission page)
+
+        if details["options"].present?
+          application_response.field_options = details["options"]
+        end
+        application_response.field_value = user.try(field) || ""
+      end
+
+    job_application
+  end
 end
