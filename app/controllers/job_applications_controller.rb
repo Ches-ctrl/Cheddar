@@ -14,24 +14,7 @@ class JobApplicationsController < ApplicationController
       @selected_jobs = Job.find(cookies[:selected_job_ids].split("&"))
 
       @job_applications = @selected_jobs.map do |job|
-        job_application = JobApplication.new(user: current_user, status: "Pre-application")
-
-        job.application_criteria.each do |field, details|
-          application_response = job_application.application_responses.build
-          application_response.field_name = field
-          application_response.field_locator = details["locators"]
-          application_response.interaction = details["interaction"]
-          application_response.field_option = details["option"]
-          application_response.required = details["required"]
-
-          # TODO: Add boolean required field (include in params and form submission page)
-
-          if details["options"].present?
-            application_response.field_options = details["options"]
-          end
-          application_response.field_value = current_user.try(field) || ""
-        end
-
+        job_application = job.new_job_application_for_user(user)
         [job, job_application]
       end
       # Renders the staging page where the user can review and confirm applications
