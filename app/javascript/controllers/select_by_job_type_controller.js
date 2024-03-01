@@ -27,23 +27,23 @@ export default class extends Controller {
     const queryStringParams = [];
 
     if (checkedRoles.length > 0) {
-      queryStringParams.push("roles=" + checkedRoles.join("+"));
+      queryStringParams.push("role=" + checkedRoles.join("+"));
     }
 
     if (checkedCompanies.length > 0) {
-      queryStringParams.push("companies=" + checkedCompanies.join("+"));
+      queryStringParams.push("company=" + checkedCompanies.join("+"));
     }
 
     if (checkedLocations.length > 0) {
-      queryStringParams.push("locations=" + checkedLocations.join("+"));
+      queryStringParams.push("location=" + checkedLocations.join("+"));
     }
 
     if (checkedSeniorities.length > 0) {
-      queryStringParams.push("seniorities=" + checkedSeniorities.join("+"));
+      queryStringParams.push("seniority=" + checkedSeniorities.join("+"));
     }
 
     if (checkedEmployments.length > 0) {
-      queryStringParams.push("employments=" + checkedEmployments.join("+"));
+      queryStringParams.push("employment=" + checkedEmployments.join("+"));
     }
 
     return queryStringParams.length > 0 ? "?" + queryStringParams.join("&") : "";
