@@ -6,7 +6,7 @@
       <%= image_tag "avatar_default.png", class: "avatar-large" %>
     <% end %>
     <div class="name-status">
-      <h2><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h2>
+      <h2><%= current_user&.first_name&.capitalize %> <%= current_user&.last_name&.capitalize %></h2>
       <% if current_user.preferred_pronoun_select.present? || current_user.preferred_pronoun_text.present? %>
         <h2 style="color: rgba(0, 0, 0, 0.5);">
           <% if current_user.preferred_pronoun_select != "Prefer not to say" && current_user.preferred_pronoun_select != "Other" %>

@@ -6,51 +6,6 @@ class ApplyJob < ApplicationJob
   sidekiq_options retry: false
 
   def perform(job_application_id, user_id)
-    application = JobApplication.find(job_application_id)
-    job = application.job
-    user = User.find(user_id)
-
-    application_criteria = assign_values_to_form(application, user)
-    fields_to_fill = application_criteria
-
-    form_filler = FormFiller.new
-    form_filler.fill_out_form(job.job_posting_url, fields_to_fill, job_application_id)
-
-    Capybara.send(:session_pool).each { |name, ses| ses.driver.quit }
-
-    user_channel_name = "job_applications_#{user.id}"
-
-    ActionCable.server.broadcast(
-      user_channel_name,
-      {
-        event: "job-application-submitted",
-        job_application_id: application.id,
-        user_id: application.user_id,
-        job_id: job.id,
-        status: "Applied",
-        # Include any additional data you want to send to the frontend
-      }
-    )
-  end
-
-  private
-
-  def assign_values_to_form(application, user)
-    application_criteria = application.job.application_criteria
-    custom_fields = {}
-    ApplicationResponse.where(job_application_id: application.id).each do |response|
-      custom_fields[response.field_name] = response.field_value
-    end
-
-    application_criteria.each do |key, value|
-      if user.respond_to?(key) && user.send(key).present?
-        application_criteria[key]['value'] = user.send(key)
-      else
-        application_criteria[key]['value'] = custom_fields[key]
-        # p "Warning: defaults does not have a method or attribute '#{key}'. Using NIL value instead"
-        # application_criteria[key]['value'] = nil
-      end
-    end
-    return application_criteria
+    JobApplication::ApplyJob.new(user_id, job_application_id).call
   end
 end

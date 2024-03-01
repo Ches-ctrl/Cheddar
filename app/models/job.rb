@@ -4,12 +4,12 @@ class Job < ApplicationRecord
   # TODO: Number of questions in job form
   # TODO: Estimated time to complate job application based on form length/type
 
-  # attr_accessor :company_name
+  scope :with_location, -> { where.not(location: nil) }
 
   serialize :application_criteria, coder: JSON
 
   geocoded_by :location do |obj, results|
-    if geo = results.first
+    if geo = results.first # is this supposed to compare geo == results.first? the if statement seems odd here
       obj.city = geo.city || (obj.location.split(',').first if obj.location.split(',').first != geo.country_code)
       obj.country = geo.country_code
     end
@@ -34,7 +34,7 @@ class Job < ApplicationRecord
   # TODO: Update validate uniqueness as same job can have both a normal url and api url
 
   pg_search_scope :search_job,
-    against: [:job_title, :salary, :job_description],
+    against: [:job_title, :salary, :role, :location],
     associated_against: {
       company: [ :company_name, :company_category ]
     },
