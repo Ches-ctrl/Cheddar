@@ -9,10 +9,10 @@
 
   <%# TODO: Add icons to individual list items %>
 
-  <%= render partial: 'filter_category_sidebar_section', locals: {resource: 'seniority', resources: @seniorities, icon: "fa-solid fa-stairs"} %>
-  <%= render partial: 'filter_category_sidebar_section', locals: {resource: 'location', resources: @locations, icon: "fa-solid fa-earth-americas"} %>
-  <%= render partial: 'filter_category_sidebar_section', locals: {title: 'Job Roles', resource: 'role', resources: @roles, icon: "fa-solid fa-person-chalkboard"} %>
-  <%= render partial: 'filter_category_sidebar_section', locals: {title: 'Employment Type', resource: 'employment', resources: @employments, icon: "fa-solid fa-earth-americas"} %>
-  <%= render partial: 'filter_category_sidebar_section', locals: {resource: 'company', resources: @companies, icon: "fa-solid fa-building-user"} %>
+  <%= render partial: 'filter_category_sidebar_section', locals: {resource: 'seniority', resources: @resources[:seniorities], icon: "fa-solid fa-stairs"} %>
+  <%= render partial: 'filter_category_sidebar_section', locals: {resource: 'location', resources: @resources[:locations], icon: "fa-solid fa-earth-americas"} %>
+  <%= render partial: 'filter_category_sidebar_section', locals: {title: 'Job Roles', resource: 'role', resources: @resources[:roles], icon: "fa-solid fa-person-chalkboard"} %>
+  <%= render partial: 'filter_category_sidebar_section', locals: {title: 'Employment Type', resource: 'employment', resources: @resources[:employments], icon: "fa-solid fa-earth-americas"} %>
+  <%= render partial: 'filter_category_sidebar_section', locals: {resource: 'company', resources: @resources[:companies], icon: "fa-solid fa-building-user"} %>
 
 </div>
