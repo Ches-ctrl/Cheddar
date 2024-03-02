@@ -14,7 +14,7 @@ class JobApplicationsController < ApplicationController
       @selected_jobs = Job.find(cookies[:selected_job_ids].split("&"))
 
       @job_applications = @selected_jobs.map do |job|
-        job_application = job.new_job_application_for_user(user)
+        job_application = job.new_job_application_for_user(current_user)
         [job, job_application]
       end
       # Renders the staging page where the user can review and confirm applications
