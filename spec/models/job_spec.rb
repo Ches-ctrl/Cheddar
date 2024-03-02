@@ -23,4 +23,22 @@ RSpec.describe Job do
 
    it { expect(described_class.search_job('Ruby')).to eq [Job.second] }
   end
+
+  describe '#new_job_application_for_user' do
+    let(:job) { create(:job) }
+    let(:user) { create(:user) }
+
+    it 'creates a new job application for the user' do
+      job_application = job.new_job_application_for_user(user)
+      expect(job_application.job).to eq job
+      expect(job_application.user).to eq user
+    end
+
+    it 'adds application criteria to the job application' do
+      job.application_criteria = Ats::Greenhouse::ApplicationFields::CORE_FIELDS
+      job.save
+      job_application = job.new_job_application_for_user(user)
+      expect(job_application.application_responses.first.field_name).to eq(Ats::Greenhouse::ApplicationFields::CORE_FIELDS.keys.first.to_s)
+    end
+  end
 end
