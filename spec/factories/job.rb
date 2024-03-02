@@ -6,7 +6,5 @@ FactoryBot.define do
     company { association :company }
     job_posting_url { Faker::Internet.url }
     location { "#{Faker::Address.city}, #{Faker::Address.country}" }
-    # city { Faker::Address.city }
-    # country { Faker::Address.country }
   end
 end

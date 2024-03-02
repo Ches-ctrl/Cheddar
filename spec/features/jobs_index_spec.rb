@@ -8,23 +8,52 @@ RSpec.feature "Jobs", type: :feature do
       create(:job, job_title: "Data Analyst", seniority: 'Mid-Level', role: 'data_engineer')
       create(:job, job_title: "Senior UI Engineer", seniority: 'Senior', role: 'front_end')
 
-      # create 20 more jobs in London
-      20.times do
+      # create 6 more jobs in London
+      6.times do
         create(:job, location: "London, UK")
       end
+
+      visit jobs_path
     end
 
     scenario "Displays all jobs" do
-      visit jobs_path
-
       expect(page).to have_content("Graduate Software Developer")
       expect(page).to have_content("Data Analyst")
       expect(page).to have_content("Senior UI Engineer")
       expect(page).to have_content("#{Job.all.count} Jobs")
     end
 
+    scenario "User can select three jobs" do
+      all('.custom-checkbox').take(3).each do |checkbox|
+        checkbox.click
+      end
+
+      all('.select-job-box').take(3).each do |checkbox|
+        expect(checkbox).to be_checked
+      end
+
+      expect(page).to have_button("Shortlist 3 Job")
+    end
+
+    scenario "User can deselect two of them" do
+      all('.custom-checkbox').take(3).each do |checkbox|
+        checkbox.click
+      end
+
+      all('.custom-checkbox').take(2).each do |checkbox|
+        checkbox.click
+      end
+
+      expect(all('.select-job-box')[2]).to be_checked
+      expect(all('.select-job-box')[1]).to_not be_checked
+
+      expect(page).to have_button("Shortlist 1 Job")
+    end
+
     scenario "User can filter jobs by seniority" do
-      visit jobs_path(seniority: 'entry-level mid-level senior')
+      check('entry-level')
+      check('mid-level')
+      check('senior')
 
       expect(page).to have_content("Graduate Software Developer")
       expect(page).to have_content("Data Analyst")
@@ -34,13 +63,14 @@ RSpec.feature "Jobs", type: :feature do
     end
 
     scenario "User can filter jobs by location" do
-      visit jobs_path(location: 'london')
+      check('london')
 
       expect(page).to have_content("#{Job.where(city: 'London').count} Jobs")
     end
 
     scenario "User can filter jobs by role" do
-      visit jobs_path(role: 'front_end data_engineer')
+      check('front_end')
+      check('data_engineer')
 
       expect(page).to have_content("Senior UI Engineer")
       expect(page).to have_content("Data Analyst")
@@ -52,11 +82,31 @@ RSpec.feature "Jobs", type: :feature do
       job1 = Job.first
       job2 = Job.where.not(company: job1.company).first
       company = job1.company.id.to_s
-      visit jobs_path(company: company)
+
+      check(company)
 
       expect(page).to have_content(job1.job_title)
-
       expect(page).not_to have_content(job2.job_title)
+    end
+  end
+
+  context "With more than 10 jobs to display:" do
+    before do
+      30.times do
+        create(:job, seniority: 'Senior')
+      end
+
+      visit jobs_path(seniority: 'Senior')
+    end
+
+    scenario "User can visit the next page of job postings" do
+      job5 = Job.all[4]
+      job15 = Job.all[14]
+
+      find('a[aria-label="Page 2"]').click
+
+      expect(page).to have_content(job15.job_title)
+      expect(page).not_to have_content(job5.job_title)
     end
   end
 

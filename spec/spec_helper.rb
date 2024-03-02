@@ -23,7 +23,7 @@ Capybara.configure do |config|
 end
 
 RSpec.configure do |config|
-  # Use the headless browser for testing:
+  # Use the headless browser for feature testing:
   config.before(:each, type: :feature) do
     Capybara.current_driver = :selenium_chrome_headless
   end
