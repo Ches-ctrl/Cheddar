@@ -28,16 +28,22 @@
           </div>
 
           <%# Job Details %>
-          <div class="col-2 d-flex flex-column align-items-center justify-content-center small-text">
+          <div class="col d-flex flex-column align-items-end justify-content-center text-sm">
             <div class="salaryBudget"><%= job.salary ? "£#{number_with_delimiter(job.salary, delimiter: ',')}" : "£ -" %></div>
             <div><i class="fa-solid fa-hourglass-end"></i> X days </div>
             <div><i class="fa-solid fa-stopwatch"></i> <%= job.application_deadline ? job.application_deadline.strftime("%d-%m") : "n/a" %></div>
           </div>
 
-          <%# Impact Assessment of Company %>
-          <div class="col-2 d-flex flex-column align-items-center justify-content-center small-text">
-            <p class="mb-0">No target</p>
+          <%# Net Zero Rating %>
+          <div class="col-2 d-flex flex-column align-items-center justify-content-center text-sm">
+            <div class="climate-rating">No target</div>
           </div>
+
+          <%# Ease of Applying %>
+          <div class="col-2 d-flex flex-column align-items-center justify-content-center text-sm">
+            <div class="mb-0">No target</div>
+          </div>
+
 
           <div class="col d-flex align-items-center justify-content-center">
             <% if SavedJob.where(job_id: job.id).present? %>

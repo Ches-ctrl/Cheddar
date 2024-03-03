@@ -36,41 +36,6 @@
   background-color: rgba(255, 229, 180, 0.4);
 }
 
-.job-description-small {
-  display: flex;
-  text-align: left;
-  font-size: 14px;
-}
-
-// Custom checkbox styles
-input[type="checkbox"] {
-  // -webkit-appearance: none;
-  // -moz-appearance: none;
-  // appearance: none;
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  background-clip: content-box;
-  border: 2px solid #dee2e6;
-  border-radius: 4px;
-  background-color: #fff;
-  cursor: pointer;
-
-  &:checked {
-    // border-color: #007bff;
-  }
-}
-
-.saved-job-heart-icon {
-  font-size: 20px;
-  color: $red;
-}
-
-.not-saved-job-heart-icon {
-  font-size: 20px;
-  color: $red;
-}
-
 // Logo sizing
 .img-fluid {
   max-width: 50px; // Adjust as needed
@@ -83,43 +48,6 @@ input[type="checkbox"] {
   height: 60px;
 }
 
-/* Hide the default checkbox */
-.custom-checkbox input[type="checkbox"] {
-  visibility: hidden;
-  position: absolute;
-}
+.climate-rating {
 
-/* Create a custom box */
-.custom-checkbox .checkmark {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  background: #eee; /* Background color */
-  position: relative;
-  cursor: pointer;
-  border-radius: 4px; /* Optional: for rounded corners */
-  border: 1px solid #dcdcdc; /* Optional: for border */
-}
-
-/* When the checkbox is checked, change the background color */
-.custom-checkbox input[type="checkbox"]:checked + .checkmark {
-  background: $main-color; /* New background color when checked */
-}
-
-/* Optional: Add a checkmark icon or any other indicator */
-.custom-checkbox input[type="checkbox"]:checked + .checkmark::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 12px;
-  height: 12px;
-  background-size: cover;
-}
-
-.already-applied-tick {
-  color: $main-color;
-  font-size: 22px;
-  font-weight: bold;
 }
