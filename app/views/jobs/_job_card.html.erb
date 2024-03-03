@@ -1,32 +1,30 @@
-<div class="row mb-3"  data-select-by-job-type-target="jobRow" data-styling-selected-job-target="jobCard">
+<div class="row mb-2"  data-select-by-job-type-target="jobRow" data-styling-selected-job-target="jobCard">
   <div class="col-12">
     <div class="card job-card">
       <div class="card-body">
-        <div class="row text-center">
+        <div class="row">
           <%# TODO: Store company logo, use clearbit when we don't have one %>
 
-          <div class="col-5 pe-2 d-flex flex-column align-items-start justify-content-center" data-role="<%= job.job_title %>">
-            <div class="d-flex flex-row">
-              <%= link_to company_path(job.company), target: "_blank" do %>
-                <%= image_tag("https://logo.clearbit.com/#{job.company.company_website_url}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", style: "width: 60px; height: 60px; padding-right: 0.5rem;") %>
-              <% end %>
+          <%# Logo %>
+          <div class="col d-flex justify-content-center align-items-center">
+            <%= link_to company_path(job.company), target: "_blank" do %>
+              <%= image_tag("https://logo.clearbit.com/#{job.company.company_website_url}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", style: "width: 60px; height: 60px; padding-right: 0.5rem;") %>
+            <% end %>
+          </div>
 
-              <div>
-                <%= link_to job_path(job), target: "_blank" do %>
-                  <strong><%= job.job_title %></strong>
-                <% end %>
-                <div class="d-flex small-text">
-                  <%= link_to company_path(job.company), target: "_blank" do %>
-                    <%= job.company.company_name %>
-                  <% end %>
-                  <%# TODO: Truncate properly %>
-                  <% if job.location.present? %>
-                    <div class="mx-1">•</div>
-                    <div><%= job.location.truncate(20) %></div>
-                  <% end %>
-                </div>
-              </div>
-            </div>
+          <%# Job Title, Company, Location %>
+          <div class="col-4 d-flex flex-column justify-content-start" data-role="<%= job.job_title %>">
+            <%= link_to job_path(job), target: "_blank" do %>
+              <strong><%= job.job_title %></strong>
+            <% end %>
+
+            <%= link_to company_path(job.company), target: "_blank" do %>
+              <%= job.company.company_name %>
+            <% end %>
+
+            <% if job.location.present? %>
+              <div><%= job.location %></div>
+            <% end %>
           </div>
 
           <%# Job Details %>
@@ -41,19 +39,16 @@
             <p class="mb-0">No target</p>
           </div>
 
-          <div class="col-2 d-flex align-items-center justify-content-center">
-            <div>
-              <% if SavedJob.where(job_id: job.id).present? %>
-                <%= link_to saved_job_path(job.saved_job_ids), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to remove this job from your list?"} do %>
-                  <i class="fa-solid fa-bookmark"></i>
-                  <%# <i class="fa-solid fa-heart saved-job-heart-icon me-4"></i> %>
-                <% end %>
-              <% else %>
-                <%= link_to job_saved_jobs_path(job), data: {turbo_method: :post} do %>
-                  <i class="fa-regular fa-bookmark"></i>
-                <% end %>
+          <div class="col d-flex align-items-center justify-content-center">
+            <% if SavedJob.where(job_id: job.id).present? %>
+              <%= link_to saved_job_path(job.saved_job_ids), data: {turbo_method: :delete} do %>
+                <i class="fa-solid fa-bookmark"></i>
               <% end %>
-            </div>
+            <% else %>
+              <%= link_to job_saved_jobs_path(job), data: {turbo_method: :post} do %>
+                <i class="fa-regular fa-bookmark"></i>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
