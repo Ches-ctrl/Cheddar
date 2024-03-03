@@ -38,6 +38,7 @@
         <%= link_to saved_jobs_path, class: "nav-link d-flex flex-column align-items-center pt-1 pb-0" do %>
           <i class="fa-solid fa-cart-shopping"></i>
         <% end %>
+
         <ul>
           <li class="nav-item dropdown pb-1">
             <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -57,14 +58,13 @@
           </li>
         </ul>
       </div>
+
     <% else %>
       <%# TODO: Fix alignment of log in / sign up button %>
-        <%# <%= link_to new_user_session_path, class: "nav-link d-flex flex-column align-items-center pt-1 pb-0" do %>
-        <div class='d-flex lgin-sgup-btn'>
-          <%= link_to "Log in", new_user_session_path, class:"login-btn" %>
-          <%= link_to "Sign up", new_user_registration_path, class:"signup-btn" %>
-        </div>
-        <%# <% end %>
+      <div class='d-flex lgin-sgup-btn'>
+        <%= link_to "Log in", new_user_session_path, class:"login-btn" %>
+        <%= link_to "Sign up", new_user_registration_path, class:"signup-btn" %>
+      </div>
     <% end %>
   </div>
 </div>
