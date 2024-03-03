@@ -54,18 +54,6 @@
                 <% end %>
               <% end %>
             </div>
-            <% if defined?(current_user) && current_user.present? && JobApplication.where(job_id: job.id, user_id: current_user.id).present? %>
-              <div class="already-applied-tick">
-                <i class="fa-solid fa-check"></i>
-              </div>
-            <% else %>
-              <div class="selectBox">
-                <label class="custom-checkbox" data-job-index-target="jobCheckbox" data-action="click->job-index#updateApplyButton">
-                  <%= check_box_tag "job_ids[]", job.id, id: "job_id", class: 'select-job-box', data: { styling_selected_job_target: "checkBox", action: 'change->styling-selected-job#styleCard' } %>
-                  <span class="checkmark"></span>
-                </label>
-              </div>
-            <% end %>
           </div>
         </div>
       </div>

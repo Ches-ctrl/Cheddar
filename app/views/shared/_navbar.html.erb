@@ -34,31 +34,27 @@
     </div>
 
     <% if user_signed_in? %>
-      <div class="d-flex justify-content-end align-items-center">
+      <ul class="mb-2 d-flex align-items-center">
         <%= link_to saved_jobs_path, class: "nav-link d-flex flex-column align-items-center pt-1 pb-0" do %>
           <i class="fa-solid fa-cart-shopping"></i>
         <% end %>
-
-        <ul>
-          <li class="nav-item dropdown pb-1">
-            <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <% if current_user.photo.key %>
-                <%= cl_image_tag current_user.photo.key, class: "avatar" %>
-              <% else %>
-                <%= image_tag "ai_cartoon_smiley.png", class: "avatar", alt: "dropdown menu" %>
-              <% end %>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="z-index: 1100;">
-              <%= link_to "My Profile", profile_path(current_user), class: "dropdown-item" %>
-              <%= link_to "My Apps", job_applications_path, class: "dropdown-item" %>
-              <%= link_to "Job Prefs", profile_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Settings", profile_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </li>
-        </ul>
-      </div>
-
+        <li class="nav-item dropdown mb-2 ms-2">
+          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <% if current_user.photo.key %>
+              <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+            <% else %>
+              <%= image_tag "ai_cartoon_smiley.png", class: "avatar", alt: "dropdown menu" %>
+            <% end %>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="z-index: 1100;">
+            <%= link_to "My Profile", profile_path(current_user), class: "dropdown-item" %>
+            <%= link_to "My Apps", job_applications_path, class: "dropdown-item" %>
+            <%= link_to "Job Prefs", profile_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Settings", profile_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+          </div>
+        </li>
+      </ul>
     <% else %>
       <%# TODO: Fix alignment of log in / sign up button %>
       <div class='d-flex lgin-sgup-btn'>
