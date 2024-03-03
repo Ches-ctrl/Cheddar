@@ -6,24 +6,6 @@
 
   .card-body {
     padding: 10px;
-
-    .col {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      // text-align: left;
-      height: 70px;
-      overflow-y: scroll;
-      width: auto;
-      padding-bottom: 0px;
-      // padding-left: 2px;
-      // padding-right: 2px;
-      padding-top: 0px;
-    }
-
-    .col-2 {
-      padding: 0px
-    }
   }
 }
 
