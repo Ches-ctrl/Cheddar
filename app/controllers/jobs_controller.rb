@@ -144,26 +144,26 @@ class JobsController < ApplicationController
 
     seniorities = ['Internship', 'Entry-Level', 'Junior', 'Mid-Level', 'Senior', 'Director', 'VP', 'SVP / Partner']
 
-    # For each resource, store: [display_name, element_id, matching_jobs_count]
+    # For each item, store: [display_name, element_id, matching_jobs_count]
     @resources = {}
-    @resources[:roles] = roles.uniq.map do |role|
-      [role.split('_').map(&:titleize).join('-'), role, roles.count(role)]
-    end
-    @resources[:companies] = @jobs.map(&:company).uniq.map do |company|
-      [company.company_name, company.id, @jobs.count { |job| job.company == company }]
-    end
-    @resources[:locations] = locations.compact.uniq.map do |location|
-      [location.join(', '), location.first.downcase.gsub(' ', '_'), locations.count(location)]
-    end
-    @resources[:employments] = @jobs.map(&:employment_type).uniq.map do |employment|
-      [employment, employment.downcase.gsub('-', '_'), @jobs.count { |job| job.employment_type == employment }]
-    end
-
-    @resources.each_value { |array| array.sort_by! { |item| [-item[2]] } }
-
-    @resources[:seniorities] = seniorities.map do |seniority|
+    @resources['seniority'] = seniorities.map do |seniority|
       count = @jobs.count { |job| job.seniority == seniority }
       [seniority, seniority.downcase.split.first, count] unless count.zero?
     end.compact
+    @resources['location'] = locations.compact.uniq.map do |location|
+      [location.join(', '), location.first.downcase.gsub(' ', '_'), locations.count(location)]
+    end
+    @resources['role'] = roles.uniq.map do |role|
+      [role.split('_').map(&:titleize).join('-'), role, roles.count(role)]
+    end
+    @resources['employment'] = @jobs.map(&:employment_type).uniq.map do |employment|
+      [employment, employment.downcase.gsub('-', '_'), @jobs.count { |job| job.employment_type == employment }]
+    end
+    @resources['company'] = @jobs.map(&:company).uniq.map do |company|
+      [company.company_name, company.id, @jobs.count { |job| job.company == company }]
+    end
+
+    @resources.each { |title, array| array.sort_by! { |item| [-item[2]] } unless title == 'seniority' }
+
   end
 end
