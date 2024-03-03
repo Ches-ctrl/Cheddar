@@ -44,9 +44,3 @@
     display: none;
   }
 }
-
-.job-cards-container {
-  overflow-y: auto;
-  max-height: calc(100vh - HEIGHT_OF_STICKY_TOP); /* Adjust based on the height of the sticky header */
-  padding-top: 1rem; /* Optional, for spacing */
-}

@@ -1,26 +1,23 @@
 <div class="container" data-controller="select-by-job-type">
+
   <div class="d-flex justify-content-center align-items-center pb-4">
     <%= render 'search' %>
   </div>
-  <div class="row d-flex justify-content-between">
+
+  <div class="row">
 
     <%= render 'filter_category_sidebar' %>
 
-    <div class="col-sm-9 p-0">
-      <div class="sticky-top bg-white">
-        <div class="job-cards-container pt-0">
+    <div class="col-sm-9">
+      <%= render partial: 'job_card', collection: @jobs, as: :job %>
 
-          <%= render partial: 'job_card', collection: @jobs, as: :job %>
-
-          <div class="digg_pagination">
-            <div class="page_info">
-              <%= page_entries_info @jobs %>
-            </div>
-
-            <%= will_paginate @jobs, container: false %>
-
-          </div>
+      <div class="digg_pagination">
+        <div class="page_info">
+          <%= page_entries_info @jobs %>
         </div>
+
+        <%= will_paginate @jobs, container: false %>
+
       </div>
     </div>
   </div>
