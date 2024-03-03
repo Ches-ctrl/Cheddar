@@ -26,22 +26,6 @@
   }
 }
 
-.card-logo {
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.selected-job-card {
-  background: linear-gradient(to bottom right, rgba(255, 222, 159, 0.4), rgb(248, 218, 164));
-  background-color: rgba(255, 229, 180, 0.4);
-}
-
-// Logo sizing
-.img-fluid {
-  max-width: 50px; // Adjust as needed
-  height: auto;
-}
-
 .job-card img {
   object-fit: contain;
   width: 60px;
