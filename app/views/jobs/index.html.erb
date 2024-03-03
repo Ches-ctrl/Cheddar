@@ -6,23 +6,21 @@
 
     <%= render 'filter_category_sidebar' %>
 
-    <div class="col-sm-9 p-0" id="jobs-index-right-section">
-      <%= form_tag apply_jobs_path, method: :post do %>
-        <div class="sticky-top bg-white">
-          <div class="job-cards-container pt-0">
+    <div class="col-sm-9 p-0">
+      <div class="sticky-top bg-white">
+        <div class="job-cards-container pt-0">
 
-            <%= render partial: 'job_card', collection: @jobs, as: :job %>
+          <%= render partial: 'job_card', collection: @jobs, as: :job %>
 
-            <div class="digg_pagination">
-              <div class="page_info">
-                <%= page_entries_info @jobs %>
-              </div>
-
-              <%= will_paginate @jobs, container: false %>
-
+          <div class="digg_pagination">
+            <div class="page_info">
+              <%= page_entries_info @jobs %>
             </div>
+
+            <%= will_paginate @jobs, container: false %>
+
           </div>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>
