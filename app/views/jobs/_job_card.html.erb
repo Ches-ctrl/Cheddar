@@ -60,7 +60,7 @@
               </div>
             <% else %>
               <div class="selectBox">
-                <label class="custom-checkbox" data-job-index-toggle-target="jobCheckbox" data-action="click->job-index-toggle#updateApplyButton">
+                <label class="custom-checkbox" data-job-index-target="jobCheckbox" data-action="click->job-index#updateApplyButton">
                   <%= check_box_tag "job_ids[]", job.id, id: "job_id", class: 'select-job-box', data: { styling_selected_job_target: "checkBox", action: 'change->styling-selected-job#styleCard' } %>
                   <span class="checkmark"></span>
                 </label>
