@@ -6,10 +6,12 @@ RSpec.feature "Jobs", type: :feature do
       create(:job, job_title: "Graduate Software Developer", seniority: 'Entry-Level', role: 'mobile')
       create(:job, job_title: "Junior Test Developer", seniority: 'Junior', role: 'dev_ops')
       create(:job, job_title: "Data Analyst", seniority: 'Mid-Level', role: 'data_engineer')
-      create(:job, job_title: "Senior UI Engineer", seniority: 'Senior', role: 'front_end')
+      create(:job, job_title: "Senior UI Engineer", seniority: 'Senior', role: 'front_end', location: 'London, UK')
+      create(:job, job_title: "Frontend Developer", job_description: "Ruby on Rails", role: 'front_end', location: 'London')
+      create(:job, job_title: "Ruby on Rails Developer", location: 'London, UK')
 
-      # create 6 more jobs in London
-      6.times do
+      # create 4 more jobs in London
+      4.times do
         create(:job, location: "London, UK")
       end
 
@@ -50,6 +52,16 @@ RSpec.feature "Jobs", type: :feature do
       expect(page).to have_button("Shortlist 1 Job")
     end
 
+    scenario 'User can query "Ruby on Rails London" jobs' do
+      fill_in 'query', with: 'ruby on rails london'
+      find('#search-button').click
+
+      expect(page).to have_content("Frontend Developer")
+      expect(page).to have_content("Ruby on Rails Developer")
+
+      expect(page).not_to have_content("Senior UI Engineer")
+    end
+
     scenario "User can filter jobs by seniority" do
       check('entry-level')
       check('mid-level')
@@ -87,6 +99,17 @@ RSpec.feature "Jobs", type: :feature do
 
       expect(page).to have_content(job1.job_title)
       expect(page).not_to have_content(job2.job_title)
+    end
+
+    scenario 'User can query "Ruby" with multiple sidebar filters' do
+      fill_in 'query', with: 'ruby'
+      find('#search-button').click
+
+      check('london')
+      check('front_end')
+
+      expect(page).to have_content("Frontend Developer")
+      expect(page).not_to have_content("Ruby on Rails Developer")
     end
   end
 
