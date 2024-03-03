@@ -1,0 +1,44 @@
+.job-card {
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e3e6f0;
+
+  .card-body {
+    padding: 10px;
+    .col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // text-align: left;
+      height: 70px;
+      overflow-y: scroll;
+      width: auto;
+      padding-bottom: 0px;
+      // padding-left: 2px;
+      // padding-right: 2px;
+      padding-top: 0px;
+    }
+
+    .col-2 {
+      padding: 0px
+    }
+
+    .role {
+      text-align: left;
+      // vertical-align: middle !important;
+      display: flex;
+      align-items: center;
+    }
+
+  }
+}
+
+.card-logo {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.selected-job-card {
+  background: linear-gradient(to bottom right, rgba(255, 222, 159, 0.4), rgb(248, 218, 164));
+  background-color: rgba(255, 229, 180, 0.4);
+}

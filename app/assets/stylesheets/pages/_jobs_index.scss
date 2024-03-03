@@ -1,8 +1,4 @@
-#jobs-index-second-section{
-  // display: flex;
-  margin-top: 20px;
-}
-
+// LHS Section
 #jobs-index-left-section{
   margin-top: 5px;
   width: 300px;
@@ -12,16 +8,6 @@
 #jobs-index-left-section-title{
   margin-top: 10px;
   margin-bottom: 25px;
-}
-
-#jobs-index-right-section{
-  // width: 1000px;
-  justify-content: flex-end;
-  // margin-right: 0;
-}
-
-.filter-category {
-  padding: 23px 0;
 }
 
 #filter-categories-select {
@@ -51,4 +37,11 @@
   height: 1em;
   padding-right: 6px;
   margin-right: 6px;
+}
+
+// RHS Section
+#jobs-index-right-section{
+  // width: 1000px;
+  justify-content: flex-end;
+  // margin-right: 0;
 }
