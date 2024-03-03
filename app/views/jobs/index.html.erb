@@ -3,7 +3,7 @@
     <%= render 'search' %>
   </div>
     <div class="row d-flex justify-content-between" data-controller="job-index-toggle">
-      
+
       <%= render 'filter_category_sidebar' %>
 
       <%# RHS Section Divider %>
@@ -19,32 +19,10 @@
                 <i class="fa-solid fa-circle-right"></i>
                 <p class="my-0 ms-1">Show Categories</p>
               </div>
-              <div>
+              <div class="mb-2">
                 <%= submit_tag "Shortlist 0 Jobs", id: "apply-button", "data": {job_index_toggle_target: "applyButton"}, class: "btn btn-apply" %>
               </div>
             </div>
-
-            <%# RHS Section - Job Table Headers %>
-            <div class="row">
-              <div class="col-12">
-                <div class="card job-list-header">
-                  <div class="card-body">
-                    <div class="row text-center">
-                      <%# <div class="col">Company</div> %>
-                      <div class="col-3">Company & Role</div>
-                      <div class="col-2 d-none" data-job-index-toggle-target="newColumn1">Description</div>
-                      <div class="col-2">Job Details</div>
-                      <div class="col-2">Climate Impact</div>
-                      <div class="col-2">App Criteria</div>
-                      <%# <div class="col">Details</div> %>
-                      <%# <div class="col">Save</div> %>
-                      <div class="col-2">Select</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
           <%# RHS Section - Job Table %>
           <div class="job-cards-container pt-0" data-controller="load-more">
@@ -55,10 +33,13 @@
               <div class="page_info">
                 <%= page_entries_info @jobs %>
               </div>
+
               <%= will_paginate @jobs, container: false %>
+
             </div>
           </div>
         <% end %>
+      </div>
     </div>
   </div>
 </div>
