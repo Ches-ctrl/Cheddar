@@ -1,4 +1,4 @@
-#filter-categories-select {
+#categories-select {
   border-top: 1px solid #e3e6f0;
   height: 180px;
   width: 250px;
@@ -6,21 +6,21 @@
   padding: 16px 8px;
 }
 
-.filter-category-select-item {
+.category-select-item {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
   padding-bottom: 0;
 }
 
-.filter-category-select-item-label {
+.category-select-item-label {
   margin: 0;
   padding: 0;
   display: flex;
   align-content: center;
 }
 
-.filter-category-select-item-checkbox {
+.category-select-item-checkbox {
   width: 1em;
   height: 1em;
   padding-right: 6px;

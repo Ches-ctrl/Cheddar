@@ -1,0 +1,15 @@
+<div class="col-sm-3" data-job-index-toggle-target="leftSection">
+
+  <div>
+    <p class="pb-0"><%= @jobs.count %> jobs</p>
+  </div>
+
+  <%# TODO: Add icons to individual list items %>
+
+  <%= render partial: 'category_sidebar_section', locals: {resource: 'seniority', resources: @seniorities, icon: "fa-solid fa-stairs"} %>
+  <%= render partial: 'category_sidebar_section', locals: {resource: 'location', resources: @locations, icon: "fa-solid fa-earth-americas"} %>
+  <%= render partial: 'category_sidebar_section', locals: {title: 'Job Roles', resource: 'role', resources: @roles, icon: "fa-solid fa-person-chalkboard"} %>
+  <%= render partial: 'category_sidebar_section', locals: {title: 'Employment Type', resource: 'employment', resources: @employments, icon: "fa-solid fa-earth-americas"} %>
+  <%= render partial: 'category_sidebar_section', locals: {resource: 'company', resources: @companies, icon: "fa-solid fa-building-user"} %>
+
+</div>
