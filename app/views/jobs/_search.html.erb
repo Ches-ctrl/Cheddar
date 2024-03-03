@@ -3,6 +3,7 @@
     <%= text_field_tag :query,
         params[:query],
         class: 'form-control',
+        style: 'background-color: #FFFFFF; font-style: italic;',
         placeholder: 'Search for any job, company or role... ', id: 'search-jobs' %>
 
     <%= link_to jobs_path, class: 'clear-search-icon' do %>
