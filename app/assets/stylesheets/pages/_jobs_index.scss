@@ -40,6 +40,12 @@
 }
 
 // RHS Section
+#jobs-index-right-section {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 #jobs-index-right-section{
   // width: 1000px;
   justify-content: flex-end;
