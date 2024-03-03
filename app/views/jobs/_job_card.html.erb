@@ -5,7 +5,7 @@
         <div class="row text-center">
           <%# TODO: Store company logo, use clearbit when we don't have one %>
 
-          <div class="col-3 role pe-2 d-flex flex-column align-items-start justify-content-center" data-role="<%= job.job_title %>">
+          <div class="col-5 role pe-2 d-flex flex-column align-items-start justify-content-center" data-role="<%= job.job_title %>">
             <div class="d-flex flex-row">
               <%= link_to company_path(job.company), target: "_blank" do %>
                 <%= image_tag("https://logo.clearbit.com/#{job.company.company_website_url}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", style: "width: 60px; height: 60px; padding-right: 0.5rem;") %>
@@ -51,11 +51,12 @@
             <div>
               <% if SavedJob.where(job_id: job.id).present? %>
                 <%= link_to saved_job_path(job.saved_job_ids), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to remove this job from your list?"} do %>
-                  <i class="fa-solid fa-heart saved-job-heart-icon me-4"></i>
+                  <i class="fa-solid fa-bookmark"></i>
+                  <%# <i class="fa-solid fa-heart saved-job-heart-icon me-4"></i> %>
                 <% end %>
               <% else %>
                 <%= link_to job_saved_jobs_path(job), data: {turbo_method: :post} do %>
-                  <i class="fa-regular fa-heart not-saved-job-heart-icon me-4"></i>
+                  <i class="fa-regular fa-bookmark"></i>
                 <% end %>
               <% end %>
             </div>
