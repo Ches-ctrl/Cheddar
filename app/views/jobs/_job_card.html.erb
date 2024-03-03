@@ -5,7 +5,7 @@
         <div class="row text-center">
           <%# TODO: Store company logo, use clearbit when we don't have one %>
 
-          <div class="col-5 role pe-2 d-flex flex-column align-items-start justify-content-center" data-role="<%= job.job_title %>">
+          <div class="col-5 pe-2 d-flex flex-column align-items-start justify-content-center" data-role="<%= job.job_title %>">
             <div class="d-flex flex-row">
               <%= link_to company_path(job.company), target: "_blank" do %>
                 <%= image_tag("https://logo.clearbit.com/#{job.company.company_website_url}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", style: "width: 60px; height: 60px; padding-right: 0.5rem;") %>
@@ -13,7 +13,7 @@
 
               <div>
                 <%= link_to job_path(job), target: "_blank" do %>
-                  <strong><%= job.job_title.truncate(70) %></strong>
+                  <strong><%= job.job_title %></strong>
                 <% end %>
                 <div class="d-flex small-text">
                   <%= link_to company_path(job.company), target: "_blank" do %>
@@ -26,12 +26,6 @@
                   <% end %>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div class="col-2 d-none job-description-small" data-job-index-toggle-target="newColumn2">
-            <div>
-              <%= job.job_description.truncate(90) %>
             </div>
           </div>
 
