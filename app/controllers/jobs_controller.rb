@@ -19,6 +19,9 @@ class JobsController < ApplicationController
 
     @jobs = @jobs.paginate(page: params[:page], per_page: 20)
 
+    @saved_jobs = SavedJob.all
+    @saved_job_ids = @saved_jobs.map(&:job_id).to_set
+
     if current_user.present?
       @job_applications = JobApplication.where(user_id: current_user.id)
     end
