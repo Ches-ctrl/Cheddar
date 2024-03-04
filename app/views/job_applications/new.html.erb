@@ -29,24 +29,22 @@
   </div>
 
   <%# Iterate over each selected job %>
-  <div class="all-application-forms m-auto">
-    <div id="applicationCarousel" class="carousel slide carousel-fade">
-      <div class="carousel-inner px-5">
-        <% @job_applications.each_with_index do |job, index| %>
-          <div class="carousel-item <%= index == 1 ? "active" : "" %>">
-            <%= render partial: 'job_application_form', locals: {job: job, index: index } %>
-          </div>
-        <% end %>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#applicationCarousel" data-bs-slide="prev" style="width: 7%">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#applicationCarousel" data-bs-slide="next" style="width: 7%">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+  <div id="applicationCarousel" class="carousel slide carousel-fade">
+    <div class="carousel-inner px-5">
+      <% @job_applications.each_with_index do |job, index| %>
+        <div class="carousel-item <%= index == 1 ? "active" : "" %>">
+          <%= render partial: 'job_application_form', locals: {job: job, index: index } %>
+        </div>
+      <% end %>
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#applicationCarousel" data-bs-slide="prev" style="width: 7%">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#applicationCarousel" data-bs-slide="next" style="width: 7%">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
 
   <%= render 'loading' %>
