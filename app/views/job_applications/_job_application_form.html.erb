@@ -4,7 +4,7 @@
     <h2><%= index + 1 %>. <%= job.first.job_title %> - <%= job.first.company.company_name %></h2>
   </summary>
 
-  <div class="text-sm mb-2"><span class="required">*</span> Required fields</div>
+  <div class="text-sm mb-2"><span class="required-asterisk">*</span> Required fields</div>
 
   <%= simple_form_for job, html: { class: 'needs-validation', 'data-all-application-forms-target': "form", 'data-action': 'submit->all-application-forms#submitForm' } do |f| %>
 
@@ -14,106 +14,115 @@
       <% if response_index == 0 %>
         <details class="core-app-details" closed>
         <summary class="mb-2 bolded fs-5 section-title">Personal information</summary>
+          <div class="d-flex flex-row justify-content-between">
       <% end %>
+
 
       <%= f.simple_fields_for "application_responses", response do |ff| %>
-        <div class="form-group row mb-3">
+          <div class="mb-3
+          <%= response.field_name == "first_name" || response.field_name == "last_name" ? "d-flex flex-column flex-fill form-group row" : "form-group row" %>
+          <%= response.field_name == "first_name" ? "me-2" : "" %>"
+          <%= response.field_name == "last_name" ? "ms-2" : "" %>">
 
-          <label class="col-form-label text-sm<%= " d-none" if response.field_name == 'location_click' %>">
-            <%= response.field_name.humanize %>
-            <span class="required"><%= "*" if response.required %></span>
-          </label>
+            <label class="col-form-label text-sm fw-medium
+              <%= "d-none" if response.field_name == 'location_click' %>">
+              <%= response.field_name.humanize %>
+              <span class="required-asterisk"><%= "*" if response.required %></span>
+            </label>
 
-          <% case ff.object.interaction %>
-          <% when "input" %>
-            <div class="col-sm-12 mr-2">
-              <%= ff.input :field_name, as: :hidden, input_html: { class: 'mb-0', style: "margin-bottom: 0px;"}, wrapper_html: { class: 'wrapper-mb-0' }, label: false %>
-              <%= ff.input :field_locator, as: :hidden, input_html: { class: 'mb-0' }, wrapper_html: { class: 'wrapper-mb-0' }, label: false %>
-              <%= ff.input :interaction, as: :hidden, input_html: { class: 'mb-0' }, wrapper_html: { class: 'wrapper-mb-0' }, label: false %>
-              <%= ff.input :field_option, as: :hidden, input_html: { class: 'mb-0' }, wrapper_html: { class: 'wrapper-mb-0' }, label: false %>
-              <%= ff.input :field_value, required: response.required, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name } } %>
-            </div>
-
-          <% when "upload" %>
-            <% if response.field_name == "resume" %>
+            <% case ff.object.interaction %>
+            <% when "input" %>
               <div class="col-sm-12 mr-2">
-                <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-                <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-                <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-                <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-                <%= ff.input :field_value, required: response.required, label_html: { class: "d-none"}, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input" }, value: current_user.resume.attached? ? current_user.resume.filename : "No CV / resume attached", disabled: true }, wrapper_html: { class: 'wrapper-mb-0' } %>
+                <%= ff.input :field_name, as: :hidden, input_html: { class: 'mb-0', style: "margin-bottom: 0px;"}, wrapper_html: { class: 'wrapper-mb-0' }, label: false %>
+                <%= ff.input :field_locator, as: :hidden, input_html: { class: 'mb-0' }, wrapper_html: { class: 'wrapper-mb-0' }, label: false %>
+                <%= ff.input :interaction, as: :hidden, input_html: { class: 'mb-0' }, wrapper_html: { class: 'wrapper-mb-0' }, label: false %>
+                <%= ff.input :field_option, as: :hidden, input_html: { class: 'mb-0' }, wrapper_html: { class: 'wrapper-mb-0' }, label: false %>
+                <%= ff.input :field_value, required: response.required, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name } } %>
               </div>
 
-            <% elsif response.field_name == "cover_letter_" %>
-              <div class="col-sm-12 mr-2", data-controller="template-select">
+            <% when "upload" %>
+              <% if response.field_name == "resume" %>
+                <div class="col-sm-12 mr-2">
+                  <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                  <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                  <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                  <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                  <%= ff.input :field_value, required: response.required, label_html: { class: "d-none"}, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input" }, value: current_user.resume.attached? ? current_user.resume.filename : "No CV / resume attached", disabled: true }, wrapper_html: { class: 'wrapper-mb-0' } %>
+                </div>
+
+              <% elsif response.field_name == "cover_letter_" %>
+                <div class="col-sm-12 mr-2", data-controller="template-select">
+                  <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                  <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                  <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                  <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+
+                  <% templates = ["Write from Scratch"] %>
+                  <% current_user.cover_letter_templates.each { |cover_letter| templates << cover_letter.filename } %>
+
+                  <%= ff.input :field_value, as: :select, required: response.required, collection: templates, label: false, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input", action: "change->template-select#select"} }, wrapper_html: { class: 'wrapper-mb-0' } %>
+
+                  <textarea id=<%= "coverLetterEditor-#{job[0].id}" %> class = "d-none" data-template-select-target="editor" data-all-application-forms-target="editor"></textarea>
+                  <%= ff.hidden_field :cover_letter_content, id: "hiddenCoverLetterField-#{job[0].id}", data: { all_application_forms_target: "content" } %>
+                </div>
+              <% end %>
+
+            <% when "combobox" %>
+              <div class="col-sm-12">
                 <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                 <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                 <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                 <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                <%= ff.input :field_value, required: response.required, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name } } %>
+              </div>
 
-                <% templates = ["Write from Scratch"] %>
-                <% current_user.cover_letter_templates.each { |cover_letter| templates << cover_letter.filename } %>
+            <% when "radiogroup" %>
+              <div class="col-sm-12">
+                <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                <%= ff.input :field_value, required: response.required, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input"} } %>
+              </div>
 
-                <%= ff.input :field_value, as: :select, required: response.required, collection: templates, label: false, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input", action: "change->template-select#select"} }, wrapper_html: { class: 'wrapper-mb-0' } %>
+            <% when "listbox" %>
+              <div class="col-sm-12<%= " d-none" if response.field_name == 'location_click' %>">
+                <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                <%= ff.input :field_value, as: :boolean, required: response.required, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input"} } %>
+              </div>
 
-                <textarea id=<%= "coverLetterEditor-#{job[0].id}" %> class = "d-none" data-template-select-target="editor" data-all-application-forms-target="editor"></textarea>
-                <%= ff.hidden_field :cover_letter_content, id: "hiddenCoverLetterField-#{job[0].id}", data: { all_application_forms_target: "content" } %>
+            <% when "checkbox" %>
+              <div class="col-sm-12">
+                <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                <% field_options = JSON.parse(response.field_options) %>
+                <%= ff.input :field_value, as: :check_boxes, collection: field_options, legend_tag: false, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input"} } %>
+              </div>
+
+            <% when "select" %>
+              <div class="col-sm-12">
+                <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                <% field_options = JSON.parse(response.field_options) %>
+                <%= ff.input :field_value, as: :select, required: response.required, collection: field_options, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input"} } %>
+
+                <%# TODO: Add stimulus controller to be able to click on core details and go to edit page if not filled in %>
+                <%# TODO: Update schema so that field_options is an array rather than string to prevent current need for JSON.parse %>
               </div>
             <% end %>
+            <% if response.field_name == "last_name" %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
 
-          <% when "combobox" %>
-            <div class="col-sm-12">
-              <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <%= ff.input :field_value, required: response.required, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name } } %>
-            </div>
-
-          <% when "radiogroup" %>
-            <div class="col-sm-12">
-              <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <%= ff.input :field_value, required: response.required, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input"} } %>
-            </div>
-
-          <% when "listbox" %>
-            <div class="col-sm-12<%= " d-none" if response.field_name == 'location_click' %>">
-              <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <%= ff.input :field_value, as: :boolean, required: response.required, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input"} } %>
-            </div>
-
-          <% when "checkbox" %>
-            <div class="col-sm-12">
-              <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <% field_options = JSON.parse(response.field_options) %>
-              <%= ff.input :field_value, as: :check_boxes, collection: field_options, legend_tag: false, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input"} } %>
-            </div>
-
-          <% when "select" %>
-            <div class="col-sm-12">
-              <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
-              <% field_options = JSON.parse(response.field_options) %>
-              <%= ff.input :field_value, as: :select, required: response.required, collection: field_options, label: false, wrapper_html: { class: 'wrapper-mb-0' }, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input"} } %>
-
-              <%# TODO: Add stimulus controller to be able to click on core details and go to edit page if not filled in %>
-              <%# TODO: Update schema so that field_options is an array rather than string to prevent current need for JSON.parse %>
-            </div>
-          <% end %>
-
-        </div>
-      <% end %>
 
       <% if response.field_name == "cover_letter_" %> <%# This is the last CORE APPLICATION FIELD%>
         </details>
