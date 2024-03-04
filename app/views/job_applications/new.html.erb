@@ -12,12 +12,7 @@
 <div class="container mt-3 col-sm-6" data-controller="all-application-forms" data-all-application-forms-user-value="<%= current_user.id %>" data-all-application-forms-jobs-count="<%= @selected_jobs.size %>">
   <div class="d-flex justify-content-between align-items-center sticky-top bg-white pt-2 pb-4">
 
-    <div class="company-apply-summary p-2 d-flex">
-      <% @selected_jobs.each_with_index do |job, index| %>
-        <div><%= index + 1 %></div>
-        <%= link_to image_tag("https://logo.clearbit.com/#{job.company.company_website_url}?size=60px", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", class: 'img-fluid'), job.job_posting_url, target: '_blank', class: 'apply-company-logo' %>
-      <% end %>
-    </div>
+    <%= render 'job_application_summary' %>
 
     <div class="d-flex justify-content-end align-items-center">
       <div class="btn btn-apply mt-1 <%= 'disabled' unless current_user.resume.attached? %>"
