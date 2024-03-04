@@ -22,7 +22,7 @@ RSpec.feature "Jobs", type: :feature do
       expect(page).to have_content("Graduate Software Developer")
       expect(page).to have_content("Data Analyst")
       expect(page).to have_content("Senior UI Engineer")
-      expect(page).to have_content("#{Job.all.count} Jobs")
+      expect(page).to have_content("#{Job.all.count} jobs")
     end
 
     scenario "User can select three jobs" do
@@ -77,7 +77,7 @@ RSpec.feature "Jobs", type: :feature do
     scenario "User can filter jobs by location" do
       check('london')
 
-      expect(page).to have_content("#{Job.where(city: 'London').count} Jobs")
+      expect(page).to have_content("#{Job.where(city: 'London').count} jobs")
     end
 
     scenario "User can filter jobs by role" do
