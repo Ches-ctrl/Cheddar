@@ -1,4 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe JobsController do
+RSpec.describe JobsController, type: :controller do
 end

@@ -1,10 +1,10 @@
-<div id="jobs-search-bar">
-  <%= form_tag jobs_path, method: :get, class: 'd-flex' do %>
+<div id="jobs-search-bar" class="search-bar-background">
+  <%= form_tag jobs_path, method: :get, class: 'd-flex', data: { action: "submit->select-by-job-type#combinedSearch" } do %>
     <%= text_field_tag :query,
         params[:query],
         class: 'form-control',
-        style: 'background-color: #FFFFFF; font-style: italic;',
-        placeholder: 'Search for any job, company or role... ', id: 'search-jobs' %>
+        placeholder: 'Search for any job, company or role... ', id: 'search-jobs',
+        data: { 'select-by-job-type-target': 'search' } %>
 
     <%= link_to jobs_path, class: 'clear-search-icon' do %>
       <i class="fa-solid fa-x"></i>

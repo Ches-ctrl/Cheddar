@@ -14,8 +14,19 @@
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'rails_helper'
+require 'capybara/rspec'
+
+Capybara.configure do |config|
+  config.run_server = true
+  config.raise_server_errors = true
+  config.server = :default
+end
 
 RSpec.configure do |config|
+  # Use the headless browser for feature testing:
+  config.before(:each, type: :feature) do
+    Capybara.current_driver = :selenium_chrome_headless
+  end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
