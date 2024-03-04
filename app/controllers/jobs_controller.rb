@@ -11,12 +11,13 @@ class JobsController < ApplicationController
     # TODO: Implement pagination for the remaining jobs
 
     @jobs = Job.where.not(location: "").includes(:company)
+
     # When a job doesn't actually exist, its location is nil.
 
     build_filter_sidebar_resources
     filter_jobs_by_params
 
-    @jobs = @jobs.paginate(page: params[:page], per_page: 10)
+    @jobs = @jobs.paginate(page: params[:page], per_page: 20)
 
     if current_user.present?
       @job_applications = JobApplication.where(user_id: current_user.id)

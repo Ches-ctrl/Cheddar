@@ -1,10 +1,7 @@
-<div class="col-sm-3" id="jobs-index-left-section" data-job-index-toggle-target="leftSection">
+<div class="col-sm-3" data-job-index-toggle-target="leftSection">
 
-  <div class="d-flex justify-content-between bg-white pt-1">
-    <h6 id="jobs-index-left-section-title">
-      <%= @jobs.count %>
-      Jobs
-    </h6>
+  <div>
+    <p class="pb-0"><%= @jobs.count %> jobs</p>
   </div>
 
   <% section_titles = ['Seniority', 'Location', 'Job Roles', 'Employment Type', 'Company'] %>
