@@ -1,7 +1,8 @@
 class SavedJobsController < ApplicationController
 
   def index
-    @saved_jobs = SavedJob.where(user_id: current_user.id)
+    @saved_jobs = SavedJob.includes(job: :company).where(user_id: current_user.id)
+    @saved_job_ids = @saved_jobs.map(&:job_id).to_set
   end
 
   def new
@@ -10,7 +11,7 @@ class SavedJobsController < ApplicationController
   end
 
   def create
-    @saved_job = SavedJob.new()
+    @saved_job = SavedJob.new
     @saved_job.user = current_user
     @job = Job.find(params[:job_id])
     @saved_job.job = @job
