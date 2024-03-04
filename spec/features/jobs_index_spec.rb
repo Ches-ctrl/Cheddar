@@ -113,9 +113,9 @@ RSpec.feature "Jobs", type: :feature do
     end
   end
 
-  context "With more than 10 jobs to display:" do
+  context "With multiple pages of jobs to display:" do
     before do
-      30.times do
+      40.times do
         create(:job, seniority: 'Senior')
       end
 
@@ -123,13 +123,14 @@ RSpec.feature "Jobs", type: :feature do
     end
 
     scenario "User can visit the next page of job postings" do
-      job5 = Job.all[4]
-      job15 = Job.all[14]
+      jobs_per_page = find('body').text.match(/Displaying Jobs? \d+ - (\d+) of \d+/i)[1].to_i
+      job1 = Job.all[jobs_per_page - 1]
+      job2 = Job.all[jobs_per_page + 1]
 
       find('a[aria-label="Page 2"]').click
 
-      expect(page).to have_content(job15.job_title)
-      expect(page).not_to have_content(job5.job_title)
+      expect(page).to have_content(job2.job_title)
+      expect(page).not_to have_content(job1.job_title)
     end
   end
 
