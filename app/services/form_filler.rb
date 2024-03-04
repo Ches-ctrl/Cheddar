@@ -5,71 +5,52 @@ require 'htmltoword'
 class FormFiller
   include Capybara::DSL
 
-  # TODO: Handle job posting becoming closed (redirect or notification on page)
-  # TODO: Review code for inefficient loops and potential optimisations
-  # TODO: Add ruby monitoring tools to monitor performance and execution
-  # TODO: Implement caching for both user and form inputs. At the moment we request the database every time we want an input
-  # TODO: Cache values at beginning of session and then update cache when user changes values
-  # TODO: Enable multi-job application support in form_filler and cache before all applications are submitted
-  # TODO: Restrict search to certain portions of the page
-
-  # Could we implement caching for form inputs? So once you've done it once it becomes less intensive
-
   def fill_out_form(url, fields, job_application_id)
-    # SETUP Capybara
     @job_application = JobApplication.find_by_id(job_application_id)
     @user = @job_application.user
     @job = @job_application.job
     @errors = nil
+
     visit(url)
     find_apply_button.click rescue nil
 
-    pp fields # for testing purposes
-
     fields.each do |field|
       field = field[1]
-      p field
       case field['interaction']
       when 'input'
         begin
           fill_in(field['locators'], with: field['value'])
         rescue Capybara::ElementNotFound
-          p "Field locator #{field['locators']} is not found"
           find(field['locators']).set(field['value']) rescue nil
         end
       when 'combobox'
         begin
           select_option_from_combobox(field['locators'], field['option'], field['value'])
         rescue Capybara::ElementNotFound
-          p "Field locator #{field['locators']} is not found"
           @errors = true
         end
       when 'radiogroup'
         begin
           select_option_from_radiogroup(field['locators'], field['option'], field['value'])
         rescue Capybara::ElementNotFound
-          p "Field locator #{field['locators']} is not found"
           @errors = true
         end
       when 'listbox'
         begin
           select_option_from_listbox(field['locators'])
         rescue NoMethodError
-          p "Field locator #{field['locators']} is not found"
           @errors = true
         end
       when 'select'
         begin
           select_option_from_select(field['locators'], field['option'], field['value'])
         rescue Capybara::ElementNotFound
-          p "Field locator #{field['locators']} is not found"
           @errors = true
         end
       when 'checkbox'
         begin
           select_options_from_checkbox(field['locators'], field['value'])
         rescue Capybara::ElementNotFound
-          p "Field locator #{field['locators']} is not found"
           @errors = true
         end
       when 'upload'
@@ -78,22 +59,14 @@ class FormFiller
             upload_file(field['locators'], field['value'])
           end
         rescue Capybara::ElementNotFound
-          p "Field locator #{field['locators']} is not found"
           @errors = true
         end
       end
-
     end
 
-    # TODO: Add submit form capability to the FormFiller
-    # TODO: Add check on whether form has been submitted successfully
-
-    # Return a screenshot of the submitted form
-    # submit = find_submit_button.click rescue nil
-    # p "submit button is #{submit}"
-    # find_submit_button.click rescue nil
     take_screenshot_and_store(job_application_id)
     close_session(job_application_id)
+
     fields.each do |field|
       attribute = field[1]
       if field[0] == 'resume'
@@ -104,13 +77,14 @@ class FormFiller
         File.delete(file_path) if File.exists?(file_path)
       end
     end
+
     @job_application.update(status: 'Applied')
   end
+
 
   private
 
   def close_session(job_application_id)
-    # take_screenshot_and_store(job_application_id)
     Capybara.send(:session_pool).each { |name, ses| ses.driver.quit }
   end
 
@@ -139,47 +113,33 @@ class FormFiller
 
   def select_option_from_select(listbox_locator, option_locator, option_text)
     begin
-      p "Printing some info for testing..."
-      p listbox_locator, option_locator, option_text
       within "##{listbox_locator}" do
         find(option_locator, text: option_text).click
       end
-      p "checkpoint"
     rescue Selenium::WebDriver::Error::ElementNotInteractableError
-      p 'cannot interact with hidden element'
-      p listbox_locator
       new_locator = page.find("label ##{listbox_locator}")
-      p new_locator
       new_locator.ancestor("label").find("a").click
-      p "Select box clicked"
       find("li", text: option_text).click
-      p "checkpoint two"
     end
   end
 
   def select_options_from_checkbox(checkbox_locator, option_text)
-    p checkbox_locator, option_text
     option_text = JSON.parse(option_text)
     begin
       within('label', text: checkbox_locator) do
-        p "I am within the #{checkbox_locator} checkbox"
         option_text.each do |option|
           begin
             check(option)
           rescue Capybara::ElementNotFound
-            p "Unable to check #{option}"
           end
         end
       end
     rescue Capybara::ElementNotFound
-      p "Dem section"
       within(:xpath, "//div[contains(text(), '#{checkbox_locator}')]") do
-        p "I am within the #{checkbox_locator} checkbox"
         option_text.each do |option|
           begin
             check(option)
           rescue Capybara::ElementNotFound
-            p "Unable to check #{option}"
           end
         end
       end
@@ -213,12 +173,10 @@ class FormFiller
     screenshot_path = Rails.root.join('tmp', "screenshot-#{job_application_id}.png")
     page.save_screenshot(screenshot_path, full: true)
 
-    # Store the screenshot using Active Storage
     file = File.open(screenshot_path)
-    job_app = JobApplication.find(job_application_id) # Replace with your actual job_app using the id from the initialize method
+    job_app = JobApplication.find(job_application_id)
     job_app.screenshot.attach(io: file, filename: "screenshot-#{job_application_id}.png", content_type: 'image/png')
 
-    # Clean up temporary screenshot file
     File.delete(screenshot_path)
   end
 end

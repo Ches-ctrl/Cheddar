@@ -1,9 +1,13 @@
+<%# The title meta tag here seems to be affecting the filter_category_sidebar. Not sure how to fix because I don't want to break anything but uncomment the title "All Jobs" below to see what I mean %>
+
+<%# <% title "All Jobs" %>
+<% description "Discover thousands of jobs on our platform. With Cheddar's innovative one-click applciation process, you can select multiple positions that interest you and apply to all of them at once without having to leave our site." %>
 <div class="container" data-controller="select-by-job-type styling-selected-job">
   <div class="search-container d-flex justify-content-center align-items-center">
     <%= render 'search' %>
   </div>
     <div class="row d-flex justify-content-between" data-controller="job-index-toggle">
-      
+
       <%= render 'filter_category_sidebar' %>
 
       <%# RHS Section Divider %>

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_tags
 
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
@@ -12,5 +13,23 @@ class ApplicationController < ActionController::Base
 
   def user_root_path
     profile_url
+  end
+
+  def set_tags
+    set_meta_tags description: "Simply your job search with our automation job application platform, blending simplicity with a climate-first approach. Streamline your application process and apply for multiple job with just one click on our platform. Kickstart your career with Cheddar - the only site you need to get hired!",
+                  keywords: "job, jobs, apply, application, automated, climate, hired, search, quick, fast, automation, one, click, effortless, career, first, entry-level",
+                  og: {
+                    description: "Simply your job search with our automation job application platform, blending simplicity with a climate-first approach. Streamline your application process and apply for multiple job with just one click on our platform. Kickstart your career with Cheddar - the only site you need to get hired!",
+                    type: 'website',
+                    url: 'https://www.cheddarjobs.com/',
+                    image: 'https://www.cheddarjobs.com/',
+                    site_name: 'Cheddar'
+                  },
+                  twitter: {
+                    card: 'summary',
+                    site: 'Cheddar',
+                    description: 'Simply your job search with our automation job application platform, blending simplicity with a climate-first approach. Streamline your application process and apply for multiple job with just one click on our platform. Kickstart your career with Cheddar - the only site you need to get hired!',
+                    image: 'https://www.cheddarjobs.com/'
+                  }
   end
 end
