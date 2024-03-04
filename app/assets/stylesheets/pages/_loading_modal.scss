@@ -8,6 +8,11 @@
   z-index: 1100; /* Ensure the overlay is above other content */
 }
 
+.img-fluid {
+  max-width: 50px; // Adjust as needed
+  height: auto;
+}
+
 // .modal {
 //   position: fixed;
 //   top: 50%;

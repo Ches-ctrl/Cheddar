@@ -1,15 +1,21 @@
 // Import page-specific CSS files here.
+
+// Main user journey pages
 @import "home";
-@import "footer";
+@import "jobs_index";
+@import "apply";
+@import "loading_modal";
+@import "success";
+
+// Important static pages
+@import "profile";
+@import "company";
+
+// Additional static pages
+@import "about";
+@import "how_it_works";
+@import "faqs";
+
+// Components (to move)
 @import "home_floating_icons";
 @import "home_social_proof";
-@import "faqs";
-@import "jobs_table";
-@import "profile";
-@import "apply_jobs";
-@import "jobs_index";
-@import "success";
-@import "how_it_works";
-@import "about";
-@import "loading_modal";
-@import "company";

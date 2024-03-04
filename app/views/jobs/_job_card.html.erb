@@ -1,93 +1,63 @@
-<div class="row mb-3"  data-select-by-job-type-target="jobRow" data-styling-selected-job-target="jobCard">
-  <div class="col-12">
-    <div class="card job-card">
-      <div class="card-body">
-        <div class="row text-center">
-          <%# TODO: Store company logo, use clearbit when we don't have one %>
+<div class="card job-card mb-2" data-select-by-job-type-target="jobRow">
+  <div class="row card-body">
+    <%# TODO: Store company logo, use clearbit when we don't have one %>
 
-          <div class="col-3 role pe-2 d-flex flex-column align-items-start justify-content-center" data-role="<%= job.job_title %>">
-            <div class="d-flex flex-row">
-              <%= link_to company_path(job.company), target: "_blank" do %>
-                <%= image_tag("https://logo.clearbit.com/#{job.company.company_website_url}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", style: "width: 60px; height: 60px; padding-right: 0.5rem;") %>
-              <% end %>
+    <%# Logo %>
+    <div class="col-5 d-flex flex-row align-items-center">
+      <div class="d-flex justify-content-center align-items-center mx-2">
+        <%= link_to company_path(job.company), target: "_blank" do %>
+          <%= image_tag("https://logo.clearbit.com/#{job.company.company_website_url}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", style: "width: 60px; height: 60px; padding-right: 0.5rem;") %>
+        <% end %>
+      </div>
 
-              <div>
-                <%= link_to job_path(job), target: "_blank" do %>
-                  <strong><%= job.job_title.truncate(70) %></strong>
-                <% end %>
-                <div class="d-flex small-text">
-                  <%= link_to company_path(job.company), target: "_blank" do %>
-                    <%= job.company.company_name %>
-                  <% end %>
-                  <%# TODO: Truncate properly %>
-                  <% if job.location.present? %>
-                    <div class="mx-1">•</div>
-                    <div><%= job.location.truncate(20) %></div>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
+      <%# Job Title, Company, Location %>
+      <div class="d-flex flex-column justify-content-center align-items-start" data-role="<%= job.job_title %>">
+        <%= link_to job_path(job), target: "_blank" do %>
+          <strong><%= job.job_title.truncate(35) %></strong>
+        <% end %>
 
-          <div class="col-2 d-none job-description-small" data-job-index-toggle-target="newColumn2">
-            <div>
-              <%= job.job_description.truncate(90) %>
-            </div>
-          </div>
+        <%= link_to company_path(job.company), target: "_blank" do %>
+          <strong class="text-sm"><%= job.company.company_name %></strong>
+        <% end %>
 
-          <%# Job Details %>
-          <div class="col-2 d-flex flex-column align-items-center justify-content-center small-text">
-            <div class="salaryBudget"><%= job.salary ? "£#{number_with_delimiter(job.salary, delimiter: ',')}" : "£ -" %></div>
-            <div><i class="fa-solid fa-hourglass-end"></i> X days </div>
-            <div><i class="fa-solid fa-stopwatch"></i> <%= job.application_deadline ? job.application_deadline.strftime("%d-%m") : "n/a" %></div>
-          </div>
+        <% if job.location.present? %>
+          <div class="text-sm"><%= job.location %></div>
+        <% end %>
+      </div>
+    </div>
 
-          <%# Impact Assessment of Company %>
-          <div class="col-2 d-flex flex-column align-items-center justify-content-center small-text">
-            <p class="mb-0"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></p>
-            <p class="mb-0">No target</p>
+    <%# Job Details %>
+    <div class="col-7 d-flex flex-row justify-content-between align-items-center">
 
-          </div>
+      <%# Salary etc. %>
+      <div class="d-flex flex-column align-items-end justify-space-between text-sm">
+        <div class="salaryBudget"><%= job.salary ? "£#{number_with_delimiter(job.salary, delimiter: ',')}" : "£ ---" %></div>
+        <div>Permanent • Hybrid</div>
+        <div><%= job.created_at.strftime("%d/%m") %> ----- <%= job.application_deadline ? job.application_deadline.strftime("%d/%m") : "n/a" %></div>
+      </div>
 
-          <%# Job Requirements %>
-          <div class="col-2 d-flex flex-column align-items-center justify-content-center">
-            <div class="d-flex flex-row justify-content-between mb-2">
-              <div class="me-2">CV</div>
-              <div class="me-2">CL</div>
-              <div class="me-2">Test</div>
-            </div>
-            <div class="d-flex flex-row justify-content-between">
-              <i class="fa-solid fa-chalkboard-user me-2"></i>
-              <i class="fa-solid fa-chalkboard-user me-2"></i>
-            </div>
-          </div>
+      <%# Net Zero Rating %>
+      <div class="d-flex flex-column align-items-center justify-content-center text-sm">
+        <div class="climate-rating">climate neutral</div>
+      </div>
 
-          <div class="col-2 d-flex align-items-center justify-content-center">
-            <div>
-              <% if SavedJob.where(job_id: job.id).present? %>
-                <%= link_to saved_job_path(job.saved_job_ids), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to remove this job from your list?"} do %>
-                  <i class="fa-solid fa-heart saved-job-heart-icon me-4"></i>
-                <% end %>
-              <% else %>
-                <%= link_to job_saved_jobs_path(job), data: {turbo_method: :post} do %>
-                  <i class="fa-regular fa-heart not-saved-job-heart-icon me-4"></i>
-                <% end %>
-              <% end %>
-            </div>
-            <% if defined?(current_user) && current_user.present? && JobApplication.where(job_id: job.id, user_id: current_user.id).present? %>
-              <div class="already-applied-tick">
-                <i class="fa-solid fa-check"></i>
-              </div>
-            <% else %>
-              <div class="selectBox">
-                <label class="custom-checkbox" data-job-index-toggle-target="jobCheckbox" data-action="click->job-index-toggle#updateApplyButton">
-                  <%= check_box_tag "job_ids[]", job.id, id: "job_id", class: 'select-job-box', data: { styling_selected_job_target: "checkBox", action: 'change->styling-selected-job#styleCard' } %>
-                  <span class="checkmark"></span>
-                </label>
-              </div>
-            <% end %>
-          </div>
-        </div>
+      <%# Ease of Applying %>
+      <div class="d-flex flex-column align-items-center justify-content-center text-sm">
+        <div class="apply-rating">easy</div>
+      </div>
+
+
+      <%# Add job to basket %>
+      <div class="d-flex align-items-center justify-content-center me-3">
+        <% if SavedJob.where(job_id: job.id).present? %>
+          <%= link_to saved_job_path(job.saved_job_ids), data: {turbo_method: :delete} do %>
+            <i class="fa-solid fa-bookmark"></i>
+          <% end %>
+        <% else %>
+          <%= link_to job_saved_jobs_path(job), data: {turbo_method: :post} do %>
+            <i class="fa-regular fa-bookmark"></i>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
