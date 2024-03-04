@@ -1,18 +1,18 @@
 <details class="application-form mb-3" open>
 
   <summary class="pb-1" style="display: block">
-    <h2><%= index + 1 %>. <%= job.first.job_title %></h2>
+    <h2><%= index + 1 %>. <%= job.first.job_title %> - <%= job.first.company.company_name %></h2>
   </summary>
+
+  <div class="mb-2">* Required fields</div>
 
   <%= simple_form_for job, html: { class: 'needs-validation', 'data-all-application-forms-target': "form", 'data-action': 'submit->all-application-forms#submitForm' } do |f| %>
 
-    <%# Dynamically create form elements based on application_criteria %>
-    <%# Convert to simple_fields_for application_responses. Then use those to create the input fields below. %>
+    <%# Dynamically creates form elements based on application_criteria - converts to fields ready for application responses. %>
     <% job.last.application_responses.each_with_index do |response, response_index| %>
-      <%# Console.log the hash of application responses %>
 
       <% if response_index == 0 %>
-        <details class="core-details bg-light" closed>
+        <details class="core-app-details" closed>
         <summary class="mb-2 bolded">Personal information</summary>
       <% end %>
 
@@ -30,7 +30,7 @@
             </div>
           <% when "upload" %>
             <% if response.field_name == "resume" %>
-              <div class="col-sm-9 mr-2">
+              <div class="col-sm-12 mr-2">
                 <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                 <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                 <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
@@ -38,7 +38,7 @@
                 <%= ff.input :field_value, required: response.required, label_html: { class: "d-none"}, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input" }, value: current_user.resume.attached? ? current_user.resume.filename : "No CV / resume attached", disabled: true }, wrapper_html: { class: 'wrapper-mb-0' } %>
               </div>
             <% elsif response.field_name == "cover_letter_" %>
-              <div class="col-sm-9 mr-2", data-controller="template-select">
+              <div class="col-sm-12 mr-2", data-controller="template-select">
                 <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                 <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                 <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
@@ -102,7 +102,7 @@
 
       <% if response.field_name == "cover_letter_" %> <%# This is the last CORE APPLICATION FIELD%>
         </details>
-        <details class="core-details bg-light" open> <%# Add a new details tag for additional details %>
+        <details class="core-app-details" open> <%# Add a new details tag for additional details %>
           <summary class="mb-2 bolded">Additional requirements</summary> <%# Close the additional details tag %>
       <% end %>
       <% if response_index + 1 == job.last.application_responses.length %>
