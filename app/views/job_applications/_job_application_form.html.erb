@@ -18,7 +18,7 @@
 
       <%= f.simple_fields_for "application_responses", response do |ff| %>
         <div class="form-group row mb-3">
-          <label class="col-sm-3 col-form-label text-sm<%= " d-none" if response.field_name == 'location_click' %>"><%= response.field_name.humanize %><%= " *" if response.required %></label>
+          <label class="col-form-label text-sm<%= " d-none" if response.field_name == 'location_click' %>"><%= response.field_name.humanize %><%= "*" if response.required %></label>
           <% case ff.object.interaction %>
           <% when "input" %>
             <div class="col-sm-12 mr-2">
