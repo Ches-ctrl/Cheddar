@@ -36,6 +36,9 @@
     <% if user_signed_in? %>
       <ul class="mb-2 d-flex align-items-center">
         <%= link_to saved_jobs_path, class: "nav-link d-flex flex-column align-items-center pt-1 pb-0" do %>
+          <i class="fa-regular fa-bell d-none"></i>
+        <% end %>
+        <%= link_to saved_jobs_path, class: "nav-link d-flex flex-column align-items-center pt-1 pb-0 ms-3" do %>
           <i class="fa-solid fa-cart-shopping"></i>
         <% end %>
         <li class="nav-item dropdown mb-2 ms-2">

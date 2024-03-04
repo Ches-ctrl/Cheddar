@@ -1,4 +1,4 @@
-<details class="application-form bg-body-secondary mb-3" open>
+<details class="application-form mb-3" open>
 
   <summary class="pb-1" style="display: block">
     <h2><%= index + 1 %>. <%= job.first.job_title %></h2>
@@ -110,7 +110,7 @@
       <% end %>
     <% end %>
 
-    <div class="d-flex justify-content-end align-items-end">
+    <div class="d-flex justify-content-end align-items-end d-none">
       <%= f.submit 'Submit this app', class: 'btn btn-cheddar-secondary', disabled: !current_user.resume.attached? %>
     </div>
   <% end %>
