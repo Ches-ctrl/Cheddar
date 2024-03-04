@@ -11,6 +11,7 @@ class JobsController < ApplicationController
     # TODO: Implement pagination for the remaining jobs
 
     @jobs = Job.where.not(location: "").includes(:company)
+
     # When a job doesn't actually exist, its location is nil.
 
     # For each resource, store: [display_name, element_id, matching_jobs_count]
@@ -67,6 +68,7 @@ class JobsController < ApplicationController
     @job = Job.new # why do we have this here?
     @saved_job = SavedJob.new # why initialize SavedJob here?
     @saved_jobs = SavedJob.all
+    @saved_job_ids = @saved_jobs.map(&:job_id).to_set
 
     if current_user.present?
       @job_applications = JobApplication.where(user_id: current_user.id)

@@ -49,7 +49,7 @@
 
       <%# Add job to basket %>
       <div class="d-flex align-items-center justify-content-center me-3">
-        <% if SavedJob.where(job_id: job.id).present? %>
+        <% if @saved_job_ids.include?(job.id) %>
           <%= link_to saved_job_path(job.saved_job_ids), data: {turbo_method: :delete} do %>
             <i class="fa-solid fa-bookmark"></i>
           <% end %>

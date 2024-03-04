@@ -1,6 +1,7 @@
 class JobApplicationsController < ApplicationController
   # before_action :authenticate_user!, except: [:new]
   # TODO: Update this to allow unregistered users to test job applications
+  # TODO: Fix issue with cookies where they are not removed when the user goes back to job_applications/new
 
   def index
     @job_applications = JobApplication.all.where(user_id: current_user.id)
@@ -11,7 +12,8 @@ class JobApplicationsController < ApplicationController
 
   def new
     if current_user.present?
-      @selected_jobs = Job.find(cookies[:selected_job_ids].split("&"))
+      job_ids = cookies[:selected_job_ids].split("&")
+      @selected_jobs = Job.includes(:company).find(job_ids)
 
       @job_applications = @selected_jobs.map do |job|
         job_application = job.new_job_application_for_user(current_user)

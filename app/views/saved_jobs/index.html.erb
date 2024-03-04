@@ -1,14 +1,19 @@
-<div class="container" data-controller="job-index-toggle">
+<div class="container">
   <%= form_tag apply_jobs_path, method: :post do %>
 
     <div class="d-flex align-items-center justify-content-between">
-      <h3 id="saved-jobs-index-title">My Saved Jobs</h3>
-      <div><%= submit_tag "Apply to 0 Jobs", id: "apply-button", "data": {job_index_toggle_target: "applyButton"}, class: "btn btn-apply" %></div>
+      <h3 id="saved-jobs-index-title">Basket</h3>
+      <div><%= submit_tag "Apply to 0 jobs", class: "btn btn-apply" %></div>
     </div>
 
-    <div class="job-cards-container pt-0" data-controller="load-more">
+    <div class="job-cards-container pt-0">
         <%= render partial: 'jobs/job_card', collection: @saved_jobs.map(&:job), as: :job %>
     </div>
 
+    <% @saved_jobs.each do |saved_job| %>
+      <div class="job-card">
+        <%= check_box_tag "job_ids[]", saved_job.job.id %>
+      </div>
+    <% end %>
   <% end %>
 </div>
