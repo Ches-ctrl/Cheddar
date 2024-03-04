@@ -10,5 +10,10 @@
         <%= render partial: 'jobs/job_card', collection: @saved_jobs.map(&:job), as: :job %>
     </div>
 
+    <% @saved_jobs.each do |saved_job| %>
+      <div class="job-card">
+        <%= check_box_tag "job_ids[]", saved_job.job.id %>
+      </div>
+    <% end %>
   <% end %>
 </div>
