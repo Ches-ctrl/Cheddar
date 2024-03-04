@@ -46,13 +46,25 @@
   margin-bottom: 15px;
 }
 
+// Application Form Sections
+.section-title {
+  border-bottom: 1px solid #e7ecf3;
+}
+
+
+
+
 .core-app-details {
   background: #FFFFFF;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  // border-radius: 8px;
+  // box-shadow: 0 0 10px rgba(0,0,0,0.1);
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 10px;
   margin-bottom: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+// Application Form Elements
+.required {
+  color: #D04334;
 }
