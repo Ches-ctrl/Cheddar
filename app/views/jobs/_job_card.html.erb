@@ -58,6 +58,12 @@
             <i class="fa-regular fa-bookmark"></i>
           <% end %>
         <% end %>
+        <% include_checkboxes ||= false %>
+        <% if include_checkboxes %>
+          <div class="ms-3">
+            <%= check_box_tag "job_ids[]", job.id %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
