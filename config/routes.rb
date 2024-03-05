@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Jobs
-  get '/jobs', to: 'jobs#index', as: :jobs
+  # TODO: Delete duplication of routes
   get '/jobs/add', to: 'jobs#add'
   get '/jobs/add_job', to: 'jobs#add_job'
 
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   post '/chatbot/chat', to: 'messages#chat'
 
   # Resources
-  resources :jobs, only: [:show, :create] do
+  resources :jobs, only: [:index, :show, :create] do
     resources :saved_jobs, only: [:create]
     collection do
       post :apply_to_selected_jobs, as: :apply
