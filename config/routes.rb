@@ -17,15 +17,6 @@ Rails.application.routes.draw do
   get 'profile', to: 'users#show', as: 'profile'
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Pages
-  get "about" => "pages#about"
-  get "test" => "pages#test"
-  get "faqs" => "pages#faqs"
-  get "howitworks" => "pages#how_it_works", as: :how_it_works
-  get "success" => "pages#success", as: :success
-  get "temp" => "pages#temp"
-  get "climate" => "pages#climate"
-
   # Jobs
   get '/jobs', to: 'jobs#index', as: :jobs
   get '/jobs/add', to: 'jobs#add'
@@ -50,8 +41,6 @@ Rails.application.routes.draw do
       get :status
     end
   end
-
-  # get '/jobs/:id/find_job_application/:user_id', to: 'jobs#find_job_application', as: :find_job_application
 
   resources :saved_jobs, only: [:index, :show, :destroy]
   resources :educations, only: [:new, :create]
