@@ -210,7 +210,7 @@ greenhouse_job_urls = [
   "https://boards.greenhouse.io/knowde/jobs/4576119003",
   "https://boards.greenhouse.io/narvar/jobs/5388111",
   "https://boards.greenhouse.io/niantic/jobs/7068655002",
-  "https://boards.greenhouse.io/openai/jobs/4907945004",
+  # "https://boards.greenhouse.io/openai/jobs/4907945004", OPENAI JOBS HAVE MIGRATED TO ASHBYHQ, NO LONGER ON GREENHOUSE
   "https://boards.greenhouse.io/opendoor/jobs/4255190006",
   # "https://boards.greenhouse.io/neo4j/jobs/4309978006",
   # "https://boards.greenhouse.io/phonepe/jobs/5816286003",
