@@ -1,6 +1,5 @@
 source "https://rubygems.org"
 # TODO: Add gems to their respective environments
-# TODO: Gem versions has to be properly set, this avoids merge conflict in Gemfile.lock
 
 ruby "3.1.2"
 
@@ -46,6 +45,8 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+# TODO: Remove unnecssary gems that are no longer required
+
 # Le Wagon Standard Gems
 gem "bootstrap"
 gem "devise"
@@ -53,6 +54,7 @@ gem "autoprefixer-rails"
 gem "font-awesome-sass"
 gem "simple_form"
 gem "sassc-rails"
+
 # Additional Gems installed
 gem "ruby-openai"
 gem "capybara"
@@ -62,8 +64,8 @@ gem 'sidekiq', '~> 6.5.5'
 gem "sidekiq-failures", "~> 1.0"
 gem 'sidekiq-scheduler', '~> 5.0', '>= 5.0.3'
 gem 'rails-html-sanitizer'
-gem 'will_paginate', '~> 4.0'
 gem 'meta-tags'
+gem 'will_paginate', '~> 4.0' # update to kaminari now index page is fixed
 
 # Additional Gems for API and Scrape features
 gem "cloudinary"
@@ -71,10 +73,10 @@ gem "pg_search"
 gem "nokogiri"
 gem 'geocoder'
 # gem "open-uri"
-gem 'csv'
+gem 'csv' # can probably use ruby standard library
 gem 'avo'
 gem 'yomu' # this gem is no longer maintained
-gem 'tinymce-rails'
+gem 'tinymce-rails' # now have trix and action text
 gem 'htmltoword'
 
 group :development, :test do
@@ -107,3 +109,5 @@ group :test do
   gem 'factory_bot_rails', '6.4.3'
   gem 'shoulda-matchers', '6.1.0'
 end
+
+gem "high_voltage", "~> 3.1"

@@ -184,6 +184,7 @@ GEM
     geocoder (1.8.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    high_voltage (3.1.2)
     htmltoword (1.1.1)
       actionpack
       nokogiri
@@ -448,6 +449,7 @@ DEPENDENCIES
   faker
   font-awesome-sass
   geocoder
+  high_voltage (~> 3.1)
   htmltoword
   importmap-rails
   jbuilder

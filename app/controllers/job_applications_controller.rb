@@ -11,6 +11,8 @@ class JobApplicationsController < ApplicationController
   end
 
   def new
+    redirect_back(fallback_location: saved_jobs_path) and return if cookies[:selected_job_ids].nil?
+
     if current_user.present?
       job_ids = cookies[:selected_job_ids].split("&")
       @selected_jobs = Job.includes(:company).find(job_ids)
