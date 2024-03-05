@@ -8,12 +8,23 @@ class GetFormFieldsJob < ApplicationJob
   queue_as :default
   sidekiq_options retry: false
 
+# TODO: Generalise to all supported ATS systems
+# TODO: Calculate total number of input fields and implied difficulty of application
+# TODO: Potentially change to scraping all fields from the job posting
+# TODO: Add boolean cv required based on this scrape
+# TODO: add test of filling out the form fields before job goes live
+  
   def perform(url)
     visit(url)
     return if page.has_selector?('#flash_pending')
     find_apply_button.click rescue nil
 
+# Get Job Details, Company & Description    
     job = Job.find_by(job_posting_url: url)
+
+# TODO: Get details here
+
+# Find Form Fields
 
     form = find('form', text: /apply|application/i)
     form_html = page.evaluate_script("arguments[0].outerHTML", form.native)
@@ -23,6 +34,12 @@ class GetFormFieldsJob < ApplicationJob
 
     attributes = {}
     labels.each do |label|
+# Could do this based off of name of ID
+
+# TODO: Add ability to deal with boolean required fields. Input will have an asterisk in a span class in that case
+# TODO: Fix issue where additional core fields will be shown to the user even if not required when included in the core greenhouse set
+
+# Stripping text, downcasing and replacing spaces with underscores to act as primary keys
 
       label_text = label.xpath('descendant-or-self::text()[not(parent::select or parent::option or parent::ul or parent::label/input[@type="checkbox"])]').text.strip.downcase.gsub(" ", "_")
 
@@ -89,6 +106,7 @@ class GetFormFieldsJob < ApplicationJob
       p job.application_criteria
     end
 
+# TODO: Check that including this here doesn't cause issues
     return attributes
   end
 
