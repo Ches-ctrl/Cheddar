@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-10">
+    <ul class="category-select">
+      <h5 class="mt-3 mb-3 category-label"><i class="<%= icon %>"></i> <%= title || resource.titleize %></h5>
+      <div>
+        <% resources.each do |resource_name, resource_id, count| %>
+          <div class="category-select-item d-flex flex-row justify-content-between">
+            <label for="<%= resource_name %>" class="category-select-item-label d-flex align-items-center">
+              <input class="category-select-item-checkbox" type="checkbox" name="<%= resource_name %>" id="<%= resource_id %>" <%= "checked " if params[resource].present? && params[resource].include?(resource_id.to_s) %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target= "<%= resource %>">
+              <%= resource_name.titleize %>
+            </label>
+            <div class="ms-2 text-sm"><%= count %></div>
+          </div>
+        <% end %>
+      </div>
+    </ul>
+  </div>
+</div>

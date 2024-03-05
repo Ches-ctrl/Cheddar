@@ -1,54 +1,29 @@
-#jobs-index-second-section{
-  // display: flex;
-  margin-top: 20px;
-}
-
-#jobs-index-left-section{
-  margin-top: 5px;
-  width: 300px;
-  justify-content: flex-start;
-}
-
-#jobs-index-left-section-title{
-  margin-top: 10px;
-  margin-bottom: 25px;
-}
-
-#jobs-index-right-section{
-  // width: 1000px;
-  justify-content: flex-end;
-  // margin-right: 0;
-}
-
-.filter-category {
-  padding: 23px 0;
-}
-
-#filter-categories-select {
+.category-select {
   border-top: 1px solid #e3e6f0;
-  height: 180px;
-  width: 250px;
-  overflow: scroll;
   padding: 16px 8px;
 }
 
-.filter-category-select-item {
+.category-label {
+  color: $main-color;
+}
+
+.category-select-item {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
   padding-bottom: 0;
 }
 
-.filter-category-select-item-label {
+.category-select-item-label {
   margin: 0;
   padding: 0;
   display: flex;
   align-content: center;
 }
 
-.filter-category-select-item-checkbox {
-  width: 1em;
-  height: 1em;
+.category-select-item-checkbox {
+  width: 1rem;
+  height: 1rem;
   padding-right: 6px;
-  margin-right: 6px;
+  margin-right: 12px;
 }

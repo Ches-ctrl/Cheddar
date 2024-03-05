@@ -1,0 +1,14 @@
+<div class="col-sm-3" data-job-index-toggle-target="leftSection">
+
+  <div>
+    <p class="pb-0"><%= @jobs.count %> jobs</p>
+  </div>
+
+  <% section_titles = ['Seniority', 'Location', 'Job Roles', 'Employment Type', 'Company'] %>
+  <% icons = ["fa-solid fa-stairs", "fa-solid fa-earth-americas", "fa-solid fa-person-chalkboard", "fa-solid fa-id-card", "fa-solid fa-building-user"] %>
+
+  <% @resources.each_with_index do |(resource, data), index| %>
+    <%= render partial: 'category_sidebar_section', locals: {title: section_titles[index], resource: resource, resources: data, icon: icons[index]} %>
+  <% end %>
+
+</div>

@@ -1,0 +1,12 @@
+<div class="col-sm-9">
+  <%= render partial: 'job_card', collection: @jobs, as: :job %>
+
+  <div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info @jobs %>
+    </div>
+
+    <%= will_paginate @jobs, container: false %>
+
+  </div>
+</div>

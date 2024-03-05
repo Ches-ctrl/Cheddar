@@ -11,73 +11,20 @@ class JobsController < ApplicationController
     # TODO: Implement pagination for the remaining jobs
 
     @jobs = Job.where.not(location: "").includes(:company)
+
     # When a job doesn't actually exist, its location is nil.
 
-    # For each resource, store: [display_name, element_id, matching_jobs_count]
-    @companies = @jobs.map(&:company)
-    @companies = @companies.map { |company| [company.company_name, company.id, @companies.count(company)] }.sort_by{ |list| list[2] }.reverse.uniq
+    build_filter_sidebar_resources
+    filter_jobs_by_params
 
-    @locations = @jobs.select { |job| job.city.present? && !job.city.include?("Remote") }.map { |job| [(job.city unless job.city == "#{job.country} (Remote)"), job.country].compact }
-    @locations += @jobs.select { |job| job.remote_only }.map { |job| ["Remote Only"] }
-    @locations = @locations.map { |location| [location.join(', '), location.first.downcase.gsub(' ', '_'), @locations.count(location)] }.sort_by{ |list| list[2] }.reverse.uniq
+    @jobs = @jobs.paginate(page: params[:page], per_page: 20)
 
-    @roles = @jobs.map { |job| job.role.split('&&') if job.role }.flatten.compact
-    @roles = @roles.map { |role| [role.split('_').map(&:titleize).join('-'), role, @roles.count(role)] }.sort_by{ |list| list[2] }.reverse.uniq
-
-    @seniorities = ['Internship', 'Entry-Level', 'Junior', 'Mid-Level', 'Senior', 'Director', 'VP', 'SVP / Partner']
-    @seniorities = @seniorities.map { |seniority| [seniority, seniority.downcase.split(' ').first, @jobs.count { |job| job.seniority == seniority }] }.reject { |list| list[2].zero? }
-
-    @employments = @jobs.map(&:employment_type)
-    @employments = @employments.map { |employment| [employment, employment.downcase.gsub('-', '_'), @employments.count(employment)] }.sort_by{ |list| list[2] }.reverse.uniq
-
-    if params[:role].present?
-      roles = params[:role].split
-      conditions = roles.map { |role| "role LIKE ?" }.join(" OR ")
-      values = roles.map { |role| "%#{role}%" }
-
-      @jobs = @jobs.where(conditions, *values)
-    end
-
-    if params[:company].present?
-      companies = params[:company].split
-      @jobs = @jobs.where(company: companies)
-    end
-
-    if params[:location].present?
-      locations = params[:location].split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') }
-      if locations.include?("Remote Only")
-        @jobs = @jobs.where("city IN (?) OR country IN (?) OR remote_only = TRUE", locations, locations)
-      else
-        @jobs = @jobs.where("city IN (?) OR country IN (?)", locations, locations)
-      end
-    end
-
-    if params[:seniority].present?
-      seniorities = params[:seniority].split.map { |seniority| seniority.split('-').map(&:capitalize).join('-') }
-      @jobs = @jobs.where(seniority: seniorities)
-    end
-
-    if params[:employment].present?
-      employments = params[:employment].split.map { |employment| employment.gsub('_', '-').capitalize }
-      @jobs = @jobs.where(employment_type: employments)
-    end
-
-    @jobs = @jobs.paginate(page: params[:page], per_page: 10)
-
-    @job = Job.new # why do we have this here?
-    @saved_job = SavedJob.new # why initialize SavedJob here?
     @saved_jobs = SavedJob.all
+    @saved_job_ids = @saved_jobs.map(&:job_id).to_set
 
     if current_user.present?
       @job_applications = JobApplication.where(user_id: current_user.id)
     end
-
-    # Implemented pgsearch, this will be uncommented once the index action is cleaned up.
-    # @jobs = if params[:query].present?
-    #           Job.search_job(params[:query])
-    #         else
-    #           Job.all
-    #         end
   end
 
   def show
@@ -140,5 +87,87 @@ class JobsController < ApplicationController
 
   def job_params
     params.require(:job).permit(:job_title, :job_description, :salary, :job_posting_url, :application_deadline, :date_created, :company_id, :applicant_tracking_system_id, :ats_job_id, :location, :department, :office, :live)
+  end
+
+  def filter_jobs_by_params
+    filter_by_query if params[:query].present?
+    filter_by_role if params[:role].present?
+    filter_by_company if params[:company].present?
+    filter_by_location if params[:location].present?
+    filter_by_seniority if params[:seniority].present?
+    filter_by_employment if params[:employment].present?
+  end
+
+  def filter_by_query
+    @jobs = Job.search_job(params[:query]).includes(:company)
+  end
+
+  def filter_by_role
+    roles = params[:role].split
+    conditions = roles.map { |role| "role ILIKE ?" }.join(" OR ")
+    values = roles.map { |role| "%#{role}%" }
+
+    @jobs = @jobs.where(conditions, *values)
+  end
+
+  def filter_by_company
+    companies = params[:company].split
+    @jobs = @jobs.where(company: companies)
+  end
+
+  def filter_by_location
+    locations = params[:location].split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') }
+    if locations.include?("Remote Only")
+      @jobs = @jobs.where("city IN (?) OR country IN (?) OR remote_only = TRUE", locations, locations)
+    else
+      @jobs = @jobs.where("city IN (?) OR country IN (?)", locations, locations)
+    end
+  end
+
+  def filter_by_seniority
+    seniorities = params[:seniority].split.map { |seniority| seniority.split('-').map(&:capitalize).join('-') }
+    @jobs = @jobs.where(seniority: seniorities)
+  end
+
+  def filter_by_employment
+    employments = params[:employment].split.map { |employment| employment.gsub('_', '-').capitalize }
+    @jobs = @jobs.where(employment_type: employments)
+  end
+
+  def build_filter_sidebar_resources
+    # Where necessary, parse from Job.attributes
+    roles = @jobs.map { |job| job.role.split('&&') if job.role }.flatten.compact
+
+    locations = @jobs.map do |job|
+      if job.remote_only
+        ["Remote Only"]
+      elsif job.city.present? && !job.city.include?("Remote")
+        [(job.city unless job.city == "#{job.country} (Remote)"), job.country].compact
+      end
+    end
+
+    seniorities = ['Internship', 'Entry-Level', 'Junior', 'Mid-Level', 'Senior', 'Director', 'VP', 'SVP / Partner']
+
+    # For each item, store: [display_name, element_id, matching_jobs_count]
+    @resources = {}
+    @resources['seniority'] = seniorities.map do |seniority|
+      count = @jobs.count { |job| job.seniority == seniority }
+      [seniority, seniority.downcase.split.first, count] unless count.zero?
+    end.compact
+    @resources['location'] = locations.compact.uniq.map do |location|
+      [location.join(', '), location.first.downcase.gsub(' ', '_'), locations.count(location)]
+    end
+    @resources['role'] = roles.uniq.map do |role|
+      [role.split('_').map(&:titleize).join('-'), role, roles.count(role)]
+    end
+    @resources['employment'] = @jobs.map(&:employment_type).uniq.map do |employment|
+      [employment, employment.downcase.gsub('-', '_'), @jobs.count { |job| job.employment_type == employment }]
+    end
+    @resources['company'] = @jobs.map(&:company).uniq.map do |company|
+      [company.company_name, company.id, @jobs.count { |job| job.company == company }]
+    end
+
+    @resources.each { |title, array| array.sort_by! { |item| [-item[2]] } unless title == 'seniority' }
+
   end
 end

@@ -2,67 +2,15 @@
 
 <%# <% title "All Jobs" %>
 <% description "Discover thousands of jobs on our platform. With Cheddar's innovative one-click applciation process, you can select multiple positions that interest you and apply to all of them at once without having to leave our site." %>
-<div class="container" data-controller="select-by-job-type styling-selected-job">
-  <div class="search-container d-flex justify-content-center align-items-center">
+
+<div class="container" data-controller="select-by-job-type">
+
+  <div class="d-flex justify-content-center align-items-center pb-4">
     <%= render 'search' %>
   </div>
-    <div class="row d-flex justify-content-between" data-controller="job-index-toggle">
-
-      <%= render 'filter_category_sidebar' %>
-
-      <%# RHS Section Divider %>
-      <div class="col-sm-9 p-0" id="jobs-index-right-section" data-job-index-toggle-target="rightSection">
-        <%= form_tag apply_jobs_path, method: :post do %>
-          <div class="sticky-top bg-white">
-            <div class="d-flex justify-content-between align-items-center pt-1">
-              <div class="d-flex align-items-center cursor-pointer" data-action="click->job-index-toggle#toggleView" data-job-index-toggle-target="toggleButton1">
-                <i class="fa-solid fa-circle-left"></i>
-                <p class="my-0 ms-1">Hide Categories</p>
-              </div>
-              <div class="d-flex align-items-center d-none cursor-pointer" data-action="click->job-index-toggle#toggleView" data-job-index-toggle-target="toggleButton2">
-                <i class="fa-solid fa-circle-right"></i>
-                <p class="my-0 ms-1">Show Categories</p>
-              </div>
-              <div>
-                <%= submit_tag "Shortlist 0 Jobs", id: "apply-button", "data": {job_index_toggle_target: "applyButton"}, class: "btn btn-apply" %>
-              </div>
-            </div>
-
-            <%# RHS Section - Job Table Headers %>
-            <div class="row">
-              <div class="col-12">
-                <div class="card job-list-header">
-                  <div class="card-body">
-                    <div class="row text-center">
-                      <%# <div class="col">Company</div> %>
-                      <div class="col-3">Company & Role</div>
-                      <div class="col-2 d-none" data-job-index-toggle-target="newColumn1">Description</div>
-                      <div class="col-2">Job Details</div>
-                      <div class="col-2">Climate Impact</div>
-                      <div class="col-2">App Criteria</div>
-                      <%# <div class="col">Details</div> %>
-                      <%# <div class="col">Save</div> %>
-                      <div class="col-2">Select</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <%# RHS Section - Job Table %>
-          <div class="job-cards-container pt-0" data-controller="load-more">
-
-            <%= render partial: 'job_card', collection: @jobs, as: :job %>
-
-            <div class="digg_pagination">
-              <div class="page_info">
-                <%= page_entries_info @jobs %>
-              </div>
-              <%= will_paginate @jobs, container: false %>
-            </div>
-          </div>
-        <% end %>
-    </div>
+  
+  <div class="row">
+    <%= render 'category_sidebar' %>
+    <%= render 'job_cards_container' %>
   </div>
 </div>

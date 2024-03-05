@@ -1,0 +1,32 @@
+.job-card {
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e3e6f0;
+
+  .card-body {
+    padding: 10px;
+  }
+}
+
+.job-card img {
+  object-fit: contain;
+  width: 60px;
+  height: 60px;
+}
+
+.climate-rating {
+  border-radius: 6px;
+  background: #ECFFEE;
+  color: #00B112;
+  padding: 2px 12px;
+  font-weight: 400;
+}
+
+.apply-rating {
+  border-radius: 6px;
+  border: 1px dashed;
+  border-color: rgba(0, 0, 0, 0.18);
+  padding: 2px 12px;
+  font-weight: 400;
+}

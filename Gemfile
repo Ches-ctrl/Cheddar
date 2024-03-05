@@ -56,7 +56,7 @@ gem "sassc-rails"
 # Additional Gems installed
 gem "ruby-openai"
 gem "capybara"
-gem "selenium-webdriver", "4.0"
+gem "selenium-webdriver", "~> 4.18.1"
 gem "watir"
 gem 'sidekiq', '~> 6.5.5'
 gem "sidekiq-failures", "~> 1.0"
