@@ -61,7 +61,7 @@
         <% include_checkboxes ||= false %>
         <% if include_checkboxes %>
           <div class="ms-3">
-            <%= check_box_tag "job_ids[]", job.id %>
+            <%= check_box_tag "job_ids[]", job.id, onclick: "document.getElementById('apply_button').disabled = false" %>
           </div>
         <% end %>
       </div>
