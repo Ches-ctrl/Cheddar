@@ -46,7 +46,7 @@ class Job < ApplicationRecord
   # TODO: Question - set application_criteria = {} as default?
 
   def set_date_created
-    self.date_created = Date.today
+    self.date_created ||= Date.today
   end
 
   # Enables access to application_criteria via strings or symbols

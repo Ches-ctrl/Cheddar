@@ -28,6 +28,13 @@ module Ats::Greenhouse::JobDetails
       location: data['location']['name'],
       department: data['departments'][0]['name'],
       office: data['offices'][0]['name'],
+      date_created: convert_from_iso8601(data['updated_at'])
     )
+  end
+
+  private
+
+  def self.convert_from_iso8601(iso8601_string)
+    return Time.iso8601(iso8601_string)
   end
 end

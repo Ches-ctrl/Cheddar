@@ -30,10 +30,18 @@
     <div class="col-7 d-flex flex-row justify-content-between align-items-center">
 
       <%# Salary etc. %>
-      <div class="d-flex flex-column align-items-end justify-space-between text-sm">
-        <div class="salaryBudget"><%= job.salary ? "£#{number_with_delimiter(job.salary, delimiter: ',')}" : "£ ---" %></div>
-        <div>Permanent • Hybrid</div>
-        <div><%= job.created_at.strftime("%d/%m") %> ----- <%= job.application_deadline ? job.application_deadline.strftime("%d/%m") : "n/a" %></div>
+      <div class="basic-info d-flex flex-column align-items-end justify-space-between text-sm">
+        <div class="salaryBudget"><%= job.salary.present? ? job.salary : "<br>".html_safe %></div>
+        <div class="my-1"><%= job.employment_type %> •
+          <% if job.remote_only %>
+            <%= "Remote"%>
+          <% elsif job.hybrid %>
+            <%= "Hybrid" %>
+          <% else %>
+            <%= "In-office" %>
+          <% end %>
+        </div>
+        <div><%= job.date_created.strftime("%d/%m") %> <span class="meter"><hr class="line-horizontal"><div class="triangle-inverted-blue" style="left:<%= job.application_deadline < Date.today ? 50 : (Date.today - job.date_created).to_i.fdiv((job.application_deadline - job.date_created).to_i) * 100 %>%;"></div></span> <%= job.application_deadline < Date.today ? "Rolling" : job.application_deadline.strftime("%d/%m") %></div>
       </div>
 
       <%# Net Zero Rating %>
@@ -43,7 +51,17 @@
 
       <%# Ease of Applying %>
       <div class="d-flex flex-column align-items-center justify-content-center text-sm">
-        <div class="apply-rating">easy</div>
+        <div class="apply-rating">
+          <%# To-do: Create a difficulty column for jobs table and transfer this logic to JobCreator; eventually GetFormFieldsJob will distinguish between input and text fields (for longer responses), which will help with accurate classification %>
+          <% if job.no_of_questions < 8 && !job.req_cover_letter %>
+            <% apply_rating = 'easy' %>
+          <% elsif job.no_of_questions > 15 %>
+            <% apply_rating = 'hard' %>
+          <% else %>
+            <% apply_rating = 'medium' %>
+          <% end %>
+          <%= apply_rating %>
+        </div>
       </div>
 
 

@@ -15,6 +15,8 @@ class GetFormFieldsJob < ApplicationJob
 # TODO: add test of filling out the form fields before job goes live
   
   def perform(url)
+    Capybara.current_driver = :selenium_chrome_headless
+
     visit(url)
     return if page.has_selector?('#flash_pending')
     find_apply_button.click rescue nil
@@ -99,6 +101,8 @@ class GetFormFieldsJob < ApplicationJob
     Capybara.current_session.driver.quit
 
     extra_fields = attributes
+
+    job.no_of_questions = attributes.keys.count
 
     unless extra_fields.nil?
       job.application_criteria = job.application_criteria.merge(extra_fields)
