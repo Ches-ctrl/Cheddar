@@ -7,7 +7,7 @@ class LocationStandardizer
     return unless @job.location
 
     location = @job.location
-    hybrid = location.downcase.include?('hybrid')
+    hybrid = location.downcase.include?('hybrid') || @job.job_description.downcase.include?('hybrid')
     remote = location.downcase.match?(/(?<!\bor\s)remote/)
 
     location_elements = location.split(',').map { |element| element.gsub(/[-;(\/].*/, '').gsub(/([Rr]emote|[Hh]ybrid)\s*[,;:-]?\s*/, '').strip }

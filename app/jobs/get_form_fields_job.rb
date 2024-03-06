@@ -109,7 +109,7 @@ class GetFormFieldsJob < ApplicationJob
 
     extra_fields = attributes
 
-    p extra_fields
+    job.no_of_questions = attributes.keys.count
 
     unless extra_fields.nil?
       job.application_criteria = job.application_criteria.merge(extra_fields)

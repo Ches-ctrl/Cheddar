@@ -30,6 +30,11 @@ class SalaryStandardizer
       currency_match = matches.last[0].match(/(?:\d{3} )(\b[a-z]{3}\b)?/i) || matches.last[0].match(/([£$€])/)
       currency = currency_match ? CONVERTER[currency_match[1].downcase] : ['', '']
 
+      if currency_match[1] == '$'
+        currency[1] = ' AUD' if @job.country == 'Australia'
+        currency[1] = ' CAN' if @job.country == 'Canada'
+      end
+
       salary = "#{currency[0]}#{(salary_low)} - #{currency[0]}#{(salary_high)}#{currency[1]}"
       salary += ", plus equity" if matches.first[1] || matches.last[1]
       @job.salary = salary
