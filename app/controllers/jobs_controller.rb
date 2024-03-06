@@ -88,6 +88,13 @@ class JobsController < ApplicationController
 
   private
 
+  CONVERT_TO_DAYS = {
+    '1-day' => 1,
+    '3-days' => 3,
+    'this-week' => 7,
+    'this-month' => 30
+  }
+
   # TODO: Check if more params are needed on Job.create
 
   def job_params
@@ -96,15 +103,23 @@ class JobsController < ApplicationController
 
   def filter_jobs_by_params
     filter_by_query if params[:query].present?
-    filter_by_role if params[:role].present?
-    filter_by_company if params[:company].present?
-    filter_by_location if params[:location].present?
+    filter_by_when_posted if params[:posted].present?
     filter_by_seniority if params[:seniority].present?
     filter_by_employment if params[:employment].present?
+    filter_by_location if params[:location].present?
+    filter_by_role if params[:role].present?
+    filter_by_company if params[:company].present?
   end
 
   def filter_by_query
     @jobs = Job.search_job(params[:query]).includes(:company)
+  end
+
+  def filter_by_when_posted
+    params[:posted].split.each do |time|
+      number = CONVERT_TO_DAYS[time]
+      @jobs = Job.where(date_created: number.days.ago..Date.today)
+    end
   end
 
   def filter_by_role
@@ -151,10 +166,17 @@ class JobsController < ApplicationController
       end
     end
 
+    when_posted = ['1 day ago', '3 days ago', 'This week', 'This month']
+
     seniorities = ['Internship', 'Entry-Level', 'Junior', 'Mid-Level', 'Senior', 'Director', 'VP', 'SVP / Partner']
 
     # For each item, store: [display_name, element_id, matching_jobs_count]
     @resources = {}
+    @resources['posted'] = when_posted.map do |period|
+      id = period.downcase.gsub(' ago', '').gsub(' ', '-')
+      count = @jobs.count { |job| job.date_created >= CONVERT_TO_DAYS[id].days.ago }
+      [period, id, count] unless count.zero?
+    end
     @resources['seniority'] = seniorities.map do |seniority|
       count = @jobs.count { |job| job.seniority == seniority }
       [seniority, seniority.downcase.split.first, count] unless count.zero?

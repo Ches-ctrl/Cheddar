@@ -6,7 +6,7 @@
         <% resources.each do |resource_name, resource_id, count| %>
           <div class="category-select-item d-flex flex-row justify-content-between">
             <label for="<%= resource_name %>" class="category-select-item-label d-flex align-items-center">
-              <input class="category-select-item-checkbox" type="checkbox" name="<%= resource_name %>" id="<%= resource_id %>" <%= "checked " if params[resource].present? && params[resource].include?(resource_id.to_s) %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target= "<%= resource %>">
+              <input class="category-select-item-checkbox" type="checkbox" name="<%= resource_name %>" id="<%= resource_id %>" <%= "checked " if params[resource].present? && params[resource].include?(resource_id.to_s) %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="<%= resource.split('-').map.with_index { |word, index| index > 0 ? word.capitalize : word }.join('') %>">
               <%= resource_name.titleize %>
             </label>
             <div class="ms-2 text-sm"><%= count %></div>

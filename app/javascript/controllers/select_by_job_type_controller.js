@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="select-by-job-type"
 export default class extends Controller {
-  static targets = [ 'jobRow', 'search', 'role', 'company', 'location', 'seniority', 'employment' ]
+  static targets = [ 'jobRow', 'search', 'posted', 'role', 'company', 'location', 'seniority', 'employment' ]
 
   connect() {
   }
@@ -10,6 +10,8 @@ export default class extends Controller {
   combinedSearch(event) {
     event.preventDefault()
     const searchQuery = this.searchTarget.value.split(' ')
+    const checkedTimes = this.postedTargets.filter(time => time.checked)
+      .map(time => time.id)
     const checkedRoles = this.roleTargets.filter(role => role.checked)
       .map(role => role.id)
     const checkedCompanies = this.companyTargets.filter(company => company.checked)
@@ -21,15 +23,19 @@ export default class extends Controller {
     const checkedEmployments = this.employmentTargets.filter(employment => employment.checked)
       .map(employment => employment.id)
 
-    const filterQueryString = this.buildQueryString(searchQuery, checkedRoles, checkedCompanies, checkedLocations, checkedSeniorities, checkedEmployments)
+    const filterQueryString = this.buildQueryString(searchQuery, checkedTimes, checkedRoles, checkedCompanies, checkedLocations, checkedSeniorities, checkedEmployments)
     window.location.href = `/jobs${filterQueryString}`;
   }
 
-  buildQueryString(searchQuery, checkedRoles, checkedCompanies, checkedLocations, checkedSeniorities, checkedEmployments) {
+  buildQueryString(searchQuery, checkedTimes, checkedRoles, checkedCompanies, checkedLocations, checkedSeniorities, checkedEmployments) {
     const queryStringParams = [];
 
     if (searchQuery.length > 0) {
       queryStringParams.push("query=" + searchQuery.join("+"));
+    }
+
+    if (checkedTimes.length > 0) {
+      queryStringParams.push("posted=" + checkedTimes.join("+"));
     }
 
     if (checkedRoles.length > 0) {
