@@ -35,6 +35,7 @@ module AtsRouter
 
   def ats_system_name
     @ats_system_name ||= SUPPORTED_ATS_SYSTEMS.find { |ats| @url.include?(ats) }
+    @ats_system_name ||= 'greenhouse' if @url.include?('gh_jid')
     @ats_system_name ||= 'manatal' if @url.include?('careers-page')
     @ats_system_name
   end

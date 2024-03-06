@@ -190,10 +190,11 @@ greenhouse_job_urls = [
   "https://boards.greenhouse.io/copperco/jobs/4243269101",
   "https://boards.greenhouse.io/coreweave/jobs/4241710006",
   "https://boards.greenhouse.io/cultureamp/jobs/5538191",
-  "https://boards.greenhouse.io/deliveroo/jobs/5094403",
-  "https://boards.greenhouse.io/deliveroo/jobs/5447359",
+  "https://boards.greenhouse.io/deliveroo/jobs/5435632",
+  "https://boards.greenhouse.io/deliveroo/jobs/5091928",
+  "https://boards.greenhouse.io/deliveroo/jobs/5362266",
   "https://boards.greenhouse.io/doctolib/jobs/5811790003",
-  "https://boards.greenhouse.io/doctolib/jobs/5828747003",
+  "https://boards.greenhouse.io/doctolib/jobs/5771910003",
   "https://boards.greenhouse.io/epicgames/jobs/4969053004",
   "https://boards.greenhouse.io/figma/jobs/5039807004",
   "https://boards.greenhouse.io/forter/jobs/6889370002",
@@ -201,7 +202,7 @@ greenhouse_job_urls = [
   "https://boards.greenhouse.io/getir/jobs/4258936101",
   "https://boards.greenhouse.io/gomotive/jobs/7030195002",
   "https://boards.greenhouse.io/grammarly/jobs/5523286",
-  "https://boards.greenhouse.io/helsing/jobs/4129902101",
+  # "https://boards.greenhouse.io/helsing/jobs/4129902101",
   "https://boards.greenhouse.io/intercom/jobs/4763765",
   "https://boards.greenhouse.io/janestreet/jobs/4274809002",
   "https://boards.greenhouse.io/janestreet/jobs/6102180002",
@@ -236,6 +237,8 @@ greenhouse_job_urls = [
 ]
 
 greenhouse_job_urls_embedded = [
+  # The problem with the first of these jobs is that Capybara encounters a 404. I suspect it's trying to click the wrong apply button. The specific error is JSON::ParserError: 859: unexpected token at '<!DOCTYPE html>
+  "https://helsing.ai/jobs/4212864101?gh_jid=4212864101",
   "https://bolt.eu/en/careers/positions/6989975002",
   "https://careers.datadoghq.com/detail/4452892",
   "https://jobs.elastic.co/form?gh_jid=5518454",
@@ -519,6 +522,8 @@ comp_specific_job_urls = [
 
 # job_urls = [greenhouse_job_urls, workable_job_urls, lever_job_urls, smartrecruiters_job_urls, ashby_job_urls]
 
+defunct_urls = []
+
 (rails_job_urls + greenhouse_job_urls).each do |url|
   company, ats_job_id = CompanyCreator.new(url).find_or_create_company
   p "CompanyCreator complete: #{company.company_name}"
@@ -540,8 +545,11 @@ comp_specific_job_urls = [
     end
   else
     p "Job posting is no longer live"
+    job.destroy
+    defunct_urls << job.job_posting_url
   end
 end
+
 
 puts "Created #{greenhouse_job_urls.count} jobs based on the provided URLs."
 
@@ -758,6 +766,11 @@ puts JobApplication.count
 puts "-------------------------------------"
 
 puts "Done!"
+
+puts "The following urls refer to jobs that are no longer live and should be deleted from the seedfile:" unless defunct_urls.empty?
+defunct_urls.each do |url|
+  puts url
+end
 
 # PgSearch::Multisearch.rebuild(Job)
 # PgSearch::Multisearch.rebuild(Company)
