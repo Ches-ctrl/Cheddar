@@ -30,9 +30,9 @@
     <div class="col-7 d-flex flex-row justify-content-between align-items-center">
 
       <%# Salary etc. %>
-      <div class="d-flex flex-column align-items-end justify-space-between text-sm">
+      <div class="basic-info d-flex flex-column align-items-end justify-space-between text-sm">
         <div class="salaryBudget"><%= job.salary.present? ? job.salary : "<br>".html_safe %></div>
-        <div><%= job.employment_type %> •
+        <div class="my-1"><%= job.employment_type %> •
           <% if job.remote_only %>
             <%= "Remote"%>
           <% elsif job.hybrid %>
@@ -41,7 +41,7 @@
             <%= "In-office" %>
           <% end %>
         </div>
-        <div class="mt-1"><%= job.date_created.strftime("%d/%m") %> <span class="meter"><hr class="line-horizontal"><div class="triangle-inverted-blue" style="left:<%= job.application_deadline < Date.today ? 50 : (Date.today - job.date_created).to_i.fdiv((job.application_deadline - job.date_created).to_i) * 100 %>%;"></div></span> <%= job.application_deadline < Date.today ? "Rolling" : job.application_deadline.strftime("%d/%m") %></div>
+        <div><%= job.date_created.strftime("%d/%m") %> <span class="meter"><hr class="line-horizontal"><div class="triangle-inverted-blue" style="left:<%= job.application_deadline < Date.today ? 50 : (Date.today - job.date_created).to_i.fdiv((job.application_deadline - job.date_created).to_i) * 100 %>%;"></div></span> <%= job.application_deadline < Date.today ? "Rolling" : job.application_deadline.strftime("%d/%m") %></div>
       </div>
 
       <%# Net Zero Rating %>

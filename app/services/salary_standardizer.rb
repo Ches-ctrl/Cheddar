@@ -36,9 +36,8 @@ class SalaryStandardizer
       end
 
       salary = "#{currency[0]}#{(salary_low)} - #{currency[0]}#{(salary_high)}#{currency[1]}"
-      salary += ", plus equity" if matches.first[1] || matches.last[1]
+      salary += " + equity" if matches.first[1] || matches.last[1]
       @job.salary = salary
-      p salary
     end
   end
 end
