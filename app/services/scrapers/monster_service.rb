@@ -1,9 +1,10 @@
 require 'open-uri'
 
 module Scrapers
-  class MonsterService
+  class MonsterService < ApplicationService
     def scrape_page
-      page_doc.css(".sc-dUWDJJ").css('.job-search-resultsstyle__CardGrid-sc-1wpt60k-3').
+      url = 'https://www.monster.com/jobs/q-it-jobs'
+      page_doc(url).css(".sc-dUWDJJ").css('.job-search-resultsstyle__CardGrid-sc-1wpt60k-3').
         css('ul').
         css('.job-cardstyle__JobCardComponent-sc-1mbmxes-0').each do |job|
           company_name = job.css('.sc-gwZKzw').css('h3').css('span').text
@@ -19,12 +20,6 @@ module Scrapers
           }
           Job.create job_attributes
         end
-    end
-
-    def page_doc
-      url = 'https://www.monster.com/jobs/q-it-jobs'
-      data = URI.open(url).read
-      Nokogiri::HTML(data)
     end
   end
 end

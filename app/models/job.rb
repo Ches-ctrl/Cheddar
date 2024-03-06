@@ -4,21 +4,23 @@ class Job < ApplicationRecord
   # TODO: Number of questions in job form
   # TODO: Estimated time to complate job application based on form length/type
 
-  # attr_accessor :company_name
-
   serialize :application_criteria, coder: JSON
 
-  geocoded_by :location do |obj, results|
-    if geo = results.first
-      obj.city = geo.city || (obj.location.split(',').first if obj.location.split(',').first != geo.country_code)
-      obj.country = geo.country_code
-    end
-  end
+  # move to locations model
 
-  after_validation :geocode, if: :location_changed?
+  # geocoded_by :location do |obj, results|
+  #   if geo = results.first
+  #     obj.city = geo.city || (obj.location.split(',').first if obj.location.split(',').first != geo.country_code)
+  #     obj.country = geo.country_code
+  #   end
+  # end
+
+  # after_validation :geocode, if: :location_changed?
 
   belongs_to :company
   belongs_to :applicant_tracking_system, optional: true
+  has_and_belongs_to_many :technologies
+  has_and_belongs_to_many :locations
 
   has_many :job_applications, dependent: :destroy
   has_many :saved_jobs, dependent: :destroy
@@ -27,8 +29,9 @@ class Job < ApplicationRecord
 
   before_create :set_date_created
 
-  validates :job_title, presence: true
   validates :job_posting_url, uniqueness: true, presence: true
+  validates :job_title, presence: true,
+    uniqueness: { scope: :company_id, message: 'should be unique per company' }
 
   # after_create :update_application_criteria
 
@@ -37,7 +40,8 @@ class Job < ApplicationRecord
   pg_search_scope :search_job,
     against: [:job_title, :salary, :job_description],
     associated_against: {
-      company: [ :company_name, :company_category ]
+      company: [ :company_name, :company_category ],
+      locations: :city
     },
     using: {
       tsearch: { prefix: true } # allow partial search
