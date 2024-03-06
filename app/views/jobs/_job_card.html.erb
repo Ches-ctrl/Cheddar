@@ -33,7 +33,7 @@
       <div class="d-flex flex-column align-items-end justify-space-between text-sm">
         <div class="salaryBudget"><%= job.salary ? "£#{number_with_delimiter(job.salary, delimiter: ',')}" : "£ ---" %></div>
         <div>Permanent • Hybrid</div>
-        <div><%= job.date_created.strftime("%d/%m") %> <span class="meter"><hr class="line-horizontal"><div class="triangle-inverted-blue" data-deadline-meters-target="triangle" data-position="<%= job.application_deadline < Date.today ? 50 : (Date.today - job.date_created).to_i.fdiv((job.application_deadline - job.date_created).to_i) * 100 %>"></div></span> <%= job.application_deadline < Date.today ? "Rolling" : job.application_deadline.strftime("%d/%m") %></div>
+        <div class="mt-1"><%= job.date_created.strftime("%d/%m") %> <span class="meter"><hr class="line-horizontal"><div class="triangle-inverted-blue" style="left:<%= job.application_deadline < Date.today ? 50 : (Date.today - job.date_created).to_i.fdiv((job.application_deadline - job.date_created).to_i) * 100 %>%;"></div></span> <%= job.application_deadline < Date.today ? "Rolling" : job.application_deadline.strftime("%d/%m") %></div>
       </div>
 
       <%# Net Zero Rating %>
