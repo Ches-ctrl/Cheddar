@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  helper_method :on_landing_page?
   before_action :set_tags
 
   def configure_permitted_parameters
@@ -13,6 +14,10 @@ class ApplicationController < ActionController::Base
 
   def user_root_path
     profile_url
+  end
+
+  def on_landing_page?
+    controller_name == 'pages' && action_name == 'landing'
   end
 
   def set_tags
@@ -31,5 +36,5 @@ class ApplicationController < ActionController::Base
                     description: 'Simply your job search with our automation job application platform, blending simplicity with a climate-first approach. Streamline your application process and apply for multiple job with just one click on our platform. Kickstart your career with Cheddar - the only site you need to get hired!',
                     image: 'https://www.cheddarjobs.com/'
                   }
-  end
+   end
 end

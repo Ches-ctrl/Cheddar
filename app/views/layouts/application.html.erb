@@ -14,22 +14,24 @@
   <body id="page-container">
     <div class="flex-grow-1">
       <div id="content-wrap">
-        <%= render "shared/navbar" %>
-        <%= render "shared/flashes" %>
+        <%= render "shared/navbar" unless on_landing_page? %>
+        <%= render "shared/flashes" unless on_landing_page? %>
         <%= yield %>
       </div>
     </div>
     <div data-controller="chatbot">
       <div>
-        <%= render partial: "messages/cheddargpt_modal" %>
-        <div class="CheddarGPTmodal d-flex justify-content-center align-items-center" data-action="click->chatbot#open" >
-          <div class="yellow-circle d-none"></div>
-          <%= image_tag("cheddar_logo_new_3.svg", alt: "Cheddar Logo", style: "max-height: 50px; max-width: 50px;", class: "ms-1") %>
-          <%# <p class="mb-0">CheddarGPT</p> %>
-        </div>
+        <%= render partial: "messages/cheddargpt_modal" unless on_landing_page? %>
+        <% unless on_landing_page? %>
+          <div class="CheddarGPTmodal d-flex justify-content-center align-items-center" data-action="click->chatbot#open" >
+            <div class="yellow-circle d-none"></div>
+            <%= image_tag("cheddar_logo_new_3.svg", alt: "Cheddar Logo", style: "max-height: 50px; max-width: 50px;", class: "ms-1") %>
+            <%# <p class="mb-0">CheddarGPT</p> %>
+          </div>
+        <% end %>
       </div>
     </div>
-    <%= render "pages/footer" %>
+    <%= render "pages/footer" unless on_landing_page? %>
     <%# <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script> %>
   </body>
 </html>

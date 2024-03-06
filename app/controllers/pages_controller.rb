@@ -21,4 +21,7 @@ class PagesController < ApplicationController
 
   def climate
   end
+
+  def landing
+  end
 end
