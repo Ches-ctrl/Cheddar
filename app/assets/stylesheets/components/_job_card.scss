@@ -30,3 +30,30 @@
   padding: 2px 12px;
   font-weight: 400;
 }
+
+.meter {
+  position: relative;
+}
+
+.line-horizontal {
+  display: inline-block;
+  border: none;
+  margin: 0 4px;
+  width: 96px;
+  height: 1px;
+  background-color: black;
+  opacity: 0.18;
+  vertical-align: middle;
+}
+
+.triangle-inverted-blue {
+  position: absolute;
+  left: 50%;
+  top: 0px;
+  transform: translate(-50%, 0);
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 10px solid #007fb6;
+}
