@@ -64,6 +64,7 @@ gem 'sidekiq', '~> 6.5.5'
 gem "sidekiq-failures", "~> 1.0"
 gem 'sidekiq-scheduler', '~> 5.0', '>= 5.0.3'
 gem 'rails-html-sanitizer'
+gem 'meta-tags'
 gem 'will_paginate', '~> 4.0' # update to kaminari now index page is fixed
 
 # Additional Gems for API and Scrape features
@@ -99,7 +100,7 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 
-  gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
+  gem "error_highlight", ">= 0.6.0", platforms: [:ruby]
 end
 
 group :test do
