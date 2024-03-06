@@ -64,6 +64,7 @@ gem 'sidekiq', '~> 6.5.5'
 gem "sidekiq-failures", "~> 1.0"
 gem 'sidekiq-scheduler', '~> 5.0', '>= 5.0.3'
 gem 'rails-html-sanitizer'
+gem 'meta-tags'
 gem 'will_paginate', '~> 4.0' # update to kaminari now index page is fixed
 
 # Additional Gems for API and Scrape features

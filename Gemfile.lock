@@ -453,6 +453,7 @@ DEPENDENCIES
   htmltoword
   importmap-rails
   jbuilder
+  meta-tags
   nokogiri
   pg (~> 1.1)
   pg_search
