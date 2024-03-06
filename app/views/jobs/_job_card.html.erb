@@ -33,7 +33,7 @@
       <div class="d-flex flex-column align-items-end justify-space-between text-sm">
         <div class="salaryBudget"><%= job.salary ? "£#{number_with_delimiter(job.salary, delimiter: ',')}" : "£ ---" %></div>
         <div>Permanent • Hybrid</div>
-        <div><%= job.created_at.strftime("%d/%m") %> ----- <%= job.application_deadline ? job.application_deadline.strftime("%d/%m") : "n/a" %></div>
+        <div><%= job.date_created.strftime("%d/%m") %> ----- <%= job.application_deadline < Date.today ? "Rolling" : job.application_deadline.strftime("%d/%m") %></div>
       </div>
 
       <%# Net Zero Rating %>
