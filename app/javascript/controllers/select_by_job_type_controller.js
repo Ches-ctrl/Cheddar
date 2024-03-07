@@ -9,53 +9,42 @@ export default class extends Controller {
 
   combinedSearch(event) {
     event.preventDefault()
-    const searchQuery = this.searchTarget.value.split(' ')
-    const checkedTimes = this.postedTargets.filter(time => time.checked)
-      .map(time => time.id)
-    const checkedRoles = this.roleTargets.filter(role => role.checked)
-      .map(role => role.id)
-    const checkedCompanies = this.companyTargets.filter(company => company.checked)
-      .map(company => company.attributes.id.value)
-    const checkedLocations = this.locationTargets.filter(location => location.checked)
-      .map(location => location.id)
-    const checkedSeniorities = this.seniorityTargets.filter(seniority => seniority.checked)
-      .map(seniority => seniority.id)
-    const checkedEmployments = this.employmentTargets.filter(employment => employment.checked)
-      .map(employment => employment.id)
 
-    const filterQueryString = this.buildQueryString(searchQuery, checkedTimes, checkedRoles, checkedCompanies, checkedLocations, checkedSeniorities, checkedEmployments)
+    const searchQuery = this.searchTarget.value.trim();
+
+    const filterTerms = {
+      posted: this.postedTargets,
+      seniority: this.seniorityTargets,
+      location: this.locationTargets,
+      role: this.roleTargets,
+      type: this.employmentTargets,
+      company: this.companyTargets
+    }
+
+    const searchTerms = {}
+
+    if (searchQuery.length > 0) {
+      searchTerms[query] = searchQuery.split(' ');
+    }
+
+    for (let key in filterTerms) {
+      const checkedTargets = filterTerms[key]
+        .filter(target => target.checked)
+        .map(target => target.id);
+      if (checkedTargets.length > 0) {
+        searchTerms[key] = checkedTargets
+      }
+    }
+
+    const filterQueryString = this.buildQueryString(searchTerms);
     window.location.href = `/jobs${filterQueryString}`;
   }
 
-  buildQueryString(searchQuery, checkedTimes, checkedRoles, checkedCompanies, checkedLocations, checkedSeniorities, checkedEmployments) {
-    const queryStringParams = [];
+  buildQueryString(searchTerms) {
 
-    if (searchQuery.length > 0) {
-      queryStringParams.push("query=" + searchQuery.join("+"));
-    }
-
-    if (checkedTimes.length > 0) {
-      queryStringParams.push("posted=" + checkedTimes.join("+"));
-    }
-
-    if (checkedRoles.length > 0) {
-      queryStringParams.push("role=" + checkedRoles.join("+"));
-    }
-
-    if (checkedCompanies.length > 0) {
-      queryStringParams.push("company=" + checkedCompanies.join("+"));
-    }
-
-    if (checkedLocations.length > 0) {
-      queryStringParams.push("location=" + checkedLocations.join("+"));
-    }
-
-    if (checkedSeniorities.length > 0) {
-      queryStringParams.push("seniority=" + checkedSeniorities.join("+"));
-    }
-
-    if (checkedEmployments.length > 0) {
-      queryStringParams.push("employment=" + checkedEmployments.join("+"));
+    const queryStringParams = []
+    for (let key in searchTerms) {
+      queryStringParams.push(`${key}=${searchTerms[key].join('+')}`);
     }
 
     return queryStringParams.length > 0 ? "?" + queryStringParams.join("&") : "";
