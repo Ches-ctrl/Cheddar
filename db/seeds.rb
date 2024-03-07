@@ -819,25 +819,5 @@ defunct_urls.each do |url|
   puts url
 end
 
-# puts "Here are some more jobs to add:"
-
-# departments = ['engineering', 'data science']
-
-# unprocessed_job_urls.each do |company, job_urls|
-#   job_urls.each do |url|
-#     ats_identifier, job_id = CompanyCreator.new(url).fetch_ats_identifier_and_job_id
-#     job = Job.new(
-#       job_title: "Job Title Placeholder",
-#       job_posting_url: url,
-#       company_id: company.id,
-#       applicant_tracking_system_id: company.applicant_tracking_system_id,
-#       ats_job_id: job_id,
-#     )
-#     JobCreator.new(job).find_or_create_job('truncate')
-#     puts job.job_title
-#     puts job.department
-#   end
-# end
-
 # PgSearch::Multisearch.rebuild(Job)
 # PgSearch::Multisearch.rebuild(Company)
