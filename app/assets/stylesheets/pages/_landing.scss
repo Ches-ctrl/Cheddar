@@ -110,12 +110,13 @@
 
     .cheddar-outline-circle {
       width: 310px;
+      animation: rotateClockwise 10s linear infinite;
     }
 
     .cheddar-3d-icon {
-      width: 140px;
+      width: 160px;
       position: absolute;
-      top: 50%;
+      top: 52%;
       left: 52%;
       transform: translate(-50%, -50%);
     }
@@ -137,5 +138,15 @@
       letter-spacing: 0em;
       text-align: center;
     }
+  }
+}
+
+
+@keyframes rotateClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
