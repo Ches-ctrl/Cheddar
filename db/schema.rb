@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_06_212234) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_07_084536) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -125,7 +125,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_212234) do
     t.string "salary"
     t.date "date_created"
     t.text "application_criteria"
-    t.date "application_deadline", default: "2024-01-22"
+    t.date "application_deadline"
     t.string "job_posting_url"
     t.bigint "company_id", null: false
     t.datetime "created_at", null: false
@@ -138,6 +138,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_212234) do
     t.text "benefits"
     t.boolean "captcha", default: false
     t.string "employment_type", default: "Full-time"
+    t.string "non_geocoded_location_string"
     t.string "industry"
     t.string "seniority"
     t.integer "applicants_count", default: 0
@@ -178,11 +179,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_212234) do
 
   create_table "locations", force: :cascade do |t|
     t.string "city"
-    t.bigint "country_id"
+    t.bigint "country_id", null: false
     t.decimal "latitude", precision: 10, scale: 6
     t.decimal "longitude", precision: 10, scale: 6
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_locations_on_country_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -264,6 +266,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_212234) do
   add_foreign_key "job_applications", "users"
   add_foreign_key "jobs", "applicant_tracking_systems"
   add_foreign_key "jobs", "companies"
+  add_foreign_key "locations", "countries"
   add_foreign_key "playlist_jobs", "job_playlists"
   add_foreign_key "playlist_jobs", "jobs"
   add_foreign_key "saved_jobs", "jobs"
