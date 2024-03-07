@@ -1,5 +1,24 @@
-<div>
-  <h1></h1>
-  <div></div>
-  <div><%= submit_tag "Apply to selected jobs", class: "btn btn-apply", id: "apply_button", disabled: true %></div>
+<div class="d-flex flex-column justify-content-center basket p-3">
+  <h4>Time to apply</h4>
+
+  <div class="app-difficulties d-flex flex-column">
+    <div class="d-flex align-items-center justify-content-between pt-3">
+      <div>Easy</div>
+      <div>2 x 2 mins</div>
+    </div>
+    <div class="d-flex align-items-center justify-content-between pt-3">
+      <div>Med</div>
+      <div>2 x 3 mins</div>
+    </div>
+    <div class="d-flex align-items-center justify-content-between pt-3">
+      <div>Hard</div>
+      <div>1 x 4 mins</div>
+    </div>
+    <div class="d-flex align-items-center justify-content-between pt-3 fw-semibold">
+      <div>Total time (est.)</div>
+      <div>18 mins</div>
+    </div>
+  </div>
+
+  <%= submit_tag "Apply to all", class: "btn btn-apply flex-fill mt-3", id: "apply_button", disabled: true %>
 </div>
