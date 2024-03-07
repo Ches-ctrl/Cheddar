@@ -3,11 +3,17 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <h3 id="saved-jobs-index-title">Basket</h3>
-      <div><%= submit_tag "Apply to selected jobs", class: "btn btn-apply", id: "apply_button", disabled: true %></div>
     </div>
 
-    <div class="job-cards-container pt-0">
-        <%= render partial: 'jobs/job_card', collection: @saved_jobs.map(&:job), as: :job, locals: { include_checkboxes: true }%>
+    <div class="row pt-0">
+      <div class="col-9">
+          <%= render partial: 'jobs/job_card', collection: @saved_jobs.map(&:job), as: :job, locals: { include_checkboxes: true }%>
+      </div>
+
+      <div class="col-3">
+          <%= render partial: 'basket' %>
+      </div>
     </div>
+
   <% end %>
 </div>
