@@ -36,9 +36,12 @@ class JobCreator
     end
   end
 
-  def find_or_create_job
+  def find_or_create_job(truncate = false)
     if ats_system_name
       ats_module('JobDetails').get_job_details(@job)
+
+      return if truncate
+
       ats_module('ApplicationFields').get_application_criteria(@job)
       # ats_module('ApplicationFields').update_requirements(@job)
       update_requirements(@job)

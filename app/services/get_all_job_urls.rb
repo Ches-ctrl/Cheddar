@@ -1,12 +1,15 @@
 class GetAllJobUrls
+  include Ats::Greenhouse::FetchCompanyJobs
+
   def initialize(company)
     @company = company
-    @url = company.url_ats
+    @url = company.url_ats_api
     @ats_identifier = company.ats_identifier
   end
 
   def get_all_job_urls
     return unless @url.include?('greenhouse')
+
     data = fetch_company_jobs(@ats_identifier)
     job_urls = get_job_urls(data)
     total_live = total_live(data)
@@ -27,18 +30,6 @@ class GetAllJobUrls
   end
 
   private
-
-  def fetch_company_jobs(ats_identifier)
-    company_api_url = "https://boards-api.greenhouse.io/v1/boards/#{ats_identifier}/jobs"
-    uri = URI(company_api_url)
-    response = Net::HTTP.get(uri)
-    data = JSON.parse(response)
-    # p data
-  end
-
-  def get_job_urls(data)
-    job_urls = data['jobs'].map { |job| job['absolute_url'] }
-  end
 
   def total_live(data)
     total_live = data['meta']['total']
