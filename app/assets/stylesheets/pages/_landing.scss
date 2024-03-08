@@ -6,6 +6,7 @@
     align-items: center;
     text-align: center;
     height: 85vh;
+    overflow: hidden;
   }
   #landing-left, #landing-cto {
     text-align: center;
@@ -45,12 +46,17 @@
     width: 138px;
   }
   #landing-right {
-    position: relative;
-    width: 86vh;
     height: 22vh;
     overflow: hidden;
-    animation: moveInOut 10s linear infinite;
-    z-index: 1;
+    display: flex;
+
+    #logos-main, .logos-duplicate {
+      animation: moveInOut 10s linear infinite;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      margin-left: 2px;
+      margin-right: 2px;
+    }
 
     .firm-logo {
       width: 65.6px;
@@ -60,14 +66,11 @@
     }
   }
   @keyframes moveInOut {
-    0% {
-      transform: translateX(-25%);
+    from {
+      transform: translateX(-100%);
     }
-    50% {
-      transform: translateX(0%);
-    }
-    100% {
-        transform: translateX(25%);
+    to {
+        transform: translateX(0%);
     }
 }
 #landing-cto {
@@ -130,16 +133,24 @@
     width: 30%;
     background-color: white;
     border-radius: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    row-gap: 20px;
-    column-gap: 0px;
-    justify-items: center;
-    align-items: center;
+
+    #logos-main {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      row-gap: 20px;
+      column-gap: 0px;
+      justify-items: center;
+      align-items: center;
+    }
+
     img {
       width: 5em;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       border-radius: 20px;
+    }
+
+    .logos-duplicate {
+      display: none;
     }
   }
 
@@ -191,6 +202,7 @@
     justify-content: center;
     text-align: center;
     margin-top: 8px;
+    height: 20vh;
 
     h3 {
       color: $main-color;
