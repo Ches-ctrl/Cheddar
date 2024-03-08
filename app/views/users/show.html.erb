@@ -1,4 +1,37 @@
 <div class="container">
+  <div class="header-photos">
+    <%= link_to image_tag('https://source.unsplash.com/random/900%C3%97700/?landscape', alt: 'cake', style: "height: 300px; width: 24%;") %>
+    <%= link_to image_tag('https://source.unsplash.com/random/900%C3%97700/?puppy', alt: 'cake', style: "height: 300px; width: 24%;") %>
+    <%= link_to image_tag('https://source.unsplash.com/random/900%C3%97700/?cat', alt: 'cake', style: "height: 300px; width: 24%;") %>
+    <%= link_to image_tag('https://source.unsplash.com/random/900%C3%97700/?country', alt: 'cake', style: "height: 300px; width: 24%;") %>
+  </div>
+  <div class="profile-heading">
+    <div class="avatar", style="margin-top: -60px">
+      <div>
+        <% if current_user.photo.key %>
+          <%= image_tag current_user.photo, class: "avatar-large" %>
+        <% else %>
+          <%= image_tag "avatar_default.png", class: "avatar-large" %>
+        <% end %>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+<div class="container">
 
   <%# Profile Photo %>
   <div id="profile-info">
