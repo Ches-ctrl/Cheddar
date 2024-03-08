@@ -17,7 +17,7 @@
     </div>
     <div class="row mt-4 text-sm">
       <div class="col-5">
-        <h4 class="fw-semibold">Charlie Cheesman</h4>
+        <h4 class="fw-semibold"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h4>
         <div class="d-flex align-items-center">
           <i class="fa-solid fa-cheese me-1"></i>
           <div>Subscriber</div>
@@ -28,6 +28,41 @@
         </div>
       </div>
       <div class="col-7">
+        <div class="applications-summary d-flex justify-content-start">
+
+          <div class="applications-count d-flex flex-column align-items-center mr-5", style="width: 150px;">
+            <div class="fs-6">Last 4 weeks</div>
+            <div class="fs-1 fw-semibold"><%= current_user.job_applications.count %></div>
+            <div>Total Applications</div>
+          </div>
+
+          <div class="applications-calendar text-sm" style="width: 350px;">
+            <table class="table">
+              <thead>
+                <tr>
+                  <% Date::DAYNAMES.rotate(1).each do |day_name| %>
+                    <th scope="col"><%= day_name[0] %></th>
+                  <% end %>
+                </tr>
+              </thead>
+              <tbody>
+                <% @calendar_days.keys.each_slice(7) do |week_days| %>
+                  <tr>
+                    <% week_days.each do |date| %>
+                      <td class="<%= 'has-application' if @calendar_days[date] && date.month == Date.today.month %>">
+                        <%= date.day %>
+                      </td>
+                    <% end %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="applications-breakdown">
+
+          </div>
+        </div>
+
 
 
       </div>

@@ -1,3 +1,26 @@
+.col-header {
+  display: inline-block;
+  width: calc(70% / 7);
+  text-align: center;
+}
+.row {
+  display: flex;
+}
+
+.col {
+  width: calc(100% / 7);
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 10px;
+}
+
+.has-application {
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white;
+}
+
+
+
 #profile-main-section {
   display: flex;
   margin: 32px 0;
