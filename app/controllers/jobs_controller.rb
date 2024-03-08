@@ -119,7 +119,7 @@ class JobsController < ApplicationController
   def filter_by_when_posted
     params[:posted].split.each do |time|
       number = CONVERT_TO_DAYS[time] || 99999
-      @jobs = Job.where(date_created: number.days.ago..Date.today)
+      @jobs = @jobs.where(date_created: number.days.ago..Date.today)
     end
   end
 
