@@ -25,7 +25,7 @@ module Ats::Greenhouse::JobDetails
     job.update(
       job_title: data['title'],
       job_description: decoded_description,
-      location: data['location']['name'],
+      non_geocoded_location_string: data['location']['name'],
       department: data['departments'][0]['name'],
       office: data['offices'][0]['name'],
       date_created: convert_from_iso8601(data['updated_at'])

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_07_084536) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_08_150119) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -167,9 +167,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_084536) do
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
-  create_table "jobs_locations", id: false, force: :cascade do |t|
+  create_table "jobs_countries", force: :cascade do |t|
     t.bigint "job_id", null: false
-    t.bigint "location_id", null: false
+    t.bigint "country_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_jobs_countries_on_country_id"
+    t.index ["job_id"], name: "index_jobs_countries_on_job_id"
+  end
+
+  create_table "jobs_locations", force: :cascade do |t|
+    t.bigint "job_id"
+    t.bigint "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_jobs_locations_on_job_id"
+    t.index ["location_id"], name: "index_jobs_locations_on_location_id"
   end
 
   create_table "jobs_technologies", id: false, force: :cascade do |t|
@@ -266,6 +279,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_084536) do
   add_foreign_key "job_applications", "users"
   add_foreign_key "jobs", "applicant_tracking_systems"
   add_foreign_key "jobs", "companies"
+  add_foreign_key "jobs_countries", "countries"
+  add_foreign_key "jobs_countries", "jobs"
+  add_foreign_key "jobs_locations", "jobs"
+  add_foreign_key "jobs_locations", "locations"
   add_foreign_key "locations", "countries"
   add_foreign_key "playlist_jobs", "job_playlists"
   add_foreign_key "playlist_jobs", "jobs"
