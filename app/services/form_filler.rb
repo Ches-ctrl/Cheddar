@@ -74,7 +74,7 @@ class FormFiller
       end
     end
     # TODO: Add check on whether form has been submitted successfully
-    submit = find_submit_button.click rescue nil
+    # submit = find_submit_button.click rescue nil
     take_screenshot_and_store(job_application_id)
     close_session(job_application_id)
 

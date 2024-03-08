@@ -20,8 +20,8 @@
           <strong class="text-sm"><%= job.company.company_name %></strong>
         <% end %>
 
-        <% if job.location.present? %>
-          <div class="text-sm"><%= job.location %></div>
+        <% if job.locations.present? %>
+          <div class="text-sm"><%= job.locations.first.city %></div>
         <% end %>
       </div>
     </div>

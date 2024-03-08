@@ -19,13 +19,15 @@ class Job < ApplicationRecord
 
   belongs_to :company
   belongs_to :applicant_tracking_system, optional: true
-  has_and_belongs_to_many :technologies
-  has_and_belongs_to_many :locations
 
   has_many :job_applications, dependent: :destroy
   has_many :saved_jobs, dependent: :destroy
   has_many :playlist_jobs
   has_many :job_playlists, through: :playlist_jobs
+  has_many :jobs_locations, dependent: :destroy
+  has_many :locations, through: :jobs_locations
+  has_many :jobs_countries, dependent: :destroy
+  has_many :countries, through: :jobs_countries
 
   before_create :set_date_created
 
