@@ -24,7 +24,7 @@ export default class extends Controller {
     const searchTerms = {}
 
     if (searchQuery.length > 0) {
-      searchTerms[query] = searchQuery.split(' ');
+      searchTerms['query'] = searchQuery.split(' ');
     }
 
     for (let key in filterTerms) {
@@ -41,8 +41,8 @@ export default class extends Controller {
   }
 
   buildQueryString(searchTerms) {
-
     const queryStringParams = []
+
     for (let key in searchTerms) {
       queryStringParams.push(`${key}=${searchTerms[key].join('+')}`);
     }
