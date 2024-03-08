@@ -5,7 +5,8 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    height: 85vh;
+    height: 80vh;
+    overflow: hidden;
   }
   #landing-left, #landing-cto {
     text-align: center;
@@ -45,12 +46,17 @@
     width: 138px;
   }
   #landing-right {
-    position: relative;
-    width: 86vh;
     height: 22vh;
     overflow: hidden;
-    animation: moveInOut 10s linear infinite;
-    z-index: 1;
+    display: flex;
+
+    #logos-main, .logos-duplicate {
+      animation: moveInOut 10s linear infinite;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      margin-left: 2px;
+      margin-right: 2px;
+    }
 
     .firm-logo {
       width: 65.6px;
@@ -60,148 +66,40 @@
     }
   }
   @keyframes moveInOut {
-    0% {
-      transform: translateX(-25%);
+    from {
+      transform: translateX(-100%);
     }
-    50% {
-      transform: translateX(0%);
-    }
-    100% {
-        transform: translateX(25%);
+    to {
+        transform: translateX(0%);
     }
 }
-#landing-cto {
-  h3 {
-    margin: 3% 0 4% 0;
-    color: $main-color;
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 700;
-  }
-  .landing-input, .landing-btn {
-    color: rgba(20, 52, 89, 0.60);
-    font-family: $headers-font;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    border-radius: 33.282px;
-    border: 0.832px solid rgba(255, 255, 255, 0.20);
-    background: rgba(20, 52, 89, 0.20);
-    box-shadow: 4.992px 4.992px 14.145px -24.13px rgba(255, 255, 255, 0.85) inset, 23.298px 23.298px 44.931px -31.618px rgba(255, 255, 255, 0.60) inset, -13.313px -13.313px 11.649px -112.328px rgba(0, 0, 0, 0.25) inset, -23.298px -23.298px 44.931px -60.74px rgba(0, 0, 0, 0.24) inset, 0px 3.328px 3.328px 0px rgba(0, 0, 0, 0.25), 0px 3.328px 3.328px 0px rgba(0, 0, 0, 0.25) inset;
-  }
-  .landing-input {
-    padding: 1% 3% 1% 3%;
-    &::placeholder {
-      font-size: 16px;
-      color: rgba(20, 52, 89, 0.40)
-    }
-  }
-  .landing-btn {
-    padding: 1% 6% 1% 6%;
-    text-align: center;
-    i {
-      font-size: 20px;
-      vertical-align: middle;
-    }
-    &:active {
-      color: rgba(20, 52, 89, 0.80);
-    }
-  }
-}
-}
 
-
-@media screen and (min-width: 642px){
-  #landing-main {
-    background-color: $main-color;
-    display: flex;
-    align-items: center;
-    height: 80vh;
-    justify-content: center;
-    align-items: center;
-  }
-  #landing-left, #landing-right {
-    margin: 8px 0;
-    padding: 32px;
-    text-align: center;
-  }
-
-  #landing-right {
-    width: 30%;
-    background-color: white;
-    border-radius: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    row-gap: 20px;
-    column-gap: 0px;
-    justify-items: center;
-    align-items: center;
-    img {
-      width: 5em;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 20px;
-    }
-  }
-
-  .cheddar-logo-txt {
-    width: 140px;
-    margin-left: 0;
-    margin-right: auto;
-  }
-
-  .tag-line {
-    color: #fff;
-    font-family: $headers-font;
-    font-size: 36px;
-    font-weight: 800;
-    line-height: 50px;
-    letter-spacing: 0px;
-    text-align: center;
-    width: 70%;
-  }
-
-  #landing-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 45%;
-  }
-
-  #landing-logo {
-    position: relative;
-    display: inline-block;
-
-    .cheddar-outline-circle {
-      width: 310px;
-      animation: rotateClockwise 10s linear infinite;
-    }
-
-    .cheddar-3d-icon {
-      width: 160px;
-      position: absolute;
-      top: 52%;
-      left: 52%;
-      transform: translate(-50%, -50%);
-    }
-  }
-
-  #landing-cto {
+  #mc_embed_shell {
     flex-direction: column;
     justify-content: center;
     text-align: center;
     margin-top: 8px;
+    height: 20vh;
 
-    h3 {
+    h2 {
       color: $main-color;
       font-family: $headers-font;
-      font-size: 32px;
+      font-size: 24px;
       font-weight: 700;
       line-height: 78px;
       letter-spacing: 0em;
       text-align: center;
+      margin: 0;
     }
-    .landing-input, .landing-btn {
+
+    .mc-field-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+
+    #mce-EMAIL {
       color: rgba(20, 52, 89, 0.60);
       font-family: $headers-font;
       font-style: normal;
@@ -211,25 +109,174 @@
       border: 0.832px solid rgba(255, 255, 255, 0.20);
       background: rgba(20, 52, 89, 0.20);
       box-shadow: 4.992px 4.992px 14.145px -24.13px rgba(255, 255, 255, 0.85) inset, 23.298px 23.298px 44.931px -31.618px rgba(255, 255, 255, 0.60) inset, -13.313px -13.313px 11.649px -112.328px rgba(0, 0, 0, 0.25) inset, -23.298px -23.298px 44.931px -60.74px rgba(0, 0, 0, 0.24) inset, 0px 3.328px 3.328px 0px rgba(0, 0, 0, 0.25), 0px 3.328px 3.328px 0px rgba(0, 0, 0, 0.25) inset;
+      width: 75%;
+      height: 40px;
     }
-    .landing-input {
-      padding: 1% 3% 1% 3%;
-      &::placeholder {
-        font-size: 16px;
-        color: rgba(20, 52, 89, 0.40)
-      }
+
+    #mc-embedded-subscribe {
+      color: rgba(20, 52, 89, 0.60);
+      font-family: $headers-font;
+      font-size: 3em;
+      font-style: normal;
+      font-weight: 300;
+      line-height: normal;
+      border-radius: 33.282px;
+      border: 0.832px solid rgba(255, 255, 255, 0.20);
+      background: rgba(20, 52, 89, 0.20);
+      box-shadow: 4.992px 4.992px 14.145px -24.13px rgba(255, 255, 255, 0.85) inset, 23.298px 23.298px 44.931px -31.618px rgba(255, 255, 255, 0.60) inset, -13.313px -13.313px 11.649px -112.328px rgba(0, 0, 0, 0.25) inset, -23.298px -23.298px 44.931px -60.74px rgba(0, 0, 0, 0.24) inset, 0px 3.328px 3.328px 0px rgba(0, 0, 0, 0.25), 0px 3.328px 3.328px 0px rgba(0, 0, 0, 0.25) inset;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 8px;
+      padding: 0;
     }
-    .landing-btn {
-      padding: 1% 6% 1% 6%;
+    }
+  }
+
+
+  @media screen and (min-width: 642px){
+    #landing-main {
+      background-color: $main-color;
+      display: flex;
+      align-items: center;
+      height: 80vh;
+      justify-content: center;
+      align-items: center;
+    }
+    #landing-left, #landing-right {
+      margin: 8px 0;
+      padding: 32px;
       text-align: center;
-      i {
-        font-size: 20px;
-        vertical-align: middle;
+    }
+
+    #landing-right {
+      width: 30%;
+      background-color: white;
+      border-radius: 20px;
+
+      #logos-main {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        row-gap: 20px;
+        column-gap: 0px;
+        justify-items: center;
+        align-items: center;
       }
-      &:active {
-        color: rgba(20, 52, 89, 0.80);
+
+      img {
+        width: 5em;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+      }
+
+      .logos-duplicate {
+        display: none;
       }
     }
+
+    .cheddar-logo-txt {
+      width: 140px;
+      margin-left: 0;
+      margin-right: auto;
+    }
+
+    .tag-line {
+      color: #fff;
+      font-family: $headers-font;
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 50px;
+      letter-spacing: 0px;
+      text-align: center;
+      width: 70%;
+    }
+
+    #landing-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 45%;
+    }
+
+    #landing-logo {
+      position: relative;
+      display: inline-block;
+
+      .cheddar-outline-circle {
+        width: 310px;
+        animation: rotateClockwise 10s linear infinite;
+      }
+
+      .cheddar-3d-icon {
+        width: 160px;
+        position: absolute;
+        top: 52%;
+        left: 52%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    #mc_embed_shell {
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      margin-top: 8px;
+      height: 20vh;
+
+      h2 {
+        color: $main-color;
+        font-family: $headers-font;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 78px;
+        letter-spacing: 0em;
+        text-align: center;
+        margin: 0;
+      }
+
+      .mc-field-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+      }
+
+      #mce-EMAIL {
+        color: rgba(20, 52, 89, 0.60);
+        font-family: $headers-font;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        border-radius: 33.282px;
+        border: 0.832px solid rgba(255, 255, 255, 0.20);
+        background: rgba(20, 52, 89, 0.20);
+        box-shadow: 4.992px 4.992px 14.145px -24.13px rgba(255, 255, 255, 0.85) inset, 23.298px 23.298px 44.931px -31.618px rgba(255, 255, 255, 0.60) inset, -13.313px -13.313px 11.649px -112.328px rgba(0, 0, 0, 0.25) inset, -23.298px -23.298px 44.931px -60.74px rgba(0, 0, 0, 0.24) inset, 0px 3.328px 3.328px 0px rgba(0, 0, 0, 0.25), 0px 3.328px 3.328px 0px rgba(0, 0, 0, 0.25) inset;
+        width: 30%;
+        height: 40px;
+      }
+
+      #mc-embedded-subscribe {
+        color: rgba(20, 52, 89, 0.60);
+        font-family: $headers-font;
+        font-size: 3em;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+        border-radius: 33.282px;
+        border: 0.832px solid rgba(255, 255, 255, 0.20);
+        background: rgba(20, 52, 89, 0.20);
+        box-shadow: 4.992px 4.992px 14.145px -24.13px rgba(255, 255, 255, 0.85) inset, 23.298px 23.298px 44.931px -31.618px rgba(255, 255, 255, 0.60) inset, -13.313px -13.313px 11.649px -112.328px rgba(0, 0, 0, 0.25) inset, -23.298px -23.298px 44.931px -60.74px rgba(0, 0, 0, 0.24) inset, 0px 3.328px 3.328px 0px rgba(0, 0, 0, 0.25), 0px 3.328px 3.328px 0px rgba(0, 0, 0, 0.25) inset;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 8px;
+        padding: 0;
+      }
   }
 }
 
