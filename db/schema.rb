@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_06_002814) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_07_084536) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -86,6 +86,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_002814) do
     t.string "url_ats_api"
   end
 
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "educations", force: :cascade do |t|
     t.string "university"
     t.string "degree"
@@ -132,8 +138,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_002814) do
     t.text "benefits"
     t.boolean "captcha", default: false
     t.string "employment_type", default: "Full-time"
-    t.string "location"
-    t.string "country"
+    t.string "non_geocoded_location_string"
     t.string "industry"
     t.string "seniority"
     t.integer "applicants_count", default: 0
@@ -158,11 +163,28 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_002814) do
     t.string "office"
     t.boolean "remote_only"
     t.boolean "hybrid"
-    t.float "latitude"
-    t.float "longitude"
-    t.string "city"
     t.string "role"
     t.index ["company_id"], name: "index_jobs_on_company_id"
+  end
+
+  create_table "jobs_locations", id: false, force: :cascade do |t|
+    t.bigint "job_id", null: false
+    t.bigint "location_id", null: false
+  end
+
+  create_table "jobs_technologies", id: false, force: :cascade do |t|
+    t.bigint "job_id", null: false
+    t.bigint "technology_id", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "city"
+    t.bigint "country_id", null: false
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_locations_on_country_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -197,6 +219,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_002814) do
     t.datetime "updated_at", null: false
     t.index ["job_id"], name: "index_saved_jobs_on_job_id"
     t.index ["user_id"], name: "index_saved_jobs_on_user_id"
+  end
+
+  create_table "technologies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -238,6 +266,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_002814) do
   add_foreign_key "job_applications", "users"
   add_foreign_key "jobs", "applicant_tracking_systems"
   add_foreign_key "jobs", "companies"
+  add_foreign_key "locations", "countries"
   add_foreign_key "playlist_jobs", "job_playlists"
   add_foreign_key "playlist_jobs", "jobs"
   add_foreign_key "saved_jobs", "jobs"
