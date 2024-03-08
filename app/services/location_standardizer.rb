@@ -11,28 +11,38 @@ class LocationStandardizer
     hybrid = location.downcase.include?('hybrid') || @job.job_description.downcase.include?('hybrid')
     remote = location.downcase.match?(/(?<!\bor\s)remote/)
 
-    location_elements = location.split(/[,•]/).map { |element| element.gsub(/[-;(\/].*/, '').gsub(/([Rr]emote|[Hh]ybrid)\s*[,;:-]?\s*/, '').strip }
+    location_elements = location.split(/[,•]/).map { |element| element.gsub(/[-;(\/]/, '').gsub(/([Rr]emote|[Hh]ybrid)/, '').strip }
 
+    p location_elements
     # search for existing cities and countries in location elements:
     location_elements.each do |element|
       city_string, country_string, latitude, longitude = standardize_city_and_country(element)
-      # what if response is nil?
-      if city_instance = Location.find_by(city: city_string)
-        JobsLocation.create!(job: @job, location: city_instance)
-      elsif country_instance = Country.find_by(name: country_string)
-        JobsCountry.create!(job: @job, country: country_instance)
-      else
-        puts city_string, country_string
-        # create new country
-        country_instance = Country.create!(name: country_string)
-        JobsCountry.create!(job: @job, country: country_instance)
-        # create new location
-        if city_string
-          city_instance = Location.create!(city: city_string, country: country_instance, latitude: latitude, longitude: longitude)
-          JobsLocation.create!(job: @job, location: city_instance)
+
+      if country_string
+        if country_instance = Country.find_by(name: country_string)
+          JobsCountry.create!(job: @job, country: country_instance)
+          puts "association with existing country: #{country_instance.name}"
+        else
+          # create a new country
+          country_instance = Country.create!(name: country_string)
+          JobsCountry.create!(job: @job, country: country_instance)
+          puts "created country: #{country_string}"
+          next unless country_instance
         end
       end
-      location_elements.delete(element)
+
+      if city_string
+        if city_instance = Location.find_by(city: city_string)
+          JobsLocation.create!(job: @job, location: city_instance)
+          puts "association with existing city: #{city_instance.city}"
+        else
+          # create new location
+          city_instance = Location.create!(city: city_string, country: country_instance, latitude: latitude, longitude: longitude)
+          JobsLocation.create!(job: @job, location: city_instance)
+          puts "created location: #{city_string}"
+        end
+      end
+      # location_elements.delete(element)
     end
 
     @job.hybrid = hybrid
