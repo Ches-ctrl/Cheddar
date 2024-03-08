@@ -20,9 +20,7 @@
           <strong class="text-sm"><%= job.company.company_name %></strong>
         <% end %>
 
-        <% if job.locations.present? %>
-          <div class="text-sm"><%= job.locations.map(&:city).join(' | ') %></div>
-        <% end %>
+        <div class="text-sm"><%= (job.remote_only || job.locations.empty?) ? 'Remote' : job.locations.map(&:city).join(' | ') %><%= " | #{job.countries.first.name}" if job.countries.count == 1 %></div>
       </div>
     </div>
 
