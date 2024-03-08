@@ -66,6 +66,9 @@ class LocationStandardizer
       puts "Error fetching data: #{e.message}"
       return []
     end
+
+    return [] if data['resourceSets'][0]['estimatedTotal'].zero?
+
     city = data['resourceSets'][0]['resources'][0]['address']['locality']
     country = data['resourceSets'][0]['resources'][0]['address']['countryRegion']
     latitude, longitude = data['resourceSets'][0]['resources'][0]['point']['coordinates']
