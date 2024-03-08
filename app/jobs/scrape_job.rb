@@ -16,6 +16,7 @@ class ScrapeJob < ApplicationJob
     Capybara.default_max_wait_time = 10
 
     url = [ENV['SCRAPE_URL_1'], ENV['SCRAPE_URL_2'], ENV['SCRAPE_URL_3'], ENV['SCRAPE_URL_4'], ENV['SCRAPE_URL_5'], ENV['SCRAPE_URL_6']]
+    # url = 'https://devitjobs.uk'
     search_criteria = ['London Developer', 'London Full Stack', 'London Product Management', 'London Data Science', 'London Data Engineering', 'London Design']
 
     # Add this as a command to the admin panel, with details as to when the job was last run and current DB stats:
@@ -30,7 +31,8 @@ class ScrapeJob < ApplicationJob
     user_input = gets.chomp.to_i
 
     if user_input.between?(1, url.length)
-      url = url[user_input - 1]
+      # url = url[user_input - 1]
+      url = 'https://devitjobs.uk'
       search_criteria = search_criteria[user_input - 1]
     else
       puts "Invalid input. Please try again."
