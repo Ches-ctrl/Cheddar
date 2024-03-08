@@ -1,19 +1,37 @@
 <div class="container">
-  <div class="header-photos">
-    <%= link_to image_tag('https://source.unsplash.com/random/900%C3%97700/?landscape', alt: 'cake', style: "height: 300px; width: 24%;") %>
-    <%= link_to image_tag('https://source.unsplash.com/random/900%C3%97700/?puppy', alt: 'cake', style: "height: 300px; width: 24%;") %>
-    <%= link_to image_tag('https://source.unsplash.com/random/900%C3%97700/?cat', alt: 'cake', style: "height: 300px; width: 24%;") %>
-    <%= link_to image_tag('https://source.unsplash.com/random/900%C3%97700/?country', alt: 'cake', style: "height: 300px; width: 24%;") %>
+  <div class="header-photos pt-1">
+    <%= link_to image_tag('https://source.unsplash.com/random/900%C3%97700/?landscape', alt: 'cake', style: "height: 300px; width: 24%; overflow: hidden;") %>
+    <%= link_to image_tag('https://source.unsplash.com/random/900%C3%97700/?puppy', alt: 'cake', style: "height: 300px; width: 24%; overflow: hidden;") %>
+    <%= link_to image_tag('https://source.unsplash.com/random/900%C3%97700/?cat', alt: 'cake', style: "height: 300px; width: 24%; overflow: hidden;") %>
+    <%= link_to image_tag('https://source.unsplash.com/random/900%C3%97700/?country', alt: 'cake', style: "height: 300px; width: 24%; overflow: hidden;") %>
   </div>
   <div class="profile-heading">
-    <div class="avatar ms-2">
+    <div class="avatar ms-4", style="margin-bottom: 40px;">
       <div>
         <% if current_user.photo.key %>
-          <%= image_tag current_user.photo, class: "avatar-large", style: "margin-top: -60px" %>
+          <%= image_tag current_user.photo, class: "avatar-large", style: "margin-top: -55px; border: 2px solid #fff;" %>
         <% else %>
-          <%= image_tag "avatar_default.png", class: "avatar-large", style: "margin-top: -60px" %>
+          <%= image_tag "avatar_default.png", class: "avatar-large", style: "margin-top: -55px; border: 2px solid #fff;" %>
         <% end %>
       </div>
+    </div>
+    <div class="row mt-4 text-sm">
+      <div class="col-5">
+        <h4 class="fw-semibold">Charlie Cheesman</h4>
+        <div class="d-flex align-items-center">
+          <i class="fa-solid fa-cheese me-1"></i>
+          <div>Subscriber</div>
+        </div>
+        <div class="d-flex align-items-center">
+          <i class="fa-solid fa-location-dot me-1"></i>
+          <div> Chichester, West Sussex, United Kingdom</div>
+        </div>
+      </div>
+      <div class="col-7">
+
+
+      </div>
+
     </div>
   </div>
   <div class="section">
