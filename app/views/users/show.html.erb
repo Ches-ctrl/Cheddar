@@ -6,16 +6,17 @@
     <%= link_to image_tag('https://source.unsplash.com/random/900%C3%97700/?country', alt: 'cake', style: "height: 300px; width: 24%;") %>
   </div>
   <div class="profile-heading">
-    <div class="avatar", style="margin-top: -60px">
+    <div class="avatar ms-2">
       <div>
         <% if current_user.photo.key %>
-          <%= image_tag current_user.photo, class: "avatar-large" %>
+          <%= image_tag current_user.photo, class: "avatar-large", style: "margin-top: -60px" %>
         <% else %>
-          <%= image_tag "avatar_default.png", class: "avatar-large" %>
+          <%= image_tag "avatar_default.png", class: "avatar-large", style: "margin-top: -60px" %>
         <% end %>
       </div>
-
     </div>
+  </div>
+  <div class="section">
 
   </div>
 
