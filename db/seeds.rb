@@ -2,7 +2,7 @@
 # require 'net/http'
 # require 'json'
 
-puts "\nJust a few seconds while the seedfile gathers some data..."
+puts "\nBuilding a list of job urls from the following companies:"
 
 greenhouse_company_ats_identifiers = [
   "cleoai",
@@ -32,18 +32,18 @@ greenhouse_company_ats_identifiers = [
 
 relevant_job_urls = GetRelevantJobUrls.new(greenhouse_company_ats_identifiers).fetch_jobs
 
-puts "\nHow many jobs should I seed in the database?\n"
+puts "\nHow many jobs to seed in the database?\n"
 
 response = nil
 until response do
-  puts "Please enter a valid integer between 1 and #{relevant_job_urls.count}"
+  puts "Please enter a valid integer between 1 and #{relevant_job_urls.count}:"
   response = gets.chomp.to_i
   response = nil if response.zero? || response > relevant_job_urls.count
 end
 
-jobs_to_seed = relevant_job_urls.take(response)
+jobs_to_seed = relevant_job_urls.shuffle.take(response)
 
-puts "Great, preparing to re-seed database with #{jobs_to_seed.count} Greenhouse jobs...\n"
+puts "Preparing to re-seed database with #{jobs_to_seed.count} Greenhouse jobs...\n"
 
 puts "Deleting previous (1) users, (2) jobs, (3)companies, (4) ATS Formats and (5) Applicant Tracking Systems..."
 
@@ -597,8 +597,6 @@ jobs_to_seed.each do |url|
   end
 end
 
-
-puts "Created #{greenhouse_job_urls.count} jobs based on the URLs I gathered."
 
 puts "Created #{Job.count} jobs..."
 
