@@ -21,7 +21,7 @@
         <% end %>
 
         <% if job.locations.present? %>
-          <div class="text-sm"><%= job.locations.first.city %></div>
+          <div class="text-sm"><%= job.locations.map(&:city).join(' | ') %></div>
         <% end %>
       </div>
     </div>

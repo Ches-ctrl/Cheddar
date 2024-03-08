@@ -20,7 +20,7 @@ class LocationStandardizer
 
       if country_string
         if country_instance = Country.find_by(name: country_string)
-          JobsCountry.create!(job: @job, country: country_instance)
+          JobsCountry.create!(job: @job, country: country_instance) unless JobsCountry.where(job: @job, country: country_instance)
           puts "association with existing country: #{country_instance.name}"
         else
           # create a new country
@@ -33,7 +33,7 @@ class LocationStandardizer
 
       if city_string
         if city_instance = Location.find_by(city: city_string)
-          JobsLocation.create!(job: @job, location: city_instance)
+          JobsLocation.create!(job: @job, location: city_instance) unless JobsLocation.where(job: @job, location: city_instance)
           puts "association with existing city: #{city_instance.city}"
         else
           # create new location
