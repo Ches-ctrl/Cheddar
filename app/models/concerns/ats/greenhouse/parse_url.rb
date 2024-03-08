@@ -16,9 +16,8 @@ module Ats::Greenhouse::ParseUrl
       if match
         ats_identifier, job_id = match.captures
         return [ats_identifier, job_id]
-      else
-        return nil
       end
     end
+    return nil
   end
 end

@@ -88,6 +88,14 @@ class JobsController < ApplicationController
 
   private
 
+  CONVERT_TO_DAYS = {
+    'today' => 0,
+    '3-days' => 3,
+    'week' => 7,
+    'month' => 30,
+    'any-time' => 99999
+  }
+
   # TODO: Check if more params are needed on Job.create
 
   def job_params
@@ -96,15 +104,23 @@ class JobsController < ApplicationController
 
   def filter_jobs_by_params
     filter_by_query if params[:query].present?
-    filter_by_role if params[:role].present?
-    filter_by_company if params[:company].present?
-    filter_by_location if params[:location].present?
+    filter_by_when_posted if params[:posted].present?
     filter_by_seniority if params[:seniority].present?
     filter_by_employment if params[:employment].present?
+    filter_by_location if params[:location].present?
+    filter_by_role if params[:role].present?
+    filter_by_company if params[:company].present?
   end
 
   def filter_by_query
     @jobs = Job.search_job(params[:query]).includes(:company)
+  end
+
+  def filter_by_when_posted
+    params[:posted].split.each do |time|
+      number = CONVERT_TO_DAYS[time] || 99999
+      @jobs = @jobs.where(date_created: number.days.ago..Date.today)
+    end
   end
 
   def filter_by_role
@@ -135,7 +151,7 @@ class JobsController < ApplicationController
   end
 
   def filter_by_employment
-    employments = params[:employment].split.map { |employment| employment.gsub('_', '-').capitalize }
+    employments = params[:type].split.map { |employment| employment.gsub('_', '-').capitalize }
     @jobs = @jobs.where(employment_type: employments)
   end
 
@@ -151,10 +167,17 @@ class JobsController < ApplicationController
       end
     end
 
+    when_posted = ['Today', 'Last 3 days', 'Within a week', 'Within a month', 'Any time']
+
     seniorities = ['Internship', 'Entry-Level', 'Junior', 'Mid-Level', 'Senior', 'Director', 'VP', 'SVP / Partner']
 
     # For each item, store: [display_name, element_id, matching_jobs_count]
     @resources = {}
+    @resources['posted'] = when_posted.map do |period|
+      id = period.downcase.gsub(/last |within a /, '').gsub(' ', '-')
+      count = @jobs.count { |job| job.date_created.end_of_day > CONVERT_TO_DAYS[id].days.ago.beginning_of_day }
+      [period, id, count] unless count.zero?
+    end.compact
     @resources['seniority'] = seniorities.map do |seniority|
       count = @jobs.count { |job| job.seniority == seniority }
       [seniority, seniority.downcase.split.first, count] unless count.zero?
@@ -165,7 +188,7 @@ class JobsController < ApplicationController
     @resources['role'] = roles.uniq.map do |role|
       [role.split('_').map(&:titleize).join('-'), role, roles.count(role)]
     end
-    @resources['employment'] = @jobs.map(&:employment_type).uniq.map do |employment|
+    @resources['type'] = @jobs.map(&:employment_type).uniq.map do |employment|
       [employment, employment.downcase.gsub('-', '_'), @jobs.count { |job| job.employment_type == employment }]
     end
     @resources['company'] = @jobs.map(&:company).uniq.map do |company|

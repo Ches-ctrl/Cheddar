@@ -2,6 +2,49 @@
 # require 'net/http'
 # require 'json'
 
+puts "\nBuilding a list of job urls from the following companies:"
+
+greenhouse_company_ats_identifiers = [
+  "cleoai",
+  "ably30",
+  "11fs",
+  "clearscoretechnologylimited",
+  "codepath",
+  "copperco",
+  "coreweave",
+  "cultureamp",
+  "deliveroo",
+  "doctolib",
+  "epicgames",
+  "figma",
+  "forter",
+  "geniussports",
+  "getir",
+  "gomotive",
+  "grammarly",
+  "intercom",
+  "janestreet",
+  "knowde",
+  "narvar",
+  "niantic",
+  "opendoor"
+]
+
+relevant_job_urls = GetRelevantJobUrls.new(greenhouse_company_ats_identifiers).fetch_jobs
+
+puts "\nHow many jobs to seed in the database?\n"
+
+response = nil
+until response do
+  puts "Please enter a valid integer between 1 and #{relevant_job_urls.count}:"
+  response = gets.chomp.to_i
+  response = nil if response.zero? || response > relevant_job_urls.count
+end
+
+jobs_to_seed = relevant_job_urls.shuffle.take(response)
+
+puts "Preparing to re-seed database with #{jobs_to_seed.count} Greenhouse jobs...\n"
+
 puts "Deleting previous (1) users, (2) jobs, (3)companies, (4) ATS Formats and (5) Applicant Tracking Systems..."
 
 puts "-------------------------------------"
@@ -99,8 +142,8 @@ puts "-------------------------------------"
 puts "Creating new companies..."
 
 companies_data = [
-  {:name=>"9fin", :category=>"Tech", :website_url=>"https://9fin.com/"},
-  {:name=>"11:FS", :category=>"Tech", :website_url=>"https://www.11fs.com/"},
+  # {:name=>"9fin", :category=>"Tech", :website_url=>"https://9fin.com/"},
+  # {:name=>"11:FS", :category=>"Tech", :website_url=>"https://www.11fs.com/"},
 #   {:name=>"Alby", :category=>"Tech", :website_url=>"https://alby.com/"},
 #   {:name=>"Amazon Web Services", :category=>"Tech", :website_url=>"https://aws.com/"},
 #   {:name=>"Apple Inc", :category=>"Tech", :website_url=>"https://apple.com/uk"},
@@ -523,8 +566,12 @@ comp_specific_job_urls = [
 # job_urls = [greenhouse_job_urls, workable_job_urls, lever_job_urls, smartrecruiters_job_urls, ashby_job_urls]
 
 defunct_urls = []
+unprocessed_job_urls = {}
 
-(rails_job_urls + greenhouse_job_urls).each do |url|
+# Uncomment next line if you prefer to seed with hardcoded urls:
+# (rails_job_urls + greenhouse_job_urls).each do |url|
+
+jobs_to_seed.each do |url|
   company, ats_job_id = CompanyCreator.new(url).find_or_create_company
   p "CompanyCreator complete: #{company.company_name}"
 
@@ -550,8 +597,6 @@ defunct_urls = []
   end
 end
 
-
-puts "Created #{greenhouse_job_urls.count} jobs based on the provided URLs."
 
 puts "Created #{Job.count} jobs..."
 
@@ -765,7 +810,7 @@ puts JobApplication.all
 puts JobApplication.count
 puts "-------------------------------------"
 
-puts "Done!"
+puts "Done!\n"
 
 puts "The following urls refer to jobs that are no longer live and should be deleted from the seedfile:" unless defunct_urls.empty?
 defunct_urls.each do |url|
