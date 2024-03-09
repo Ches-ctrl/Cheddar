@@ -113,7 +113,7 @@ class JobsController < ApplicationController
   end
 
   def filter_by_query
-    @jobs = Job.search_job(params[:query]).includes(:company)
+    @jobs = Job.search_job(params[:query]).includes(:company, :locations, :countries)
   end
 
   def filter_by_when_posted
