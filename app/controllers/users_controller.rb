@@ -15,6 +15,9 @@ class UsersController < ApplicationController
       [date, @applications_this_month.any? { |app| app.created_at == date }]
     end.to_h
     p "The calendar days are #{@calendar_days}"
+    p "--------------"
+    p "--------------"
+    p "The applications this month are #{@applications_this_month}"
   end
 
   def fetch_template
