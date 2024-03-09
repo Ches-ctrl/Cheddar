@@ -55,8 +55,8 @@
             <div>Total Applications</div>
           </div>
 
-          <div class="applications-calendar text-sm" style="width: 350px;">
-            <table class="table">
+          <div class="applications-calendar text-sm text-center" style="width: 350px">
+            <table class="table", style="--bs-table-bg: white;">
               <thead>
                 <tr>
                   <% Date::DAYNAMES.rotate(1).each do |day_name| %>
@@ -69,12 +69,12 @@
                   <tr>
                     <% week_days.each do |date| %>
                       <% if @applications_this_month.any? { |app| app.created_at.to_date == date } %>
-                        <td class="has-application <%= 'text-danger' if date == Date.today %>", style="background-color: blue;">
-                          <%= date.day %>
+                        <td>
+                          <span class="activity-indicator pt-1" style="display: inline-block; height: 14px; width: 14px; background-color: black; border-radius: 50%; cursor: pointer;"></span>
                         </td>
                       <% else %>
                         <td>
-                          <%= date.day %>
+                          <span><%= date.day %></span>
                         </td>
                       <% end %>
                     <% end %>
