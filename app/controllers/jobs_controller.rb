@@ -113,7 +113,7 @@ class JobsController < ApplicationController
   end
 
   def filter_by_query
-    @jobs = Job.search_job(params[:query]).includes(:company)
+    @jobs = Job.search_job(params[:query]).includes(:company, :locations, :countries)
   end
 
   def filter_by_when_posted
@@ -139,9 +139,11 @@ class JobsController < ApplicationController
   def filter_by_location
     locations = params[:location].split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') }
     if locations.include?("Remote Only")
-      @jobs = @jobs.where("city IN (?) OR country IN (?) OR remote_only = TRUE", locations, locations)
+      @jobs = Job.joins(:locations)
+                 .where(locations: { city: locations })
+                 .or(Job.where(remote_only: true))
     else
-      @jobs = @jobs.where("city IN (?) OR country IN (?)", locations, locations)
+      @jobs = Job.joins(:locations).where(locations: { city: locations })
     end
   end
 
