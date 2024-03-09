@@ -575,7 +575,7 @@ jobs_to_seed.each do |url|
   company, ats_job_id = CompanyCreator.new(url).find_or_create_company
   p "CompanyCreator complete: #{company.company_name}"
 
-  job = Job.create!(
+  job = Job.create(
     job_title: "Job Title Placeholder",
     job_posting_url: url,
     company_id: company.id,
@@ -583,12 +583,16 @@ jobs_to_seed.each do |url|
     ats_job_id: ats_job_id,
   )
 
+  next unless job.id
+
   if JobCreator.new(job).check_job_is_live
     if JobCreator.new(job).find_or_create_job
       company.total_live += 1
       p "Created job - #{Job.last.job_title}"
     else
       p "Failed to create job"
+      job.destroy
+      defunct_urls << job.job_posting_url
     end
   else
     p "Job posting is no longer live"

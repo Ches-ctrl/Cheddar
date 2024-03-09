@@ -1,5 +1,6 @@
-class LocationStandardizer
+require 'cgi'
 
+class LocationStandardizer
   def initialize(job)
     @job = job
   end
@@ -50,8 +51,9 @@ class LocationStandardizer
   private
 
   def standardize_city_and_country(string)
-    string.gsub!(' ', '%20')
-    api_url = "http://dev.virtualearth.net/REST/v1/Locations/#{string}?key=#{ENV['BING_API_KEY']}"
+    ascii_string = convert_to_ascii(string)
+    puts ascii_string
+    api_url = "http://dev.virtualearth.net/REST/v1/Locations/#{ascii_string}?key=#{ENV['BING_API_KEY']}"
 
     begin
       uri = URI(api_url)
@@ -68,5 +70,9 @@ class LocationStandardizer
     country = data['resourceSets'][0]['resources'][0]['address']['countryRegion']
     latitude, longitude = data['resourceSets'][0]['resources'][0]['point']['coordinates']
     return [city, country, latitude, longitude]
+  end
+
+  def convert_to_ascii(string)
+    CGI.escape(string).gsub("+", "%20")
   end
 end
