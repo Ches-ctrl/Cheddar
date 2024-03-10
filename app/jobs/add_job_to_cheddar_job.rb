@@ -14,11 +14,11 @@ class AddJobToCheddarJob < ApplicationJob
     job = Job.new(
       job_title: "Job Title Placeholder",
       job_posting_url: url,
-      company_id: company.id,
+      company_id: company.id
     )
-  
+
     p "Job posting url: #{job.job_posting_url}"
-  
+
     job = JobCreator.new(job).add_job_details
 
     p "****************"
@@ -26,14 +26,11 @@ class AddJobToCheddarJob < ApplicationJob
     p "****************"
     p "****************"
 
-    "Job title: #{job.job_title}"
-
     # p job
-    
-    job.save
-    
-    p "Created job - #{Job.last.job_title}"
 
+    job.save
+
+    p "Created job - #{Job.last.job_title}"
 
     # if @job.save
     #   AddJobToCheddarJob.perform_later(@job)

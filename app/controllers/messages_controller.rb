@@ -18,8 +18,8 @@ class MessagesController < ApplicationController
     response = @client.chat(
       parameters: {
         model: 'gpt-3.5-turbo', # Choose the desired model
-        messages: [{ role: 'user', content: content }],
-        temperature: 0.7,
+        messages: [{ role: 'user', content: }],
+        temperature: 0.7
       }
     )
     output = response.dig('choices', 0, 'message', 'content')

@@ -16,7 +16,7 @@ class ApplyJob < ApplicationJob
     form_filler = FormFiller.new
     form_filler.fill_out_form(job.job_posting_url, fields_to_fill, job_application_id)
 
-    Capybara.send(:session_pool).each { |name, ses| ses.driver.quit }
+    Capybara.send(:session_pool).each_value { |ses| ses.driver.quit }
 
     user_channel_name = "job_applications_#{user.id}"
 
@@ -27,7 +27,7 @@ class ApplyJob < ApplicationJob
         job_application_id: application.id,
         user_id: application.user_id,
         job_id: job.id,
-        status: "Applied",
+        status: "Applied"
         # Include any additional data you want to send to the frontend
       }
     )
@@ -42,7 +42,7 @@ class ApplyJob < ApplicationJob
       custom_fields[response.field_name] = response.field_value
     end
 
-    application_criteria.each do |key, value|
+    application_criteria.each_key do |key|
       if user.respond_to?(key) && user.send(key).present?
         application_criteria[key]['value'] = user.send(key)
       else

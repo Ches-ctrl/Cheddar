@@ -9,6 +9,7 @@ AllCops:
     - 'support/**/*'
     - 'tmp/**/*'
     - 'test/**/*'
+    - vendor/bundle/**/*
 
 Style/ConditionalAssignment:
   Enabled: false

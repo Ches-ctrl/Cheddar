@@ -14,7 +14,7 @@ class GetAllJobUrls
     job_urls = get_job_urls(data)
     total_live = total_live(data)
 
-    @company.update(total_live: total_live)
+    @company.update(total_live:)
 
     # Remove any existing URLs in database from job_urls
     job_urls.reject! { |job_url| Job.exists?(job_posting_url: job_url) }
@@ -32,7 +32,7 @@ class GetAllJobUrls
   private
 
   def total_live(data)
-    total_live = data['meta']['total']
+    data['meta']['total']
   end
 
   def add_jobs_to_cheddar(job_urls, company)

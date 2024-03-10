@@ -24,9 +24,10 @@ class JobApiService
 
     request = Net::HTTP::Post.new(url)
     request["Content-Type"] = "application/json"
-    request["Authorization"] = "Bearer #{ENV['CORESIGNAL_API_KEY']}"
+    request["Authorization"] = "Bearer #{ENV.fetch('CORESIGNAL_API_KEY', nil)}"
     request.body = JSON.dump(
-    {"title":"(Full Stack Developer) OR (Full Stack Software Engineer) OR (Full Stack Web Developer)","application_active":false,"deleted":false,"country":"(United Kingdom)","location":"London"}
+      { title: "(Full Stack Developer) OR (Full Stack Software Engineer) OR (Full Stack Web Developer)",
+        application_active: false, deleted: false, country: "(United Kingdom)", location: "London" }
     )
 
     p request
@@ -57,12 +58,11 @@ class JobApiService
       employment_type: data["employment_type"],
       company_name: data["company_name"],
       company_url: data["company_url"],
-      external_url: data["external_url"],
+      external_url: data["external_url"]
       # Map other fields as necessary
     )
   end
 end
-
 
 # ---------------------
 # Job Search Schema:
@@ -86,7 +86,6 @@ end
 #   "country": "string",
 #   "industry": "string"
 # }
-
 
 # ---------------------
 # CoreSignal API Request Response:

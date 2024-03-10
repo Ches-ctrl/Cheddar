@@ -11,7 +11,7 @@ module AtsRouter
     'pinpointhq',
     'bamboohr',
     'recruitee',
-    'manatal',
+    'manatal'
     # 'totaljobs',
     # 'simplyhired',
     # 'workday',

@@ -15,7 +15,7 @@ class CallJobApiJob < ApplicationJob
   # TODO: change queue_as to deprioritised relative to job applications
   queue_as :default
 
-  def perform(*args)
+  def perform(*_args)
     url = URI("https://api.coresignal.com/cdapi/v1/linkedin/job/search/filter")
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
@@ -41,23 +41,24 @@ class CallJobApiJob < ApplicationJob
   def collect_job_ids(https, url)
     request = Net::HTTP::Post.new(url)
     request["Content-Type"] = "application/json"
-    request["Authorization"] = "Bearer #{ENV['CORESIGNAL_API_KEY']}"
+    request["Authorization"] = "Bearer #{ENV.fetch('CORESIGNAL_API_KEY', nil)}"
     request.body = JSON.dump(
-      {"title":"(Consultant) OR (Associate Consultant) OR (Junior Consultant) OR (Graduate Consultant)","application_active":true,"deleted":false,"country":"(United Kingdom)","location":"London"}
+      { title: "(Consultant) OR (Associate Consultant) OR (Junior Consultant) OR (Graduate Consultant)",
+        application_active: true, deleted: false, country: "(United Kingdom)", location: "London" }
     )
 
     response = https.request(request)
-    data = JSON.parse(response.body)
+    JSON.parse(response.body)
   end
 
   def collect_job_details(https, job_id)
     details_url = URI("https://api.coresignal.com/cdapi/v1/linkedin/job/collect/#{job_id}")
     details_request = Net::HTTP::Get.new(details_url)
     details_request["Content-Type"] = "application/json"
-    details_request["Authorization"] = "Bearer #{ENV['CORESIGNAL_API_KEY']}"
+    details_request["Authorization"] = "Bearer #{ENV.fetch('CORESIGNAL_API_KEY', nil)}"
 
     details_response = https.request(details_request)
-    job_data = JSON.parse(details_response.body)
+    JSON.parse(details_response.body)
   end
 
   def create_company(job_data)
@@ -70,7 +71,7 @@ class CallJobApiJob < ApplicationJob
         company_name: job_data["company_name"],
         company_website_url: job_data["company_url"],
         location: job_data["location"],
-        industry: job_data["job_industry_collection"].first["job_industry_list"]["industry"],
+        industry: job_data["job_industry_collection"].first["job_industry_list"]["industry"]
       )
 
       if company.save!
@@ -110,8 +111,8 @@ class CallJobApiJob < ApplicationJob
         industry: job_data["job_industry_collection"].first["job_industry_list"]["industry"],
         seniority: job_data["seniority"],
         applicants_count: job_data["applicants_count"],
-        company_id: company_id,
-        cheddar_applicants_count: 0,
+        company_id:,
+        cheddar_applicants_count: 0
       )
 
       # TODO: Add image to job from clearbit
@@ -151,7 +152,6 @@ end
 # p job.applicants_count
 # p job.company_id
 # p job.cheddar_applicants_count
-
 
 # ---------------------
 # CoreSignal API Request Response:
