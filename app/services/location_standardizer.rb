@@ -42,10 +42,7 @@ class LocationStandardizer
     end
 
     @job.hybrid = hybrid
-    @job.remote_only = remote && !hybrid
-
-    # @job.location = @job.country if @job.location.empty?
-    # @job.location += " (Remote)" if @job.remote_only
+    @job.remote_only = @job.locations.empty?
   end
 
   private

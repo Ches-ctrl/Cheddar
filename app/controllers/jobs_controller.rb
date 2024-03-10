@@ -1,3 +1,5 @@
+require 'cgi'
+
 class JobsController < ApplicationController
   include ActionView::Helpers::SanitizeHelper
 
@@ -10,8 +12,7 @@ class JobsController < ApplicationController
     # TODO: Add bullet gem to detect N+1 queries, implement pagination
     # TODO: Implement pagination for the remaining jobs
 
-    @jobs = Job.includes(:company, :locations, :countries)
-
+    @jobs = Job.includes(:company, :locations)
     # When a job doesn't actually exist, its location is nil.
 
     build_filter_sidebar_resources
@@ -99,74 +100,64 @@ class JobsController < ApplicationController
   # TODO: Check if more params are needed on Job.create
 
   def job_params
-    params.require(:job).permit(:job_title, :job_description, :salary, :job_posting_url, :application_deadline, :date_created, :company_id, :applicant_tracking_system_id, :ats_job_id, :location, :department, :office, :live)
+    params.require(:job).permit(:job_title, :job_description, :salary, :job_posting_url, :application_deadline, :date_created, :company_id, :applicant_tracking_system_id, :ats_job_id, :non_geocoded_location_string, :department, :office, :live)
   end
 
+  # TODO: Handle remote jobs
+  # TODO: spinoff job.role into a model with many_to_many relationship
+
   def filter_jobs_by_params
-    filter_by_query if params[:query].present?
-    filter_by_when_posted if params[:posted].present?
-    filter_by_seniority if params[:seniority].present?
-    filter_by_employment if params[:employment].present?
-    filter_by_location if params[:location].present?
-    filter_by_role if params[:role].present?
-    filter_by_company if params[:company].present?
+    filters = {
+      date_created: filter_by_when_posted,
+      seniority: filter_by_seniority,
+      locations: filter_by_location,
+      role: params[:role]&.split,
+      employment_type: filter_by_employment,
+      company: params[:company]&.split
+    }.compact
+
+    @jobs = @jobs.search_job(params[:query]) if params[:query].present?
+    @jobs = @jobs.where(filters)
   end
 
   def filter_by_query
-    @jobs = Job.search_job(params[:query]).includes(:company, :locations, :countries)
+    @jobs = @jobs.search_job(params[:query])
   end
 
   def filter_by_when_posted
-    params[:posted].split.each do |time|
-      number = CONVERT_TO_DAYS[time] || 99999
-      @jobs = @jobs.where(date_created: number.days.ago..Date.today)
-    end
-  end
+    return unless params[:posted].present?
 
-  def filter_by_role
-    roles = params[:role].split
-    conditions = roles.map { |role| "role ILIKE ?" }.join(" OR ")
-    values = roles.map { |role| "%#{role}%" }
-
-    @jobs = @jobs.where(conditions, *values)
-  end
-
-  def filter_by_company
-    companies = params[:company].split
-    @jobs = @jobs.where(company: companies)
+    number = CONVERT_TO_DAYS[params[:posted]] || 99_999
+    number.days.ago..Date.today
   end
 
   def filter_by_location
-    locations = params[:location].split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') }
-    if locations.include?("Remote Only")
-      @jobs = Job.joins(:locations)
-                 .where(locations: { city: locations })
-                 .or(Job.where(remote_only: true))
-    else
-      @jobs = Job.joins(:locations).where(locations: { city: locations })
-    end
+    return unless params[:location].present?
+
+    locations = params[:location].split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') unless location == 'remote_only' }.compact
+    { city: locations }
   end
 
   def filter_by_seniority
-    seniorities = params[:seniority].split.map { |seniority| seniority.split('-').map(&:capitalize).join('-') }
-    @jobs = @jobs.where(seniority: seniorities)
+    return unless params[:seniority].present?
+
+    params[:seniority].split.map { |seniority| seniority.split('-').map(&:capitalize).join('-') }
   end
 
   def filter_by_employment
-    employments = params[:type].split.map { |employment| employment.gsub('_', '-').capitalize }
-    @jobs = @jobs.where(employment_type: employments)
+    return unless params[:type].present?
+
+    params[:type].split.map { |employment| employment.gsub('_', '-').capitalize }
   end
 
   def build_filter_sidebar_resources
     # Where necessary, parse from Job.attributes
     roles = @jobs.map { |job| job.role.split('&&') if job.role }.flatten.compact
 
-    locations = @jobs.map do |job|
-      if job.remote_only
-        ["Remote Only"]
-      elsif job.locations.present?
-        # fix this later!
-        [job.locations[0].city, job.countries.first&.name].compact
+    locations = []
+    @jobs.each do |job|
+      job.locations.includes(:country).each do |location|
+        locations << (job.remote_only ? ["Remote (#{location.country})"] : [location.city, location.country&.name].compact)
       end
     end
 
