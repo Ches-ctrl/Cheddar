@@ -9,7 +9,32 @@ AllCops:
     - 'support/**/*'
     - 'tmp/**/*'
     - 'test/**/*'
-
+    - vendor/bundle/**/*
+    - 'spec/**/*' # Exclude all files under the 'spec' directory
+Style/SuppressedException:
+  Enabled: false
+Style/NonLocalExitFromIterator:
+  Enabled: false
+Style/ShadowingOuterLocalVariable:
+  Enabled: false
+Style/CollectionLiteralLength:
+  Enabled: false
+Style/UnreachableLoop:
+  Enabled: false
+# Style/AccessorMethodName:
+#   Enabled: false
+Style/BlockLength:
+  Max: 80
+Style/ModuleLength:
+  Enabled: false
+Style/LineLength:
+  Enabled: false
+Style/ClassLength:
+  Enabled: false
+Style/MethodLength:
+  Enabled: false
+Style/PerceivedComplexity:
+  Enabled: false
 Style/ConditionalAssignment:
   Enabled: false
 Style/StringLiterals:

@@ -11,7 +11,7 @@ module AtsRouter
     'pinpointhq',
     'bamboohr',
     'recruitee',
-    'manatal',
+    'manatal'
     # 'totaljobs',
     # 'simplyhired',
     # 'workday',
@@ -54,6 +54,7 @@ module AtsRouter
     [@ats_identifier, @job_id]
   end
 
+  # rubocop:disable Naming/AccessorMethodName
   def get_company_details
     ats_module.get_company_details(@url)
   end
@@ -66,4 +67,5 @@ module AtsRouter
     p "Getting application criteria"
     ats_module.get_application_criteria(@job)
   end
+  # rubocop:enable Naming/AccessorMethodName
 end

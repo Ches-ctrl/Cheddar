@@ -56,7 +56,6 @@ class GetHtmlJob < ApplicationJob
 
       puts "Length: #{cleaned_html.size} characters"
       puts "Tokens required: #{OpenAI.rough_token_count(cleaned_html)}"
-
     rescue Capybara::ElementNotFound => e
       puts "Element not found: #{e.message}"
     ensure
@@ -64,7 +63,6 @@ class GetHtmlJob < ApplicationJob
     end
   end
 end
-
 
 # ---------------
 # Extract just the relevant input elements within a form:

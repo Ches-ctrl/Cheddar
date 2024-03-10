@@ -1,7 +1,9 @@
-class Scraper::MonsterJob < ApplicationJob
-  queue_as :default
+module Scraper
+  class MonsterJob < ApplicationJob
+    queue_as :default
 
-  def perform(*args)
-    Scrapers::MonsterService.new.scrape_page
+    def perform(*_args)
+      Scrapers::MonsterService.new.scrape_page
+    end
   end
 end

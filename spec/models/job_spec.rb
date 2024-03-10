@@ -1,7 +1,7 @@
 RSpec.describe Job do
   describe 'Associations' do
     it { is_expected.to belong_to(:company) }
-    it { is_expected.to belong_to(:applicant_tracking_system).optional(:true) }
+    it { is_expected.to belong_to(:applicant_tracking_system).optional(true) }
     it { is_expected.to have_many(:playlist_jobs) }
     it { is_expected.to have_many(:job_playlists).through(:playlist_jobs) }
     it { is_expected.to have_many(:job_applications).dependent(:destroy) }
@@ -15,13 +15,13 @@ RSpec.describe Job do
   end
 
   describe '.search_jobs' do
-   before do
-     create(:job, job_title: 'Junior Golang Developer') # create two job objects
-     create(:job, job_title: 'Ruby on Rails Developer')
-     create(:job, job_title: 'Devops Engineer')
-   end
+    before do
+      create(:job, job_title: 'Junior Golang Developer') # create two job objects
+      create(:job, job_title: 'Ruby on Rails Developer')
+      create(:job, job_title: 'Devops Engineer')
+    end
 
-   it { expect(described_class.search_job('Ruby')).to eq [Job.second] }
+    it { expect(described_class.search_job('Ruby')).to eq [Job.second] }
   end
 
   describe '#new_job_application_for_user' do
@@ -38,7 +38,8 @@ RSpec.describe Job do
       job.application_criteria = Ats::Greenhouse::ApplicationFields::CORE_FIELDS
       job.save
       job_application = job.new_job_application_for_user(user)
-      expect(job_application.application_responses.first.field_name).to eq(Ats::Greenhouse::ApplicationFields::CORE_FIELDS.keys.first.to_s)
+      expect(job_application.application_responses.first.field_name).to
+      eq(Ats::Greenhouse::ApplicationFields::CORE_FIELDS.keys.first.to_s)
     end
   end
 end
