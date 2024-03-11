@@ -20,8 +20,8 @@ class LocationStandardizer
     location_elements.each do |element|
       city_string, country_string, latitude, longitude = standardize_city_and_country(element)
 
-      join_attribute(:name, country_string, Country, JobsCountry)
-      join_attribute(:city, city_string, Location, JobsLocation)
+      country = join_attribute({ name: country_string }, Country, JobsCountry)
+      join_attribute({ city: city_string, country:, latitude:, longitude: }, Location, JobsLocation)
     end
 
     @job.hybrid = hybrid

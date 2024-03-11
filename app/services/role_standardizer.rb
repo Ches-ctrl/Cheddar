@@ -97,7 +97,7 @@ class RoleStandardizer
     end
 
     roles.each do |role_name|
-      join_attribute(:name, role_name, Role, JobsRole)
+      join_attribute({ name: role_name }, Role, JobsRole)
     end
   end
 end
