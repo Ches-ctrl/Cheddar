@@ -45,7 +45,7 @@ jobs_to_seed = relevant_job_urls.shuffle.take(response)
 
 puts "Preparing to re-seed database with #{jobs_to_seed.count} Greenhouse jobs...\n"
 
-puts "Deleting previous (1) users, (2) jobs, (3)companies, (4) ATS Formats and (5) Applicant Tracking Systems..."
+puts "Deleting previous (1) users, (2) jobs, (3)companies, (4) ATS Formats, (5) Applicant Tracking Systems, (6) Locations, (7) Countries, (8) Roles..."
 
 puts "-------------------------------------"
 
@@ -54,6 +54,9 @@ Job.destroy_all
 Company.destroy_all
 # AtsFormat.destroy_all
 ApplicantTrackingSystem.destroy_all
+Location.destroy_all
+Country.destroy_all
+Role.destroy_all
 
 puts "Creating new Applicant Tracking Systems..."
 

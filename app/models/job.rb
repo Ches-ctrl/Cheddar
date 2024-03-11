@@ -28,6 +28,8 @@ class Job < ApplicationRecord
   has_many :locations, through: :jobs_locations
   has_many :jobs_countries, dependent: :destroy
   has_many :countries, through: :jobs_countries
+  has_many :jobs_roles, dependent: :destroy
+  has_many :roles, through: :jobs_roles
 
   before_create :set_date_created
 

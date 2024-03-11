@@ -12,7 +12,7 @@ class JobsController < ApplicationController
     # TODO: Add bullet gem to detect N+1 queries, implement pagination
     # TODO: Implement pagination for the remaining jobs
 
-    @jobs = Job.includes(:company, :locations)
+    @jobs = Job.includes(:company, :locations, :roles)
     # When a job doesn't actually exist, its location is nil.
 
     build_filter_sidebar_resources
@@ -111,7 +111,7 @@ class JobsController < ApplicationController
       date_created: filter_by_when_posted,
       seniority: filter_by_seniority,
       locations: filter_by_location,
-      role: params[:role]&.split,
+      roles: params[:role]&.split,
       employment_type: filter_by_employment,
       company: params[:company]&.split
     }.compact
@@ -152,14 +152,14 @@ class JobsController < ApplicationController
 
   def build_filter_sidebar_resources
     # Where necessary, parse from Job.attributes
-    roles = @jobs.map { |job| job.role.split('&&') if job.role }.flatten.compact
-
     locations = []
     @jobs.each do |job|
       job.locations.includes(:country).each do |location|
         locations << (job.remote_only ? ["Remote (#{location.country})"] : [location.city, location.country&.name].compact)
       end
     end
+
+    roles = @jobs.inject([]) { |all_roles, job| all_roles + job.roles.map(&:name) }
 
     when_posted = ['Today', 'Last 3 days', 'Within a week', 'Within a month', 'Any time']
 

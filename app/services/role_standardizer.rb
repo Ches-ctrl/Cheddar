@@ -1,4 +1,6 @@
 class RoleStandardizer
+  include JoinToJob
+
   ROLE_TITLES = {
     /back[- ]?end/ => 'back_end',
     /front[- ]?end/ => 'front_end',
@@ -94,7 +96,8 @@ class RoleStandardizer
       roles.delete('back_end')
     end
 
-    @job.role = roles.join('&&') # serialize (this should be done in concerns)
-    @job.save
+    roles.each do |role_name|
+      join_attribute(:name, role_name, Role, JobsRole)
+    end
   end
 end
