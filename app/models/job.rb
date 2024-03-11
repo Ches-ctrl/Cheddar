@@ -19,13 +19,15 @@ class Job < ApplicationRecord
 
   belongs_to :company
   belongs_to :applicant_tracking_system, optional: true
-  has_and_belongs_to_many :technologies
-  has_and_belongs_to_many :locations
 
   has_many :job_applications, dependent: :destroy
   has_many :saved_jobs, dependent: :destroy
   has_many :playlist_jobs
   has_many :job_playlists, through: :playlist_jobs
+  has_many :jobs_locations, dependent: :destroy
+  has_many :locations, through: :jobs_locations
+  has_many :jobs_countries, dependent: :destroy
+  has_many :countries, through: :jobs_countries
 
   before_create :set_date_created
 
@@ -38,10 +40,11 @@ class Job < ApplicationRecord
   # TODO: Update validate uniqueness as same job can have both a normal url and api url
 
   pg_search_scope :search_job,
-    against: [:job_title, :salary, :job_description, :location],
+    against: [:job_title, :salary, :job_description],
     associated_against: {
       company: [ :company_name, :company_category ],
-      locations: :city
+      locations: :city,
+      countries: :name
     },
     using: {
       tsearch: { prefix: true } # allow partial search

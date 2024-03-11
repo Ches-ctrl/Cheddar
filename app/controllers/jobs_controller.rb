@@ -10,7 +10,7 @@ class JobsController < ApplicationController
     # TODO: Add bullet gem to detect N+1 queries, implement pagination
     # TODO: Implement pagination for the remaining jobs
 
-    @jobs = Job.where.not(location: "").includes(:company)
+    @jobs = Job.includes(:company, :locations, :countries)
 
     # When a job doesn't actually exist, its location is nil.
 
@@ -113,7 +113,7 @@ class JobsController < ApplicationController
   end
 
   def filter_by_query
-    @jobs = Job.search_job(params[:query]).includes(:company)
+    @jobs = Job.search_job(params[:query]).includes(:company, :locations, :countries)
   end
 
   def filter_by_when_posted
@@ -139,9 +139,11 @@ class JobsController < ApplicationController
   def filter_by_location
     locations = params[:location].split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') }
     if locations.include?("Remote Only")
-      @jobs = @jobs.where("city IN (?) OR country IN (?) OR remote_only = TRUE", locations, locations)
+      @jobs = Job.joins(:locations)
+                 .where(locations: { city: locations })
+                 .or(Job.where(remote_only: true))
     else
-      @jobs = @jobs.where("city IN (?) OR country IN (?)", locations, locations)
+      @jobs = Job.joins(:locations).where(locations: { city: locations })
     end
   end
 
@@ -162,8 +164,9 @@ class JobsController < ApplicationController
     locations = @jobs.map do |job|
       if job.remote_only
         ["Remote Only"]
-      elsif job.city.present? && !job.city.include?("Remote")
-        [(job.city unless job.city == "#{job.country} (Remote)"), job.country].compact
+      elsif job.locations.present?
+        # fix this later!
+        [job.locations[0].city, job.countries.first&.name].compact
       end
     end
 
@@ -183,7 +186,7 @@ class JobsController < ApplicationController
       [seniority, seniority.downcase.split.first, count] unless count.zero?
     end.compact
     @resources['location'] = locations.compact.uniq.map do |location|
-      [location.join(', '), location.first.downcase.gsub(' ', '_'), locations.count(location)]
+      [location.join(', '), location.first&.downcase&.gsub(' ', '_'), locations.count(location)]
     end
     @resources['role'] = roles.uniq.map do |role|
       [role.split('_').map(&:titleize).join('-'), role, roles.count(role)]

@@ -1,6 +1,5 @@
-RSpec.describe Location do
+RSpec.describe Location, type: :model do
   describe 'Associations' do
-    it { is_expected.to have_and_belong_to_many(:jobs) }
     it { is_expected.to belong_to(:country) }
   end
 

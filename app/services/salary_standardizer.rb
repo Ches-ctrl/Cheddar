@@ -38,8 +38,8 @@ class SalaryStandardizer
     salary_high = salaries.max
 
     if currency_match == '$'
-      currency[1] = ' AUD' if @job.country == 'Australia'
-      currency[1] = ' CAN' if @job.country == 'Canada'
+      currency[1] = ' AUD' if @job.countries.where(name: 'Australia')
+      currency[1] = ' CAN' if @job.countries.where(name: 'Canada')
     end
 
     @job.salary = number_to_currency(salary_low, unit: currency[0], precision: 0) +

@@ -20,9 +20,7 @@
           <strong class="text-sm"><%= job.company.company_name %></strong>
         <% end %>
 
-        <% if job.location.present? %>
-          <div class="text-sm"><%= job.location %></div>
-        <% end %>
+        <div class="text-sm"><%= (job.remote_only || job.locations.empty?) ? 'Remote' : job.locations.map(&:city).join(' | ') %><%= " | #{job.countries.first.name}" if job.countries.count == 1 %></div>
       </div>
     </div>
 
@@ -41,7 +39,7 @@
             <%= "In-office" %>
           <% end %>
         </div>
-        <div><%= job.date_created.strftime("%d/%m") %> <span class="meter"><hr class="line-horizontal"><div class="triangle-inverted-blue" style="left:<%= job.application_deadline < Date.today ? 50 : (Date.today - job.date_created).to_i.fdiv((job.application_deadline - job.date_created).to_i) * 100 %>%;"></div></span> <%= job.application_deadline < Date.today ? "Rolling" : job.application_deadline.strftime("%d/%m") %></div>
+        <div><%= job.date_created.strftime("%d/%m") %> <span class="meter"><hr class="line-horizontal"><div class="triangle-inverted-blue" style="left:<%= (job.application_deadline.nil? || job.application_deadline < Date.today) ? 50 : (Date.today - job.date_created).to_i.fdiv((job.application_deadline - job.date_created).to_i) * 100 %>%;"></div></span> <%= (job.application_deadline.nil? || job.application_deadline < Date.today) ? "Rolling" : job.application_deadline.strftime("%d/%m") %></div>
       </div>
 
       <%# Net Zero Rating %>
