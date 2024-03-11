@@ -42,7 +42,7 @@ jobs:
       # Add or replace test runners here
       - uses: browser-actions/setup-chrome@latest
       - run: chrome --version
-      
+
       - name: Run tests
         run: bundle exec rspec
 
