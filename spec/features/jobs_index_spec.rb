@@ -53,8 +53,8 @@ RSpec.feature "Jobs", type: :feature do
     #   expect(page).to have_button("Shortlist 1 Job")
     # end
 
-    scenario 'User can query "Ruby on Rails London" jobs' do
-      fill_in 'query', with: 'ruby on rails london'
+    scenario 'User can query "Ruby on Rails" jobs' do
+      fill_in 'query', with: 'ruby on rails'
       find('#search-button').click
 
       expect(page).to have_content("Frontend Developer")

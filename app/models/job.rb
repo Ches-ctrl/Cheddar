@@ -43,7 +43,7 @@ class Job < ApplicationRecord
     against: [:job_title, :salary, :job_description],
     associated_against: {
       company: [ :company_name, :company_category ],
-      locations: :city,
+      # locations: :city,
       countries: :name
     },
     using: {
