@@ -500,7 +500,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   ruby-openai
-  sassc-rails
+  sassc-rails (~> 2.1.2)
   selenium-webdriver (~> 4.18.1)
   shoulda-matchers (= 6.1.0)
   sidekiq (~> 6.5.5)

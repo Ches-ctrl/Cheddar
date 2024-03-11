@@ -53,7 +53,7 @@ gem "devise"
 gem "autoprefixer-rails"
 gem "font-awesome-sass"
 gem "simple_form"
-gem "sassc-rails"
+gem "sassc-rails", '~> 2.1.2'
 
 # Additional Gems installed
 gem "ruby-openai"
