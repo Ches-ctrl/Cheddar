@@ -40,6 +40,9 @@ jobs:
       - name: Set up database schema
         run: bin/rails db:schema:load
       # Add or replace test runners here
+      - uses: browser-actions/setup-chrome@latest
+      - run: chrome --version
+      
       - name: Run tests
         run: bundle exec rspec
 
