@@ -6,6 +6,7 @@ module Avo
       #   query: -> { query.ransack(id_eq: params[:q], m: "or").result(distinct: false) }
       # }
 
+      # rubocop:disable Metrics/MethodLength
       def fields
         # field :id, as: :id
         field :job_title, as: :text
@@ -51,6 +52,7 @@ module Avo
         field :playlist_jobs, as: :has_many
         field :job_playlists, as: :has_many, through: :playlist_jobs
       end
+      # rubocop:enable Metrics/MethodLength
     end
   end
 end
