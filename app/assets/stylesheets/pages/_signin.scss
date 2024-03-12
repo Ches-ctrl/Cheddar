@@ -46,6 +46,9 @@
         font-weight: 450;
         font-size: 14px;
       }
+      input, select, textarea {
+        color: $main-color;
+      }
       input:focus {
         box-shadow: 0 0 3px $main-color;
       }
