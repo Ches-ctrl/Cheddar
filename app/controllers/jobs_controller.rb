@@ -133,6 +133,7 @@ class JobsController < ApplicationController
   end
 
   def filter_by_location
+    # TODO: fix bug where only one location association is passed to @jobs, rather than all
     return unless params[:location].present?
 
     locations = params[:location].split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') unless location == 'remote_only' }.compact

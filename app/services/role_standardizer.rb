@@ -1,6 +1,4 @@
 class RoleStandardizer
-  include JoinToJob
-
   ROLE_TITLES = {
     /back[- ]?end/ => 'back_end',
     /front[- ]?end/ => 'front_end',

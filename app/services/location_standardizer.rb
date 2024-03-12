@@ -1,8 +1,6 @@
 require 'cgi'
 
 class LocationStandardizer
-  include JoinToJob
-
   def initialize(job)
     @job = job
   end
