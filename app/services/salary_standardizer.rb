@@ -37,7 +37,7 @@ class SalaryStandardizer
     salary_low = salaries.min
     salary_high = salaries.max
 
-    if currency_match == '$'
+    if currency_match == '$' && !@job.countries.empty?
       currency[1] = ' AUD' if @job.countries.first.name == 'Australia'
       currency[1] = ' CAN' if @job.countries.first.name == 'Canada'
     end
