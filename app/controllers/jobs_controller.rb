@@ -13,7 +13,9 @@ class JobsController < ApplicationController
     # TODO: Implement pagination for the remaining jobs
 
     @jobs = Job.includes(:company, :locations, :roles)
-    # When a job doesn't actually exist, its location is nil.
+
+    # @jobs = Job.sort_and_order
+    # @sidebar_options = SidebarOptions.new(params).build
 
     build_filter_sidebar_resources
     filter_jobs_by_params
@@ -94,7 +96,7 @@ class JobsController < ApplicationController
     '3-days' => 3,
     'week' => 7,
     'month' => 30,
-    'any-time' => 99999
+    'any-time' => 99_999
   }
 
   # TODO: Check if more params are needed on Job.create
@@ -104,7 +106,6 @@ class JobsController < ApplicationController
   end
 
   # TODO: Handle remote jobs
-  # TODO: spinoff job.role into a model with many_to_many relationship
 
   def filter_jobs_by_params
     filters = {
@@ -120,9 +121,9 @@ class JobsController < ApplicationController
     @jobs = @jobs.where(filters)
   end
 
-  def filter_by_query
-    @jobs = @jobs.search_job(params[:query])
-  end
+  # def filter_by_query
+  #   @jobs = @jobs.search_job(params[:query])
+  # end
 
   def filter_by_when_posted
     return unless params[:posted].present?

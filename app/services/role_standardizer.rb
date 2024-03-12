@@ -17,22 +17,6 @@ class RoleStandardizer
     /react native/ => 'mobile',
     /\bdata\b/ => 'data_engineer'
   }
-  SENIORITY_TITLES = {
-    /intern/ => 'Internship',
-    /graduate/ => 'Entry-Level',
-    /junior/ => 'Junior',
-    /early[- ]?career/ => 'Junior',
-    /\bi\b/ => 'Junior',
-    /\bmid\b/ => 'Mid-Level',
-    /mid-?weight/ => 'Mid-Level',
-    /mid-?level/ => 'Mid-Level',
-    /\bii\b/ => 'Mid-Level',
-    /\biii\b/ => 'Mid-Level',
-    /senior/ => 'Senior',
-    /\blead\b/ => 'Senior',
-    /principal/ => 'Senior',
-    /staff/ => 'Senior'
-  }
   ROLE_DESCRIPTORS = {
     /front[- ]?end/ => 'front_end',
     /responsive web/ => 'front_end',
@@ -97,7 +81,7 @@ class RoleStandardizer
     end
 
     roles.each do |role_name|
-      join_attribute({ name: role_name }, Role, JobsRole)
+      @job.roles << Role.find_or_create_by(name: role_name)
     end
   end
 end

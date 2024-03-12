@@ -19,9 +19,14 @@ class LocationStandardizer
     # search for existing cities and countries in location elements:
     location_elements.each do |element|
       city_string, country_string, latitude, longitude = standardize_city_and_country(element)
+      next unless city_string
 
-      country = join_attribute({ name: country_string }, Country, JobsCountry)
-      join_attribute({ city: city_string, country:, latitude:, longitude: }, Location, JobsLocation)
+      country = Country.find_or_create_by(name: country_string)
+      location = Location.find_or_create_by(city: city_string, country:, latitude:, longitude:)
+      @job.countries << country unless @job.countries.include?(country)
+      @job.locations << location unless @job.locations.include?(location)
+      # country = join_attribute({ name: country_string }, Country, JobsCountry)
+      # join_attribute({ city: city_string, country:, latitude:, longitude: }, Location, JobsLocation)
     end
 
     @job.hybrid = hybrid

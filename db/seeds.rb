@@ -219,6 +219,15 @@ puts "Created #{Company.count} companies"
 
 puts "-------------------------------------"
 
+puts "Creating new roles..."
+
+roles = %w(front_end back_end full_stack dev_ops qa_test_engineer mobile data_engineer)
+roles.each { | role| Role.create(name: role) }
+
+puts "Created #{Role.count} roles"
+
+puts "-------------------------------------"
+
 puts "Creating new jobs..."
 
 # TODO: Setup iframe for external embeds?

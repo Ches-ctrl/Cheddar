@@ -44,8 +44,8 @@ class Job < ApplicationRecord
   pg_search_scope :search_job,
     against: [:job_title, :salary, :job_description],
     associated_against: {
-      company: [ :company_name, :company_category ],
-      # locations: :city,
+      company: [:company_name, :company_category],
+      locations: [:city],
       countries: :name
     },
     using: {
@@ -95,6 +95,59 @@ class Job < ApplicationRecord
 
     job_application
   end
+
+  # CONVERT_TO_DAYS = {
+  #   'today' => 0,
+  #   '3-days' => 3,
+  #   'week' => 7,
+  #   'month' => 30,
+  #   'any-time' => 99_999
+  # }
+
+  # TODO: Handle remote jobs
+
+  # def self.filter_and_sort(params)
+  #   filters = {
+  #     date_created: filter_by_when_posted(params[:posted]),
+  #     seniority: filter_by_seniority(params[:seniority]),
+  #     locations: filter_by_location(params[:location]),
+  #     roles: params[:role]&.split,
+  #     employment_type: filter_by_employment(params[:type]),
+  #     company: params[:company]&.split
+  #   }
+
+  #   jobs = params[:query].present? ? search_job(params[:query]) : self
+  #   jobs = jobs.joins(:locations)
+  #   return jobs.includes(:company, :locations, :roles).where(filters)
+  # end
+
+  # private
+
+  # private_class_method def self.filter_by_when_posted(param)
+  #   return unless param.present?
+
+  #   number = CONVERT_TO_DAYS[param] || 99_999
+  #   number.days.ago..Date.today
+  # end
+
+  # private_class_method def self.filter_by_location(param)
+  #   return unless param.present?
+
+  #   locations = param.split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') unless location == 'remote_only' }.compact
+  #   { city: locations }
+  # end
+
+  # private_class_method def self.filter_by_seniority(param)
+  #   return unless param.present?
+
+  #   param.split.map { |seniority| seniority.split('-').map(&:capitalize).join('-') }
+  # end
+
+  # private_class_method def self.filter_by_employment(param)
+  #   return unless param.present?
+
+  #   param.split.map { |employment| employment.gsub('_', '-').capitalize }
+  # end
 
   private
 
