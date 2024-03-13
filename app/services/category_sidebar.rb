@@ -87,7 +87,7 @@ class CategorySidebar
       ]
     end
 
-    resources.each { |title, array| array.sort_by! { |item| [-item[2]] } unless %w[posted seniority].include?(title) }
+    resources.each { |title, array| array.sort_by! { |item| [-item[3]] } unless %w[posted seniority].include?(title) }
     return resources
   end
 end
