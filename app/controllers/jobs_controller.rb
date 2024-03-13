@@ -7,17 +7,10 @@ class JobsController < ApplicationController
 
   def index
     # TODO: Refactor entire index action, should be 5 lines max
-    # TODO: Fix search functionality so that 20 jobs are always shown
     # TODO: Install Kaminari to fix long page load time on index page and add pagination
-    # TODO: Add bullet gem to detect N+1 queries, implement pagination
-    # TODO: Implement pagination for the remaining jobs
 
-    # build_filter_sidebar_resources
-    @jobs = Job.filter_and_sort(params)
+    @jobs = Job.filter_and_sort(params).paginate(page: params[:page], per_page: 20)
     @resources = CategorySidebar.new(params).build
-    # filter_jobs_by_params
-
-    @jobs = @jobs.paginate(page: params[:page], per_page: 20)
 
     @saved_jobs = SavedJob.all
     @saved_job_ids = @saved_jobs.map(&:job_id).to_set

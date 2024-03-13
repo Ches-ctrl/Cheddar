@@ -4,8 +4,12 @@
     <p class="pb-0"><%= @jobs.count %> jobs • <%= link_to 'Clear filters', jobs_path %></p>
   </div>
 
-  <div class="category-select">
-    <div class="form-check form-switch"><input type="checkbox" class="form-check-input" role="switch" id="cheddar-jobs-switch"><label class="form-check-label" for="cheddar-jobs-switch">Only show Cheddar jobs</label></div>
+  <div class="row">
+    <div class="col-10">
+      <div class="category-select">
+        <div class="form-check form-switch"><input type="checkbox" class="form-check-input" role="switch" id="cheddar-jobs-switch"><label class="form-check-label" for="cheddar-jobs-switch">Only show Cheddar jobs</label></div>
+      </div>
+    </div>
   </div>
 
   <% section_titles = ['Job Posted', 'Seniority', 'Location', 'Job Roles', 'Employment Type', 'Company'] %>
