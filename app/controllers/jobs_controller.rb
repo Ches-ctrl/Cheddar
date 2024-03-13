@@ -12,13 +12,10 @@ class JobsController < ApplicationController
     # TODO: Add bullet gem to detect N+1 queries, implement pagination
     # TODO: Implement pagination for the remaining jobs
 
-    @jobs = Job.includes(:company, :locations, :roles)
-
-    # @jobs = Job.sort_and_order
-    # @sidebar_options = SidebarOptions.new(params).build
-
-    build_filter_sidebar_resources
-    filter_jobs_by_params
+    # build_filter_sidebar_resources
+    @jobs = Job.filter_and_sort(params)
+    @resources = CategorySidebar.new.build
+    # filter_jobs_by_params
 
     @jobs = @jobs.paginate(page: params[:page], per_page: 20)
 
@@ -91,107 +88,9 @@ class JobsController < ApplicationController
 
   private
 
-  CONVERT_TO_DAYS = {
-    'today' => 0,
-    '3-days' => 3,
-    'week' => 7,
-    'month' => 30,
-    'any-time' => 99_999
-  }
-
   # TODO: Check if more params are needed on Job.create
 
   def job_params
     params.require(:job).permit(:job_title, :job_description, :salary, :job_posting_url, :application_deadline, :date_created, :company_id, :applicant_tracking_system_id, :ats_job_id, :non_geocoded_location_string, :department, :office, :live)
-  end
-
-  # TODO: Handle remote jobs
-
-  def filter_jobs_by_params
-    filters = {
-      date_created: filter_by_when_posted,
-      seniority: filter_by_seniority,
-      locations: filter_by_location,
-      roles: params[:role]&.split,
-      employment_type: filter_by_employment,
-      company: params[:company]&.split
-    }.compact
-
-    @jobs = @jobs.search_job(params[:query]) if params[:query].present?
-    @jobs = @jobs.where(filters)
-  end
-
-  # def filter_by_query
-  #   @jobs = @jobs.search_job(params[:query])
-  # end
-
-  def filter_by_when_posted
-    return unless params[:posted].present?
-
-    number = CONVERT_TO_DAYS[params[:posted]] || 99_999
-    number.days.ago..Date.today
-  end
-
-  def filter_by_location
-    # TODO: fix bug where only one location association is passed to @jobs, rather than all
-    return unless params[:location].present?
-
-    locations = params[:location].split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') unless location == 'remote_only' }.compact
-    { city: locations }
-  end
-
-  def filter_by_seniority
-    return unless params[:seniority].present?
-
-    params[:seniority].split.map { |seniority| seniority.split('-').map(&:capitalize).join('-') }
-  end
-
-  def filter_by_employment
-    return unless params[:type].present?
-
-    params[:type].split.map { |employment| employment.gsub('_', '-').capitalize }
-  end
-
-  def build_filter_sidebar_resources
-    # Where necessary, parse from Job.attributes
-    locations = []
-    @jobs.each do |job|
-      job.locations.includes(:country).each do |location|
-        locations << (job.remote_only ? ["Remote (#{location.country})"] : [location.city, location.country&.name].compact)
-      end
-    end
-
-    roles = @jobs.inject([]) { |all_roles, job| all_roles + job.roles.map(&:name) }
-
-    when_posted = ['Today', 'Last 3 days', 'Within a week', 'Within a month', 'Any time']
-
-    seniorities = ['Internship', 'Entry-Level', 'Junior', 'Mid-Level', 'Senior', 'Director', 'VP', 'SVP / Partner']
-
-    # For each item, store: [display_name, element_id, matching_jobs_count]
-    @resources = {}
-    @resources['posted'] = when_posted.map do |period|
-      id = period.downcase.gsub(/last |within a /, '').gsub(' ', '-')
-      count = @jobs.count { |job| job.date_created.end_of_day > CONVERT_TO_DAYS[id].days.ago.beginning_of_day }
-      [period, id, count] unless count.zero?
-    end.compact
-    @resources['seniority'] = seniorities.map do |seniority|
-      count = @jobs.count { |job| job.seniority == seniority }
-      [seniority, seniority.downcase.split.first, count] unless count.zero?
-    end.compact
-    @resources['location'] = locations.compact.uniq.map do |location|
-      [location.join(', '), location.first&.downcase&.gsub(' ', '_'), locations.count(location)]
-    end
-    @resources['role'] = roles.uniq.map do |role|
-      [role.split('_').map(&:titleize).join('-'), role, roles.count(role)]
-    end
-    @resources['type'] = @jobs.map(&:employment_type).uniq.map do |employment|
-      [employment, employment.downcase.gsub('-', '_'), @jobs.count { |job| job.employment_type == employment }]
-    end
-    @resources['company'] = @jobs.map(&:company).uniq.map do |company|
-      [company.company_name, company.id, @jobs.count { |job| job.company == company }]
-    end
-
-    @resources.each { |title, array| array.sort_by! { |item| [-item[2]] } unless title == 'seniority' }
-
   end
 end

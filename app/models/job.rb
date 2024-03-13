@@ -45,7 +45,7 @@ class Job < ApplicationRecord
     against: [:job_title, :salary, :job_description],
     associated_against: {
       company: [:company_name, :company_category],
-      locations: [:city],
+      # locations: [:city],
       countries: :name
     },
     using: {
@@ -96,58 +96,70 @@ class Job < ApplicationRecord
     job_application
   end
 
-  # CONVERT_TO_DAYS = {
-  #   'today' => 0,
-  #   '3-days' => 3,
-  #   'week' => 7,
-  #   'month' => 30,
-  #   'any-time' => 99_999
-  # }
+  CONVERT_TO_DAYS = {
+    'today' => 0,
+    '3-days' => 3,
+    'week' => 7,
+    'month' => 30,
+    'any-time' => 99_999
+  }
 
   # TODO: Handle remote jobs
 
-  # def self.filter_and_sort(params)
-  #   filters = {
-  #     date_created: filter_by_when_posted(params[:posted]),
-  #     seniority: filter_by_seniority(params[:seniority]),
-  #     locations: filter_by_location(params[:location]),
-  #     roles: params[:role]&.split,
-  #     employment_type: filter_by_employment(params[:type]),
-  #     company: params[:company]&.split
-  #   }
+  def self.filter_and_sort(params)
+    filters = {
+      date_created: filter_by_when_posted(params[:posted]),
+      seniority: filter_by_seniority(params[:seniority]),
+      locations: filter_by_location(params[:location]),
+      roles: filter_by_role(params[:role]),
+      employment_type: filter_by_employment(params[:type]),
+      company: params[:company]&.split
+    }.compact
 
-  #   jobs = params[:query].present? ? search_job(params[:query]) : self
-  #   jobs = jobs.joins(:locations)
-  #   return jobs.includes(:company, :locations, :roles).where(filters)
-  # end
+    associations = build_associations(params)
+    jobs = joins(associations).where(filters)
+    params[:query].present? ? jobs.search_job(params[:query]) : jobs
+  end
 
-  # private
+  private
 
-  # private_class_method def self.filter_by_when_posted(param)
-  #   return unless param.present?
+  private_class_method def self.build_associations(params)
+    associations = []
+    associations << :company if params.include?(:company)
+    associations << :locations if params.include?(:location)
+    associations << :roles if params.include?(:role)
+    return associations
+  end
 
-  #   number = CONVERT_TO_DAYS[param] || 99_999
-  #   number.days.ago..Date.today
-  # end
+  private_class_method def self.filter_by_when_posted(param)
+    return unless param.present?
 
-  # private_class_method def self.filter_by_location(param)
-  #   return unless param.present?
+    number = CONVERT_TO_DAYS[param] || 99_999
+    number.days.ago..Date.today
+  end
 
-  #   locations = param.split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') unless location == 'remote_only' }.compact
-  #   { city: locations }
-  # end
+  private_class_method def self.filter_by_location(param)
+    return unless param.present?
 
-  # private_class_method def self.filter_by_seniority(param)
-  #   return unless param.present?
+    locations = param.split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') unless location == 'remote_only' }.compact
+    { city: locations }
+  end
 
-  #   param.split.map { |seniority| seniority.split('-').map(&:capitalize).join('-') }
-  # end
+  private_class_method def self.filter_by_role(param)
+    { name: param.split } if param.present?
+  end
 
-  # private_class_method def self.filter_by_employment(param)
-  #   return unless param.present?
+  private_class_method def self.filter_by_seniority(param)
+    return unless param.present?
 
-  #   param.split.map { |employment| employment.gsub('_', '-').capitalize }
-  # end
+    param.split.map { |seniority| seniority.split('-').map(&:capitalize).join('-') }
+  end
+
+  private_class_method def self.filter_by_employment(param)
+    return unless param.present?
+
+    param.split.map { |employment| employment.gsub('_', '-').capitalize }
+  end
 
   private
 
