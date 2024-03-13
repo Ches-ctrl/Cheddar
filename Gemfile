@@ -53,7 +53,6 @@ gem "devise"
 gem "autoprefixer-rails"
 gem "font-awesome-sass"
 gem "simple_form"
-gem "sassc-rails"
 
 # Additional Gems installed
 gem "ruby-openai"
@@ -110,3 +109,4 @@ group :test do
 end
 
 gem "high_voltage", "~> 3.1"
+gem "dartsass-rails", "~> 0.5.0"
