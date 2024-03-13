@@ -42,6 +42,7 @@ jobs:
       # Add or replace test runners here
       - name: build Sass files
         run: bundle exec rails dartsass:build
+
       - name: Run tests
         run: bundle exec rspec
 

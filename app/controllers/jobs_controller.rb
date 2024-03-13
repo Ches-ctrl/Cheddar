@@ -14,7 +14,7 @@ class JobsController < ApplicationController
 
     # build_filter_sidebar_resources
     @jobs = Job.filter_and_sort(params)
-    @resources = CategorySidebar.new.build
+    @resources = CategorySidebar.new(params).build
     # filter_jobs_by_params
 
     @jobs = @jobs.paginate(page: params[:page], per_page: 20)

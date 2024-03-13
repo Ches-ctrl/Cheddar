@@ -7,6 +7,10 @@ class CategorySidebar
     'any-time' => 99_999
   }
 
+  def initialize(params)
+    @params = params
+  end
+
   def build
     # Where necessary, parse from Job.attributes
     locations = []
@@ -23,28 +27,64 @@ class CategorySidebar
 
     seniorities = ['Internship', 'Entry-Level', 'Junior', 'Mid-Level', 'Senior', 'Director', 'VP', 'SVP / Partner']
 
-    # For each item, store: [display_name, element_id, matching_jobs_count]
+    # For each item, store: [type, display_name, element_id, matching_jobs_count, checked]
     resources = {}
     resources['posted'] = when_posted.map do |period|
       id = period.downcase.gsub(/last |within a /, '').gsub(' ', '-')
       count = jobs.count { |job| job.date_created.end_of_day > CONVERT_TO_DAYS[id].days.ago.beginning_of_day }
-      [period, id, count] unless count.zero?
+      [
+        'radio',
+        period,
+        id,
+        count,
+        @params[:posted] ? @params[:posted].include?(id) : period == 'Any time'
+      ] unless count.zero?
     end.compact
     resources['seniority'] = seniorities.map do |seniority|
       count = jobs.count { |job| job.seniority == seniority }
-      [seniority, seniority.downcase.split.first, count] unless count.zero?
+      [
+        'checkbox',
+        seniority,
+        seniority.downcase.split.first,
+        count,
+        @params[:seniority]&.include?(seniority.downcase.split.first)
+      ] unless count.zero?
     end.compact
     resources['location'] = locations.compact.uniq.map do |location|
-      [location.join(', '), location.first&.downcase&.gsub(' ', '_'), locations.count(location)]
+      [
+        'checkbox',
+        location.join(', '),
+        location.first&.downcase&.gsub(' ', '_'),
+        locations.count(location),
+        @params[:location]&.include?(location.first&.downcase&.gsub(' ', '_'))
+      ]
     end
     resources['role'] = roles.uniq.map do |role|
-      [role.split('_').map(&:titleize).join('-'), role, roles.count(role)]
+      [
+        'checkbox',
+        role.split('_').map(&:titleize).join('-'),
+        role,
+        roles.count(role),
+        @params[:role]&.include?(role)
+      ]
     end
     resources['type'] = jobs.map(&:employment_type).uniq.map do |employment|
-      [employment, employment.downcase.gsub('-', '_'), jobs.count { |job| job.employment_type == employment }]
+      [
+        'checkbox',
+        employment,
+        employment.downcase.gsub('-', '_'),
+        jobs.count { |job| job.employment_type == employment },
+        @params[:type]&.include?(employment)
+      ]
     end
     resources['company'] = jobs.map(&:company).uniq.map do |company|
-      [company.company_name, company.id, jobs.count { |job| job.company == company }]
+      [
+        'checkbox',
+        company.company_name,
+        company.id,
+        jobs.count { |job| job.company == company },
+        @params[:company]&.include?(company.id.to_s)
+      ]
     end
 
     resources.each { |title, array| array.sort_by! { |item| [-item[2]] } unless %w[posted seniority].include?(title) }

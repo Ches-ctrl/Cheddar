@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_13_100254) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_13_113518) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -84,6 +84,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_100254) do
     t.integer "total_live", default: 0
     t.string "url_ats_main"
     t.string "url_ats_api"
+    t.string "carbon_pledge"
   end
 
   create_table "countries", force: :cascade do |t|
