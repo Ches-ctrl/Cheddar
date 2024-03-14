@@ -1,4 +1,4 @@
-module Ats::Greenhouse::FetchCompanyJobs
+module Ats::Workable::FetchCompanyJobs
   extend ActiveSupport::Concern
 
   DEPARTMENT_KEYWORDS = [
@@ -109,7 +109,7 @@ module Ats::Greenhouse::FetchCompanyJobs
   end
 
   def fetch_company_jobs(ats_identifier)
-    company_api_url = "https://boards-api.greenhouse.io/v1/boards/#{ats_identifier}/jobs"
+    company_api_url = "https://apply.workable.com/api/v1/widget/accounts/#{ats_identifier}"
     uri = URI(company_api_url)
     begin
       response = Net::HTTP.get(uri)

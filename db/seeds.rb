@@ -30,6 +30,17 @@ greenhouse_company_ats_identifiers = [
   "opendoor"
 ]
 
+
+puts "\nScrape to csv file? y/n"
+response = gets.chomp.downcase
+
+if response == 'y'
+  # companies = ScrapeCompaniesFromTrueUp.new.call
+  ScrapeCompaniesFromTrueUp.new.call
+  ScrapeRelevantJobUrls.new(greenhouse_company_ats_identifiers).fetch_jobs
+  p nonsense
+end
+
 relevant_job_urls = GetRelevantJobUrls.new(greenhouse_company_ats_identifiers).fetch_jobs
 
 puts "\nHow many jobs to seed in the database?\n"
