@@ -1,11 +1,16 @@
 class ScrapeCompaniesFromTrueUp < ApplicationJob
   include Capybara::DSL
+  include CompanyCsv
+  include AtsRouter
+  include Ats::Greenhouse::FetchCompanyJobs
 
   queue_as :default
 
+  NUMBER_OF_RESULT_PAGES = 4
+
   def initialize
-    @greenhouse_companies = Set.new
-    @lever_companies = Set.new
+    @greenhouse_companies = load_from_csv('greenhouse')
+    @lever_companies = load_from_csv('lever')
     @workable_companies = Set.new
     Capybara.current_driver = :selenium_chrome_headless
   end
@@ -20,13 +25,13 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
       sleep 1
       page.first('.ais-HierarchicalMenu-link').click
       sleep 1
-      click_show_more(10)
+      click_show_more(NUMBER_OF_RESULT_PAGES - 1)
 
       job_cards = all('.card-body')
 
       job_cards.each do |job_card|
-        job_url = job_card.first('div.fw-bold.mb-1 a.text-dark')&.[](:href)
-        p "Job URL: #{job_url}"
+        @url = job_card.first('div.fw-bold.mb-1 a.text-dark')&.[](:href)
+        p "Job URL: #{@url}"
 
         job_title = job_card.first('div.fw-bold.mb-1 a.text-dark')&.text&.strip
         job_company = job_card.first('div.mb-2.align-items-baseline a.text-dark')&.text&.strip
@@ -35,11 +40,11 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
 
         @company = false
 
-        if job_url.include?('greenhouse') || job_url.include?('ghj_id')
-          extract_greenhouse_company_from(job_url)
-        elsif job_url.include?('lever')
-          extract_lever_company_from(job_url)
-        elsif job_url.include?('workable')
+        if @url.include?('greenhouse') || @url.include?('gh_jid')
+          extract_greenhouse_company
+        elsif @url.include?('lever')
+          extract_lever_company
+        elsif @url.include?('workable')
           extract_workable_company_from(job_card.first('div.fw-bold.mb-1 a.text-dark'))
         end
 
@@ -48,14 +53,11 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
       puts "Element not found: #{e.message}"
     end
 
-    puts "\nGreenhouse companies:"
-    @greenhouse_companies.each do |company|
-      puts company
-    end
-    puts "\nLever companies:"
-    @lever_companies.each do |company|
-      puts company
-    end
+    puts "\nStoring the information in CSV format..."
+    write_to_csv('greenhouse', @greenhouse_companies)
+    write_to_csv('lever', @lever_companies)
+    # write_to_csv('workable', @workable_companies)
+
     puts "\nWorkable companies:"
     @workable_companies.each do |company|
       puts company
@@ -92,21 +94,31 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
     end
   end
 
-  def extract_greenhouse_company_from(job_url)
+  def extract_greenhouse_company
     regex_options = [
       Regexp.new('greenhouse\.io\/(.*)\/jobs'),
       Regexp.new('greenhouse\.io\/embed\/job_app\?for=([a-z0-9]*)'),
-      Regexp.new(':\/\/(?:www\.)?(.*)\.')
+      Regexp.new(':\/\/(?:www\.|careers\.)?([^.]*)')
     ]
     regex_options.size.times do |i|
-      match_data = job_url.match(regex_options[i])
-      break (@company = match_data[1]) if match_data
+      match_data = @url.match(regex_options[i])
+      if match_data
+        @company = match_data[1]
+        if i.positive?
+          p "testing company_ats_identifier for #{@company}..."
+          unless fetch_company_jobs(@company)
+            @company = nil
+            puts "This one was no good: #{company}"
+          end
+        end
+        break
+      end
     end
     @greenhouse_companies << @company if @company
   end
 
-  def extract_lever_company_from(job_url)
-    @company = job_url.match(/jobs\.lever\.co\/(.*)\//)[1]
+  def extract_lever_company
+    @company = @url.match(/jobs\.lever\.co\/(.*)\//)[1]
     @lever_companies << @company if @company
   end
 
