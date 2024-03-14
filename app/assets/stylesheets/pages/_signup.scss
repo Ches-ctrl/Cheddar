@@ -1,19 +1,19 @@
-.login-div {
-  height: 90vh;
+.signup-div {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-family: $body-font;
 
-  .login-h1 {
+  .signup-h1 {
     color: $main-color;
     font-size: 46px;
     font-style: normal;
     font-weight: 800;
   }
 
-  .login-h4 {
+  .signup-h4 {
     color: #FF9433;
     font-size: 15px;
     font-style: normal;
@@ -21,16 +21,16 @@
     margin: 1% 0 2% 0;
   }
 
-  .login-box {
+  .signup-box {
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 50%;
-    height: 65%;
+    justify-content: center;
     border-radius: 8px;
     border: 0.877px solid rgba(20, 52, 89, 0.20);
     background: #FFF;
     box-shadow: 0px 2.807px 18.105px -9.123px rgba(0, 0, 0, 0.25), 0px 2.807px 0.14px 0px rgba(158, 158, 158, 0.25);
+    width: 50%;
+    height: 79%;
 
     a {
       color: #FF9433;
@@ -40,6 +40,13 @@
       width: 100%;
       color: $main-color;
 
+      @media (min-width: 800px) {
+
+        .signup-fname-lname {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
       input::placeholder {
         color: $main-color;
         opacity: 30%;
@@ -52,26 +59,25 @@
       input:focus {
         box-shadow: 0 0 3px $main-color;
       }
+      .form-text {
+        color: $main-color;
+    }
     }
 
-    .rounded-4 {
+    .signup-input {
       border-radius: 8px !important;
       border: 1px solid rgba(20, 52, 89, 0.20);
       background: #FEFEFE;
     }
 
-    .login-box-h2 {
+    .signup-text-h2 {
       color: $main-color;
       text-align: center;
-      margin-bottom: 30px;
       font-weight: 600;
+      margin-bottom: 30px
     }
-    .login-forgot-password, .remember-me {
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 400;
-    }
-    .btn-login {
+
+    .btn-signup {
       width: 100%;
       background-color: $main-color;
       color: #FFF;
@@ -82,8 +88,9 @@
       font-weight: 500;
       padding: 2% 0;
     }
-    .login-non-account {
-      color: $main-color;
+
+    .already-an-account, .terms-conditions {
+        color: $main-color;
     }
   }
 }
