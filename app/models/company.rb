@@ -16,8 +16,8 @@ class Company < ApplicationRecord
   def set_website_url
     return if company_website_url.present?
 
-    macrom_robot_info = MacromRobotService.lookup_domain(company_name)
-    self.company_website_url = macrom_robot_info['domain'] if macrom_robot_info && macrom_robot_info['domain'].present?
+    clearbit_company_info = CompanyDomainService.lookup_domain(company_name)
+    self.company_website_url = clearbit_company_info['domain'] if clearbit_company_info && clearbit_company_info['domain'].present?
   end
 end
 

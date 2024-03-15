@@ -2,11 +2,10 @@ require 'net/http'
 require 'uri'
 require 'json'
 
-class MacromRobotService
+class CompanyDomainService
   def self.lookup_domain(company_name)
-    uri = URI("https://api.marcomrobot.com/v2/lookup/company/#{URI.encode_www_form_component(company_name)}")
+    uri = URI("https://autocomplete.clearbit.com/v1/companies/suggest?query=#{URI.encode_www_form_component(company_name)}")
     request = Net::HTTP::Get.new(uri)
-    request['Authorization'] = "Bearer #{ENV['MARCOM_ROBOT_API_KEY']}"
     request['Accept'] = 'application/json'
 
     response= Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
@@ -14,7 +13,13 @@ class MacromRobotService
     end
 
     if response.is_a?(Net::HTTPSuccess)
-      JSON.parse(response.body)
+      results = JSON.parse(response.body)
+      match = results.find { |company| company['name'].downcase == company_name.downcase }
+      if match
+        match
+      else
+        nil
+      end
     else
       nil
     end
