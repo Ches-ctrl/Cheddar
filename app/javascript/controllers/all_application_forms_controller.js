@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 import { createConsumer } from "@rails/actioncable";
 
 export default class extends Controller {
-  static targets = ["form", "button", "overlay", "editor", "content"];
+  static targets = ["form", "button", "overlay", "editor", "content", "logo"];
   static values = { user: Number };
 
   // RESET POINT
