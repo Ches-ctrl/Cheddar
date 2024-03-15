@@ -3,7 +3,8 @@ module Ats::Bamboohr::ParseUrl
 
   def self.parse_url(url)
     regex_formats = [
-      %r{https://(?<company_name>[\w%-]+)\.bamboohr\.com/careers/(?<job_id>\d+)},
+      %r{://(?<company_name>[\w%-]+)\.bamboohr\.com/careers/(?<job_id>\d+)},
+      %r{://(?<company_name>[\w%-]+)\.bamboohr\.com/jobs/view.php\?id=(?<job_id>\d+)},
     ]
 
     regex_formats.each do |regex|
