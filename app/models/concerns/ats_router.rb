@@ -6,7 +6,7 @@ module AtsRouter
     'greenhouse',
     'workable',
     'lever',
-    'smartrecruiters',
+    # 'smartrecruiters',
     'ashbyhq',
     'pinpointhq',
     'bamboohr',
@@ -34,7 +34,7 @@ module AtsRouter
   end
 
   def ats_system_name
-    @ats_system_name ||= SUPPORTED_ATS_SYSTEMS.find { |ats| @url.include?(ats) }
+    @ats_system_name = SUPPORTED_ATS_SYSTEMS.find { |ats| @url.include?(ats) }
     @ats_system_name ||= 'greenhouse' if @url.include?('gh_jid')
     @ats_system_name ||= 'manatal' if @url.include?('careers-page')
     @ats_system_name
@@ -52,6 +52,19 @@ module AtsRouter
   def ats_identifier_and_job_id
     @ats_identifier, @job_id = ats_module('ParseUrl').parse_url(@url)
     [@ats_identifier, @job_id]
+  end
+
+  def ats_identifier
+    return unless ats_system_name
+
+    with_parse_method = ['greenhouse', 'lever', 'workable', 'ashbyhq', 'bamboohr']
+    @ats_identifier = if with_parse_method.include?(ats_system_name)
+                        ats_module('ParseUrl').parse_ats_identifier(@url)
+                      else
+                        ats_module('ParseUrl').parse_url(@url)&.first
+                      end
+    puts "Couldn't parse the url: #{@url}" unless @ats_identifier
+    @ats_identifier
   end
 
   def get_company_details

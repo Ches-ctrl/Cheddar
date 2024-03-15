@@ -2,16 +2,23 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
   include Capybara::DSL
   include CompanyCsv
   include AtsRouter
-  include Ats::Greenhouse::FetchCompanyJobs
+  include ValidUrl
 
   queue_as :default
 
-  NUMBER_OF_RESULT_PAGES = 4
+  NUMBER_OF_RESULT_PAGES = 1
 
   def initialize
-    @greenhouse_companies = load_from_csv('greenhouse')
-    @lever_companies = load_from_csv('lever')
-    @workable_companies = Set.new
+    @companies = {
+      greenhouse: load_from_csv('greenhouse'),
+      lever: load_from_csv('lever'),
+      workable: load_from_csv('workable'),
+      ashbyhq: load_from_csv('ashbyhq'),
+      pinpointhq: load_from_csv('pinpointhq'),
+      bamboohr: load_from_csv('bamboohr'),
+      recruitee: load_from_csv('recruitee'),
+      manatal: load_from_csv('manatal'),
+    }
     Capybara.current_driver = :selenium_chrome_headless
   end
 
@@ -27,40 +34,28 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
       sleep 1
       click_show_more(NUMBER_OF_RESULT_PAGES - 1)
 
-      job_cards = all('.card-body')
-
-      job_cards.each do |job_card|
+      all('.card-body').each do |job_card|
         @url = job_card.first('div.fw-bold.mb-1 a.text-dark')&.[](:href)
-        p "Job URL: #{@url}"
+        @alt_id = job_card.first('div.mb-2.align-items-baseline a.text-dark')&.text&.gsub(/[^\w%-]/, '').downcase
 
-        job_title = job_card.first('div.fw-bold.mb-1 a.text-dark')&.text&.strip
-        job_company = job_card.first('div.mb-2.align-items-baseline a.text-dark')&.text&.strip
+        # skip if no ATS indicated
+        next unless (ats = ats_system_name&.to_sym)
 
-        puts "Scraping #{job_title} with #{job_company}..."
+        # skip if already listed
+        next if @companies[ats].include?(@alt_id)
 
-        @company = false
+        next unless (company = ats_identifier || alt_identifier)
 
-        if @url.include?('greenhouse') || @url.include?('gh_jid')
-          extract_greenhouse_company
-        elsif @url.include?('lever')
-          extract_lever_company
-        elsif @url.include?('workable')
-          extract_workable_company_from(job_card.first('div.fw-bold.mb-1 a.text-dark'))
-        end
-
+        @companies[ats] << company
       end
     rescue Capybara::ElementNotFound => e
       puts "Element not found: #{e.message}"
     end
 
     puts "\nStoring the information in CSV format..."
-    write_to_csv('greenhouse', @greenhouse_companies)
-    write_to_csv('lever', @lever_companies)
-    # write_to_csv('workable', @workable_companies)
 
-    puts "\nWorkable companies:"
-    @workable_companies.each do |company|
-      puts company
+    @companies.each do |ats_name, list|
+      write_to_csv(ats_name.to_s, list)
     end
   end
 
@@ -82,44 +77,30 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
   end
 
   def click_show_more(no_of_times)
-    no_of_times.times do
+    no_of_times.times do |i|
       begin
         show_more_button = find('.ais-InfiniteHits-loadMore')
       rescue Capybara::ElementNotFound
         puts "Show more button not found"
         break
       end
-      show_more_button.click
+      begin
+        show_more_button.click
+      rescue Selenium::WebDriver::Error::ElementNotInteractableError
+        puts "Reached the end of the results after #{i} clicks"
+        break
+      end
       sleep 1
     end
   end
 
-  def extract_greenhouse_company
-    regex_options = [
-      Regexp.new('greenhouse\.io\/(.*)\/jobs'),
-      Regexp.new('greenhouse\.io\/embed\/job_app\?for=([a-z0-9]*)'),
-      Regexp.new(':\/\/(?:www\.|careers\.)?([^.]*)')
-    ]
-    regex_options.size.times do |i|
-      match_data = @url.match(regex_options[i])
-      if match_data
-        @company = match_data[1]
-        if i.positive?
-          p "testing company_ats_identifier for #{@company}..."
-          unless fetch_company_jobs(@company)
-            @company = nil
-            puts "This one was no good: #{company}"
-          end
-        end
-        break
-      end
-    end
-    @greenhouse_companies << @company if @company
-  end
+  def alt_identifier
+    return unless ats_system_name == 'greenhouse'
 
-  def extract_lever_company
-    @company = @url.match(/jobs\.lever\.co\/(.*)\//)[1]
-    @lever_companies << @company if @company
+    puts "\ntrying #{@alt_id}..."
+    return @alt_id if valid?("https://boards-api.greenhouse.io/v1/boards/#{@alt_id}/")
+    puts "it didn't work!"
+    return
   end
 
   def extract_workable_company_from(link)

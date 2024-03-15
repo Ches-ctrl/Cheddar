@@ -17,4 +17,20 @@ module Ats::Workable::ParseUrl
       end
     end
   end
+
+  def self.parse_ats_identifier(url)
+    ats_identifier, _job_id = parse_url(url)
+    return ats_identifier if ats_identifier
+
+    regex_formats = [
+      %r{://apply\.workable\.com/([\w%-]+)$}
+    ]
+
+    regex_formats.each do |regex|
+      match = url.match(regex)
+      return match[1] if match
+    end
+
+    return
+  end
 end

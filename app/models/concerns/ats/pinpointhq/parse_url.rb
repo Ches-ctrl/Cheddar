@@ -3,7 +3,7 @@ module Ats::Pinpointhq::ParseUrl
 
   def self.parse_url(url)
     regex_formats = [
-      %r{https://(?<company_name>\w+)\.pinpointhq\.com/en/postings/(?<job_id>[a-f\d-]+)},
+      %r{https://(?<company_name>[\w%-]+)\.pinpointhq\.com/en/postings/(?<job_id>[a-f\d-]+)},
     ]
 
     regex_formats.each do |regex|

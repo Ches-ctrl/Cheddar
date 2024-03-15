@@ -35,10 +35,10 @@ puts "\nScrape to csv file? y/n"
 response = gets.chomp.downcase
 
 if response == 'y'
-  # companies = ScrapeCompaniesFromTrueUp.new.call
+  ScrapeCompaniesFromJobGlob.new.call
   ScrapeCompaniesFromTrueUp.new.call
-  ScrapeRelevantJobUrls.new(greenhouse_company_ats_identifiers).fetch_jobs
   p nonsense
+  ScrapeRelevantJobUrls.new(greenhouse_company_ats_identifiers).fetch_jobs
 end
 
 relevant_job_urls = GetRelevantJobUrls.new(greenhouse_company_ats_identifiers).fetch_jobs
