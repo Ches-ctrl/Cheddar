@@ -1,6 +1,6 @@
 <div class="company-apply-summary p-2 d-flex">
   <% @selected_jobs.each_with_index do |job, index| %>
     <div><%= index + 1 %></div>
-    <%= link_to image_tag("https://logo.clearbit.com/#{job.company.company_website_url}?size=60px", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", class: 'img-fluid'), job.job_posting_url, target: '_blank', class: 'apply-company-logo' %>
+    <%= link_to image_tag("https://logo.clearbit.com/#{job.company.company_website_url}?size=60px", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", class: 'img-fluid'), job.job_posting_url, target: '_blank', class: "apply-company-logo", data: { logo_target: "logo" } %>
   <% end %>
 </div>
