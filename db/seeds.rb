@@ -30,7 +30,6 @@ greenhouse_company_ats_identifiers = [
   "opendoor"
 ]
 
-
 puts "\nScrape to csv file? y/n"
 response = gets.chomp.downcase
 
