@@ -10,7 +10,6 @@ module Ats::Greenhouse::CompanyDetails
 
     company = Company.find_or_create_by!(company_name:) do |company|
       puts "Created company - #{company.company_name}"
-      check_for_careers_url_redirect(company)
     end
 
     company.description = description
@@ -18,6 +17,11 @@ module Ats::Greenhouse::CompanyDetails
     company.applicant_tracking_system_id = ats_system.id
     company.url_ats_api = "#{ats_system.base_url_api}#{ats_identifier}"
     company.url_ats_main = "#{ats_system.base_url_main}#{ats_identifier}"
+    company.applicant_tracking_system = ats_system
+    check_for_careers_url_redirect(company)
+
+    company.save!
+
     return company
   end
 

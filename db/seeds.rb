@@ -6,39 +6,29 @@ puts "\nBuilding a list of job urls from the following companies:"
 
 greenhouse_company_ats_identifiers = [
   "cleoai",
-  "ably30",
-  "11fs",
-  "clearscoretechnologylimited",
-  "codepath",
-  "copperco",
-  "coreweave",
-  "cultureamp",
-  "deliveroo",
-  "doctolib",
-  "epicgames",
-  "figma",
-  "forter",
-  "geniussports",
-  "getir",
-  "gomotive",
-  "grammarly",
-  "intercom",
-  "janestreet",
-  "knowde",
-  "narvar",
-  "niantic",
-  "opendoor"
+  # "ably30",
+  # "11fs",
+  # "clearscoretechnologylimited",
+  # "codepath",
+  # "copperco",
+  # "coreweave",
+  # "cultureamp",
+  # "deliveroo",
+  # "doctolib",
+  # "epicgames",
+  # "figma",
+  # "forter",
+  # "geniussports",
+  # "getir",
+  # "gomotive",
+  # "grammarly",
+  # "intercom",
+  # "janestreet",
+  # "knowde",
+  # "narvar",
+  # "niantic",
+  # "opendoor"
 ]
-
-puts "\nScrape to csv file? y/n"
-response = gets.chomp.downcase
-
-if response == 'y'
-  # ScrapeCompaniesFromList.new.call
-  # ScrapeCompaniesFromTrueUp.new.call
-  ScrapeRelevantJobDescriptions.new.fetch_jobs
-  p nonsense
-end
 
 relevant_job_urls = GetRelevantJobUrls.new(greenhouse_company_ats_identifiers).fetch_jobs
 
@@ -47,8 +37,16 @@ puts "\nHow many jobs to seed in the database?\n"
 response = nil
 until response do
   puts "Please enter a valid integer between 1 and #{relevant_job_urls.count}:"
-  response = gets.chomp.to_i
-  response = nil if response.zero? || response > relevant_job_urls.count
+  response = gets.chomp
+  if response == 'run updater'
+    # ScrapeCompaniesFromList.new.call
+    # ScrapeCompaniesFromTrueUp.new.call
+    JobsUpdateJob.perform_later
+    response = 1
+  else
+    response = response.to_i
+    response = nil if response.zero? || response > relevant_job_urls.count
+  end
 end
 
 jobs_to_seed = relevant_job_urls.shuffle.take(response)

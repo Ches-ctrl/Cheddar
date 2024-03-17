@@ -6,6 +6,7 @@
   # https://github.com/mperham/sidekiq/wiki/Advanced-Options
   # https://mikerogers.io/2019/06/06/rails-6-sidekiq-queues
   - default
+  - updates
   - mailers
   - active_storage_analysis
   - active_storage_purge
@@ -14,4 +15,8 @@
     hello_world:
       cron: '0 0 * * *'   # Runs once per day(at midnight)
       class: Scraper::MonsterJob
+    jobs_updater:
+      cron: '0 0 * * *' # Runs once per day (at midnight)
+      class: JobsUpdateJob
+      queue: updates
 # Add devit jobs and other scrapers

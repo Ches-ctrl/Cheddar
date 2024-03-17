@@ -35,7 +35,6 @@ class Job < ApplicationRecord
 
   validates :job_posting_url, uniqueness: true, presence: true
   validates :job_title, presence: true
-  validate :unique_title_per_company_and_location
 
   # after_create :update_application_criteria
 
@@ -94,6 +93,14 @@ class Job < ApplicationRecord
       end
 
     job_application
+  end
+
+  def self.create_job(ats_system, company, job_data)
+    return unless (job = ats_system.job_creator.new_job(company, job_data))
+
+    ats_system.application_fields.get_application_criteria(job)
+    GetFormFieldsJob.perform_later(job, job.job_posting_url)
+    JobStandardizer.new(job).standardize
   end
 
   CONVERT_TO_DAYS = {
@@ -159,14 +166,5 @@ class Job < ApplicationRecord
     return unless param.present?
 
     param.split.map { |employment| employment.gsub('_', '-').capitalize }
-  end
-
-  private
-
-  def unique_title_per_company_and_location
-    existing_jobs = Job.joins(:jobs_locations)
-                       .where(job_title:, company_id:, jobs_locations: { location_id: locations.pluck(:id) })
-    existing_jobs = existing_jobs.where.not(id:) if persisted?
-    errors.add(:title, 'should be unique per company and location') if existing_jobs.exists?
   end
 end

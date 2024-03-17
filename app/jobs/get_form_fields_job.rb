@@ -14,15 +14,12 @@ class GetFormFieldsJob < ApplicationJob
 # TODO: Add boolean cv required based on this scrape
 # TODO: add test of filling out the form fields before job goes live
 
-  def perform(url)
+  def perform(job, url)
     Capybara.current_driver = :selenium_chrome_headless
 
     visit(url)
     return if page.has_selector?('#flash_pending')
     find_apply_button.click rescue nil
-
-# Get Job Details, Company & Description
-    job = Job.find_by(job_posting_url: url)
 
 # TODO: Get details here
 

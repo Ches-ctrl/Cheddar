@@ -52,6 +52,22 @@ class JobCreator
     end
   end
 
+  # def find_or_create_job
+  #   if ats_system_name
+  #     ats_module('JobDetails').get_job_details(@job)
+  #     ats_module('ApplicationFields').get_application_criteria(@job)
+  #     # ats_module('ApplicationFields').update_requirements(@job)
+  #     # create job here?
+  #     update_requirements(@job)
+  #     p "job fields getting"
+  #     GetFormFieldsJob.perform_later(@job.job_posting_url)
+  #     JobStandardizer.new(@job).standardize
+  #   else
+  #     p "Unable to detect ATS system for URL: #{@url}"
+  #     return nil
+  #   end
+  # end
+
   # TODO: Add other relevant job characteristics e.g. stock options, bonus, benefits, days leave etc.
 
   def update_requirements(job)
