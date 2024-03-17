@@ -36,7 +36,7 @@ module Ats::Greenhouse::ParseUrl
       return match[1] if match
     end
 
-    match = url.match(%r{://(?:www\.|ats\.|careers\.)?([^.]*)})
+    match = url.match(%r{://(?:www\.|ats\.|careers\.)?([^.]*)\.[a-z]{2,4}[./]})
     if match
       potential_identifier = match[1]
       puts "\nTesting the ats_identifier: #{potential_identifier}"

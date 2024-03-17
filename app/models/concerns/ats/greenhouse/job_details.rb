@@ -11,6 +11,20 @@ module Ats::Greenhouse::JobDetails
     job
   end
 
+  def self.create_or_update_job(job_data, company)
+    job_posting_url = job_data['absolute_url']
+    job = Job.find_or_create_by!(job_posting_url:) do |new_job|
+      puts "Created new job - #{new_job.job_title} with #{company.company_name}"
+      new_job.job_title = job_data['title']
+      new_job.job_description = CGI.unescapeHTML(job_data['content'])
+      new_job.non_geocoded_location_string = job_data['location']['name']
+      new_job.department = job_data['departments'][0]['name'],
+      new_job.office = job_data['offices'][0]['name'],
+      new_job.date_created = convert_from_iso8601(job_data['updated_at'])
+    end
+    return job
+  end
+
   def self.fetch_job_data(job, ats)
     job_url_api = "#{ats.base_url_api}#{job.company.ats_identifier}/jobs/#{job.ats_job_id}"
     job.api_url = job_url_api

@@ -10,7 +10,7 @@ class GetAllJobUrls
   def get_all_job_urls
     return unless @url.include?('greenhouse')
 
-    data = fetch_company_jobs(@ats_identifier)
+    data = Ats::Greenhouse::FetchCompanyJobs.fetch_company_jobs(@ats_identifier)
     job_urls = get_job_urls(data)
     total_live = total_live(data)
 

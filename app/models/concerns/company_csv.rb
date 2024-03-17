@@ -1,9 +1,9 @@
 module CompanyCsv
   extend ActiveSupport::Concern
 
-  def load_from_csv(ats_name)
+  def load_from_csv(ats_name, filepath = nil)
     company_list = Set.new
-    filepath = get_filename(ats_name)
+    filepath ||= get_filename(ats_name)
 
     CSV.foreach(filepath) do |row|
       company_list << row[0]
@@ -11,8 +11,8 @@ module CompanyCsv
     company_list
   end
 
-  def write_to_csv(ats_name, list)
-    filepath = get_filename(ats_name)
+  def write_to_csv(ats_name, list, filepath = nil)
+    filepath ||= get_filename(ats_name)
 
     CSV.open(filepath, 'wb') do |csv|
       list.each do |record|

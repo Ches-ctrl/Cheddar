@@ -2,23 +2,15 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
   include Capybara::DSL
   include CompanyCsv
   include AtsRouter
+  include HashBuilder
   include ValidUrl
 
   queue_as :default
 
-  NUMBER_OF_RESULT_PAGES = 1
+  NUMBER_OF_RESULT_PAGES = 70
 
   def initialize
-    @companies = {
-      greenhouse: load_from_csv('greenhouse'),
-      lever: load_from_csv('lever'),
-      workable: load_from_csv('workable'),
-      ashbyhq: load_from_csv('ashbyhq'),
-      pinpointhq: load_from_csv('pinpointhq'),
-      bamboohr: load_from_csv('bamboohr'),
-      recruitee: load_from_csv('recruitee'),
-      manatal: load_from_csv('manatal'),
-    }
+    @companies = build_ats_companies
     Capybara.current_driver = :selenium_chrome_headless
   end
 
@@ -27,11 +19,15 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
 
     visit(url)
 
+    companies_added = 0
     begin
+      puts "Logging into TrueUp..."
       log_into_website
       sleep 1
+      puts "Filtering for tech jobs..."
       page.first('.ais-HierarchicalMenu-link').click
       sleep 1
+      puts "Getting as many results as possible (this may take some time)..."
       click_show_more(NUMBER_OF_RESULT_PAGES - 1)
 
       all('.card-body').each do |job_card|
@@ -46,12 +42,14 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
 
         next unless (company = ats_identifier || alt_identifier)
 
+        companies_added += 1
         @companies[ats] << company
       end
     rescue Capybara::ElementNotFound => e
       puts "Element not found: #{e.message}"
     end
 
+    puts "\nFound #{companies_added} new company ats identifiers."
     puts "\nStoring the information in CSV format..."
 
     @companies.each do |ats_name, list|

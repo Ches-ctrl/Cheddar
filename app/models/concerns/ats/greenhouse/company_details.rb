@@ -1,32 +1,24 @@
 module Ats::Greenhouse::CompanyDetails
   extend ActiveSupport::Concern
 
-  def self.get_company_details(url, ats_system, ats_identifier)
-    p "Getting greenhouse company details - #{url}"
+  # TODO: abstract nearly all of this logic into a concern shared by all ATS modules
+  # TODO: rename this to something like self.find_or_create_company
+  def self.get_company_details(ats_system, ats_identifier)
+    p "Getting greenhouse company details - #{ats_identifier}"
 
     company_name, description = fetch_company_data(ats_system, ats_identifier)
-    company = Company.find_by(company_name: company_name)
 
-    if company
-      p "Existing company - #{company.company_name}"
-      check_for_details(company, ats_system, ats_identifier, description)
-    else
-      company = Company.create(
-        company_name: company_name,
-        description: description,
-        ats_identifier: ats_identifier,
-        applicant_tracking_system_id: ats_system.id,
-        url_ats_api: "#{ats_system.base_url_api}#{ats_identifier}",
-        url_ats_main: "#{ats_system.base_url_main}#{ats_identifier}"
-      )
-      p "Created company - #{company.company_name}" if company.persisted?
+    company = Company.find_or_create_by!(company_name:) do |company|
+      puts "Created company - #{company.company_name}"
       check_for_careers_url_redirect(company)
-
-      # p "Calling GetAllJobUrls"
-      # GetAllJobUrls.new(company).get_all_job_urls if new_company
-      # p "Finished GetAllJobUrls"
     end
-    company
+
+    company.description = description
+    company.ats_identifier = ats_identifier
+    company.applicant_tracking_system_id = ats_system.id
+    company.url_ats_api = "#{ats_system.base_url_api}#{ats_identifier}"
+    company.url_ats_main = "#{ats_system.base_url_main}#{ats_identifier}"
+    return company
   end
 
   def self.fetch_company_data(ats_system, ats_identifier)
@@ -40,12 +32,12 @@ module Ats::Greenhouse::CompanyDetails
   def self.check_for_details(company, ats_system, ats_identifier, description)
     if company.description.nil?
       p "Missing description for #{company.company_name}"
-      company.update(description: description)
+      company.update(description:)
     end
 
     if company.ats_identifier.nil?
       p "Missing ATS identifier for #{company.company_name}"
-      company.update(ats_identifier: ats_identifier)
+      company.update(ats_identifier:)
     end
 
     if company.applicant_tracking_system_id.nil?

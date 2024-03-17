@@ -57,18 +57,24 @@ module AtsRouter
   def ats_identifier
     return unless ats_system_name
 
-    with_parse_method = ['greenhouse', 'lever', 'workable', 'ashbyhq', 'bamboohr']
-    @ats_identifier = if with_parse_method.include?(ats_system_name)
-                        ats_module('ParseUrl').parse_ats_identifier(@url)
-                      else
+    @ats_identifier = if @ats_system_name == 'manatal'
                         ats_module('ParseUrl').parse_url(@url)&.first
+                      else
+                        ats_module('ParseUrl').parse_ats_identifier(@url)
                       end
     puts "Couldn't parse the url: #{@url}" unless @ats_identifier
     @ats_identifier
   end
 
+  def fetch_tagged_jobs(ats_name)
+    return unless [:greenhouse].include?(ats_name)
+
+    module_name = "Ats::#{ats_name.to_s.capitalize}::FetchCompanyJobs"
+    return Object.const_get(module_name).fetch_seniority_tagged_jobs(@ats_identifier)
+  end
+
   def get_company_details
-    ats_module.get_company_details(@url)
+    ats_module.get_company_details
   end
 
   def get_job_details
