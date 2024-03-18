@@ -19,7 +19,7 @@ class JobsUpdateJob < ApplicationJob
         puts "  Looking at jobs with #{ats_identifier}..."
 
         # Find or create the company
-        puts "problem with #{ats_identifier}" unless (company = ats_system.company_details.get_company_details(ats_system, ats_identifier))
+        puts "Problem with #{ats_identifier}" unless (company = ats_system.company_details.get_company_details(ats_system, ats_identifier))
         next unless (company_jobs = ats_system.fetch_company_jobs(ats_identifier))
 
         # Create new jobs using AtsSystem method
@@ -41,7 +41,9 @@ class JobsUpdateJob < ApplicationJob
     job_title = job_data['title']
     job_location = job_data['location']['name']
 
-    JOB_LOCATION_KEYWORDS.any? { |keyword| job_location.downcase.match?(keyword) } &&
+    job_title &&
+      job_location &&
+      JOB_LOCATION_KEYWORDS.any? { |keyword| job_location.downcase.match?(keyword) } &&
       JOB_TITLE_KEYWORDS.any? { |keyword| job_title.downcase.match?(keyword) }
   end
 

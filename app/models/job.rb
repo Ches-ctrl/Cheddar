@@ -97,6 +97,7 @@ class Job < ApplicationRecord
 
   def self.create_job(ats_system, company, job_data)
     return unless (job = ats_system.job_creator.new_job(company, job_data))
+    return unless job.application_criteria.blank?
 
     ats_system.application_fields.get_application_criteria(job)
     GetFormFieldsJob.perform_later(job, job.job_posting_url)

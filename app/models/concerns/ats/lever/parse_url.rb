@@ -3,8 +3,8 @@ module Ats::Lever::ParseUrl
 
   def self.parse_url(url)
     regex_formats = [
-      %r{https://jobs\.lever\.co/(?<company_name>[^/]+)/(?<job_id>[^/]+)},
-      %r{https://jobs\.eu\.lever\.co/(?<company_name>[^/]+)/(?<job_id>[^/]+)},
+      %r{https://jobs\.lever\.co/(?<company_name>[^/]+)/(?<job_id>[^/?]+)},
+      %r{https://jobs\.eu\.lever\.co/(?<company_name>[^/]+)/(?<job_id>[^/?]+)},
     ]
 
     regex_formats.each do |regex|
@@ -12,10 +12,9 @@ module Ats::Lever::ParseUrl
       if match
         ats_identifier, job_id = match.captures
         return [ats_identifier, job_id]
-      else
-        return nil
       end
     end
+    return nil
   end
 
   def self.parse_ats_identifier(url)

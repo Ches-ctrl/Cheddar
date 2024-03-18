@@ -12,11 +12,13 @@ class LocationStandardizer
     hybrid = location.downcase.include?('hybrid') || @job.job_description.downcase.include?('hybrid')
     # remote = location.downcase.match?(/(?<!\bor\s)remote/)
 
-    location_elements = location.split(/[,•]/).map { |element| element.gsub(/[-;(\/]/, '').gsub(/remote|hybrid|\bn\/?a\b/i, '').strip }
+    location_elements = location.split(/[,•&]/).map { |element| element.gsub(/[-;(\/]/, '').gsub(/remote|hybrid|\bn\/?a\b/i, '').strip }
 
     # search for existing cities and countries in location elements:
     location_elements.each do |element|
       city_string, country_string, latitude, longitude = standardize_city_and_country(element)
+
+      next unless country_string
 
       country = Country.find_or_create_by(name: country_string)
       @job.countries << country unless @job.countries.include?(country)

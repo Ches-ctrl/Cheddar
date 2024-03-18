@@ -7,20 +7,18 @@ module Ats::Greenhouse::CompanyDetails
     p "Getting greenhouse company details - #{ats_identifier}"
 
     company_name, description = fetch_company_data(ats_system, ats_identifier)
+    return unless company_name
 
     company = Company.find_or_create_by!(company_name:) do |company|
       puts "Created company - #{company.company_name}"
+      company.description = description
+      company.ats_identifier = ats_identifier
+      company.applicant_tracking_system_id = ats_system.id
+      company.url_ats_api = "#{ats_system.base_url_api}#{ats_identifier}"
+      company.url_ats_main = "#{ats_system.base_url_main}#{ats_identifier}"
+      company.applicant_tracking_system = ats_system
+      check_for_careers_url_redirect(company)
     end
-
-    company.description = description
-    company.ats_identifier = ats_identifier
-    company.applicant_tracking_system_id = ats_system.id
-    company.url_ats_api = "#{ats_system.base_url_api}#{ats_identifier}"
-    company.url_ats_main = "#{ats_system.base_url_main}#{ats_identifier}"
-    company.applicant_tracking_system = ats_system
-    check_for_careers_url_redirect(company)
-
-    company.save!
 
     return company
   end

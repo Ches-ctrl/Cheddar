@@ -78,6 +78,7 @@ class RoleStandardizer
       roles.delete('back_end')
     end
 
+    @job.roles = []
     roles.each do |role_name|
       @job.roles << Role.find_or_create_by(name: role_name)
     end

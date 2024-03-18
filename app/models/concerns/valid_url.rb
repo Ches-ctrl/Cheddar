@@ -16,6 +16,6 @@ module ValidUrl
         return false
       end
     end
-    !response.code.match?(/^4\d\d$/)
+    !response.is_a?(Net::HTTPNotFound)
   end
 end

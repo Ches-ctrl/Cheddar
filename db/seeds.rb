@@ -6,28 +6,27 @@ puts "\nBuilding a list of job urls from the following companies:"
 
 greenhouse_company_ats_identifiers = [
   "cleoai",
-  # "ably30",
-  # "11fs",
-  # "clearscoretechnologylimited",
-  # "codepath",
-  # "copperco",
-  # "coreweave",
-  # "cultureamp",
-  # "deliveroo",
-  # "doctolib",
-  # "epicgames",
-  # "figma",
-  # "forter",
-  # "geniussports",
-  # "getir",
-  # "gomotive",
-  # "grammarly",
-  # "intercom",
-  # "janestreet",
-  # "knowde",
-  # "narvar",
-  # "niantic",
-  # "opendoor"
+  "ably30",
+  "11fs",
+  "clearscoretechnologylimited",
+  "codepath",
+  "copperco",
+  "coreweave",
+  "cultureamp",
+  "deliveroo",
+  "doctolib",
+  "epicgames",
+  "figma",
+  "forter",
+  "geniussports",
+  "getir",
+  "gomotive",
+  "grammarly",
+  "intercom",
+  "janestreet",
+  "narvar",
+  "niantic",
+  "opendoor"
 ]
 
 relevant_job_urls = GetRelevantJobUrls.new(greenhouse_company_ats_identifiers).fetch_jobs
@@ -40,7 +39,7 @@ until response do
   response = gets.chomp
   if response == 'run updater'
     # ScrapeCompaniesFromList.new.call
-    # ScrapeCompaniesFromTrueUp.new.call
+    ScrapeCompaniesFromTrueUp.new.call
     JobsUpdateJob.perform_later
     response = 1
   else

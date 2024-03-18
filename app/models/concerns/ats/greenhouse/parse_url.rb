@@ -28,7 +28,7 @@ module Ats::Greenhouse::ParseUrl
 
     regex_formats = [
       %r{://boards\.greenhouse\.io/([\w%-]+)$},
-      %r{://boards\.eu\.greenhouse\.io/([\w%-]+)$},
+      %r{://boards\.eu\.greenhouse\.io/([\w%-]+)$}, # .eu could be any region
       %r{://boards\.greenhouse\.io/embed/job_board(?:/js)?\?for=([\w%-]+)$}
     ]
     regex_formats.each do |regex|

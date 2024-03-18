@@ -53,7 +53,6 @@ module Constants
     /cybersecurity/,
     /threat detection/,
     /malware/,
-    /\bit\b/,
     /technical designer/,
     /\bseo\b/,
     /ruby/,
