@@ -19,8 +19,8 @@
           <% if @company.url_careers.present? %>
             <li><%= link_to "Careers Site", @company.url_careers %></li>
           <% end %>
-          <% if @company.url_ats.present? %>
-            <li><%= link_to "ATS Site", @company.url_ats %></li>
+          <% if @company.url_ats_main.present? %>
+            <li><%= link_to "ATS Site", @company.url_ats_main %></li>
           <% end %>
         </ul>
       </div>
