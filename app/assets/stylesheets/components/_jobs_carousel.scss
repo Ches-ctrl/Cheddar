@@ -1,0 +1,63 @@
+.carousel-container {
+  color: $main-color;
+
+  .btn {
+    align-items: center;
+    background-color: $main-color;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.1) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    font-size: 18px;
+    font-weight: 700;
+    justify-content: center;
+    line-height: 1em;
+      // max-width: 35%;
+    min-width: 80px;
+    padding: 25px 10px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
+
+      &:hover {
+        box-shadow: rgba(20, 52, 89, 0.3) 0 15px 30px -5px;
+      }
+  }
+
+  h2 {
+    font-weight: 650;
+  }
+
+  input:focus, .form-select:focus {
+    box-shadow: 0 0 3px $main-color;
+  }
+
+  summary::marker {
+    color: #FF9433;
+  }
+
+  input::placeholder {
+    color: $main-color;
+    opacity: 30%;
+    font-weight: 450;
+    font-size: 14px;
+  }
+  input, select, textarea {
+    color: $main-color;
+  }
+
+  input, .form-select {
+    border-radius: 8px !important;
+    border: 1px solid rgba(20, 52, 89, 0.20);
+    background: #FEFEFE;
+  }
+
+  .logo-shadow {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.50);
+  }
+}
