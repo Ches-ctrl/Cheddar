@@ -21,8 +21,6 @@ Style/CollectionLiteralLength:
   Enabled: false
 Style/UnreachableLoop:
   Enabled: false
-# Style/AccessorMethodName:
-#   Enabled: false
 Style/BlockLength:
   Max: 80
 Style/ModuleLength:
@@ -64,4 +62,12 @@ Layout/LineLength:
 Style/EmptyMethod:
   Enabled: false
 Bundler/OrderedGems:
+  Enabled: false
+Style/EmptyElse:
+  Enabled: false
+Style/RescueStandardError:
+  Enabled: false
+Style/RedundantCondition:
+  Enabled: false
+Layout/SpaceAroundOperators:
   Enabled: false

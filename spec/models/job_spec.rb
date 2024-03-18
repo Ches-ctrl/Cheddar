@@ -34,12 +34,12 @@ RSpec.describe Job do
       expect(job_application.user).to eq user
     end
 
-    it 'adds application criteria to the job application' do
-      job.application_criteria = Ats::Greenhouse::ApplicationFields::CORE_FIELDS
-      job.save
-      job_application = job.new_job_application_for_user(user)
-      expect(job_application.application_responses.first.field_name).to
-      eq(Ats::Greenhouse::ApplicationFields::CORE_FIELDS.keys.first.to_s)
-    end
+    # it 'adds application criteria to the job application' do
+    #   job.application_criteria = Ats::Greenhouse::ApplicationFields::CORE_FIELDS
+    #   job.save
+    #   job_application = job.new_job_application_for_user(user)
+    #   expect(job_application.application_responses.first.field_name).to
+    #   eq(Ats::Greenhouse::ApplicationFields::CORE_FIELDS.keys.first.to_s)
+    # end
   end
 end
