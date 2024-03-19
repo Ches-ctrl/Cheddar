@@ -15,22 +15,6 @@ class RoleStandardizer
     /react native/ => 'mobile',
     /\bdata\b/ => 'data_engineer'
   }
-  SENIORITY_TITLES = {
-    /intern/ => 'Internship',
-    /graduate/ => 'Entry-Level',
-    /junior/ => 'Junior',
-    /early[- ]?career/ => 'Junior',
-    /\bi\b/ => 'Junior',
-    /\bmid\b/ => 'Mid-Level',
-    /mid-?weight/ => 'Mid-Level',
-    /mid-?level/ => 'Mid-Level',
-    /\bii\b/ => 'Mid-Level',
-    /\biii\b/ => 'Mid-Level',
-    /senior/ => 'Senior',
-    /\blead\b/ => 'Senior',
-    /principal/ => 'Senior',
-    /staff/ => 'Senior'
-  }
   ROLE_DESCRIPTORS = {
     /front[- ]?end/ => 'front_end',
     /responsive web/ => 'front_end',
@@ -98,7 +82,8 @@ class RoleStandardizer
       roles.delete('back_end')
     end
 
-    @job.role = roles.join('&&') # serialize (this should be done in concerns)
-    @job.save
+    roles.each do |role_name|
+      @job.roles << Role.find_or_create_by(name: role_name)
+    end
   end
 end

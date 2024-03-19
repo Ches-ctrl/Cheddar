@@ -7,7 +7,7 @@ ruby "3.1.2"
 gem "rails", "~> 7.1.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
+gem 'sprockets-rails', '~> 3.4', '>= 3.4.2'
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
@@ -25,7 +25,8 @@ gem "turbo-rails"
 gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder"
+# gem "jbuilder"
+gem 'json', '~> 2.6', '>= 2.6.3'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
@@ -51,9 +52,8 @@ gem "bootsnap", require: false
 gem "bootstrap"
 gem "devise"
 gem "autoprefixer-rails"
-gem "font-awesome-sass"
+gem "font-awesome-sass", "~> 6.5.1"
 gem "simple_form"
-gem "sassc-rails"
 
 # Additional Gems installed
 gem "ruby-openai"
@@ -113,3 +113,5 @@ group :test do
 end
 
 gem "high_voltage", "~> 3.1"
+gem "dartsass-rails", "~> 0.5.0"
+gem "dartsass-sprockets"

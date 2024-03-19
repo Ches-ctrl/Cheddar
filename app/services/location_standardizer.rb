@@ -10,7 +10,7 @@ class LocationStandardizer
 
     location = @job.non_geocoded_location_string
     hybrid = location.downcase.include?('hybrid') || @job.job_description.downcase.include?('hybrid')
-    remote = location.downcase.match?(/(?<!\bor\s)remote/)
+    # remote = location.downcase.match?(/(?<!\bor\s)remote/)
 
     location_elements = location.split(/[,•]/).map do |element|
       element.gsub(%r{[-;(/]}, '').gsub(%r{remote|hybrid|\bn/?a\b}i, '').strip
@@ -19,38 +19,22 @@ class LocationStandardizer
     # search for existing cities and countries in location elements:
     location_elements.each do |element|
       city_string, country_string, latitude, longitude = standardize_city_and_country(element)
+      
+      next unless country_string
 
-      if country_string
-        if (country_instance = Country.find_by(name: country_string))
-          JobsCountry.create!(job: @job, country: country_instance) unless JobsCountry.exists?(job: @job,
-                                                                                               country: country_instance)
-        else
-          # create a new country
-          country_instance = Country.create!(name: country_string)
-          JobsCountry.create!(job: @job, country: country_instance)
-          next unless country_instance
-        end
-      end
+      country = Country.find_or_create_by(name: country_string)
+      @job.countries << country unless @job.countries.include?(country)
 
-      if city_string
-        if (city_instance = Location.find_by(city: city_string))
-          JobsLocation.create!(job: @job, location: city_instance) unless JobsLocation.exists?(job: @job,
-                                                                                               location: city_instance)
-        else
-          # create new location
-          city_instance = Location.create!(city: city_string, country: country_instance, latitude:,
-                                           longitude:)
-          JobsLocation.create!(job: @job, location: city_instance)
-        end
-      end
-      # location_elements.delete(element)
+      next unless city_string
+
+      location = Location.find_or_create_by(city: city_string, country:, latitude:, longitude:)
+      @job.locations << location unless @job.locations.include?(location)
+      # country = join_attribute({ name: country_string }, Country, JobsCountry)
+      # join_attribute({ city: city_string, country:, latitude:, longitude: }, Location, JobsLocation)
     end
 
     @job.hybrid = hybrid
-    @job.remote_only = remote && !hybrid
-
-    # @job.location = @job.country if @job.location.empty?
-    # @job.location += " (Remote)" if @job.remote_only
+    @job.remote_only = @job.locations.empty?
   end
 
   private

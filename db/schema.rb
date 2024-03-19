@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_08_150119) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_13_113518) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -84,6 +84,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_08_150119) do
     t.integer "total_live", default: 0
     t.string "url_ats_main"
     t.string "url_ats_api"
+    t.string "carbon_pledge"
   end
 
   create_table "countries", force: :cascade do |t|
@@ -163,7 +164,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_08_150119) do
     t.string "office"
     t.boolean "remote_only"
     t.boolean "hybrid"
-    t.string "role"
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
@@ -177,12 +177,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_08_150119) do
   end
 
   create_table "jobs_locations", force: :cascade do |t|
-    t.bigint "job_id"
-    t.bigint "location_id"
+    t.bigint "job_id", null: false
+    t.bigint "location_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["job_id"], name: "index_jobs_locations_on_job_id"
     t.index ["location_id"], name: "index_jobs_locations_on_location_id"
+  end
+
+  create_table "jobs_roles", force: :cascade do |t|
+    t.bigint "role_id", null: false
+    t.bigint "job_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_jobs_roles_on_job_id"
+    t.index ["role_id"], name: "index_jobs_roles_on_role_id"
   end
 
   create_table "jobs_technologies", id: false, force: :cascade do |t|
@@ -223,6 +232,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_08_150119) do
     t.datetime "updated_at", null: false
     t.index ["job_id"], name: "index_playlist_jobs_on_job_id"
     t.index ["job_playlist_id"], name: "index_playlist_jobs_on_job_playlist_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "saved_jobs", force: :cascade do |t|
@@ -283,6 +298,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_08_150119) do
   add_foreign_key "jobs_countries", "jobs"
   add_foreign_key "jobs_locations", "jobs"
   add_foreign_key "jobs_locations", "locations"
+  add_foreign_key "jobs_roles", "jobs"
+  add_foreign_key "jobs_roles", "roles"
   add_foreign_key "locations", "countries"
   add_foreign_key "playlist_jobs", "job_playlists"
   add_foreign_key "playlist_jobs", "jobs"

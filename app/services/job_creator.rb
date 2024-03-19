@@ -42,6 +42,7 @@ class JobCreator
       ats_module('JobDetails').get_job_details(@job)
       ats_module('ApplicationFields').get_application_criteria(@job)
       # ats_module('ApplicationFields').update_requirements(@job)
+      # create job here?
       update_requirements(@job)
       p "job fields getting"
       GetFormFieldsJob.perform_later(@job.job_posting_url)
@@ -52,8 +53,6 @@ class JobCreator
     end
   end
 
-  # TODO: Search job description for salary information
-  # TODO: Search job description for seniority (or match on job title)
   # TODO: Add other relevant job characteristics e.g. stock options, bonus, benefits, days leave etc.
 
   def update_requirements(job)

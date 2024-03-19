@@ -28,12 +28,13 @@ class Job < ApplicationRecord
   has_many :locations, through: :jobs_locations
   has_many :jobs_countries, dependent: :destroy
   has_many :countries, through: :jobs_countries
+  has_many :jobs_roles, dependent: :destroy
+  has_many :roles, through: :jobs_roles
 
   before_create :set_date_created
 
   validates :job_posting_url, uniqueness: true, presence: true
-  validates :job_title, presence: true,
-                        uniqueness: { scope: :company_id, message: 'should be unique per company' }
+  validates :job_title, presence: true
 
   # after_create :update_application_criteria
 
@@ -43,7 +44,7 @@ class Job < ApplicationRecord
                   against: %i[job_title salary job_description],
                   associated_against: {
                     company: %i[company_name company_category],
-                    locations: :city,
+                    # locations: :city,
                     countries: :name
                   },
                   using: {
@@ -90,5 +91,79 @@ class Job < ApplicationRecord
     end
 
     job_application
+  end
+
+  CONVERT_TO_DAYS = {
+    'today' => 0,
+    '3-days' => 3,
+    'week' => 7,
+    'month' => 30,
+    'any-time' => 99_999
+  }
+
+  # TODO: Handle remote jobs
+
+  def self.filter_and_sort(params)
+    filters = {
+      date_created: filter_by_when_posted(params[:posted]),
+      seniority: filter_by_seniority(params[:seniority]),
+      locations: filter_by_location(params[:location]),
+      roles: filter_by_role(params[:role]),
+      employment_type: filter_by_employment(params[:type]),
+      company: params[:company]&.split
+    }.compact
+
+    associations = build_associations(params)
+    jobs = joins(associations).where(filters)
+    params[:query].present? ? jobs.search_job(params[:query]) : jobs
+  end
+
+  private
+
+  private_class_method def self.build_associations(params)
+    associations = []
+    associations << :company if params.include?(:company)
+    associations << :locations if params.include?(:location)
+    associations << :roles if params.include?(:role)
+    return associations
+  end
+
+  private_class_method def self.filter_by_when_posted(param)
+    return unless param.present?
+
+    number = CONVERT_TO_DAYS[param] || 99_999
+    number.days.ago..Date.today
+  end
+
+  private_class_method def self.filter_by_location(param)
+    return unless param.present?
+
+    locations = param.split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') unless location == 'remote_only' }.compact
+    { city: locations }
+  end
+
+  private_class_method def self.filter_by_role(param)
+    { name: param.split } if param.present?
+  end
+
+  private_class_method def self.filter_by_seniority(param)
+    return unless param.present?
+
+    param.split.map { |seniority| seniority.split('-').map(&:capitalize).join('-') }
+  end
+
+  private_class_method def self.filter_by_employment(param)
+    return unless param.present?
+
+    param.split.map { |employment| employment.gsub('_', '-').capitalize }
+  end
+
+  private
+
+  def unique_title_per_company_and_location
+    existing_jobs = Job.joins(:jobs_locations)
+                       .where(job_title:, company_id:, jobs_locations: { location_id: locations.pluck(:id) })
+    existing_jobs = existing_jobs.where.not(id:) if persisted?
+    errors.add(:title, 'should be unique per company and location') if existing_jobs.exists?
   end
 end
