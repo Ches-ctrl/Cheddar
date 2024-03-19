@@ -27,9 +27,6 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-# This gem is needed for windows laptops
-gem 'psych', "~> 4.0"
-
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
@@ -57,6 +54,7 @@ gem "autoprefixer-rails"
 gem "font-awesome-sass"
 gem "simple_form"
 gem "sassc-rails"
+gem 'psych', "~> 4.0" # Extra gem as per Le Wagon setup for Linux laptops
 
 # Additional Gems installed
 gem "ruby-openai"
