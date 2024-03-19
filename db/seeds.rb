@@ -24,7 +24,6 @@ greenhouse_company_ats_identifiers = [
   "grammarly",
   "intercom",
   "janestreet",
-  "knowde",
   "narvar",
   "niantic",
   "opendoor"
