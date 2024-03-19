@@ -37,7 +37,7 @@
     .cheddar-3d-icon {
       width: 140px;
       position: absolute;
-      top: 50%;
+      top: 52%;
       left: 52%;
       transform: translate(-50%, -50%);
     }
@@ -97,6 +97,18 @@
       justify-content: center;
       align-items: center;
       margin: 0;
+
+      i {
+        font-size: 28px;
+        text-align: center;
+        opacity: 60%;
+        height: auto;
+        font-weight: 900;
+
+        &:active {
+          opacity: 100%;
+        }
+      }
     }
 
     #mce-EMAIL {
@@ -111,6 +123,12 @@
       box-shadow: 4.992px 4.992px 14.145px -24.13px rgba(255, 255, 255, 0.85) inset, 23.298px 23.298px 44.931px -31.618px rgba(255, 255, 255, 0.60) inset, -13.313px -13.313px 11.649px -112.328px rgba(0, 0, 0, 0.25) inset, -23.298px -23.298px 44.931px -60.74px rgba(0, 0, 0, 0.24) inset, 0px 3.328px 3.328px 0px rgba(0, 0, 0, 0.25), 0px 3.328px 3.328px 0px rgba(0, 0, 0, 0.25) inset;
       width: 75%;
       height: 40px;
+      padding-left: 6%;
+
+      &::placeholder {
+        color: $main-color;
+        opacity: 50%;
+      }
     }
 
     #mc-embedded-subscribe {
@@ -124,8 +142,8 @@
       border: 0.832px solid rgba(255, 255, 255, 0.20);
       background: rgba(20, 52, 89, 0.20);
       box-shadow: 4.992px 4.992px 14.145px -24.13px rgba(255, 255, 255, 0.85) inset, 23.298px 23.298px 44.931px -31.618px rgba(255, 255, 255, 0.60) inset, -13.313px -13.313px 11.649px -112.328px rgba(0, 0, 0, 0.25) inset, -23.298px -23.298px 44.931px -60.74px rgba(0, 0, 0, 0.24) inset, 0px 3.328px 3.328px 0px rgba(0, 0, 0, 0.25), 0px 3.328px 3.328px 0px rgba(0, 0, 0, 0.25) inset;
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -242,6 +260,17 @@
         justify-content: center;
         align-items: center;
         margin: 0;
+
+        i {
+          font-size: 30px;
+          text-align: center;
+          opacity: 60%;
+          height: auto;
+
+          &:active {
+            opacity: 100%;
+          }
+        }
       }
 
       #mce-EMAIL {
@@ -256,6 +285,12 @@
         box-shadow: 4.992px 4.992px 14.145px -24.13px rgba(255, 255, 255, 0.85) inset, 23.298px 23.298px 44.931px -31.618px rgba(255, 255, 255, 0.60) inset, -13.313px -13.313px 11.649px -112.328px rgba(0, 0, 0, 0.25) inset, -23.298px -23.298px 44.931px -60.74px rgba(0, 0, 0, 0.24) inset, 0px 3.328px 3.328px 0px rgba(0, 0, 0, 0.25), 0px 3.328px 3.328px 0px rgba(0, 0, 0, 0.25) inset;
         width: 30%;
         height: 40px;
+        padding-left: 2%;
+
+        &::placeholder {
+          color: $main-color;
+          opacity: 50%;
+        }
       }
 
       #mc-embedded-subscribe {
@@ -269,8 +304,8 @@
         border: 0.832px solid rgba(255, 255, 255, 0.20);
         background: rgba(20, 52, 89, 0.20);
         box-shadow: 4.992px 4.992px 14.145px -24.13px rgba(255, 255, 255, 0.85) inset, 23.298px 23.298px 44.931px -31.618px rgba(255, 255, 255, 0.60) inset, -13.313px -13.313px 11.649px -112.328px rgba(0, 0, 0, 0.25) inset, -23.298px -23.298px 44.931px -60.74px rgba(0, 0, 0, 0.24) inset, 0px 3.328px 3.328px 0px rgba(0, 0, 0, 0.25), 0px 3.328px 3.328px 0px rgba(0, 0, 0, 0.25) inset;
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 40px;
         display: flex;
         justify-content: center;
         align-items: center;
