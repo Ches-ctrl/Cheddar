@@ -8,25 +8,30 @@ class GetFormFieldsJob < ApplicationJob
   queue_as :default
   sidekiq_options retry: false
 
-# TODO: Generalise to all supported ATS systems
-# TODO: Calculate total number of input fields and implied difficulty of application
-# TODO: Potentially change to scraping all fields from the job posting
-# TODO: Add boolean cv required based on this scrape
-# TODO: add test of filling out the form fields before job goes live
+  # TODO: Generalise to all supported ATS systems
+  # TODO: Calculate total number of input fields and implied difficulty of application
+  # TODO: Potentially change to scraping all fields from the job posting
+  # TODO: Add boolean cv required based on this scrape
+  # TODO: add test of filling out the form fields before job goes live
 
   def perform(url)
     Capybara.current_driver = :selenium_chrome_headless
 
     visit(url)
     return if page.has_selector?('#flash_pending')
-    find_apply_button.click rescue nil
 
-# Get Job Details, Company & Description
+    begin
+      find_apply_button.click
+    rescue StandardError
+      nil
+    end
+
+    # Get Job Details, Company & Description
     job = Job.find_by(job_posting_url: url)
 
-# TODO: Get details here
+    # TODO: Get details here
 
-# Find Form Fields
+    # Find Form Fields
 
     form = find('form', text: /apply|application/i)
     form_html = page.evaluate_script("arguments[0].outerHTML", form.native)
@@ -36,16 +41,18 @@ class GetFormFieldsJob < ApplicationJob
 
     attributes = {}
     labels.each do |label|
-# Could do this based off of name of ID
+      # Could do this based off of name of ID
 
-# TODO: Add ability to deal with boolean required fields. Input will have an asterisk in a span class in that case
-# TODO: Fix issue where additional core fields will be shown to the user even if not required when included in the core greenhouse set
+      # TODO: Add ability to deal with boolean required fields. Input will have an asterisk in a span class in that case
+      # TODO: Fix issue where additional core fields will be shown to the user even if not required when included in the core greenhouse set
 
-# Stripping text, downcasing and replacing spaces with underscores to act as primary keys
+      # Stripping text, downcasing and replacing spaces with underscores to act as primary keys
 
-      label_text = label.xpath('descendant-or-self::text()[not(parent::select or parent::option or parent::ul or parent::label/input[@type="checkbox"])]').text.strip.downcase.gsub(" ", "_")
+      label_text = label.xpath('descendant-or-self::text()[not(parent::select or parent::option or parent::ul or parent::label/input[@type="checkbox"])]').text.strip.downcase.gsub(
+        " ", "_"
+      )
 
-      required = label_text.include?("*") ? true : false
+      required = label_text.include?("*")
       label_text = label_text.split("*")[0]
 
       name = label_text
@@ -55,13 +62,11 @@ class GetFormFieldsJob < ApplicationJob
 
       attributes[name] = {
         interaction: :input,
-        required: required
+        required:
       }
 
       inputs = label.css('input', 'textarea').reject { |input| input['type'] == 'hidden' || !input['id'] }
-      unless inputs.empty?
-        attributes[name][:locators] = inputs[0]['id']
-      end
+      attributes[name][:locators] = inputs[0]['id'] unless inputs.empty?
 
       checkbox_input = label.css('label:has(input[type="checkbox"])')
       unless checkbox_input.empty?
@@ -71,28 +76,31 @@ class GetFormFieldsJob < ApplicationJob
       end
 
       select_input = label.css('select')
-      unless select_input.empty?
-        attributes[name][:interaction] = :select
-        attributes[name][:locators] = select_input[0]['id']
-        attributes[name][:option] = 'option'
-        attributes[name][:options] = label.css('option').map { |option| option.text.strip }
-      end
+      next if select_input.empty?
+
+      attributes[name][:interaction] = :select
+      attributes[name][:locators] = select_input[0]['id']
+      attributes[name][:option] = 'option'
+      attributes[name][:options] = label.css('option').map { |option| option.text.strip }
     end
 
     begin
       demographics = nokogiri_form.css("#demographic_questions")
       demographics_questions = demographics.css(".demographic_question")
       demographics_questions.each do |question|
-        name = question.children.select { |c| c.text? }.map(&:text).join.strip.downcase.gsub(" ", "_")
+        name = question.children.select(&:text?).map(&:text).join.strip.downcase.gsub(" ", "_")
         attributes[name] = {
           interaction: :checkbox
         }
         demographics_input = question.css('label:has(input[type="checkbox"])')
-        unless demographics_input.empty?
-          attributes[name][:locators] = attributes[name][:locators] = question.children.select { |c| c.text? }.map(&:text).join.gsub("\n", ' ').strip
-          attributes[name][:options] = question.css('label:has(input[type="checkbox"])').map { |option| option.text.strip }
-          p attributes[name]
+        next if demographics_input.empty?
+
+        attributes[name][:locators] =
+          attributes[name][:locators] = question.children.select(&:text?).map(&:text).join.gsub("\n", ' ').strip
+        attributes[name][:options] = question.css('label:has(input[type="checkbox"])').map do |option|
+          option.text.strip
         end
+        p attributes[name]
       end
     rescue Capybara::ElementNotFound
       @errors = true
@@ -112,14 +120,15 @@ class GetFormFieldsJob < ApplicationJob
       p job.application_criteria
     end
 
-# TODO: Check that including this here doesn't cause issues
+    # TODO: Check that including this here doesn't cause issues
     return attributes
   end
 
   private
 
   def find_apply_button
-    find(:xpath, "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')] | //button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')]")
+    find(:xpath,
+         "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')] | //button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')]")
   end
 
   def remove_trailing_underscore(string)

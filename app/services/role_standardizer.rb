@@ -55,8 +55,12 @@ class RoleStandardizer
   end
 
   def standardize
-    title_roles = ROLE_TITLES.inject([]) { |array, (keyword, role)| @job.job_title.downcase.match?(keyword) ? array << role : array }
-    roles = ROLE_DESCRIPTORS.inject([]) { |array, (phrase, role)| @job.job_description.downcase.match?(phrase) ? array << role : array }
+    title_roles = ROLE_TITLES.inject([]) do |array, (keyword, role)|
+      @job.job_title.downcase.match?(keyword) ? array << role : array
+    end
+    roles = ROLE_DESCRIPTORS.inject([]) do |array, (phrase, role)|
+      @job.job_description.downcase.match?(phrase) ? array << role : array
+    end
 
     if title_roles.include?('front_end')
       roles.delete('full_stack')

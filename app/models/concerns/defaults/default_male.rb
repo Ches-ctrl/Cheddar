@@ -1,9 +1,10 @@
-module Defaults::DefaultMale
-  extend ActiveSupport::Concern
+module Defaults
+  module DefaultMale
+    extend ActiveSupport::Concern
 
-  # TODO: Update defaults
+    # TODO: Update defaults
 
-  DEFAULT_MALE = {
+    DEFAULT_MALE = {
       'first_name' => {
         'value' => "UserMissingFirst"
       },
@@ -32,13 +33,13 @@ module Defaults::DefaultMale
         'value' => /yes/i ## TODO
       },
       'salary_expectation_figure' => {
-        'value' => 30000
+        'value' => 30_000
       },
       'notice_period' => {
         'value' => 12
       },
       'preferred_pronoun_select' => {
-        'value' => /he\/him/i ## TODO
+        'value' => %r{he/him}i ## TODO
       },
       'preferred_pronoun_text' => {
         'value' => 'N/A' ## TODO
@@ -59,7 +60,7 @@ module Defaults::DefaultMale
         'value' => "https://www.ilya.com"
       },
       'require_visa?' => {
-        'value' => 'No',
+        'value' => 'No'
       },
       'heard_of_company?' => {
         'value' => /yes/i
@@ -68,4 +69,5 @@ module Defaults::DefaultMale
         'value' => 'Cheddar'
       }
     }
+  end
 end

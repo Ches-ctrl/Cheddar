@@ -9,7 +9,7 @@ module ApplicationCable
     private
 
     def find_verified_user
-      if verified_user = env['warden'].user
+      if (verified_user = env['warden'].user)
         p "Verified User: #{verified_user}"
         verified_user
       else

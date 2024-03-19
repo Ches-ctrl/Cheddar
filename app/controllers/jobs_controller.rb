@@ -3,7 +3,7 @@ require 'cgi'
 class JobsController < ApplicationController
   include ActionView::Helpers::SanitizeHelper
 
-  before_action :authenticate_user!, except: [:index, :show, :apply_to_selected_jobs]
+  before_action :authenticate_user!, except: %i[index show apply_to_selected_jobs]
 
   def index
     # TODO: Refactor entire index action, should be 5 lines max
@@ -13,11 +13,9 @@ class JobsController < ApplicationController
     @resources = CategorySidebar.new(params).build
 
     @saved_jobs = SavedJob.all
-    @saved_job_ids = @saved_jobs.map(&:job_id).to_set
+    @saved_job_ids = @saved_jobs.to_set(&:job_id)
 
-    if current_user.present?
-      @job_applications = JobApplication.where(user_id: current_user.id)
-    end
+    @job_applications = JobApplication.where(user_id: current_user.id) if current_user.present?
 
     respond_to do |format|
       format.html
@@ -81,7 +79,7 @@ class JobsController < ApplicationController
 
   private
 
-  # TODO: Check if more params are needed on Job.create
+  # TODO: Remove #create and #job_params?
 
   def job_params
     params.require(:job).permit(:job_title, :job_description, :salary, :job_posting_url, :application_deadline, :date_created, :company_id, :applicant_tracking_system_id, :ats_job_id, :non_geocoded_location_string, :department, :office, :live)

@@ -9,15 +9,15 @@ module Scrapers
       jobs_list.each do |job|
         job_urls << job.css('.swissdev-grey-background').css('.card').at('a')['href']
         puts job.css('.swissdev-grey-background').css('.card').css('.col-9').css('.cut-long-name').text
-        
-        job_url =  "https://devitjobs.uk#{job.css('.swissdev-grey-background').css('.card').at('a')['href']}"
+
+        job_url = "https://devitjobs.uk#{job.css('.swissdev-grey-background').css('.card').at('a')['href']}"
         job_details = page_doc(job_url)
 
         technologies = []
 
         # find or create company
         company_name = job_details.css('.swissdev-grey-text').css('span.text-small').text
-        company = Company.find_or_create_by(company_name: company_name)
+        company = Company.find_or_create_by(company_name:)
 
         # find or create technologies
         job_details.css('.job-details-section-box').css('.mr-2').each do |tech|
@@ -34,7 +34,7 @@ module Scrapers
         }
         job = Job.create job_attributes
 
-        # job_technologies join 
+        # job_technologies join
         job.technologies << technologies
 
         # job location
@@ -46,7 +46,7 @@ module Scrapers
       city = name.split(',').last
       geo = Geocoder.search(city)
       country = Country.find_or_create_by(name: geo.first.country)
-      Location.find_or_create_by(city: city, country_id: country.id)
+      Location.find_or_create_by(city:, country_id: country.id)
     end
   end
 end
