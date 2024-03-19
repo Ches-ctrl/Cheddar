@@ -115,3 +115,4 @@ end
 gem "high_voltage", "~> 3.1"
 gem "dartsass-rails", "~> 0.5.0"
 gem "dartsass-sprockets"
+gem "sass-embedded"

@@ -503,6 +503,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   ruby-openai
+  sass-embedded
   selenium-webdriver (~> 4.18.1)
   shoulda-matchers (= 6.1.0)
   sidekiq (~> 6.5.5)
