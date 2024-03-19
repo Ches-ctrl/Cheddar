@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
   include ActionView::Helpers::SanitizeHelper
 
-  before_action :authenticate_user!, except: [:index, :show, :apply_to_selected_jobs]
+  before_action :authenticate_user!, except: %i[index show apply_to_selected_jobs]
 
   def index
     # TODO: Refactor entire index action, should be 5 lines max
@@ -20,11 +20,9 @@ class JobsController < ApplicationController
     @jobs = @jobs.paginate(page: params[:page], per_page: 20)
 
     @saved_jobs = SavedJob.all
-    @saved_job_ids = @saved_jobs.map(&:job_id).to_set
+    @saved_job_ids = @saved_jobs.to_set(&:job_id)
 
-    if current_user.present?
-      @job_applications = JobApplication.where(user_id: current_user.id)
-    end
+    @job_applications = JobApplication.where(user_id: current_user.id) if current_user.present?
 
     respond_to do |format|
       format.html
@@ -93,13 +91,14 @@ class JobsController < ApplicationController
     '3-days' => 3,
     'week' => 7,
     'month' => 30,
-    'any-time' => 99999
+    'any-time' => 99_999
   }
 
   # TODO: Check if more params are needed on Job.create
 
   def job_params
-    params.require(:job).permit(:job_title, :job_description, :salary, :job_posting_url, :application_deadline, :date_created, :company_id, :applicant_tracking_system_id, :ats_job_id, :location, :department, :office, :live)
+    params.require(:job).permit(:job_title, :job_description, :salary, :job_posting_url, :application_deadline,
+                                :date_created, :company_id, :applicant_tracking_system_id, :ats_job_id, :location, :department, :office, :live)
   end
 
   def filter_jobs_by_params
@@ -118,14 +117,14 @@ class JobsController < ApplicationController
 
   def filter_by_when_posted
     params[:posted].split.each do |time|
-      number = CONVERT_TO_DAYS[time] || 99999
+      number = CONVERT_TO_DAYS[time] || 99_999
       @jobs = @jobs.where(date_created: number.days.ago..Date.today)
     end
   end
 
   def filter_by_role
     roles = params[:role].split
-    conditions = roles.map { |role| "role ILIKE ?" }.join(" OR ")
+    conditions = roles.map { |_role| "role ILIKE ?" }.join(" OR ")
     values = roles.map { |role| "%#{role}%" }
 
     @jobs = @jobs.where(conditions, *values)
@@ -199,6 +198,5 @@ class JobsController < ApplicationController
     end
 
     @resources.each { |title, array| array.sort_by! { |item| [-item[2]] } unless title == 'seniority' }
-
   end
 end

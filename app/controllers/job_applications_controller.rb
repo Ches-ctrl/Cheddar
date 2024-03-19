@@ -44,20 +44,17 @@ class JobApplicationsController < ApplicationController
     if current_user.resume.attached?
       puts "Moving you along the user has a resume attached path."
       # TODO: Add validation to check that the user has filled in their core details
-      params[:job_application][:application_responses_attributes].each do |key, response_attributes|
-        if response_attributes[:field_name] == "cover_letter_"
-          cover_letter_content = response_attributes[:cover_letter_content]
-          if cover_letter_content
-            p "Cover letter content present"
-              @job_application.application_responses.each do |response|
-              if response.field_name == "cover_letter_"
-                response.field_value = cover_letter_content
-              end
-            end
-          end
+      params[:job_application][:application_responses_attributes].each_value do |response_attributes|
+        next unless response_attributes[:field_name] == "cover_letter_"
+
+        cover_letter_content = response_attributes[:cover_letter_content]
+        next unless cover_letter_content
+
+        p "Cover letter content present"
+        @job_application.application_responses.each do |response|
+          response.field_value = cover_letter_content if response.field_name == "cover_letter_"
         end
       end
-
 
       if @job_application.save
         user_channel_name = "job_applications_#{current_user.id}"
@@ -69,7 +66,7 @@ class JobApplicationsController < ApplicationController
             job_application_id: @job_application.id,
             # user_id: @job_application.user_id,
             job_id: @job_application.job_id,
-            status: @job_application.status,
+            status: @job_application.status
           }
         )
 
@@ -83,7 +80,7 @@ class JobApplicationsController < ApplicationController
             job_application_id: @job_application.id,
             user_id: @job_application.user_id,
             job_id: @job_application.job_id,
-            status: @job_application.status,
+            status: @job_application.status
             # Include any additional data you want to send to the frontend
           }
         )
@@ -91,7 +88,7 @@ class JobApplicationsController < ApplicationController
         p "Job Application Status: #{@job_application.status}"
 
         ids = cookies[:selected_job_ids].split("&")
-        ids.delete("#{job.id}")
+        ids.delete(job.id.to_s)
 
         p "IDs: #{ids}"
 
@@ -107,7 +104,8 @@ class JobApplicationsController < ApplicationController
       end
     else
       # p "User doesn't have a resume attached."
-      redirect_to edit_user_registration_path(current_user), alert: 'Please update your core details and attach a CV before applying.'
+      redirect_to edit_user_registration_path(current_user),
+                  alert: 'Please update your core details and attach a CV before applying.'
       return
     end
   end
@@ -133,6 +131,7 @@ class JobApplicationsController < ApplicationController
   # TODO: Update job_application_params to include the user inputs
 
   def job_application_params
-    params.require(:job_application).permit(application_responses_attributes: [:field_name, { field_value: [] }, :field_value, :field_locator, :interaction, :field_option, :field_options, :cover_letter_content, :required])
+    params.require(:job_application).permit(application_responses_attributes: [:field_name, { field_value: [] },
+                                                                               :field_value, :field_locator, :interaction, :field_option, :field_options, :cover_letter_content, :required])
   end
 end

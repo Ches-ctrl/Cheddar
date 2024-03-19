@@ -80,17 +80,18 @@ class AiFindFormFieldsJob < ApplicationJob
     puts "Application Criteria:"
     puts application_criteria["application_criteria"]
 
-    job = Job.create(
+    Job.create(
       job_title: "Software Engineer-Full stack (Junior Level)",
       job_description: "Kroo has a big vision. To be the first bank that is both trusted and loved by its customers.We’re helping people take control of their financial future and achieve their goals, whilst making a positive impact on the planet. Here at Kroo, doing what is right is in our DNA. We act with integrity, transparency and honesty. We think big, dream big, and relentlessly pursue our goals. We like to be bold, break new ground, and we never stop learning. But most importantly, we are on this journey together.",
-      salary: 30000,
+      salary: 30_000,
       date_created: Date.today,
       application_criteria: application_criteria["application_criteria"],
       application_deadline: Date.today + 30,
       job_posting_url: "https://apply.workable.com/kroo/j/C51C29B6C0",
-      company_id: Company.first.id)
+      company_id: Company.first.id
+    )
 
-    job_app = JobApplication.create(
+    JobApplication.create(
       status: "Pre-test",
       user_id: User.first.id,
       job_id: Job.last.id
@@ -103,10 +104,10 @@ class AiFindFormFieldsJob < ApplicationJob
   private
 
   def find_apply_button
-    find(:xpath, "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')] | //button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')]")
+    find(:xpath,
+         "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')] | //button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')]")
   end
 end
-
 
 # ---------------
 # Alternative way of getting form HTML
@@ -114,7 +115,6 @@ end
 
 # form_html = page.evaluate_script("document.querySelector('form').outerHTML")
 # p "Other form: #{form_html}"
-
 
 # ---------------
 # OpenAI Attempt I - not working
@@ -139,7 +139,6 @@ end
 # end
 
 # required_elements.each { |element| p element }
-
 
 # ---------------
 # OpenAI Attempt III - not working
