@@ -54,7 +54,6 @@ gem "devise"
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.5.1"
 gem "simple_form"
-gem "sassc-rails"
 gem 'psych', "~> 4.0" # Extra gem as per Le Wagon setup for Linux laptops
 
 # Additional Gems installed
