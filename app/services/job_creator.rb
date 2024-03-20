@@ -19,17 +19,18 @@ class JobCreator
     response = Net::HTTP.get_response(uri)
 
     # TODO: Add additional logic for checking job is live when not a redirect e.g. 404 response
-    if response.is_a?(Net::HTTPNotFound)
+    case response
+    when Net::HTTPNotFound
       p "Job link 404 error"
       @job.job_title = 'Job not found - 404'
       @job.job_description = 'The job page does not exist - 404'
       @job.live = false
-    elsif response.is_a?(Net::HTTPRedirection)
+    when Net::HTTPRedirection
       p "Job link redirect"
       @job.job_title = 'Job not found - Redirect'
       @job.job_description = 'The job page does not exist - Redirect'
       @job.live = false
-    elsif response.is_a?(Net::HTTPSuccess)
+    when Net::HTTPSuccess
       @job.live = true
     else
       p "unexpected response: #{response.inspect}"
@@ -41,6 +42,7 @@ class JobCreator
       ats_module('JobDetails').get_job_details(@job)
       ats_module('ApplicationFields').get_application_criteria(@job)
       # ats_module('ApplicationFields').update_requirements(@job)
+      # create job here?
       update_requirements(@job)
       p "job fields getting"
       GetFormFieldsJob.perform_later(@job.job_posting_url)
@@ -51,8 +53,6 @@ class JobCreator
     end
   end
 
-  # TODO: Search job description for salary information
-  # TODO: Search job description for seniority (or match on job title)
   # TODO: Add other relevant job characteristics e.g. stock options, bonus, benefits, days leave etc.
 
   def update_requirements(job)

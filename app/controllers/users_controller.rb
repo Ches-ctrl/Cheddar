@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     json_data = JSON.parse(request.body.read)
     filename = json_data['filename']
     p "The filename is #{filename}"
-    attachment = current_user.cover_letter_templates.joins(:blob).find_by(active_storage_blobs: { filename: filename } ).url
+    attachment = current_user.cover_letter_templates.joins(:blob).find_by(active_storage_blobs: { filename: }).url
     if attachment.present?
       # p "The file url is #{file_url}"
       # file_path = file_url.download

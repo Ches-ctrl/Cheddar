@@ -1,30 +1,21 @@
+require 'cgi'
+
 class JobsController < ApplicationController
   include ActionView::Helpers::SanitizeHelper
 
-  before_action :authenticate_user!, except: [:index, :show, :apply_to_selected_jobs]
+  before_action :authenticate_user!, except: %i[index show apply_to_selected_jobs]
 
   def index
     # TODO: Refactor entire index action, should be 5 lines max
-    # TODO: Fix search functionality so that 20 jobs are always shown
     # TODO: Install Kaminari to fix long page load time on index page and add pagination
-    # TODO: Add bullet gem to detect N+1 queries, implement pagination
-    # TODO: Implement pagination for the remaining jobs
 
-    @jobs = Job.includes(:company, :locations, :countries)
-
-    # When a job doesn't actually exist, its location is nil.
-
-    build_filter_sidebar_resources
-    filter_jobs_by_params
-
-    @jobs = @jobs.paginate(page: params[:page], per_page: 20)
+    @jobs = Job.filter_and_sort(params).paginate(page: params[:page], per_page: 20)
+    @resources = CategorySidebar.new(params).build
 
     @saved_jobs = SavedJob.all
-    @saved_job_ids = @saved_jobs.map(&:job_id).to_set
+    @saved_job_ids = @saved_jobs.to_set(&:job_id)
 
-    if current_user.present?
-      @job_applications = JobApplication.where(user_id: current_user.id)
-    end
+    @job_applications = JobApplication.where(user_id: current_user.id) if current_user.present?
 
     respond_to do |format|
       format.html
@@ -88,117 +79,9 @@ class JobsController < ApplicationController
 
   private
 
-  CONVERT_TO_DAYS = {
-    'today' => 0,
-    '3-days' => 3,
-    'week' => 7,
-    'month' => 30,
-    'any-time' => 99999
-  }
-
-  # TODO: Check if more params are needed on Job.create
+  # TODO: Remove #create and #job_params?
 
   def job_params
-    params.require(:job).permit(:job_title, :job_description, :salary, :job_posting_url, :application_deadline, :date_created, :company_id, :applicant_tracking_system_id, :ats_job_id, :location, :department, :office, :live)
-  end
-
-  def filter_jobs_by_params
-    filter_by_query if params[:query].present?
-    filter_by_when_posted if params[:posted].present?
-    filter_by_seniority if params[:seniority].present?
-    filter_by_employment if params[:employment].present?
-    filter_by_location if params[:location].present?
-    filter_by_role if params[:role].present?
-    filter_by_company if params[:company].present?
-  end
-
-  def filter_by_query
-    @jobs = Job.search_job(params[:query]).includes(:company, :locations, :countries)
-  end
-
-  def filter_by_when_posted
-    params[:posted].split.each do |time|
-      number = CONVERT_TO_DAYS[time] || 99999
-      @jobs = @jobs.where(date_created: number.days.ago..Date.today)
-    end
-  end
-
-  def filter_by_role
-    roles = params[:role].split
-    conditions = roles.map { |role| "role ILIKE ?" }.join(" OR ")
-    values = roles.map { |role| "%#{role}%" }
-
-    @jobs = @jobs.where(conditions, *values)
-  end
-
-  def filter_by_company
-    companies = params[:company].split
-    @jobs = @jobs.where(company: companies)
-  end
-
-  def filter_by_location
-    locations = params[:location].split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') }
-    if locations.include?("Remote Only")
-      @jobs = Job.joins(:locations)
-                 .where(locations: { city: locations })
-                 .or(Job.where(remote_only: true))
-    else
-      @jobs = Job.joins(:locations).where(locations: { city: locations })
-    end
-  end
-
-  def filter_by_seniority
-    seniorities = params[:seniority].split.map { |seniority| seniority.split('-').map(&:capitalize).join('-') }
-    @jobs = @jobs.where(seniority: seniorities)
-  end
-
-  def filter_by_employment
-    employments = params[:type].split.map { |employment| employment.gsub('_', '-').capitalize }
-    @jobs = @jobs.where(employment_type: employments)
-  end
-
-  def build_filter_sidebar_resources
-    # Where necessary, parse from Job.attributes
-    roles = @jobs.map { |job| job.role.split('&&') if job.role }.flatten.compact
-
-    locations = @jobs.map do |job|
-      if job.remote_only
-        ["Remote Only"]
-      elsif job.locations.present?
-        # fix this later!
-        [job.locations[0].city, job.countries.first&.name].compact
-      end
-    end
-
-    when_posted = ['Today', 'Last 3 days', 'Within a week', 'Within a month', 'Any time']
-
-    seniorities = ['Internship', 'Entry-Level', 'Junior', 'Mid-Level', 'Senior', 'Director', 'VP', 'SVP / Partner']
-
-    # For each item, store: [display_name, element_id, matching_jobs_count]
-    @resources = {}
-    @resources['posted'] = when_posted.map do |period|
-      id = period.downcase.gsub(/last |within a /, '').gsub(' ', '-')
-      count = @jobs.count { |job| job.date_created.end_of_day > CONVERT_TO_DAYS[id].days.ago.beginning_of_day }
-      [period, id, count] unless count.zero?
-    end.compact
-    @resources['seniority'] = seniorities.map do |seniority|
-      count = @jobs.count { |job| job.seniority == seniority }
-      [seniority, seniority.downcase.split.first, count] unless count.zero?
-    end.compact
-    @resources['location'] = locations.compact.uniq.map do |location|
-      [location.join(', '), location.first&.downcase&.gsub(' ', '_'), locations.count(location)]
-    end
-    @resources['role'] = roles.uniq.map do |role|
-      [role.split('_').map(&:titleize).join('-'), role, roles.count(role)]
-    end
-    @resources['type'] = @jobs.map(&:employment_type).uniq.map do |employment|
-      [employment, employment.downcase.gsub('-', '_'), @jobs.count { |job| job.employment_type == employment }]
-    end
-    @resources['company'] = @jobs.map(&:company).uniq.map do |company|
-      [company.company_name, company.id, @jobs.count { |job| job.company == company }]
-    end
-
-    @resources.each { |title, array| array.sort_by! { |item| [-item[2]] } unless title == 'seniority' }
-
+    params.require(:job).permit(:job_title, :job_description, :salary, :job_posting_url, :application_deadline, :date_created, :company_id, :applicant_tracking_system_id, :ats_job_id, :non_geocoded_location_string, :department, :office, :live)
   end
 end
