@@ -3,13 +3,19 @@ require 'rails_helper'
 RSpec.feature "Jobs", type: :feature do
   context "With jobs to display:" do
     before do
+      role_names = ["front_end", "back_end", "full_stack", "dev_ops", "qa_test_engineer", "mobile", "data_engineer"]
+
+      roles = create_list(:role, role_names.size) do |role, index|
+        role.name = role_names[index]
+        role.save!
+      end
       london = create(:location, city: "London")
 
-      create(:job, job_title: "Graduate Software Developer", seniority: 'Entry-Level', role: 'mobile')
-      create(:job, job_title: "Junior Test Developer", seniority: 'Junior', role: 'dev_ops')
-      create(:job, job_title: "Data Analyst", seniority: 'Mid-Level', role: 'data_engineer')
-      job1 = create(:job, job_title: "Senior UI Engineer", seniority: 'Senior', role: 'front_end')
-      job2 = create(:job, job_title: "Frontend Developer", job_description: "Ruby on Rails", role: 'front_end')
+      create(:job, job_title: "Graduate Software Developer", seniority: 'Entry-Level', roles: [Role.find_by(name: 'mobile')])
+      create(:job, job_title: "Junior Test Developer", seniority: 'Junior', roles: [Role.find_by(name: 'dev_ops')])
+      create(:job, job_title: "Data Analyst", seniority: 'Mid-Level', roles: [Role.find_by(name: 'data_engineer')])
+      job1 = create(:job, job_title: "Senior UI Engineer", seniority: 'Senior', roles: [Role.find_by(name: 'front_end')])
+      job2 = create(:job, job_title: "Frontend Developer", job_description: "Ruby on Rails", roles: [Role.find_by(name: 'front_end')])
       job3 = create(:job, job_title: "Ruby on Rails Developer")
 
       create(:jobs_location, job: job1, location: london)
