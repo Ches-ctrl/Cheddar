@@ -191,8 +191,10 @@ GEM
     geocoder (1.8.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    google-protobuf (3.25.3-x86_64-darwin)
-    google-protobuf (3.25.3-x86_64-linux)
+    google-protobuf (4.26.0-x86_64-darwin)
+      rake (>= 13)
+    google-protobuf (4.26.0-x86_64-linux)
+      rake (>= 13)
     high_voltage (3.1.2)
     htmltoword (1.1.1)
       actionpack
@@ -385,10 +387,10 @@ GEM
     rubyzip (2.3.2)
     rufus-scheduler (3.9.1)
       fugit (~> 1.1, >= 1.1.6)
-    sass-embedded (1.71.1-x86_64-darwin)
-      google-protobuf (~> 3.25)
-    sass-embedded (1.71.1-x86_64-linux-gnu)
-      google-protobuf (~> 3.25)
+    sass-embedded (1.72.0-x86_64-darwin)
+      google-protobuf (>= 3.25, < 5.0)
+    sass-embedded (1.72.0-x86_64-linux-gnu)
+      google-protobuf (>= 3.25, < 5.0)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-embedded (1.70.0)
@@ -504,6 +506,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   ruby-openai
+  sass-embedded (~> 1.72)
   selenium-webdriver (~> 4.18.1)
   shoulda-matchers (= 6.1.0)
   sidekiq (~> 6.5.5)
