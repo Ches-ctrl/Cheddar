@@ -17,7 +17,6 @@ class LocationStandardizer
     # search for existing cities and countries in location elements:
     location_elements.each do |element|
       city_string, country_string, latitude, longitude = standardize_city_and_country(element)
-
       next unless country_string
 
       country = Country.find_or_create_by(name: country_string)
@@ -40,7 +39,7 @@ class LocationStandardizer
   def standardize_city_and_country(string)
     ascii_string = convert_to_ascii(string)
     puts ascii_string
-    api_url = "http://dev.virtualearth.net/REST/v1/Locations/#{ascii_string}?key=#{ENV['BING_API_KEY']}"
+    api_url = "http://dev.virtualearth.net/REST/v1/Locations/#{ascii_string}?key=#{ENV.fetch('BING_API_KEY', nil)}"
 
     begin
       uri = URI(api_url)

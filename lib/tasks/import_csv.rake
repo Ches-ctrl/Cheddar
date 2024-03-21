@@ -15,7 +15,7 @@ namespace :import_csv do
 
     CSV.foreach(csv_file_path, headers: true) do |row|
       company_name = row["Company Name"]
-      company = Company.find_or_create_by(company_name: company_name)
+      company = Company.find_or_create_by(company_name:)
 
       attributes_to_update = {
         company_website_url: row["Website - General"],
@@ -23,7 +23,7 @@ namespace :import_csv do
         url_linkedin: row["Website - LinkedIn"],
         location: row["Location"],
         industry: row["Industry"],
-        industry_subcategory: row["Industry Sub-Category"],
+        industry_subcategory: row["Industry Sub-Category"]
       }
 
       if company.new_record?
@@ -40,7 +40,6 @@ namespace :import_csv do
     p "Updated #{counter_updated} companies."
     p "-----------------------------"
   end
-
 
   # -----------------------------
   # Applicant Tracking Systems
@@ -68,22 +67,19 @@ namespace :import_csv do
   end
 
   def find_or_create_applicant_tracking_system(name)
-    ats = ApplicantTrackingSystem.find_or_initialize_by(name: name)
+    ats = ApplicantTrackingSystem.find_or_initialize_by(name:)
 
-    unless ats.persisted?
-      ats.save
-    end
+    ats.save unless ats.persisted?
 
     ats
   end
-
 
   # -----------------------------
   # Jobs
   # -----------------------------
 
   desc "Import jobs data from CSV file"
-  task jobs: [:environment, :companies] do
+  task jobs: %i[environment companies] do
     csv_file_path = 'storage/csv/Cheddar_Consulting_Test_Jobs.csv'
     counter = 0
 

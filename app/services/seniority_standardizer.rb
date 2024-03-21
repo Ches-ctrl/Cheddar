@@ -52,10 +52,12 @@ class SeniorityStandardizer
     end
 
     years_experience = @job.job_description.downcase.scan(/(\d+)\s*(?:-|\s(?:to)?\s|\sto\s)?\s*\d*\+? year.{0,40} experience/).flatten.map(&:to_i).max
-    return if years_experience && @job.seniority = EXPERIENCE_DIGITS.find { |k, v| break v if k.cover?(years_experience) }
+    return if years_experience && (@job.seniority = EXPERIENCE_DIGITS.find do |k, v|
+                                     break v if k.cover?(years_experience)
+                                   end)
 
     years_experience = @job.job_description.downcase.match(/(one|two|three|four|five|ten).{0, 12} year.{0,40} experience/)
-    return if years_experience && @job.seniority = EXPERIENCE_WRITTEN_NUMBERS[years_experience[1]]
+    return if years_experience && (@job.seniority = EXPERIENCE_WRITTEN_NUMBERS[years_experience[1]])
 
     SENIORITY_DESCRIPTORS.each do |phrase, level| # will return the highest level matched
       @job.seniority = level if @job.job_description.downcase.match?(phrase)

@@ -41,15 +41,15 @@ class Job < ApplicationRecord
   # TODO: Update validate uniqueness as same job can have both a normal url and api url
 
   pg_search_scope :search_job,
-    against: [:job_title, :salary, :job_description],
-    associated_against: {
-      company: [:company_name, :company_category],
-      # locations: [:city],
-      countries: :name
-    },
-    using: {
-      tsearch: { prefix: true } # allow partial search
-    }
+                  against: %i[job_title salary job_description],
+                  associated_against: {
+                    company: %i[company_name company_category],
+                    # locations: :city,
+                    countries: :name
+                  },
+                  using: {
+                    tsearch: { prefix: true } # allow partial search
+                  }
 
   # TODO: Question - set application_criteria = {} as default?
 
@@ -74,23 +74,21 @@ class Job < ApplicationRecord
   # end
 
   def new_job_application_for_user(user)
-    job_application = JobApplication.new(user: user, job: self, status: "Pre-application")
-      self.application_criteria.each do |field, details|
-        application_response = job_application.application_responses.build(
-          field_name: field,
-          field_locator: details["locators"],
-          interaction: details["interaction"],
-          field_option: details["option"],
-          required: details["required"]
-        )
+    job_application = JobApplication.new(user:, job: self, status: "Pre-application")
+    application_criteria.each do |field, details|
+      application_response = job_application.application_responses.build(
+        field_name: field,
+        field_locator: details["locators"],
+        interaction: details["interaction"],
+        field_option: details["option"],
+        required: details["required"]
+      )
 
-        # TODO: Add boolean required field (include in params and form submission page)
+      # TODO: Add boolean required field (include in params and form submission page)
 
-        if details["options"].present?
-          application_response.field_options = details["options"]
-        end
-        application_response.field_value = user.try(field) || ""
-      end
+      application_response.field_options = details["options"] if details["options"].present?
+      application_response.field_value = user.try(field) || ""
+    end
 
     job_application
   end

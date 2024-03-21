@@ -7,6 +7,7 @@ class GetAllJobUrls
     @ats_identifier = company.ats_identifier
   end
 
+  # rubocop:disable Naming/AccessorMethodName
   def get_all_job_urls
     return unless @url.include?('greenhouse')
 
@@ -14,7 +15,7 @@ class GetAllJobUrls
     job_urls = get_job_urls(data)
     total_live = total_live(data)
 
-    @company.update(total_live: total_live)
+    @company.update(total_live:)
 
     # Remove any existing URLs in database from job_urls
     job_urls.reject! { |job_url| Job.exists?(job_posting_url: job_url) }
@@ -28,11 +29,12 @@ class GetAllJobUrls
 
     p "Sourced all job urls for - #{@company.company_name}"
   end
+  # rubocop:enable Naming/AccessorMethodName
 
   private
 
   def total_live(data)
-    total_live = data['meta']['total']
+    data['meta']['total']
   end
 
   def add_jobs_to_cheddar(job_urls, company)

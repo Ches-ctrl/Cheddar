@@ -1,6 +1,10 @@
 #jobs-search-bar {
   margin-top: 30px;
   margin-bottom: 10px;
+
+  input:focus {
+    box-shadow: 0 0 5px $main-color;
+  }
 }
 
 #search-jobs {
