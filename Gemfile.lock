@@ -140,6 +140,7 @@ GEM
       sass-embedded (~> 1.72)
     dartsass-sprockets (3.1.0)
       railties (>= 4.0.0)
+      sassc-embedded (~> 1.69)
       sprockets (> 3.0)
       sprockets-rails
       tilt
@@ -392,7 +393,7 @@ GEM
       google-protobuf (>= 3.25, < 5.0)
     sassc (2.4.0)
       ffi (~> 1.9)
-    sassc-embedded (1.70.0)
+    sassc-embedded (1.70.1)
       sass-embedded (~> 1.70)
     selenium-webdriver (4.18.1)
       base64 (~> 0.2)
