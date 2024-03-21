@@ -192,6 +192,7 @@ GEM
     globalid (1.2.1)
       activesupport (>= 6.1)
     google-protobuf (3.25.3-x86_64-darwin)
+    google-protobuf (3.25.3-x86_64-linux)
     high_voltage (3.1.2)
     htmltoword (1.1.1)
       actionpack
@@ -254,6 +255,8 @@ GEM
     netrc (0.11.0)
     nio4r (2.7.0)
     nokogiri (1.16.3-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.16.3-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pagy (7.0.10)
@@ -384,6 +387,8 @@ GEM
       fugit (~> 1.1, >= 1.1.6)
     sass-embedded (1.71.1-x86_64-darwin)
       google-protobuf (~> 3.25)
+    sass-embedded (1.71.1-x86_64-linux-gnu)
+      google-protobuf (~> 3.25)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-embedded (1.70.0)
@@ -461,6 +466,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin
+  x86_64-linux
 
 DEPENDENCIES
   autoprefixer-rails
