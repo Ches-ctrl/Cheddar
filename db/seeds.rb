@@ -24,6 +24,7 @@ greenhouse_company_ats_identifiers = [
   "grammarly",
   "intercom",
   "janestreet",
+  "knowde",
   "narvar",
   "niantic",
   "opendoor"
@@ -591,33 +592,35 @@ unprocessed_job_urls = {}
 # (rails_job_urls + greenhouse_job_urls).each do |url|
 
 jobs_to_seed.each do |url|
-  company, ats_job_id = CompanyCreator.new(url).find_or_create_company
-  p "CompanyCreator complete: #{company.company_name}"
+  CreateJobByUrl.new(url).call
 
-  job = Job.create(
-    job_title: "Job Title Placeholder",
-    job_posting_url: url,
-    company_id: company.id,
-    applicant_tracking_system_id: company.applicant_tracking_system_id,
-    ats_job_id: ats_job_id,
-  )
+  # company, ats_job_id = CompanyCreator.new(url).find_or_create_company
+  # p "CompanyCreator complete: #{company.company_name}"
 
-  next unless job.id
+  # job = Job.create(
+  #   job_title: "Job Title Placeholder",
+  #   job_posting_url: url,
+  #   company_id: company.id,
+  #   applicant_tracking_system_id: company.applicant_tracking_system_id,
+  #   ats_job_id: ats_job_id,
+  # )
 
-  if JobCreator.new(job).check_job_is_live
-    if JobCreator.new(job).find_or_create_job
-      company.total_live += 1
-      p "Created job - #{Job.last.job_title}"
-    else
-      p "Failed to create job"
-      job.destroy
-      defunct_urls << job.job_posting_url
-    end
-  else
-    p "Job posting is no longer live"
-    job.destroy
-    defunct_urls << job.job_posting_url
-  end
+  # next unless job.id
+
+  # if JobCreator.new(job).check_job_is_live
+  #   if JobCreator.new(job).find_or_create_job
+  #     company.total_live += 1
+  #     p "Created job - #{Job.last.job_title}"
+  #   else
+  #     p "Failed to create job"
+  #     job.destroy
+  #     defunct_urls << job.job_posting_url
+  #   end
+  # else
+  #   p "Job posting is no longer live"
+  #   job.destroy
+  #   defunct_urls << job.job_posting_url
+  # end
 end
 
 

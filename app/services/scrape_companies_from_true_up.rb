@@ -1,14 +1,13 @@
 class ScrapeCompaniesFromTrueUp < ApplicationJob
   include Capybara::DSL
   include CompanyCsv
-  include AtsRouter
   include HashBuilder
   include ValidUrl
 
   NUMBER_OF_RESULT_PAGES = 70
 
   def initialize
-    @companies = build_ats_companies
+    @companies = ats_list
     @companies_added = 0
     @job_board_url = "https://www.trueup.io/jobs"
     Capybara.current_driver = :selenium_chrome_headless
@@ -87,13 +86,12 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
       extract_url(job_card)
       extract_alt_id(job_card)
 
-      # skip if no ATS indicated
-      next unless (@ats = ats_system_name&.to_sym)
-
+      next unless (@ats, @ats_identifier = JobUrl.new(@url).parse)
+      next puts "couldn't parse #{@url}" unless @ats_identifier || alt_identifier
       next if already_listed?
 
       @companies_added += 1
-      @companies[@ats] << @company
+      @companies[@ats.name] << @ats_identifier
     end
   end
 
@@ -106,16 +104,14 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
   end
 
   def already_listed?
-    @companies[@ats].include?(@alt_id) ||
-      !(@company = ats_identifier || alt_identifier) ||
-      @companies[@ats].include?(@company)
+    @companies[@ats.name].include?(@ats_identifier)
   end
 
   def alt_identifier
-    return unless ats_system_name == 'greenhouse'
+    return unless @ats.name == 'greenhouse'
 
     puts "\ntrying #{@alt_id}..."
-    return @alt_id if valid?("https://boards-api.greenhouse.io/v1/boards/#{@alt_id}/")
+    return @ats_identifer = @alt_id if valid?("https://boards-api.greenhouse.io/v1/boards/#{@alt_id}/")
 
     puts "it didn't work!"
     return
@@ -124,9 +120,9 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
   def store_to_database
     puts "\nFound #{@companies_added} new company ats identifiers."
     puts "\nStoring the information in CSV format..."
-
-    @companies.each do |ats_name, list|
-      write_to_csv(ats_name.to_s, list)
-    end
+    save_ats_list
+    # @companies.each do |ats_name, list|
+    #   write_to_csv(ats_name.to_s, list)
+    # end
   end
 end

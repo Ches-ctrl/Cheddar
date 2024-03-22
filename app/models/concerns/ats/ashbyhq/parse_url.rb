@@ -3,9 +3,9 @@ module Ats
     module ParseUrl
       extend ActiveSupport::Concern
 
-      def self.parse_url(url)
+      def self.call(url)
         regex_formats = [
-          %r{https://jobs\.ashbyhq\.com/(?<company_name>[^/]+)/(?<job_id>[^/]+)}
+          %r{https://jobs\.ashbyhq\.com/(?<company_name>[^/]+)(?:/(?<job_id>[^/]+))?}
         ]
 
         regex_formats.each do |regex|

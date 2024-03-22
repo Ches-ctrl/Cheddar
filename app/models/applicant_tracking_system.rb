@@ -9,19 +9,14 @@ class ApplicantTrackingSystem < ApplicationRecord
     Object.const_get(module_name) if Object.const_defined?(module_name)
   end
 
-  def job_creator
-    module_name = "Ats::#{name}::JobCreator"
-    Object.const_get(module_name) if Object.const_defined?(module_name)
-  end
-
   def company_details
     module_name = "Ats::#{name}::CompanyDetails"
     Object.const_get(module_name) if Object.const_defined?(module_name)
   end
 
-  def fetch_company_jobs(argument)
+  def fetch_company_jobs(ats_identifier)
     module_name = "Ats::#{name}::FetchCompanyJobs"
-    Object.const_get(module_name).call(argument) if Object.const_defined?(module_name)
+    Object.const_get(module_name).call(ats_identifier) if Object.const_defined?(module_name)
   end
 
   def job_details
@@ -32,5 +27,17 @@ class ApplicantTrackingSystem < ApplicationRecord
   def parse_url
     module_name = "Ats::#{name}::ParseUrl"
     Object.const_get(module_name) if Object.const_defined?(module_name)
+  end
+
+  def find_or_create_company(ats_id)
+    module_name = "Ats::#{name}::CompanyDetails"
+    m = Object.const_get(module_name) if Object.const_defined?(module_name)
+    m.find_or_create(ats_id)
+  end
+
+  def find_or_create_job_by_id(company, job_id)
+    module_name = "Ats::#{name}::JobDetails"
+    m = Object.const_get(module_name) if Object.const_defined?(module_name)
+    m.find_or_create_by_id(company, job_id)
   end
 end

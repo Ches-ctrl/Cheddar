@@ -1,4 +1,28 @@
 module Constants
+  ATS_SYSTEM_PARSER = {
+    /greenhouse/ => 'Greenhouse',
+    /gh_jid/ => 'Greenhouse',
+    /workable/ => 'Workable',
+    /lever/ => 'Lever',
+    # /smartrecruiters/ => 'smartrecruiters',
+    /ashbyhq/ => 'Ashbyhq',
+    /pinpointhq/ => 'Pinpointhq',
+    /bamboohr/ => 'Bamboohr',
+    /recruitee/ => 'Recruitee',
+    /manatal/ => 'Manatal',
+    /careers-page/ => 'Manatal'
+    # /totaljobs/ => 'TotalJobs',
+    # /simplyhired/ => 'Simplyhired',
+    # /workday/ => 'Workday',
+    # /tal.net/ => 'Tal.net',
+    # /indeed/ => 'Indeed',
+    # /freshteam/ => 'Freshteam',
+    # /phenom/ => 'Phenom',
+    # /jobvite/ => 'Jobvite',
+    # /icims/ => 'Icims',
+    # Add other supported ATS systems here
+  }
+
   JOB_LOCATION_KEYWORDS = [
     /london/,
     /england/,
