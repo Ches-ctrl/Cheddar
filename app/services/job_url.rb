@@ -10,7 +10,13 @@ class JobUrl
   def parse
     return unless (ats = fetch_ats)
 
-    ats_identifier, job_id = ats.parse_url.call(@string)
+    if block_given?
+      ats_identifier, job_id = ats.parse_url.call(@string) do |identifier|
+        yield(identifier, ats.name)
+      end
+    else
+      ats_identifier, job_id = ats.parse_url.call(@string)
+    end
     [ats, ats_identifier, job_id]
   end
 

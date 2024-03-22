@@ -2,8 +2,6 @@
 # require 'net/http'
 # require 'json'
 
-puts "\nBuilding a list of job urls from the following companies:"
-
 greenhouse_company_ats_identifiers = [
   "cleoai",
   "ably30",
@@ -30,13 +28,11 @@ greenhouse_company_ats_identifiers = [
   "opendoor"
 ]
 
-relevant_job_urls = GetRelevantJobUrls.new(greenhouse_company_ats_identifiers).fetch_jobs
-
 puts "\nHow many jobs to seed in the database?\n"
 
 response = nil
 until response do
-  puts "Please enter a valid integer between 1 and #{relevant_job_urls.count}:"
+  puts "Please enter a valid integer between 1 and 500:"
   response = gets.chomp
   if response == 'run updater'
     # ScrapeCompaniesFromList.new.call
@@ -45,13 +41,11 @@ until response do
     response = 1
   else
     response = response.to_i
-    response = nil if response.zero? || response > relevant_job_urls.count
+    response = nil if response.zero? || response > 500
   end
 end
 
-jobs_to_seed = relevant_job_urls.shuffle.take(response)
-
-puts "Preparing to re-seed database with #{jobs_to_seed.count} Greenhouse jobs...\n"
+puts "Preparing to re-seed database with #{response} Greenhouse jobs...\n"
 
 puts "Deleting previous (1) users, (2) jobs, (3)companies, (4) ATS Formats, (5) Applicant Tracking Systems, (6) Locations, (7) Countries, (8) Roles..."
 
@@ -586,7 +580,11 @@ comp_specific_job_urls = [
 # job_urls = [greenhouse_job_urls, workable_job_urls, lever_job_urls, smartrecruiters_job_urls, ashby_job_urls]
 
 defunct_urls = []
-unprocessed_job_urls = {}
+
+puts "\nBuilding a list of job urls from the following companies:"
+
+relevant_job_urls = GetRelevantJobUrls.new(greenhouse_company_ats_identifiers).fetch_jobs
+jobs_to_seed = relevant_job_urls.shuffle.take(response)
 
 # Uncomment next line if you prefer to seed with hardcoded urls:
 # (rails_job_urls + greenhouse_job_urls).each do |url|

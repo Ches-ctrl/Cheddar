@@ -11,6 +11,9 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
     @companies_added = 0
     @job_board_url = "https://www.trueup.io/jobs"
     Capybara.current_driver = :selenium_chrome_headless
+    Capybara.configure do |config|
+      config.default_max_wait_time = 5
+    end
   end
 
   def call
@@ -35,7 +38,6 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
     fill_in 'username', with: scrape_emails.sample
     fill_in 'password', with: scrape_passwords.sample
     click_button('Continue')
-    sleep 1
   end
 
   def scrape_emails
@@ -53,24 +55,19 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
   def filter_for_tech_jobs
     puts "Filtering for tech jobs..."
     page.first('.ais-HierarchicalMenu-link').click
-    sleep 1
     puts "Filtering for London area"
     all(".ais-SearchBox-input").first.set('London')
     all(".ais-SearchBox-submit").first.click
-    sleep 1
   end
 
   def click_show_more(no_of_times)
     puts "Getting as many results as possible (this may take some time)..."
 
     no_of_times.times do |i|
-      begin
-        show_more_button&.click
-      rescue Selenium::WebDriver::Error::ElementNotInteractableError
-        puts "Reached the end of the results after #{i} clicks"
-        break
-      end
-      sleep 1
+      show_more_button&.click
+    rescue Selenium::WebDriver::Error::ElementNotInteractableError
+      puts "Reached the end of the results after #{i} clicks"
+      break
     end
   end
 
@@ -85,10 +82,16 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
     all('.card-body').each do |job_card|
       extract_url(job_card)
       extract_alt_id(job_card)
+      # next if already_listed?(@alt_id)
 
-      next unless (@ats, @ats_identifier = JobUrl.new(@url).parse)
-      next puts "couldn't parse #{@url}" unless @ats_identifier || alt_identifier
-      next if already_listed?
+      @ats, @ats_identifier = JobUrl.new(@url).parse do |identifier, ats_name|
+        ['id_already_in_db'] if already_listed?(identifier, ats_name)
+      end
+      next puts "couldn't parse #{@url}" unless @ats
+
+      @ats_identifier ||= (already_listed?(alt_identifier) ? 'id_already_in_db' : alt_identifier)
+      next puts "#{@alt_id} already stored!" if @ats_identifier == 'id_already_in_db'
+      next puts "couldn't parse #{@url}" unless @ats && @ats_identifier
 
       @companies_added += 1
       @companies[@ats.name] << @ats_identifier
@@ -103,15 +106,15 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
     @alt_id = job_card.first('div.mb-2.align-items-baseline a.text-dark')&.text&.gsub(/[^\w%-]/, '')&.downcase
   end
 
-  def already_listed?
-    @companies[@ats.name].include?(@ats_identifier)
+  def already_listed?(identifier, ats_name = @ats.name)
+    @companies[ats_name].include?(identifier)
   end
 
   def alt_identifier
     return unless @ats.name == 'greenhouse'
 
     puts "\ntrying #{@alt_id}..."
-    return @ats_identifer = @alt_id if valid?("https://boards-api.greenhouse.io/v1/boards/#{@alt_id}/")
+    return @alt_id if valid?("https://boards-api.greenhouse.io/v1/boards/#{@alt_id}/")
 
     puts "it didn't work!"
     return

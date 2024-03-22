@@ -9,12 +9,12 @@ module Ats
         ]
 
         regex_formats.each do |regex|
-          match = url.match(regex)
-          return nil unless match
+          next unless (match = url.match(regex))
 
           ats_identifier, job_id = match.captures
-          return [ats_identifier, job_id]
+          return block_given? ? yield(ats_identifier) : [ats_identifier, job_id]
         end
+        return nil
       end
     end
 

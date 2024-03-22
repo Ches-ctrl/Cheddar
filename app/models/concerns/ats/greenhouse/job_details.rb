@@ -58,7 +58,7 @@ module Ats
         ats.application_fields.get_application_criteria(job)
         update_requirements(job)
         p "job fields getting"
-        GetFormFieldsJob.perform_later(job.job_posting_url)
+        GetFormFieldsJob.perform_later(job)
         JobStandardizer.new(job).standardize
       end
 

@@ -22,14 +22,15 @@ module Ats
           next unless (match = url.match(regex))
 
           ats_identifier, job_id = match.captures
-          return [ats_identifier, job_id] if ats_identifier
+          return block_given? ? yield(ats_identifier) : [ats_identifier, job_id]
         end
 
         alt_formats.each do |regex|
           next unless (match = url.match(regex))
 
           ats_identifier, job_id = match.captures
-          return [ats_identifier, job_id] if confirm(ats_identifier)
+          result = block_given? ? yield(ats_identifier) : [ats_identifier, job_id]
+          return result if confirm(ats_identifier)
         end
         return nil
       end

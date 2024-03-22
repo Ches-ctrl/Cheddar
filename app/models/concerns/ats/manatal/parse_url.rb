@@ -12,7 +12,7 @@ module Ats
           next unless (match = url.match(regex))
 
           ats_identifier, job_id = match.captures
-          return [ats_identifier, job_id]
+          return block_given? ? yield(ats_identifier) : [ats_identifier, job_id]
         end
         return nil
       end

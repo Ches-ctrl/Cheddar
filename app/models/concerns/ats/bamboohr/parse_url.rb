@@ -13,7 +13,7 @@ module Ats
           match = url.match(regex)
           if match
             ats_identifier, job_id = match.captures
-            return [ats_identifier, job_id]
+            return block_given? ? yield(ats_identifier) : [ats_identifier, job_id]
           end
         end
         return nil
