@@ -1,4 +1,4 @@
-class ScrapeCompaniesFromTrueUp < ApplicationJob
+class ScrapeTrueUpJob < ApplicationJob
   include Capybara::DSL
   include CompanyCsv
   include HashBuilder
@@ -6,17 +6,8 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
 
   NUMBER_OF_RESULT_PAGES = 70
 
-  def initialize
-    @companies = ats_list
-    @companies_added = 0
-    @job_board_url = "https://www.trueup.io/jobs"
-    Capybara.current_driver = :selenium_chrome_headless
-    Capybara.configure do |config|
-      config.default_max_wait_time = 5
-    end
-  end
-
-  def call
+  def perform
+    configure_settings
     visit(@job_board_url)
 
     log_into_website
@@ -29,6 +20,16 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
   end
 
   private
+
+  def configure_settings
+    @companies = ats_list
+    @companies_added = 0
+    @job_board_url = "https://www.trueup.io/jobs"
+    Capybara.current_driver = :selenium_chrome_headless
+    Capybara.configure do |config|
+      config.default_max_wait_time = 5
+    end
+  end
 
   def log_into_website
     puts "Logging into TrueUp..."
@@ -82,7 +83,6 @@ class ScrapeCompaniesFromTrueUp < ApplicationJob
     all('.card-body').each do |job_card|
       extract_url(job_card)
       extract_alt_id(job_card)
-      # next if already_listed?(@alt_id)
 
       @ats, @ats_identifier = JobUrl.new(@url).parse do |identifier, ats_name|
         ['id_already_in_db'] if already_listed?(identifier, ats_name)

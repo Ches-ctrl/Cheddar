@@ -16,7 +16,11 @@
       cron: '0 0 * * *'   # Runs once per day(at midnight)
       class: Scraper::MonsterJob
     jobs_updater:
-      cron: '0 0 * * *' # Runs once per day (at midnight)
+      cron: '0 3 * * *' # Runs once per day (at 3 am)
       class: JobsUpdateJob
+      queue: updates
+    true_up_scraper:
+      cron: '0 2 * * *' # Runs once per day (at 2 am)
+      class: Scraper::ScrapeTrueUpJob
       queue: updates
 # Add devit jobs and other scrapers

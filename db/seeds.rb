@@ -36,7 +36,7 @@ until response do
   response = gets.chomp
   if response == 'run updater'
     # ScrapeCompaniesFromList.new.call
-    ScrapeCompaniesFromTrueUp.new.call
+    ScrapeTrueUpJob.perform_later
     JobsUpdateJob.perform_later
     response = 1
   else
