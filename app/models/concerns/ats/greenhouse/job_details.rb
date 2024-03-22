@@ -9,7 +9,8 @@ module Ats
         job = Job.find_or_create_by(ats_job_id:) do |new_job|
           new_job.company = company
           data = fetch_job_data(new_job)
-          new_job.job_posting_url = data['absolute_url']
+          return unless (new_job.job_posting_url = data['absolute_url'])
+
           new_job.job_title = data['title']
           new_job.job_description = CGI.unescapeHTML(data['content'])
           new_job.non_geocoded_location_string = data['location']['name']
@@ -52,15 +53,6 @@ module Ats
       # end
 
       private
-
-      private_class_method def self.fetch_additional_fields(job)
-        ats = this_ats
-        ats.application_fields.get_application_criteria(job)
-        update_requirements(job)
-        p "job fields getting"
-        GetFormFieldsJob.perform_later(job)
-        JobStandardizer.new(job).standardize
-      end
 
       private_class_method def self.update_requirements(job)
         job.no_of_questions = job.application_criteria.size

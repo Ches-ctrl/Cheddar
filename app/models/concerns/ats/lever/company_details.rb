@@ -2,35 +2,42 @@ module Ats
   module Lever
     module CompanyDetails
       extend ActiveSupport::Concern
+      extend AtsMethods
+      extend ValidUrl
 
-      def self.get_company_details(url, ats_system, ats_identifier)
-        p "Getting lever company details - #{url}"
+      def self.find_or_create(ats_identifier)
+        company = Company.find_or_create_by(ats_identifier:) do |new_company|
+          ats_system = this_ats
+          company_name, description = fetch_company_data(ats_system, ats_identifier)
+          return unless company_name
 
-        # TODO: Update to scrape company details given lack of API endpoint for company information
-        # TODO: Add total live based on total number of jobs returned by API call (for each ATS system)
-
-        company_name = ats_identifier.capitalize
-        company = Company.find_by(company_name:)
-
-        if company
-          p "Existing company - #{company.company_name}"
-        else
-          company = Company.create(
-            company_name:,
-            ats_identifier:,
-            applicant_tracking_system_id: ats_system.id,
-            url_ats_api: "#{ats_system.base_url_api}#{ats_identifier}",
-            url_ats_main: "#{ats_system.base_url_main}#{ats_identifier}"
-          )
-          p "Created company - #{company.company_name}" if company.persisted?
-
-          # p "Calling GetAllJobUrls"
-          # GetAllJobUrls.new(company).get_all_job_urls if new_company
-          # p "Finished GetAllJobUrls"
-
-          # TODO: Handle logic for GetAllJobUrls via web scrape or API call depending on ATS system
+          new_company.company_name = company_name
+          new_company.description = description
+          new_company.applicant_tracking_system = ats_system
+          new_company.url_ats_api = "#{ats_system.base_url_api}#{ats_identifier}/?mode=json"
+          new_company.url_ats_main = "#{ats_system.base_url_main}#{ats_identifier}"
+          check_for_careers_url_redirect(new_company)
+          puts "Created company - #{new_company.company_name}"
         end
-        company
+
+        return company
+      end
+
+      def self.fetch_company_data(ats_system, ats_identifier)
+        company_api_url = "#{ats_system.base_url_api}#{ats_identifier}/?mode=json"
+        return unless valid?(company_api_url)
+
+        response = get(company_api_url)
+        data = JSON.parse(response)
+        company_name = fetch_company_name(ats_identifier)
+        [company_name, data[0]['additionalPlain']]
+      end
+
+      def self.fetch_company_name(ats_identifier)
+        url = "https://autocomplete.clearbit.com/v1/companies/suggest?query=#{ats_identifier}"
+        response = get(url)
+        data = JSON.parse(response)
+        return data[0]['name'] if response
       end
     end
   end
