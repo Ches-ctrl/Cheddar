@@ -3,7 +3,7 @@ module Ats
     module ParseUrl
       extend ActiveSupport::Concern
 
-      def self.call(url)
+      def self.call(url, _saved_ids = nil)
         regex_formats = [
           %r{https://jobs\.smartrecruiters\.com/(?<ats_identifier>[^/]+)/(?<job_id>\d+)(?:-[^/]+)?}
           # TODO: Add API parsing for Smartrecruiters
@@ -13,7 +13,7 @@ module Ats
           next unless (match = url.match(regex))
 
           ats_identifier, job_id = match.captures
-          return block_given? ? yield(ats_identifier) : [ats_identifier, job_id]
+          return [ats_identifier, job_id]
         end
         return nil
       end

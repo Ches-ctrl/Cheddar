@@ -35,7 +35,7 @@ until response do
   puts "Please enter a valid integer between 1 and 500:"
   response = gets.chomp
   if response == 'run updater'
-    # ScrapeCompaniesFromList.new.call
+    ScrapeCompaniesFromList.new.call
     ScrapeTrueUpJob.perform_later
     JobsUpdateJob.perform_later
     response = 1

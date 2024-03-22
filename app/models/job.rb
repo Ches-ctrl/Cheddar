@@ -6,17 +6,6 @@ class Job < ApplicationRecord
 
   serialize :application_criteria, coder: JSON
 
-  # move to locations model
-
-  # geocoded_by :location do |obj, results|
-  #   if geo = results.first
-  #     obj.city = geo.city || (obj.location.split(',').first if obj.location.split(',').first != geo.country_code)
-  #     obj.country = geo.country_code
-  #   end
-  # end
-
-  # after_validation :geocode, if: :location_changed?
-
   belongs_to :company
   belongs_to :applicant_tracking_system, optional: true
 
@@ -91,15 +80,6 @@ class Job < ApplicationRecord
     end
 
     job_application
-  end
-
-  def self.create_job(ats_system, company, job_data)
-    return unless (job = ats_system.job_creator.new_job(company, job_data))
-    return unless job.application_criteria.blank?
-
-    ats_system.application_fields.get_application_criteria(job)
-    GetFormFieldsJob.perform_later(job, job.job_posting_url)
-    JobStandardizer.new(job).standardize
   end
 
   CONVERT_TO_DAYS = {

@@ -7,16 +7,10 @@ class JobUrl
     @string = url
   end
 
-  def parse
+  def parse(list = nil)
     return unless (ats = fetch_ats)
 
-    if block_given?
-      ats_identifier, job_id = ats.parse_url.call(@string) do |identifier|
-        yield(identifier, ats.name)
-      end
-    else
-      ats_identifier, job_id = ats.parse_url.call(@string)
-    end
+    ats_identifier, job_id = list ? ats.parse_url.call(@string, list[ats.name]) : ats.parse_url.call(@string)
     [ats, ats_identifier, job_id]
   end
 

@@ -5,8 +5,6 @@ class CreateJobByUrl
   end
 
   def call
-    return puts "Job already exists!" if Job.find_by(job_posting_url: @url)
-
     ats, ats_identifier, job_id = JobUrl.new(@url).parse
 
     company = ats.find_or_create_company(ats_identifier)

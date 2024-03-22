@@ -1,7 +1,6 @@
 class ScrapeTrueUpJob < ApplicationJob
   include Capybara::DSL
   include CompanyCsv
-  include HashBuilder
   include ValidUrl
 
   NUMBER_OF_RESULT_PAGES = 70
@@ -62,7 +61,7 @@ class ScrapeTrueUpJob < ApplicationJob
   end
 
   def click_show_more(no_of_times)
-    puts "Getting as many results as possible (this may take some time)..."
+    puts "Getting as many results as possible (this may take a second)..."
 
     no_of_times.times do |i|
       show_more_button&.click
@@ -84,14 +83,12 @@ class ScrapeTrueUpJob < ApplicationJob
       extract_url(job_card)
       extract_alt_id(job_card)
 
-      @ats, @ats_identifier = JobUrl.new(@url).parse do |identifier, ats_name|
-        ['id_already_in_db'] if already_listed?(identifier, ats_name)
-      end
+      @ats, @ats_identifier = JobUrl.new(@url).parse(@companies)
       next puts "couldn't parse #{@url}" unless @ats
 
-      @ats_identifier ||= (already_listed?(alt_identifier) ? 'id_already_in_db' : alt_identifier)
-      next puts "#{@alt_id} already stored!" if @ats_identifier == 'id_already_in_db'
+      @ats_identifier ||= alt_identifier
       next puts "couldn't parse #{@url}" unless @ats && @ats_identifier
+      next puts "#{@ats_identifier} already stored!" if already_listed?(@ats_identifier)
 
       @companies_added += 1
       @companies[@ats.name] << @ats_identifier
@@ -106,15 +103,15 @@ class ScrapeTrueUpJob < ApplicationJob
     @alt_id = job_card.first('div.mb-2.align-items-baseline a.text-dark')&.text&.gsub(/[^\w%-]/, '')&.downcase
   end
 
-  def already_listed?(identifier, ats_name = @ats.name)
-    @companies[ats_name].include?(identifier)
+  def already_listed?(identifier)
+    @companies[@ats.name].include?(identifier)
   end
 
   def alt_identifier
     return unless @ats.name == 'greenhouse'
 
     puts "\ntrying #{@alt_id}..."
-    return @alt_id if valid?("https://boards-api.greenhouse.io/v1/boards/#{@alt_id}/")
+    return @alt_id if already_listed?(@alt_id) || valid?("https://boards-api.greenhouse.io/v1/boards/#{@alt_id}/")
 
     puts "it didn't work!"
     return
@@ -124,8 +121,5 @@ class ScrapeTrueUpJob < ApplicationJob
     puts "\nFound #{@companies_added} new company ats identifiers."
     puts "\nStoring the information in CSV format..."
     save_ats_list
-    # @companies.each do |ats_name, list|
-    #   write_to_csv(ats_name.to_s, list)
-    # end
   end
 end

@@ -5,14 +5,14 @@ module CompanyCsv
   def ats_list
     list = Hash.new { |hash, key| hash[key] = Set.new }
 
-    CSV.foreach(list_filepath) do |ats_name, ats_identifier|
+    CSV.foreach(db_filepath) do |ats_name, ats_identifier|
       list[ats_name] << ats_identifier
     end
     list
   end
 
   def save_ats_list
-    CSV.open(list_filepath, 'wb') do |csv|
+    CSV.open(db_filepath, 'wb') do |csv|
       @companies.each do |ats_name, list|
         list.each do |ats_id|
           csv << [ats_name, ats_id]
@@ -21,9 +21,9 @@ module CompanyCsv
     end
   end
 
-  def load_from_csv(ats_name, filepath = nil)
+  def load_from_csv(file_name, filepath = nil)
     company_list = Set.new
-    filepath ||= get_filename(ats_name)
+    filepath ||= list_filepath(file_name)
 
     CSV.foreach(filepath) do |row|
       company_list << row[0]
@@ -31,27 +31,29 @@ module CompanyCsv
     company_list
   end
 
-  def write_to_csv(ats_name, list, filepath = nil)
-    filepath ||= get_filename(ats_name)
+  # def write_to_csv(ats_name, list, filepath = nil)
+  #   filepath ||= list_filepath(ats_name)
 
-    CSV.open(filepath, 'wb') do |csv|
-      list.each do |record|
-        csv << [record]
-      end
-    end
-  end
+  #   CSV.open(filepath, 'wb') do |csv|
+  #     list.each do |record|
+  #       csv << [record]
+  #     end
+  #   end
+  # end
 
   private
 
-  def get_filename(ats_name)
-    file_directory = Rails.root.join('storage', 'csv')
-    FileUtils.mkdir_p(file_directory) unless File.directory?(file_directory)
-    return "#{file_directory}/#{ats_name}_companies.csv"
+  def list_filepath(filename)
+    return "#{file_directory}/#{filename}.csv"
   end
 
-  def list_filepath
-    file_directory = Rails.root.join('storage', 'csv')
-    FileUtils.mkdir_p(file_directory) unless File.directory?(file_directory)
+  def db_filepath
     return "#{file_directory}/ats_identifiers.csv"
+  end
+
+  def file_directory
+    directory = Rails.root.join('storage', 'csv')
+    FileUtils.mkdir_p(directory) unless File.directory?(directory)
+    directory
   end
 end

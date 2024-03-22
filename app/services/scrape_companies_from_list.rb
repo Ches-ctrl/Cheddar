@@ -1,28 +1,21 @@
 class ScrapeCompaniesFromList
   include CompanyCsv
-  include AtsRouter
-  include HashBuilder
 
   def initialize
-    puts "Importing companies from list"
-    @urls = load_from_csv('jobglob') + load_from_csv('linkup')
-    @companies = build_ats_companies
+    puts "Importing companies from list..."
+    @urls = load_from_csv('url_list')
+    @companies = ats_list
   end
 
   def call
     @urls.each do |url|
-      @url = url
+      ats, ats_identifier = JobUrl.new(url).parse(@companies)
+      next puts "couldn't find ats for url: #{url}" unless ats
 
-      next unless (company = ats_identifier)
-
-      ats = ats_system_name.to_sym
-      @companies[ats] << company
+      @companies[ats.name] << ats_identifier
     end
 
     puts "\nStoring the information in CSV format..."
-
-    @companies.each do |ats_name, list|
-      write_to_csv(ats_name.to_s, list)
-    end
+    save_ats_list
   end
 end

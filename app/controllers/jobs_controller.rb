@@ -30,37 +30,6 @@ class JobsController < ApplicationController
     @job_description = sanitize @job.job_description
   end
 
-  def new
-    @job = Job.new
-  end
-
-  def create
-    p "Starting Create method"
-    @job = Job.new(job_params)
-
-    # TODO: check if job already exists in DB, if so, redirect to job_path(@job)
-    # TODO: convert job_posting_url to standard format
-
-    p "Starting CompanyCreator"
-    company, ats_job_id = CompanyCreator.new(@job.job_posting_url).find_or_create_company
-    p "CompanyCreator complete: #{company.company_name}"
-
-    @job.company_id = company.id
-    @job.applicant_tracking_system_id = company.applicant_tracking_system_id
-    @job.ats_job_id = ats_job_id
-
-    p "Starting JobCreator"
-    JobCreator.new(@job).add_job_details
-    if @job.save
-      p "Saved job - #{@job.job_title}"
-      redirect_to job_path(@job), notice: 'Job was successfully added'
-    else
-      p "Job not saved"
-      @jobs = Job.all
-      render 'jobs/index', status: :unprocessable_entity
-    end
-  end
-
   def apply_to_selected_jobs
     selected_job_ids = params[:job_ids]
     cookies[:selected_job_ids] = selected_job_ids
