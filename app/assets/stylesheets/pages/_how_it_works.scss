@@ -21,7 +21,9 @@
       width: 60%;
       font-weight: bold;
     }
-
+    img {
+      width: 40vh;
+    }
     p {
       margin-bottom: 32px;
       width: 80%;
@@ -47,6 +49,7 @@
     justify-content: center;
     align-items: center;
     margin: 16px 0;
+    color: $main-color;
 
     img {
       width: 40%;
