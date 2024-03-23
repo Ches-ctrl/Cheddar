@@ -12,7 +12,7 @@ And this is just in the UK...
 
 ## Solution 🌱
 
-Cheddar 🧀 - the frictionless climate-first job site. The only site you need to get hired.
+Cheddar 🧀 - the frictionless job site for all jobs, featuring climate data. The only site you need to get hired.
 
 ## Graduate Ruby on Rails Jobs in London 💎
 
