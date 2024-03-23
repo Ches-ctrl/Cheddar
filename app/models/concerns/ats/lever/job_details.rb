@@ -18,9 +18,8 @@ module Ats
           new_job.job_description = build_description(data)
           new_job.non_geocoded_location_string = build_location_string(data)
           new_job.remote_only = data['workplaceType'] == 'remote'
-          new_job.department = data['categories']['team']
-          # THIS NEXT LINE NOT QUITE RIGHT...
-          new_job.date_created = convert_from_iso8601(data['createdAt'])
+          new_job.department = data.dig('categories', 'team')
+          new_job.date_created = convert_from_milliseconds(data['createdAt'])
           fetch_additional_fields(new_job)
           puts "Created new job - #{new_job.job_title} with #{company.company_name}"
         end

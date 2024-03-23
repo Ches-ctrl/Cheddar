@@ -12,7 +12,12 @@ class LocationStandardizer
     hybrid = location.downcase.include?('hybrid') || @job.job_description.downcase.include?('hybrid')
     # remote = location.downcase.match?(/(?<!\bor\s)remote/)
 
-    location_elements = location.split(/[,•&]/).map { |element| element.gsub(/[-;(\/]/, '').gsub(/remote|hybrid|\bn\/?a\b/i, '').strip }
+    location_elements = location.split(/[,•&]/)
+                                .map do |element|
+                                  element.gsub(%r{[.-;(/]}, '')
+                                         .gsub(%r{remote|hybrid|\bn/?a\b}i, '')
+                                         .strip
+                                end
 
     # search for existing cities and countries in location elements:
     location_elements.each do |element|
@@ -50,11 +55,11 @@ class LocationStandardizer
       return []
     end
 
-    return [] if data['resourceSets'][0]['estimatedTotal'].zero?
+    return [] if data.dig('resourceSets', 0, 'estimatedTotal').zero?
 
-    city = data['resourceSets'][0]['resources'][0]['address']['locality']
-    country = data['resourceSets'][0]['resources'][0]['address']['countryRegion']
-    latitude, longitude = data['resourceSets'][0]['resources'][0]['point']['coordinates']
+    city = data.dig('resourceSets', 0, 'resources', 0, 'address', 'locality')
+    country = data.dig('resourceSets', 0, 'resources', 0, 'address', 'countryRegion')
+    latitude, longitude = data.dig('resourceSets', 0, 'resources', 0, 'point', 'coordinates')
     return [city, country, latitude, longitude]
   end
 

@@ -4,6 +4,7 @@ module Ats
       extend ActiveSupport::Concern
 
       def self.find_or_create(_ats_identifier)
+        # TODO: add method here
         return
       end
 

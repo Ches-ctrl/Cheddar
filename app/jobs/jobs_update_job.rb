@@ -25,7 +25,7 @@ class JobsUpdateJob < ApplicationJob
   def fetch_jobs_and_companies
     ats_list.each do |ats_name, ats_identifiers|
       # only prepared to handle some ATS systems at the moment
-      next unless ['Greenhouse'].include?(ats_name)
+      next unless ['Greenhouse', 'Lever'].include?(ats_name)
 
       puts "Scanning #{ats_name} jobs:"
       @ats_system = ApplicantTrackingSystem.find_by(name: ats_name)

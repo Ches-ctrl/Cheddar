@@ -51,30 +51,6 @@ module Ats
       #     date_created: convert_from_iso8601(data['updated_at'])
       #   )
       # end
-
-      private
-
-      private_class_method def self.update_requirements(job)
-        job.no_of_questions = job.application_criteria.size
-
-        job.application_criteria.each do |field, criteria|
-          case field
-          when 'resume'
-            job.req_cv = criteria['required']
-            p "CV requirement: #{job.req_cv}"
-          when 'cover_letter'
-            job.req_cover_letter = criteria['required']
-            p "Cover letter requirement: #{job.req_cover_letter}"
-          when 'work_eligibility'
-            job.work_eligibility = criteria['required']
-            p "Work eligibility requirement: #{job.work_eligibility}"
-          end
-        end
-      end
-
-      private_class_method def self.convert_from_iso8601(iso8601_string)
-        return Time.iso8601(iso8601_string)
-      end
     end
   end
 end

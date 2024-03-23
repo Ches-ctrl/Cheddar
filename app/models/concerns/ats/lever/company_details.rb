@@ -30,14 +30,14 @@ module Ats
         response = get(company_api_url)
         data = JSON.parse(response)
         company_name = fetch_company_name(ats_identifier)
-        [company_name, data[0]['additionalPlain']]
+        [company_name, data.dig(0, 'additionalPlain')]
       end
 
       def self.fetch_company_name(ats_identifier)
         url = "https://autocomplete.clearbit.com/v1/companies/suggest?query=#{ats_identifier}"
         response = get(url)
         data = JSON.parse(response)
-        return data[0]['name'] if response
+        return data.dig(0, 'name') unless data.blank?
       end
     end
   end
