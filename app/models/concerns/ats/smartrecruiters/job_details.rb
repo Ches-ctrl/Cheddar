@@ -1,8 +1,6 @@
 module Ats
   module Smartrecruiters
     module JobDetails
-      extend ActiveSupport::Concern
-
       # TODO: Check if job already exists in database
       # TODO: Update job to handle workplace (hybrid)
       # TODO: Update description to handle html and non-html, add labelling for this characteristic

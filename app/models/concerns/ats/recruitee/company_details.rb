@@ -1,8 +1,6 @@
 module Ats
   module Recruitee
     module CompanyDetails
-      extend ActiveSupport::Concern
-
       def self.find_or_create(_ats_identifier)
         # TODO: add method here
         return

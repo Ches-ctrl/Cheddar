@@ -33,6 +33,7 @@ class ScrapeTrueUpJob < ApplicationJob
   def log_into_website
     puts "Logging into TrueUp..."
     click_on 'Log in'
+    sleep 1
 
     # Randomly select an email and password from the scrape emails and passwords arrays
     fill_in 'username', with: scrape_emails.sample

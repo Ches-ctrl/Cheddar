@@ -1,8 +1,6 @@
 module Ats
   module Lever
     module ApplicationFields
-      extend ActiveSupport::Concern
-
       def self.get_application_criteria(job)
         p "Getting lever application criteria"
         job.application_criteria = CORE_FIELDS.merge(CUSTOM_FIELDS)

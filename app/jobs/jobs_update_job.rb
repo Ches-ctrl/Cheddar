@@ -39,8 +39,8 @@ class JobsUpdateJob < ApplicationJob
 
         # Create new jobs using AtsSystem method
         company_jobs.each do |job_data|
-          @ats_system.find_or_create_job_by_id(company, job_data['id']) if relevant?(job_data)
-          @job_urls.delete(job_data['absolute_url'])
+          @ats_system.find_or_create_job_by_data(company, job_data) if relevant?(job_data)
+          @job_urls.delete(@ats_system.job_details.fetch_url(job_data))
         end
       end
     end

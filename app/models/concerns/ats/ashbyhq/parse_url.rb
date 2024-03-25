@@ -1,7 +1,6 @@
 module Ats
   module Ashbyhq
     module ParseUrl
-      extend ActiveSupport::Concern
       extend AtsMethods
 
       def self.call(url, _saved_ids = nil)

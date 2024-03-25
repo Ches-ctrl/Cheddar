@@ -1,7 +1,6 @@
 module Ats
   module Greenhouse
     module ParseUrl
-      extend ActiveSupport::Concern
       extend ValidUrl
       extend AtsMethods
       extend CompanyCsv

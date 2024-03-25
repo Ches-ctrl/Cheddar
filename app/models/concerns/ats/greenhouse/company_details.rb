@@ -1,7 +1,6 @@
 module Ats
   module Greenhouse
     module CompanyDetails
-      extend ActiveSupport::Concern
       extend AtsMethods
       extend ValidUrl
 
