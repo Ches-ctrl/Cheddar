@@ -34,8 +34,9 @@ class JobsUpdateJob < ApplicationJob
         puts "  Looking at jobs with #{ats_identifier}..."
 
         # Find or create the company
-        puts "Problem with #{ats_identifier}" unless (company = @ats_system.find_or_create_company(ats_identifier))
-        next unless (company_jobs = @ats_system.fetch_company_jobs(ats_identifier))
+        next puts "Problem with #{ats_identifier}" unless (company = @ats_system.find_or_create_company(ats_identifier))
+
+        company_jobs = @ats_system.fetch_company_jobs(ats_identifier)
 
         # Create new jobs using AtsSystem method
         company_jobs.each do |job_data|
