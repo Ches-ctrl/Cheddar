@@ -1,4 +1,6 @@
 module JobDetailsMethods
+  include ValidUrl
+
   def find_or_create_by_id(company, ats_job_id)
     job = Job.find_or_create_by(ats_job_id:) do |new_job|
       new_job.company = company
@@ -26,8 +28,7 @@ module JobDetailsMethods
   def fetch_job_data(job)
     ats = this_ats
     job.api_url = job_url_api(ats.base_url_api, job.company.ats_identifier, job.ats_job_id)
-    uri = URI(job.api_url)
-    response = Net::HTTP.get(uri)
+    response = get(job.api_url)
     return JSON.parse(response)
   end
 end
