@@ -98,7 +98,7 @@ module Constants
     /\breact\b/,
     /jenkins/,
     /terraform\b/,
-    /\bci\/cd\b/,
+    %r{\bci/cd\b},
     /database/,
     /\bsql\b/,
     /workflow automation/,

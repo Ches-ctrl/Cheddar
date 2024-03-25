@@ -1,5 +1,4 @@
 class CreateJobByUrl
-
   def initialize(url)
     @url = url
   end
