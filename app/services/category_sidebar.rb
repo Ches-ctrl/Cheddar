@@ -37,23 +37,27 @@ class CategorySidebar
     resources['posted'] = when_posted.map do |period|
       id = period.downcase.gsub(/last |within a /, '').gsub(' ', '-')
       count = jobs.count { |job| job.date_created.end_of_day > CONVERT_TO_DAYS[id].days.ago.beginning_of_day }
+      next if count.zero?
+
       [
         'radio',
         period,
         id,
         count,
         @params[:posted] ? @params[:posted].include?(id) : period == 'Any time'
-      ] unless count.zero?
+      ]
     end.compact
     resources['seniority'] = seniorities.map do |seniority|
       count = jobs.count { |job| job.seniority == seniority }
+      next if count.zero?
+
       [
         'checkbox',
         seniority,
         seniority.downcase.split.first,
         count,
         @params[:seniority]&.include?(seniority.downcase.split.first)
-      ] unless count.zero?
+      ]
     end.compact
     resources['location'] = locations.compact.uniq.map do |location|
       [
