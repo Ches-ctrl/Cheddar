@@ -1,8 +1,6 @@
 module Ats
   module Ashbyhq
     module ApplicationFields
-      extend ActiveSupport::Concern
-
       def self.get_application_criteria(job)
         p "Getting AshbyHQ application criteria"
         job.application_criteria = CANDIDATE_FIELDS

@@ -1,7 +1,9 @@
 module Ats
   module Pinpointhq
     module JobDetails
-      extend ActiveSupport::Concern
+      def self.find_or_create_by_id(_company, _ats_job_id)
+        return
+      end
 
       def self.get_job_details(job)
         ats = job.company.applicant_tracking_system

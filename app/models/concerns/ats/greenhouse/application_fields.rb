@@ -1,8 +1,6 @@
 module Ats
   module Greenhouse
     module ApplicationFields
-      extend ActiveSupport::Concern
-
       # Question - scrape all fields or add standard set each time?
 
       def self.get_application_criteria(job)

@@ -183,7 +183,7 @@ class FormFiller
 
   def take_screenshot_and_store(job_application_id)
     screenshot_path = Rails.root.join('tmp', "screenshot-#{job_application_id}.png")
-    page.save_screenshot(screenshot_path, full: true)
+    page.save_screenshot(screenshot_path)
 
     file = File.open(screenshot_path)
     job_app = JobApplication.find(job_application_id)

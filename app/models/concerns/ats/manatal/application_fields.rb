@@ -1,8 +1,6 @@
 module Ats
   module Manatal
     module ApplicationFields
-      extend ActiveSupport::Concern
-
       def self.get_application_criteria(job)
         p "Getting Manatal application criteria"
         job.application_criteria = CORE_FIELDS

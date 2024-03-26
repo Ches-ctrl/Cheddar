@@ -23,7 +23,7 @@
 !/tmp/pids/.keep
 
 # Ignore storage (uploaded files in development and any SQLite databases).
-/storage/*
+# /storage/*
 !/storage/.keep
 /tmp/storage/*
 !/tmp/storage/
@@ -39,4 +39,4 @@
 # Ignore Mac and Linux file system files
 *.swp
 .DS_Store
-.csv*
+# .csv*

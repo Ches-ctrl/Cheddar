@@ -1,40 +1,31 @@
 module Ats
   module Greenhouse
     module CompanyDetails
-      extend ActiveSupport::Concern
+      extend AtsMethods
+      extend ValidUrl
 
-      def self.get_company_details(url, ats_system, ats_identifier)
-        p "Getting greenhouse company details - #{url}"
+      # TODO: abstract nearly all of this logic into a concern shared by all ATS modules
+      def self.find_or_create(ats_identifier)
+        company = Company.find_or_create_by(ats_identifier:) do |new_company|
+          ats_system = this_ats
+          company_name, description = fetch_company_data(ats_system, ats_identifier)
+          return unless company_name
 
-        company_name, description = fetch_company_data(ats_system, ats_identifier)
-        company = Company.find_by(company_name:)
-
-        if company
-          p "Existing company - #{company.company_name}"
-          check_for_details(company, ats_system, ats_identifier, description)
-        else
-          company = Company.create(
-            company_name:,
-            description:,
-            ats_identifier:,
-            applicant_tracking_system_id: ats_system.id,
-            url_ats_api: "#{ats_system.base_url_api}#{ats_identifier}",
-            url_ats_main: "#{ats_system.base_url_main}#{ats_identifier}"
-          )
-          p "Created company - #{company.company_name}" if company.persisted?
-          check_for_careers_url_redirect(company)
-
-          # p "Calling GetAllJobUrls"
-          # GetAllJobUrls.new(company).get_all_job_urls if new_company
-          # p "Finished GetAllJobUrls"
+          new_company.company_name = company_name
+          new_company.description = description
+          new_company.applicant_tracking_system = ats_system
+          new_company.url_ats_api = "#{ats_system.base_url_api}#{ats_identifier}"
+          new_company.url_ats_main = "#{ats_system.base_url_main}#{ats_identifier}"
+          check_for_careers_url_redirect(new_company)
+          puts "Created company - #{new_company.company_name}"
         end
-        company
+
+        return company
       end
 
       def self.fetch_company_data(ats_system, ats_identifier)
         company_api_url = "#{ats_system.base_url_api}#{ats_identifier}"
-        uri = URI(company_api_url)
-        response = Net::HTTP.get(uri)
+        response = get(company_api_url)
         data = JSON.parse(response)
         [data['name'], data['content']]
       end
@@ -64,24 +55,6 @@ module Ats
 
         p "Missing ATS Main URL for #{company.company_name}"
         company.update(url_ats_main: "#{ats_system.base_url_main}#{ats_identifier}")
-      end
-
-      def self.check_for_careers_url_redirect(company)
-        url = URI(company.url_ats_main)
-
-        http = Net::HTTP.new(url.host, url.port)
-        http.use_ssl = true if url.scheme == 'https'
-
-        request = Net::HTTP::Get.new(url.request_uri)
-        response = http.request(request)
-
-        if response.is_a?(Net::HTTPRedirection)
-          redirected_url = URI.parse(response['Location'])
-          company.update(url_careers: redirected_url)
-          company.update(company_website_url: redirected_url.host)
-        else
-          p "No redirect for #{company.url_ats_main}"
-        end
       end
     end
   end
