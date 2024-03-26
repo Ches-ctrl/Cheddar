@@ -113,9 +113,10 @@ class GetFormFieldsJob < ApplicationJob
 
     unless extra_fields.nil?
       job.application_criteria = job.application_criteria.merge(extra_fields)
-      job.save
       p job.application_criteria
     end
+    job.apply_with_cheddar = true
+    job.save
 
     # TODO: Check that including this here doesn't cause issues
     return attributes

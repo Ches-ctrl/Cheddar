@@ -27,7 +27,9 @@ module Constants
     /london/,
     /england/,
     /united kingdom/,
-    /\buk\b/
+    /britain/,
+    /\buk\b/,
+    /\bemea\b/
   ]
 
   JOB_TITLE_KEYWORDS = [
