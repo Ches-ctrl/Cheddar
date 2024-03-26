@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="select-by-job-type"
 export default class extends Controller {
-  static targets = [ 'jobRow', 'search', 'posted', 'role', 'company', 'location', 'seniority', 'employment' ]
+  static targets = [ 'jobRow', 'search', 'cheddar', 'posted', 'role', 'company', 'location', 'seniority', 'employment' ]
 
   connect() {
   }
@@ -13,6 +13,7 @@ export default class extends Controller {
     const searchQuery = this.searchTarget.value.trim();
 
     const filterTerms = {
+      cheddar: this.cheddarTargets,
       posted: this.postedTargets,
       seniority: this.seniorityTargets,
       location: this.locationTargets,

@@ -1,11 +1,13 @@
 module Ats
   module Ashbyhq
     module JobDetails
-      extend ActiveSupport::Concern
-
       # TODO: Check if job already exists in database
       # TODO: Update job to handle workplace (hybrid)
       # TODO: Update description to handle html and non-html, add labelling for this characteristic
+
+      def self.find_or_create_by_id(_company, _ats_job_id)
+        return
+      end
 
       def self.get_job_details(job)
         ats = job.company.applicant_tracking_system

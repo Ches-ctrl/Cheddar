@@ -13,11 +13,16 @@ class CategorySidebar
 
   def build
     # Where necessary, parse from Job.attributes
+    jobs = Job.includes(:company, :roles, :locations, :countries).all
+
     locations = []
-    jobs = Job.includes(:company, :roles, :locations).all
     jobs.each do |job|
-      job.locations.includes(:country).each do |location|
-        locations << (job.remote_only ? ["Remote (#{location.country})"] : [location.city, location.country&.name].compact)
+      if job.remote_only
+        locations << ["Remote (#{job.countries.map(&:name).join(', ')})"]
+      else
+        job.locations.includes(:country).each do |location|
+          locations << [location.city, location.country&.name].compact
+        end
       end
     end
 

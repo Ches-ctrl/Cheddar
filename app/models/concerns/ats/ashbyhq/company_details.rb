@@ -1,7 +1,10 @@
 module Ats
   module Ashbyhq
     module CompanyDetails
-      extend ActiveSupport::Concern
+      def self.find_or_create(_ats_identifier)
+        # TODO: add method here
+        return
+      end
 
       def self.get_company_details(url, ats_system, ats_identifier)
         p "Getting AshbyHQ company details - #{url}"

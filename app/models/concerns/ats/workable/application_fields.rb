@@ -1,8 +1,6 @@
 module Ats
   module Workable
     module ApplicationFields
-      extend ActiveSupport::Concern
-
       # Question - scrape all fields or add standard set each time?
       # TODO: Check validatity of fields (not yet tested)
       # TODO: Handle labels from form fields
