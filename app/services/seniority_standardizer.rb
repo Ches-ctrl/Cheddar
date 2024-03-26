@@ -1,19 +1,20 @@
 class SeniorityStandardizer
   SENIORITY_TITLES = {
-    /intern/ => 'Internship',
-    /graduate/ => 'Entry-Level',
-    /junior/ => 'Junior',
-    /early[- ]?career/ => 'Junior',
-    /\bi\b/ => 'Junior',
-    /\bmid\b/ => 'Mid-Level',
-    /mid-?weight/ => 'Mid-Level',
-    /mid-?level/ => 'Mid-Level',
-    /\bii\b/ => 'Mid-Level',
-    /\biii\b/ => 'Mid-Level',
-    /senior/ => 'Senior',
-    /\blead\b/ => 'Senior',
+    /staff/ => 'Senior',
     /principal/ => 'Senior',
-    /staff/ => 'Senior'
+    /\blead\b/ => 'Senior',
+    /senior/ => 'Senior',
+    /\biii\b/ => 'Mid-Level',
+    /\bii\b/ => 'Mid-Level',
+    /mid-?level/ => 'Mid-Level',
+    /mid-?weight/ => 'Mid-Level',
+    /\bmid\b/ => 'Mid-Level',
+    /junior/ => 'Junior',
+    /early.?career/ => 'Junior',
+    /\bi\b/ => 'Junior',
+    /associate/ => 'Junior',
+    /graduate/ => 'Entry-Level',
+    /intern/ => 'Internship'
   }
   SENIORITY_DESCRIPTORS = {
     /track record of/ => 'Junior',
