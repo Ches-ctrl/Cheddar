@@ -1,8 +1,6 @@
 module Ats
   module Bamboohr
     module ApplicationFields
-      extend ActiveSupport::Concern
-
       def self.get_application_criteria(job)
         p "Getting Bamboohr application criteria"
         job.application_criteria = CORE_FIELDS

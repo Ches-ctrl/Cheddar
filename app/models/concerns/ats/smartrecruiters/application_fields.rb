@@ -1,8 +1,6 @@
 module Ats
   module Smartrecruiters
     module ApplicationFields
-      extend ActiveSupport::Concern
-
       def self.get_application_criteria(job)
         p "Getting smartrecruiters application criteria"
         job.application_criteria = CORE_FIELDS.merge(WEB_FIELDS).merge(ADDITIONAL_FIELDS)

@@ -6,17 +6,6 @@ class Job < ApplicationRecord
 
   serialize :application_criteria, coder: JSON
 
-  # move to locations model
-
-  # geocoded_by :location do |obj, results|
-  #   if geo = results.first
-  #     obj.city = geo.city || (obj.location.split(',').first if obj.location.split(',').first != geo.country_code)
-  #     obj.country = geo.country_code
-  #   end
-  # end
-
-  # after_validation :geocode, if: :location_changed?
-
   belongs_to :company
   belongs_to :applicant_tracking_system, optional: true
 
@@ -156,14 +145,5 @@ class Job < ApplicationRecord
     return unless param.present?
 
     param.split.map { |employment| employment.gsub('_', '-').capitalize }
-  end
-
-  private
-
-  def unique_title_per_company_and_location
-    existing_jobs = Job.joins(:jobs_locations)
-                       .where(job_title:, company_id:, jobs_locations: { location_id: locations.pluck(:id) })
-    existing_jobs = existing_jobs.where.not(id:) if persisted?
-    errors.add(:title, 'should be unique per company and location') if existing_jobs.exists?
   end
 end
