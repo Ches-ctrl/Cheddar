@@ -15,22 +15,6 @@ class RoleStandardizer
     /react native/ => 'mobile',
     /\bdata\b/ => 'data_engineer'
   }
-  SENIORITY_TITLES = {
-    /intern/ => 'Internship',
-    /graduate/ => 'Entry-Level',
-    /junior/ => 'Junior',
-    /early[- ]?career/ => 'Junior',
-    /\bi\b/ => 'Junior',
-    /\bmid\b/ => 'Mid-Level',
-    /mid-?weight/ => 'Mid-Level',
-    /mid-?level/ => 'Mid-Level',
-    /\bii\b/ => 'Mid-Level',
-    /\biii\b/ => 'Mid-Level',
-    /senior/ => 'Senior',
-    /\blead\b/ => 'Senior',
-    /principal/ => 'Senior',
-    /staff/ => 'Senior'
-  }
   ROLE_DESCRIPTORS = {
     /front[- ]?end/ => 'front_end',
     /responsive web/ => 'front_end',
@@ -71,8 +55,12 @@ class RoleStandardizer
   end
 
   def standardize
-    title_roles = ROLE_TITLES.inject([]) { |array, (keyword, role)| @job.job_title.downcase.match?(keyword) ? array << role : array }
-    roles = ROLE_DESCRIPTORS.inject([]) { |array, (phrase, role)| @job.job_description.downcase.match?(phrase) ? array << role : array }
+    title_roles = ROLE_TITLES.inject([]) do |array, (keyword, role)|
+      @job.job_title.downcase.match?(keyword) ? array << role : array
+    end
+    roles = ROLE_DESCRIPTORS.inject([]) do |array, (phrase, role)|
+      @job.job_description.downcase.match?(phrase) ? array << role : array
+    end
 
     if title_roles.include?('front_end')
       roles.delete('full_stack')
@@ -94,7 +82,9 @@ class RoleStandardizer
       roles.delete('back_end')
     end
 
-    @job.role = roles.join('&&') # serialize (this should be done in concerns)
-    @job.save
+    @job.roles = []
+    roles.each do |role_name|
+      @job.roles << Role.find_or_create_by(name: role_name)
+    end
   end
 end

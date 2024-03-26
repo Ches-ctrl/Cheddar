@@ -5,7 +5,7 @@ class ImportXmlJob < ApplicationJob
 
   # TODO: At the moment doesn't handle company websites or ATS
   # TODO: Unified data format for all job sources to persist to the database
-
+  # rubocop:disable Security/Open
   def perform
     url = 'https://devitjobs.uk/job_feed.xml'
     xml_data = URI.open(url).read
@@ -15,7 +15,7 @@ class ImportXmlJob < ApplicationJob
       # limiting to 10 jobs for now
 
       company_name = job_xml.at('company')&.text
-      company = Company.find_or_create_by(company_name: company_name)
+      company = Company.find_or_create_by(company_name:)
 
       job_attributes = {
         job_title: job_xml.at('title')&.text,
@@ -25,7 +25,7 @@ class ImportXmlJob < ApplicationJob
         location: job_xml.at('location')&.text,
         company_id: company.id,
         employment_type: job_xml.at('jobtype')&.text,
-        date_created: Date.parse(job_xml.at('pubdate')&.text),
+        date_created: Date.parse(job_xml.at('pubdate')&.text)
         # advertiser_type: job_xml.at('AdvertiserType')&.text,
         # is_promoted: job_xml.at('ispromoted')&.text == 'true',
         # cpc: job_xml.at('cpc')&.text.to_d,
@@ -43,5 +43,6 @@ class ImportXmlJob < ApplicationJob
 
       p Job.last
     end
+    # rubocop:enable Security/Open
   end
 end

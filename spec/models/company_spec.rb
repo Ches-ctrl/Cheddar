@@ -1,8 +1,7 @@
-
 RSpec.describe Company do
   describe 'Associations' do
     it { is_expected.to have_many(:jobs).dependent(:destroy) }
-    it { is_expected.to belong_to(:applicant_tracking_system).optional(:true) }
+    it { is_expected.to belong_to(:applicant_tracking_system).optional(true) }
   end
 
   describe 'Validations' do
@@ -10,4 +9,3 @@ RSpec.describe Company do
     it { is_expected.to validate_uniqueness_of(:company_name) }
   end
 end
-

@@ -1,18 +1,14 @@
-module Ats::Recruitee::ParseUrl
-  extend ActiveSupport::Concern
+module Ats
+  module Recruitee
+    module ParseUrl
+      extend AtsMethods
 
-  def self.parse_url(url)
-    regex_formats = [
-      %r{https://(?<company_name>[^.]+)\.recruitee\.com/o/(?<job_slug>[^/]+)(?:/c/new)?},
-    ]
+      def self.call(url, _saved_ids = nil)
+        regex_formats = [
+          %r{https://(?<company_name>[^.]+)\.recruitee\.com(?:/o/(?<job_slug>[^/]+)(?:/c/new)?)?}
+        ]
 
-    regex_formats.each do |regex|
-      match = url.match(regex)
-      if match
-        ats_identifier, job_id = match.captures
-        return [ats_identifier, job_id]
-      else
-        return nil
+        try_standard_formats(url, regex_formats)
       end
     end
   end

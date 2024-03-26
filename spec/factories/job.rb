@@ -3,7 +3,7 @@ FactoryBot.define do
     job_title { Faker::Job.title }
     company { association :company }
     job_posting_url { Faker::Internet.url }
-    location { "#{Faker::Address.city}, #{Faker::Address.country}" }
     application_deadline { Date.today + 15.days }
+    roles { Array.new(rand(1..3)) { association :role } }
   end
 end

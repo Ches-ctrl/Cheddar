@@ -70,8 +70,9 @@ class GetAiResponseJob < ApplicationJob
           }
         }
         ...etc. User inputs:
-        #{user_inputs}. Labels: #{labels}"}],
-        temperature: 0.7,
-    })
+        #{user_inputs}. Labels: #{labels}" }],
+        temperature: 0.7
+      }
+    )
   end
 end

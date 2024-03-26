@@ -35,7 +35,7 @@
       </div>
       <%# TODO: Setup Glassdoor & Trustpilot APIs %>
       <%= link_to 'Apply to this job', job_job_applications_path(@job), data: {turbo_method: :post}, class: "btn-apply" %>
-      <p class="mt-4">Salary: £<%= number_with_delimiter(@job.salary, :delimiter => ',') %></p>
+      <p class="mt-4">Salary: <%= number_with_delimiter(@job.salary, :delimiter => ',') %></p>
       <div class="job-description">
         <%= @job_description %>
       </div>
