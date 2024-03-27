@@ -11,12 +11,12 @@ class UsersController < ApplicationController
     @applications_this_month = @job_applications.where(created_at: date_range)
 
     # Create a hash where keys are the days of the month and the values indicate whether an application was submitted
-    @calendar_days = date_range.map do |date|
-      [date, @applications_this_month.any? { |app| app.created_at == date }]
-    end.to_h
+    @calendar_days = date_range.to_h { |date| [date, @applications_this_month.any? { |app| app.created_at == date }] }
+
     p "The calendar days are #{@calendar_days}"
     p "--------------"
     p "--------------"
+
     p "The applications this month are #{@applications_this_month}"
   end
 

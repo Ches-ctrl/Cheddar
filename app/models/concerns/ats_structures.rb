@@ -179,7 +179,6 @@ end
 # API URLs:
 # https://${company}.bamboohr.com/careers/list
 
-
 # -----------------
 # Recruitee ATS
 # -----------------
