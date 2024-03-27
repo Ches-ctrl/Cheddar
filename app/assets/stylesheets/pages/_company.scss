@@ -1,3 +1,14 @@
 // .company-description {
 //     font-size: 12px;
 // }
+
+.company-img-row {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.company-logo-img {
+  position: absolute;
+  bottom: -30px;
+  left: 20px;
+}
