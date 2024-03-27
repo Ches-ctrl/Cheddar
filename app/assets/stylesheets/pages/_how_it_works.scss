@@ -1,10 +1,10 @@
 @media screen and (min-width: 642px) {
   .how-works-container{
     display: flex;
-    margin: 24px;
     justify-content: center;
     align-items: center;
     height: 80vh;
+    margin-top: 40px;
   }
 
   .how-it-works-column {
@@ -17,6 +17,10 @@
     margin: 0 10px;
     color: $main-color;
 
+    .apply-png, .create-account-png {
+      margin-top: 20px;
+    }
+
     h2 {
       margin-top: 32px;
       width: 60%;
@@ -26,9 +30,10 @@
       width: 40vh;
     }
     p {
-      margin-bottom: 32px;
+      margin-top: 50px;
       width: 80%;
       font-size: 1.2em;
+      font-weight: 500;
     }
   }
 }
