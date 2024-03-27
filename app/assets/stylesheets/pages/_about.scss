@@ -1,12 +1,134 @@
-.poem  {
-  font-family: $body-font;
-  color: $tertiary-color;
-  font-size: 18px;
-}
+#about-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  color: $main-color;
+  text-align: center;
+  width: 100%;
 
-.poem-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: $tertiary-color;
+  h1 {
+    font-weight: bold;
+    margin: 16px 0;
+
+  }
+
+  h3 {
+    font-weight: normal;
+    margin: 16px 0;
+    width: 60%;
+    font-size: 1.4rem;
+  }
+
+  #about-text-logo {
+    width: 15%;
+    margin-bottom: 16px;
+  }
+
+  #about-logo {
+    width: 10%;
+  }
+
+  .about-team-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    width: 60%;
+  }
+
+  .about-team-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 25%;
+
+      h3 {
+        width: 100%;
+      }
+
+      #charlie-avatar, #ilya-avatar, #dan-avatar, #alejandro-avatar, #chris-avatar, #jamie-avatar {
+        height: 200px;
+        width: 200px;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+
+        &:hover {
+          .team-icons {
+            display: flex;
+            width: 60%;
+            justify-content: space-around;
+            align-items: center;
+            filter: brightness(1) !important;
+          }
+        }
+      }
+
+      #charlie-avatar {
+        background-image: image-url("team/charlie_avatar.png");
+
+        &:hover {
+          background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("team/charlie_avatar.png");
+        }
+      }
+
+      #ilya-avatar {
+        background-image: image-url("team/ilya_avatar.png");
+
+        &:hover {
+          background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("team/ilya_avatar.png");
+        }
+      }
+
+      #dan-avatar {
+        background-image: image-url("team/dan_avatar.png");
+
+        &:hover {
+          background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("team/dan_avatar.png");
+        }
+      }
+
+      #alejandro-avatar {
+        background-image: image-url("team/alejandro_avatar.png");
+
+        &:hover {
+          background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("team/alejandro_avatar.png");
+        }
+      }
+
+      #chris-avatar {
+        background-image: image-url("team/chris_avatar.png");
+
+        &:hover {
+          background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("team/chris_avatar.png");
+        }
+      }
+
+      #jamie-avatar {
+        background-image: image-url("team/jamie_avatar.png");
+
+        &:hover {
+          background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("team/jamie_avatar.png");
+        }
+      }
+
+      .team-icons {
+        display: none;
+
+        i {
+          color: white;
+          font-size: 2rem;
+
+          &:hover {
+            color: #ff9433;
+          }
+        }
+      }
+  }
+
 }

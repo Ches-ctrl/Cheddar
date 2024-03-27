@@ -14,10 +14,12 @@ class GetFormFieldsJob < ApplicationJob
   # TODO: Add boolean cv required based on this scrape
   # TODO: add test of filling out the form fields before job goes live
 
-  def perform(url)
+  def perform(job)
+    return if job.api_url.include?('lever') # Not yet able to handle Lever jobs
+
     Capybara.current_driver = :selenium_chrome_headless
 
-    visit(url)
+    visit(job.job_posting_url)
     return if page.has_selector?('#flash_pending')
 
     begin
@@ -25,11 +27,6 @@ class GetFormFieldsJob < ApplicationJob
     rescue StandardError
       nil
     end
-
-    # Get Job Details, Company & Description
-    job = Job.find_by(job_posting_url: url)
-
-    # TODO: Get details here
 
     # Find Form Fields
 
@@ -116,9 +113,10 @@ class GetFormFieldsJob < ApplicationJob
 
     unless extra_fields.nil?
       job.application_criteria = job.application_criteria.merge(extra_fields)
-      job.save
       p job.application_criteria
     end
+    job.apply_with_cheddar = true
+    job.save
 
     # TODO: Check that including this here doesn't cause issues
     return attributes

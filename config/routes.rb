@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'landing', to: 'pages#landing', as: 'landing'
   get 'profile', to: 'users#show', as: 'profile'
   get 'how_it_works', to: 'pages#how_it_works', as: 'how_it_works'
+  get 'about', to: 'pages#about', as: 'about'
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Jobs

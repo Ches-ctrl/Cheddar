@@ -55,6 +55,7 @@ gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.5.1"
 gem "simple_form"
 gem 'psych', "~> 4.0" # Extra gem as per Le Wagon setup for Linux laptops
+gem "sassc-rails"
 
 # Additional Gems installed
 gem "ruby-openai"
@@ -114,5 +115,3 @@ group :test do
 end
 
 gem "high_voltage", "~> 3.1"
-gem "dartsass-rails", "~> 0.5.0"
-gem "dartsass-sprockets"
