@@ -138,7 +138,6 @@ end
 # https://api.ashbyhq.com/posting-api/job-board/{JOB_BOARD_NAME}?includeCompensation=true
 # Individual listings - N/A
 
-
 # -----------------
 # PinpointHQ ATS
 # -----------------
@@ -158,7 +157,6 @@ end
 
 # API URLs:
 # https://{company_name}.pinpointhq.com/postings.json
-
 
 # -----------------
 # BambooHR ATS
@@ -222,7 +220,6 @@ end
 # API URLs:
 #
 
-
 # -----------------
 # Workday ATS
 # -----------------
@@ -270,7 +267,6 @@ end
 # Main URLS:
 # "https://#{agency_name}.tal.net/candidate"
 
-
 # -----------------
 # Freshteam ATS
 # -----------------
@@ -283,7 +279,6 @@ end
 # Job Form - ❌
 
 # https://#{company}.freshteam.com/api/job_postings # requires authentication
-
 
 # -----------------
 # Phenom ATS
@@ -299,7 +294,6 @@ end
 # https://api.phenom.com/
 # https://api.phenompeople.com/
 
-
 # -----------------
 # Job Board Portals - Docs
 # -----------------
@@ -312,7 +306,6 @@ end
 # Simplyhired - N/A (The Stepstone Group)
 # Totaljobs - N/A
 
-
 # -----------------
 # Job Search Portals
 # -----------------
@@ -320,7 +313,6 @@ end
 # Simplyhired - N/A (The Stepstone Group)
 # Totaljobs - N/A
 # https://www.ziprecruiter.co.uk/
-
 
 # -----------------
 # Misc Notes (Greenhouse)
@@ -348,7 +340,6 @@ end
 # - Embed an API-driven job board in your website and host job applications with Greenhouse
 # - Embed an API-driven job board and application form in your website
 # - Create a fully API-driven job board
-
 
 # -----------------
 # Other ATS Structures
