@@ -79,6 +79,7 @@ gem 'avo'
 gem 'yomu' # this gem is no longer maintained
 gem 'tinymce-rails' # now have trix and action text
 gem 'htmltoword'
+gem 'solargraph'
 
 group :development, :test do
   gem "dotenv-rails"
