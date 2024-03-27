@@ -1,3 +1,6 @@
+class AtsStructures < ApplicationRecord
+end
+
 # -----------------
 # Greenhouse ATS
 # -----------------
