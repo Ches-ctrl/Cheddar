@@ -1,19 +1,20 @@
 class SeniorityStandardizer
   SENIORITY_TITLES = {
-    /intern/ => 'Internship',
-    /graduate/ => 'Entry-Level',
-    /junior/ => 'Junior',
-    /early[- ]?career/ => 'Junior',
-    /\bi\b/ => 'Junior',
-    /\bmid\b/ => 'Mid-Level',
-    /mid-?weight/ => 'Mid-Level',
-    /mid-?level/ => 'Mid-Level',
-    /\bii\b/ => 'Mid-Level',
-    /\biii\b/ => 'Mid-Level',
-    /senior/ => 'Senior',
-    /\blead\b/ => 'Senior',
+    /staff/ => 'Senior',
     /principal/ => 'Senior',
-    /staff/ => 'Senior'
+    /\blead\b/ => 'Senior',
+    /senior/ => 'Senior',
+    /\biii\b/ => 'Mid-Level',
+    /\bii\b/ => 'Mid-Level',
+    /mid-?level/ => 'Mid-Level',
+    /mid-?weight/ => 'Mid-Level',
+    /\bmid\b/ => 'Mid-Level',
+    /junior/ => 'Junior',
+    /early.?career/ => 'Junior',
+    /\bi\b/ => 'Junior',
+    /associate/ => 'Junior',
+    /graduate/ => 'Entry-Level',
+    /intern/ => 'Internship'
   }
   SENIORITY_DESCRIPTORS = {
     /track record of/ => 'Junior',
@@ -47,17 +48,19 @@ class SeniorityStandardizer
 
   def standardize
     SENIORITY_TITLES.each do |keyword, level|
-      return if @job.seniority = level if @job.job_title.downcase.match?(keyword)
+      return @job.seniority = level if @job.job_title.downcase.match?(keyword)
     end
 
     years_experience = @job.job_description.downcase.scan(/(\d+)\s*(?:-|\s(?:to)?\s|\sto\s)?\s*\d*\+? year.{0,40} experience/).flatten.map(&:to_i).max
-    return if years_experience && @job.seniority = EXPERIENCE_DIGITS.find { |k, v| break v if k.cover?(years_experience) }
+    return if years_experience && (@job.seniority = EXPERIENCE_DIGITS.find do |k, v|
+                                     break v if k.cover?(years_experience)
+                                   end)
 
     years_experience = @job.job_description.downcase.match(/(one|two|three|four|five|ten).{0, 12} year.{0,40} experience/)
-    return if years_experience && @job.seniority = EXPERIENCE_WRITTEN_NUMBERS[years_experience[1]]
+    return if years_experience && (@job.seniority = EXPERIENCE_WRITTEN_NUMBERS[years_experience[1]])
 
     SENIORITY_DESCRIPTORS.each do |phrase, level| # will return the highest level matched
-      @job.seniority = level if @job.job_description.downcase.match(phrase)
+      @job.seniority = level if @job.job_description.downcase.match?(phrase)
     end
   end
 end

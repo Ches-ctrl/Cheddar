@@ -11,12 +11,14 @@ class ScrapeJob < ApplicationJob
   # Later: Repeat for other search criteria and URLs
   # Later: Generalise away from a single jobs board (low priority)
 
-
   def perform
     Capybara.default_max_wait_time = 10
 
-    url = [ENV['SCRAPE_URL_1'], ENV['SCRAPE_URL_2'], ENV['SCRAPE_URL_3'], ENV['SCRAPE_URL_4'], ENV['SCRAPE_URL_5'], ENV['SCRAPE_URL_6']]
-    search_criteria = ['London Developer', 'London Full Stack', 'London Product Management', 'London Data Science', 'London Data Engineering', 'London Design']
+    url = [ENV.fetch('SCRAPE_URL_1', nil), ENV.fetch('SCRAPE_URL_2', nil), ENV.fetch('SCRAPE_URL_3', nil), ENV.fetch('SCRAPE_URL_4', nil), ENV.fetch('SCRAPE_URL_5', nil),
+           ENV.fetch('SCRAPE_URL_6', nil)]
+    # url = 'https://devitjobs.uk'
+    search_criteria = ['London Developer', 'London Full Stack', 'London Product Management', 'London Data Science',
+                       'London Data Engineering', 'London Design']
 
     # Add this as a command to the admin panel, with details as to when the job was last run and current DB stats:
     p "URL Options: #{url}"
@@ -30,7 +32,8 @@ class ScrapeJob < ApplicationJob
     user_input = gets.chomp.to_i
 
     if user_input.between?(1, url.length)
-      url = url[user_input - 1]
+      # url = url[user_input - 1]
+      url = 'https://devitjobs.uk'
       search_criteria = search_criteria[user_input - 1]
     else
       puts "Invalid input. Please try again."
@@ -78,9 +81,9 @@ class ScrapeJob < ApplicationJob
 
         if company.save
           puts "New company created: #{company.company_name}"
-          job = Job.find_or_create_by(job_posting_url: job_url, job_title: job_title, company_id: company.id)
+          job = Job.find_or_create_by(job_posting_url: job_url, job_title:, company_id: company.id)
           if job.new_record?
-            job.update(job_posting_url: job_url, job_title: job_title, company: company)
+            job.update(job_posting_url: job_url, job_title:, company:)
 
             # Pseudocode:
             # Go to job page and work out its details (e.g. salary, job description, etc.)
@@ -98,7 +101,7 @@ class ScrapeJob < ApplicationJob
             if job.save
               puts "Created job: #{job_title} at #{company.company_name}"
             else
-              puts "Failed to create job: #{job.errors.full_messages.join(", ")}"
+              puts "Failed to create job: #{job.errors.full_messages.join(', ')}"
             end
           else
             puts "Job already exists: #{job_title} at #{company.company_name}"
@@ -106,9 +109,7 @@ class ScrapeJob < ApplicationJob
         else
           puts "Failed to create new company"
         end
-
       end
-
     rescue Capybara::ElementNotFound => e
       puts "Element not found: #{e.message}"
     end
@@ -118,13 +119,14 @@ class ScrapeJob < ApplicationJob
 
   def log_into_website
     click_on 'Log in'
-    wait_for_selector = 'username'
     find('#username')
 
     # TODO: Add 4x scrape emails and passwords
     # Randomly select an email and password from the scrape emails and passwords arrays
-    scrape_emails = [ENV['SCRAPE_EMAIL_1'], ENV['SCRAPE_EMAIL_2'], ENV['SCRAPE_EMAIL_3'], ENV['SCRAPE_EMAIL_4']]
-    scrape_passwords = [ENV['SCRAPE_PASSWORD_1'], ENV['SCRAPE_PASSWORD_2'], ENV['SCRAPE_PASSWORD_3'], ENV['SCRAPE_PASSWORD_4']]
+    scrape_emails = [ENV.fetch('SCRAPE_EMAIL_1', nil), ENV.fetch('SCRAPE_EMAIL_2', nil),
+                     ENV.fetch('SCRAPE_EMAIL_3', nil), ENV.fetch('SCRAPE_EMAIL_4', nil)]
+    scrape_passwords = [ENV.fetch('SCRAPE_PASSWORD_1', nil), ENV.fetch('SCRAPE_PASSWORD_2', nil), ENV.fetch('SCRAPE_PASSWORD_3', nil),
+                        ENV.fetch('SCRAPE_PASSWORD_4', nil)]
     random_index = rand(scrape_emails.length)
 
     fill_in 'username', with: scrape_emails[random_index]
@@ -132,27 +134,22 @@ class ScrapeJob < ApplicationJob
     # click_button('Continue')
     click_button('Continue', class: ['c1939bbc3'])
 
-
     # find_button('Continue', type: "submit").click
     # , class: ['c1939bbc3']
     # cb8dcbc41 c5fa977b5 c3419c4cf cf576c2dc cdb91ebae
     # <button type="submit" name="action" value="default" class="c1939bbc3 cc78b8bf3 ce1155df5 c1d2ca6e3 c331afe93" data-action-button-primary="true">Continue</button>
-
- end
+  end
 
   def click_show_more(times: 3)
     times.times do
-      begin
-        show_more_button = find('.ais-InfiniteHits-loadMore')
-        show_more_button.click
+      show_more_button = find('.ais-InfiniteHits-loadMore')
+      show_more_button.click
 
-        # Optional: Wait for the next set of results to load
-        # sleep 1
-
-      rescue Capybara::ElementNotFound
-        puts "Show more button not found"
-        break # Exit the loop if the button is not found
-      end
+      # Optional: Wait for the next set of results to load
+      # sleep 1
+    rescue Capybara::ElementNotFound
+      puts "Show more button not found"
+      break # Exit the loop if the button is not found
     end
   end
 

@@ -1,18 +1,15 @@
-module Ats::Bamboohr::ParseUrl
-  extend ActiveSupport::Concern
+module Ats
+  module Bamboohr
+    module ParseUrl
+      extend AtsMethods
 
-  def self.parse_url(url)
-    regex_formats = [
-      %r{https://(?<company_name>\w+)\.bamboohr\.com/careers/(?<job_id>\d+)},
-    ]
+      def self.call(url, _saved_ids = nil)
+        regex_formats = [
+          %r{://(?<company_name>[\w%-]+)\.bamboohr\.com(?:/careers/(?<job_id>\d+))?},
+          %r{://(?<company_name>[\w%-]+)\.bamboohr\.com(?:/jobs/view.php\?id=(?<job_id>\d+))?}
+        ]
 
-    regex_formats.each do |regex|
-      match = url.match(regex)
-      if match
-        ats_identifier, job_id = match.captures
-        return [ats_identifier, job_id]
-      else
-        return nil
+        try_standard_formats(url, regex_formats)
       end
     end
   end

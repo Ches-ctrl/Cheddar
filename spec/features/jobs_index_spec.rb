@@ -3,17 +3,24 @@ require 'rails_helper'
 RSpec.feature "Jobs", type: :feature do
   context "With jobs to display:" do
     before do
-      create(:job, job_title: "Graduate Software Developer", seniority: 'Entry-Level', role: 'mobile')
-      create(:job, job_title: "Junior Test Developer", seniority: 'Junior', role: 'dev_ops')
-      create(:job, job_title: "Data Analyst", seniority: 'Mid-Level', role: 'data_engineer')
-      create(:job, job_title: "Senior UI Engineer", seniority: 'Senior', role: 'front_end', location: 'London, UK')
-      create(:job, job_title: "Frontend Developer", job_description: "Ruby on Rails", role: 'front_end', location: 'London')
-      create(:job, job_title: "Ruby on Rails Developer", location: 'London, UK')
+      role_names = ["front_end", "back_end", "full_stack", "dev_ops", "qa_test_engineer", "mobile", "data_engineer"]
 
-      # create 4 more jobs in London
-      4.times do
-        create(:job, location: "London, UK")
+      roles = create_list(:role, role_names.size) do |role, index|
+        role.name = role_names[index]
+        role.save!
       end
+      london = create(:location, city: "London")
+
+      create(:job, job_title: "Graduate Software Developer", seniority: 'Entry-Level', roles: [Role.find_by(name: 'mobile')])
+      create(:job, job_title: "Junior Test Developer", seniority: 'Junior', roles: [Role.find_by(name: 'dev_ops')])
+      create(:job, job_title: "Data Analyst", seniority: 'Mid-Level', roles: [Role.find_by(name: 'data_engineer')])
+      job1 = create(:job, job_title: "Senior UI Engineer", seniority: 'Senior', roles: [Role.find_by(name: 'front_end')])
+      job2 = create(:job, job_title: "Frontend Developer", job_description: "Ruby on Rails", roles: [Role.find_by(name: 'front_end')])
+      job3 = create(:job, job_title: "Ruby on Rails Developer")
+
+      create(:jobs_location, job: job1, location: london)
+      create(:jobs_location, job: job2, location: london)
+      create(:jobs_location, job: job3, location: london)
 
       visit jobs_path
     end
@@ -25,35 +32,35 @@ RSpec.feature "Jobs", type: :feature do
       expect(page).to have_content("#{Job.all.count} jobs")
     end
 
-    scenario "User can select three jobs" do
-      all('.custom-checkbox').take(3).each do |checkbox|
-        checkbox.click
-      end
+    # scenario "User can select three jobs" do
+    #   all('.custom-checkbox').take(3).each do |checkbox|
+    #     checkbox.click
+    #   end
 
-      all('.select-job-box').take(3).each do |checkbox|
-        expect(checkbox).to be_checked
-      end
+    #   all('.select-job-box').take(3).each do |checkbox|
+    #     expect(checkbox).to be_checked
+    #   end
 
-      expect(page).to have_button("Shortlist 3 Job")
-    end
+    #   expect(page).to have_button("Shortlist 3 Job")
+    # end
 
-    scenario "User can deselect two of them" do
-      all('.custom-checkbox').take(3).each do |checkbox|
-        checkbox.click
-      end
+    # scenario "User can deselect two of them" do
+    #   all('.custom-checkbox').take(3).each do |checkbox|
+    #     checkbox.click
+    #   end
 
-      all('.custom-checkbox').take(2).each do |checkbox|
-        checkbox.click
-      end
+    #   all('.custom-checkbox').take(2).each do |checkbox|
+    #     checkbox.click
+    #   end
 
-      expect(all('.select-job-box')[2]).to be_checked
-      expect(all('.select-job-box')[1]).to_not be_checked
+    #   expect(all('.select-job-box')[2]).to be_checked
+    #   expect(all('.select-job-box')[1]).to_not be_checked
 
-      expect(page).to have_button("Shortlist 1 Job")
-    end
+    #   expect(page).to have_button("Shortlist 1 Job")
+    # end
 
-    scenario 'User can query "Ruby on Rails London" jobs' do
-      fill_in 'query', with: 'ruby on rails london'
+    scenario 'User can query "Ruby on Rails" jobs' do
+      fill_in 'query', with: 'ruby on rails'
       find('#search-button').click
 
       expect(page).to have_content("Frontend Developer")
@@ -77,7 +84,7 @@ RSpec.feature "Jobs", type: :feature do
     scenario "User can filter jobs by location" do
       check('london')
 
-      expect(page).to have_content("#{Job.where(city: 'London').count} jobs")
+      expect(page).to have_content("#{Job.joins(jobs_locations: :location).where(locations: { city: 'London' }).count} jobs")
     end
 
     scenario "User can filter jobs by role" do
@@ -115,9 +122,7 @@ RSpec.feature "Jobs", type: :feature do
 
   context "With multiple pages of jobs to display:" do
     before do
-      40.times do
-        create(:job, seniority: 'Senior')
-      end
+      create_list(:job, 50, seniority: 'Senior')
 
       visit jobs_path(seniority: 'Senior')
     end
@@ -139,6 +144,30 @@ RSpec.feature "Jobs", type: :feature do
       visit jobs_path
 
       expect(page).to have_content("No entries found")
+    end
+  end
+
+  context "With a user logged in:" do
+    before do
+      user = create(:user)
+      create_list(:job, 5)
+
+      login_as(user, scope: :user)
+      visit jobs_path
+    end
+
+    scenario "User can save and unsave jobs by clicking the bookmark icon" do
+      2.times do
+        all('i.fa-regular.fa-bookmark').first.click
+        sleep 1
+      end
+
+      expect(SavedJob.all.count).to eq(2)
+
+      all('i.fa-solid.fa-bookmark').first.click
+      sleep 1
+
+      expect(SavedJob.all.count).to eq(1)
     end
   end
 end

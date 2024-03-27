@@ -1,4 +1,6 @@
 class SalaryStandardizer
+  include ActiveSupport::NumberHelper
+
   CONVERTER = {
     '$' => ['$', ' USD'],
     '£' => ['£', ' GBP'],
@@ -7,7 +9,7 @@ class SalaryStandardizer
     'can' => ['$', ' CAN'],
     'aud' => ['$', ' AUD'],
     'gbp' => ['£', ' GBP'],
-    'eur' => ['€', ' EUR'],
+    'eur' => ['€', ' EUR']
   }
 
   def initialize(job)
@@ -18,26 +20,38 @@ class SalaryStandardizer
     return unless @job.job_description
 
     # salary_regex recognises five or six-figure numbers with comma separators that
-    # either have a currency symbol or are followed by three-letter sequence e.g. GBP
-    salary_regex = Regexp.new('([$£€]\d{2,3},\d{3}(?: \b[a-z]{3}\b)?|[$£€]?\d{2,3},\d{3}(?: \b[a-z]{3}\b))(?=.{0,28}(equity))?','i')
+    # either have a currency symbol or are followed by currency abbreviation e.g. GBP
+    salary_regex = Regexp.new(
+      '([$£€] ?\d{2,3},\d{3}|\d{2,3},\d{3} ?(?:gbp|eur|usd|can|aud)|(?<=[$£€]\d{2},\d{3} - )\d{2,3},\d{3}|(?<=[$£€]\d{3},\d{3} - )\d{2,3},\d{3})', 'i'
+    )
     matches = @job.job_description.scan(salary_regex)
+    equity = @job.job_description.match?(/\d{2,3},\d{3}.{0,28}equity/i)
 
-    unless matches.empty?
-      matches.sort! { |a, b| a[0].gsub(/[^\d]/, '').to_i <=> b[0].gsub(/[^\d]/, '').to_i }
+    return if matches.empty?
 
-      salary_low = matches.first[0].gsub(/[^\d,]/, '')
-      salary_high = matches.last[0].gsub(/[^\d,]/, '')
-      currency_match = matches.last[0].match(/(?:\d{3} )(\b[a-z]{3}\b)?/i) || matches.last[0].match(/([£$€])/)
-      currency = currency_match ? CONVERTER[currency_match[1].downcase] : ['', '']
+    currency_match = matches.find do |expression|
+      expression[0].match?(/(gbp|eur|usd|can|aud)/i)
+    end&.first&.downcase&.gsub(/[^a-z]/, '') || matches[0][0].match(/([£$€])/)[1]
+    currency = currency_match.blank? ? ['', ''] : CONVERTER[currency_match]
 
-      if currency_match[1] == '$'
-        currency[1] = ' AUD' if @job.country == 'Australia'
-        currency[1] = ' CAN' if @job.country == 'Canada'
-      end
+    salaries = matches.map { |expression| expression[0].gsub(/[^\d]/, '').to_i }
 
-      salary = "#{currency[0]}#{(salary_low)} - #{currency[0]}#{(salary_high)}#{currency[1]}"
-      salary += " + equity" if matches.first[1] || matches.last[1]
-      @job.salary = salary
+    salary_low = salaries.min
+    salary_high = salaries.max
+
+    if currency_match == '$' && !@job.countries.empty?
+      currency[1] = ' AUD' if @job.countries.first.name == 'Australia'
+      currency[1] = ' CAN' if @job.countries.first.name == 'Canada'
     end
+
+    @job.salary = number_to_currency(salary_low, unit: currency[0], precision: 0) +
+                  (if salary_high.positive?
+                     " - #{number_to_currency(salary_high, unit: currency[0],
+                                                           precision: 0)}"
+                   else
+                     ""
+                   end) +
+                  currency[1] +
+                  (equity ? " + equity" : "")
   end
 end

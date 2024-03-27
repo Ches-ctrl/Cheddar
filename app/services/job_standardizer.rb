@@ -9,6 +9,6 @@ class JobStandardizer
     LocationStandardizer.new(@job).standardize
     DeadlineStandardizer.new(@job).standardize
     SalaryStandardizer.new(@job).standardize
-    @job.save
+    @job.save!
   end
 end
