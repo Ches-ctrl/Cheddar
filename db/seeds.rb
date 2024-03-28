@@ -37,8 +37,8 @@ until response do
   if response == 'run updater'
     Scraper::DevitJob.perform_later
     # ScrapeCompaniesFromList.new.call
-    # ScrapeTrueUpJob.perform_later
-    # JobsUpdateJob.perform_later
+    ScrapeTrueUpJob.perform_later
+    JobsUpdateJob.perform_later
     response = 1
   else
     response = response.to_i

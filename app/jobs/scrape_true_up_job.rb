@@ -62,7 +62,7 @@ class ScrapeTrueUpJob < ApplicationJob
   end
 
   def click_show_more(no_of_times)
-    puts "Getting as many results as possible (this may take a second)..."
+    puts "Getting as many results as possible (this will take a minute or two)..."
 
     no_of_times.times do |i|
       show_more_button&.click
@@ -73,6 +73,7 @@ class ScrapeTrueUpJob < ApplicationJob
   end
 
   def show_more_button
+    sleep 1
     return find('.ais-InfiniteHits-loadMore')
   rescue Capybara::ElementNotFound
     puts "Show more button not found"
@@ -83,7 +84,6 @@ class ScrapeTrueUpJob < ApplicationJob
     all('.card-body').each do |job_card|
       extract_url(job_card)
       extract_alt_id(job_card)
-
       @ats, @ats_identifier = JobUrl.new(@url).parse(@companies)
       next puts "couldn't parse #{@url}" unless @ats
 

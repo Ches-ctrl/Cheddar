@@ -1,4 +1,6 @@
 module AtsMethods
+  include ValidUrl
+
   def base_url_api
     this_ats.base_url_api
   end
@@ -30,7 +32,7 @@ module AtsMethods
     retries = 0
     begin
       response = http.request(request)
-    rescue Errno::ECONNRESET => e
+    rescue Errno::ECONNRESET, OpenSSL::SSL::SSLError => e
       retries += 1
       if retries <= max_retries
         sleep(2**retries) # Exponential backoff

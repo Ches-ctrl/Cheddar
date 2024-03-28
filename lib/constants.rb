@@ -32,6 +32,14 @@ module Constants
     /\bemea\b/
   ]
 
+  JOB_LOCATION_FILTER_WORDS = [
+    /(full.)?remote/i,
+    /hybrid/i,
+    /emea/i,
+    /location/i,
+    %r{\bn/?a\b}i
+  ]
+
   JOB_TITLE_KEYWORDS = [
     /front.?end/,
     /back.?end/,
