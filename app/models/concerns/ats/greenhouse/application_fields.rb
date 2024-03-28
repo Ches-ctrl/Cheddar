@@ -43,7 +43,7 @@ module Ats
           locators: 'button[aria-describedby="resume-allowable-file-types"',
           required: true
         },
-        cover_letter_: {
+        cover_letter: {
           interaction: :upload,
           locators: 'button[aria-describedby="cover_letter-allowable-file-types"]',
           required: true

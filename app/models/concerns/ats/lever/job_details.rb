@@ -37,7 +37,7 @@ module Ats
       end
 
       private_class_method def self.build_location_string(data)
-        data.dig('categories', 'allLocations').join(' & ')
+        data.dig('categories', 'allLocations').join(' && ')
       end
 
       private_class_method def self.update_job_details(job, data)

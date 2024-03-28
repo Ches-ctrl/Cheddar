@@ -1,34 +1,23 @@
 module Scrapers
   class DevitJobsService < ApplicationService
     def scrape_page
-      url = 'https://devitjobs.uk/job_feed.xml'
+      return "Unable to scrape DevIT: first create ATS" unless (ats = ApplicantTrackingSystem.find_by(name: 'Devit'))
+
+      url = ats.base_url_api
       jobs = page_doc(url).xpath('//jobs/job')
-      jobs.each do |job|
-        company = Company.find_or_create_by(company_name: job.css('company-name').text)
-
-        job_attributes = {
-          job_title: job.css('title').text,
-          company_id: company.id,
-          job_description: job.css('description').text,
-          job_posting_url: job.css('apply_url').text,
-          salary: job.css('salary').text,
-          date_created: job.css('pubdate').text
-          # more attributes can be added once confirmed
-        }
-
-        Job.create! job_attributes
+      jobs.each do |job_data|
+        # TODO: check for apply redirect to different ATS
+        ats_identifier = job_data.css('company').text.gsub(' ', '-').gsub(/[^A-Za-z\-]/, '')
+        company = Company.find_or_create_by(ats_identifier:) do |new_company|
+          new_company.company_name = job_data.css('company-name').text
+          new_company.applicant_tracking_system = ats
+        end
+        ats.find_or_create_job_by_data(company, job_data)
       end
 
       # NOTE: original implementation for technologies and locations were changed,
       # I am not sure how locations and technologies works now, will leave for Dan to fix.
       # technologies is currently part of the string in the description, some string manipulation is needed to get it.
-    end
-
-    def location(name)
-      city = name.split(',').last
-      geo = Geocoder.search(city)
-      country = Country.find_or_create_by(name: geo.first.country)
-      Location.find_or_create_by(city:, country_id: country.id)
     end
   end
 end

@@ -35,9 +35,10 @@ until response do
   puts "Please enter a valid integer between 1 and 500:"
   response = gets.chomp
   if response == 'run updater'
-    ScrapeCompaniesFromList.new.call
-    ScrapeTrueUpJob.perform_later
-    JobsUpdateJob.perform_later
+    Scraper::DevitJob.perform_later
+    # ScrapeCompaniesFromList.new.call
+    # ScrapeTrueUpJob.perform_later
+    # JobsUpdateJob.perform_later
     response = 1
   else
     response = response.to_i
@@ -133,6 +134,12 @@ ats_data = [
   { name: "Ambertrack",
     website_url: "https://ambertrack.com/",
   },
+  {
+    name: "Devit",
+    website_url: "https://devitjobs.uk/",
+    base_url_main: "https://devitjobs.uk/jobs/",
+    base_url_api: "https://devitjobs.uk/job_feed.xml"
+  }
 ]
 
 ats_data.each do |ats|

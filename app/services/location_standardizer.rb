@@ -10,15 +10,15 @@ class LocationStandardizer
 
     location = @job.non_geocoded_location_string
     hybrid = location.downcase.include?('hybrid') || @job.job_description.downcase.include?('hybrid')
-    # remote = location.downcase.match?(/(?<!\bor\s)remote/)
 
-    location_elements = location.split(/[,•&]/)
+    location_elements = location.split(/•|&&/)
                                 .map do |element|
-                                  element.gsub(%r{[.-;(/]}, '')
-                                         .gsub(%r{remote|hybrid|\bn/?a\b}i, '')
+                                  element.gsub(%r{[.\-;(/]}, '')
+                                         .gsub(%r{(?:full.)?remote|hybrid|\bn/?a\b}i, '')
                                          .strip
                                 end
 
+    # TODO: revise search to handle full addresses, not just city, country, postal_code
     # search for existing cities and countries in location elements:
     location_elements.each do |element|
       city_string, country_string, latitude, longitude = standardize_city_and_country(element)
@@ -36,12 +36,13 @@ class LocationStandardizer
     end
 
     @job.hybrid = hybrid
-    @job.remote_only = @job.locations.empty?
+    @job.remote_only ||= @job.locations.empty?
   end
 
   private
 
   def standardize_city_and_country(string)
+    string = eliminate_duplicate_names(string)
     ascii_string = convert_to_ascii(string)
     puts ascii_string
     api_url = "http://dev.virtualearth.net/REST/v1/Locations/#{ascii_string}?key=#{ENV.fetch('BING_API_KEY', nil)}"
@@ -63,7 +64,12 @@ class LocationStandardizer
     return [city, country, latitude, longitude]
   end
 
+  def eliminate_duplicate_names(string)
+    string.split(/\b ?/).uniq.join(' ').gsub(' , ', ',')
+  end
+
   def convert_to_ascii(string)
+    string = string.gsub('&', '')
     CGI.escape(string).gsub("+", "%20")
   end
 end

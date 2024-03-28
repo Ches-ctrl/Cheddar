@@ -50,33 +50,6 @@ module AtsMethods
     end
   end
 
-  def fetch_additional_fields(job)
-    ats = this_ats
-    ats.application_fields.get_application_criteria(job)
-    update_requirements(job)
-    p "job fields getting"
-    GetFormFieldsJob.perform_later(job)
-    JobStandardizer.new(job).standardize
-  end
-
-  def update_requirements(job)
-    job.no_of_questions = job.application_criteria.size
-
-    job.application_criteria.each do |field, criteria|
-      case field
-      when 'resume'
-        job.req_cv = criteria['required']
-        p "CV requirement: #{job.req_cv}"
-      when 'cover_letter'
-        job.req_cover_letter = criteria['required']
-        p "Cover letter requirement: #{job.req_cover_letter}"
-      when 'work_eligibility'
-        job.work_eligibility = criteria['required']
-        p "Work eligibility requirement: #{job.work_eligibility}"
-      end
-    end
-  end
-
   def convert_from_iso8601(iso8601_string)
     return Time.iso8601(iso8601_string)
   end
