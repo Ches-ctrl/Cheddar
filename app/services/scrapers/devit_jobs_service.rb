@@ -2,9 +2,10 @@ module Scrapers
   class DevitJobsService < ApplicationService
     def scrape_page
       url = 'https://devitjobs.uk/job_feed.xml'
+      # debugger
       jobs = page_doc(url).xpath('//jobs/job')
       jobs.each do |job|
-        company = Company.find_or_create_by(company_name: job.css('company-name').text)
+        company = Company.find_or_create_by(company_name: job.css('company').text)
 
         job_attributes = {
           job_title: job.css('title').text,
@@ -16,7 +17,7 @@ module Scrapers
           # more attributes can be added once confirmed
         }
 
-        Job.create! job_attributes
+        Job.create job_attributes
       end
 
       # NOTE: original implementation for technologies and locations were changed,
