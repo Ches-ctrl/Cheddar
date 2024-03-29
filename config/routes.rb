@@ -13,12 +13,17 @@ Rails.application.routes.draw do
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
+
+  get "up" => "rails/health#show", as: :rails_health_check
+  
+  # Pages
   root to: "pages#home"
   get 'landing', to: 'pages#landing', as: 'landing'
-  get 'profile', to: 'users#show', as: 'profile'
-  get 'how_it_works', to: 'pages#how_it_works', as: 'how_it_works'
   get 'about', to: 'pages#about', as: 'about'
-  get "up" => "rails/health#show", as: :rails_health_check
+  get 'how_it_works', to: 'pages#how_it_works', as: 'how_it_works'
+
+  # Users
+  get 'profile', to: 'users#show', as: 'profile'
 
   # Jobs
   # TODO: Delete duplication of routes
