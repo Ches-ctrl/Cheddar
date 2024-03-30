@@ -1,8 +1,6 @@
 module Ats
   module Devit
     module CompanyDetails
-
-      # TODO: abstract nearly all of this logic into a concern shared by all ATS modules
       def find_or_create_company(ats_identifier)
         company = Company.find_or_create_by(ats_identifier:) do |new_company|
           company_name, description = fetch_company_data(ats_identifier)
