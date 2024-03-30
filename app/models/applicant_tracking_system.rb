@@ -9,7 +9,9 @@ class ApplicantTrackingSystem < ApplicationRecord
   after_initialize :fetch_methods
 
   def fetch_methods
-    module_name = name&.gsub(/\W/, '')&.capitalize
+    return unless name
+
+    module_name = name.gsub(/\W/, '').capitalize
 
     modules = [
       "Ats::#{module_name}::ApplicationFields",
