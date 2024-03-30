@@ -1,9 +1,7 @@
 module Ats
   module Bamboohr
     module ParseUrl
-      extend AtsMethods
-
-      def self.call(url, _saved_ids = nil)
+      def parse_url(url, _saved_ids = nil)
         regex_formats = [
           %r{://(?<company_name>[\w%-]+)\.bamboohr\.com(?:/careers/(?<job_id>\d+))?},
           %r{://(?<company_name>[\w%-]+)\.bamboohr\.com(?:/jobs/view.php\?id=(?<job_id>\d+))?}

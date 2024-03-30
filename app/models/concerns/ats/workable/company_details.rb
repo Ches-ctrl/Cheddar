@@ -1,12 +1,12 @@
 module Ats
   module Workable
     module CompanyDetails
-      def self.find_or_create(_ats_identifier)
+      def find_or_create_company(_ats_identifier)
         # TODO: add method here
         return
       end
 
-      def self.get_company_details(url, ats_system, ats_identifier)
+      def get_company_details(url, ats_system, ats_identifier)
         p "Getting workable company details - #{url}"
 
         # TODO: Clarify whether to use company_name as the uniqueness criterion for companies
@@ -37,7 +37,7 @@ module Ats
         company
       end
 
-      def self.fetch_company_data(ats_system, ats_identifier)
+      def fetch_company_data(ats_system, ats_identifier)
         company_api_url = "#{ats_system.base_url_api}#{ats_identifier}"
         uri = URI(company_api_url)
         response = Net::HTTP.get(uri)
@@ -45,7 +45,7 @@ module Ats
         [data['name'], data['url'], data['details']['overview']['description']]
       end
 
-      def self.check_for_details(company, ats_system, ats_identifier, description)
+      def check_for_details(company, ats_system, ats_identifier, description)
         if company.description.nil?
           p "Missing description for #{company.company_name}"
           company.update(description:)
@@ -72,7 +72,7 @@ module Ats
         company.update(url_ats_main: "#{ats_system.base_url_main}#{ats_identifier}")
       end
 
-      def self.check_for_careers_url_redirect(company)
+      def check_for_careers_url_redirect(company)
       end
     end
   end

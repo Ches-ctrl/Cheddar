@@ -1,9 +1,7 @@
 module Ats
   module Workable
     module ParseUrl
-      extend AtsMethods
-
-      def self.call(url, _saved_ids = nil)
+      def parse_url(url, _saved_ids = nil)
         regex_formats = [
           %r{https://apply\.workable\.com/([^/]+)(?:/j/([^/]+))?},
           %r{https://apply\.workable\.com/api/v1/accounts/([^/]+)(?:/jobs/([^/?]+)(?:\?.*)?)?}

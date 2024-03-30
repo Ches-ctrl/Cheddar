@@ -36,7 +36,7 @@ until response do
   response = gets.chomp
   if response == 'run updater'
     Scraper::DevitJob.perform_later
-    # ScrapeCompaniesFromList.new.call
+    # ImportCompaniesFromList.new.call
     ScrapeTrueUpJob.perform_later
     JobsUpdateJob.perform_later
     response = 1

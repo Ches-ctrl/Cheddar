@@ -1,12 +1,12 @@
 module Ats
   module Bamboohr
     module CompanyDetails
-      def self.find_or_create(_ats_identifier)
+      def find_or_create_company(_ats_identifier)
         # TODO: add method here
         return
       end
 
-      def self.get_company_details(url, ats_system, ats_identifier)
+      def get_company_details(url, ats_system, ats_identifier)
         p "Getting Bamboohr company details - #{url}"
 
         company_name = ats_identifier.capitalize
@@ -38,7 +38,7 @@ module Ats
         company
       end
 
-      def self.replace_ats_identifier(ats_system, ats_identifier)
+      def replace_ats_identifier(ats_system, ats_identifier)
         api_url = ats_system.base_url_api
         main_url = ats_system.base_url_main
 
@@ -47,7 +47,7 @@ module Ats
         [api_url, main_url]
       end
 
-      def self.fetch_total_live(company, _ats_identifier)
+      def fetch_total_live(company, _ats_identifier)
         company_api_url = company.url_ats_api.to_s
         p "Company API URL - #{company_api_url}"
         uri = URI(company_api_url)

@@ -34,7 +34,7 @@ module ValidUrl
     return nil
   end
 
-  def valid?(url)
+  def url_valid?(url)
     response = get_response(url)
     !response.is_a?(Net::HTTPNotFound)
   end

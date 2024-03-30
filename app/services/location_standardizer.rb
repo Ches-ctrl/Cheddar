@@ -92,6 +92,7 @@ class LocationStandardizer
     end
 
     return [] if data.dig('resourceSets', 0, 'estimatedTotal').zero?
+    return [] if data.dig('resourceSets', 0, 'resources', 0, 'confidence') == 'Low'
 
     city = data.dig('resourceSets', 0, 'resources', 0, 'address', 'locality')
     country = data.dig('resourceSets', 0, 'resources', 0, 'address', 'countryRegion')

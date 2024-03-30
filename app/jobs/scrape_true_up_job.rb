@@ -112,7 +112,7 @@ class ScrapeTrueUpJob < ApplicationJob
     return unless @ats.name == 'greenhouse'
 
     puts "\ntrying #{@alt_id}..."
-    return @alt_id if already_listed?(@alt_id) || valid?("https://boards-api.greenhouse.io/v1/boards/#{@alt_id}/")
+    return @alt_id if already_listed?(@alt_id) || url_valid?("https://boards-api.greenhouse.io/v1/boards/#{@alt_id}/")
 
     puts "it didn't work!"
     return

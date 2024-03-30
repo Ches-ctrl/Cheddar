@@ -1,4 +1,4 @@
-class ScrapeCompaniesFromList
+class ImportCompaniesFromList
   include CompanyCsv
 
   def initialize
