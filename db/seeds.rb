@@ -55,7 +55,6 @@ puts "-------------------------------------"
 User.destroy_all
 Job.destroy_all
 Company.destroy_all
-# AtsFormat.destroy_all
 ApplicantTrackingSystem.destroy_all
 Location.destroy_all
 Country.destroy_all
