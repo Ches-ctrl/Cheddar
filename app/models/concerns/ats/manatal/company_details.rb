@@ -1,12 +1,12 @@
 module Ats
   module Manatal
     module CompanyDetails
-      def self.find_or_create(_ats_identifier)
+      def find_or_create_company(_ats_identifier)
         # TODO: add method here
         return
       end
 
-      def self.get_company_details(url, ats_system, ats_identifier)
+      def get_company_details(url, ats_system, ats_identifier)
         p "Getting Manatal company details - #{url}"
 
         # TODO: Handle logos
@@ -41,14 +41,14 @@ module Ats
         company
       end
 
-      def self.fetch_company_data(ats_system, ats_identifier)
+      def fetch_company_data(ats_system, ats_identifier)
         company_api_url = "#{ats_system.base_url_api}#{ats_identifier}/"
         uri = URI(company_api_url)
         response = Net::HTTP.get(uri)
         JSON.parse(response)
       end
 
-      def self.fetch_total_live(ats_system, ats_identifier)
+      def fetch_total_live(ats_system, ats_identifier)
         company_api_url = "#{ats_system.base_url_api}#{ats_identifier}/jobs/"
         uri = URI(company_api_url)
         response = Net::HTTP.get(uri)

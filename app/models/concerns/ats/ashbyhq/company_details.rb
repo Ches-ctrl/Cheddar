@@ -1,12 +1,12 @@
 module Ats
   module Ashbyhq
     module CompanyDetails
-      def self.find_or_create(_ats_identifier)
+      def find_or_create_company(_ats_identifier)
         # TODO: add method here
         return
       end
 
-      def self.get_company_details(url, ats_system, ats_identifier)
+      def get_company_details(url, ats_system, ats_identifier)
         p "Getting AshbyHQ company details - #{url}"
 
         company_name = ats_identifier.humanize

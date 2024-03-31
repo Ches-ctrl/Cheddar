@@ -1,5 +1,5 @@
 module Ats
-  module Lever
+  module Devit
     module CompanyDetails
       def find_or_create_company(ats_identifier)
         company = Company.find_or_create_by(ats_identifier:) do |new_company|
@@ -9,8 +9,8 @@ module Ats
           new_company.company_name = company_name
           new_company.description = description
           new_company.applicant_tracking_system = self
-          new_company.url_ats_api = "#{base_url_api}#{ats_identifier}/?mode=json"
-          new_company.url_ats_main = "#{base_url_main}#{ats_identifier}"
+          new_company.url_ats_api = ''
+          new_company.url_ats_main = ''
           puts "Created company - #{new_company.company_name}"
         end
 
@@ -18,20 +18,10 @@ module Ats
       end
 
       def fetch_company_data(ats_identifier)
-        company_api_url = "#{base_url_api}#{ats_identifier}/?mode=json"
-        return unless url_valid?(company_api_url)
-
+        company_api_url = "#{base_url_api}#{ats_identifier}"
         response = get(company_api_url)
         data = JSON.parse(response)
-        company_name = fetch_company_name(ats_identifier)
-        [company_name, data.dig(0, 'additionalPlain')]
-      end
-
-      def fetch_company_name(ats_identifier)
-        url = "https://autocomplete.clearbit.com/v1/companies/suggest?query=#{ats_identifier}"
-        response = get(url)
-        data = JSON.parse(response)
-        return data.dig(0, 'name') unless data.blank?
+        [data['name'], data['content']]
       end
     end
   end

@@ -3,7 +3,7 @@ module Ats
     module ApplicationFields
       # Question - scrape all fields or add standard set each time?
 
-      def self.get_application_criteria(job)
+      def get_application_criteria(job)
         job.application_criteria = CORE_FIELDS
         job.save
       end
@@ -43,7 +43,7 @@ module Ats
           locators: 'button[aria-describedby="resume-allowable-file-types"',
           required: true
         },
-        cover_letter_: {
+        cover_letter: {
           interaction: :upload,
           locators: 'button[aria-describedby="cover_letter-allowable-file-types"]',
           required: true
