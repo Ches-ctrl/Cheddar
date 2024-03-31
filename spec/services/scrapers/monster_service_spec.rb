@@ -1,4 +1,4 @@
-RSpec.describe Scrapers::MonsterService do
+RSpec.describe Scraper::MonsterService do
   let!(:company1) { create(:company) }
   let(:job1) do
     {
