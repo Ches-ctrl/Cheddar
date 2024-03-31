@@ -10,14 +10,11 @@ class UsersController < ApplicationController
 
     @applications_this_month = @job_applications.where(created_at: date_range)
 
-    # Create a hash where keys are the days of the month and the values indicate whether an application was submitted
+    # Creates a hash where keys are the days of the month and the values indicate whether an application was submitted
     @calendar_days = date_range.to_h { |date| [date, @applications_this_month.any? { |app| app.created_at == date }] }
 
-    p "The calendar days are #{@calendar_days}"
-    p "--------------"
-    p "--------------"
-
-    p "The applications this month are #{@applications_this_month}"
+    # p "The calendar days are #{@calendar_days}"
+    # p "The applications this month are #{@applications_this_month}"
   end
 
   def fetch_template
@@ -38,22 +35,3 @@ class UsersController < ApplicationController
     end
   end
 end
-
-# user = User.find_by(first_name: 'Charlotte')
-
-# # Assuming you have a Job record, find or create the job
-# # Here, I'm just finding the first Job record for the sake of example
-# job = Job.first
-
-# # Create the JobApplication for the user, with the job on March 7th
-# if user && job
-#   JobApplication.create(
-#     user_id: user.id,
-#     job_id: job.id,
-#     created_at: DateTime.new(2024, 3, 6),
-#     updated_at: DateTime.new(2024, 3, 6),
-#     status: 'applied' # or any default status you have
-#   )
-# else
-#   puts "User or Job not found."
-# end
