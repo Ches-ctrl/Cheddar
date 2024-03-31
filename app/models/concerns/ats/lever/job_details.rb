@@ -1,34 +1,31 @@
 module Ats
   module Lever
     module JobDetails
-      extend AtsMethods
-      extend JobDetailsMethods
-
       # TODO: Check if job already exists in database
       # TODO: Update job to handle workplace (hybrid)
       # TODO: Update description to handle html and non-html, add labelling for this characteristic
 
-      def self.fetch_title_and_location(job_data)
+      def fetch_title_and_location(job_data)
         job_title = job_data['text']
         job_location = build_location_string(job_data)
         [job_title, job_location]
       end
 
-      def self.fetch_url(job_data)
+      def fetch_url(job_data)
         job_data['hostedUrl']
       end
 
       private
 
-      private_class_method def self.fetch_id(job_data)
+      def fetch_id(job_data)
         job_data['id']
       end
 
-      private_class_method def self.job_url_api(base_url, company_id, job_id)
+      def job_url_api(base_url, company_id, job_id)
         "#{base_url}#{company_id}/#{job_id}?mode=json"
       end
 
-      private_class_method def self.build_description(data)
+      def build_description(data)
         data['descriptionBodyPlain'] + data['lists'].inject('') do |string, field|
                                          header = CGI.unescapeHTML(field['text'])
                                          body = CGI.unescapeHTML(field['content'])
@@ -36,11 +33,11 @@ module Ats
                                        end
       end
 
-      private_class_method def self.build_location_string(data)
-        data.dig('categories', 'allLocations').join(' & ')
+      def build_location_string(data)
+        data.dig('categories', 'allLocations').join(' && ')
       end
 
-      private_class_method def self.update_job_details(job, data)
+      def update_job_details(job, data)
         job.job_posting_url = data['hostedUrl']
         job.job_title = data['text']
         job.job_description = build_description(data)
@@ -51,7 +48,7 @@ module Ats
         fetch_additional_fields(job)
         puts "Created new job - #{job.job_title} with #{job.company.company_name}"
       end
-      # private_class_method def self.update_job_details(job, data)
+      # def update_job_details(job, data)
       #   # TODO: add logic for office
 
       #   timestamp = data['createdAt'] / 1000

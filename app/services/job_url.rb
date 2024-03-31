@@ -10,7 +10,7 @@ class JobUrl
   def parse(list = nil)
     return unless (ats = fetch_ats)
 
-    ats_identifier, job_id = list ? ats.parse_url.call(@string, list[ats.name]) : ats.parse_url.call(@string)
+    ats_identifier, job_id = list ? ats.parse_url(@string, list[ats.name]) : ats.parse_url(@string)
     [ats, ats_identifier, job_id]
   end
 

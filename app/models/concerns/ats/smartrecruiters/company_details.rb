@@ -1,12 +1,12 @@
 module Ats
   module Smartrecruiters
     module CompanyDetails
-      def self.find_or_create(_ats_identifier)
+      def find_or_create_company(_ats_identifier)
         # TODO: add method here
         return
       end
 
-      def self.get_company_details(url, ats_system, ats_identifier)
+      def get_company_details(url, ats_system, ats_identifier)
         p "Getting smartrecruiters company details - #{url}"
 
         # TODO: Update to scrape company details given lack of API endpoint for company information
@@ -40,7 +40,7 @@ module Ats
         company
       end
 
-      def self.fetch_total_live(ats_system, ats_identifier)
+      def fetch_total_live(ats_system, ats_identifier)
         company_api_url = "#{ats_system.base_url_api}#{ats_identifier}/postings"
         uri = URI(company_api_url)
         response = Net::HTTP.get(uri)

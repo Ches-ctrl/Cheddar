@@ -1,9 +1,7 @@
 module Ats
   module Manatal
     module ParseUrl
-      extend AtsMethods
-
-      def self.call(url, _saved_ids = nil)
+      def parse_url(url, _saved_ids = nil)
         regex_formats = [
           %r{https://www\.careers-page\.com/(?<company_name>[^/]+)(?:/job/(?<job_id>[^/]+))?}
         ]
