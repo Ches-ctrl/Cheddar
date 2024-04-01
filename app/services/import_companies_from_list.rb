@@ -3,7 +3,7 @@ class ImportCompaniesFromList
 
   def initialize
     puts "Importing companies from list..."
-    @urls = load_from_csv('url_list')
+    @urls = load_from_csv('company_url_list')
     @companies = ats_list
     @no_of_companies = Company.count
     @no_of_jobs = Job.count
