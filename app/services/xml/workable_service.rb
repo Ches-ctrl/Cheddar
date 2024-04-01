@@ -5,6 +5,8 @@ module Xml
 
       url = ats.url_xml
       jobs = page_doc(url).xpath('//source/job')
+      
+      # NB. Doesn't work yet
 
       jobs.each do |job_data|
         ats_identifier = job_data.css('company').text.gsub(' ', '-').gsub(/[^A-Za-z\-]/, '')
