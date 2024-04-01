@@ -174,7 +174,7 @@ puts "Created #{Role.count} roles"
 
 puts "-------------------------------------"
 
-puts "Creating new jobs..."
+puts "Creating new jobs (from GH API)..."
 
 defunct_urls = []
 
@@ -186,7 +186,6 @@ jobs_to_seed = relevant_job_urls.shuffle.take(response)
 jobs_to_seed.each do |url|
   CreateJobByUrl.new(url).call
 end
-
 
 puts "Created #{Job.count} jobs..."
 
