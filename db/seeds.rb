@@ -32,88 +32,31 @@ Role.destroy_all
 
 puts "Creating new Applicant Tracking Systems..."
 
-ats_data = [
-  { name: "Greenhouse",
-    website_url: "https://greenhouse.io/",
-    base_url_main: "https://boards.greenhouse.io/",
-    base_url_api: "https://boards-api.greenhouse.io/v1/boards/",
-  },
-  { name: "Workable",
-    website_url: "https://workable.com/",
-    all_jobs_url: "https://jobs.workable.com/",
-    base_url_main: "https://apply.workable.com/",
-    base_url_api: "https://apply.workable.com/api/v1/accounts/",
-  },
-  { name: "Lever",
-    website_url: "https://lever.co/",
-    base_url_main: "https://jobs.lever.co/",
-    base_url_api: "https://api.lever.co/v0/postings/",
-  },
-  { name: "Smartrecruiters",
-    website_url: "https://smartrecruiters.com/",
-    all_jobs_url: "https://jobs.smartrecruiters.com/",
-    base_url_main: "https://jobs.smartrecruiters.com/",
-    base_url_api: "https://api.smartrecruiters.com/v1/companies/",
-  },
-  { name: "Ashbyhq",
-    website_url: "https://ashbyhq.com/",
-    base_url_main: "https://jobs.ashbyhq.com/",
-    base_url_api: "https://api.ashbyhq.com/posting-api/job-board/",
-  },
-  { name: "Pinpointhq",
-    website_url: "https://www.pinpointhq.com/",
-    base_url_main: "https://XXX.pinpointhq.com/en/postings/",
-    base_url_api: "https://XXX.pinpointhq.com/",
-  },
-  { name: "Bamboohr",
-    website_url: "https://www.bamboohr.com/",
-    base_url_main: "https://XXX.bamboohr.com/careers/",
-    base_url_api: "https://XXX.bamboohr.com/careers/list",
-  },
-  { name: "Recruitee",
-    website_url: "https://recruitee.com/",
-    base_url_main: "https://XXX.recruitee.com/",
-    base_url_api: "https://XXX.recruitee.com/api/offers/",
-  },
-  { name: "Manatal",
-    website_url: "https://www.manatal.com/",
-    base_url_main: "https://www.careers-page.com/",
-    base_url_api: "https://api.manatal.com/open/v3/career-page/",
-  },
-  { name: "Workday",
-    website_url: "https://www.workday.com/",
-    base_url_main: "https://XXX.wd1.myworkdayjobs.com/en-US/GTI/",
-  },
-  { name: "Tal.net",
-    website_url: "https://tal.net/",
-    all_jobs_url: "https://XXX.tal.net/candidate/",
-  },
-  { name: "TotalJobs",
-    website_url: "https://www.totaljobs.com/",
-  },
-  { name: "Simplyhired",
-    website_url: "https://www.simplyhired.co.uk/",
-  },
-  { name: "Jobvite",
-    website_url: "https://jobvite.com/",
-  },
-  { name: "Taleo",
-    website_url: "https://taleo.com/",
-  },
-  { name: "Ambertrack",
-    website_url: "https://ambertrack.com/",
-  },
-  {
-    name: "Devit",
-    website_url: "https://devitjobs.uk/",
-    base_url_main: "https://devitjobs.uk/jobs/",
-    base_url_api: "https://devitjobs.uk/job_feed.xml"
-  }
-]
+ats_csv = 'storage/csv/ats_systems.csv'
 
-ats_data.each do |ats|
-  ApplicantTrackingSystem.create(ats)
-  puts "Created ATS - #{ApplicantTrackingSystem.last.name}"
+CSV.foreach(ats_csv, headers: true) do |row|
+  ats_name = row["ats_name"]
+  ats = find_or_create_applicant_tracking_system(ats_name)
+
+  attributes_to_update = {
+    url_identifier: row["url_identifier"],
+    website_url: row["website_url"],
+    url_linkedin: row["url_linkedin"],
+    base_url_main: row["base_url_main"],
+    base_url_api: row["base_url_api"],
+    url_all_jobs: row["url_all_jobs"],
+    url_xml: row["url_xml"],
+    url_rss: row["url_rss"],
+    login: row["login"],
+  }
+
+  ats.update(attributes_to_update)
+
+  if ats
+    puts "Created ATS - #{ApplicantTrackingSystem.last.name}"
+  else
+    p "Error creating ATS: #{ats_name}"
+  end
 end
 
 puts "Created #{ApplicantTrackingSystem.count} ATSs"
@@ -125,25 +68,25 @@ greenhouse_companies = [
   "ably30",
   "11fs",
   "clearscoretechnologylimited",
-  "codepath",
-  "copperco",
-  "coreweave",
-  "cultureamp",
-  "deliveroo",
-  "doctolib",
-  "epicgames",
-  "figma",
-  "forter",
-  "geniussports",
-  "getir",
-  "gomotive",
-  "grammarly",
-  "intercom",
-  "janestreet",
-  "knowde",
-  "narvar",
-  "niantic",
-  "opendoor"
+  # "codepath",
+  # "copperco",
+  # "coreweave",
+  # "cultureamp",
+  # "deliveroo",
+  # "doctolib",
+  # "epicgames",
+  # "figma",
+  # "forter",
+  # "geniussports",
+  # "getir",
+  # "gomotive",
+  # "grammarly",
+  # "intercom",
+  # "janestreet",
+  # "knowde",
+  # "narvar",
+  # "niantic",
+  # "opendoor"
 ]
 
 # NB. Doesn't do anything at the moment - needs linking up

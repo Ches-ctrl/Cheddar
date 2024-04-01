@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_26_090342) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_01_200701) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,7 +49,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_26_090342) do
     t.string "website_url"
     t.string "base_url_main"
     t.string "base_url_api"
-    t.string "all_jobs_url"
+    t.string "url_identifier"
+    t.string "url_linkedin"
+    t.string "url_all_jobs"
+    t.string "url_xml"
+    t.string "url_rss"
+    t.boolean "login"
   end
 
   create_table "application_responses", force: :cascade do |t|
