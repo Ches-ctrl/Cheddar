@@ -1,5 +1,5 @@
 module Xml
-  class Workable < ApplicationJob
+  class WorkableJob < ApplicationJob
     queue_as :default
 
     def perform
