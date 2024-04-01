@@ -7,6 +7,7 @@ until response do
   if response == 'run updater'
     Scraper::DevitJob.perform_later
     # ImportCompaniesFromList.new.call
+    Xml::WorkableJob.perform_later
     ScrapeTrueUpJob.perform_later
     JobsUpdateJob.perform_later
     response = 1
