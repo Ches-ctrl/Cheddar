@@ -26,8 +26,6 @@ Rails.application.routes.draw do
   get 'profile', to: 'users#show', as: 'profile'
 
   # Jobs
-  # TODO: Delete duplication of routes
-  get '/jobs/add', to: 'jobs#add'
   get '/jobs/add_job', to: 'jobs#add_job'
 
   # Chatbot

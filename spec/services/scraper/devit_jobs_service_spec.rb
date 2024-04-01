@@ -1,4 +1,4 @@
-RSpec.describe Scrapers::DevitJobsService do
+RSpec.describe Scraper::DevitJobsService do
   # let!(:kliq){ create(:company, company_name: 'Kliq Inc') }
 
   # let(:xml_response) do

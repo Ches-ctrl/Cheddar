@@ -1,4 +1,4 @@
-module Scrapers
+module Scraper
   class DevitJobsService < ApplicationService
     def scrape_page
       return "Unable to scrape DevIT: first create ATS" unless (ats = ApplicantTrackingSystem.find_by(name: 'Devit'))

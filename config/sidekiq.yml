@@ -23,4 +23,4 @@
       cron: '0 2 * * *' # Runs once per day (at 2 am)
       class: ScrapeTrueUpJob
       queue: updates
-# Add devit jobs and other scrapers
+# Add devit jobs and other scraper
