@@ -19,49 +19,62 @@
                       style: "width: 65px; height: 65px; border-radius: 10px;",
                       class: "company-logo-img") %>
       </div>
-      <div class="d-flex align-items-center justify-content-between pb-4">
-        <h1 class="mb-0"><%= @company.company_name %></h1>
-        <ul class="mb-0">
-          <%# TODO: Add favicons for these %>
-          <% if @company.company_website_url.present? %>
-            <li><%= link_to "Website", @company.company_website_url %></li>
-          <% end %>
-          <% if @company.url_linkedin.present? %>
-            <li><%= link_to "LinkedIn", @company.url_linkedin %></li>
-          <% end %>
-          <% if @company.url_careers.present? %>
-            <li><%= link_to "Careers Site", @company.url_careers %></li>
-          <% end %>
-          <% if @company.url_ats_main.present? %>
-            <li><%= link_to "ATS Site", @company.url_ats_main %></li>
-          <% end %>
-        </ul>
-      </div>
-      <%# TODO: Setup Glassdoor & Trustpilot APIs %>
-      <div class="company-description">
-        <%= @company_description %>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          <h3>Industry</h3>
-          <p><%= @company.industry %></p>
-          <p><%= @company.industry_subcategory %></p>
-          <h3>Company size</h3>
-          <h3>Specialities</h3>
-        </div>
-        <div class="col-8">
-          <h2>Current Job Openings</h2>
-          <p>Total live jobs: <%= @jobs.count %></p>
-          <ul>
-            <% @jobs.each do |job| %>
-              <%= link_to job_path(job), target: "_blank" do %>
-                <li><%= job.job_title %></li>
+      <div class="company-main-content">
+        <div class="d-flex align-items-center justify-content-between pb-4">
+          <div>
+            <h1 class="mb-0"><%= @company.company_name %></h1>
+            <%# Add a tagline/short summary of info under company name? %>
+          </div>
+          <ul class="mb-0">
+            <% if @company.company_website_url.present? %>
+              <%= link_to @company.company_website_url do %>
+                <li class="company-link-btn">Website <i class="fa-solid fa-arrow-up-right-from-square"></i></li>
+              <% end %>
+            <% end %>
+            <% if @company.url_linkedin.present? %>
+              <%= link_to @company.url_linkedin do %>
+                <li class="company-link-btn">LinkedIn <i class="fa-solid fa-arrow-up-right-from-square"></i></li>
+              <% end %>
+            <% end %>
+            <% if @company.url_careers.present? %>
+              <%= link_to @company.url_careers do %>
+                <li class="company-link-btn">Careers Site <i class="fa-solid fa-arrow-up-right-from-square"></i></li>
+              <% end %>
+            <% end %>
+            <% if @company.url_ats_main.present? %>
+              <%= link_to @company.url_ats_main do %>
+                <li class="company-link-btn">ATS Site <i class="fa-solid fa-arrow-up-right-from-square"></i></li>
               <% end %>
             <% end %>
           </ul>
         </div>
+        <%# TODO: Setup Glassdoor & Trustpilot APIs %>
+        <div class="company-description">
+          <%= @company_description %>
+        </div>
+        <div class="row">
+          <div class="col-4 company-left-info">
+            <h3>Industry</h3>
+            <p><%= @company.industry %>, <%= @company.industry_subcategory %></p>
+            <h3>Company size</h3>
+            <h3>Specialities</h3>
+          </div>
+          <div class="col-8">
+            <h3>Current Job Openings</h3>
+            <p>Total live jobs: <%= @jobs.count %></p>
+            <% @jobs.each do |job| %>
+              <%= link_to job_path(job), target: "_blank" do %>
+                <div class="company-page-job-card">
+                  <h6><%= job.job_title %></h6>
+                  <p><i class="fa-solid fa-location-dot"></i><%= job.non_geocoded_location_string %></p>
+                  <p><%= job.seniority %></p>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <%# TODO: Add gallery of images like Airbnb %>
       </div>
-      <%# TODO: Add gallery of images like Airbnb %>
     </div>
   </div>
 </div>
