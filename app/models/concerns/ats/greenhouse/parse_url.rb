@@ -1,12 +1,9 @@
 module Ats
   module Greenhouse
     module ParseUrl
-      extend ValidUrl
-      extend AtsMethods
       extend CompanyCsv
 
-      # TODO: Possible to combine this for all ATS systems and make it more DRY?
-      def self.call(url, saved_ids = nil)
+      def parse_url(url, saved_ids = nil)
         # Doesn't yet handle urls without a job_id due to conflict with embedded urls
         regex_formats = [
           %r{https://boards\.?[a-zA-Z]*\.greenhouse\.io/(?!embed)([^/]+)(?:/jobs/(\d+))?},
@@ -32,7 +29,7 @@ module Ats
           return [ats_identifier, job_id] if confirm(ats_identifier, saved_ids)
         end
 
-        return nil unless valid?(url)
+        return nil unless url_valid?(url)
 
         embedded_formats.each do |regex|
           next unless (match = url.match(regex))
@@ -47,20 +44,20 @@ module Ats
 
       private
 
-      private_class_method def self.confirm(potential_identifier, saved_ids)
+      def confirm(potential_identifier, saved_ids)
         # TODO: In production, Company.all and not ats_list will be single source of truth.
-        saved_ids ||= ats_list[this_ats.name]
+        saved_ids ||= ats_list[name]
         return true if saved_ids.include?(potential_identifier)
 
         puts "\nTesting the ats_identifier: #{potential_identifier}"
         url = "#{base_url_api}#{potential_identifier}/"
-        return potential_identifier if valid?(url)
+        return potential_identifier if url_valid?(url)
 
         puts "the identifier was invalid."
         return
       end
 
-      private_class_method def self.scrape_embed_page(url)
+      def scrape_embed_page(url)
         guesses = []
         embed_page = URI.parse(url).open
         xml_data = Nokogiri::HTML.parse(embed_page)

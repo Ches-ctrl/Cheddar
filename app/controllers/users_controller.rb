@@ -4,7 +4,17 @@ require 'yomu'
 class UsersController < ApplicationController
   def show
     @user = current_user
-    @job_applications = JobApplication.where(user_id: current_user)
+    @job_applications = JobApplication.includes(job: [:company]).where(user_id: @user.id)
+
+    date_range = Date.today.beginning_of_month..Date.today.end_of_month
+
+    @applications_this_month = @job_applications.where(created_at: date_range)
+
+    # Creates a hash where keys are the days of the month and the values indicate whether an application was submitted
+    @calendar_days = date_range.to_h { |date| [date, @applications_this_month.any? { |app| app.created_at == date }] }
+
+    # p "The calendar days are #{@calendar_days}"
+    # p "The applications this month are #{@applications_this_month}"
   end
 
   def fetch_template

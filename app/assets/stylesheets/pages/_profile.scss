@@ -1,3 +1,37 @@
+.col-header {
+  display: inline-block;
+  width: calc(70% / 7);
+  text-align: center;
+}
+.row {
+  display: flex;
+}
+
+.col {
+  width: calc(100% / 7);
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 10px;
+}
+
+.has-application {
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white;
+}
+
+.activity-summary-v2 .activity-calendar .activity-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 1;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 100%;
+  -webkit-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+}
+
+
 #profile-main-section {
   display: flex;
   margin: 32px 0;

@@ -38,10 +38,6 @@ class JobsController < ApplicationController
     redirect_to new_job_application_path
   end
 
-  def add
-    @job = Job.new
-  end
-
   def add_job
     @job = Job.new
   end

@@ -16,6 +16,7 @@ class GetFormFieldsJob < ApplicationJob
 
   def perform(job)
     return if job.api_url.include?('lever') # Not yet able to handle Lever jobs
+    return if job.api_url.include?('devit') # Not yet able to handle DevIT jobs
 
     Capybara.current_driver = :selenium_chrome_headless
 

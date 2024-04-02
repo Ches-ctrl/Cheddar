@@ -1,9 +1,7 @@
 module Ats
   module Ashbyhq
     module ParseUrl
-      extend AtsMethods
-
-      def self.call(url, _saved_ids = nil)
+      def parse_url(url, _saved_ids = nil)
         regex_formats = [
           %r{https://jobs\.ashbyhq\.com/(?<company_name>[^/]+)(?:/(?<job_id>[^/]+))?}
         ]
