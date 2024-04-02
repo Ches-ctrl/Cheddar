@@ -31,3 +31,26 @@
 .company-main-content {
   margin-left: 15px;
 }
+
+.company-page-job-card {
+  width: 60%;
+  h6 {
+    color: black;
+    font-size: 16px;
+  }
+
+  .location {
+    color: gray;
+    font-size: 12px;
+  }
+
+  .seniority {
+    font-size: 14px;
+    border-radius: 6px;
+    background: #ECFFEE;
+    color: #00B112;
+    padding: 2px 12px;
+    font-weight: 400;
+    height: 26px;
+  }
+}

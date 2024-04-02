@@ -63,13 +63,17 @@
             <h3>Current Job Openings</h3>
             <p>Total live jobs: <%= @jobs.count %></p>
             <% @jobs.each do |job| %>
-              <%= link_to job_path(job), target: "_blank" do %>
-                <div class="company-page-job-card">
-                  <h6><%= job.job_title %></h6>
-                  <p><i class="fa-solid fa-location-dot"></i><%= job.non_geocoded_location_string %></p>
-                  <p><%= job.seniority %></p>
-                </div>
-              <% end %>
+              <div class="company-page-job-card">
+                <%= link_to job_path(job), target: "_blank" do %>
+                  <div class="d-flex justify-content-between">
+                    <div>
+                      <h6><%= job.job_title %></h6>
+                      <p class="location"><i class="fa-solid fa-location-dot"></i> <%= job.non_geocoded_location_string %></p>
+                    </div>
+                    <p class="seniority"><%= job.seniority %></p>
+                  </div>
+                <% end %>
+              </div>
             <% end %>
           </div>
         </div>
