@@ -23,4 +23,11 @@
       cron: '0 2 * * *' # Runs once per day (at 2 am)
       class: ScrapeTrueUpJob
       queue: updates
-# Add devit jobs and other scraper
+    # devit_scraper:
+    #   cron: '0 1 * * *' # Runs once per day (at 1 am)
+    #   class: Scraper::DevItJob
+    #   queue: updates
+    # workable_scraper:
+    #   cron: '0 4 * * *' # Runs once per day (at 4 am)
+    #   class: Xml::WorkableJob
+    #   queue: updates

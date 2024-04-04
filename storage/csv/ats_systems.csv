@@ -1,4 +1,4 @@
-ats_name,url_identifier,website_url,linkedin_url,base_url_main,base_url_api,url_all_jobs,url_xml,url_rss,login
+ats_name,url_identifier,website_url,url_linkedin,base_url_main,base_url_api,url_all_jobs,url_xml,url_rss,login
 Greenhouse,greenhouse,https://www.greenhouse.com/,,https://boards.greenhouse.io/,https://boards-api.greenhouse.io/v1/boards/,,,,FALSE
 Workable,workable,https://www.workable.com/,,https://apply.workable.com/,https://apply.workable.com/api/v1/accounts/,https://jobs.workable.com/,https://www.workable.com/boards/workable.xml,,FALSE
 Lever,lever,https://www.lever.co/,,https://jobs.lever.co/,https://api.lever.co/v0/postings/,,,,FALSE
@@ -35,7 +35,7 @@ Taleo,taleo,https://www.oracle.com/uk/human-capital-management/taleo/,,,,,,,
 Otta,otta,https://otta.com/,,,,,,,TRUE
 TalSuite,talsuite,https://talsuite.com/,,,,,,,
 ApplicantStack,applicantstack,https://www.applicantstack.com/,,,,,,,
-Ambertrack,amberjack,https://www.weareamberjack.com/,,,,,,,
+Ambertrack,ambertrack,,,,,,,,
 Avature,avature,https://www.avature.net/,,,,,,,
 Recruiterflow,recruiterflow,https://recruiterflow.com/,,,,,,,
 Group GTI,groupgti,https://www.groupgti.com/,,,,,,,
@@ -102,3 +102,6 @@ Paylocity,paylocity,https://www.paylocity.com/,,,,,,,
 Dover,dover,https://www.dover.com/,,,,,,,
 Crelate,crelate,https://www.crelate.com/,,,,,,,
 Folk,folk,https://www.folk.app/,,,,,,,
+Simplyhired,simplyhired,https://www.simplyhired.co.uk/,,,,,,,
+TotalJobs,totaljobs,https://www.totaljobs.com/,,,,,,,
+Amberjack,amberjack,https://www.weareamberjack.com/,,,,,,,
