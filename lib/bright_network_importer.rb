@@ -1,4 +1,4 @@
-class CsvImporter
+class BrightNetworkImporter
   def initialize file
     @file = file
     @country = Country.find_or_create_by name: "United Kingdom"
