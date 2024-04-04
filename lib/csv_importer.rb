@@ -8,18 +8,12 @@ class CsvImporter
     parsed = CSV.parse @file, headers: true
 
     parsed.map do |row|
-      company = Company.find_or_create_by company_name: row["Company"]
-
-      locations = create_locations(row["Location"])
-
-      deadline = date_for(row["Deadline"])
-
       Job.create industry: row["Sector"],
                  job_title: row["Job Title"],
                  job_posting_url: row["Final ATS Url"],
-                 application_deadline: deadline,
-                 company:,
-                 locations: locations,
+                 application_deadline: date_for(row["Deadline"]),
+                 company: Company.find_or_create_by(company_name: row["Company"]),
+                 locations: create_locations(row["Location"]),
                  job_description: row["Short Description"],
                  seniority: row["Job-Type"]
     end
