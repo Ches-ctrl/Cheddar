@@ -10,9 +10,9 @@ class CsvImporter
       company = Company.find_or_create_by company_name: row["Company"]
 
       country = Country.find_or_create_by name: "United Kingdom"
-      locations = create_locations(country, row)
+      locations = create_locations(country, row["Location"])
 
-      deadline = date_for(row)
+      deadline = date_for(row["Deadline"])
 
       Job.create industry: row["Sector"],
                  job_title: row["Job Title"],
@@ -27,25 +27,25 @@ class CsvImporter
 
   private
 
-  def date_for row
-    Date.parse row["Deadline"] unless row["Deadline"] == "Rolling deadline"
+  def date_for deadline_string
+    Date.parse deadline_string unless deadline_string == "Rolling deadline"
   end
 
-  def create_locations country, row
-    if row["Location"] == "United Kingdom"
+  def create_locations country, location_string
+    if location_string == "United Kingdom"
       [Location.find_or_create_by(city: "Any", country: country)]
-    elsif row["Location"].include? '|'
-      city_names = row["Location"].split('|').map(&:strip)
+    elsif location_string.include? '|'
+      city_names = location_string.split('|').map(&:strip)
 
       city_names.map do |city_name|
         Location.find_or_create_by city: city_name, country: country
       end
-    elsif row["Location"].include? '-'
-      city_name = row["Location"].split('-').last.strip
+    elsif location_string.include? '-'
+      city_name = location_string.split('-').last.strip
 
       [Location.find_or_create_by(city: city_name, country: country)]
     else
-      [Location.find_or_create_by(city: row["Location"], country: country)]
+      [Location.find_or_create_by(city: location_string, country: country)]
     end
   end
 end
