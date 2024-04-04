@@ -21,6 +21,12 @@ Financial Consulting,Tax Consulting Graduate Scheme 2024,https://www2.deloitte.c
 )
   }
 
+  let(:single_job_with_multiple_locations) {
+    %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
+Financial Consulting,Part-Qualified Actuarial Trainee Consultant (Risk Transfer) 2024,https://hymans.current-vacancies.com/Jobs/Advert/3033099?cid=2054&t=Actuarial-Trainee-Consultant--Risk-Transfer-,19 Mar,Hymans Robertson,Birmingham | Edinburgh | Glasgow | London,As a part-qualified actuarial trainee you will be supporting a portfolio of client accounts manage their risks as part of our de-risking team providing high quality advice to support de-risking strat…,Grad
+)
+  }
+
   it "imports a job" do
     csv_importer = CsvImporter.new single_job_with_rolling_deadline
 
@@ -58,7 +64,13 @@ Financial Consulting,Tax Consulting Graduate Scheme 2024,https://www2.deloitte.c
     expect(imported.first.locations.first.country.name).to eq "United Kingdom"
   end
 
-  it "handles multiple locations"
+  it "handles multiple locations" do
+    csv_importer = CsvImporter.new single_job_with_multiple_locations
+    imported = csv_importer.import!
+
+    fail "Not done yet."
+  end
+
   it "knows that the country is always UK"
   it "handles when there is a division name in the location ie: 'Sureserve Group - Bathgate'"
 end
