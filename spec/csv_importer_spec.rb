@@ -61,13 +61,4 @@ Financial Consulting,Tax Consulting Graduate Scheme 2024,https://www2.deloitte.c
   it "handles multiple locations"
   it "knows that the country is always UK"
   it "handles when there is a division name in the location ie: 'Sureserve Group - Bathgate'"
-
-  # Financial Consulting
-  # Graduate Consulting Programme London August 2024
-  # https://brandfinance.com/careers/graduate-consulting-programme
-  # Rolling deadline
-  # Brand Finance
-  # London
-  # "Our graduate program offers professional qualifications varied experience across client projects and rapid exposure to senior clients at major blue-chip organizations across the world. Are you a sel…"
-  # Grad
 end
