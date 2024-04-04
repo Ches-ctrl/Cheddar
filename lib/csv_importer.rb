@@ -11,9 +11,15 @@ class CsvImporter
 
       country = Country.find_or_create_by name: "United Kingdom"
       if row["Location"] == "United Kingdom"
-        location = Location.find_or_create_by city: "Any", country: country
+        locations = [Location.find_or_create_by(city: "Any", country: country)]
+      elsif row["Location"].include? '|'
+        city_names = row["Location"].split('|').map(&:strip)
+
+        locations = city_names.map do |city_name|
+          Location.find_or_create_by city: city_name, country: country
+        end
       else
-        location = Location.find_or_create_by city: row["Location"], country: country
+        locations = [Location.find_or_create_by(city: row["Location"], country: country)]
       end
 
       deadline = nil if row["Deadline"] == "Rolling deadline"
@@ -24,7 +30,7 @@ class CsvImporter
                  job_posting_url: row["Final ATS Url"],
                  application_deadline: deadline,
                  company:,
-                 locations: [location],
+                 locations: locations,
                  job_description: row["Short Description"],
                  seniority: row["Job-Type"]
     end

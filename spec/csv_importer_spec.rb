@@ -27,10 +27,12 @@ Financial Consulting,Part-Qualified Actuarial Trainee Consultant (Risk Transfer)
 )
   }
 
-  it "imports a job" do
-    csv_importer = CsvImporter.new single_job_with_rolling_deadline
+  def import string
+    CsvImporter.new(string).import!
+  end
 
-    imported = csv_importer.import!
+  it "imports a job" do
+    imported = import single_job_with_rolling_deadline
 
     expect(imported.size).to eq 1
     first_imported = imported.first
@@ -47,8 +49,7 @@ Financial Consulting,Part-Qualified Actuarial Trainee Consultant (Risk Transfer)
 
   context "deadlines" do
     it "has a deadline with no year" do
-      csv_importer = CsvImporter.new single_job_with_deadline
-      imported = csv_importer.import!
+      imported = import single_job_with_deadline
 
       expect(imported.first.application_deadline).to eq Date.new(2024, 3, 19)
     end
@@ -57,18 +58,21 @@ Financial Consulting,Part-Qualified Actuarial Trainee Consultant (Risk Transfer)
   end
 
   it "handles 'United Kingdom' as location" do
-    csv_importer = CsvImporter.new single_job_with_no_city
-    imported = csv_importer.import!
+    imported = import single_job_with_no_city
 
     expect(imported.first.locations.first.city).to eq "Any"
     expect(imported.first.locations.first.country.name).to eq "United Kingdom"
   end
 
   it "handles multiple locations" do
-    csv_importer = CsvImporter.new single_job_with_multiple_locations
-    imported = csv_importer.import!
+    imported = import single_job_with_multiple_locations
 
-    fail "Not done yet."
+    location_cities = imported.first.locations.map { |location| location.city }
+
+    expect(imported.first.locations.count).to eq location_cities.size
+    location_cities.each do |city_name|
+      expect(imported.first.locations.where(city: city_name).count).to eq 1
+    end
   end
 
   it "knows that the country is always UK"
