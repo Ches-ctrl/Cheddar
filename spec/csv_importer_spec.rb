@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe "CsvImporter" do
+RSpec.describe CsvImporter do
   let(:single_job_with_rolling_deadline) {
     %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
 Financial Consulting,Graduate Consulting Programme London August 2024,https://brandfinance.com/careers/graduate-consulting-programme,Rolling deadline,Brand Finance,London,"Our graduate program offers professional qualifications, varied experience across client projects and rapid exposure to senior clients at major blue-chip organizations across the world. Are you a sel…",Grad
@@ -16,7 +16,7 @@ Financial Consulting,Part-Qualified Actuarial Trainee Consultant (Risk Transfer)
   }
 
   def import string
-    CsvImporter.new(string).import!
+    described_class.new(string).import!
   end
 
   it "imports a job" do
