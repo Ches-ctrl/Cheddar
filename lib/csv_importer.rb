@@ -32,20 +32,15 @@ class CsvImporter
   end
 
   def create_locations country, location_string
-    if location_string == "United Kingdom"
-      [Location.find_or_create_by(city: "Any", country: country)]
-    elsif location_string.include? '|'
-      city_names = location_string.split('|').map(&:strip)
+    return [Location.find_or_create_by(city: "Any", country: country)] if location_string == "United Kingdom"
+    return [Location.find_or_create_by(city: location_string.split('-').last.strip, country: country)] if location_string.include? '-'
 
-      city_names.map do |city_name|
+    if location_string.include? '|'
+      return location_string.split('|').map(&:strip).map do |city_name|
         Location.find_or_create_by city: city_name, country: country
       end
-    elsif location_string.include? '-'
-      city_name = location_string.split('-').last.strip
-
-      [Location.find_or_create_by(city: city_name, country: country)]
-    else
-      [Location.find_or_create_by(city: location_string, country: country)]
     end
+
+    [Location.find_or_create_by(city: location_string, country: country)]
   end
 end
