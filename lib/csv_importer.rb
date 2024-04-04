@@ -1,6 +1,7 @@
 class CsvImporter
   def initialize file
     @file = file
+    @country = Country.find_or_create_by name: "United Kingdom"
   end
 
   def import!
@@ -9,8 +10,7 @@ class CsvImporter
     parsed.map do |row|
       company = Company.find_or_create_by company_name: row["Company"]
 
-      country = Country.find_or_create_by name: "United Kingdom"
-      locations = create_locations(country, row["Location"])
+      locations = create_locations(row["Location"])
 
       deadline = date_for(row["Deadline"])
 
@@ -31,16 +31,16 @@ class CsvImporter
     Date.parse deadline_string unless deadline_string == "Rolling deadline"
   end
 
-  def create_locations country, location_string
-    return [Location.find_or_create_by(city: "Any", country: country)] if location_string == "United Kingdom"
-    return [Location.find_or_create_by(city: location_string.split('-').last.strip, country: country)] if location_string.include? '-'
+  def create_locations location_string
+    return [Location.find_or_create_by(city: "Any", country: @country)] if location_string == "United Kingdom"
+    return [Location.find_or_create_by(city: location_string.split('-').last.strip, country: @country)] if location_string.include? '-'
 
     if location_string.include? '|'
       return location_string.split('|').map(&:strip).map do |city_name|
-        Location.find_or_create_by city: city_name, country: country
+        Location.find_or_create_by city: city_name, country: @country
       end
     end
 
-    [Location.find_or_create_by(city: location_string, country: country)]
+    [Location.find_or_create_by(city: location_string, country: @country)]
   end
 end
