@@ -5,7 +5,7 @@ module Xml
 
       url = ats.url_xml
       jobs = page_doc(url).xpath('//source/job')
-      
+
       # NB. Doesn't work yet
 
       jobs.each do |job_data|
