@@ -8,6 +8,8 @@ class CsvImporter
     parsed = CSV.parse @file, headers: true
 
     parsed.map do |row|
+      next if row["Company"].blank?
+
       Job.create industry: row["Sector"],
                  job_title: row["Job Title"],
                  job_posting_url: row["Final ATS Url"],

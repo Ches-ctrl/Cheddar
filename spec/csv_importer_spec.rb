@@ -35,6 +35,18 @@ Financial Consulting,Part-Qualified Actuarial Trainee Consultant (Risk Transfer)
     expect(first_imported.seniority).to eq "Grad"
   end
 
+  context "invalid jobs" do
+    let(:single_job_with_no_company_name) {
+      %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
+Supply Chain & Logistics,GROW European Graduate Programme London 2024,https://ehpv.fa.em2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/requisitions/preview/9063,31 May,,DP WorldLondon,"Do you want to an opportunity to work on high profile projects that will have real life impact on supply chain solutions on an international scale, within a globally renowned company – as part of a t…",Grad
+)
+    }
+
+    it "is invalid when there is no company name" do
+      expect { import single_job_with_no_company_name }.to_not change(Job, :count)
+    end
+  end
+
   context "deadlines" do
     it "has a deadline with no year" do
       imported = import single_job_with_deadline
