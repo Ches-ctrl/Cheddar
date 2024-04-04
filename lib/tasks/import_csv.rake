@@ -105,9 +105,13 @@ namespace :import_csv do
 
     # FIXME: get the csv file name from the command line
     # FIXME: the initializer does not take a filename
-    csv_importer = CsvImporter.new File.join(Rails.root, 'storage', 'new', 'BN_job_posting_urls.csv')
+    csv_importer = CsvImporter.new File.read(File.join(Rails.root, 'storage', 'new', 'BN_job_posting_urls.csv'))
 
-    csv_importer.import!
+    imported_jobs = csv_importer.import!
+
+    pp imported_jobs
+
+    puts imported_jobs.count
   end
 
   # TODO: Fix this now that we no longer have ATS Format as a separate model
