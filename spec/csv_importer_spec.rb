@@ -58,7 +58,6 @@ Financial Consulting,Tax Consulting Graduate Scheme 2024,https://www2.deloitte.c
     expect(imported.first.locations.first.country.name).to eq "United Kingdom"
   end
 
-  it "handles date with no year"
   it "handles multiple locations"
   it "knows that the country is always UK"
   it "handles when there is a division name in the location ie: 'Sureserve Group - Bathgate'"
