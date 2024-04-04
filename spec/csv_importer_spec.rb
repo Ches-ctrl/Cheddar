@@ -3,12 +3,20 @@
 require 'rails_helper'
 
 RSpec.describe "CsvImporter" do
-  SINGLE_JOB_INPUT = %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
+  let(:single_job_with_rolling_deadline) {
+    %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
 Financial Consulting,Graduate Consulting Programme London August 2024,https://brandfinance.com/careers/graduate-consulting-programme,Rolling deadline,Brand Finance,London,"Our graduate program offers professional qualifications, varied experience across client projects and rapid exposure to senior clients at major blue-chip organizations across the world. Are you a sel…",Grad
 )
+  }
+
+  let(:single_job_with_deadline) {
+    %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
+Financial Consulting,Part-Qualified Actuarial Trainee Consultant (Risk Transfer) 2024,https://hymans.current-vacancies.com/Jobs/Advert/3033099?cid=2054&t=Actuarial-Trainee-Consultant--Risk-Transfer-,19 Mar,Hymans Robertson,Birmingham | Edinburgh | Glasgow | London,As a part-qualified actuarial trainee you will be supporting a portfolio of client accounts manage their risks as part of our de-risking team providing high quality advice to support de-risking strat…,Grad
+)
+  }
 
   it "imports a job" do
-    csv_importer = CsvImporter.new SINGLE_JOB_INPUT
+    csv_importer = CsvImporter.new single_job_with_rolling_deadline
 
     imported = csv_importer.import!
 
@@ -25,40 +33,27 @@ Financial Consulting,Graduate Consulting Programme London August 2024,https://br
   end
 
   context "deadlines" do
-    it "treats a rolling deadline as nil"
-
     it "has a deadline with no year" do
-      JOB_WITH_DEADLINE_INPUT = %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
-Financial Consulting,Part-Qualified Actuarial Trainee Consultant (Risk Transfer) 2024,https://hymans.current-vacancies.com/Jobs/Advert/3033099?cid=2054&t=Actuarial-Trainee-Consultant--Risk-Transfer-,19 Mar,Hymans Robertson,Birmingham | Edinburgh | Glasgow | London,As a part-qualified actuarial trainee you will be supporting a portfolio of client accounts manage their risks as part of our de-risking team providing high quality advice to support de-risking strat…,Grad
-)
-
-      csv_importer = CsvImporter.new JOB_WITH_DEADLINE_INPUT
+      csv_importer = CsvImporter.new single_job_with_deadline
       imported = csv_importer.import!
 
       expect(imported.first.application_deadline).to eq Date.new(2024, 3, 19)
     end
+
+    it "treats a rolling deadline as nil"
   end
 
-  it "handles actual deadline" do
-    JOB_WITH_NO_DEADLINE_INPUT = %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
-Financial Consulting,Financial Operations Analyst Newcastle 2023,https://sagehr.my.salesforce-sites.com/careers/fRecruit__ApplyJob?vacancyNo=VN25987,Rolling deadline,Sage,Newcastle upon Tyne,"As a Financial Operations Analyst, this role offers an exciting array of opportunities for your professional growth and development. By working closely with both the P2P and O2C Teams, you will gain …",Grad
-)
+  it "handles 'United Kingdom' as location" do
+    csv_importer = CsvImporter.new single_job_with_no_city
+    imported = csv_import.import!
 
-    csv_importer = CsvImporter.new JOB_WITH_NO_DEADLINE_INPUT
-    imported = csv_importer.import!
-
-    expect(imported.first.application_deadline).to eq nil
+    expect(imported.first.locations.first.city).to eq "Any"
+    expect(imported.first.locations.first.city).to eq "United Kingdom"
   end
 
   it "handles date with no year"
   it "handles multiple locations"
-  it "knows that the country is always UK" do
-    JOB_WITH_NO_DEADLINE_INPUT = %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
-Financial Consulting,Financial Operations Analyst Newcastle 2023,https://sagehr.my.salesforce-sites.com/careers/fRecruit__ApplyJob?vacancyNo=VN25987,Rolling deadline,Sage,Newcastle upon Tyne,"As a Financial Operations Analyst, this role offers an exciting array of opportunities for your professional growth and development. By working closely with both the P2P and O2C Teams, you will gain …",Grad
-)
-  end
-
-  it "handles 'United Kingdom' as location"
+  it "knows that the country is always UK"
   it "handles when there is a division name in the location ie: 'Sureserve Group - Bathgate'"
 
   # Financial Consulting
