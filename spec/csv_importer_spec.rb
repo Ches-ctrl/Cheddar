@@ -27,6 +27,12 @@ Financial Consulting,Part-Qualified Actuarial Trainee Consultant (Risk Transfer)
 )
   }
 
+  let(:single_job_with_division_in_location) {
+    %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
+Energy,Energy & Environmental Excellence Graduate Bathgate 2024,https://careers.sureservegroup.co.uk/jobs/3513134-energy-environmental-excellence-graduate?ittk=DGAAXNROQF,Rolling deadline,Canopius,Sureserve Group - Bathgate,"The Energy and Environmental Excellence Graduate is a new role risen to support the Operations Manager and Operations Director in key projects, spanning across various focus areas including investmen…",Grad
+)
+  }
+
   def import string
     CsvImporter.new(string).import!
   end
@@ -75,6 +81,9 @@ Financial Consulting,Part-Qualified Actuarial Trainee Consultant (Risk Transfer)
     end
   end
 
-  it "knows that the country is always UK"
-  it "handles when there is a division name in the location ie: 'Sureserve Group - Bathgate'"
+  it "handles when there is a division name in the location ie: 'Sureserve Group - Bathgate'" do
+    imported = import single_job_with_division_in_location
+
+    expect(imported.first.locations.first.city).to eq "Bathgate"
+  end
 end

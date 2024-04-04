@@ -18,6 +18,10 @@ class CsvImporter
         locations = city_names.map do |city_name|
           Location.find_or_create_by city: city_name, country: country
         end
+      elsif row["Location"].include? '-'
+        city_name = row["Location"].split('-').last.strip
+
+        locations = [Location.find_or_create_by(city: city_name, country: country)]
       else
         locations = [Location.find_or_create_by(city: row["Location"], country: country)]
       end
