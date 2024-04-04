@@ -3,17 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe "CsvImporter" do
-  mapping = {
-    "Sector" => :industry,
-    "Job Title" => :job_title,
-    "Final ATS Url" => :job_posting_url,
-    "Deadline" => :application_deadline,
-    "Company" => "", # belongs_to :company,
-    "Location" => "", # has_many :locations, through: :jobs_locations,
-    "Short Description" => :job_description,
-    "Job-Type" => :seniority
-  }
-
   SINGLE_JOB_INPUT = %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
 Financial Consulting,Graduate Consulting Programme London August 2024,https://brandfinance.com/careers/graduate-consulting-programme,Rolling deadline,Brand Finance,London,"Our graduate program offers professional qualifications, varied experience across client projects and rapid exposure to senior clients at major blue-chip organizations across the world. Are you a sel…",Grad
 )
