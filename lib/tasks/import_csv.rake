@@ -99,6 +99,17 @@ namespace :import_csv do
     puts "CSV import completed."
   end
 
+  desc "New CSV importing"
+  task new: :environment do
+    require 'csv_importer'
+
+    # FIXME: get the csv file name from the command line
+    # FIXME: the initializer does not take a filename
+    csv_importer = CsvImporter.new File.join(Rails.root, 'storage', 'new', 'BN_job_posting_urls.csv')
+
+    csv_importer.import!
+  end
+
   # TODO: Fix this now that we no longer have ATS Format as a separate model
 
   # def find_or_create_job(job_title, row)
