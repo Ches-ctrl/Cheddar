@@ -15,24 +15,6 @@ Financial Consulting,Part-Qualified Actuarial Trainee Consultant (Risk Transfer)
 )
   }
 
-  let(:single_job_with_no_city) {
-    %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
-Financial Consulting,Tax Consulting Graduate Scheme 2024,https://www2.deloitte.com/uk/en/pages/careers/articles/early-careers-tax-consulting.html?nc=42&utm_source=bright-network&utm_medium=click-tracker&utm_campaign=deloitte-ecr-fy24&utm_term=smrs&utm_content=169328-think-prospecting-1x1-ftg-job-listings-tax-consulting&dclid=CPDF9cHitYQDFf6lZgId2cYOUg,Rolling deadline,Deloitte,United Kingdom,"Our purpose is to make an impact that matters by creating trust and confidence in a more equitable society. We do so by using our vast range of expertise, that covers audit, risk advisory, and...",Grad
-)
-  }
-
-  let(:single_job_with_multiple_locations) {
-    %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
-Financial Consulting,Part-Qualified Actuarial Trainee Consultant (Risk Transfer) 2024,https://hymans.current-vacancies.com/Jobs/Advert/3033099?cid=2054&t=Actuarial-Trainee-Consultant--Risk-Transfer-,19 Mar,Hymans Robertson,Birmingham | Edinburgh | Glasgow | London,As a part-qualified actuarial trainee you will be supporting a portfolio of client accounts manage their risks as part of our de-risking team providing high quality advice to support de-risking strat…,Grad
-)
-  }
-
-  let(:single_job_with_division_in_location) {
-    %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
-Energy,Energy & Environmental Excellence Graduate Bathgate 2024,https://careers.sureservegroup.co.uk/jobs/3513134-energy-environmental-excellence-graduate?ittk=DGAAXNROQF,Rolling deadline,Canopius,Sureserve Group - Bathgate,"The Energy and Environmental Excellence Graduate is a new role risen to support the Operations Manager and Operations Director in key projects, spanning across various focus areas including investmen…",Grad
-)
-  }
-
   def import string
     CsvImporter.new(string).import!
   end
@@ -63,27 +45,47 @@ Energy,Energy & Environmental Excellence Graduate Bathgate 2024,https://careers.
     it "treats a rolling deadline as nil"
   end
 
-  it "handles 'United Kingdom' as location" do
-    imported = import single_job_with_no_city
+  context "locations" do
+    let(:single_job_with_no_city) {
+      %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
+Financial Consulting,Tax Consulting Graduate Scheme 2024,https://www2.deloitte.com/uk/en/pages/careers/articles/early-careers-tax-consulting.html?nc=42&utm_source=bright-network&utm_medium=click-tracker&utm_campaign=deloitte-ecr-fy24&utm_term=smrs&utm_content=169328-think-prospecting-1x1-ftg-job-listings-tax-consulting&dclid=CPDF9cHitYQDFf6lZgId2cYOUg,Rolling deadline,Deloitte,United Kingdom,"Our purpose is to make an impact that matters by creating trust and confidence in a more equitable society. We do so by using our vast range of expertise, that covers audit, risk advisory, and...",Grad
+)
+    }
 
-    expect(imported.first.locations.first.city).to eq "Any"
-    expect(imported.first.locations.first.country.name).to eq "United Kingdom"
-  end
+    let(:single_job_with_multiple_locations) {
+      %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
+Financial Consulting,Part-Qualified Actuarial Trainee Consultant (Risk Transfer) 2024,https://hymans.current-vacancies.com/Jobs/Advert/3033099?cid=2054&t=Actuarial-Trainee-Consultant--Risk-Transfer-,19 Mar,Hymans Robertson,Birmingham | Edinburgh | Glasgow | London,As a part-qualified actuarial trainee you will be supporting a portfolio of client accounts manage their risks as part of our de-risking team providing high quality advice to support de-risking strat…,Grad
+)
+    }
 
-  it "handles multiple locations" do
-    imported = import single_job_with_multiple_locations
+    let(:single_job_with_division_in_location) {
+      %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
+Energy,Energy & Environmental Excellence Graduate Bathgate 2024,https://careers.sureservegroup.co.uk/jobs/3513134-energy-environmental-excellence-graduate?ittk=DGAAXNROQF,Rolling deadline,Canopius,Sureserve Group - Bathgate,"The Energy and Environmental Excellence Graduate is a new role risen to support the Operations Manager and Operations Director in key projects, spanning across various focus areas including investmen…",Grad
+)
+    }
 
-    location_cities = imported.first.locations.map { |location| location.city }
+    it "handles 'United Kingdom' as location" do
+      imported = import single_job_with_no_city
 
-    expect(imported.first.locations.count).to eq location_cities.size
-    location_cities.each do |city_name|
-      expect(imported.first.locations.where(city: city_name).count).to eq 1
+      expect(imported.first.locations.first.city).to eq "Any"
+      expect(imported.first.locations.first.country.name).to eq "United Kingdom"
     end
-  end
 
-  it "handles when there is a division name in the location ie: 'Sureserve Group - Bathgate'" do
-    imported = import single_job_with_division_in_location
+    it "handles multiple locations" do
+      imported = import single_job_with_multiple_locations
 
-    expect(imported.first.locations.first.city).to eq "Bathgate"
+      location_cities = imported.first.locations.map { |location| location.city }
+
+      expect(imported.first.locations.count).to eq location_cities.size
+      location_cities.each do |city_name|
+        expect(imported.first.locations.where(city: city_name).count).to eq 1
+      end
+    end
+
+    it "handles when there is a division name in the location ie: 'Sureserve Group - Bathgate'" do
+      imported = import single_job_with_division_in_location
+
+      expect(imported.first.locations.first.city).to eq "Bathgate"
+    end
   end
 end
