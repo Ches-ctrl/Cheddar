@@ -65,27 +65,27 @@ Energy,Energy & Environmental Excellence Graduate Bathgate 2024,https://careers.
     }
 
     it "handles 'United Kingdom' as location" do
-      imported = import single_job_with_no_city
+      first_location = import(single_job_with_no_city).first.locations.first
 
-      expect(imported.first.locations.first.city).to eq "Any"
-      expect(imported.first.locations.first.country.name).to eq "United Kingdom"
+      expect(first_location.city).to eq "Any"
+      expect(first_location.country.name).to eq "United Kingdom"
     end
 
     it "handles multiple locations" do
-      imported = import single_job_with_multiple_locations
+      first_imported = import(single_job_with_multiple_locations).first
 
-      location_cities = imported.first.locations.map { |location| location.city }
+      location_cities = first_imported.locations.map { |location| location.city }
 
-      expect(imported.first.locations.count).to eq location_cities.size
+      expect(first_imported.locations.count).to eq location_cities.size
       location_cities.each do |city_name|
-        expect(imported.first.locations.where(city: city_name).count).to eq 1
+        expect(first_imported.locations.where(city: city_name).count).to eq 1
       end
     end
 
     it "handles when there is a division name in the location ie: 'Sureserve Group - Bathgate'" do
-      imported = import single_job_with_division_in_location
+      first_imported = import(single_job_with_division_in_location).first
 
-      expect(imported.first.locations.first.city).to eq "Bathgate"
+      expect(first_imported.locations.first.city).to eq "Bathgate"
     end
   end
 end
