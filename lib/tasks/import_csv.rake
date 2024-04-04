@@ -105,6 +105,7 @@ namespace :import_csv do
 
     # FIXME: get the csv file name from the command line
     # FIXME: the initializer does not take a filename
+    # FIXME: add some error reporting/handling
     csv_importer = CsvImporter.new File.read(File.join(Rails.root, 'storage', 'new', 'BN_job_posting_urls.csv'))
 
     imported_jobs = csv_importer.import!
