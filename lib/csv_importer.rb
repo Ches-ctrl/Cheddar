@@ -8,7 +8,13 @@ class CsvImporter
 
     parsed.map do |row|
       company = Company.find_or_create_by company_name: row["Company"]
-      location = Location.find_or_create_by city: row["Location"]
+
+      country = Country.find_or_create_by name: "United Kingdom"
+      if row["Location"] == "United Kingdom"
+        location = Location.find_or_create_by city: "Any", country: country
+      else
+        location = Location.find_or_create_by city: row["Location"], country: country
+      end
 
       deadline = nil if row["Deadline"] == "Rolling deadline"
       deadline = Date.parse row["Deadline"] unless row["Deadline"] == "Rolling deadline"

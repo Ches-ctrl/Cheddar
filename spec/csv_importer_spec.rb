@@ -15,6 +15,12 @@ Financial Consulting,Part-Qualified Actuarial Trainee Consultant (Risk Transfer)
 )
   }
 
+  let(:single_job_with_no_city) {
+    %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
+Financial Consulting,Tax Consulting Graduate Scheme 2024,https://www2.deloitte.com/uk/en/pages/careers/articles/early-careers-tax-consulting.html?nc=42&utm_source=bright-network&utm_medium=click-tracker&utm_campaign=deloitte-ecr-fy24&utm_term=smrs&utm_content=169328-think-prospecting-1x1-ftg-job-listings-tax-consulting&dclid=CPDF9cHitYQDFf6lZgId2cYOUg,Rolling deadline,Deloitte,United Kingdom,"Our purpose is to make an impact that matters by creating trust and confidence in a more equitable society. We do so by using our vast range of expertise, that covers audit, risk advisory, and...",Grad
+)
+  }
+
   it "imports a job" do
     csv_importer = CsvImporter.new single_job_with_rolling_deadline
 
@@ -28,6 +34,7 @@ Financial Consulting,Part-Qualified Actuarial Trainee Consultant (Risk Transfer)
     expect(first_imported.application_deadline).to be_nil
     expect(first_imported.company.company_name).to eq "Brand Finance"
     expect(first_imported.locations.first.city).to eq "London"
+    expect(first_imported.locations.first.country.name).to eq "United Kingdom"
     expect(first_imported.job_description).to start_with "Our graduate program offers professional"
     expect(first_imported.seniority).to eq "Grad"
   end
@@ -45,10 +52,10 @@ Financial Consulting,Part-Qualified Actuarial Trainee Consultant (Risk Transfer)
 
   it "handles 'United Kingdom' as location" do
     csv_importer = CsvImporter.new single_job_with_no_city
-    imported = csv_import.import!
+    imported = csv_importer.import!
 
     expect(imported.first.locations.first.city).to eq "Any"
-    expect(imported.first.locations.first.city).to eq "United Kingdom"
+    expect(imported.first.locations.first.country.name).to eq "United Kingdom"
   end
 
   it "handles date with no year"
