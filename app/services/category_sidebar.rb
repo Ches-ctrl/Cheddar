@@ -13,6 +13,7 @@ class CategorySidebar
 
   def build
     # Where necessary, parse from Job.attributes
+    # TODO: Fix eager /lazy loading issue - this is a N+1 query but also gives a warning if removed - something wrong with the setup
     jobs = Job.includes(:company, :roles, :locations, :countries).all
 
     locations = []
