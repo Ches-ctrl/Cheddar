@@ -23,6 +23,7 @@ module Ats
 
       def update_job_details(job, _data)
         detailed_data = fetch_job_data(job)
+        
         job.job_posting_url = detailed_data['absolute_url']
         job.job_title = detailed_data['title']
         job.job_description = CGI.unescapeHTML(detailed_data['content'])

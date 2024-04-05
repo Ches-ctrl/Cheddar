@@ -44,6 +44,7 @@ class ApplicantTrackingSystem < ApplicationRecord
 
   def find_or_create_job_by_data(company, data)
     ats_job_id = fetch_id(data)
+    
     job = Job.find_or_create_by(ats_job_id:) do |new_job|
       new_job.company = company
       new_job.applicant_tracking_system = self
