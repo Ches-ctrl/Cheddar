@@ -65,7 +65,7 @@ class ApplicantTrackingSystem < ApplicationRecord
     update_requirements(job)
     p "job fields getting"
     GetFormFieldsJob.perform_later(job)
-    JobStandardizer.new(job).standardize
+    Standardizer::JobStandardizer.new(job).standardize
   end
 
   def update_requirements(job)
