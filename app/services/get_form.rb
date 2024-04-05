@@ -14,7 +14,11 @@ class GetForm
     if response.code == '200'
       data = JSON.parse(response.body)
       questions = data['questions']
+      location_questions = data['location_questions']
+      demographic_questions = data['demographic_questions']
       p questions
+      p location_questions
+      p demographic_questions
     else
       puts "Failed to retrieve the form. Error: #{response.code} - #{response.message}"
     end
