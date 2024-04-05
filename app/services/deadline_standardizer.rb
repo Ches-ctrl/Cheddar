@@ -5,6 +5,6 @@ class DeadlineStandardizer
 
   def standardize
     @job.date_created ||= @job.created_at
-    @job.application_deadline ||= @job.date_created + 30.days
+    # @job.application_deadline ||= @job.date_created + 30.days
   end
 end

@@ -1,4 +1,7 @@
 class SeniorityStandardizer
+
+  # TODO: Update levels so that we have internships and graduate
+
   SENIORITY_TITLES = {
     /staff/ => 'Senior',
     /principal/ => 'Senior',
@@ -13,8 +16,9 @@ class SeniorityStandardizer
     /early.?career/ => 'Junior',
     /\bi\b/ => 'Junior',
     /associate/ => 'Junior',
-    /graduate/ => 'Entry-Level',
-    /intern/ => 'Internship'
+    /[gG]raduate/ => 'Graduate',
+    /[gG]rad/ => 'Graduate',
+    /[iI]ntern/ => 'Internship'
   }
   SENIORITY_DESCRIPTORS = {
     /track record of/ => 'Junior',
