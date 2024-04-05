@@ -1,5 +1,5 @@
 class BrightNetworkImporter
-  def initialize file
+  def initialize(file)
     @file = file
     @country = Country.find_or_create_by name: "United Kingdom"
   end
@@ -23,11 +23,11 @@ class BrightNetworkImporter
 
   private
 
-  def date_for deadline_string
+  def date_for(deadline_string)
     Date.parse deadline_string unless deadline_string == "Rolling deadline"
   end
 
-  def create_locations location_string
+  def create_locations(location_string)
     return [Location.find_or_create_by(city: "Any", country: @country)] if location_string == "United Kingdom"
     return [Location.find_or_create_by(city: location_string.split('-').last.strip, country: @country)] if location_string.include? '-'
 
