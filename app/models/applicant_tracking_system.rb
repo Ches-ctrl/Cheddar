@@ -96,12 +96,12 @@ class ApplicantTrackingSystem < ApplicationRecord
     return nil
   end
 
+  # TODO: Move this to greenhouse as specific to this ATS
+
   def check_for_careers_url_redirect(company)
     url = URI(company.url_ats_main)
-
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true if url.scheme == 'https'
-
     request = Net::HTTP::Get.new(url.request_uri)
 
     max_retries = 2
