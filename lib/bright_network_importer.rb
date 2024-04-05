@@ -7,17 +7,21 @@ class BrightNetworkImporter
   def import!
     parsed = CSV.parse @file, headers: true
 
+    p parsed
+
     parsed.map do |row|
       next if row["Company"].blank?
 
-      Job.create industry: row["Sector"],
+      Job.create(industry: row["Sector"],
                  job_title: row["Job Title"],
                  job_posting_url: row["Final ATS Url"],
                  application_deadline: date_for(row["Deadline"]),
                  company: Company.find_or_create_by(company_name: row["Company"]),
                  locations: create_locations(row["Location"]),
                  job_description: row["Short Description"],
-                 seniority: row["Job-Type"]
+                 seniority: row["Job-Type"])
+
+      p "Job created - #{row["Job Title"]}"
     end
   end
 
