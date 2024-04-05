@@ -110,7 +110,7 @@ namespace :import_csv do
 
     imported_jobs = csv_importer.import!
 
-    pp imported_jobs
+    # pp imported_jobs
 
     puts imported_jobs.count
   end
