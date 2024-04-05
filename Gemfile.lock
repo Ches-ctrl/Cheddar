@@ -135,6 +135,7 @@ GEM
     connection_pool (2.4.1)
     crass (1.0.6)
     csv (3.2.8)
+    csv_importer (0.0.4)
     date (3.3.4)
     debug (1.9.1)
       irb (~> 1.10)
@@ -473,6 +474,7 @@ DEPENDENCIES
   capybara
   cloudinary
   csv
+  csv_importer (~> 0.0.4)
   debug
   devise
   dotenv-rails
