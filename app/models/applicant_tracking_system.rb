@@ -108,6 +108,10 @@ class ApplicantTrackingSystem < ApplicationRecord
     end
   end
 
+  # -----------------------
+  # Time Conversions
+  # -----------------------
+
   def convert_from_iso8601(iso8601_string)
     return Time.iso8601(iso8601_string)
   end
