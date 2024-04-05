@@ -26,6 +26,10 @@ class ApplicantTrackingSystem < ApplicationRecord
     end
   end
 
+  # -----------------------
+  # Find or Create Methods
+  # -----------------------
+
   def find_or_create_job_by_id(company, ats_job_id)
     job = Job.find_or_create_by(ats_job_id:) do |new_job|
       new_job.company = company
@@ -53,6 +57,24 @@ class ApplicantTrackingSystem < ApplicationRecord
   end
 
   private
+
+  # -----------------------
+  # For processesing job_posting_url
+  # -----------------------
+
+  def try_standard_formats(url, regex_formats)
+    regex_formats.each do |regex|
+      next unless (match = url.match(regex))
+
+      ats_identifier, job_id = match.captures
+      return [ats_identifier, job_id]
+    end
+    return nil
+  end
+
+  # -----------------------
+  # Get Job Data, Additional Fields and Update Requirements
+  # -----------------------
 
   def fetch_job_data(job)
     job.api_url = job_url_api(base_url_api, job.company.ats_identifier, job.ats_job_id)
@@ -83,48 +105,6 @@ class ApplicantTrackingSystem < ApplicationRecord
         job.work_eligibility = criteria['required']
         p "Work eligibility requirement: #{job.work_eligibility}"
       end
-    end
-  end
-
-  def try_standard_formats(url, regex_formats)
-    regex_formats.each do |regex|
-      next unless (match = url.match(regex))
-
-      ats_identifier, job_id = match.captures
-      return [ats_identifier, job_id]
-    end
-    return nil
-  end
-
-  # TODO: Move this to greenhouse as specific to this ATS
-
-  def check_for_careers_url_redirect(company)
-    url = URI(company.url_ats_main)
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true if url.scheme == 'https'
-    request = Net::HTTP::Get.new(url.request_uri)
-
-    max_retries = 2
-    retries = 0
-    begin
-      response = http.request(request)
-    rescue Errno::ECONNRESET, OpenSSL::SSL::SSLError => e
-      retries += 1
-      if retries <= max_retries
-        sleep(2**retries) # Exponential backoff
-        retry
-      else
-        puts "Check for careers redirect failed after #{max_retries} retries: #{e.message}"
-        return false
-      end
-    end
-
-    if response.is_a?(Net::HTTPRedirection)
-      redirected_url = URI.parse(response['Location'])
-      company.update(url_careers: redirected_url)
-      company.update(company_website_url: redirected_url.host)
-    else
-      p "No redirect for #{company.url_ats_main}"
     end
   end
 
