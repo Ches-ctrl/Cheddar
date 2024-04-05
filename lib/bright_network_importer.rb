@@ -21,7 +21,7 @@ class BrightNetworkImporter
                  job_description: row["Short Description"],
                  seniority: row["Job-Type"])
 
-      p "Job created - #{row["Job Title"]}"
+      p "Job created - #{row['Job Title']}"
     end
   end
 
