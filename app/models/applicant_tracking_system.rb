@@ -14,11 +14,11 @@ class ApplicantTrackingSystem < ApplicationRecord
     module_name = name.gsub(/\W/, '').capitalize
 
     modules = [
-      "Ats::#{module_name}::ApplicationFields",
+      "Ats::#{module_name}::ParseUrl",
       "Ats::#{module_name}::CompanyDetails",
       "Ats::#{module_name}::FetchCompanyJobs",
       "Ats::#{module_name}::JobDetails",
-      "Ats::#{module_name}::ParseUrl"
+      "Ats::#{module_name}::ApplicationFields",
     ]
 
     modules.each do |module_name|
