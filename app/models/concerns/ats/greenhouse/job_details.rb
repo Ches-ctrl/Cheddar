@@ -30,7 +30,9 @@ module Ats
         job.department = detailed_data.dig('departments', 0, 'name')
         job.office = detailed_data.dig('offices', 0, 'name')
         job.date_created = convert_from_iso8601(detailed_data['updated_at'])
+
         fetch_additional_fields(job)
+        
         puts "Created new job - #{job.job_title} with #{job.company.company_name}"
       end
     end
