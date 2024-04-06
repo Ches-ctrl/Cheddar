@@ -15,7 +15,7 @@ class ParseJobUrlByAts
   end
 
   def fetch_ats
-    name = ATS_SYSTEM_PARSER.find { |k, v| break v if @string.match?(k) }
+    name = ATS_SYSTEM_PARSER.find { |regex, ats_name| break ats_name if @string.match?(regex) }
     return ApplicantTrackingSystem.find_by(name:)
   end
 end
