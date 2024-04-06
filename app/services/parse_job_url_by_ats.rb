@@ -1,6 +1,5 @@
 class ParseJobUrlByAts
   include AtsDetector
-  include Constants
 
   attr_reader :string
 
