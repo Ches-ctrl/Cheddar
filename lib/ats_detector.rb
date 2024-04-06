@@ -1,5 +1,5 @@
 module AtsDetector
-  def determine_ats(url)
+  def determine_ats
     name = ATS_SYSTEM_PARSER.find { |regex, ats_name| break ats_name if @string.match?(regex) }
     return ApplicantTrackingSystem.find_by(name:)
   end
