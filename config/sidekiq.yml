@@ -19,10 +19,10 @@
       cron: '0 3 * * *' # Runs once per day (at 3 am)
       class: ExistingJobsUpdaterJob
       queue: updates
-    true_up_scraper:
-      cron: '0 2 * * *' # Runs once per day (at 2 am)
-      class: ScrapeTrueUpJob
-      queue: updates
+    # true_up_scraper:
+    #   cron: '0 2 * * *' # Runs once per day (at 2 am)
+    #   class: ScrapeTrueUpJob
+    #   queue: updates
     # devit_scraper:
     #   cron: '0 1 * * *' # Runs once per day (at 1 am)
     #   class: Scraper::DevItJob
