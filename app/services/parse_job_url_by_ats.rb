@@ -1,6 +1,8 @@
 class ParseJobUrlByAts
   include AtsDetector
 
+  # TODO: Think this needs combining with create_job_by_url.rb
+
   attr_reader :string
 
   def initialize(url)
