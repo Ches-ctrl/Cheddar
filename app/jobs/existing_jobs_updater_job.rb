@@ -2,7 +2,7 @@ class ExistingJobsUpdaterJob < ApplicationJob
   include CompanyCsv
 
   def perform
-    puts "Beginning JobsUpdate..."
+    puts "Beginning jobs updater for companies already seeded to the DB..."
 
     @job_urls = Job.all.to_set(&:job_posting_url)
 
@@ -22,7 +22,7 @@ class ExistingJobsUpdaterJob < ApplicationJob
       @ats_system = ApplicantTrackingSystem.find_by(name: ats_name)
 
       ats_identifiers.each do |ats_identifier|
-        puts "  Looking at jobs with #{ats_identifier}..."
+        puts "Looking at jobs with #{ats_identifier}..."
 
         # Find or create the company
         next puts "Problem with #{ats_identifier}" unless (company = @ats_system.find_or_create_company(ats_identifier))
@@ -47,11 +47,13 @@ class ExistingJobsUpdaterJob < ApplicationJob
       JOB_TITLE_KEYWORDS.any? { |keyword| job_title.downcase.match?(keyword) }
   end
 
+  # TODO: Update this so that the jobs are kept but are no longer live on the site
+  
   def destroy_defunct_jobs
     puts "Deleting jobs that are no longer live:"
     @job_urls.each do |job_posting_url|
       Job.find_by(job_posting_url:).destroy
-      puts "  destroyed #{job_posting_url}"
+      puts "Destroyed #{job_posting_url}"
     end
   end
 end
