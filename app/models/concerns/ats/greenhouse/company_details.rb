@@ -11,7 +11,6 @@ module Ats
           new_company.applicant_tracking_system = self
           new_company.url_ats_api = "#{base_url_api}#{ats_identifier}"
           new_company.url_ats_main = "#{base_url_main}#{ats_identifier}"
-          
           check_for_careers_url_redirect(new_company)
         end
 
