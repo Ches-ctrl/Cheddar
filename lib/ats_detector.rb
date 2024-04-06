@@ -1,15 +1,13 @@
 module AtsDetector
-  def determine_ats
-    name = ATS_SYSTEM_PARSER.find { |regex, ats_name| break ats_name if @string.match?(regex) }
+  def determine_ats(url)
+    name = ATS_SYSTEM_PARSER.find { |regex, ats_name| break ats_name if url.match?(regex) }
     return ApplicantTrackingSystem.find_by(name:)
   end
 
   def self.build_ats_parser_from_db
     ats_mappings = {}
-    p ats_mappings
 
     unique_url_identifiers_with_names = ApplicantTrackingSystem.distinct.order(:url_identifier).pluck(:url_identifier, :name)
-    p unique_url_identifiers_with_names
 
     unique_url_identifiers_with_names.each do |url_identifiers, name|
       if url_identifiers.include?('|')
