@@ -52,6 +52,7 @@ class ApplicantTrackingSystem < ApplicationRecord
       return if data.blank? # is this return necessary given that ats_job_id is fetched from data?
 
       update_job_details(new_job, data)
+      fetch_additional_fields(new_job)
     end
 
     return job
