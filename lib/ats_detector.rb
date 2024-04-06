@@ -28,6 +28,12 @@ module AtsDetector
     p ats_mappings
   end
 
+  SUPPORTED_ATS_SYSTEMS = [
+    "Greenhouse",
+    "Lever",
+    "Workable",
+  ]
+
   ATS_SYSTEM_PARSER = {
     /adp/i => "ADP",
     /allibo/i => "Allibo",
