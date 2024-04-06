@@ -8,7 +8,7 @@ class CreateJobByUrl
 
     company = ats.find_or_create_company(ats_identifier)
 
-    p "Created company: #{company.company_name}" if company.persisted?
+    puts "Created company - #{company.company_name}" if company.persisted?
 
     # TODO: To be updated
     # 1. If company is new record, needs to get the company details from the API
@@ -17,7 +17,7 @@ class CreateJobByUrl
 
     job = ats.find_or_create_job_by_id(company, job_id) if job_id
 
-    p "Created job: #{job.job_title}" if job.persisted?
+    puts "Created job - #{job.job_title}" if job.persisted?
 
     [ats, company, job]
   end
