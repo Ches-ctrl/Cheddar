@@ -16,7 +16,7 @@ namespace :import_csv do
       ats = ApplicantTrackingSystem.find_or_create_by(name: ats_name)
 
       attributes_to_update = {
-        url_identifier: row["url_identifier"],
+        url_identifier: row["url_identifier"].split('|'),
         website_url: row["website_url"],
         url_linkedin: row["url_linkedin"],
         base_url_main: row["base_url_main"],
