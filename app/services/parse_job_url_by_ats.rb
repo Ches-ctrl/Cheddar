@@ -1,4 +1,4 @@
-class JobUrl
+class ParseJobUrlByAts
   include Constants
 
   attr_reader :string

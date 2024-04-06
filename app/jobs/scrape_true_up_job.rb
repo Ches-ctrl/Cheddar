@@ -84,7 +84,7 @@ class ScrapeTrueUpJob < ApplicationJob
     all('.card-body').each do |job_card|
       extract_url(job_card)
       extract_alt_id(job_card)
-      @ats, @ats_identifier = JobUrl.new(@url).parse(@companies)
+      @ats, @ats_identifier = ParseJobUrlByAts.new(@url).parse(@companies)
       next puts "couldn't parse #{@url}" unless @ats
 
       @ats_identifier ||= alt_identifier

@@ -11,7 +11,7 @@ class ImportCompaniesFromList
 
   def call
     @urls.each do |url|
-      ats, ats_identifier, job_id = JobUrl.new(url).parse(@companies)
+      ats, ats_identifier, job_id = ParseJobUrlByAts.new(url).parse(@companies)
       next puts "couldn't find ats for url: #{url}" unless ats
       next puts "invalid identifier: #{ats_identifier}" unless ats_identifier
 
