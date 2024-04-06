@@ -1,28 +1,8 @@
-puts "\nHow many jobs to seed in the database?\n"
+puts "Deleting previous (1) Job Applications, (2) Users, (3) Jobs, (4) Companies, (5) ATSs, (6) Locations, (7) Countries, (8) Roles..."
 
-response = nil
-until response do
-  puts "Please enter a valid integer between 1 and 500:"
-  response = gets.chomp
-  if response == 'run updater'
-    Scraper::DevitJob.perform_later
-    # ImportCompaniesFromList.new.call
-    # Xml::WorkableJob.perform_later
-    ScrapeTrueUpJob.perform_later
-    ExistingJobsUpdaterJob.perform_later
-    response = 1
-  else
-    response = response.to_i
-    response = nil if response.zero? || response > 500
-  end
-end
+puts "This may take a little while, worry not young padawan..."
 
-puts "Preparing to re-seed database with #{response} Greenhouse jobs...\n"
-
-puts "Deleting previous (1) users, (2) jobs, (3)companies, (4) ATS Formats, (5) Applicant Tracking Systems, (6) Locations, (7) Countries, (8) Roles..."
-
-puts "-------------------------------------"
-
+JobApplication.destroy_all
 User.destroy_all
 Job.destroy_all
 Company.destroy_all
@@ -77,20 +57,9 @@ greenhouse_companies = [
   # "doctolib",
   # "epicgames",
   # "figma",
-  # "forter",
-  # "geniussports",
-  # "getir",
-  # "gomotive",
-  # "grammarly",
-  # "intercom",
-  # "janestreet",
-  # "knowde",
-  # "narvar",
-  # "niantic",
-  # "opendoor"
 ]
 
-# NB. Doesn't do anything at the moment - needs linking up
+# TODO: Create company data to be able to seed from fixed CSV
 
 puts "Creating new companies..."
 
@@ -118,7 +87,28 @@ puts "Created #{Role.count} roles"
 
 puts "-------------------------------------"
 
-puts "Creating new jobs (from GH API)..."
+puts "\nHow many jobs do you want to seed in the database?\n"
+
+response = nil
+until response do
+  puts "Please enter a valid integer between 1 and 500:"
+  response = gets.chomp
+  if response == 'run updater'
+    # Scraper::DevitJob.perform_later
+    # ImportCompaniesFromList.new.call
+    # Xml::WorkableJob.perform_later
+    # ScrapeTrueUpJob.perform_later
+    ExistingJobsUpdaterJob.perform_later
+    response = 1
+  else
+    response = response.to_i
+    response = nil if response.zero? || response > 500
+  end
+end
+
+puts "Preparing to re-seed database with #{response} Greenhouse jobs...\n"
+
+puts "Creating new jobs via Greenhouse API..."
 
 defunct_urls = []
 
@@ -146,6 +136,8 @@ else
   email = 'admin@cheddarjobs.com'
   password = 'password'
 end
+
+# TODO: Create users CSV to seed from
 
 User.create(
   email: email,
