@@ -35,7 +35,7 @@ greenhouse_companies = [
 ]
 
 # TODO: Create company data to be able to seed from fixed CSV
-# Leaving this in for now but defunct at the moment
+# Leaving this in for now but the below is defunct at the moment
 
 puts "Creating new companies..."
 
@@ -64,6 +64,8 @@ puts "Created #{Role.count} roles"
 puts "-------------------------------------"
 
 puts "\nHow many jobs do you want to seed in the database?\n"
+
+# TODO: Move this logic as its the wrong place to call for background jobs updating as requires a re-seed to activate
 
 response = nil
 until response do
