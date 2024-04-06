@@ -37,31 +37,6 @@ namespace :import_csv do
     end
   end
 
-  # -----------------------------
-  # Jobs
-  # -----------------------------
-
-  desc "Import jobs data from CSV file"
-  task jobs: %i[environment companies] do
-    csv_file_path = 'storage/csv/Cheddar_Consulting_Test_Jobs.csv'
-    counter = 0
-
-    CSV.foreach(csv_file_path, headers: true) do |row|
-      job_title = row["Title"]
-      job = find_or_create_job(job_title, row)
-
-      if job
-        p "#{job.new_record? ? 'Created' : 'Updated'} Job - #{job.job_title}"
-        counter += 1
-      else
-        p "Error creating job: #{job_title}"
-      end
-    end
-
-    p "Created / Updated #{counter} jobs."
-    puts "CSV import completed."
-  end
-
   desc "New CSV importing"
   task bright_network: :environment do
     require 'csv_importer'
