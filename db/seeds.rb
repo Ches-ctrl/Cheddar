@@ -67,33 +67,37 @@ puts "\nHow many jobs do you want to seed in the database?\n"
 
 # TODO: Move this logic as its the wrong place to call for background jobs updating as requires a re-seed to activate
 
-response = nil
-until response do
-  puts "Please enter a valid integer between 1 and 500:"
-  response = gets.chomp
-  if response == 'run updater'
-    # Scraper::DevitJob.perform_later
-    # ImportCompaniesFromList.new.call
-    # Xml::WorkableJob.perform_later
-    # ScrapeTrueUpJob.perform_later
-    ExistingJobsUpdaterJob.perform_later
-    response = 1
-  else
-    response = response.to_i
-    response = nil if response.zero? || response > 500
-  end
-end
+# response = nil
+# until response do
+#   puts "Please enter a valid integer between 1 and 500:"
+#   response = gets.chomp
+#   if response == 'run updater'
+#     # Scraper::DevitJob.perform_later
+#     # ImportCompaniesFromList.new.call
+#     # Xml::WorkableJob.perform_later
+#     # ScrapeTrueUpJob.perform_later
+#     ExistingJobsUpdaterJob.perform_later
+#     response = 1
+#   else
+#     response = response.to_i
+#     response = nil if response.zero? || response > 500
+#   end
+# end
 
-puts "Preparing to re-seed database with #{response} Greenhouse jobs...\n"
+# puts "Preparing to re-seed database with #{response} Greenhouse jobs...\n"
 
-puts "Creating new jobs via Greenhouse API..."
+# puts "Creating new jobs via Greenhouse API..."
 
-defunct_urls = []
+# defunct_urls = []
 
-puts "\nBuilding a list of job urls from the following companies:"
+# puts "\nBuilding a list of job urls from the following companies:"
 
-relevant_job_urls = GetRelevantJobUrls.new(greenhouse_companies).fetch_jobs
-jobs_to_seed = relevant_job_urls.shuffle.take(response)
+# relevant_job_urls = GetRelevantJobUrls.new(greenhouse_companies).fetch_jobs
+# jobs_to_seed = relevant_job_urls.shuffle.take(response)
+
+jobs_to_seed = [
+  "https://boards.greenhouse.io/11fs/jobs/4296543101",
+]
 
 jobs_to_seed.each do |url|
   CreateJobByUrl.new(url).call
