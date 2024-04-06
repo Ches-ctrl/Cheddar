@@ -4,44 +4,6 @@ namespace :import_csv do
   # TODO: At the moment it doesn't correctly identify whether objects are created or updated (fix this)
 
   # -----------------------------
-  # Companies
-  # -----------------------------
-
-  desc "Import company data from CSV file"
-  task companies: :environment do
-    csv_file_path = 'storage/csv/Cheddar_Consulting_Test_Companies.csv'
-    counter_created = 0
-    counter_updated = 0
-
-    CSV.foreach(csv_file_path, headers: true) do |row|
-      company_name = row["Company Name"]
-      company = Company.find_or_create_by(company_name:)
-
-      attributes_to_update = {
-        company_website_url: row["Website - General"],
-        url_careers: row["Website - Careers"],
-        url_linkedin: row["Website - LinkedIn"],
-        location: row["Location"],
-        industry: row["Industry"],
-        industry_subcategory: row["Industry Sub-Category"]
-      }
-
-      if company.new_record?
-        company.update(attributes_to_update)
-        p "Created Company - #{company.company_name}"
-        counter_created += 1
-      else
-        p "Updated Company - #{company.company_name}"
-        counter_updated += 1
-      end
-    end
-
-    p "Created #{counter_created} companies."
-    p "Updated #{counter_updated} companies."
-    p "-----------------------------"
-  end
-
-  # -----------------------------
   # Applicant Tracking Systems
   # -----------------------------
 
