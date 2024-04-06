@@ -307,10 +307,10 @@ puts "-------------------------------------"
 
 puts "Done!\n"
 
-puts "The following urls refer to jobs that are no longer live and should be deleted from the seedfile:" unless defunct_urls.empty?
-defunct_urls.each do |url|
-  puts url
-end
+# puts "The following urls refer to jobs that are no longer live and should be deleted from the seedfile:" unless defunct_urls.empty?
+# defunct_urls.each do |url|
+#   puts url
+# end
 
 
 # -----------------
