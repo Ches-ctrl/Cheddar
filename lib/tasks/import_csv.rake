@@ -16,7 +16,7 @@ namespace :import_csv do
       ats = ApplicantTrackingSystem.find_or_create_by(name: ats_name)
 
       attributes_to_update = {
-        url_identifier: row["url_identifier"].split('|'),
+        url_identifier: row["url_identifier"],
         website_url: row["website_url"],
         url_linkedin: row["url_linkedin"],
         base_url_main: row["base_url_main"],
@@ -30,7 +30,7 @@ namespace :import_csv do
       ats.update(attributes_to_update)
 
       if ats
-        puts "Created ATS - #{ApplicantTrackingSystem.last.name}"
+        puts "Created ATS - #{ats.name}"
       else
         p "Error creating ATS: #{ats_name}"
       end
