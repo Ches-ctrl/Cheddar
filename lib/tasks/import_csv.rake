@@ -5,7 +5,7 @@ namespace :import_csv do
   # Applicant Tracking Systems
   # -----------------------------
 
-  desc "Import Applicant Tracking System data from CSV file"
+  desc "Import CSV - Applicant Tracking Systems"
   task applicant_tracking_systems: :environment do
     ats_csv = 'storage/csv/ats_systems.csv'
     AtsBuilder.new(ats_csv).build
@@ -16,7 +16,7 @@ namespace :import_csv do
   # Jobs
   # -----------------------------
 
-  desc "Import Bright Network Jobs CSV"
+  desc "Import CSV - Bright Network Jobs"
   task bright_network: :environment do
     require 'csv_importer'
 
@@ -28,5 +28,20 @@ namespace :import_csv do
     imported_jobs = csv_importer.import!
 
     puts imported_jobs.count
+  end
+
+  desc "Import CSV - job_posting_urls"
+  task job_posting_urls: :environment do
+    jobs_csv = 'storage/csv/job_posting_urls.csv'
+
+    puts Job.count
+    puts "Creating new jobs..."
+
+    CSV.foreach(jobs_csv, headers: true) do |row|
+      url = row['job_posting_url']
+      CreateJobByUrl.new(url).call
+    end
+
+    puts Job.count
   end
 end
