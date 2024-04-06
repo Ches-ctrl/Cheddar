@@ -13,32 +13,7 @@ Role.destroy_all
 
 puts "Creating new Applicant Tracking Systems..."
 
-ats_csv = 'storage/csv/ats_systems.csv'
-
-CSV.foreach(ats_csv, headers: true) do |row|
-  ats_name = row["ats_name"]
-  ats = find_or_create_applicant_tracking_system(ats_name)
-
-  attributes_to_update = {
-    url_identifier: row["url_identifier"],
-    website_url: row["website_url"],
-    url_linkedin: row["url_linkedin"],
-    base_url_main: row["base_url_main"],
-    base_url_api: row["base_url_api"],
-    url_all_jobs: row["url_all_jobs"],
-    url_xml: row["url_xml"],
-    url_rss: row["url_rss"],
-    login: row["login"],
-  }
-
-  ats.update(attributes_to_update)
-
-  if ats
-    puts "Created ATS - #{ApplicantTrackingSystem.last.name}"
-  else
-    p "Error creating ATS: #{ats_name}"
-  end
-end
+Rake::Task['import_csv:applicant_tracking_systems'].invoke
 
 puts "Created #{ApplicantTrackingSystem.count} ATSs"
 
@@ -60,6 +35,7 @@ greenhouse_companies = [
 ]
 
 # TODO: Create company data to be able to seed from fixed CSV
+# Leaving this in for now but defunct at the moment
 
 puts "Creating new companies..."
 

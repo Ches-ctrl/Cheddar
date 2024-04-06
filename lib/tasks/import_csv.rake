@@ -1,39 +1,40 @@
 namespace :import_csv do
-  # Run this file using rake import_csv:companies or rake import_csv:jobs
-
-  # TODO: At the moment it doesn't correctly identify whether objects are created or updated (fix this)
+  # Run this file using rake import_csv:command e.g. bright_network
 
   # -----------------------------
   # Applicant Tracking Systems
   # -----------------------------
 
+  # TODO: Check whether this finds or creates the ATS
+
   desc "Import Applicant Tracking System data from CSV file"
   task applicant_tracking_systems: :environment do
-    csv_file_path = 'storage/csv/Cheddar_Consulting_Test_Jobs.csv'
-    counter = 0
+    ats_csv = 'storage/csv/ats_systems.csv'
 
-    CSV.foreach(csv_file_path, headers: true) do |row|
-      ats_name = row["Applicant Tracking System"]
-      ats = find_or_create_applicant_tracking_system(ats_name)
+    CSV.foreach(ats_csv, headers: true) do |row|
+      ats_name = row["ats_name"]
+      ats = ApplicantTrackingSystem.find_or_create_by(name: ats_name)
+
+      attributes_to_update = {
+        url_identifier: row["url_identifier"],
+        website_url: row["website_url"],
+        url_linkedin: row["url_linkedin"],
+        base_url_main: row["base_url_main"],
+        base_url_api: row["base_url_api"],
+        url_all_jobs: row["url_all_jobs"],
+        url_xml: row["url_xml"],
+        url_rss: row["url_rss"],
+        login: row["login"],
+      }
+
+      ats.update(attributes_to_update)
 
       if ats
-        p "#{ats.new_record? ? 'Created' : 'Updated'} ATS Format - #{ats.name}"
-        counter += 1
+        puts "Created ATS - #{ApplicantTrackingSystem.last.name}"
       else
-        p "Error creating ATS Format: #{ats_name}"
+        p "Error creating ATS: #{ats_name}"
       end
     end
-
-    p "Created / Updated #{counter} Applicant Tracking Systems."
-    p "-----------------------------"
-  end
-
-  def find_or_create_applicant_tracking_system(name)
-    ats = ApplicantTrackingSystem.find_or_initialize_by(name:)
-
-    ats.save unless ats.persisted?
-
-    ats
   end
 
   # -----------------------------
@@ -62,7 +63,7 @@ namespace :import_csv do
   end
 
   desc "New CSV importing"
-  task new: :environment do
+  task bright_network: :environment do
     require 'csv_importer'
 
     # FIXME: get the csv file name from the command line
