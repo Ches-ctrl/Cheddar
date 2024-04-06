@@ -9,7 +9,7 @@ until response do
     # ImportCompaniesFromList.new.call
     # Xml::WorkableJob.perform_later
     ScrapeTrueUpJob.perform_later
-    JobsUpdateJob.perform_later
+    ExistingJobsUpdaterJob.perform_later
     response = 1
   else
     response = response.to_i

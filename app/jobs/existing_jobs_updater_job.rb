@@ -1,4 +1,4 @@
-class JobsUpdateJob < ApplicationJob
+class ExistingJobsUpdaterJob < ApplicationJob
   include CompanyCsv
 
   def perform
