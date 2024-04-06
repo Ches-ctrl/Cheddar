@@ -1,5 +1,10 @@
 module AtsDetector
-  def self.build_ats_parser_from_database
+  def self.determine_ats
+    name = ATS_SYSTEM_PARSER.find { |regex, ats_name| break ats_name if @string.match?(regex) }
+    return ApplicantTrackingSystem.find_by(name:)
+  end
+
+  def self.build_ats_parser_from_db
     ats_mappings = {}
     p ats_mappings
 
