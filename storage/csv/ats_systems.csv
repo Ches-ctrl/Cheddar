@@ -1,5 +1,5 @@
 ats_name,url_identifier,website_url,url_linkedin,base_url_main,base_url_api,url_all_jobs,url_xml,url_rss,login
-Greenhouse,greenhouse,https://www.greenhouse.com/,,https://boards.greenhouse.io/,https://boards-api.greenhouse.io/v1/boards/,,,,FALSE
+Greenhouse,greenhouse|gh_jid,https://www.greenhouse.com/,,https://boards.greenhouse.io/,https://boards-api.greenhouse.io/v1/boards/,,,,FALSE
 Workable,workable,https://www.workable.com/,,https://apply.workable.com/,https://apply.workable.com/api/v1/accounts/,https://jobs.workable.com/,https://www.workable.com/boards/workable.xml,,FALSE
 Lever,lever,https://www.lever.co/,,https://jobs.lever.co/,https://api.lever.co/v0/postings/,,,,FALSE
 SmartRecruiters,smartrecruiters,https://www.smartrecruiters.com/,,https://jobs.smartrecruiters.com/,https://api.smartrecruiters.com/v1/companies/,https://jobs.smartrecruiters.com/,,,FALSE

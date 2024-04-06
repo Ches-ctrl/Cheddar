@@ -86,7 +86,6 @@ class ApplicantTrackingSystem < ApplicationRecord
   def fetch_additional_fields(job)
     get_application_criteria(job)
     update_requirements(job)
-    p "Getting application fields"
     GetFormFieldsJob.perform_later(job)
     Standardizer::JobStandardizer.new(job).standardize
   end
