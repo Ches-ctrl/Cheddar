@@ -14,6 +14,7 @@ module Ats
       private
 
       def fetch_id(job_data)
+        p "Fetching ID: #{job_data['id']}"
         job_data['id']
       end
 

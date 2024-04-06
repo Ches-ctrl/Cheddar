@@ -53,7 +53,7 @@ module Ats
         url = "#{base_url_api}#{potential_identifier}/"
         return potential_identifier if url_valid?(url)
 
-        puts "the identifier was invalid."
+        puts "The identifier was invalid."
         return
       end
 
