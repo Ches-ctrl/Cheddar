@@ -1,5 +1,5 @@
 module AtsDetector
-  def self.determine_ats
+  def determine_ats(url)
     name = ATS_SYSTEM_PARSER.find { |regex, ats_name| break ats_name if @string.match?(regex) }
     return ApplicantTrackingSystem.find_by(name:)
   end
@@ -30,8 +30,15 @@ module AtsDetector
 
   SUPPORTED_ATS_SYSTEMS = [
     "Greenhouse",
-    "Lever",
-    "Workable",
+    # "Lever",
+    # "Workable",
+    # "AshbyHQ",
+    # "BambooHR",
+    # "DevITJobs",
+    # "Manatal",
+    # "PinpointHQ",
+    # "Recruitee",
+    # "SmartRecruiters",
   ]
 
   ATS_SYSTEM_PARSER = {
@@ -47,6 +54,7 @@ module AtsDetector
     /avature/i => "Avature",
     /bamboohr/i => "BambooHR",
     /beamery/i => "Beamery",
+    /bizmerlin/i => "ClayHR",
     /brassring/i => "BrassRing",
     /breezyhr/i => "Breezy HR",
     /broadbean/i => "Broadbean",
