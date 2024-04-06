@@ -86,7 +86,7 @@ class ApplicantTrackingSystem < ApplicationRecord
   def fetch_additional_fields(job)
     get_application_criteria(job)
     update_requirements(job)
-    p "job fields getting"
+    p "Getting application fields"
     GetFormFieldsJob.perform_later(job)
     Standardizer::JobStandardizer.new(job).standardize
   end
@@ -98,13 +98,10 @@ class ApplicantTrackingSystem < ApplicationRecord
       case field
       when 'resume'
         job.req_cv = criteria['required']
-        p "CV requirement: #{job.req_cv}"
       when 'cover_letter'
         job.req_cover_letter = criteria['required']
-        p "Cover letter requirement: #{job.req_cover_letter}"
       when 'work_eligibility'
         job.work_eligibility = criteria['required']
-        p "Work eligibility requirement: #{job.work_eligibility}"
       end
     end
   end
