@@ -23,7 +23,7 @@ module Ats
 
       def update_job_details(job, _data)
         detailed_data = fetch_job_data(job)
-        
+
         job.job_posting_url = detailed_data['absolute_url']
         job.job_title = detailed_data['title']
         job.job_description = CGI.unescapeHTML(detailed_data['content'])
@@ -32,8 +32,6 @@ module Ats
         job.office = detailed_data.dig('offices', 0, 'name')
         job.date_created = convert_from_iso8601(detailed_data['updated_at'])
 
-        fetch_additional_fields(job)
-        
         puts "Created new job - #{job.job_title} with #{job.company.company_name}"
       end
     end
