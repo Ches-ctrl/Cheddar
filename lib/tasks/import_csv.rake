@@ -5,12 +5,11 @@ namespace :import_csv do
   # Applicant Tracking Systems
   # -----------------------------
 
-  # TODO: Check whether this finds or creates the ATS
-
   desc "Import Applicant Tracking System data from CSV file"
   task applicant_tracking_systems: :environment do
     ats_csv = 'storage/csv/ats_systems.csv'
     AtsBuilder.new(ats_csv).build
+    puts ApplicantTrackingSystem.count
   end
 
   # -----------------------------
@@ -27,8 +26,6 @@ namespace :import_csv do
     csv_importer = BrightNetworkImporter.new File.read(File.join(Rails.root, 'storage', 'new', 'BN_job_posting_urls.csv'))
 
     imported_jobs = csv_importer.import!
-
-    # pp imported_jobs
 
     puts imported_jobs.count
   end
