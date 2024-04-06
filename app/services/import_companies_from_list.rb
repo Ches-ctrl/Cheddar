@@ -1,6 +1,8 @@
 class ImportCompaniesFromList
   include CompanyCsv
 
+  # TODO: Move to rake task similar to other CSV import functions
+
   def initialize
     puts "Importing companies from list..."
     @urls = load_from_csv('company_url_list')
