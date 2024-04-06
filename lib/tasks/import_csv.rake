@@ -30,6 +30,8 @@ namespace :import_csv do
     puts imported_jobs.count
   end
 
+  # TODO: Complete this task later (required significant additional functionality so paused for now) - NOT FULLY WORKING YET
+
   desc "Import CSV - job_posting_urls"
   task job_posting_urls: :environment do
     jobs_csv = 'storage/csv/job_posting_urls.csv'
