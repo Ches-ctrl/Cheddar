@@ -8,7 +8,9 @@ class CreateJobByUrl
   def call
     ats, ats_identifier, job_id = ParseJobUrlByAts.new(@url).parse
 
-    if SUPPORTED_ATS_SYSTEMS.include?(ats.name)
+    if ats.is_a?(String)
+      puts "Job url skipped as ATS not found - #{@url}"
+    elsif SUPPORTED_ATS_SYSTEMS.include?(ats.name)
       company = ats.find_or_create_company(ats_identifier)
 
       puts "Created company - #{company.company_name}" if company.persisted?
@@ -24,7 +26,7 @@ class CreateJobByUrl
 
       [ats, company, job]
     else
-      ats
+      puts "Job url skipped as #{ats.name} not yet setup - #{@url}"
     end
   end
 end
