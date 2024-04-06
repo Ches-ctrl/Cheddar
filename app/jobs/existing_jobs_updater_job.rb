@@ -13,15 +13,6 @@ class ExistingJobsUpdaterJob < ApplicationJob
 
   private
 
-  def relevant?(job_data)
-    job_title, job_location = @ats_system.fetch_title_and_location(job_data)
-
-    job_title &&
-      job_location &&
-      JOB_LOCATION_KEYWORDS.any? { |keyword| job_location.downcase.match?(keyword) } &&
-      JOB_TITLE_KEYWORDS.any? { |keyword| job_title.downcase.match?(keyword) }
-  end
-
   def fetch_jobs_and_companies
     ats_list.each do |ats_name, ats_identifiers|
       # only prepared to handle some ATS systems at the moment
@@ -45,6 +36,15 @@ class ExistingJobsUpdaterJob < ApplicationJob
         end
       end
     end
+  end
+
+  def relevant?(job_data)
+    job_title, job_location = @ats_system.fetch_title_and_location(job_data)
+
+    job_title &&
+      job_location &&
+      JOB_LOCATION_KEYWORDS.any? { |keyword| job_location.downcase.match?(keyword) } &&
+      JOB_TITLE_KEYWORDS.any? { |keyword| job_title.downcase.match?(keyword) }
   end
 
   def destroy_defunct_jobs
