@@ -34,10 +34,11 @@ class ApplicantTrackingSystem < ApplicationRecord
     p "find_or_create_job_by_id: #{ats_job_id}"
     job = Job.find_or_create_by(ats_job_id:) do |new_job|
       new_job.company = company
-      data = fetch_job_data(new_job)
-      return if data.blank?
 
+      data = fetch_job_data(new_job)
       update_job_details(new_job, data)
+      get_application_criteria(new_job)
+      update_requirements(new_job)
     end
 
     return job
@@ -51,10 +52,11 @@ class ApplicantTrackingSystem < ApplicationRecord
       new_job.company = company
       new_job.applicant_tracking_system = self
       new_job.api_url = job_url_api(base_url_api, company.ats_identifier, ats_job_id)
-      return if data.blank? # is this return necessary given that ats_job_id is fetched from data?
 
+      data = fetch_job_data(new_job)
       update_job_details(new_job, data)
-      fetch_additional_fields(new_job)
+      get_application_criteria(new_job)
+      update_requirements(new_job)
     end
 
     return job
@@ -84,13 +86,6 @@ class ApplicantTrackingSystem < ApplicationRecord
     job.api_url = job_url_api(base_url_api, job.company.ats_identifier, job.ats_job_id)
     response = get(job.api_url)
     return JSON.parse(response)
-  end
-
-  def fetch_additional_fields(job)
-    get_application_criteria(job)
-    update_requirements(job)
-    GetFormFieldsJob.perform_later(job)
-    Standardizer::JobStandardizer.new(job).standardize
   end
 
   def update_requirements(job)
