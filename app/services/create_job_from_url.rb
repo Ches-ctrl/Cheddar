@@ -22,7 +22,7 @@ class CreateJobFromUrl
     # CompanyCreator
     # ---------------
 
-    company = ats.find_or_create_company(ats_identifier)
+    company = ATS.find_or_create_company(ats, ats_identifier)
     puts "Created company - #{company.company_name}" if company.persisted?
 
     # ---------------
@@ -31,6 +31,15 @@ class CreateJobFromUrl
 
     job = ats.find_or_create_job_by_id(company, job_id) if job_id
     puts "Created job - #{job.job_title}" if job.persisted?
+
+    # ---------------
+    # GetAllJobUrls
+    # ---------------
+
+    # TODO: Create background job to get all job urls later (template but not fully setup yet)
+
+    # urls = ats.get_company_jobs(@url)
+    # AddRemainingJobsToSite.new(urls, ats, company).add_jobs
 
     [ats, company, job]
   end
