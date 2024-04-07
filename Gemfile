@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 # TODO: Add gems to their respective environments
 
-ruby "3.1.2"
+ruby "3.1.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.2"
