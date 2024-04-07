@@ -10,26 +10,30 @@ class CreateJobFromUrl
     # ATS Router
     # ---------------
 
-    ats = ATS.determine_ats(@url)
+    ats = ApplicantTrackingSystem.determine_ats(@url)
+    p ats
 
     # ---------------
     # Parse URL
     # ---------------
 
-    ats, ats_identifier, job_id = ATS.parse_url(ats, @url)
+    ats_identifier, job_id = ApplicantTrackingSystem.parse_url(ats, @url)
+    p ats
+    p ats_identifier
+    p job_id
 
     # ---------------
     # CompanyCreator
     # ---------------
 
-    company = ATS.find_or_create_company(ats, ats_identifier)
+    company = ApplicantTrackingSystem.find_or_create_company(ats, ats_identifier)
     puts "Created company - #{company.company_name}" if company.persisted?
 
     # ---------------
     # JobCreator
     # ---------------
 
-    job = ats.find_or_create_job_by_id(company, job_id) if job_id
+    job = ApplicantTrackingSystem.get_job_details(ats, job_id)
     puts "Created job - #{job.job_title}" if job.persisted?
 
     # ---------------
