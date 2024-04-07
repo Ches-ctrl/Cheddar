@@ -13,11 +13,26 @@ namespace :import_csv do
   end
 
   # -----------------------------
+  # Companies
+  # -----------------------------
+
+  desc "Sort CSV - company_url_list"
+  task sort_company_url_list: :environment do
+    csv = CSV.read('storage/csv/company_url_list.csv', headers: true)
+    sorted = csv.sort_by { |row| row['company_url'] }
+
+    CSV.open('storage/csv/company_url_list.csv', 'w') do |csv|
+      csv << ['company_url']
+      sorted.each { |row| csv << [row['company_url']] }
+    end
+  end
+
+  # -----------------------------
   # Jobs
   # -----------------------------
 
   desc "Sort CSV - job_posting_urls"
-  task sort: :environment do
+  task sort_job_postings: :environment do
     csv = CSV.read('storage/csv/job_posting_urls.csv', headers: true)
     sorted = csv.sort_by { |row| row['job_posting_url'] }
 
