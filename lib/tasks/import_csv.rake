@@ -16,6 +16,17 @@ namespace :import_csv do
   # Jobs
   # -----------------------------
 
+  desc "Sort CSV - job_posting_urls"
+  task sort: :environment do
+    csv = CSV.read('storage/csv/job_posting_urls.csv', headers: true)
+    sorted = csv.sort_by { |row| row['job_posting_url'] }
+
+    CSV.open('storage/csv/job_posting_urls.csv', 'w') do |csv|
+      csv << ['job_posting_url']
+      sorted.each { |row| csv << [row['job_posting_url']] }
+    end
+  end
+
   desc "Import CSV - Bright Network Jobs"
   task bright_network: :environment do
     require 'csv_importer'
