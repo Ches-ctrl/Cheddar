@@ -1,0 +1,2 @@
+class AddRemainingJobsToSite < ApplicationJob
+end
