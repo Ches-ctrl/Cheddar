@@ -83,7 +83,7 @@ namespace :import_csv do
 
     CSV.foreach(jobs_csv, headers: true) do |row|
       url = row['job_posting_url']
-      CreateJobByUrl.new(url).call
+      CreateJobFromUrl.new(url).create_company_then_job
     end
 
     puts Job.count
