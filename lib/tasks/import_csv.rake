@@ -72,6 +72,21 @@ namespace :import_csv do
     puts imported_jobs.count
   end
 
+  desc "Import CSV - greenhouse"
+  task greenhouse: :environment do
+    jobs_csv = 'storage/csv/greenhouse_urls.csv'
+
+    puts Job.count
+    puts "Creating new jobs..."
+
+    CSV.foreach(jobs_csv, headers: true) do |row|
+      url = row['job_posting_url']
+      CreateJobFromUrl.new(url).create_company_then_job
+    end
+
+    puts Job.count
+  end
+
   # TODO: Complete this task later (required significant additional functionality so paused for now) - NOT FULLY WORKING YET
 
   desc "Import CSV - job_posting_urls"
