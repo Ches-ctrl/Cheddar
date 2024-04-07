@@ -113,6 +113,7 @@ module AtsDetector
     /otta/i => "Otta",
     /pageuppeople/i => "PageUp",
     /paradox/i => "Paradox",
+    /paycom/i => "Paycom",
     /paylocity/i => "Paylocity",
     /personio/i => "Personio",
     /phenom/i => "Phenom",
