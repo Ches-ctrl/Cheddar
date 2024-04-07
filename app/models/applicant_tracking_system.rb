@@ -35,7 +35,7 @@ class ApplicantTrackingSystem < ApplicationRecord
   # ATS Router
   # -----------------------
 
-  def determine_ats(url)
+  def self.determine_ats(url)
     name = ATS_SYSTEM_PARSER.find { |regex, ats_name| break ats_name if url.match?(regex) }
     return ApplicantTrackingSystem.find_by(name:)
   end
@@ -44,7 +44,7 @@ class ApplicantTrackingSystem < ApplicationRecord
   # Parse URL
   # -----------------------
 
-  def parse_url(ats, url)
+  def self.parse_url(ats, url)
     ats.parse_url(url)
   end
 
@@ -63,24 +63,25 @@ class ApplicantTrackingSystem < ApplicationRecord
   # CompanyCreator
   # -----------------------
 
-  def find_or_create_company(ats, ats_identifier)
+  def self.find_or_create_company(ats, ats_identifier)
     ats.find_or_create_company(ats_identifier)
-    ats.get_company_details(ats_identifier)
   end
 
   # -----------------------
   # Company Details
   # -----------------------
 
-  def get_company_details(ats, url)
-    ats.get_company_details(url)
-  end
+  # NB. Renamed to find_or_create_company, will decide if this should be deleted later
+
+  # def self.get_company_details(ats, url)
+  #   ats.get_company_details(url)
+  # end
 
   # -----------------------
   # Fetch Company Jobs
   # -----------------------
 
-  def get_company_jobs(ats, url)
+  def self.get_company_jobs(ats, url)
     ats.get_company_jobs(url)
   end
 
@@ -88,13 +89,13 @@ class ApplicantTrackingSystem < ApplicationRecord
   # JobCreator
   # -----------------------
 
-  def find_or_create_job_by_data(company, data)
+  def self.find_or_create_job_by_data(company, data)
     p "find_or_create_job_by_data - #{data}"
     ats_job_id = fetch_id(data)
     find_or_create_job_by_id(company, ats_job_id)
   end
 
-  def find_or_create_job_by_id(company, ats_job_id)
+  def self.find_or_create_job_by_id(company, ats_job_id)
     p "find_or_create_job_by_id - #{ats_job_id}"
     job = Job.find_or_create_by(ats_job_id:) do |new_job|
       new_job.company = company
@@ -108,10 +109,13 @@ class ApplicantTrackingSystem < ApplicationRecord
   end
 
   # -----------------------
+  # GetAllJobUrls
+
+  # -----------------------
   # Job Details
   # -----------------------
 
-  def get_job_details(ats, url)
+  def self.get_job_details(ats, url)
     ats.get_job_details(url)
   end
 
@@ -119,7 +123,7 @@ class ApplicantTrackingSystem < ApplicationRecord
   # Application Fields
   # -----------------------
 
-  def get_application_criteria(ats, url)
+  def self.get_application_criteria(ats, url)
     ats.get_application_criteria(url)
   end
 
