@@ -72,11 +72,11 @@ class ApplicantTrackingSystem < ApplicationRecord
   # Company Details
   # -----------------------
 
-  # NB. Renamed to find_or_create_company, will decide if this should be deleted later
+  # TODO: Fix the variables being passed back and forth here once everything is working
 
-  # def self.get_company_details(ats, url)
-  #   ats.get_company_details(url)
-  # end
+  def self.get_company_details(url, ats, ats_identifier)
+    company = ats.get_company_details(url, ats, ats_identifier) # rubocop:disable Lint/UselessAssignment
+  end
 
   # -----------------------
   # Fetch Company Jobs
@@ -116,8 +116,8 @@ class ApplicantTrackingSystem < ApplicationRecord
   # Job Details
   # -----------------------
 
-  def self.get_job_details(ats, url)
-    ats.get_job_details(url)
+  def self.get_job_details(ats, company, url, ats_job_id)
+    job = ats.get_job_details(url, company, ats_job_id) # rubocop:disable Lint/UselessAssignment
   end
 
   # -----------------------
