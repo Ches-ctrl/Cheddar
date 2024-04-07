@@ -1,7 +1,7 @@
 module Ats
   module Pinpointhq
     module JobDetails
-      def self.get_job_details(job)
+      def get_job_details(job)
         ats = job.company.applicant_tracking_system
         data = fetch_job_data(job, ats)
         update_job_details(job, data)
