@@ -1,5 +1,6 @@
 class ApplicantTrackingSystem < ApplicationRecord
   include ValidUrl
+  include AtsSystemParser
 
   has_many :companies
   has_many :jobs, dependent: :destroy
@@ -31,8 +32,64 @@ class ApplicantTrackingSystem < ApplicationRecord
   end
 
   # -----------------------
-  # Find or Create Methods
+  # ATS Router
   # -----------------------
+
+  def determine_ats(url)
+    name = ATS_SYSTEM_PARSER.find { |regex, ats_name| break ats_name if url.match?(regex) }
+    return ApplicantTrackingSystem.find_by(name:)
+  end
+
+  # -----------------------
+  # Parse URL
+  # -----------------------
+
+  def parse_url(ats, url)
+    ats.parse_url(url)
+  end
+
+  def parse(ats, list = nil)
+    if SUPPORTED_ATS_SYSTEMS.include?(ats.name)
+      ats_identifier, job_id = list ? ats.parse_url(url, list[ats.name]) : ats.parse_url(url)
+      [ats, ats_identifier, job_id]
+    elsif ats
+      ats
+    else
+      url
+    end
+  end
+
+  # -----------------------
+  # Company Details
+  # -----------------------
+
+  def get_company_details(ats, url)
+    ats.get_company_details(url)
+  end
+
+  # -----------------------
+  # Fetch Company Jobs
+  # -----------------------
+
+  def get_company_jobs(ats, url)
+    ats.get_company_jobs(url)
+  end
+
+  # -----------------------
+  # Job Details
+  # -----------------------
+
+  def get_job_details(ats, url)
+    ats.get_job_details(url)
+  end
+
+  # -----------------------
+  # Application Fields
+  # -----------------------
+  
+  def get_application_criteria(ats, url)
+    ats.get_application_criteria(url)
+  end
 
   def find_or_create_job_by_data(company, data)
     p "find_or_create_job_by_data - #{data}"
@@ -56,7 +113,7 @@ class ApplicantTrackingSystem < ApplicationRecord
   private
 
   # -----------------------
-  # For processesing job_posting_url
+  # Parse URL
   # -----------------------
 
   def try_standard_formats(url, regex_formats)
@@ -70,7 +127,7 @@ class ApplicantTrackingSystem < ApplicationRecord
   end
 
   # -----------------------
-  # Get Job Data, Additional Fields and Update Requirements
+  # Job Details
   # -----------------------
 
   def fetch_job_data(job)
