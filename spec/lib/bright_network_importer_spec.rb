@@ -4,13 +4,13 @@ require 'rails_helper'
 
 RSpec.describe BrightNetworkImporter do
   let(:single_job_with_rolling_deadline) {
-    %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
+    %Q(Sector,Job Title,job_posting_url,Deadline,Company,Location,Short Description,Job-Type
 Financial Consulting,Graduate Consulting Programme London August 2024,https://brandfinance.com/careers/graduate-consulting-programme,Rolling deadline,Brand Finance,London,"Our graduate program offers professional qualifications, varied experience across client projects and rapid exposure to senior clients at major blue-chip organizations across the world. Are you a sel…",Grad
 )
   }
 
   let(:single_job_with_deadline) {
-    %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
+    %Q(Sector,Job Title,job_posting_url,Deadline,Company,Location,Short Description,Job-Type
 Financial Consulting,Part-Qualified Actuarial Trainee Consultant (Risk Transfer) 2024,https://hymans.current-vacancies.com/Jobs/Advert/3033099?cid=2054&t=Actuarial-Trainee-Consultant--Risk-Transfer-,19 Mar,Hymans Robertson,Birmingham | Edinburgh | Glasgow | London,As a part-qualified actuarial trainee you will be supporting a portfolio of client accounts manage their risks as part of our de-risking team providing high quality advice to support de-risking strat…,Grad
 )
   }
@@ -37,7 +37,7 @@ Financial Consulting,Part-Qualified Actuarial Trainee Consultant (Risk Transfer)
 
   context "invalid jobs" do
     let(:single_job_with_no_company_name) {
-      %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
+      %Q(Sector,Job Title,job_posting_url,Deadline,Company,Location,Short Description,Job-Type
 Supply Chain & Logistics,GROW European Graduate Programme London 2024,https://ehpv.fa.em2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/requisitions/preview/9063,31 May,,DP WorldLondon,"Do you want to an opportunity to work on high profile projects that will have real life impact on supply chain solutions on an international scale, within a globally renowned company – as part of a t…",Grad
 )
     }
@@ -59,19 +59,19 @@ Supply Chain & Logistics,GROW European Graduate Programme London 2024,https://eh
 
   context "locations" do
     let(:single_job_with_no_city) {
-      %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
+      %Q(Sector,Job Title,job_posting_url,Deadline,Company,Location,Short Description,Job-Type
 Financial Consulting,Tax Consulting Graduate Scheme 2024,https://www2.deloitte.com/uk/en/pages/careers/articles/early-careers-tax-consulting.html?nc=42&utm_source=bright-network&utm_medium=click-tracker&utm_campaign=deloitte-ecr-fy24&utm_term=smrs&utm_content=169328-think-prospecting-1x1-ftg-job-listings-tax-consulting&dclid=CPDF9cHitYQDFf6lZgId2cYOUg,Rolling deadline,Deloitte,United Kingdom,"Our purpose is to make an impact that matters by creating trust and confidence in a more equitable society. We do so by using our vast range of expertise, that covers audit, risk advisory, and...",Grad
 )
     }
 
     let(:single_job_with_multiple_locations) {
-      %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
+      %Q(Sector,Job Title,job_posting_url,Deadline,Company,Location,Short Description,Job-Type
 Financial Consulting,Part-Qualified Actuarial Trainee Consultant (Risk Transfer) 2024,https://hymans.current-vacancies.com/Jobs/Advert/3033099?cid=2054&t=Actuarial-Trainee-Consultant--Risk-Transfer-,19 Mar,Hymans Robertson,Birmingham | Edinburgh | Glasgow | London,As a part-qualified actuarial trainee you will be supporting a portfolio of client accounts manage their risks as part of our de-risking team providing high quality advice to support de-risking strat…,Grad
 )
     }
 
     let(:single_job_with_division_in_location) {
-      %Q(Sector,Job Title,Final ATS Url,Deadline,Company,Location,Short Description,Job-Type
+      %Q(Sector,Job Title,job_posting_url,Deadline,Company,Location,Short Description,Job-Type
 Energy,Energy & Environmental Excellence Graduate Bathgate 2024,https://careers.sureservegroup.co.uk/jobs/3513134-energy-environmental-excellence-graduate?ittk=DGAAXNROQF,Rolling deadline,Canopius,Sureserve Group - Bathgate,"The Energy and Environmental Excellence Graduate is a new role risen to support the Operations Manager and Operations Director in key projects, spanning across various focus areas including investmen…",Grad
 )
     }
