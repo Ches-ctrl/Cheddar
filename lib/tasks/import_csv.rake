@@ -46,4 +46,16 @@ namespace :import_csv do
 
     puts Job.count
   end
+
+  # -----------------------------
+  # Users
+  # -----------------------------
+
+  desc "Import CSV - Users"
+  task users: :environment do
+    user_csv = 'storage/csv/sample_users.csv'
+    UserBuilder.new(user_csv).build
+    puts User.count
+  end
+
 end
