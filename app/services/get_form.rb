@@ -1,7 +1,6 @@
-require 'net/http'
-require 'json'
-
 class GetForm
+  require 'net/http'
+  require 'json'
 
   def self.perform
     url = URI("https://boards-api.greenhouse.io/v1/boards/codepath/jobs/4035993007?questions=true&pay_transparency=true")
@@ -16,9 +15,10 @@ class GetForm
       questions = data['questions']
       location_questions = data['location_questions']
       demographic_questions = data['demographic_questions']
-      p questions
-      p location_questions
+      p location_questions.first
       p demographic_questions
+      p "----"
+      p questions
     else
       puts "Failed to retrieve the form. Error: #{response.code} - #{response.message}"
     end
