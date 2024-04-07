@@ -100,7 +100,7 @@ jobs_to_seed = [
 ]
 
 jobs_to_seed.each do |url|
-  CreateJobByUrl.new(url).call
+  CreateJobFromUrl.new(url).create_company_then_job
 end
 
 puts "Created #{Job.count} jobs..."
