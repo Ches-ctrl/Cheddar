@@ -1,0 +1,7 @@
+email,password,first_name,last_name,+447555555555,resume,address_first,city,postcode,salary_expectation_text,salary_expectation_figure,notice_period,employee_referral,admin,
+<CHARLIE_EMAIL>,<CHARLIE_PASSWORD>,Charlie,Cheesman,+447555555555,public/Obretetskiy_cv.pdf,Le Haynes,London,E5 6KK,"£30,000 - £40,000",30000,3,no,true,
+<ADMIN_EMAIL>,<ADMIN_PASSWORD>,Charlotte,Boyd,+447874943555,public/Obretetskiy_cv.pdf,14 Knapp Drive,London,E1 7SH,"£30,000 - £40,000",30000,12,no,true,
+usermissingemail@getcheddar.xyz,<ADMIN_PASSWORD>,UserMissingFirst,UserMissingLast,+447555555555,public/Obretetskiy_cv.pdf,99 Missing Drive,Missingham,M1 1MM,£Missing - £Missing,99999,12,no,false,
+email2@gmail.com,password,Ilya,Dostoyevsky,+447555555555,public/Obretetskiy_cv.pdf,99 Missing Drive,London,E1 3KR,"£30,000 - £40,000",30000,2,no,false,
+d@gmail.com,password,Direncan,Dostoyevsky,+447555555555,public/Obretetskiy_cv.pdf,15 Hackney Drive,London,E1 3KR,"£30,000 - £40,000",30000,2,no,false,
+email3@gmail.com,password,Direncan,Dostoyevsky,+447555555555,public/Obretetskiy_cv.pdf,15 Hackney Drive,London,E1 3KR,"£30,000 - £40,000",30000,2,no,false,
