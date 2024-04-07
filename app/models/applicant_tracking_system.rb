@@ -1,6 +1,7 @@
 class ApplicantTrackingSystem < ApplicationRecord
   include ValidUrl
   include AtsSystemParser
+  include AtsRouter
 
   has_many :companies
   has_many :jobs, dependent: :destroy
