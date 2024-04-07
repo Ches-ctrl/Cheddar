@@ -48,15 +48,24 @@ class ApplicantTrackingSystem < ApplicationRecord
     ats.parse_url(url)
   end
 
-  def parse(ats, list = nil)
-    if SUPPORTED_ATS_SYSTEMS.include?(ats.name)
-      ats_identifier, job_id = list ? ats.parse_url(url, list[ats.name]) : ats.parse_url(url)
-      [ats, ats_identifier, job_id]
-    elsif ats
-      ats
-    else
-      url
-    end
+  # def parse(ats, list = nil)
+  #   if SUPPORTED_ATS_SYSTEMS.include?(ats.name)
+  #     ats_identifier, job_id = list ? ats.parse_url(url, list[ats.name]) : ats.parse_url(url)
+  #     [ats, ats_identifier, job_id]
+  #   elsif ats
+  #     ats
+  #   else
+  #     url
+  #   end
+  # end
+
+  # -----------------------
+  # CompanyCreator
+  # -----------------------
+
+  def find_or_create_company(ats, ats_identifier)
+    ats.find_or_create_company(ats_identifier)
+    ats.get_company_details(ats_identifier)
   end
 
   # -----------------------
@@ -76,20 +85,8 @@ class ApplicantTrackingSystem < ApplicationRecord
   end
 
   # -----------------------
-  # Job Details
+  # JobCreator
   # -----------------------
-
-  def get_job_details(ats, url)
-    ats.get_job_details(url)
-  end
-
-  # -----------------------
-  # Application Fields
-  # -----------------------
-  
-  def get_application_criteria(ats, url)
-    ats.get_application_criteria(url)
-  end
 
   def find_or_create_job_by_data(company, data)
     p "find_or_create_job_by_data - #{data}"
@@ -109,6 +106,23 @@ class ApplicantTrackingSystem < ApplicationRecord
     end
     return job
   end
+
+  # -----------------------
+  # Job Details
+  # -----------------------
+
+  def get_job_details(ats, url)
+    ats.get_job_details(url)
+  end
+
+  # -----------------------
+  # Application Fields
+  # -----------------------
+
+  def get_application_criteria(ats, url)
+    ats.get_application_criteria(url)
+  end
+
 
   private
 
