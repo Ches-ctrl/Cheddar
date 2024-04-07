@@ -1,7 +1,7 @@
 module Ats
   module Recruitee
     module ApplicationFields
-      def self.get_application_criteria(job)
+      def get_application_criteria(job)
         p "Getting Recruitee application criteria"
         job.application_criteria = CORE_FIELDS
         job.save

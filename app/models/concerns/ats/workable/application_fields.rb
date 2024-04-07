@@ -5,14 +5,13 @@ module Ats
       # TODO: Check validatity of fields (not yet tested)
       # TODO: Handle labels from form fields
 
-      def self.get_application_criteria(job)
+      def get_application_criteria(job)
         p "Getting greenhouse application criteria"
         job.application_criteria = PERSONAL_FIELDS.merge(PROFILE_FIELDS).merge(DETAILS_FIELDS).merge(ADDITIONAL_FIELDS)
         job.save
-        # GetFormFieldsJob.perform_later(job.job_posting_url)
       end
 
-      def self.update_requirements(_job)
+      def update_requirements(_job)
         p "Updating job requirements"
       end
 

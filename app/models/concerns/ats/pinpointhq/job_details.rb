@@ -9,7 +9,7 @@ module Ats
         job
       end
 
-      def self.fetch_job_data(job, _ats)
+      def fetch_job_data(job, _ats)
         job_url_api = "#{job.company.url_ats_api}postings.json"
         job.api_url = job_url_api
         job_id = job.ats_job_id
@@ -26,7 +26,7 @@ module Ats
         return nil
       end
 
-      def self.update_job_details(job, data)
+      def update_job_details(job, data)
         p "Updating job details - #{job.job_title}"
 
         job.update(

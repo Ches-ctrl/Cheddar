@@ -1,8 +1,6 @@
 module Ats
   module Devit
     module ApplicationFields
-      # Question - scrape all fields or add standard set each time?
-
       def get_application_criteria(job)
         job.application_criteria = CORE_FIELDS
         job.save

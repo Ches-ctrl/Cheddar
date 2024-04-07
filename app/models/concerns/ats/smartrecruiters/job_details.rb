@@ -6,11 +6,19 @@ module Ats
       # TODO: Update description to handle html and non-html, add labelling for this characteristic
       # TODO: Change default application deadline
 
-      def self.find_or_create_by_id(_company, _ats_job_id)
+      def find_or_create_by_id(_company, _ats_job_id)
         return
       end
 
-      def self.get_job_details(job)
+      def get_job_details(ats, job_posting_url)
+        job = Job.create!(
+          job_title: "Job Title Placeholder",
+          job_posting_url: url,
+          company_id: company.id,
+          applicant_tracking_system_id: company.applicant_tracking_system_id,
+          ats_job_id: ats_job_id,
+        )
+
         ats = job.company.applicant_tracking_system
         data = fetch_job_data(job, ats)
         update_job_details(job, data)
@@ -18,7 +26,7 @@ module Ats
         job
       end
 
-      def self.fetch_job_data(job, ats)
+      def fetch_job_data(job, ats)
         job_url_api = "#{ats.base_url_api}#{job.company.ats_identifier}/postings/#{job.ats_job_id}"
         p job_url_api
         job.api_url = job_url_api
@@ -27,7 +35,7 @@ module Ats
         JSON.parse(response)
       end
 
-      def self.update_job_details(job, data)
+      def update_job_details(job, data)
         # TODO: add logic for office
         # TODO: handle additional information
 

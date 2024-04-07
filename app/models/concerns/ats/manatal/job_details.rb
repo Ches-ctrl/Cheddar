@@ -1,7 +1,7 @@
 module Ats
   module Manatal
     module JobDetails
-      def self.find_or_create_by_id(_company, _ats_job_id)
+      def find_or_create_by_id(_company, _ats_job_id)
         return
       end
 
@@ -13,7 +13,7 @@ module Ats
         job
       end
 
-      def self.fetch_job_data(job, ats)
+      def fetch_job_data(job, ats)
         job_url_api = "#{ats.base_url_api}#{job.company.ats_identifier}/jobs/"
         p "Fetching job data - #{job_url_api}"
 
