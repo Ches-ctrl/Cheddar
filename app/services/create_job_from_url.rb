@@ -10,30 +10,31 @@ class CreateJobFromUrl
     # ATS Router
     # ---------------
 
+    # TODO: determine_ats needs to handle job boards, company sites and other companies not in the DB, as well as non-valid URLs
+
     ats = ApplicantTrackingSystem.determine_ats(@url)
-    p ats
+    p "ATS - #{ats.name}"
 
     # ---------------
     # Parse URL
     # ---------------
 
     ats_identifier, job_id = ApplicantTrackingSystem.parse_url(ats, @url)
-    p ats
-    p ats_identifier
-    p job_id
+    p "ATS Identifier - #{ats_identifier}"
+    p "Job ID - #{job_id}"
 
     # ---------------
     # CompanyCreator
     # ---------------
 
-    company = ApplicantTrackingSystem.find_or_create_company(ats, ats_identifier)
-    puts "Created company - #{company.company_name}" if company.persisted?
+    company = ApplicantTrackingSystem.get_company_details(@url, ats, ats_identifier)
+    puts "Created company - #{company.company_name}"
 
     # ---------------
     # JobCreator
     # ---------------
 
-    job = ApplicantTrackingSystem.get_job_details(ats, job_id)
+    job = ApplicantTrackingSystem.get_job_details(ats, company, url, ats_job_id)
     puts "Created job - #{job.job_title}" if job.persisted?
 
     # ---------------
