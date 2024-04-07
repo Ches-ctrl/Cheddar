@@ -35,15 +35,13 @@ class ApplicantTrackingSystem < ApplicationRecord
   # -----------------------
 
   def find_or_create_job_by_data(company, data)
-    p "find_or_create_job_by_data: #{data}"
+    p "find_or_create_job_by_data - #{data}"
     ats_job_id = fetch_id(data)
     find_or_create_job_by_id(company, ats_job_id)
-
-    return job
   end
 
   def find_or_create_job_by_id(company, ats_job_id)
-    p "find_or_create_job_by_id: #{ats_job_id}"
+    p "find_or_create_job_by_id - #{ats_job_id}"
     job = Job.find_or_create_by(ats_job_id:) do |new_job|
       new_job.company = company
 
@@ -52,7 +50,6 @@ class ApplicantTrackingSystem < ApplicationRecord
       get_application_criteria(new_job)
       update_requirements(new_job)
     end
-
     return job
   end
 
