@@ -35,10 +35,10 @@ until response do
   puts "Please enter a valid integer between 1 and 500:"
   response = gets.chomp
   if response == 'run updater'
-    Scraper::DevitJob.perform_later
-    # ImportCompaniesFromList.new.call
-    ScrapeTrueUpJob.perform_later
-    JobsUpdateJob.perform_later
+    # Scraper::DevitJob.perform_later
+    ImportCompaniesFromList.new.call
+    # ScrapeTrueUpJob.perform_later
+    # JobsUpdateJob.perform_later
     response = 1
   else
     response = response.to_i
