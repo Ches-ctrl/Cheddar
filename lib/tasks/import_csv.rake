@@ -155,5 +155,4 @@ namespace :import_csv do
     UserBuilder.new(user_csv).build
     puts User.count
   end
-
 end
