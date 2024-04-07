@@ -1,8 +1,5 @@
-require 'nokogiri'
-
-# This file is properly specific to Greenhouse
-
 class GetFormFieldsJob < ApplicationJob
+  require 'nokogiri'
   include Capybara::DSL
 
   queue_as :default
