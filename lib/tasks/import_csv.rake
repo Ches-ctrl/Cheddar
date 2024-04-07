@@ -125,7 +125,6 @@ namespace :import_csv do
           url = row['job_posting_url']
           p url
           ats = ApplicantTrackingSystem.determine_ats(url).name if url
-          p ats
           ats_jobs_count[ats] += 1 if ats
         rescue StandardError => e
           puts "Error occurred: #{e.message}"
