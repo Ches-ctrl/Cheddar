@@ -1,7 +1,7 @@
 module Ats
   module Recruitee
     module JobDetails
-      def self.find_or_create_by_id(_company, _ats_job_id)
+      def find_or_create_by_id(_company, _ats_job_id)
         return
       end
 
@@ -13,7 +13,7 @@ module Ats
         job
       end
 
-      def self.fetch_job_data(job, _ats)
+      def fetch_job_data(job, _ats)
         job_url_api = job.company.url_ats_api.to_s
         p "Fetching job data - #{job_url_api}"
         job.api_url = job_url_api

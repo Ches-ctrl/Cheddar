@@ -1,4 +1,4 @@
-Company,Website,Position,Location,Posting,Type
+Company,Website,Position,Location,job_posting_url,Type
 Tesla,https://www.tesla.com/,"Internship, Backend Software Engineer, Autopilot Infrastructure (Summer 2024)","Palo Alto, CA",https://www.tesla.com/careers/search/job/218230,Internship
 Meta,https://about.meta.com/,"Software Engineer Intern, FEA Engineer","Sunnyvale, CA",https://www.metacareers.com/v2/jobs/907721531353123/,Internship
 Meta,https://about.meta.com/,"Software Engineer Intern, Embedded Engineer","Sunnyvale, CA",https://www.metacareers.com/v2/jobs/428488609533598/,Internship

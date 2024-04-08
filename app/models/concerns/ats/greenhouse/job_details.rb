@@ -22,8 +22,7 @@ module Ats
         "#{base_url}#{company_id}/jobs/#{job_id}?questions=true&pay_transparency=true"
       end
 
-      def update_job_details(job, _data)
-        detailed_data = fetch_job_data(job)
+      def update_job_details(job, detailed_data)
 
         job.job_posting_url = detailed_data['absolute_url']
         job.job_title = detailed_data['title']

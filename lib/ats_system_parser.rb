@@ -1,9 +1,4 @@
-module AtsDetector
-  def determine_ats(url)
-    name = ATS_SYSTEM_PARSER.find { |regex, ats_name| break ats_name if url.match?(regex) }
-    return ApplicantTrackingSystem.find_by(name:)
-  end
-
+module AtsSystemParser
   def self.build_ats_parser_from_db
     ats_mappings = {}
 
@@ -113,6 +108,7 @@ module AtsDetector
     /otta/i => "Otta",
     /pageuppeople/i => "PageUp",
     /paradox/i => "Paradox",
+    /paycom/i => "Paycom",
     /paylocity/i => "Paylocity",
     /personio/i => "Personio",
     /phenom/i => "Phenom",

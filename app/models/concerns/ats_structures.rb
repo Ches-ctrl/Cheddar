@@ -351,3 +351,41 @@ end
 # https://wmp.referrals.selectminds.com/
 # https://career5.successfactors.eu/careers?company=nttdatade&site=&career_ns=job_application&login_ns=register&career_job_req_id=18948
 # https://yays.recruitee.com/
+
+# -----------------
+# Other URLs
+# -----------------
+
+# tal_site_urls = [
+#   "https://fco.tal.net/candidate",
+#   "https://justicejobs.tal.net/candidate",
+#   "https://homeofficejobs.tal.net/candidate",
+#   "https://theroyalhousehold.tal.net/candidate",
+#   "https://housesofparliament.tal.net/candidate",
+#   "https://environmentagencyjobs.tal.net/candidate",
+#   "https://policecareers.tal.net/candidate",
+#   "https://thamesvalleypolice.tal.net/candidate",
+#   "https://ual.tal.net/candidate/",
+# ]
+
+# gov_uk_site_urls = [
+#   "https://www.civilservicejobs.service.gov.uk/csr/index.cgi",
+#   "https://jobs.justice.gov.uk/",
+#   "https://careers.homeoffice.gov.uk/",
+#   "https://www.jobs.nhs.uk/candidate",
+# ]
+
+# tal_job_urls = [
+#   "https://kornferry.tal.net/vx/lang-en-GB/mobile-0/appcentre-1/brand-4/user-72902/xf-eeb733132400/candidate/so/pm/1/pl/2/opp/15864-Digital-Delivery-Total-Rewards-Intern-Analyst-1-Year-Contract/en-GB",
+# ]
+
+# # -----------------
+# # Ambertrack ATS
+# # -----------------
+
+# ambertrack_site_urls = [
+#   "https://eycareers.ambertrack.global/studentrecruitment2024/candidatelogin.aspx?cookieCheck=true",
+#   "https://networkrailcandidate.ambertrack.global/apprenticeshipsspring2022/Login.aspx?cookieCheck=true",
+#   "https://kentgraduates.ambertrack.co.uk/kentgraduates2024/CandidateLogin.aspx?e=401&cookieCheck=true",
+#   "https://atkinscandidate.ambertrack.co.uk/graduates2023/login.aspx?cookieCheck=true",
+# ]

@@ -5,7 +5,6 @@ module Ats
         p "Getting lever application criteria"
         job.application_criteria = CORE_FIELDS.merge(CUSTOM_FIELDS)
         job.save
-        # GetFormFieldsJob.perform_later(job.job_posting_url)
       end
 
       CORE_FIELDS = {

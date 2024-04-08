@@ -1,5 +1,7 @@
 class ApplicantTrackingSystem < ApplicationRecord
   include ValidUrl
+  include AtsSystemParser
+  include AtsRouter
 
   has_many :companies
   has_many :jobs, dependent: :destroy
@@ -7,6 +9,10 @@ class ApplicantTrackingSystem < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   after_initialize :include_modules
+
+  # -----------------------
+  # Modules
+  # -----------------------
 
   def include_modules
     return unless name
@@ -27,43 +33,106 @@ class ApplicantTrackingSystem < ApplicationRecord
   end
 
   # -----------------------
-  # Find or Create Methods
+  # ATS Router
   # -----------------------
 
-  def find_or_create_job_by_id(company, ats_job_id)
-    p "find_or_create_job_by_id: #{ats_job_id}"
-    job = Job.find_or_create_by(ats_job_id:) do |new_job|
-      new_job.company = company
-      data = fetch_job_data(new_job)
-      return if data.blank?
-
-      update_job_details(new_job, data)
-    end
-
-    return job
+  def self.determine_ats(url)
+    name = ATS_SYSTEM_PARSER.find { |regex, ats_name| break ats_name if url.match?(regex) }
+    return ApplicantTrackingSystem.find_by(name:)
   end
 
-  def find_or_create_job_by_data(company, data)
-    p "find_or_create_job_by_data: #{data}"
+  # -----------------------
+  # Parse URL
+  # -----------------------
+
+  def self.parse_url(ats, url)
+    ats.parse_url(url)
+  end
+
+  # def parse(ats, list = nil)
+  #   if SUPPORTED_ATS_SYSTEMS.include?(ats.name)
+  #     ats_identifier, job_id = list ? ats.parse_url(url, list[ats.name]) : ats.parse_url(url)
+  #     [ats, ats_identifier, job_id]
+  #   elsif ats
+  #     ats
+  #   else
+  #     url
+  #   end
+  # end
+
+  # -----------------------
+  # CompanyCreator
+  # -----------------------
+
+  def self.find_or_create_company(ats, ats_identifier)
+    ats.find_or_create_company(ats_identifier)
+  end
+
+  # -----------------------
+  # Company Details
+  # -----------------------
+
+  # TODO: Fix the variables being passed back and forth here once everything is working
+
+  def self.get_company_details(url, ats, ats_identifier)
+    company = ats.get_company_details(url, ats, ats_identifier) # rubocop:disable Lint/UselessAssignment
+  end
+
+  # -----------------------
+  # Fetch Company Jobs
+  # -----------------------
+
+  def self.get_company_jobs(ats, url)
+    ats.get_company_jobs(url)
+  end
+
+  # -----------------------
+  # JobCreator
+  # -----------------------
+
+  def self.find_or_create_job_by_data(company, data)
+    p "find_or_create_job_by_data - #{data}"
     ats_job_id = fetch_id(data)
+    find_or_create_job_by_id(company, ats_job_id)
+  end
 
+  def self.find_or_create_job_by_id(company, ats_job_id)
+    p "find_or_create_job_by_id - #{ats_job_id}"
     job = Job.find_or_create_by(ats_job_id:) do |new_job|
       new_job.company = company
-      new_job.applicant_tracking_system = self
-      new_job.api_url = job_url_api(base_url_api, company.ats_identifier, ats_job_id)
-      return if data.blank? # is this return necessary given that ats_job_id is fetched from data?
 
+      data = fetch_job_data(new_job)
       update_job_details(new_job, data)
-      fetch_additional_fields(new_job)
+      get_application_criteria(new_job)
+      update_requirements(new_job)
     end
-
     return job
   end
+
+  # -----------------------
+  # GetAllJobUrls
+
+  # -----------------------
+  # Job Details
+  # -----------------------
+
+  def self.get_job_details(ats, company, url, ats_job_id)
+    job = ats.get_job_details(url, company, ats_job_id) # rubocop:disable Lint/UselessAssignment
+  end
+
+  # -----------------------
+  # Application Fields
+  # -----------------------
+
+  def self.get_application_criteria(ats, url)
+    ats.get_application_criteria(url)
+  end
+
 
   private
 
   # -----------------------
-  # For processesing job_posting_url
+  # Parse URL
   # -----------------------
 
   def try_standard_formats(url, regex_formats)
@@ -77,20 +146,13 @@ class ApplicantTrackingSystem < ApplicationRecord
   end
 
   # -----------------------
-  # Get Job Data, Additional Fields and Update Requirements
+  # Job Details
   # -----------------------
 
   def fetch_job_data(job)
     job.api_url = job_url_api(base_url_api, job.company.ats_identifier, job.ats_job_id)
     response = get(job.api_url)
     return JSON.parse(response)
-  end
-
-  def fetch_additional_fields(job)
-    get_application_criteria(job)
-    update_requirements(job)
-    GetFormFieldsJob.perform_later(job)
-    Standardizer::JobStandardizer.new(job).standardize
   end
 
   def update_requirements(job)

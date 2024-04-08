@@ -5,11 +5,11 @@ module Ats
       # TODO: Update job to handle workplace (hybrid)
       # TODO: Update description to handle html and non-html, add labelling for this characteristic
 
-      def self.find_or_create_by_id(_company, _ats_job_id)
+      def find_or_create_by_id(_company, _ats_job_id)
         return
       end
 
-      def self.get_job_details(job)
+      def get_job_details(job)
         ats = job.company.applicant_tracking_system
         data = fetch_job_data(job, ats)
         update_job_details(job, data) if job.live
@@ -17,7 +17,7 @@ module Ats
         job
       end
 
-      def self.fetch_job_data(job, _ats)
+      def fetch_job_data(job, _ats)
         job_url_api = "#{job.company.url_ats_api}?includeCompensation=true"
         job.api_url = job_url_api
         job_id = job.ats_job_id
@@ -34,7 +34,7 @@ module Ats
         return nil
       end
 
-      def self.update_job_details(job, data)
+      def update_job_details(job, data)
         job.update(
           job_title: data['title'],
           job_description: data['descriptionHtml'],

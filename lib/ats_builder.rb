@@ -5,8 +5,6 @@ class AtsBuilder
     @ats_csv = ats_csv
   end
 
-  # TODO: Check whether this finds or creates the ATS
-
   def build
     CSV.foreach(@ats_csv, headers: true) do |row|
       ats_name = row["ats_name"]

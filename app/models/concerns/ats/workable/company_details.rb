@@ -29,10 +29,6 @@ module Ats
           )
           p "Created company - #{company.company_name}" if company.persisted?
           check_for_careers_url_redirect(company)
-
-          # p "Calling GetAllJobUrls"
-          # GetAllJobUrls.new(company).get_all_job_urls if new_company
-          # p "Finished GetAllJobUrls"
         end
         company
       end

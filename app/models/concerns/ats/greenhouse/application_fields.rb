@@ -3,6 +3,7 @@ module Ats
     module ApplicationFields
       def get_application_criteria(job)
         job.application_criteria = CORE_FIELDS
+        GetForm.perform
         job.save
       end
 
