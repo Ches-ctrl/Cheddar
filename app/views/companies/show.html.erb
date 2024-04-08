@@ -1,45 +1,84 @@
 <div class="container pt-5">
   <div class="row">
     <div class="col-md-12">
-      <div class="d-flex align-items-center justify-content-between pb-4">
-        <div class="d-flex align-items-center">
-          <%= image_tag("https://logo.clearbit.com/#{@company.company_website_url}",
-                        onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'",
-                        style: "width: 60px; height: 60px;") %>
-          <h1 class="ms-4 mb-0"><%= @company.company_name %></h1>
+      <div class="company-img-row">
+        <div class="row">
+          <div class="col-3"><%= image_tag("https://source.unsplash.com/random/328x240/?nature", class: "company-img") %></div>
+          <div class="col-3"><%= image_tag("https://source.unsplash.com/random/328x240/?nature", class: "company-img") %></div>
+          <div class="col-3"><%= image_tag("https://source.unsplash.com/random/328x240/?nature", class: "company-img") %></div>
+          <div class="col-3">
+            <%= image_tag("https://source.unsplash.com/random/328x118/?nature", class: "company-img") %>
+            <div class="d-flex pt-1">
+              <%= image_tag("https://source.unsplash.com/random/162x118/?nature", class: "company-img", style: "padding-right: 4px;") %>
+              <%= image_tag("https://source.unsplash.com/random/162x118/?nature", class: "company-img") %>
+            </div>
+          </div>
         </div>
-        <ul class="mb-0">
-          <%# TODO: Add favicons for these %>
-          <% if @company.company_website_url.present? %>
-            <li><%= link_to "Website", @company.company_website_url %></li>
-          <% end %>
-          <% if @company.url_linkedin.present? %>
-            <li><%= link_to "LinkedIn", @company.url_linkedin %></li>
-          <% end %>
-          <% if @company.url_careers.present? %>
-            <li><%= link_to "Careers Site", @company.url_careers %></li>
-          <% end %>
-          <% if @company.url_ats.present? %>
-            <li><%= link_to "ATS Site", @company.url_ats %></li>
-          <% end %>
-        </ul>
+        <%= image_tag("https://logo.clearbit.com/#{@company.company_website_url}",
+                      onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'",
+                      style: "width: 65px; height: 65px; border-radius: 10px;",
+                      class: "company-logo-img") %>
       </div>
-      <%# TODO: Setup Glassdoor & Trustpilot APIs %>
-      <div class="company-description">
-        <%= @company_description %>
-      </div>
-      <div>
-        <h2>Current Job Openings</h2>
-        <p>Total live jobs: <%= @jobs.count %></p>
-        <ul>
-          <% @jobs.each do |job| %>
-            <%= link_to job_path(job), target: "_blank" do %>
-              <li><%= job.job_title %></li>
+      <div class="company-main-content">
+        <div class="d-flex align-items-center justify-content-between pb-4">
+          <div>
+            <h1 class="mb-0"><%= @company.company_name %></h1>
+            <%# Add a tagline/short summary of info under company name? %>
+          </div>
+          <ul class="mb-0">
+            <% if @company.company_website_url.present? %>
+              <%= link_to @company.company_website_url do %>
+                <li class="company-link-btn">Website <i class="fa-solid fa-arrow-up-right-from-square"></i></li>
+              <% end %>
             <% end %>
-          <% end %>
-        </ul>
+            <% if @company.url_linkedin.present? %>
+              <%= link_to @company.url_linkedin do %>
+                <li class="company-link-btn">LinkedIn <i class="fa-solid fa-arrow-up-right-from-square"></i></li>
+              <% end %>
+            <% end %>
+            <% if @company.url_careers.present? %>
+              <%= link_to @company.url_careers do %>
+                <li class="company-link-btn">Careers Site <i class="fa-solid fa-arrow-up-right-from-square"></i></li>
+              <% end %>
+            <% end %>
+            <% if @company.url_ats_main.present? %>
+              <%= link_to @company.url_ats_main do %>
+                <li class="company-link-btn">ATS Site <i class="fa-solid fa-arrow-up-right-from-square"></i></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+        <%# TODO: Setup Glassdoor & Trustpilot APIs %>
+        <div class="company-description">
+          <%= @company_description %>
+        </div>
+        <div class="row">
+          <div class="col-4 company-left-info">
+            <h3>Industry</h3>
+            <p><%= @company.industry %>, <%= @company.industry_subcategory %></p>
+            <h3>Company size</h3>
+            <h3>Specialities</h3>
+          </div>
+          <div class="col-8">
+            <h3>Current Job Openings</h3>
+            <p>Total live jobs: <%= @jobs.count %></p>
+            <% @jobs.each do |job| %>
+              <div class="company-page-job-card">
+                <%= link_to job_path(job), target: "_blank" do %>
+                  <div class="d-flex justify-content-between">
+                    <div>
+                      <h6><%= job.job_title %></h6>
+                      <p class="location"><i class="fa-solid fa-location-dot"></i> <%= job.non_geocoded_location_string %></p>
+                    </div>
+                    <p class="seniority"><%= job.seniority %></p>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <%# TODO: Add gallery of images like Airbnb %>
       </div>
-      <%# TODO: Add gallery of images like Airbnb %>
     </div>
   </div>
 </div>
