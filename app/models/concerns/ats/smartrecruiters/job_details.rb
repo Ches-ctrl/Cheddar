@@ -10,6 +10,8 @@ module Ats
         return
       end
 
+      # TODO: Fix this as doesn't yet work, previous setup passed the job but now we won't create the job till we get here
+
       def get_job_details(ats, job_posting_url)
         job = Job.create!(
           job_title: "Job Title Placeholder",

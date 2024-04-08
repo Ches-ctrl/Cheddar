@@ -34,6 +34,9 @@ class CreateJobFromUrl
     # JobCreator
     # ---------------
 
+    # TODO: Fix this method, all ATS API integrations have get_job_details but it's not yet passing the correct variables back and forth
+    # TODO: Greenhouse, lever and Devit will then need updating separately given Dan changes
+
     job = ApplicantTrackingSystem.get_job_details(ats, company, url, ats_job_id)
     puts "Created job - #{job.job_title}" if job.persisted?
 
