@@ -40,3 +40,10 @@
 *.swp
 .DS_Store
 # .csv*
+
+# Steven jetbrains files
+.idea/Cheddar.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/.gitignore
