@@ -1,28 +1,8 @@
-puts "\nHow many jobs to seed in the database?\n"
+puts "Deleting previous (1) Job Applications, (2) Users, (3) Jobs, (4) Companies, (5) ATSs, (6) Locations, (7) Countries, (8) Roles..."
 
-response = nil
-until response do
-  puts "Please enter a valid integer between 1 and 500:"
-  response = gets.chomp
-  if response == 'run updater'
-    Scraper::DevitJob.perform_later
-    # ImportCompaniesFromList.new.call
-    Xml::WorkableJob.perform_later
-    ScrapeTrueUpJob.perform_later
-    JobsUpdateJob.perform_later
-    response = 1
-  else
-    response = response.to_i
-    response = nil if response.zero? || response > 500
-  end
-end
+puts "This may take a little while, worry not young padawan..."
 
-puts "Preparing to re-seed database with #{response} Greenhouse jobs...\n"
-
-puts "Deleting previous (1) users, (2) jobs, (3)companies, (4) ATS Formats, (5) Applicant Tracking Systems, (6) Locations, (7) Countries, (8) Roles..."
-
-puts "-------------------------------------"
-
+JobApplication.destroy_all
 User.destroy_all
 Job.destroy_all
 Company.destroy_all
@@ -33,32 +13,7 @@ Role.destroy_all
 
 puts "Creating new Applicant Tracking Systems..."
 
-ats_csv = 'storage/csv/ats_systems.csv'
-
-CSV.foreach(ats_csv, headers: true) do |row|
-  ats_name = row["ats_name"]
-  ats = find_or_create_applicant_tracking_system(ats_name)
-
-  attributes_to_update = {
-    url_identifier: row["url_identifier"],
-    website_url: row["website_url"],
-    url_linkedin: row["url_linkedin"],
-    base_url_main: row["base_url_main"],
-    base_url_api: row["base_url_api"],
-    url_all_jobs: row["url_all_jobs"],
-    url_xml: row["url_xml"],
-    url_rss: row["url_rss"],
-    login: row["login"],
-  }
-
-  ats.update(attributes_to_update)
-
-  if ats
-    puts "Created ATS - #{ApplicantTrackingSystem.last.name}"
-  else
-    p "Error creating ATS: #{ats_name}"
-  end
-end
+Rake::Task['import_csv:applicant_tracking_systems'].invoke
 
 puts "Created #{ApplicantTrackingSystem.count} ATSs"
 
@@ -77,20 +32,10 @@ greenhouse_companies = [
   # "doctolib",
   # "epicgames",
   # "figma",
-  # "forter",
-  # "geniussports",
-  # "getir",
-  # "gomotive",
-  # "grammarly",
-  # "intercom",
-  # "janestreet",
-  # "knowde",
-  # "narvar",
-  # "niantic",
-  # "opendoor"
 ]
 
-# NB. Doesn't do anything at the moment - needs linking up
+# TODO: Create company data to be able to seed from fixed CSV
+# Leaving this in for now but the below is defunct at the moment
 
 puts "Creating new companies..."
 
@@ -118,14 +63,41 @@ puts "Created #{Role.count} roles"
 
 puts "-------------------------------------"
 
-puts "Creating new jobs (from GH API)..."
+puts "\nHow many jobs do you want to seed in the database?\n"
 
-defunct_urls = []
+# TODO: Move this logic as its the wrong place to call for background jobs updating as requires a re-seed to activate
 
-puts "\nBuilding a list of job urls from the following companies:"
+# response = nil
+# until response do
+#   puts "Please enter a valid integer between 1 and 500:"
+#   response = gets.chomp
+#   if response == 'run updater'
+#     # Scraper::DevitJob.perform_later
+#     # ImportCompaniesFromList.new.call
+#     # Xml::WorkableJob.perform_later
+#     # ScrapeTrueUpJob.perform_later
+#     ExistingJobsUpdaterJob.perform_later
+#     response = 1
+#   else
+#     response = response.to_i
+#     response = nil if response.zero? || response > 500
+#   end
+# end
 
-relevant_job_urls = GetRelevantJobUrls.new(greenhouse_companies).fetch_jobs
-jobs_to_seed = relevant_job_urls.shuffle.take(response)
+# puts "Preparing to re-seed database with #{response} Greenhouse jobs...\n"
+
+# puts "Creating new jobs via Greenhouse API..."
+
+# defunct_urls = []
+
+# puts "\nBuilding a list of job urls from the following companies:"
+
+# relevant_job_urls = GetRelevantJobUrls.new(greenhouse_companies).fetch_jobs
+# jobs_to_seed = relevant_job_urls.shuffle.take(response)
+
+jobs_to_seed = [
+  "https://boards.greenhouse.io/11fs/jobs/4296543101",
+]
 
 jobs_to_seed.each do |url|
   CreateJobByUrl.new(url).call
@@ -146,6 +118,8 @@ else
   email = 'admin@cheddarjobs.com'
   password = 'password'
 end
+
+# TODO: Create users CSV to seed from
 
 User.create(
   email: email,

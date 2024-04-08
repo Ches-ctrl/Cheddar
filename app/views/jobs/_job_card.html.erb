@@ -20,7 +20,18 @@
           <strong class="text-sm"><%= job.company.company_name %></strong>
         <% end %>
 
-        <div class="text-sm"><%= (job.remote_only || job.locations.empty?) ? 'Remote' : job.locations.map(&:city).join(' | ') %><%= " | #{job.countries.first.name}" if job.countries.count == 1 %></div>
+        <div class="text-sm">
+          <% if job.remote_only || job.locations.empty? %>
+            Remote
+          <% else %>
+            <%= job.locations.map(&:city).join(' | ') %>
+          <% end %>
+          <% if job.countries.loaded? || job.countries.count == 1 %>
+            <%= " | #{job.countries.first.name}" if job.countries.count == 1 %>
+          <% else %>
+            <%= " | #{job.countries.first.name}" if job.countries.size == 1 %>
+          <% end %>
+        </div>
       </div>
     </div>
 

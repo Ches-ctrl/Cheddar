@@ -1,8 +1,8 @@
-class JobsUpdateJob < ApplicationJob
+class ExistingJobsUpdaterJob < ApplicationJob
   include CompanyCsv
 
   def perform
-    puts "Beginning JobsUpdate..."
+    puts "Beginning jobs updater for companies already seeded to the DB..."
 
     @job_urls = Job.all.to_set(&:job_posting_url)
 
@@ -13,15 +13,6 @@ class JobsUpdateJob < ApplicationJob
 
   private
 
-  def relevant?(job_data)
-    job_title, job_location = @ats_system.fetch_title_and_location(job_data)
-
-    job_title &&
-      job_location &&
-      JOB_LOCATION_KEYWORDS.any? { |keyword| job_location.downcase.match?(keyword) } &&
-      JOB_TITLE_KEYWORDS.any? { |keyword| job_title.downcase.match?(keyword) }
-  end
-
   def fetch_jobs_and_companies
     ats_list.each do |ats_name, ats_identifiers|
       # only prepared to handle some ATS systems at the moment
@@ -31,7 +22,7 @@ class JobsUpdateJob < ApplicationJob
       @ats_system = ApplicantTrackingSystem.find_by(name: ats_name)
 
       ats_identifiers.each do |ats_identifier|
-        puts "  Looking at jobs with #{ats_identifier}..."
+        puts "Looking at jobs with #{ats_identifier}..."
 
         # Find or create the company
         next puts "Problem with #{ats_identifier}" unless (company = @ats_system.find_or_create_company(ats_identifier))
@@ -47,11 +38,22 @@ class JobsUpdateJob < ApplicationJob
     end
   end
 
+  def relevant?(job_data)
+    job_title, job_location = @ats_system.fetch_title_and_location(job_data)
+
+    job_title &&
+      job_location &&
+      JOB_LOCATION_KEYWORDS.any? { |keyword| job_location.downcase.match?(keyword) } &&
+      JOB_TITLE_KEYWORDS.any? { |keyword| job_title.downcase.match?(keyword) }
+  end
+
+  # TODO: Update this so that the jobs are kept but are no longer live on the site
+  
   def destroy_defunct_jobs
     puts "Deleting jobs that are no longer live:"
     @job_urls.each do |job_posting_url|
       Job.find_by(job_posting_url:).destroy
-      puts "  destroyed #{job_posting_url}"
+      puts "Destroyed #{job_posting_url}"
     end
   end
 end

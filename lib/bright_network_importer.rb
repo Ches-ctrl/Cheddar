@@ -7,12 +7,10 @@ class BrightNetworkImporter
   def import!
     parsed = CSV.parse @file, headers: true
 
-    p parsed
-
     parsed.map do |row|
       next if row["Company"].blank?
 
-      Job.create(industry: row["Sector"],
+      job = Job.create(industry: row["Sector"],
                  job_title: row["Job Title"],
                  job_posting_url: row["Final ATS Url"],
                  application_deadline: date_for(row["Deadline"]),
@@ -22,6 +20,11 @@ class BrightNetworkImporter
                  seniority: row["Job-Type"])
 
       p "Job created - #{row['Job Title']}"
+
+      # TODO: Call job_standardizer so that seniority is standardised
+      # JobStandardizer.new(job).standardize if job.persisted?
+
+      # p "Job standardised - #{row['Job Title']} - #{row['Job-Type']}"
     end
   end
 

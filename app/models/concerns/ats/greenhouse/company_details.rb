@@ -12,7 +12,6 @@ module Ats
           new_company.url_ats_api = "#{base_url_api}#{ats_identifier}"
           new_company.url_ats_main = "#{base_url_main}#{ats_identifier}"
           check_for_careers_url_redirect(new_company)
-          puts "Created company - #{new_company.company_name}"
         end
 
         return company
@@ -25,32 +24,35 @@ module Ats
         [data['name'], data['content']]
       end
 
-      # def check_for_details(company, ats_system, ats_identifier, description)
-      #   if company.description.nil?
-      #     p "Missing description for #{company.company_name}"
-      #     company.update(description:)
-      #   end
+      def check_for_careers_url_redirect(company)
+        url = URI(company.url_ats_main)
+        http = Net::HTTP.new(url.host, url.port)
+        http.use_ssl = true if url.scheme == 'https'
+        request = Net::HTTP::Get.new(url.request_uri)
 
-      #   if company.ats_identifier.nil?
-      #     p "Missing ATS identifier for #{company.company_name}"
-      #     company.update(ats_identifier:)
-      #   end
+        max_retries = 2
+        retries = 0
+        begin
+          response = http.request(request)
+        rescue Errno::ECONNRESET, OpenSSL::SSL::SSLError => e
+          retries += 1
+          if retries <= max_retries
+            sleep(2**retries) # Exponential backoff
+            retry
+          else
+            puts "Check for careers redirect failed after #{max_retries} retries: #{e.message}"
+            return false
+          end
+        end
 
-      #   if company.applicant_tracking_system_id.nil?
-      #     p "Missing ATS system for #{company.company_name}"
-      #     company.update(applicant_tracking_system_id: ats_system.id)
-      #   end
-
-      #   if company.url_ats_api.nil?
-      #     p "Missing ATS API URL for #{company.company_name}"
-      #     company.update(url_ats_api: "#{ats_system.base_url_api}#{ats_identifier}")
-      #   end
-
-      #   return unless company.url_ats_main.nil?
-
-      #   p "Missing ATS Main URL for #{company.company_name}"
-      #   company.update(url_ats_main: "#{ats_system.base_url_main}#{ats_identifier}")
-      # end
+        if response.is_a?(Net::HTTPRedirection)
+          redirected_url = URI.parse(response['Location'])
+          company.update(url_careers: redirected_url)
+          company.update(company_website_url: redirected_url.host)
+        else
+          p "No redirect for #{company.url_ats_main}"
+        end
+      end
     end
   end
 end
