@@ -126,6 +126,7 @@ namespace :import_csv do
     ats_jobs_count = Hash.new(0)
 
     files = [
+      '80k_job_posting_urls.csv',
       'BN_job_posting_urls.csv',
       'CO_job_posting_urls.csv',
       'GH_job_posting_urls.csv',
@@ -134,8 +135,11 @@ namespace :import_csv do
       'UM_job_posting_urls.csv'
     ]
 
+    counter = 0
+
     files.each do |file|
       CSV.foreach("storage/new/#{file}", headers: true) do |row|
+        counter += 1
         begin
           url = row['job_posting_url']
           p url
@@ -152,6 +156,7 @@ namespace :import_csv do
 
     CSV.open('storage/csv/no_of_jobs_by_ats.csv', 'w') do |csv|
       csv << ['ATS', 'Number of Jobs']
+      csv << ['Total', counter]
       sorted_ats_jobs_count.each do |ats, count|
         csv << [ats, count]
       end
