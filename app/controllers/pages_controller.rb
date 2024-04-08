@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[home test faqs how_it_works about jobs landing about]
+  skip_before_action :authenticate_user!, only: %i[home test faqs how_it_works about jobs landing privacy ts_and_cs]
 
   def home
   end
@@ -26,5 +26,11 @@ class PagesController < ApplicationController
   end
 
   def about
+  end
+
+  def privacy
+  end
+
+  def ts_and_cs
   end
 end
