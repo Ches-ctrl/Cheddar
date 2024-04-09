@@ -1,9 +1,9 @@
 <div class="container">
-  <div class="header-photos pt-1">
-    <%= link_to image_tag('https://source.unsplash.com/random/900%C3%97700/?landscape', alt: 'cake', style: "height: 300px; width: 24%; overflow: hidden;") %>
-    <%= link_to image_tag('https://source.unsplash.com/random/900%C3%97700/?puppy', alt: 'cake', style: "height: 300px; width: 24%; overflow: hidden;") %>
-    <%= link_to image_tag('https://source.unsplash.com/random/900%C3%97700/?cat', alt: 'cake', style: "height: 300px; width: 24%; overflow: hidden;") %>
-    <%= link_to image_tag('https://source.unsplash.com/random/900%C3%97700/?country', alt: 'cake', style: "height: 300px; width: 24%; overflow: hidden;") %>
+  <div class="header-photos pt-1 d-flex w-100 justify-content-center align-items-center">
+    <%= image_tag 'https://source.unsplash.com/random/900x700/?landscape', alt: 'Landscape', style: "height: 300px; overflow: hidden;", class: "me-1 w-24" %>
+    <%= image_tag 'https://source.unsplash.com/random/900x700/?puppy', alt: 'Puppy', style: "height: 300px; overflow: hidden;", class: "mx-1 w-24" %>
+    <%= image_tag 'https://source.unsplash.com/random/900x700/?cat', alt: 'Cat', style: "height: 300px; overflow: hidden;",class: "mx-1 w-24" %>
+    <%= image_tag 'https://source.unsplash.com/random/900x700/?country', alt: 'Country', style: "height: 300px; overflow: hidden;", class: "ms-1 w-24" %>
   </div>
   <div class="profile-heading">
     <div class="avatar ms-4", style="margin-bottom: 40px;">
@@ -14,7 +14,7 @@
           <%= image_tag "avatar_default.png", class: "avatar-large", style: "margin-top: -55px; border: 2px solid #fff;" %>
         <% end %>
       </div>
-      <div class="socials">
+      <div class="socials d-flex justify-content-start align-items-center">
         <% if current_user.linkedin_profile.present? %>
             <%= link_to current_user.linkedin_profile, target: "_blank", style: "color: #0a66c2" do %>
               <i class="fa-brands fa-linkedin"></i>
@@ -34,16 +34,16 @@
         <% end %>
       </div>
     </div>
-    <div class="row mt-4 text-sm">
+    <div class="row text-sm d-flex">
       <div class="col-5">
-        <h4 class="fw-semibold"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h4>
+        <h4 class="fw-semibold mb-1 mt-4"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h4>
         <div class="d-flex align-items-center">
           <i class="fa-solid fa-cheese me-1"></i>
           <div>Subscriber</div>
         </div>
         <div class="d-flex align-items-center">
           <i class="fa-solid fa-location-dot me-1"></i>
-          <div> Chichester, West Sussex, United Kingdom</div>
+          <div><%= current_user.city %></div>
         </div>
       </div>
       <div class="col-7">
