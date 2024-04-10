@@ -8,6 +8,9 @@ class JobApplicationsController < ApplicationController
   end
 
   def show
+    @apps_submitted = JobApplication.where(user_id: current_user.id).all.count
+    @hours_saved = (@apps_submitted * 0.2).ceil
+    @dog_names = ["Biscuit", "Cookie", "Muffin", "Brownie", "Cupcake", "Pretzel", "Waffle", "Pancake", "Donut"]
   end
 
   def new
@@ -57,8 +60,12 @@ class JobApplicationsController < ApplicationController
       end
 
       if @job_application.save
-        user_channel_name = "job_applications_#{current_user.id}"
 
+        p "Job application saved."
+
+        user_channel_name = "job_applications_#{current_user.id}"
+        user_saved_jobs = SavedJob.where(user_id: current_user.id)
+        user_saved_jobs.find_by(job_id: @job_application.job.id).destroy
         ActionCable.server.broadcast(
           user_channel_name,
           {
@@ -70,7 +77,7 @@ class JobApplicationsController < ApplicationController
           }
         )
 
-        ApplyJob.perform_later(@job_application.id, current_user.id)
+        ApplyJob.perform_now(@job_application.id, current_user.id)
         @job_application.update(status: "Application pending")
 
         ActionCable.server.broadcast(
@@ -101,6 +108,7 @@ class JobApplicationsController < ApplicationController
       else
         # p "Rendering new"
         render :new
+        p "Couldn't save job application."
       end
     else
       # p "User doesn't have a resume attached."

@@ -6,6 +6,7 @@ class ApplyJob < ApplicationJob
   sidekiq_options retry: false
 
   def perform(job_application_id, user_id)
+    "Hello from the job application job!"
     application = JobApplication.find(job_application_id)
     job = application.job
     user = User.find(user_id)
@@ -15,8 +16,6 @@ class ApplyJob < ApplicationJob
 
     form_filler = FormFiller.new
     form_filler.fill_out_form(job.job_posting_url, fields_to_fill, job_application_id)
-
-    Capybara.send(:session_pool).each_value { |ses| ses.driver.quit }
 
     user_channel_name = "job_applications_#{user.id}"
 
@@ -34,6 +33,12 @@ class ApplyJob < ApplicationJob
   end
 
   private
+
+  def cleanup_sessions
+    Capybara.send(:session_pool).each_value do |session|
+      session.driver.quit
+    end
+  end
 
   def assign_values_to_form(application, user)
     application_criteria = application.job.application_criteria
