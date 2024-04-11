@@ -1,5 +1,5 @@
 module Ats
-  module Devit
+  module Devitjobs
     module CompanyDetails
       def find_or_create_company(ats_identifier)
         company = Company.find_or_create_by(ats_identifier:) do |new_company|

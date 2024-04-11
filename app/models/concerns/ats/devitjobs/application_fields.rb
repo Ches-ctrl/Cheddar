@@ -1,5 +1,5 @@
 module Ats
-  module Devit
+  module Devitjobs
     module ApplicationFields
       # Question - scrape all fields or add standard set each time?
 

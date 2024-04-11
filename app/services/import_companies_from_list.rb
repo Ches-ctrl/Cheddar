@@ -1,9 +1,9 @@
 class ImportCompaniesFromList
   include CompanyCsv
 
-  def initialize
+  def initialize(urls = load_from_csv('company_url_list'))
     puts "Importing companies from list..."
-    @urls = load_from_csv('company_url_list')
+    @urls = urls
     @companies = ats_list
     @no_of_companies = Company.count
     @no_of_jobs = Job.count

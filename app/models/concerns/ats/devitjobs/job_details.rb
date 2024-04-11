@@ -1,10 +1,10 @@
 module Ats
-  module Devit
+  module Devitjobs
     module JobDetails
       # TODO: Check if job already exists in database
       def fetch_title_and_location(job_data)
-        job_title = job_data['title']
-        job_location = job_data.dig('location', 'name')
+        job_title = job_data.css('title').text
+        job_location = job_data.css('location').text
         [job_title, job_location]
       end
 
