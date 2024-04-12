@@ -5,12 +5,13 @@ until response do
   puts "Please enter a valid integer between 1 and 500:"
   response = gets.chomp
   if response == 'run updater'
-    Scraper::DevitJob.perform_later
+    # Scraper::DevitJob.perform_later
     # ImportCompaniesFromList.new.call
     # Xml::WorkableJob.perform_later
     # ScrapeTrueUpJob.perform_later
     # JobsUpdateJob.perform_later
-    response = 1
+    ScrapeMetaTags.new('https://jobs.bettyblocks.com/o/ux-ui-designer-1').call
+    exit
   else
     response = response.to_i
     response = nil if response.zero? || response > 500
