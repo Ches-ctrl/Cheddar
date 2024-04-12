@@ -5,7 +5,6 @@ module Ats
 
       def get_application_criteria(job)
         job.application_criteria = CORE_FIELDS
-        job.save
       end
 
       CORE_FIELDS = {

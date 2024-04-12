@@ -52,6 +52,17 @@ class ApplicantTrackingSystem < ApplicationRecord
     return job
   end
 
+  def find_or_create_company_by_data(data)
+    ats_identifier = fetch_company_id(data)
+    company = Company.find_or_create_by(ats_identifier:) do |new_company|
+      new_company.applicant_tracking_system = self
+
+      update_company_details(new_company, data)
+    end
+
+    return company
+  end
+
   private
 
   def fetch_job_data(job)
@@ -84,6 +95,7 @@ class ApplicantTrackingSystem < ApplicationRecord
         p "Work eligibility requirement: #{job.work_eligibility}"
       end
     end
+    job.save
   end
 
   def try_standard_formats(url, regex_formats)

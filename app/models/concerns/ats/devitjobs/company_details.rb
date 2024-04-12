@@ -1,27 +1,16 @@
 module Ats
   module Devitjobs
     module CompanyDetails
-      def find_or_create_company(ats_identifier)
-        company = Company.find_or_create_by(ats_identifier:) do |new_company|
-          company_name, description = fetch_company_data(ats_identifier)
-          return unless company_name
-
-          new_company.company_name = company_name
-          new_company.description = description
-          new_company.applicant_tracking_system = self
-          new_company.url_ats_api = ''
-          new_company.url_ats_main = ''
-          puts "Created company - #{new_company.company_name}"
-        end
-
-        return company
+      def fetch_company_id(data)
+        data['company'].gsub(' ', '-').gsub(/[^A-Za-z\-]/, '')
       end
 
-      def fetch_company_data(ats_identifier)
-        company_api_url = "#{base_url_api}#{ats_identifier}"
-        response = get(company_api_url)
-        data = JSON.parse(response)
-        [data['name'], data['content']]
+      def update_company_details(company, data)
+        company.company_name = data['company']
+        company.company_website_url = data['companyWebsiteLink']
+        company.company_category = data['companyType']
+        company.location = [data['address'], data['actualCity'], data['postalCode']].reject(&:blank?).join(', ')
+        # company.img_url = data['logoImg'].include?('https://') ? data['logoImg'] : "https://static.devitjobs.uk/logo-images/#{data['logoImg']}"
       end
     end
   end
