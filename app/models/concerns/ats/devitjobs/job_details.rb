@@ -2,7 +2,6 @@ module Ats
   module Devitjobs
     module JobDetails
       include ActionView::Helpers::NumberHelper
-      include Capybara::DSL
 
       def fetch_title_and_location(job_data)
         job_title = job_data.css('title').text
@@ -43,41 +42,18 @@ module Ats
 
       def scrape_description_and_posting_date(job)
         url = job.job_posting_url
-        Capybara.current_driver = :selenium_chrome_headless
-        visit url
+        html = URI.parse(url).open
+        xml = Nokogiri::HTML.parse(html)
+        script_element = xml.xpath('//script[@type="application/ld+json" and @data-react-helmet="true"]').first.content
+        data = JSON.parse(script_element)
 
-        begin
-          wait_for_javascript
-          data = evaluate_script('window.__detailedJob')
-        rescue Timeout::Error
-          return p "Timed out waiting for JavaScript to execute for #{job.job_title}"
-        ensure
-          page.driver.quit
-        end
-
-        # TODO: If the javascript won't load, fetch description from page using Nokogiri & use 'activeFrom' in place of 'createdAt'
-
-        job.job_description = fetch_job_description(data)
-        job.date_created = Date.parse(data['createdAt'])
-      end
-
-      def wait_for_javascript
-        Timeout.timeout(5) do
-          loop until evaluate_script('typeof window.__detailedJob === "object"')
-        end
+        job.job_description = data['description']
+        job.date_created = Date.parse(data['datePosted'])
+        # job.expiry_date = Date.parse(data['validThrough'])
       end
 
       def fetch_seniority(data)
         data['expLevel'] == 'Regular' ? 'Junior' : data['expLevel']
-      end
-
-      def fetch_job_description(data)
-        [
-          data['description'],
-          data['requirementsMustTextArea'],
-          data['requirementsNiceTextArea'],
-          data['responsibilitiesTextArea']
-        ].compact.join("\n\n")
       end
 
       def fetch_salary(data)
