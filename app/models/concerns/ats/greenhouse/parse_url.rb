@@ -45,6 +45,10 @@ module Ats
         return nil
       end
 
+      def fetch_embedded_job_id(url)
+        url.match(/(\d{7})/)[1]
+      end
+
       private
 
       def confirm(potential_identifier, saved_ids)

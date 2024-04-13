@@ -75,9 +75,14 @@ class ScrapeMetaTags
       next unless (candidate = match_ats(link))
 
       begin
-        p JobUrl.new(link).parse
-      rescue NoMethodError
-        p "Write a parse method for #{candidate.name}!"
+        ats, company, job = CreateJobByUrl.new(link).call
+        if ats && company && !job
+          job_id = ats.fetch_embedded_job_id(@url)
+          ats.find_or_create_job_by_id(company, job_id)
+        end
+      rescue NoMethodError => e
+        missing_method = e.message.match(/`(.+?)'/)[1]
+        p "Write a #{missing_method} method for #{candidate.name}!"
       end
       @candidates << candidate
     end

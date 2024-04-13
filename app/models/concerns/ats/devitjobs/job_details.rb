@@ -49,7 +49,7 @@ module Ats
 
         job.job_description = data['description']
         job.date_created = Date.parse(data['datePosted'])
-        # job.expiry_date = Date.parse(data['validThrough'])
+        job.application_deadline = Date.parse(data['validThrough'])
       end
 
       def fetch_seniority(data)
