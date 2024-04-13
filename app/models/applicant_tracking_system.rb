@@ -111,6 +111,7 @@ class ApplicantTrackingSystem < ApplicationRecord
 
   # -----------------------
   # GetAllJobUrls
+  # -----------------------
 
   # -----------------------
   # Job Details
@@ -127,7 +128,6 @@ class ApplicantTrackingSystem < ApplicationRecord
   def self.get_application_criteria(ats, url)
     ats.get_application_criteria(url)
   end
-
 
   private
 
