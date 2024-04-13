@@ -78,7 +78,7 @@ class ScrapeMetaTags
         ats, company, job = CreateJobByUrl.new(link).call
         if ats && company && !job
           job_id = ats.fetch_embedded_job_id(@url)
-          ats.find_or_create_job_by_id(company, job_id)
+          ats.find_or_create_job_by_id(company, job_id) if job_id
         end
       rescue NoMethodError => e
         missing_method = e.message.match(/`(.+?)'/)[1]
