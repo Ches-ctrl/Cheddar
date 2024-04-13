@@ -10,7 +10,8 @@ until response do
     # Xml::WorkableJob.perform_later
     # ScrapeTrueUpJob.perform_later
     # JobsUpdateJob.perform_later
-    ScrapeMetaTags.new('https://jobs.bettyblocks.com/o/ux-ui-designer-1').call
+    ScrapeMetaTags.new('https://fticonsult.referrals.selectminds.com/jobs/senior-consultant-sec-and-accounting-advisory-services-l-forensic-and-litigation-consulting-18695').call
+    ScrapeMetaTags.new('https://jobs.gartner.com/jobs/job/79808-graduate-account-manager-german-speaker-2024-graduates/').call
     exit
   else
     response = response.to_i

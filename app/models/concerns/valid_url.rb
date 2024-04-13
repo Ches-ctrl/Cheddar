@@ -36,6 +36,6 @@ module ValidUrl
 
   def url_valid?(url)
     response = get_response(url)
-    !response.is_a?(Net::HTTPNotFound)
+    response.is_a?(Net::HTTPSuccess)
   end
 end
