@@ -76,7 +76,7 @@ puts "\nHow many jobs do you want to seed in the database?\n"
 #     # ImportCompaniesFromList.new.call
 #     # Xml::WorkableJob.perform_later
 #     # ScrapeTrueUpJob.perform_later
-#     ExistingJobsUpdaterJob.perform_later
+#     UpdateExistingCompanyJobs.perform_later
 #     response = 1
 #   else
 #     response = response.to_i

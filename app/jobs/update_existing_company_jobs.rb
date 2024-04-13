@@ -1,4 +1,4 @@
-class ExistingJobsUpdaterJob < ApplicationJob
+class UpdateExistingCompanyJobs < ApplicationJob
   include CompanyCsv
 
   def perform
@@ -48,7 +48,7 @@ class ExistingJobsUpdaterJob < ApplicationJob
   end
 
   # TODO: Update this so that the jobs are kept but are no longer live on the site
-  
+
   def destroy_defunct_jobs
     puts "Deleting jobs that are no longer live:"
     @job_urls.each do |job_posting_url|
