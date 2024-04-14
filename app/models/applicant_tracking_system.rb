@@ -121,10 +121,11 @@ class ApplicantTrackingSystem < ApplicationRecord
       applicant_tracking_system_id: ats.id,
       ats_job_id:
     )
+    # job_url_api
     job.save
     p job
 
-    data = ats.fetch_job_data(ats, job)
+    data = ats.fetch_job_data(job, ats)
     ats.update_job_details(job, data)
     # ats.create_application_criteria_hash(job)
     job
@@ -150,11 +151,11 @@ class ApplicantTrackingSystem < ApplicationRecord
   # Job Details
   # -----------------------
 
-  def fetch_job_data(job)
-    job.api_url = job_url_api(base_url_api, job.company.ats_identifier, job.ats_job_id)
-    response = get(job.api_url)
-    return JSON.parse(response)
-  end
+  # def fetch_job_data(job)
+  #   job.api_url = job_url_api(base_url_api, job.company.ats_identifier, job.ats_job_id)
+  #   response = get(job.api_url)
+  #   return JSON.parse(response)
+  # end
 
   def update_requirements(job)
     job.no_of_questions = job.application_criteria.size
