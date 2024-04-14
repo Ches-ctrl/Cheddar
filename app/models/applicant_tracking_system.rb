@@ -112,14 +112,6 @@ class ApplicantTrackingSystem < ApplicationRecord
     return job
   end
 
-  # -----------------------
-  # GetAllJobUrls
-  # -----------------------
-
-  # -----------------------
-  # Job Details
-  # -----------------------
-
   def self.create_job(url, ats, company, ats_job_id)
     # Does this need to be find_or_create_by?
     job = Job.create(
@@ -136,14 +128,6 @@ class ApplicantTrackingSystem < ApplicationRecord
     ats.update_job_details(job, data)
     # ats.create_application_criteria_hash(job)
     job
-  end
-
-  # -----------------------
-  # Application Fields
-  # -----------------------
-
-  def self.get_application_criteria(ats, url)
-    ats.get_application_criteria(url)
   end
 
   private
