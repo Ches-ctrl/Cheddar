@@ -23,15 +23,15 @@ module AtsSystemParser
 
   SUPPORTED_ATS_SYSTEMS = [
     "Greenhouse",
-    # "Lever",
-    # "Workable",
-    # "AshbyHQ",
-    # "BambooHR",
-    # "DevITJobs",
-    # "Manatal",
-    # "PinpointHQ",
-    # "Recruitee",
-    # "SmartRecruiters",
+    "Lever",
+    "Workable",
+    "AshbyHQ",
+    "BambooHR",
+    "DevITJobs",
+    "Manatal",
+    "PinpointHQ",
+    "Recruitee",
+    "SmartRecruiters",
   ]
 
   ATS_SYSTEM_PARSER = {
