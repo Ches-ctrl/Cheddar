@@ -3,7 +3,8 @@ module ValidUrl
 
   def job_is_live?(url)
     response = get_response(url)
-    response.is_a?(Net::HTTPSuccess)
+    p "Response: #{response}"
+    response.is_a?(Net::HTTPSuccess) || response.is_a?(Net::HTTPRedirection)
   end
 
   def get_response(url, max_retries = 1)
