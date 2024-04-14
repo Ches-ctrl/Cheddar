@@ -90,14 +90,17 @@ class ApplicantTrackingSystem < ApplicationRecord
   # JobCreator
   # -----------------------
 
-  def self.find_or_create_job_by_data(company, data)
-    p "find_or_create_job_by_data - #{data}"
-    ats_job_id = fetch_id(data)
-    find_or_create_job_by_id(company, ats_job_id)
-  end
+  # def self.find_or_create_job_by_data(company, data)
+  #   # Add logic here that if it is from a certain ATS system then it routes differently so we don't re-request the API a million times
+
+  #   p "find_or_create_job_by_data - #{data}"
+  #   ats_job_id = fetch_id(data)
+  #   find_or_create_job_by_id(company, ats_job_id)
+  # end
 
   def self.find_or_create_job_by_id(company, ats_job_id)
     p "find_or_create_job_by_id - #{ats_job_id}"
+
     job = Job.find_or_create_by(ats_job_id:) do |new_job|
       new_job.company = company
 
@@ -117,8 +120,22 @@ class ApplicantTrackingSystem < ApplicationRecord
   # Job Details
   # -----------------------
 
-  def self.get_job_details(ats, company, url, ats_job_id)
-    job = ats.get_job_details(url, company, ats_job_id) # rubocop:disable Lint/UselessAssignment
+  def self.create_job(url, ats, company, ats_job_id)
+    # Does this need to be find_or_create_by?
+    job = Job.create(
+      job_title: "Placeholder Job Title - #{ats.name} - #{ats_job_id}",
+      job_posting_url: url,
+      company_id: company.id,
+      applicant_tracking_system_id: ats.id,
+      ats_job_id:
+    )
+    job.save
+    p job
+
+    data = ats.fetch_job_data(ats, job)
+    ats.update_job_details(job, data)
+    # ats.create_application_criteria_hash(job)
+    job
   end
 
   # -----------------------
