@@ -1,4 +1,5 @@
 class CreateJobFromUrl
+  include ValidUrl
   include AtsSystemParser
 
   def initialize(url)
@@ -48,8 +49,12 @@ class CreateJobFromUrl
     # TODO: We also need a way of managing what happens when companies switch ATS systems - this is probably just a flag in the first instance
     # TODO: Find a recruitee job_posting_url as currently don't have one to test
 
-    job = ApplicantTrackingSystem.create_job(@url, ats, company, job_id)
-    puts "Created job - #{job.job_title}"
+    if job_is_live?(@url)
+      job = ApplicantTrackingSystem.create_job(@url, ats, company, job_id)
+      puts "Created job - #{job.job_title}"
+    else
+      p "Job has expired - #{@url}"
+    end
 
     # ---------------
     # GetAllJobUrls
