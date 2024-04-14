@@ -1,5 +1,5 @@
 class ApplicantTrackingSystem < ApplicationRecord
-  include CheckUrlIsValid
+  include CheckUrlValidity
   include AtsSystemParser
   include AtsRouter
 
@@ -42,7 +42,7 @@ class ApplicantTrackingSystem < ApplicationRecord
   end
 
   def self.check_ats
-    # TODO: Check if company is still hosted by an ATS or has moved provider (this actually may want to sit in CheckUrlIsValid)
+    # TODO: Check if company is still hosted by an ATS or has moved provider (this actually may want to sit in CheckUrlValidity)
   end
 
   # -----------------------
@@ -83,16 +83,17 @@ class ApplicantTrackingSystem < ApplicationRecord
   # JobCreator
   # -----------------------
 
-  # def self.find_or_create_job_by_data(company, data)
-  #   # Add logic here that if it is from a certain ATS system then it routes differently so we don't re-request the API a million times
+  def self.find_or_create_job_by_data(company, data)
+    # Add logic here that if it is from a certain ATS system then it routes differently so we don't re-request the API a million times
 
-  #   p "find_or_create_job_by_data - #{data}"
-  #   ats_job_id = fetch_id(data)
-  #   find_or_create_job_by_id(company, ats_job_id)
-  # end
+    p "find_or_create_job_by_data - #{data}"
+    ats_job_id = fetch_id(data)
+    find_or_create_job_by_id(company, ats_job_id)
+  end
 
   def self.find_or_create_job_by_id(url, ats, company, ats_job_id)
     p "Finding or creating job by ID - #{ats_job_id}"
+
     job = Job.find_or_create_by(ats_job_id:) do |job|
       job.job_title = "Placeholder - #{ats.name} - #{ats_job_id}"
       job.job_posting_url = url

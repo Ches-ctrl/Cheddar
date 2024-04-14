@@ -10,7 +10,6 @@ module Ats
       end
 
       def update_job_details(job, data)
-        # TODO: add logic for office
         job.update(
           job_title: data['title'],
           job_description: data['description'],
