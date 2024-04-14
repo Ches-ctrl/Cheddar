@@ -18,7 +18,7 @@ module Ats
 
         p "Updating job details - #{job.job_title}"
 
-        country_custom_field = data['customField'].find { |field| field['fieldId'] == "COUNTRY" }
+        # country_custom_field = data['customField'].find { |field| field['fieldId'] == "COUNTRY" }
 
         job.update(
           job_title: data['name'],

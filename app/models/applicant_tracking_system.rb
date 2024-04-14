@@ -98,19 +98,19 @@ class ApplicantTrackingSystem < ApplicationRecord
   #   find_or_create_job_by_id(company, ats_job_id)
   # end
 
-  def self.find_or_create_job_by_id(company, ats_job_id)
-    p "find_or_create_job_by_id - #{ats_job_id}"
+  # def self.find_or_create_job_by_id(company, ats_job_id)
+  #   p "find_or_create_job_by_id - #{ats_job_id}"
 
-    job = Job.find_or_create_by(ats_job_id:) do |new_job|
-      new_job.company = company
+  #   job = Job.find_or_create_by(ats_job_id:) do |new_job|
+  #     new_job.company = company
 
-      data = fetch_job_data(new_job)
-      update_job_details(new_job, data)
-      get_application_criteria(new_job)
-      update_requirements(new_job)
-    end
-    return job
-  end
+  #     data = fetch_job_data(new_job)
+  #     update_job_details(new_job, data)
+  #     get_application_criteria(new_job)
+  #     update_requirements(new_job)
+  #   end
+  #   return job
+  # end
 
   def self.create_job(url, ats, company, ats_job_id)
     # Does this need to be find_or_create_by?
