@@ -30,6 +30,8 @@ class CreateJobFromUrl
     company = ApplicantTrackingSystem.get_company_details(@url, ats, ats_identifier)
     puts "Created company - #{company.company_name}"
 
+    p company
+
     # At this point, we have the ATS, company and job_id
     # If we're calling job_creator directly, we'll have the ATS, company and url
     # The url will always contain the job id, so we can use that to get the job details
@@ -42,6 +44,9 @@ class CreateJobFromUrl
 
     # TODO: Fix this method, all ATS API integrations have get_job_details but it's not yet passing the correct variables back and forth
     # TODO: Greenhouse, lever and Devit will then need updating separately given Dan changes
+    # TODO: Fix this as at the moment it breaks whenever the job_posting_url is no longer valid
+    # TODO: We also need a way of managing what happens when companies switch ATS systems - this is probably just a flag in the first instance
+    # TODO: Find a recruitee job_posting_url as currently don't have one to test
 
     job = ApplicantTrackingSystem.create_job(@url, ats, company, job_id)
     puts "Created job - #{job.job_title}"
