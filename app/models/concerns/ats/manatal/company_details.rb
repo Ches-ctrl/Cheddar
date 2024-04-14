@@ -1,16 +1,7 @@
 module Ats
   module Manatal
     module CompanyDetails
-      def find_or_create_company(_ats_identifier)
-        # TODO: add method here
-        return
-      end
-
       def get_company_details(url, ats_system, ats_identifier)
-        p "Getting Manatal company details - #{url}"
-
-        # TODO: Handle logos
-
         data = fetch_company_data(ats_system, ats_identifier)
 
         p data

@@ -15,7 +15,6 @@ module Ats
           data = jobs.find { |job_data| job_data["hash"] == job.ats_job_id }
 
           if data
-            p data
             job.api_url = "#{job_url_api}#{data['id']}"
             return data
           end

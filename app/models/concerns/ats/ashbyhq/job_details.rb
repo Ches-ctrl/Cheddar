@@ -1,11 +1,6 @@
 module Ats
   module Ashbyhq
     module JobDetails
-      # TODO: Check if job already exists in database
-      # TODO: Update job to handle workplace (hybrid)
-      # TODO: Update description to handle html and non-html, add labelling for this characteristic
-
-
       def get_job_details(job)
         ats = job.company.applicant_tracking_system
         data = fetch_job_data(job, ats)
@@ -36,8 +31,8 @@ module Ats
           job_title: data['title'],
           job_description: data['descriptionHtml'],
           office_status: data['remote'] ? 'Remote' : 'On-site',
-          location: data['location'],
-          country: data['address']['addressCountry'],
+          # location: data['location'],
+          # country: data['address']['addressCountry'],
           department: data['department']
         )
       end

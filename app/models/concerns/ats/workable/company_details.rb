@@ -1,11 +1,6 @@
 module Ats
   module Workable
     module CompanyDetails
-      def find_or_create_company(_ats_identifier)
-        # TODO: add method here
-        return
-      end
-
       def get_company_details(url, ats_system, ats_identifier)
         p "Getting workable company details - #{url}"
 

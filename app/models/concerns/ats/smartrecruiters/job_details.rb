@@ -1,10 +1,8 @@
 module Ats
   module Smartrecruiters
     module JobDetails
-
       def fetch_job_data(job, ats)
         job_url_api = "#{ats.base_url_api}#{job.company.ats_identifier}/postings/#{job.ats_job_id}"
-        p job_url_api
         job.api_url = job_url_api
         uri = URI(job_url_api)
         response = Net::HTTP.get(uri)
