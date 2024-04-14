@@ -1,11 +1,8 @@
 module Ats
   module Smartrecruiters
     module JobDetails
-      def find_or_create_by_id(_company, _ats_job_id)
-        return
-      end
 
-      def fetch_job_data(ats, job)
+      def fetch_job_data(job, ats)
         job_url_api = "#{ats.base_url_api}#{job.company.ats_identifier}/postings/#{job.ats_job_id}"
         p job_url_api
         job.api_url = job_url_api
@@ -15,7 +12,6 @@ module Ats
       end
 
       def update_job_details(job, data)
-
         p "Updating job details - #{job.job_title}"
 
         # country_custom_field = data['customField'].find { |field| field['fieldId'] == "COUNTRY" }

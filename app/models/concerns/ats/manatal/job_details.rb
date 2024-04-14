@@ -1,18 +1,6 @@
 module Ats
   module Manatal
     module JobDetails
-      def find_or_create_by_id(_company, _ats_job_id)
-        return
-      end
-
-      def self.get_job_details(job)
-        ats = job.company.applicant_tracking_system
-        data = fetch_job_data(job, ats)
-        update_job_details(job, data)
-        p "Updated job details - #{job.job_title}"
-        job
-      end
-
       def fetch_job_data(job, ats)
         job_url_api = "#{ats.base_url_api}#{job.company.ats_identifier}/jobs/"
         p "Fetching job data - #{job_url_api}"
@@ -42,7 +30,7 @@ module Ats
         end
       end
 
-      def self.update_job_details(job, data)
+      def update_job_details(job, data)
         p "Updating job details - #{job.job_title}"
 
         job.update(
@@ -50,8 +38,8 @@ module Ats
           job_description: data['description'],
           department: data['departmentLabel'],
           employment_type: data['contract_details'],
-          country: data['country'],
-          location: data['location_display'],
+          # country: data['country'],
+          # location: data['location_display'],
           ats_job_id: data['id']
         )
       end

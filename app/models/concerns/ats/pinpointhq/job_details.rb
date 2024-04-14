@@ -1,16 +1,9 @@
 module Ats
   module Pinpointhq
     module JobDetails
-      def get_job_details(job)
-        ats = job.company.applicant_tracking_system
-        data = fetch_job_data(job, ats)
-        update_job_details(job, data)
-        p "Updated job details - #{job.job_title}"
-        job
-      end
-
-      def fetch_job_data(job, _ats)
-        job_url_api = "#{job.company.url_ats_api}postings.json"
+      def fetch_job_data(job, ats)
+        # Move to main ATS model
+        job_url_api = job.company.url_ats_api
         job.api_url = job_url_api
         job_id = job.ats_job_id
 
@@ -20,6 +13,8 @@ module Ats
         data = all_jobs_data["data"].find { |job| job["path"] == "/en/postings/#{job_id}" }
 
         return data if data
+
+        # TODO: fix setup for when job posting is no longer live - at the moment will break the import
 
         p "Job with ID #{job.ats_job_id} is expired."
         job.live = false
@@ -32,7 +27,7 @@ module Ats
         job.update(
           job_title: data['name'],
           job_description: data['description'],
-          country: data['location']['name'],
+          # country: data['location']['name'],
           department: data['job']['department']['name'],
           requirements: data['skills_knowledge_requirements'],
           responsibilities: data['key_responsibilities'],

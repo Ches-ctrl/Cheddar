@@ -5,18 +5,6 @@ module Ats
       # TODO: Update job to handle workplace (hybrid)
       # TODO: Update description to handle html and non-html, add labelling for this characteristic
 
-      def find_or_create_by_id(_company, _ats_job_id)
-        return
-      end
-
-      def get_job_details(job)
-        ats = job.company.applicant_tracking_system
-        data = fetch_job_data(job, ats)
-        update_job_details(job, data)
-        p "Updated job details - #{job.job_title}"
-        job
-      end
-
       def fetch_job_data(job, ats)
         job_url_api = "#{ats.base_url_api}#{job.company.ats_identifier}/jobs/#{job.ats_job_id}"
         job.api_url = job_url_api

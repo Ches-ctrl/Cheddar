@@ -5,9 +5,6 @@ module Ats
       # TODO: Update job to handle workplace (hybrid)
       # TODO: Update description to handle html and non-html, add labelling for this characteristic
 
-      def find_or_create_by_id(_company, _ats_job_id)
-        return
-      end
 
       def get_job_details(job)
         ats = job.company.applicant_tracking_system
