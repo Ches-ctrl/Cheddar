@@ -1,6 +1,10 @@
 class UpdateExistingCompanyJobs < ApplicationJob
   include CompanyCsv
 
+  # Why do we get all the job urls?
+  # Wouldn't the best approach here be to create a csv with all the company data from the respective APIs
+  # Then we can query the APIs based on that data?
+
   def perform
     puts "Beginning jobs updater for companies already seeded to the DB..."
 
