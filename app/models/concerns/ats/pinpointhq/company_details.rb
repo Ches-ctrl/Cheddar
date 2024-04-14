@@ -1,11 +1,6 @@
 module Ats
   module Pinpointhq
     module CompanyDetails
-      def find_or_create_company(_ats_identifier)
-        # TODO: add method here
-        return
-      end
-
       def get_company_details(url, ats_system, ats_identifier)
         p "Getting PinpointHQ company details - #{url}"
 
@@ -25,15 +20,11 @@ module Ats
           )
 
           p "Created company - #{company.company_name}" if company.persisted?
-
-          # p "Calling GetAllJobUrls"
-          # GetAllJobUrls.new(company).get_all_job_urls if new_company
-          # p "Finished GetAllJobUrls"
-
-          # TODO: Handle logic for GetAllJobUrls via web scrape or API call depending on ATS system
         end
         company
       end
+
+      # TODO: Move this to main ATS model as common to multiple ATS systems
 
       def replace_ats_identifier(ats_system, ats_identifier)
         api_url = ats_system.base_url_api
