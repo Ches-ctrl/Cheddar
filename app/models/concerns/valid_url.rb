@@ -1,7 +1,12 @@
 module ValidUrl
   extend ActiveSupport::Concern
 
-  def get_response(url, max_retries = 2)
+  def job_is_live?(url)
+    response = get_response(url)
+    response.is_a?(Net::HTTPSuccess)
+  end
+
+  def get_response(url, max_retries = 1)
     uri = URI(url)
     retries = 0
     begin
@@ -19,7 +24,7 @@ module ValidUrl
     return response
   end
 
-  def get(url, retries = 2)
+  def get(url, retries = 1)
     uri = URI(url)
     error = nil
     retries.times do |attempt|
