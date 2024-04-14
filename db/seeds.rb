@@ -73,7 +73,7 @@ puts "\nHow many jobs do you want to seed in the database?\n"
 #   response = gets.chomp
 #   if response == 'run updater'
 #     # Scraper::DevitJob.perform_later
-#     # ImportCompaniesFromCsv.new.call
+#     # CreateCompanyFromUrl.new.call
 #     # Xml::WorkableJob.perform_later
 #     # ScrapeTrueUpJob.perform_later
 #     UpdateExistingCompanyJobs.perform_later

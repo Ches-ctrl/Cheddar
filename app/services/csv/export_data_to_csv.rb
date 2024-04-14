@@ -1,4 +1,4 @@
-class ExportData
+class ExportDataToCsv
   # TODO: Add support for filtering list of jobs by criteria
 
   def initialize(record_type)

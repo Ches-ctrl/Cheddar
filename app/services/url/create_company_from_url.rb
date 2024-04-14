@@ -1,4 +1,4 @@
-class ImportCompaniesFromCsv
+class CreateCompanyFromUrl
   include CompanyCsv
 
   # TODO: Move to rake task similar to other CSV import functions
