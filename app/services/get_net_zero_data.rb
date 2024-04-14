@@ -13,6 +13,7 @@ class GetNetZeroData
 
       data.first(10).each do |company|
         company_url = URI(company['api_url'])
+        p company_url
         company_response = Net::HTTP.get_response(company_url)
 
         if company_response.is_a?(Net::HTTPSuccess)
