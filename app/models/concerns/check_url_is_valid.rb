@@ -1,4 +1,4 @@
-module CheckUrlValidity
+module CheckUrlIsValid
   extend ActiveSupport::Concern
 
   # TODO: This doesn't yet work sufficiently well - often you'll have an error message on the page so will need parsing by Nokogiri with a regex for the error message

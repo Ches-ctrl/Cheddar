@@ -1,11 +1,11 @@
 class CreateCompanyFromUrl
   include CompanyCsv
-
-  # TODO: Move to rake task similar to other CSV import functions
+  include CheckUrlIsValid
+  include AtsSystemParser
 
   def initialize
     puts "Importing companies from CSV list..."
-    @company_urls = load_from_csv('company_urls')
+    @company_urls = load_from_csv('other_company_urls')
     @companies = ats_list
     @no_of_companies = Company.count
     @no_of_jobs = Job.count
@@ -13,6 +13,7 @@ class CreateCompanyFromUrl
 
   def call
     @company_urls.each do |url|
+      p "URL - #{url}"
       # TODO: Fix this. At the moment we have multiple ways of importing companies into the DB. We should just have one format.
       # TODO: Move this into a module or separate service object e.g. CreateCompany or CreateCompanyFromUrl as this is replicated code from CreateJobFromUrl and is the same logic
 

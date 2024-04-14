@@ -1,5 +1,5 @@
 class CreateJobFromUrl
-  include CheckUrlValidity
+  include CheckUrlIsValid
   include AtsSystemParser
 
   def initialize(url)

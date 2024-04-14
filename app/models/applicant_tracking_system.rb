@@ -1,5 +1,5 @@
 class ApplicantTrackingSystem < ApplicationRecord
-  include CheckUrlValidity
+  include CheckUrlIsValid
   include AtsSystemParser
   include AtsRouter
 
@@ -42,7 +42,7 @@ class ApplicantTrackingSystem < ApplicationRecord
   end
 
   def self.check_ats
-    # TODO: Check if company is still hosted by an ATS or has moved provider (this actually may want to sit in CheckUrlValidity)
+    # TODO: Check if company is still hosted by an ATS or has moved provider (this actually may want to sit in CheckUrlIsValid)
   end
 
   # -----------------------
