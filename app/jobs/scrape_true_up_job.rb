@@ -1,7 +1,7 @@
 class ScrapeTrueUpJob < ApplicationJob
   include Capybara::DSL
   include CompanyCsv
-  include ValidUrl
+  include CheckUrlIsValid
 
   NUMBER_OF_RESULT_PAGES = 70
 

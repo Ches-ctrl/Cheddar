@@ -1,14 +1,6 @@
 module Ats
   module Ashbyhq
     module JobDetails
-      def get_job_details(job)
-        ats = job.company.applicant_tracking_system
-        data = fetch_job_data(job, ats)
-        update_job_details(job, data) if job.live
-        p "Updated job details - #{job.job_title}"
-        job
-      end
-
       def fetch_job_data(job, _ats)
         job_url_api = "#{job.company.url_ats_api}?includeCompensation=true"
         job.api_url = job_url_api

@@ -1,5 +1,5 @@
 class CreateJobFromUrl
-  include ValidUrl
+  include CheckUrlIsValid
   include AtsSystemParser
 
   def initialize(url)
@@ -30,12 +30,6 @@ class CreateJobFromUrl
 
     company = ApplicantTrackingSystem.get_company_details(@url, ats, ats_identifier)
     puts "Created company - #{company.company_name}"
-
-    # At this point, we have the ATS, company and job_id
-    # If we're calling job_creator directly, we'll have the ATS, company and url
-    # The url will always contain the job id, so we can use that to get the job details
-    # There are a couple of ways we could pass this to the job_creator method
-    # We also need to be conscious of what order we query the API in depending on the API's structure
 
     # ---------------
     # JobCreator
