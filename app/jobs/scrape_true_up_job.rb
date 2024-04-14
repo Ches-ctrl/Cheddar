@@ -94,6 +94,11 @@ class ScrapeTrueUpJob < ApplicationJob
       @companies_added += 1
       @companies[@ats.name] << @ats_identifier
     end
+  rescue NoMethodError => e
+    missing_method = e.message.match(/`(.+?)'/)[1]
+    p "Problem with #{@url}: missing a #{missing_method} method#{" for #{@ats.name}" if @ats}!"
+  ensure
+    Capybara.current_session.driver.quit
   end
 
   def extract_url(job_card)

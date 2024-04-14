@@ -8,28 +8,17 @@ class ScrapeMetaTags
   end
 
   def call
-    return false unless url_valid?(@url)
+    return unless url_valid?(@url) # raise Invalid Url Error?
 
     p "Grabbing meta information for #{@url}"
 
     fetch_doc
     fetch_links_from_meta_tags
+    fetch_links_from_link_tags
     fetch_links_from_scripts
     fetch_link_from_apply_button
     fetch_link_from_form
-    fetch_ats_candidates
-
-    if @candidates.size == 1
-      ats = @candidates.first
-      p "I've determined this job is associated with #{ats.name}"
-    elsif @candidates.size > 1
-      p "Here are the ATS candidates:"
-      @candidates.each { |ats| p "  #{ats.name}"}
-    else
-      p "Unable to associate an ATS with this url."
-    end
-    p "Finished."
-    @candidates
+    fetch_ats_candidates_company_and_job
   end
 
   private
@@ -40,9 +29,16 @@ class ScrapeMetaTags
   end
 
   def fetch_links_from_meta_tags
-    meta_tags = @doc.xpath('//head//meta//@content')
+    meta_tags = @doc.xpath('//meta[not(@property="og:description")]//@content')
     meta_tags.each do |tag|
       @external_links << tag.value if tag.value.match?(%r{https?://})
+    end
+  end
+
+  def fetch_links_from_link_tags
+    stylesheets = @doc.xpath('//link[@rel="stylesheet"]')
+    stylesheets.each do |tag|
+      @external_links << tag['href'] if tag['href']
     end
   end
 
@@ -69,8 +65,11 @@ class ScrapeMetaTags
     @external_links << form_link if form_link
   end
 
-  def fetch_ats_candidates
-    @candidates = []
+  def fetch_ats_candidates_company_and_job
+    candidates = []
+    company = nil
+    job_id = nil
+
     @external_links.each do |link|
       next unless (candidate = match_ats(link))
 
@@ -79,15 +78,18 @@ class ScrapeMetaTags
         if ats && company && !job
           job_id = ats.fetch_embedded_job_id(@url)
           job = ats.find_or_create_job_by_id(company, job_id) if job_id
-          return @candidates = [candidate] if job
+          return [[candidate], company, job_id] if job
         end
       rescue NoMethodError => e
         missing_method = e.message.match(/`(.+?)'/)[1]
         p "Write a #{missing_method} method for #{candidate.name}!"
+        # puts "Backtrace: #{e.backtrace.join("\n")}"
       end
-      @candidates << candidate
+      candidates << candidate
     end
-    @candidates.sort_by! { |candidate| @candidates.count(candidate) }.uniq!
+    candidates.uniq!
+    company = job_id = nil if candidates.size > 1
+    [candidates, company, job_id]
   end
 
   def apply_button

@@ -46,7 +46,7 @@ module Ats
       end
 
       def fetch_embedded_job_id(url)
-        url.match(/(\d{7})/)[1]
+        url.match(/[^\d](\d{7})(?:[^\d]|\b)/)[1]
       end
 
       private
