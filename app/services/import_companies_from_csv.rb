@@ -1,18 +1,19 @@
-class ImportCompaniesFromList
+class ImportCompaniesFromCsv
   include CompanyCsv
 
   # TODO: Move to rake task similar to other CSV import functions
 
   def initialize
-    puts "Importing companies from list..."
-    @urls = load_from_csv('company_url_list')
+    puts "Importing companies from CSV list..."
+    @company_urls = load_from_csv('company_urls')
     @companies = ats_list
     @no_of_companies = Company.count
     @no_of_jobs = Job.count
   end
 
   def call
-    @urls.each do |url|
+    @company_urls.each do |url|
+      # TODO: Fix this. At the moment we have multiple ways of importing companies into the DB. We should just have one format.
       ats, ats_identifier, job_id = ParseJobUrlByAts.new(url).parse(@companies)
       next puts "couldn't find ats for url: #{url}" unless ats
       next puts "invalid identifier: #{ats_identifier}" unless ats_identifier
