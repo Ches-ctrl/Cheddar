@@ -1,30 +1,68 @@
 // Specific CSS for your home-page
 .btn-main {
   align-items: center;
-  background-image: linear-gradient(144deg, $oxford-blue, rgb(15, 101, 159) 98%);
-  border: 0;
-  border-radius: 8px;
-  box-shadow: rgba(151, 65, 252, 0.1) 0 15px 30px -5px;
+  // background-image: linear-gradient(144deg, $oxford-blue, rgb(15, 101, 159) 98%);
+  border: none;
+  outline: none;
+  border-radius: 16px;
+  // box-shadow: rgba(151, 65, 252, 0.1) 0 15px 30px -5px;
   box-sizing: border-box;
   color: #FFFFFF;
   display: flex;
-  font-size: 40px;
+  font-size: 38px;
   font-weight: 700;
   justify-content: center;
   line-height: 1em;
     // max-width: 35%;
   min-width: 80px;
-  padding: 19px 24px;
+  padding: 28px 24px;
   text-decoration: none;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   white-space: nowrap;
   cursor: pointer;
+  position: relative;
+  z-index: 0;
+  color: $main-color;
   &:hover {
-    box-shadow: rgba(20, 52, 89, 0.3) 0 15px 30px -5px;
+    box-shadow: 0px 12px 8px rgba(0, 0, 0, 0.1);
   }
-  // width: 250px;
+  width: 250px;
+
+  &:before {
+    content: '';
+    background: linear-gradient(45deg, #FF9433, #FFE352, #fff, #fff, #FF9433, #FFE352);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(2px);
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
+    animation: glowing 30s linear infinite;
+    opacity: 1;
+    border-radius: 16px;
+  }
+
+  &:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    left: 0;
+    top: 0;
+    border-radius: 16px;
+  }
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
 }
 
 #punchline {
