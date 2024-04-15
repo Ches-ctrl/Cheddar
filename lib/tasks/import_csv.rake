@@ -32,6 +32,21 @@ namespace :import_csv do
   # Companies
   # -----------------------------
 
+  desc "Import CSV - other_company_urls"
+  task other_company_urls: :environment do
+    company_csv = 'storage/csv/other_company_urls.csv'
+
+    puts Company.count
+    puts "Creating new companies..."
+
+    CSV.foreach(company_csv, headers: true) do |row|
+      url = row['company_url']
+      Url::CreateCompanyFromUrl.new(url).create_company
+    end
+
+    puts Company.count
+  end
+
   desc "Sort CSV - company_url_list"
   task sort_company_url_list: :environment do
     csv = CSV.read('storage/csv/company_url_list.csv', headers: true)
@@ -96,7 +111,7 @@ namespace :import_csv do
 
     CSV.foreach(jobs_csv, headers: true) do |row|
       url = row['job_posting_url']
-      CreateJobFromUrl.new(url).create_company_then_job
+      Url::CreateJobFromUrl.new(url).create_company_then_job
     end
 
     puts Job.count
