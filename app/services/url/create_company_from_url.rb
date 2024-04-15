@@ -9,9 +9,9 @@ module Url
     end
 
     def create_company
-      # TODO: Fix this. At the moment we have multiple ways of importing companies into the DB. We should just have one format.
-      # TODO: Move this into a module or separate service object e.g. CreateCompany or CreateCompanyFromUrl as this is replicated code from CreateJobFromUrl and is the same logic
-      # TODO: Not sure how this is meant to work but the refactor killed the ParseJobUrlFromAts class so had to port in other methods here
+      # TODO: This needs to be refactored as it is currently not DRY - both CreateJobFromUrl and CreateCompanyFromUrl have the same logic
+      # TODO: Refactor this into a CsvController?
+      # TODO: Fix SaveToCsv
 
       # ---------------
       # ATS Router
@@ -34,7 +34,7 @@ module Url
       # CompanyCreator
       # ---------------
 
-      company = ApplicantTrackingSystem.get_company_details(url, ats, ats_identifier)
+      company = ApplicantTrackingSystem.get_company_details(@url, ats, ats_identifier)
       puts "Created company - #{company.company_name}"
 
       # ---------------
