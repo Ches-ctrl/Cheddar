@@ -17,8 +17,6 @@ module Url
       # ATS Router
       # ---------------
 
-      p @url
-
       ats = ApplicantTrackingSystem.determine_ats(@url)
       p "ATS - #{ats.name}"
 
