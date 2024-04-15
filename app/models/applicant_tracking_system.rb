@@ -83,10 +83,11 @@ class ApplicantTrackingSystem < ApplicationRecord
   # JobCreator
   # -----------------------
 
-  def self.find_or_create_job_by_data(company, data)
-    # Add logic here that if it is from a certain ATS system then it routes differently so we don't re-request the API a million times
+  # TODO: Fix this so that it doesn't re-request the API multiple times according to Dan improvements e.g. PinpointHQ
 
+  def self.find_or_create_job_by_data(company, data)
     p "find_or_create_job_by_data - #{data}"
+
     ats_job_id = fetch_id(data)
     find_or_create_job_by_id(company, ats_job_id)
   end
@@ -103,9 +104,11 @@ class ApplicantTrackingSystem < ApplicationRecord
     end
     p "Job created - #{job.job_title}"
 
+    # TODO: Refactor fetch_job_data as lots of repeated code in modules that can be reconciled
+    # TODO: May be able to remove all the separate modules and just have one module for each ATS
     data = ats.fetch_job_data(job, ats)
     ats.update_job_details(job, data)
-    # ats.create_application_criteria_hash(job)
+    # ats.create_application_criteria_hash(job) # TODO: add methods so that this can be called
 
     job
   end

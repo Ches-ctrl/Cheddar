@@ -1,7 +1,7 @@
 module CheckUrlIsValid
   extend ActiveSupport::Concern
 
-  # TODO: This doesn't yet work sufficiently well - often you'll have an error message on the page so will need parsing by Nokogiri with a regex for the error message
+  # TODO: This doesn't yet work sufficiently well - often you'll have a successfull or redirect HTTP call but an error message on the page so will need parsing by Nokogiri with a regex for the error message
 
   def job_is_live?(url)
     response = get_response(url)

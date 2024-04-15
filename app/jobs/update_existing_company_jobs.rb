@@ -5,6 +5,10 @@ class UpdateExistingCompanyJobs < ApplicationJob
   # Wouldn't the best approach here be to create a csv with all the company data from the respective APIs
   # Then we can query the APIs based on that data?
 
+  # TODO: Update so that we have 2 processes:
+  # TODO: (1) for all the existing jobs on the site, we check whether those are still live (and delete if not)
+  # TODO: (2) for all the existing companies on the site, we check whether they have new jobs (and add if so)
+
   def perform
     puts "Beginning jobs updater for companies already seeded to the DB..."
 

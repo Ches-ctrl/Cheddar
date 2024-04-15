@@ -84,6 +84,7 @@ class ScrapeTrueUpJob < ApplicationJob
     all('.card-body').each do |job_card|
       extract_url(job_card)
       extract_alt_id(job_card)
+      # TODO: Fix this given new structure as ParseJobUrlByAts no longer exists
       @ats, @ats_identifier = ParseJobUrlByAts.new(@url).parse(@companies)
       next puts "couldn't parse #{@url}" unless @ats
 
