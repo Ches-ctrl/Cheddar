@@ -5,12 +5,12 @@ until response do
   puts "Please enter a valid integer between 1 and 500:"
   response = gets.chomp
   if response == 'run updater'
-    # Scraper::DevitJob.perform_later
+    Scraper::DevitJob.perform_later
     # ImportCompaniesFromList.new.call
     # Xml::WorkableJob.perform_later
     # ScrapeTrueUpJob.perform_later
     # JobsUpdateJob.perform_later
-    p ScrapeMetaTags.new('https://jobs.smartrecruiters.com/Checkoutcom1/743999975447173?utm_source=trueup&utm_medium=website&ref=trueup').call
+    # p ScrapeMetaTags.new('https://jobs.smartrecruiters.com/Checkoutcom1/743999975447173?utm_source=trueup&utm_medium=website&ref=trueup').call
     # ScrapeMetaTags.new('https://bmcorp.bizmerlin.net/jobboard/#/position/apply/341985').call
     # ScrapeMetaTags.new('https://ripple.com/careers/all-jobs/job/5144512').call
     exit
@@ -72,25 +72,25 @@ greenhouse_companies = [
   "ably30",
   "11fs",
   "clearscoretechnologylimited",
-  # "codepath",
-  # "copperco",
-  # "coreweave",
-  # "cultureamp",
-  # "deliveroo",
-  # "doctolib",
-  # "epicgames",
-  # "figma",
-  # "forter",
-  # "geniussports",
-  # "getir",
-  # "gomotive",
-  # "grammarly",
-  # "intercom",
-  # "janestreet",
-  # "knowde",
-  # "narvar",
-  # "niantic",
-  # "opendoor"
+  "codepath",
+  "copperco",
+  "coreweave",
+  "cultureamp",
+  "deliveroo",
+  "doctolib",
+  "epicgames",
+  "figma",
+  "forter",
+  "geniussports",
+  "getir",
+  "gomotive",
+  "grammarly",
+  "intercom",
+  "janestreet",
+  "knowde",
+  "narvar",
+  "niantic",
+  "opendoor"
 ]
 
 # NB. Doesn't do anything at the moment - needs linking up
