@@ -6,7 +6,7 @@ class ApplyJob < ApplicationJob
   sidekiq_options retry: false
 
   def perform(job_application_id, user_id)
-    "Hello from the job application job!"
+    p "Hello from the job application job!"
     application = JobApplication.find(job_application_id)
     job = application.job
     user = User.find(user_id)
@@ -33,12 +33,6 @@ class ApplyJob < ApplicationJob
   end
 
   private
-
-  def cleanup_sessions
-    Capybara.send(:session_pool).each_value do |session|
-      session.driver.quit
-    end
-  end
 
   def assign_values_to_form(application, user)
     application_criteria = application.job.application_criteria

@@ -37,7 +37,7 @@ class FormFiller
       fields.each do |field|
         field[1]
         if field[0] == 'resume'
-          file_path = Rails.root.join('tmp', "Cover Letter - #{@user.first_name} #{@user.last_name}.pdf")
+          file_path = Rails.root.join('tmp', "Resume - #{@user.first_name} #{@user.last_name} - - #{@job.job_title} - #{@job.company.company_name}.pdf")
           FileUtils.rm_f(file_path)
         elsif field[0] == 'cover_letter_'
           file_path = Rails.root.join('tmp',
@@ -113,12 +113,12 @@ class FormFiller
 
   def find_apply_button(session)
     session.find(:xpath,
-         "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')] | //button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')]")
-        end
+                 "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')] | //button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')]")
+  end
 
   def find_submit_button(session)
     session.find(:xpath,
-         "//button[contains(translate(@value, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'submit')] | //input[contains(translate(@value, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'submit')]")
+                 "//button[contains(translate(@value, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'submit')] | //input[contains(translate(@value, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'submit')]")
   end
 
   def select_option_from_combobox(session, combobox_locator, option_locator, option_text)
@@ -174,7 +174,7 @@ class FormFiller
                                   "Cover Letter - #{@job.job_title} - #{@job.company.company_name} - #{@user.first_name} #{@user.last_name}.docx")
       File.binwrite(file_path, docx)
     else
-      file_path = Rails.root.join('tmp', "Resume - #{@user.first_name} #{@user.last_name}.pdf")
+      file_path = Rails.root.join('tmp', "Resume - #{@user.first_name} #{@user.last_name} - #{@job.job_title} - #{@job.company.company_name}.pdf")
       File.binwrite(file_path, URI.open(file.url).read)
     end
     begin

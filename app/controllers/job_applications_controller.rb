@@ -18,7 +18,7 @@ class JobApplicationsController < ApplicationController
 
     if current_user.present?
       job_ids = cookies[:selected_job_ids].split("&")
-      @selected_jobs = Job.includes(:company).find(job_ids)
+      @selected_jobs = Job.includes(:company).where(id: job_ids)
 
       @job_applications = @selected_jobs.map do |job|
         job_application = job.new_job_application_for_user(current_user)
@@ -26,7 +26,7 @@ class JobApplicationsController < ApplicationController
       end
       # Renders the staging page where the user can review and confirm applications
     else
-      @selected_jobs = Job.find(cookies[:selected_job_ids].split("&"))
+      @selected_jobs = Job.where(cookies[:selected_job_ids].split("&"))
       flash[:alert] = "You need to be logged in to create job applications."
     end
   end
@@ -36,8 +36,9 @@ class JobApplicationsController < ApplicationController
   # TODO: only be able to make a job application if you haven't already applied to the job
 
   def create
+    Rails.logger.debug "Received params: #{params.inspect}"  # Log the incoming parameters
+    p "Starting the create method."
     job = Job.find(params[:job_id])
-
     @job_application = JobApplication.new(job_application_params)
     @job_application.user = current_user
     @job_application.job = job
@@ -77,7 +78,7 @@ class JobApplicationsController < ApplicationController
           }
         )
 
-        ApplyJob.perform_now(@job_application.id, current_user.id)
+        ApplyJob.perform_later(@job_application.id, current_user.id)
         @job_application.update(status: "Application pending")
 
         ActionCable.server.broadcast(

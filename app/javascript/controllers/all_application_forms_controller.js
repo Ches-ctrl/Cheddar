@@ -51,26 +51,13 @@ export default class extends Controller {
     }
 
     try {
-      await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve();
-        }, 200);
-      });
-
-      await Promise.all(
-        this.formTargets.map(async (form) => {
-          await new Promise((resolve) => {
-            setTimeout(() => {
-              form.requestSubmit();
-              resolve();
-            }, 10000);
-          });
-        })
-      );
-
+      await Promise.all(this.formTargets.map((form) => form.requestSubmit()));
+      console.log(this.formTargets.length)
+      alert("All forms submitted successfully");
     } catch (error) {
-      console.error("Error submitting forms:", error);
+      alert("Error submitting forms:", error);
     }
+
   }
 
   createWebSocketChannel(userValue) {
