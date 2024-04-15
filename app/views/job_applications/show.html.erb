@@ -6,12 +6,8 @@
   <div class="success-box">
     <div class="confirmation-header">
         <h1>🎉 Well done 🎉</h1>
-        <% @job_applications = JobApplication.all %>
-        <% apps_submitted = @job_applications.where(user_id: current_user.id).all.count %>
-        <% hours_saved = (apps_submitted * 0.2).ceil %>
-        <h4>You've now applied to <strong><%= apps_submitted %> jobs</strong> with Cheddar... saving <strong>~<%= hours_saved %></strong> <%= hours_saved == 1 ? "hour" : "hours" %> of your time</h4>
-        <% dog_names = ["Biscuit", "Cookie", "Muffin", "Brownie", "Cupcake", "Pretzel", "Waffle", "Pancake", "Donut"] %>
-        <h4 class="pt-3"><%= dog_names.sample.capitalize %> is proud of you</h4>
+        <h4>You've now applied to <strong><%= @apps_submitted %> jobs</strong> with Cheddar... saving <strong>~<%= @hours_saved %></strong> <%= @hours_saved == 1 ? "hour" : "hours" %> of your time</h4>
+        <h4 class="pt-3"><%= @dog_names.sample.capitalize %> is proud of you</h4>
     </div>
     <div class="confirmation-body mt-0 pb-3 d-flex align-items-center" data-action="click->confetti#click" style="cursor:pointer; max-height: 400px; overflow: hidden; border-radius: 10px; object-fit: cover;">
         <%= link_to image_tag('https://source.unsplash.com/random/900%C3%97700/?dog', alt: 'Happy dog unsplash', class: 'confirmation-body-img') %>
