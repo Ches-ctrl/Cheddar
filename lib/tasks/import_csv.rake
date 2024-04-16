@@ -73,20 +73,6 @@ namespace :import_csv do
     end
   end
 
-  desc "Import CSV - Bright Network Jobs"
-  task bright_network: :environment do
-    require 'csv_importer'
-
-    # FIXME: get the csv file name from the command line
-    # FIXME: the initializer does not take a filename
-    # FIXME: add some error reporting/handling
-    csv_importer = BrightNetworkImporter.new File.read(File.join(Rails.root, 'storage', 'new', 'BN_job_posting_urls.csv'))
-
-    imported_jobs = csv_importer.import!
-
-    puts imported_jobs.count
-  end
-
   desc "Import CSV - greenhouse"
   task greenhouse: :environment do
     jobs_csv = 'storage/csv/greenhouse_urls.csv'
