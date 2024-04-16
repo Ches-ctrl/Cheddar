@@ -1,0 +1,2 @@
+class JobBoard < ApplicationRecord
+end

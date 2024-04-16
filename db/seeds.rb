@@ -73,10 +73,11 @@ puts "\nHow many jobs do you want to seed in the database?\n"
 #   response = gets.chomp
 #   if response == 'run updater'
 #     # Scraper::DevitJob.perform_later
-#     # ImportCompaniesFromList.new.call
+#     # TODO: Fix CreateCompanyFromUrl as will now need to call the rake task instead (and all of this really needs moving to a controller)
+#     # CreateCompanyFromUrl.new.call
 #     # Xml::WorkableJob.perform_later
 #     # ScrapeTrueUpJob.perform_later
-#     ExistingJobsUpdaterJob.perform_later
+#     UpdateExistingCompanyJobs.perform_later
 #     response = 1
 #   else
 #     response = response.to_i

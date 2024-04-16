@@ -1,7 +1,15 @@
-module ValidUrl
+module CheckUrlIsValid
   extend ActiveSupport::Concern
 
-  def get_response(url, max_retries = 2)
+  # TODO: This doesn't yet work sufficiently well - often you'll have a successfull or redirect HTTP call but an error message on the page so will need parsing by Nokogiri with a regex for the error message
+
+  def job_is_live?(url)
+    response = get_response(url)
+    p "Response: #{response}"
+    response.is_a?(Net::HTTPSuccess) || response.is_a?(Net::HTTPRedirection)
+  end
+
+  def get_response(url, max_retries = 1)
     uri = URI(url)
     retries = 0
     begin
@@ -19,7 +27,7 @@ module ValidUrl
     return response
   end
 
-  def get(url, retries = 2)
+  def get(url, retries = 1)
     uri = URI(url)
     error = nil
     retries.times do |attempt|
