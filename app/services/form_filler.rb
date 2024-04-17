@@ -16,143 +16,149 @@ class FormFiller
   # Could we implement caching for form inputs? So once you've done it once it becomes less intensive
 
   def fill_out_form(url, fields, job_application_id)
+    session = Capybara::Session.new(:selenium)
+    p "Created new session #{session}"
+
     @job_application = JobApplication.find_by_id(job_application_id)
     @user = @job_application.user
     @job = @job_application.job
     @errors = nil
 
-    visit(url)
     begin
-      find_apply_button.click
+      p "Visiting #{url}"
+      session.visit(url)
+      p "Successfully reached #{url}"
+      find_apply_button(session).click
+      fields.each do |field|
+        field = field[1]
+        handle_field_interaction(session, field)
+      end
+      take_screenshot_and_store(session, job_application_id)
+      fields.each do |field|
+        field[1]
+        if field[0] == 'resume'
+          file_path = Rails.root.join('tmp', "Resume - #{@user.first_name} #{@user.last_name} - - #{@job.job_title} - #{@job.company.company_name}.pdf")
+          FileUtils.rm_f(file_path)
+        elsif field[0] == 'cover_letter_'
+          file_path = Rails.root.join('tmp',
+          "Cover Letter - #{@job.job_title} - #{@job.company.company_name} - #{@user.first_name} #{@user.last_name}.docx")
+          FileUtils.rm_f(file_path)
+        end
+      end
     rescue StandardError
       nil
+    ensure
+      session.driver.quit
     end
 
-    fields.each do |field|
-      field = field[1]
-      case field['interaction']
-      when 'input'
-        begin
-          fill_in(field['locators'], with: field['value'])
-        rescue Capybara::ElementNotFound
-          begin
-            find(field['locators']).set(field['value'])
-          rescue StandardError
-            nil
-          end
-        end
-      when 'combobox'
-        begin
-          select_option_from_combobox(field['locators'], field['option'], field['value'])
-        rescue Capybara::ElementNotFound
-          @errors = true
-        end
-      when 'radiogroup'
-        begin
-          select_option_from_radiogroup(field['locators'], field['option'], field['value'])
-        rescue Capybara::ElementNotFound
-          @errors = true
-        end
-      when 'listbox'
-        begin
-          select_option_from_listbox(field['locators'])
-        rescue NoMethodError
-          @errors = true
-        end
-      when 'select'
-        begin
-          select_option_from_select(field['locators'], field['option'], field['value'])
-        rescue Capybara::ElementNotFound
-          @errors = true
-        end
-      when 'checkbox'
-        begin
-          select_options_from_checkbox(field['locators'], field['value'])
-        rescue Capybara::ElementNotFound
-          @errors = true
-        end
-      when 'upload'
-        begin
-          upload_file(field['locators'], field['value']) unless field['value'] == ''
-        rescue Capybara::ElementNotFound
-          @errors = true
-        end
-      end
-    end
     # TODO: Add check on whether form has been submitted successfully
     # submit = find_submit_button.click rescue nil
-    take_screenshot_and_store(job_application_id)
-    close_session(job_application_id)
 
-    fields.each do |field|
-      field[1]
-      if field[0] == 'resume'
-        file_path = Rails.root.join('tmp', "Cover Letter - #{@user.first_name} #{@user.last_name}.pdf")
-        FileUtils.rm_f(file_path)
-      elsif field[0] == 'cover_letter_'
-        file_path = Rails.root.join('tmp',
-                                    "Cover Letter - #{@job.job_title} - #{@job.company.company_name} - #{@user.first_name} #{@user.last_name}.docx")
-        FileUtils.rm_f(file_path)
-      end
-    end
 
     @job_application.update(status: 'Applied')
   end
 
   private
 
-  def close_session(_job_application_id)
-    Capybara.send(:session_pool).each_value { |ses| ses.driver.quit }
-  end
-
-  def find_apply_button
-    find(:xpath,
-         "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')] | //button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')]")
-  end
-
-  def find_submit_button
-    find(:xpath,
-         "//button[contains(translate(@value, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'submit')] | //input[contains(translate(@value, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'submit')]")
-  end
-
-  def select_option_from_combobox(combobox_locator, option_locator, option_text)
-    find(combobox_locator).click
-    all(option_locator, text: option_text, visible: true)[0].click
-  end
-
-  def select_option_from_radiogroup(radiogroup_locator, option_locator, option_text)
-    within(radiogroup_locator) do
-      find(option_locator, text: option_text).click
+  def handle_field_interaction(session, field)
+    case field['interaction']
+    when 'input'
+      begin
+        session.fill_in(field['locators'], with: field['value'])
+      rescue Capybara::ElementNotFound
+        begin
+          session.find(field['locators']).set(field['value'])
+        rescue StandardError
+          nil
+        end
+      end
+    when 'combobox'
+      begin
+        select_option_from_combobox(session, field['locators'], field['option'], field['value'])
+      rescue Capybara::ElementNotFound
+        @errors = true
+      end
+    when 'radiogroup'
+      begin
+        select_option_from_radiogroup(session, field['locators'], field['option'], field['value'])
+      rescue Capybara::ElementNotFound
+        @errors = true
+      end
+    when 'listbox'
+      begin
+        select_option_from_listbox(session, field['locators'])
+      rescue NoMethodError
+        @errors = true
+      end
+    when 'select'
+      begin
+        select_option_from_select(session, field['locators'], field['option'], field['value'])
+      rescue Capybara::ElementNotFound
+        @errors = true
+      end
+    when 'checkbox'
+      begin
+        select_options_from_checkbox(session, field['locators'], field['value'])
+      rescue Capybara::ElementNotFound
+        @errors = true
+      end
+    when 'upload'
+      begin
+        upload_file(session, field['locators'], field['value']) unless field['value'] == ''
+      rescue Capybara::ElementNotFound
+        @errors = true
+      end
     end
   end
 
-  def select_option_from_listbox(listbox_locator)
-    all("#{listbox_locator} li")[0].click
+  def find_apply_button(session)
+    session.find(:xpath,
+                 "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')] | //button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')]")
   end
 
-  def select_option_from_select(listbox_locator, option_locator, option_text)
-    within "##{listbox_locator}" do
-      find(option_locator, text: option_text).click
+  def find_submit_button(session)
+    session.find(:xpath,
+                 "//button[contains(translate(@value, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'submit')] | //input[contains(translate(@value, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'submit')]")
+  end
+
+  def select_option_from_combobox(session, combobox_locator, option_locator, option_text)
+    session.find(combobox_locator).click
+    session.all(option_locator, text: option_text, visible: true)[0].click
+  end
+
+  def select_option_from_radiogroup(session, radiogroup_locator, option_locator, option_text)
+    session.within(radiogroup_locator) do
+      session.find(option_locator, text: option_text).click
+    end
+  end
+
+  def select_option_from_listbox(session, listbox_locator)
+    session.all("#{listbox_locator} li")[0].click
+  end
+
+  def select_option_from_select(session, listbox_locator, option_locator, option_text)
+    session.within "##{listbox_locator}" do
+      session.find(option_locator, text: option_text).click
     end
   rescue Selenium::WebDriver::Error::ElementNotInteractableError
-    new_locator = page.find("label ##{listbox_locator}")
+    new_locator = session.find("label ##{listbox_locator}")
     new_locator.ancestor("label").find("a").click
-    find("li", text: option_text).click
+    session.find("li", text: option_text).click
   end
 
-  def select_options_from_checkbox(checkbox_locator, option_text)
+  def select_options_from_checkbox(session, checkbox_locator, option_text)
     option_text = JSON.parse(option_text)
     begin
-      within('label', text: checkbox_locator) do
+      session.within('label', text: checkbox_locator) do
         option_text.each do |option|
-          check(option)
+          session.check(option)
         rescue Capybara::ElementNotFound
         end
       end
     rescue Capybara::ElementNotFound
-      within(:xpath, "//div[contains(text(), '#{checkbox_locator}')]") do
+      session.within(:xpath, "//div[contains(text(), '#{checkbox_locator}')]") do
         option_text.each do |option|
-          check(option)
+          session.check(option)
         rescue Capybara::ElementNotFound
         end
       end
@@ -161,29 +167,29 @@ class FormFiller
   end
 
   # rubocop:disable Security/Open
-  def upload_file(upload_locator, file)
+  def upload_file(session, upload_locator, file)
     if file.instance_of?(String)
       docx = Htmltoword::Document.create(file)
       file_path = Rails.root.join('tmp',
                                   "Cover Letter - #{@job.job_title} - #{@job.company.company_name} - #{@user.first_name} #{@user.last_name}.docx")
       File.binwrite(file_path, docx)
     else
-      file_path = Rails.root.join('tmp', "Resume - #{@user.first_name} #{@user.last_name}.pdf")
+      file_path = Rails.root.join('tmp', "Resume - #{@user.first_name} #{@user.last_name} - #{@job.job_title} - #{@job.company.company_name}.pdf")
       File.binwrite(file_path, URI.open(file.url).read)
     end
     begin
-      find(upload_locator).attach_file(file_path)
+      session.find(upload_locator).attach_file(file_path)
     rescue Capybara::ElementNotFound
-      page.attach_file(file_path) do
-        page.find(upload_locator).click
+      session.attach_file(file_path) do
+        session.find(upload_locator).click
       end
     end
   end
   # rubocop:enable Security/Open
 
-  def take_screenshot_and_store(job_application_id)
+  def take_screenshot_and_store(session, job_application_id)
     screenshot_path = Rails.root.join('tmp', "screenshot-#{job_application_id}.png")
-    page.save_screenshot(screenshot_path)
+    session.save_screenshot(screenshot_path)
 
     file = File.open(screenshot_path)
     job_app = JobApplication.find(job_application_id)

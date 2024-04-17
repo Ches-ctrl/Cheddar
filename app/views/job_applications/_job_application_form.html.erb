@@ -6,7 +6,7 @@
 
   <div class="text-sm mb-2"><span class="required-asterisk">*</span> Required fields</div>
 
-  <%= simple_form_for job, html: { class: 'needs-validation', 'data-all-application-forms-target': "form", 'data-action': 'submit->all-application-forms#submitForm' } do |f| %>
+  <%= simple_form_for job, html: { class: 'needs-validation', 'data-all-application-forms-target': "form", 'data-action': 'submit->all-application-forms#submitForm'} do |f| %>
 
     <%# Dynamically creates form elements based on application_criteria - converts to fields ready for application responses. %>
     <% job.last.application_responses.each_with_index do |response, response_index| %>

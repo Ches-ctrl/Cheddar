@@ -1,20 +1,8 @@
 module Ats
   module Recruitee
     module JobDetails
-      def self.find_or_create_by_id(_company, _ats_job_id)
-        return
-      end
-
-      def self.get_job_details(job)
-        ats = job.company.applicant_tracking_system
-        data = fetch_job_data(job, ats)
-        update_job_details(job, data)
-        p "Updated job details - #{job.job_title}"
-        job
-      end
-
-      def self.fetch_job_data(job, _ats)
-        job_url_api = job.company.url_ats_api.to_s
+      def fetch_job_data(job, ats)
+        job_url_api = job.company.url_ats_api
         p "Fetching job data - #{job_url_api}"
         job.api_url = job_url_api
         job_apply_url = "#{job.company.url_ats_main}o/#{job.ats_job_id}/c/new"
@@ -32,7 +20,7 @@ module Ats
         return nil
       end
 
-      def self.update_job_details(job, data)
+      def update_job_details(job, data)
         p "Updating job details - #{job.job_title}"
 
         job.update(
@@ -41,7 +29,7 @@ module Ats
           department: data['departmentLabel'],
           employment_type: data['employment_type_code'],
           country: data['country'],
-          location: data['location'],
+          # location: data['location'],
           ats_job_id: data['id']
         )
       end

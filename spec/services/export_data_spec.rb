@@ -1,4 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe ExportData do
+RSpec.describe ExportDataToCsv do
 end

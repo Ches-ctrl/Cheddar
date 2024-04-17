@@ -54,6 +54,7 @@ gem "devise"
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.5.1"
 gem "simple_form"
+gem 'psych', "~> 4.0" # Extra gem as per Le Wagon setup for Linux laptops
 gem "sassc-rails"
 
 # Additional Gems installed
@@ -67,6 +68,7 @@ gem 'sidekiq-scheduler', '~> 5.0', '>= 5.0.3'
 gem 'rails-html-sanitizer'
 gem 'meta-tags'
 gem 'will_paginate', '~> 4.0' # update to kaminari now index page is fixed
+gem 'faraday'
 
 # Additional Gems for API and Scrape features
 gem "cloudinary"
@@ -79,6 +81,9 @@ gem 'avo'
 gem 'yomu' # this gem is no longer maintained
 gem 'tinymce-rails' # now have trix and action text
 gem 'htmltoword'
+
+# Steven gems
+gem 'csv_importer', '~> 0.0.4'
 
 group :development, :test do
   gem "dotenv-rails"

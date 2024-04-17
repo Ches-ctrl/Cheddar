@@ -1,11 +1,6 @@
 module Ats
   module Smartrecruiters
     module CompanyDetails
-      def find_or_create_company(_ats_identifier)
-        # TODO: add method here
-        return
-      end
-
       def get_company_details(url, ats_system, ats_identifier)
         p "Getting smartrecruiters company details - #{url}"
 
@@ -30,13 +25,8 @@ module Ats
           # p "Total live - #{company.total_live}"
 
           p "Created company - #{company.company_name}" if company.persisted?
-
-          # p "Calling GetAllJobUrls"
-          # GetAllJobUrls.new(company).get_all_job_urls if new_company
-          # p "Finished GetAllJobUrls"
-
-          # TODO: Handle logic for GetAllJobUrls via web scrape or API call depending on ATS system
         end
+        p company
         company
       end
 

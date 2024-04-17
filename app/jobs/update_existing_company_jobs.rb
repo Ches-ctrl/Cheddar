@@ -1,9 +1,17 @@
-class JobsUpdateJob < ApplicationJob
+class UpdateExistingCompanyJobs < ApplicationJob
   include CompanyCsv
   include Relevant
 
+  # Why do we get all the job urls?
+  # Wouldn't the best approach here be to create a csv with all the company data from the respective APIs
+  # Then we can query the APIs based on that data?
+
+  # TODO: Update so that we have 2 processes:
+  # TODO: (1) for all the existing jobs on the site, we check whether those are still live (and delete if not)
+  # TODO: (2) for all the existing companies on the site, we check whether they have new jobs (and add if so)
+
   def perform
-    puts "Beginning JobsUpdate..."
+    puts "Beginning jobs updater for companies already seeded to the DB..."
 
     @job_urls = Job.all.to_set(&:job_posting_url)
 
@@ -23,7 +31,7 @@ class JobsUpdateJob < ApplicationJob
       @ats = ApplicantTrackingSystem.find_by(name: ats_name)
 
       ats_identifiers.each do |ats_identifier|
-        puts "  Looking at jobs with #{ats_identifier}..."
+        puts "Looking at jobs with #{ats_identifier}..."
 
         # Find or create the company
         next puts "Problem with #{ats_identifier}" unless (company = @ats.find_or_create_company(ats_identifier))
@@ -39,11 +47,22 @@ class JobsUpdateJob < ApplicationJob
     end
   end
 
+  def relevant?(job_data)
+    job_title, job_location = @ats_system.fetch_title_and_location(job_data)
+
+    job_title &&
+      job_location &&
+      JOB_LOCATION_KEYWORDS.any? { |keyword| job_location.downcase.match?(keyword) } &&
+      JOB_TITLE_KEYWORDS.any? { |keyword| job_title.downcase.match?(keyword) }
+  end
+
+  # TODO: Update this so that the jobs are kept but are no longer live on the site
+
   def destroy_defunct_jobs
     puts "Deleting jobs that are no longer live:"
     @job_urls.each do |job_posting_url|
       Job.find_by(job_posting_url:).destroy
-      puts "  destroyed #{job_posting_url}"
+      puts "Destroyed #{job_posting_url}"
     end
   end
 end

@@ -1,24 +1,30 @@
 class ApplicantTrackingSystem < ApplicationRecord
-  include ValidUrl
+  include CheckUrlIsValid
+  include AtsSystemParser
+  include AtsRouter
 
   has_many :companies
   has_many :jobs, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
 
-  after_initialize :fetch_methods
+  after_initialize :include_modules
 
-  def fetch_methods
+  # -----------------------
+  # Modules
+  # -----------------------
+
+  def include_modules
     return unless name
 
     module_name = name.gsub(/\W/, '').capitalize
 
     modules = [
-      "Ats::#{module_name}::ApplicationFields",
+      "Ats::#{module_name}::ParseUrl",
       "Ats::#{module_name}::CompanyDetails",
       "Ats::#{module_name}::FetchCompanyJobs",
       "Ats::#{module_name}::JobDetails",
-      "Ats::#{module_name}::ParseUrl"
+      "Ats::#{module_name}::ApplicationFields"
     ]
 
     modules.each do |module_name|
@@ -26,60 +32,175 @@ class ApplicantTrackingSystem < ApplicationRecord
     end
   end
 
-  # TODO: ApplicantTrackingSystem should handle all public instance methods contained in
-  # ats-specific modules as in the example below:
-  def parse_url(url)
-    defined?(super) ? super : "Write a parse_url method for #{name}!"
-    # if defined?(super)
-    #   super
-    # else
-    #   p "Write a parse_url method for #{name}!"
-    #   return
-    # end
+  # -----------------------
+  # ATS Router
+  # -----------------------
+
+  def self.determine_ats(url)
+    name = ATS_SYSTEM_PARSER.find { |regex, ats_name| break ats_name if url.match?(regex) }
+    return ApplicantTrackingSystem.find_by(name:)
   end
 
-  def find_or_create_job_by_id(company, ats_job_id)
+  def self.check_ats
+    # TODO: Check if company is still hosted by an ATS or has moved provider (this actually may want to sit in CheckUrlIsValid)
+  end
+
+  # -----------------------
+  # Parse URL
+  # -----------------------
+
+  def parse_url(url)
+    return super if defined?(super)
+
+    p "Write a #{__method__} method for #{name}!"
+    return
+  end
+
+  # -----------------------
+  # CompanyCreator
+  # -----------------------
+
+  def find_or_create_company(ats_identifier, data = nil)
+    company = Company.find_or_initialize_by(ats_identifier:) do |new_company|
+      company_data = company_details(ats_identifier)
+
+      new_company.applicant_tracking_system = self
+      new_company.assign_attributes(company_data)
+    end
+
+    if data
+      supplementary_data = company_details_from_data(data)
+      company.assign_attributes(supplementary_data)
+    end
+
+    p "Company created - #{company.company_name}" if company.new_record? && company.save
+
+    return company
+  end
+
+  def find_or_create_company_by_data(data)
+    ats_identifier = fetch_company_id(data)
+    find_or_create_company(ats_identifier, data)
+  end
+
+  # -----------------------
+  # Company Details
+  # -----------------------
+
+  def company_details(ats_identifier, data = nil)
+    return super if defined?(super)
+
+    p "Write a #{__method__} method for #{name}!"
+    return
+  end
+
+  # -----------------------
+  # JobCreator
+  # -----------------------
+
+  # TODO: rename to find_or_create_job
+  def find_or_create_job(company, ats_job_id, data = nil)
+
     job = Job.find_or_create_by(ats_job_id:) do |new_job|
       new_job.company = company
       new_job.applicant_tracking_system = self
-      data = fetch_job_data(new_job)
+      new_job.api_url = job_url_api(base_url_api, company.ats_identifier, ats_job_id)
+      data ||= fetch_job_data(new_job)
       return if data.blank?
 
       update_job_details(new_job, data)
     end
+
+    p "Job created - #{job.job_title}"
 
     return job
   end
 
   def find_or_create_job_by_data(company, data)
     ats_job_id = fetch_id(data)
-    job = Job.find_or_create_by(ats_job_id:) do |new_job|
-      new_job.company = company
-      new_job.applicant_tracking_system = self
-      new_job.api_url = job_url_api(base_url_api, company.ats_identifier, ats_job_id)
-      return if data.blank? # is this return necessary given that ats_job_id is fetched from data?
-
-      update_job_details(new_job, data)
-    end
-
-    return job
+    find_or_create_job(company, ats_job_id, data)
   end
 
-  def find_or_create_company_by_data(data)
-    ats_identifier = fetch_company_id(data)
-    company = Company.find_or_create_by(ats_identifier:) do |new_company|
-      new_company.applicant_tracking_system = self
+  # TODO: ApplicantTrackingSystem should handle all public instance methods contained in
+  # ats-specific modules as in the example below:
+  def parse_url(url)
+    return super if defined?(super)
 
-      update_company_details(new_company, data)
+    p "Write a parse_url method for #{name}!"
+    return
+  end
+
+  # -----------------------
+  # Parse URL
+  # -----------------------
+
+  def self.parse_url(ats, url)
+    ats.parse_url(url)
+  end
+
+  # -----------------------
+  # CompanyCreator
+  # -----------------------
+
+  def self.find_or_create_company(ats, ats_identifier)
+    ats.find_or_create_company(ats_identifier)
+  end
+
+  # -----------------------
+  # Company Details
+  # -----------------------
+
+  # TODO: Fix the variables being passed back and forth here once everything is working
+
+  def self.get_company_details(url, ats, ats_identifier)
+    company = ats.get_company_details(url, ats, ats_identifier) # rubocop:disable Lint/UselessAssignment
+  end
+
+  # -----------------------
+  # Fetch Company Jobs
+  # -----------------------
+
+  def self.get_company_jobs(ats, url)
+    ats.get_company_jobs(url)
+  end
+
+  # -----------------------
+  # JobCreator
+  # -----------------------
+
+  # TODO: Fix this so that it doesn't re-request the API multiple times according to Dan improvements e.g. PinpointHQ
+
+  def self.find_or_create_job_by_data(company, data)
+    p "find_or_create_job_by_data - #{data}"
+
+    ats_job_id = fetch_id(data)
+    find_or_create_job_by_id(company, ats_job_id)
+  end
+
+  def self.find_or_create_job_by_id(url, ats, company, ats_job_id)
+    p "Finding or creating job by ID - #{ats_job_id}"
+
+    job = Job.find_or_create_by(ats_job_id:) do |job|
+      job.job_title = "Placeholder - #{ats.name} - #{ats_job_id}"
+      job.job_posting_url = url
+      job.company = company
+      job.applicant_tracking_system = ats
+      job.ats_job_id = ats_job_id
     end
+    p "Job created - #{job.job_title}"
 
-    return company
+    # TODO: Refactor fetch_job_data as lots of repeated code in modules that can be reconciled
+    # TODO: May be able to remove all the separate modules and just have one module for each ATS
+    data = ats.fetch_job_data(job, ats)
+    ats.update_job_details(job, data)
+    # ats.create_application_criteria_hash(job) # TODO: add methods so that this can be called
+
+    job
   end
 
   private
 
   def fetch_job_data(job)
-    job.api_url = job_url_api(base_url_api, job.company.ats_identifier, job.ats_job_id)
     response = get(job.api_url)
     return JSON.parse(response)
   end
@@ -110,6 +231,9 @@ class ApplicantTrackingSystem < ApplicationRecord
     end
     job.save
   end
+  # -----------------------
+  # Parse URL
+  # -----------------------
 
   def try_standard_formats(url, regex_formats)
     regex_formats.each do |regex|
@@ -121,37 +245,34 @@ class ApplicantTrackingSystem < ApplicationRecord
     return nil
   end
 
-  def check_for_careers_url_redirect(company)
-    url = URI(company.url_ats_main)
+  # -----------------------
+  # Job Details
+  # -----------------------
 
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true if url.scheme == 'https'
+  # def fetch_job_data(job)
+  #   job.api_url = job_url_api(base_url_api, job.company.ats_identifier, job.ats_job_id)
+  #   response = get(job.api_url)
+  #   return JSON.parse(response)
+  # end
 
-    request = Net::HTTP::Get.new(url.request_uri)
+  def update_requirements(job)
+    job.no_of_questions = job.application_criteria.size
 
-    max_retries = 2
-    retries = 0
-    begin
-      response = http.request(request)
-    rescue Errno::ECONNRESET, OpenSSL::SSL::SSLError => e
-      retries += 1
-      if retries <= max_retries
-        sleep(2**retries) # Exponential backoff
-        retry
-      else
-        puts "Check for careers redirect failed after #{max_retries} retries: #{e.message}"
-        return false
+    job.application_criteria.each do |field, criteria|
+      case field
+      when 'resume'
+        job.req_cv = criteria['required']
+      when 'cover_letter'
+        job.req_cover_letter = criteria['required']
+      when 'work_eligibility'
+        job.work_eligibility = criteria['required']
       end
     end
-
-    if response.is_a?(Net::HTTPRedirection)
-      redirected_url = URI.parse(response['Location'])
-      company.update(url_careers: redirected_url)
-      company.update(company_website_url: redirected_url.host)
-    else
-      p "No redirect for #{company.url_ats_main}"
-    end
   end
+
+  # -----------------------
+  # Time Conversions
+  # -----------------------
 
   def convert_from_iso8601(iso8601_string)
     return Time.iso8601(iso8601_string)

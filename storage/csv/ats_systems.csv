@@ -1,5 +1,5 @@
 ats_name,url_identifier,website_url,url_linkedin,base_url_main,base_url_api,url_all_jobs,url_xml,url_rss,login
-Greenhouse,greenhouse,https://www.greenhouse.com/,,https://boards.greenhouse.io/,https://boards-api.greenhouse.io/v1/boards/,,,,FALSE
+Greenhouse,greenhouse|gh_jid,https://www.greenhouse.com/,,https://boards.greenhouse.io/,https://boards-api.greenhouse.io/v1/boards/,,,,FALSE
 Workable,workable,https://www.workable.com/,,https://apply.workable.com/,https://apply.workable.com/api/v1/accounts/,https://jobs.workable.com/,https://www.workable.com/boards/workable.xml,,FALSE
 Lever,lever,https://www.lever.co/,,https://jobs.lever.co/,https://api.lever.co/v0/postings/,,,,FALSE
 SmartRecruiters,smartrecruiters,https://www.smartrecruiters.com/,,https://jobs.smartrecruiters.com/,https://api.smartrecruiters.com/v1/companies/,https://jobs.smartrecruiters.com/,,,FALSE
@@ -7,7 +7,7 @@ AshbyHQ,ashby,https://www.ashbyhq.com/,,https://jobs.ashbyhq.com/,https://api.as
 PinpointHQ,pinpoint,https://www.pinpointhq.com/,,https://XXX.pinpointhq.com/en/postings/,https://XXX.pinpointhq.com/postings.json,,,,FALSE
 BambooHR,bamboohr,https://www.bamboohr.com/,,https://XXX.bamboohr.com/careers/,https://XXX.bamboohr.com/careers/list,,,,FALSE
 Recruitee,recruitee,https://recruitee.com/,,https://XXX.recruitee.com/,https://XXX.recruitee.com/api/offers/,,,,FALSE
-Manatal,careers-page,https://www.manatal.com/,,https://www.careers-page.com/,https://api.manatal.com/open/v3/career-page/,,,,FALSE
+Manatal,careers-page|manatal,https://www.manatal.com/,,https://www.careers-page.com/,https://api.manatal.com/open/v3/career-page/,,,,FALSE
 Phenom,phenom,https://www.phenom.com/,,,https://api.phenom.com/,,,,
 Breezy HR,breezyhr,https://breezy.hr/,,,https://api.breezy.hr/v3/,,,,
 JazzHR,applytojob,https://www.jazzhr.com/,,,https://applyapi.jazz.co/v2/,,,,
@@ -17,7 +17,7 @@ Jobvite,jobvite,https://www.jobvite.com/,,,https://api.jobvite.com/v1/,,,,
 DevITJobs,devitjobs,https://devitjobs.uk/,,https://devitjobs.uk/jobs/,https://devitjobs.uk/api/,https://devitjobs.uk/api/jobsLight,https://devitjobs.uk/job_feed.xml,,
 Tal.net,tal.net,https://tal.net/,,https://XXX.tal.net/candidate/,,,,,
 RecruitCRM,recruitcrm,https://recruitcrm.io/,,,,,,,
-ClayHR,clayhr,https://www.clayhr.com/,,,,,,,
+ClayHR,clayhr|bizmerlin,https://www.clayhr.com/,,,,,,,
 Beamery,beamery,https://beamery.com/,,,,,,,
 Sage,sagehr,https://www.sage.com/en-us/,,,,,,,
 SelectMinds,selectminds,https://www.oracle.com/cx/marketing/social-marketing/,https://www.linkedin.com/company/selectminds/,,,,,,
@@ -105,3 +105,4 @@ Folk,folk,https://www.folk.app/,,,,,,,
 Simplyhired,simplyhired,https://www.simplyhired.co.uk/,,,,,,,
 TotalJobs,totaljobs,https://www.totaljobs.com/,,,,,,,
 Amberjack,amberjack,https://www.weareamberjack.com/,,,,,,,
+Paycom, paycom,https://www.paycom.com/,,,,,,,

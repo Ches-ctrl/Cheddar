@@ -1,20 +1,8 @@
 module Ats
   module Bamboohr
     module JobDetails
-      def self.find_or_create_by_id(_company, _ats_job_id)
-        return
-      end
-
-      def self.get_job_details(job)
-        ats = job.company.applicant_tracking_system
-        data = fetch_job_data(job, ats)
-        update_job_details(job, data)
-        p "Updated job details - #{job.job_title}"
-        job
-      end
-
-      def self.fetch_job_data(job, _ats)
-        job_url_api = job.company.url_ats_api.to_s
+      def fetch_job_data(job, ats)
+        job_url_api = job.company.url_ats_api
         job.api_url = job_url_api
         job_id = job.ats_job_id
 
@@ -30,7 +18,7 @@ module Ats
         return nil
       end
 
-      def self.update_job_details(job, data)
+      def update_job_details(job, data)
         p "Updating job details - #{job.job_title}"
 
         location = "#{data['location']['city']}, #{data['location']['state']}" if data['location']['city'] && data['location']['state']
@@ -39,7 +27,7 @@ module Ats
           job_title: data['jobOpeningName'],
           department: data['departmentLabel'],
           employment_type: data['employmentStatusLabel'],
-          location:,
+          # location:,
           ats_job_id: data['id']
         )
       end

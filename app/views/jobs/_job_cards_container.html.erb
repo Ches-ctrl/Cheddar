@@ -1,5 +1,7 @@
 <div class="col-sm-9">
-  <%= render partial: 'job_card', collection: @jobs, as: :job %>
+  <turbo-frame id="job-cards-frame">
+    <%= render partial: 'job_card', collection: @jobs, as: :job %>
+  </turbo-frame>
 
   <div class="digg_pagination">
     <div class="page_info">

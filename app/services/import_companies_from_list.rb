@@ -19,7 +19,7 @@ class ImportCompaniesFromList
       next puts "invalid identifier: #{ats_identifier}" unless ats_identifier && (company = ats.find_or_create_company(ats_identifier))
 
       @companies[ats.name] << ats_identifier
-      puts "unable to create job with: #{url}" unless job_id && ats.find_or_create_job_by_id(company, job_id)
+      puts "unable to create job with: #{url}" unless job_id && ats.find_or_create_job(company, job_id)
     end
 
     puts "\nCreated #{Job.count - @no_of_jobs} new jobs with #{Company.count - @no_of_companies} new companies."

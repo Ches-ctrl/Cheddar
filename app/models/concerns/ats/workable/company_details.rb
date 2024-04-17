@@ -1,18 +1,13 @@
 module Ats
   module Workable
     module CompanyDetails
-      def find_or_create_company(_ats_identifier)
-        # TODO: add method here
-        return
-      end
-
       def get_company_details(url, ats_system, ats_identifier)
         p "Getting workable company details - #{url}"
 
         # TODO: Clarify whether to use company_name as the uniqueness criterion for companies
         # TODO: Add capbilitiy to handle logos, mailbox, etc.
 
-        company_name, _, description = fetch_company_data(ats_system, ats_identifier)
+        company_name, _, description = company_details(ats_system, ats_identifier)
         company = Company.find_by(company_name:)
 
         if company
@@ -29,15 +24,11 @@ module Ats
           )
           p "Created company - #{company.company_name}" if company.persisted?
           check_for_careers_url_redirect(company)
-
-          # p "Calling GetAllJobUrls"
-          # GetAllJobUrls.new(company).get_all_job_urls if new_company
-          # p "Finished GetAllJobUrls"
         end
         company
       end
 
-      def fetch_company_data(ats_system, ats_identifier)
+      def company_details(ats_system, ats_identifier)
         company_api_url = "#{ats_system.base_url_api}#{ats_identifier}"
         uri = URI(company_api_url)
         response = Net::HTTP.get(uri)
