@@ -28,10 +28,12 @@ module Ats
           employment_type: data['typeOfEmployment']['label'],
           ats_job_id: data['id']
         )
+        company = job.company
+        company.update(
+          company_name: data.dig('company', 'name'),
+          industry: data.dig('industry', 'label')
+        )
       end
-      company = job.company
-      company.company_name = data.dig('company', 'name')
-      company.industry = data.dig('industry', 'label')
     end
   end
 end

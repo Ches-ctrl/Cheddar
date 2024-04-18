@@ -20,7 +20,7 @@ class Job < ApplicationRecord
   has_many :jobs_roles, dependent: :destroy
   has_many :roles, through: :jobs_roles
 
-  before_create :set_date_created
+  after_create :set_date_created, :update_requirements, :standardize_attributes
 
   validates :job_posting_url, uniqueness: true, presence: true
   validates :job_title, presence: true
@@ -41,10 +41,6 @@ class Job < ApplicationRecord
                   }
 
   # TODO: Question - set application_criteria = {} as default?
-
-  def set_date_created
-    self.date_created ||= Date.today
-  end
 
   # Enables access to application_criteria via strings or symbols
   def application_criteria
@@ -108,6 +104,26 @@ class Job < ApplicationRecord
   end
 
   private
+
+  def set_date_created
+    self.date_created ||= Date.today
+  end
+
+  def update_requirements
+    self.no_of_questions = application_criteria.size
+
+    update_requirement('resume', 'req_cv')
+    update_requirement('cover_letter', 'req_cover_letter')
+    update_requirement('work_eligibility', 'work_eligibility')
+  end
+
+  def update_requirement(criterion_key, attribute_name)
+    send("#{attribute_name}=", application_criteria.dig(criterion_key, 'required') || false)
+  end
+
+  def standardize_attributes
+    Standardizer::JobStandardizer.new(self).standardize
+  end
 
   private_class_method def self.build_associations(params)
     associations = []

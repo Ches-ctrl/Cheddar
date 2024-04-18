@@ -145,6 +145,7 @@ class ApplicantTrackingSystem < ApplicationRecord
       return if data.blank?
 
       job_details(new_job, data)
+      fetch_additional_fields(new_job)
     end
 
     puts "Created new job - #{job.job_title} with #{company.company_name}"
@@ -165,6 +166,18 @@ class ApplicantTrackingSystem < ApplicationRecord
 
   def job_url_api(base_url_api, ats_identifier, ats_job_id)
     refer_to_module(defined?(super) ? super : nil, __method__)
+  end
+
+  def fetch_job_data(job)
+    response = get(job.api_url)
+    return JSON.parse(response)
+  end
+
+  def fetch_additional_fields(job)
+    get_application_criteria(job)
+    p "job fields getting"
+    job.save
+    GetFormFieldsJob.perform_later(job) # TODO: create separate module methods for this
   end
 
   public
@@ -246,39 +259,6 @@ class ApplicantTrackingSystem < ApplicationRecord
     job
   end
 
-  private
-
-  def fetch_job_data(job)
-    response = get(job.api_url)
-    return JSON.parse(response)
-  end
-
-  def fetch_additional_fields(job)
-    get_application_criteria(job)
-    update_requirements(job)
-    p "job fields getting"
-    GetFormFieldsJob.perform_later(job)
-    JobStandardizer.new(job).standardize
-  end
-
-  def update_requirements(job)
-    job.no_of_questions = job.application_criteria.size
-
-    job.application_criteria.each do |field, criteria|
-      case field
-      when 'resume'
-        job.req_cv = criteria['required']
-        p "CV requirement: #{job.req_cv}"
-      when 'cover_letter'
-        job.req_cover_letter = criteria['required']
-        p "Cover letter requirement: #{job.req_cover_letter}"
-      when 'work_eligibility'
-        job.work_eligibility = criteria['required']
-        p "Work eligibility requirement: #{job.work_eligibility}"
-      end
-    end
-    job.save
-  end
   # -----------------------
   # Parse URL
   # -----------------------
