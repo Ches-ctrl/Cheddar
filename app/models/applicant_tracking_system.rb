@@ -136,7 +136,6 @@ class ApplicantTrackingSystem < ApplicationRecord
 
   # TODO: rename to find_or_create_job
   def find_or_create_job(company, ats_job_id, data = nil)
-
     job = Job.find_or_create_by(ats_job_id:) do |new_job|
       new_job.company = company
       new_job.applicant_tracking_system = self
@@ -176,7 +175,7 @@ class ApplicantTrackingSystem < ApplicationRecord
   def fetch_additional_fields(job)
     get_application_criteria(job)
     p "job fields getting"
-    job.save
+    job.save! # must save before passing to Sidekiq job
     GetFormFieldsJob.perform_later(job) # TODO: create separate module methods for this
   end
 

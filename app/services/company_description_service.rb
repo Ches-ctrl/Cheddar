@@ -14,11 +14,13 @@ class CompanyDescriptionService
 
       top_matches = results['entities'].take(3)
 
+      # TODO: this logic is unnecessary. Just look for an exact match
       match_array = top_matches.map.with_index { |match, index| [compare(ats_identifier, match.dig('identifier', 'permalink')), index, match] }
       match = match_array.min_by { |a, b| [-a, b] }[2]
 
       name = match.dig('identifier', 'value')
-      p "Slight mismatch: #{name} to #{company_name}" unless name.gsub(' ', '') == company_name.gsub(' ', '')
+      return unless name.downcase.gsub(' ', '') == company_name.downcase.gsub(' ', '')
+
       description = match['short_description']
       keywords = match.dig('identifier', 'permalink').split('-')
       [description, keywords]

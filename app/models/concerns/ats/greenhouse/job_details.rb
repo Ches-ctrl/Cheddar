@@ -23,13 +23,15 @@ module Ats
       end
 
       def job_details(job, detailed_data)
-        job.job_posting_url = detailed_data['absolute_url']
-        job.job_title = detailed_data['title']
-        job.job_description = CGI.unescapeHTML(detailed_data['content'])
-        job.non_geocoded_location_string = detailed_data.dig('location', 'name')
-        job.department = detailed_data.dig('departments', 0, 'name')
-        job.office = detailed_data.dig('offices', 0, 'name')
-        job.date_created = convert_from_iso8601(detailed_data['updated_at'])
+        job.assign_attributes(
+          job_posting_url: detailed_data['absolute_url'],
+          job_title: detailed_data['title'],
+          job_description: CGI.unescapeHTML(detailed_data['content']),
+          non_geocoded_location_string: detailed_data.dig('location', 'name'),
+          department: detailed_data.dig('departments', 0, 'name'),
+          office: detailed_data.dig('offices', 0, 'name'),
+          date_created: convert_from_iso8601(detailed_data['updated_at'])
+        )
       end
     end
   end

@@ -1,32 +1,41 @@
 module Ats
   module Ashbyhq
     module JobDetails
-      def fetch_job_data(job, _ats)
-        job_url_api = "#{job.company.url_ats_api}?includeCompensation=true"
-        job.api_url = job_url_api
+      def fetch_job_data(job)
         job_id = job.ats_job_id
 
-        uri = URI(job_url_api)
-        response = Net::HTTP.get(uri)
+        response = get(job.api_url)
         all_jobs_data = JSON.parse(response)
         data = all_jobs_data["jobs"].find { |job| job["id"] == job_id }
 
         return data if data
 
-        p "Job with ID #{job.ats_job_id} is expired."
+        p "Job with ID #{job_id} is expired."
         job.live = false
         return nil
       end
 
+      private
+
       def job_details(job, data)
-        job.update(
+        job.assign_attributes(
           job_title: data['title'],
           job_description: data['descriptionHtml'],
           office_status: data['remote'] ? 'Remote' : 'On-site',
-          # location: data['location'],
-          # country: data['address']['addressCountry'],
-          department: data['department']
+          non_geocoded_location_string: fetch_location_string(data),
+          department: data['department'],
+          job_posting_url: data['jobUrl']
         )
+      end
+
+      def fetch_location_string(data)
+        locality = data.dig('address', 'postalAddress', 'addressLocality')
+        country = data.dig('address', 'postalAddress', 'addressCountry')
+        [locality, country].compact.join(', ')
+      end
+
+      def job_url_api(base_url_api, ats_identifier, _ats_job_id)
+        "#{base_url_api}#{ats_identifier}?includeCompensation=true"
       end
     end
   end
