@@ -29,6 +29,9 @@ module Ats
           ats_job_id: data['id']
         )
       end
+      company = job.company
+      company.company_name = data.dig('company', 'name')
+      company.industry = data.dig('industry', 'label')
     end
   end
 end

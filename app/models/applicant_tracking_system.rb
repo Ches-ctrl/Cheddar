@@ -32,10 +32,10 @@ class ApplicantTrackingSystem < ApplicationRecord
     end
   end
 
-  def refer_to_module(super_method, method)
-    return super_method if super_method
+  def refer_to_module(method, method_name)
+    return method if method
 
-    p "Write a #{method} method for #{name}!"
+    puts "Write a #{method_name} method for #{name}!"
     return
   end
 
@@ -113,6 +113,15 @@ class ApplicantTrackingSystem < ApplicationRecord
     response = get(url)
     data = JSON.parse(response)
     return data.dig(0, 'name') unless data.blank?
+  end
+
+  def replace_ats_identifier(ats_identifier)
+    api_url = base_url_api
+    main_url = base_url_main
+
+    api_url.gsub!("XXX", ats_identifier)
+    main_url.gsub!("XXX", ats_identifier)
+    [api_url, main_url]
   end
 
   def fetch_total_live(ats_identifier)

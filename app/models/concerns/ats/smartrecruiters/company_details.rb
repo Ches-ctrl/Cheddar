@@ -1,43 +1,22 @@
 module Ats
   module Smartrecruiters
     module CompanyDetails
-      def get_company_details(url, ats_system, ats_identifier)
-        p "Getting smartrecruiters company details - #{url}"
-
-        # TODO: Update to scrape company details given lack of API endpoint for company information
-        # TODO: Add total live based on total number of jobs returned by API call (for each ATS system)
-
+      def company_details(ats_identifier)
+        # NB: job_details will update company_name and industry from job data
         company_name = ats_identifier.capitalize
-        company = Company.find_by(company_name:)
-
-        if company
-          p "Existing company - #{company.company_name}"
-        else
-          company = Company.create(
-            company_name:,
-            applicant_tracking_system_id: ats_system.id,
-            url_ats_api: "#{ats_system.base_url_api}#{ats_identifier}",
-            url_ats_main: "#{ats_system.base_url_main}#{ats_identifier}"
-          )
-
-          company.total_live = fetch_total_live(ats_system, ats_identifier)
-          # p "Total live - #{company.total_live}"
-
-          p "Created company - #{company.company_name}" if company.persisted?
-        end
-        p company
-        company
+        {
+          company_name:,
+          url_ats_api: "#{base_url_api}#{ats_identifier}/postings",
+          url_ats_main: "#{base_url_main}#{ats_identifier}"
+        }
       end
 
       def fetch_total_live(ats_identifier)
         company_api_url = "#{base_url_api}#{ats_identifier}/postings"
-        uri = URI(company_api_url)
-        response = Net::HTTP.get(uri)
+        response = get(company_api_url)
         data = JSON.parse(response)
         data['totalFound']
       end
-
-      # TODO: Add fetch company description off first job posting if there
     end
   end
 end

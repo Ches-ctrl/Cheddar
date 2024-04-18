@@ -1,8 +1,6 @@
 module Ats
   module Manatal
     module CompanyDetails
-      include CheckUrlIsValid
-
       def company_details(ats_identifier)
         url_ats_api = "#{base_url_api}#{ats_identifier}"
         response = get(url_ats_api)
@@ -20,8 +18,7 @@ module Ats
 
       def fetch_total_live(ats_identifier)
         company_api_url = "#{base_url_api}#{ats_identifier}/jobs/"
-        uri = URI(company_api_url)
-        response = Net::HTTP.get(uri)
+        response = get(company_api_url)
         data = JSON.parse(response)
         data['count']
       end

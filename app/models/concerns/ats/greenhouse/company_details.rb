@@ -1,8 +1,6 @@
 module Ats
   module Greenhouse
     module CompanyDetails
-      include CheckUrlIsValid
-
       def company_details(ats_identifier)
         url_ats_api = "#{base_url_api}#{ats_identifier}"
         url_ats_main = "#{base_url_main}#{ats_identifier}"
