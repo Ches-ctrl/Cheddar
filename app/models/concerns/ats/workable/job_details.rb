@@ -9,7 +9,7 @@ module Ats
         JSON.parse(response)
       end
 
-      def update_job_details(job, data)
+      def job_details(job, data)
         job.update(
           job_title: data['title'],
           job_description: data['description'],

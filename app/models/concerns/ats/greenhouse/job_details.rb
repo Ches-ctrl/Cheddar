@@ -22,8 +22,7 @@ module Ats
         "#{base_url}#{company_id}/jobs/#{job_id}?questions=true&pay_transparency=true"
       end
 
-      def update_job_details(job, detailed_data)
-
+      def job_details(job, detailed_data)
         job.job_posting_url = detailed_data['absolute_url']
         job.job_title = detailed_data['title']
         job.job_description = CGI.unescapeHTML(detailed_data['content'])
@@ -31,8 +30,6 @@ module Ats
         job.department = detailed_data.dig('departments', 0, 'name')
         job.office = detailed_data.dig('offices', 0, 'name')
         job.date_created = convert_from_iso8601(detailed_data['updated_at'])
-
-        puts "Created new job - #{job.job_title} with #{job.company.company_name}"
       end
     end
   end

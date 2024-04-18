@@ -9,7 +9,7 @@ module Ats
         JSON.parse(response)
       end
 
-      def update_job_details(job, data)
+      def job_details(job, data)
         p "Updating job details - #{job.job_title}"
 
         # country_custom_field = data['customField'].find { |field| field['fieldId'] == "COUNTRY" }

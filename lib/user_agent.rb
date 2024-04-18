@@ -111,19 +111,11 @@ class UserAgent
 
     previous_versions = JSON.parse(File.read(@versions_path))
     versions.merge!(previous_versions)
-<<<<<<< HEAD
 
     File.write(@versions_path, JSON.pretty_generate(versions))
   end
 
   def self.randomize_version_number(version)
-=======
-    
-    File.write(@versions_path, JSON.pretty_generate(versions))
-  end
-
-  def randomize_version_number(version)
->>>>>>> 6c8925ce2dd4dd731696df1a3188d12aa9870500
     parts = version.split('.').map(&:to_i)
     parts[0] = rand(parts[0] - 1..parts[0])
     parts[1..-1] = parts[1..-1].map { |part| rand(0..part) }

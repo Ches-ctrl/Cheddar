@@ -17,7 +17,6 @@ module Ats
           company = Company.create(
             company_name:,
             description:,
-            ats_identifier:,
             applicant_tracking_system_id: ats_system.id,
             url_ats_api: "#{ats_system.base_url_api}#{ats_identifier}",
             url_ats_main: "#{ats_system.base_url_main}#{ats_identifier}"

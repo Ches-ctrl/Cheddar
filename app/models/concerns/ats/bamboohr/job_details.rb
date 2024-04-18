@@ -18,7 +18,7 @@ module Ats
         return nil
       end
 
-      def update_job_details(job, data)
+      def job_details(job, data)
         p "Updating job details - #{job.job_title}"
 
         location = "#{data['location']['city']}, #{data['location']['state']}" if data['location']['city'] && data['location']['state']
@@ -30,6 +30,11 @@ module Ats
           # location:,
           ats_job_id: data['id']
         )
+      end
+
+      def job_url_api(_base_url, company_id, _job_id)
+        company = Company.find(company_id)
+        company.url_ats_api
       end
     end
   end

@@ -23,7 +23,7 @@ module Ats
         return base_url
       end
 
-      def update_job_details(job, data)
+      def job_details(job, data)
         job.job_posting_url = fetch_url(data)
         job.job_title = data['name']
         job.salary = fetch_salary(data)

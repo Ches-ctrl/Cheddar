@@ -1,7 +1,7 @@
 module Scraper
   class DevitJobsService < ApplicationService
     include Capybara::DSL
-    include ValidUrl
+    include CheckUrlIsValid
 
     def scrape_page
       return p "Unable to scrape DevIT: first create ATS" unless (@ats = ApplicantTrackingSystem.find_by(name: 'DevITJobs'))

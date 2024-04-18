@@ -1,6 +1,6 @@
 class ScrapeMetaTags
   include AtsUrlIdentifiers
-  include ValidUrl
+  include CheckUrlIsValid
 
   def initialize(url)
     @url = url

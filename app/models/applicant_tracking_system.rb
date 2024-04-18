@@ -32,6 +32,13 @@ class ApplicantTrackingSystem < ApplicationRecord
     end
   end
 
+  def refer_to_module(super_method, method)
+    return super_method if super_method
+
+    p "Write a #{method} method for #{name}!"
+    return
+  end
+
   # -----------------------
   # ATS Router
   # -----------------------
@@ -50,10 +57,7 @@ class ApplicantTrackingSystem < ApplicationRecord
   # -----------------------
 
   def parse_url(url)
-    return super if defined?(super)
-
-    p "Write a #{__method__} method for #{name}!"
-    return
+    refer_to_module(defined?(super) ? super : nil, __method__)
   end
 
   # -----------------------
@@ -73,6 +77,9 @@ class ApplicantTrackingSystem < ApplicationRecord
       company.assign_attributes(supplementary_data)
     end
 
+    company.total_live = fetch_total_live(ats_identifier)
+    p "Total live - #{company.total_live}"
+
     p "Company created - #{company.company_name}" if company.new_record? && company.save
 
     return company
@@ -87,12 +94,32 @@ class ApplicantTrackingSystem < ApplicationRecord
   # Company Details
   # -----------------------
 
-  def company_details(ats_identifier, data = nil)
-    return super if defined?(super)
+  private
 
-    p "Write a #{__method__} method for #{name}!"
-    return
+  def company_details(ats_identifier, data = nil)
+    refer_to_module(defined?(super) ? super : nil, __method__)
   end
+
+  def company_details_from_data(data)
+    refer_to_module(defined?(super) ? super : nil, __method__)
+  end
+
+  def fetch_company_id(data)
+    refer_to_module(defined?(super) ? super : nil, __method__)
+  end
+
+  def fetch_company_name(ats_identifier)
+    url = "https://autocomplete.clearbit.com/v1/companies/suggest?query=#{ats_identifier}"
+    response = get(url)
+    data = JSON.parse(response)
+    return data.dig(0, 'name') unless data.blank?
+  end
+
+  def fetch_total_live(ats_identifier)
+    refer_to_module(defined?(super) ? super : nil, __method__)
+  end
+
+  public
 
   # -----------------------
   # JobCreator
@@ -108,10 +135,10 @@ class ApplicantTrackingSystem < ApplicationRecord
       data ||= fetch_job_data(new_job)
       return if data.blank?
 
-      update_job_details(new_job, data)
+      job_details(new_job, data)
     end
 
-    p "Job created - #{job.job_title}"
+    puts "Created new job - #{job.job_title} with #{company.company_name}"
 
     return job
   end
@@ -120,6 +147,18 @@ class ApplicantTrackingSystem < ApplicationRecord
     ats_job_id = fetch_id(data)
     find_or_create_job(company, ats_job_id, data)
   end
+
+  private
+
+  def job_details(new_job, data)
+    refer_to_module(defined?(super) ? super : nil, __method__)
+  end
+
+  def job_url_api(base_url_api, ats_identifier, ats_job_id)
+    refer_to_module(defined?(super) ? super : nil, __method__)
+  end
+
+  public
 
   # TODO: ApplicantTrackingSystem should handle all public instance methods contained in
   # ats-specific modules as in the example below:
@@ -192,7 +231,7 @@ class ApplicantTrackingSystem < ApplicationRecord
     # TODO: Refactor fetch_job_data as lots of repeated code in modules that can be reconciled
     # TODO: May be able to remove all the separate modules and just have one module for each ATS
     data = ats.fetch_job_data(job, ats)
-    ats.update_job_details(job, data)
+    ats.job_details(job, data)
     # ats.create_application_criteria_hash(job) # TODO: add methods so that this can be called
 
     job

@@ -37,7 +37,7 @@ module Ats
         data.dig('categories', 'allLocations').join(' && ')
       end
 
-      def update_job_details(job, data)
+      def job_details(job, data)
         job.job_posting_url = data['hostedUrl']
         job.job_title = data['text']
         job.job_description = build_description(data)

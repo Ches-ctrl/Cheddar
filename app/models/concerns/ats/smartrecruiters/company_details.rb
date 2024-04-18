@@ -15,7 +15,6 @@ module Ats
         else
           company = Company.create(
             company_name:,
-            ats_identifier:,
             applicant_tracking_system_id: ats_system.id,
             url_ats_api: "#{ats_system.base_url_api}#{ats_identifier}",
             url_ats_main: "#{ats_system.base_url_main}#{ats_identifier}"
@@ -30,8 +29,8 @@ module Ats
         company
       end
 
-      def fetch_total_live(ats_system, ats_identifier)
-        company_api_url = "#{ats_system.base_url_api}#{ats_identifier}/postings"
+      def fetch_total_live(ats_identifier)
+        company_api_url = "#{base_url_api}#{ats_identifier}/postings"
         uri = URI(company_api_url)
         response = Net::HTTP.get(uri)
         data = JSON.parse(response)

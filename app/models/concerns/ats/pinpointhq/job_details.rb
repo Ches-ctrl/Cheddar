@@ -21,7 +21,7 @@ module Ats
         return nil
       end
 
-      def update_job_details(job, data)
+      def job_details(job, data)
         p "Updating job details - #{job.job_title}"
 
         job.update(

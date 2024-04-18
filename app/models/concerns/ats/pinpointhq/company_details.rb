@@ -13,7 +13,6 @@ module Ats
           api_url, main_url = replace_ats_identifier(ats_system, ats_identifier)
           company = Company.create(
             company_name:,
-            ats_identifier:,
             applicant_tracking_system_id: ats_system.id,
             url_ats_api: api_url,
             url_ats_main: main_url
