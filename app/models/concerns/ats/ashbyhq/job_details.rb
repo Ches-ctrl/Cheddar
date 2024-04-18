@@ -1,6 +1,8 @@
 module Ats
   module Ashbyhq
     module JobDetails
+      private
+
       def fetch_job_data(job)
         job_id = job.ats_job_id
 
@@ -15,20 +17,18 @@ module Ats
         return nil
       end
 
-      private
-
       def job_details(job, data)
         job.assign_attributes(
           job_title: data['title'],
           job_description: data['descriptionHtml'],
           office_status: data['remote'] ? 'Remote' : 'On-site',
-          non_geocoded_location_string: fetch_location_string(data),
+          non_geocoded_location_string: build_location_string(data),
           department: data['department'],
           job_posting_url: data['jobUrl']
         )
       end
 
-      def fetch_location_string(data)
+      def build_location_string(data)
         locality = data.dig('address', 'postalAddress', 'addressLocality')
         country = data.dig('address', 'postalAddress', 'addressCountry')
         [locality, country].compact.join(', ')

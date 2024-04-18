@@ -1,6 +1,8 @@
 module Ats
   module Lever
     module CompanyDetails
+      private
+
       def company_details(ats_identifier)
         url_ats_api = "#{base_url_api}#{ats_identifier}/?mode=json"
         url_ats_main = "#{base_url_main}#{ats_identifier}"
@@ -15,8 +17,6 @@ module Ats
           company_website_url:
         }
       end
-
-      private
 
       def scrape_company_page(url_ats_main)
         html = URI.parse(url_ats_main).open

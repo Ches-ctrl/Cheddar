@@ -3,6 +3,8 @@ module Ats
     module JobDetails
       include ActionView::Helpers::NumberHelper
 
+      private
+
       def fetch_title_and_location(job_data)
         job_title = job_data.css('title').text
         job_location = job_data.css('location').text
@@ -13,8 +15,6 @@ module Ats
         base_url_main + job_data['jobUrl']
       end
 
-      private
-
       def fetch_id(job_data)
         job_data['jobUrl']
       end
@@ -24,18 +24,18 @@ module Ats
       end
 
       def job_details(job, data)
-        job.job_posting_url = fetch_url(data)
-        job.job_title = data['name']
-        job.salary = fetch_salary(data)
-        job.remote_only = fetch_remote_only(data)
-        job.non_geocoded_location_string = fetch_location_string(job.remote_only, data)
-        job.employment_type = data['jobType']
-        job.seniority = fetch_seniority(data)
+        job.assign_attributes(
+          job_posting_url: fetch_url(data),
+          job_title: data['name'],
+          salary: fetch_salary(data),
+          remote_only: fetch_remote_only(data),
+          non_geocoded_location_string: build_location_string(job.remote_only, data),
+          employment_type: data['jobType'],
+          seniority: fetch_seniority(data)
+        )
 
         scrape_description_and_posting_date(job)
-
         # associate_technologies(job, data)
-
         fetch_additional_fields(job)
         puts "Created new job - #{job.job_title} with #{job.company.company_name}"
       end
@@ -47,9 +47,11 @@ module Ats
         script_element = xml.xpath('//script[@type="application/ld+json" and @data-react-helmet="true"]').first.content
         data = JSON.parse(script_element)
 
-        job.job_description = data['description']
-        job.date_created = Date.parse(data['datePosted'])
-        job.application_deadline = Date.parse(data['validThrough'])
+        job.assign_attributes(
+          job_description: data['description'],
+          date_created: Date.parse(data['datePosted']),
+          application_deadline: Date.parse(data['validThrough'])
+        )
       end
 
       def fetch_seniority(data)
@@ -66,7 +68,7 @@ module Ats
         data['isFullRemote'] || (data['perkKeys'].present? && data['perkKeys'].include?('remotefull'))
       end
 
-      def fetch_location_string(remote_only, data)
+      def build_location_string(remote_only, data)
         remote_only ? "United Kingdom" : [data['address'], data['actualCity'], data['postalCode'], 'United Kingdom'].reject(&:blank?).join(', ')
       end
 

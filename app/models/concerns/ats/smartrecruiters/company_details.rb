@@ -7,7 +7,8 @@ module Ats
         {
           company_name:,
           url_ats_api: "#{base_url_api}#{ats_identifier}/postings",
-          url_ats_main: "#{base_url_main}#{ats_identifier}"
+          url_ats_main: "#{base_url_main}#{ats_identifier}",
+          total_live: fetch_total_live(ats_identifier)
         }
       end
 

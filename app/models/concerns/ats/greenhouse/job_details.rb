@@ -1,6 +1,8 @@
 module Ats
   module Greenhouse
     module JobDetails
+      private
+
       def fetch_title_and_location(job_data)
         job_title = job_data['title']
         job_location = job_data.dig('location', 'name')
@@ -10,8 +12,6 @@ module Ats
       def fetch_url(job_data)
         job_data['absolute_url']
       end
-
-      private
 
       def fetch_id(job_data)
         p "Fetching ID: #{job_data['id']}"

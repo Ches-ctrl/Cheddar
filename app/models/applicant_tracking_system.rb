@@ -77,9 +77,6 @@ class ApplicantTrackingSystem < ApplicationRecord
       company.assign_attributes(supplementary_data)
     end
 
-    company.total_live = fetch_total_live(ats_identifier)
-    p "Total live - #{company.total_live}"
-
     p "Company created - #{company.company_name}" if company.new_record? && company.save
 
     return company
@@ -122,10 +119,6 @@ class ApplicantTrackingSystem < ApplicationRecord
     api_url.gsub!("XXX", ats_identifier)
     main_url.gsub!("XXX", ats_identifier)
     [api_url, main_url]
-  end
-
-  def fetch_total_live(ats_identifier)
-    refer_to_module(defined?(super) ? super : nil, __method__)
   end
 
   public

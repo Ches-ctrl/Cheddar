@@ -1,6 +1,8 @@
 module Ats
   module Workable
     module CompanyDetails
+      private
+
       def company_details(ats_identifier)
         # TODO: Add capabilitiy to handle logos, mailbox, etc.
         url_ats_api = "#{base_url_api}#{ats_identifier}"

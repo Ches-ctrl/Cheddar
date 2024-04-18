@@ -1,6 +1,8 @@
 module Ats
   module Ashbyhq
     module CompanyDetails
+      private
+
       def company_details(ats_identifier)
         company_name = ats_identifier.humanize
         {

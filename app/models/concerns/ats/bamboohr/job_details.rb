@@ -1,6 +1,8 @@
 module Ats
   module Bamboohr
     module JobDetails
+      private
+
       def fetch_job_data(job)
         job_id = job.ats_job_id
 
@@ -16,13 +18,11 @@ module Ats
       end
 
       def job_details(job, data)
-        location = "#{data.dig('location', 'city')}, #{data['location', 'state']}" if data['location', 'city'] && data['location', 'state']
-
         job.assign_attributes(
           job_title: data['jobOpeningName'],
           department: data['departmentLabel'],
           employment_type: data['employmentStatusLabel'],
-          # location:,
+          non_geocoded_location_string: build_location_string(data),
           ats_job_id: data['id']
         )
       end
@@ -32,9 +32,9 @@ module Ats
         company.url_ats_api
       end
 
-      def fetch_location_string(data)
-        locality = data.dig('address', 'postalAddress', 'addressLocality')
-        country = data.dig('address', 'postalAddress', 'addressCountry')
+      def build_location_string(data)
+        locality = data.dig('location', 'city')
+        country = data.dig('location', 'state')
         [locality, country].compact.join(', ')
       end
     end

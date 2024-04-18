@@ -1,14 +1,15 @@
 module Ats
   module Manatal
     module JobDetails
-      def fetch_job_data(job, ats)
-        job_url_api = "#{ats.base_url_api}#{job.company.ats_identifier}/jobs/"
-        p "Fetching job data - #{job_url_api}"
+      private
 
+      def fetch_job_data(job)
         page = 1
+        url = "#{job_url_api}?page=#{page}"
+        p "Fetching job data - #{url}"
+
         loop do
-          uri = URI("#{job_url_api}?page=#{page}")
-          response = Net::HTTP.get(uri)
+          response = get(url)
           all_jobs_data = JSON.parse(response)
           jobs = all_jobs_data["results"]
 
@@ -29,18 +30,24 @@ module Ats
         end
       end
 
-      def job_details(job, data)
-        p "Updating job details - #{job.job_title}"
+      def job_url_api(base_url, company_id, _job_id)
+        "#{base_url}#{company_id}/jobs/"
+      end
 
-        job.update(
+      def job_details(job, data)
+        job.assign_attributes(
           job_title: data['position_name'],
           job_description: data['description'],
           department: data['departmentLabel'],
           employment_type: data['contract_details'],
-          # country: data['country'],
-          # location: data['location_display'],
-          ats_job_id: data['id']
+          non_geocoded_location_string: build_location_string(data)
         )
+      end
+
+      def build_location_string(data)
+        locality = data['location_display']
+        country = data['country']
+        [locality, country].compact.join(', ')
       end
     end
   end

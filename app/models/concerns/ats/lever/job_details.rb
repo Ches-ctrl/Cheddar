@@ -5,6 +5,8 @@ module Ats
       # TODO: Update job to handle workplace (hybrid)
       # TODO: Update description to handle html and non-html, add labelling for this characteristic
 
+      private
+
       def fetch_title_and_location(job_data)
         job_title = job_data['text']
         job_location = build_location_string(job_data)
@@ -15,14 +17,26 @@ module Ats
         job_data['hostedUrl']
       end
 
-      private
-
       def fetch_id(job_data)
         job_data['id']
       end
 
       def job_url_api(base_url, company_id, job_id)
         "#{base_url}#{company_id}/#{job_id}?mode=json"
+      end
+
+      def job_details(job, data)
+        # TODO: add logic for office
+        job.assign_attributes(
+          job_posting_url: data['hostedUrl'],
+          job_title: data['text'],
+          job_description: build_description(data),
+          non_geocoded_location_string: build_location_string(data),
+          remote_only: data['workplaceType'] == 'remote',
+          department: data.dig('categories', 'team'),
+          date_created: convert_from_milliseconds(data['createdAt'])
+        )
+        fetch_additional_fields(job)
       end
 
       def build_description(data)
@@ -37,17 +51,6 @@ module Ats
         data.dig('categories', 'allLocations').join(' && ')
       end
 
-      def job_details(job, data)
-        job.job_posting_url = data['hostedUrl']
-        job.job_title = data['text']
-        job.job_description = build_description(data)
-        job.non_geocoded_location_string = build_location_string(data)
-        job.remote_only = data['workplaceType'] == 'remote'
-        job.department = data.dig('categories', 'team')
-        job.date_created = convert_from_milliseconds(data['createdAt'])
-        fetch_additional_fields(job)
-        puts "Created new job - #{job.job_title} with #{job.company.company_name}"
-      end
       # def update_job_details(job, data)
       #   # TODO: add logic for office
 

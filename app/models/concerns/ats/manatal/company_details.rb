@@ -1,6 +1,8 @@
 module Ats
   module Manatal
     module CompanyDetails
+      private
+
       def company_details(ats_identifier)
         url_ats_api = "#{base_url_api}#{ats_identifier}"
         response = get(url_ats_api)
@@ -10,7 +12,8 @@ module Ats
           url_ats_api:,
           url_ats_main: "#{base_url_main}#{ats_identifier}",
           description: data['description'],
-          company_website_url: data['website']
+          company_website_url: data['website'],
+          total_live: fetch_total_live(ats_identifier)
           # facebook: data['facebook_url'],
           # linkedin: data['linkedin_url'],
         }
