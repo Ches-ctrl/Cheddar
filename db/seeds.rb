@@ -10,9 +10,6 @@ until response do
     # Xml::WorkableJob.perform_later
     # ScrapeTrueUpJob.perform_later
     # JobsUpdateJob.perform_later
-    # p ScrapeMetaTags.new('https://jobs.smartrecruiters.com/Checkoutcom1/743999975447173?utm_source=trueup&utm_medium=website&ref=trueup').call
-    # ScrapeMetaTags.new('https://bmcorp.bizmerlin.net/jobboard/#/position/apply/341985').call
-    # ScrapeMetaTags.new('https://ripple.com/careers/all-jobs/job/5144512').call
     exit
   else
     response = response.to_i

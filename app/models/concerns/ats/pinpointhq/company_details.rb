@@ -18,8 +18,8 @@ module Ats
       def scrape_company_page(url_ats_main)
         html = URI.parse(url_ats_main).open
         doc = Nokogiri::HTML.parse(html)
-        name_string = doc.at_xpath("//div[contains(@class, 'careers-navigation-block__menu-section--left')][1]//img/@alt")
-        company_name = name_string.text.sub(' - Home', '')
+        name = doc.at_xpath("//div[contains(@class, 'hide-sm-block')][1]//img/@alt")
+        company_name = name&.text&.sub(' - Home', '')
         links = doc.xpath("//div[@class='external-footer__content']//a/@href").map(&:value)
         website_link = links.first
         linkedin_link = links.find { |link| link.include?('linkedin.com') }
