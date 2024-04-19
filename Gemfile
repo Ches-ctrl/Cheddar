@@ -82,9 +82,6 @@ gem 'yomu' # this gem is no longer maintained
 gem 'tinymce-rails' # now have trix and action text
 gem 'htmltoword'
 
-# Steven gems
-gem 'csv_importer', '~> 0.0.4'
-
 group :development, :test do
   gem "dotenv-rails"
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
