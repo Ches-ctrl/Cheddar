@@ -27,15 +27,15 @@ module Ats
         )
       end
 
-      def job_url_api(_base_url, company_id, _job_id)
-        company = Company.find(company_id)
+      def job_url_api(_base_url, ats_identifier, _job_id)
+        company = Company.find_by(ats_identifier:)
         company.url_ats_api
       end
 
       def build_location_string(data)
         locality = data.dig('location', 'city')
         country = data.dig('location', 'state')
-        [locality, country].compact.join(', ')
+        [locality, country].reject(&:blank?).join(', ')
       end
     end
   end

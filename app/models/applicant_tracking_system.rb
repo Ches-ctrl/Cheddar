@@ -60,6 +60,20 @@ class ApplicantTrackingSystem < ApplicationRecord
     refer_to_module(defined?(super) ? super : nil, __method__)
   end
 
+  private
+
+  def try_standard_formats(url, regex_formats)
+    regex_formats.each do |regex|
+      next unless (match = url.match(regex))
+
+      ats_identifier, job_id = match.captures
+      return [ats_identifier, job_id]
+    end
+    return nil
+  end
+
+  public
+
   # -----------------------
   # CompanyCreator
   # -----------------------
@@ -127,7 +141,6 @@ class ApplicantTrackingSystem < ApplicationRecord
   # JobCreator
   # -----------------------
 
-  # TODO: rename to find_or_create_job
   def find_or_create_job(company, ats_job_id, data = nil)
     job = Job.find_or_create_by(ats_job_id:) do |new_job|
       new_job.company = company
@@ -170,124 +183,6 @@ class ApplicantTrackingSystem < ApplicationRecord
     p "job fields getting"
     job.save! # must save before passing to Sidekiq job
     GetFormFieldsJob.perform_later(job) # TODO: create separate module methods for this
-  end
-
-  public
-
-  # TODO: ApplicantTrackingSystem should handle all public instance methods contained in
-  # ats-specific modules as in the example below:
-  def parse_url(url)
-    return super if defined?(super)
-
-    p "Write a parse_url method for #{name}!"
-    return
-  end
-
-  # -----------------------
-  # Parse URL
-  # -----------------------
-
-  def self.parse_url(ats, url)
-    ats.parse_url(url)
-  end
-
-  # -----------------------
-  # CompanyCreator
-  # -----------------------
-
-  def self.find_or_create_company(ats, ats_identifier)
-    ats.find_or_create_company(ats_identifier)
-  end
-
-  # -----------------------
-  # Company Details
-  # -----------------------
-
-  # TODO: Fix the variables being passed back and forth here once everything is working
-
-  def self.get_company_details(url, ats, ats_identifier)
-    company = ats.get_company_details(url, ats, ats_identifier) # rubocop:disable Lint/UselessAssignment
-  end
-
-  # -----------------------
-  # Fetch Company Jobs
-  # -----------------------
-
-  def self.get_company_jobs(ats, url)
-    ats.get_company_jobs(url)
-  end
-
-  # -----------------------
-  # JobCreator
-  # -----------------------
-
-  # TODO: Fix this so that it doesn't re-request the API multiple times according to Dan improvements e.g. PinpointHQ
-
-  def self.find_or_create_job_by_data(company, data)
-    p "find_or_create_job_by_data - #{data}"
-
-    ats_job_id = fetch_id(data)
-    find_or_create_job_by_id(company, ats_job_id)
-  end
-
-  def self.find_or_create_job_by_id(url, ats, company, ats_job_id)
-    p "Finding or creating job by ID - #{ats_job_id}"
-
-    job = Job.find_or_create_by(ats_job_id:) do |job|
-      job.job_title = "Placeholder - #{ats.name} - #{ats_job_id}"
-      job.job_posting_url = url
-      job.company = company
-      job.applicant_tracking_system = ats
-      job.ats_job_id = ats_job_id
-    end
-    p "Job created - #{job.job_title}"
-
-    # TODO: Refactor fetch_job_data as lots of repeated code in modules that can be reconciled
-    # TODO: May be able to remove all the separate modules and just have one module for each ATS
-    data = ats.fetch_job_data(job, ats)
-    ats.job_details(job, data)
-    # ats.create_application_criteria_hash(job) # TODO: add methods so that this can be called
-
-    job
-  end
-
-  # -----------------------
-  # Parse URL
-  # -----------------------
-
-  def try_standard_formats(url, regex_formats)
-    regex_formats.each do |regex|
-      next unless (match = url.match(regex))
-
-      ats_identifier, job_id = match.captures
-      return [ats_identifier, job_id]
-    end
-    return nil
-  end
-
-  # -----------------------
-  # Job Details
-  # -----------------------
-
-  # def fetch_job_data(job)
-  #   job.api_url = job_url_api(base_url_api, job.company.ats_identifier, job.ats_job_id)
-  #   response = get(job.api_url)
-  #   return JSON.parse(response)
-  # end
-
-  def update_requirements(job)
-    job.no_of_questions = job.application_criteria.size
-
-    job.application_criteria.each do |field, criteria|
-      case field
-      when 'resume'
-        job.req_cv = criteria['required']
-      when 'cover_letter'
-        job.req_cover_letter = criteria['required']
-      when 'work_eligibility'
-        job.work_eligibility = criteria['required']
-      end
-    end
   end
 
   # -----------------------

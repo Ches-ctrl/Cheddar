@@ -26,7 +26,7 @@ module Ats
         job.assign_attributes(
           job_posting_url: detailed_data['absolute_url'],
           job_title: detailed_data['title'],
-          job_description: CGI.unescapeHTML(detailed_data['content']),
+          job_description: detailed_data['content'],
           non_geocoded_location_string: detailed_data.dig('location', 'name'),
           department: detailed_data.dig('departments', 0, 'name'),
           office: detailed_data.dig('offices', 0, 'name'),

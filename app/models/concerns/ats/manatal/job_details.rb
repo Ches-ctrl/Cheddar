@@ -47,7 +47,7 @@ module Ats
       def build_location_string(data)
         locality = data['location_display']
         country = data['country']
-        [locality, country].compact.join(', ')
+        [locality, country].reject(&:blank?).join(', ')
       end
     end
   end

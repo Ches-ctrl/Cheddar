@@ -4,7 +4,7 @@ Workable,workable,https://www.workable.com/,,https://apply.workable.com/,https:/
 Lever,lever,https://www.lever.co/,,https://jobs.lever.co/,https://api.lever.co/v0/postings/,,,,FALSE
 SmartRecruiters,smartrecruiters,https://www.smartrecruiters.com/,,https://jobs.smartrecruiters.com/,https://api.smartrecruiters.com/v1/companies/,https://jobs.smartrecruiters.com/,,,FALSE
 AshbyHQ,ashby,https://www.ashbyhq.com/,,https://jobs.ashbyhq.com/,https://api.ashbyhq.com/posting-api/job-board/,,,,FALSE
-PinpointHQ,pinpoint,https://www.pinpointhq.com/,,https://XXX.pinpointhq.com/en/postings/,https://XXX.pinpointhq.com/postings.json,,,,FALSE
+PinpointHQ,pinpoint,https://www.pinpointhq.com/,,https://XXX.pinpointhq.com/,https://XXX.pinpointhq.com/postings.json,,,,FALSE
 BambooHR,bamboohr,https://www.bamboohr.com/,,https://XXX.bamboohr.com/careers/,https://XXX.bamboohr.com/careers/list,,,,FALSE
 Recruitee,recruitee,https://recruitee.com/,,https://XXX.recruitee.com/,https://XXX.recruitee.com/api/offers/,,,,FALSE
 Manatal,careers-page|manatal,https://www.manatal.com/,,https://www.careers-page.com/,https://api.manatal.com/open/v3/career-page/,,,,FALSE

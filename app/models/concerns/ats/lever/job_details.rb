@@ -41,9 +41,7 @@ module Ats
 
       def build_description(data)
         data['descriptionBodyPlain'] + data['lists'].inject('') do |string, field|
-                                         header = CGI.unescapeHTML(field['text'])
-                                         body = CGI.unescapeHTML(field['content'])
-                                         string + "\n#{header}\n#{body}"
+                                         string + field['text'] + field['content']
                                        end
       end
 

@@ -1,17 +1,7 @@
 module Standardizer
   class SalaryStandardizer
     include ActiveSupport::NumberHelper
-
-    CONVERTER = {
-      '$' => ['$', ' USD'],
-      '£' => ['£', ' GBP'],
-      '€' => ['€', ' EUR'],
-      'usd' => ['$', ' USD'],
-      'can' => ['$', ' CAN'],
-      'aud' => ['$', ' AUD'],
-      'gbp' => ['£', ' GBP'],
-      'eur' => ['€', ' EUR']
-    }
+    include Constants
 
     def initialize(job)
       @job = job
@@ -33,7 +23,7 @@ module Standardizer
       currency_match = matches.find do |expression|
         expression[0].match?(/(gbp|eur|usd|can|aud)/i)
       end&.first&.downcase&.gsub(/[^a-z]/, '') || matches[0][0].match(/([£$€])/)[1]
-      currency = currency_match.blank? ? ['', ''] : CONVERTER[currency_match]
+      currency = currency_match.blank? ? ['', ''] : CURRENCY_CONVERTER[currency_match]
 
       salaries = matches.map { |expression| expression[0].gsub(/[^\d]/, '').to_i }
 
@@ -47,11 +37,11 @@ module Standardizer
 
       @job.salary = number_to_currency(salary_low, unit: currency[0], precision: 0) +
                     (if salary_high
-                      " - #{number_to_currency(salary_high, unit: currency[0],
-                                                            precision: 0)}"
-                    else
-                      ""
-                    end) +
+                       " - #{number_to_currency(salary_high, unit: currency[0],
+                                                             precision: 0)}"
+                     else
+                       ""
+                     end) +
                     currency[1] +
                     (equity ? " + equity" : "")
     end

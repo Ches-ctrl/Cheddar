@@ -31,7 +31,7 @@ module Ats
       def build_location_string(data)
         locality = data.dig('address', 'postalAddress', 'addressLocality')
         country = data.dig('address', 'postalAddress', 'addressCountry')
-        [locality, country].compact.join(', ')
+        [locality, country].reject(&:blank?).join(', ')
       end
 
       def job_url_api(base_url_api, ats_identifier, _ats_job_id)
