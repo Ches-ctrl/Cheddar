@@ -17,8 +17,8 @@ module Ats
       def fetch_total_live(ats_identifier)
         company_api_url = replace_ats_identifier(ats_identifier).first
         p "Company API URL - #{company_api_url}"
-        response = get(company_api_url)
-        data = JSON.parse(response)
+
+        data = get_json_data(company_api_url)
         data.dig('meta', 'totalCount')
       end
     end

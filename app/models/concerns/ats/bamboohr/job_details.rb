@@ -6,9 +6,8 @@ module Ats
       def fetch_job_data(job)
         job_id = job.ats_job_id
 
-        response = get(job.api_url)
-        all_jobs_data = JSON.parse(response)
-        data = all_jobs_data["result"].find { |job| job["id"] == job_id }
+        all_jobs_data = get_json_data(job.api_url)
+        data = all_jobs_data["result"]&.find { |job| job["id"] == job_id }
 
         return data if data
 
@@ -23,7 +22,7 @@ module Ats
           department: data['departmentLabel'],
           employment_type: data['employmentStatusLabel'],
           non_geocoded_location_string: build_location_string(data),
-          job_posting_url: "#{base_url_main}#{data['id']}"
+          job_posting_url: "#{base_url_main.sub('XXX', job.company.ats_identifier)}#{data['id']}"
         )
       end
 

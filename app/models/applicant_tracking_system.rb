@@ -121,8 +121,7 @@ class ApplicantTrackingSystem < ApplicationRecord
 
   def fetch_company_name(ats_identifier)
     url = "https://autocomplete.clearbit.com/v1/companies/suggest?query=#{ats_identifier}"
-    response = get(url)
-    data = JSON.parse(response)
+    data = get_json_data(url)
     return data.dig(0, 'name') unless data.blank?
   end
 
@@ -142,6 +141,9 @@ class ApplicantTrackingSystem < ApplicationRecord
   # -----------------------
 
   def find_or_create_job(company, ats_job_id, data = nil)
+    p company
+    return unless company.persisted?
+
     job = Job.find_or_create_by(ats_job_id:) do |new_job|
       new_job.company = company
       new_job.applicant_tracking_system = self

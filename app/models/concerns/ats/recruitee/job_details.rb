@@ -9,8 +9,7 @@ module Ats
       def fetch_job_data(job)
         job_apply_url = "#{job.company.url_ats_main}o/#{job.ats_job_id}/c/new"
 
-        response = get(job.api_url)
-        all_jobs_data = JSON.parse(response)
+        all_jobs_data = get_json_data(job.api_url)
         data = all_jobs_data["offers"].find { |job| job["careers_apply_url"] == job_apply_url }
 
         return data if data

@@ -3,9 +3,7 @@ module Ats
     module CompanyDetails
       def company_details(ats_identifier)
         url_ats_api = "#{base_url_api}#{ats_identifier}/postings"
-        response = get(url_ats_api)
-        data = JSON.parse(response)
-
+        data = get_json_data(url_ats_api)
         company_name, industry = fetch_name_and_industry(data)
         {
           company_name:,
@@ -22,8 +20,7 @@ module Ats
           next unless ['en', 'en-GB'].include?(posting['language'])
 
           job_api = posting['ref']
-          response = get(job_api)
-          detailed_data = JSON.parse(response)
+          detailed_data = get_json_data(job_api)
           formatted_description = detailed_data.dig('jobAd', 'sections', 'companyDescription', 'text')
           return sanitize(formatted_description)
         end
@@ -40,8 +37,7 @@ module Ats
 
       def fetch_total_live(ats_identifier)
         company_api_url = "#{base_url_api}#{ats_identifier}/postings"
-        response = get(company_api_url)
-        data = JSON.parse(response)
+        data = get_json_data(company_api_url)
         data['totalFound']
       end
     end

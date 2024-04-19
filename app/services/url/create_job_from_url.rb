@@ -49,7 +49,7 @@ module Url
       if job_is_live?(@url)
         p "Live Job - #{@url}"
         job = ats.find_or_create_job(company, job_id)
-        puts "Created job - #{job.job_title}"
+        puts "Created job - #{job&.job_title}"
       else
         p "Job has expired - #{@url}"
       end

@@ -3,6 +3,7 @@ require 'cgi'
 module Standardizer
   class LocationStandardizer
     include Constants
+    include CheckUrlIsValid
 
     def initialize(job)
       @job = job
@@ -83,17 +84,10 @@ module Standardizer
       ascii_string = convert_to_ascii(string)
       api_url = "http://dev.virtualearth.net/REST/v1/Locations/#{ascii_string}?key=#{ENV.fetch('BING_API_KEY', nil)}"
 
-      begin
-        uri = URI(api_url)
-        response = Net::HTTP.get(uri)
-        data = JSON.parse(response)
-      rescue JSON::ParserError, Net::HTTPError => e
-        puts "Error fetching data: #{e.message}"
-        return []
-      end
+      data = get_json_data(api_url)
 
-      return [] if data.dig('resourceSets', 0, 'estimatedTotal').zero?
-      return [] if data.dig('resourceSets', 0, 'resources', 0, 'confidence') == 'Low'
+      return if data.dig('resourceSets', 0, 'estimatedTotal').blank?
+      return if data.dig('resourceSets', 0, 'resources', 0, 'confidence') == 'Low'
 
       city = data.dig('resourceSets', 0, 'resources', 0, 'address', 'locality')
       country = data.dig('resourceSets', 0, 'resources', 0, 'address', 'countryRegion')

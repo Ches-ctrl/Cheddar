@@ -5,8 +5,7 @@ module Ats
 
       def company_details(ats_identifier)
         url_ats_api = "#{base_url_api}#{ats_identifier}"
-        response = get(url_ats_api)
-        data = JSON.parse(response)
+        data = get_json_data(url_ats_api)
         {
           company_name: data['name'],
           url_ats_api:,
@@ -21,8 +20,7 @@ module Ats
 
       def fetch_total_live(ats_identifier)
         company_api_url = "#{base_url_api}#{ats_identifier}/jobs/"
-        response = get(company_api_url)
-        data = JSON.parse(response)
+        data = get_json_data(company_api_url)
         data['count']
       end
     end

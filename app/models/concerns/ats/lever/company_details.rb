@@ -7,8 +7,7 @@ module Ats
         url_ats_api = "#{base_url_api}#{ats_identifier}/?mode=json"
         url_ats_main = "#{base_url_main}#{ats_identifier}"
         company_name, company_website_url = scrape_company_page(url_ats_main)
-        response = get(url_ats_api)
-        data = JSON.parse(response)
+        data = get_json_data(url_ats_api)
         {
           company_name:,
           description: data.dig(0, 'additionalPlain'),
