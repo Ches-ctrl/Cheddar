@@ -19,11 +19,13 @@ module Url
       ats = ApplicantTrackingSystem.determine_ats(@url)
       p "ATS - #{ats.name}"
 
+      return unless ats
+
       # ---------------
       # Parse URL
       # ---------------
 
-      ats_identifier, job_id = ApplicantTrackingSystem.parse_url(ats, @url)
+      ats_identifier, job_id = ats.parse_url(@url)
       p "ATS Identifier - #{ats_identifier}"
       p "Job ID - #{job_id}"
 
@@ -31,8 +33,14 @@ module Url
       # CompanyCreator
       # ---------------
 
-      company = ApplicantTrackingSystem.get_company_details(@url, ats, ats_identifier)
-      puts "Created company - #{company.company_name}"
+      company = ats.find_or_create_company(ats_identifier)
+      if company.persisted?
+        puts "Created company - #{company.company_name}"
+      else
+        puts "Failed to create company from #{@url}"
+      end
+
+      return [ats, company, job_id]
 
       # ---------------
       # SaveToCsv

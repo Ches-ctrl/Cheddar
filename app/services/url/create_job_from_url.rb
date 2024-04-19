@@ -9,42 +9,11 @@ module Url
 
     def create_company_then_job
       # ---------------
-      # ATS Router
+      # Create Company From URL
       # ---------------
 
-      # TODO: determine_ats needs to handle job boards, company sites and other companies not in the DB, as well as non-valid URLs
-
-      ats = ApplicantTrackingSystem.determine_ats(@url)
-      p "ATS - #{ats.name}"
-
-      return unless ats
-
-      # ---------------
-      # Parse URL
-      # ---------------
-
-      ats_identifier, job_id = ats.parse_url(@url)
-      p "ATS Identifier - #{ats_identifier}"
-      p "Job ID - #{job_id}"
-
-      # ---------------
-      # CompanyCreator
-      # ---------------
-
-      return [ats] unless ats_identifier
-
-      company = ats.find_or_create_company(ats_identifier)
-      puts "Created company - #{company.company_name}"
-
-      # ---------------
-      # JobCreator
-      # ---------------
-
-      # TODO: Update this and Greenhouse, lever and Devit so they are consistent - at the moment they call different methods
-      # TODO: Fix this as at the moment it breaks whenever the job_posting_url is no longer valid
-      # TODO: Find a recruitee job_posting_url as currently don't have one to test
-
-      return [ats, ats_identifier] unless job_id
+      ats, company, job_id = Url::CreateCompanyFromUrl.new(@url).create_company
+      return [ats, company] unless job_id
 
       if job_is_live?(@url)
         p "Live Job - #{@url}"

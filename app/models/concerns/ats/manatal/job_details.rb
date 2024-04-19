@@ -12,7 +12,7 @@ module Ats
           all_jobs_data = get_json_data(url)
           return mark_job_expired(job) unless (jobs = all_jobs_data["results"]) && all_jobs_data["next"]
 
-          data = jobs&.find { |job_data| job_data["hash"] == job.ats_job_id }
+          data = jobs.find { |job_data| job_data["hash"] == job.ats_job_id }
 
           if data
             job.api_url = "#{job.api_url}#{data['id']}"

@@ -79,6 +79,8 @@ class ApplicantTrackingSystem < ApplicationRecord
   # -----------------------
 
   def find_or_create_company(ats_identifier, data = nil)
+    return unless ats_identifier
+
     company = Company.find_or_initialize_by(ats_identifier:) do |new_company|
       company_data = company_details(ats_identifier)
 

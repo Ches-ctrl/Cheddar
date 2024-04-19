@@ -74,7 +74,7 @@ class ScrapeMetaTags
       next unless (candidate = match_ats(link))
 
       begin
-        ats, company, job = CreateJobByUrl.new(link).call
+        ats, company, job = CreateJobFromUrl.new(link).create_company_then_job
         if ats && company && !job
           job_id = ats.fetch_embedded_job_id(@url)
           job = ats.find_or_create_job(company, job_id) if job_id
