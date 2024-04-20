@@ -3,6 +3,8 @@ class ScrapeTrueUpJob < ApplicationJob
   include CompanyCsv
   include CheckUrlIsValid
 
+  # TODO: Move into the scraper folder
+
   NUMBER_OF_RESULT_PAGES = 70
 
   def perform
