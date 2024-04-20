@@ -48,6 +48,9 @@ BING_API_KEY = "your_bing_api_key"
 
 # AI functionality
 OPENAI_ACCESS_TOKEN = "your_openai_api_key"
+
+# Company Description Functionality
+CRUNCHBASE_API_KEY = "your_crunchbase_key"
 ```
 
 ## Tech Stack 🧑‍💻
