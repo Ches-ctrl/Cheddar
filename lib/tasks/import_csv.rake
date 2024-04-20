@@ -1,5 +1,7 @@
 LIST_FILEPATH = Rails.root.join('storage', 'csv', 'ats_identifiers.csv')
 
+# TODO: Move this into a CsvController or similar
+
 class AtsIdentifiers
   def self.load
     company_list = Hash.new { |hash, key| hash[key] = Set.new }
