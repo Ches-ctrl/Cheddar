@@ -1,49 +1,26 @@
 module Ats
   module Manatal
     module CompanyDetails
-      def get_company_details(url, ats_system, ats_identifier)
-        data = fetch_company_data(ats_system, ats_identifier)
+      private
 
-        p data
-
-        company_name = data['name']
-        company = Company.find_by(company_name:)
-
-        if company
-          p "Existing company - #{company.company_name}"
-        else
-          company = Company.create(
-            company_name:,
-            ats_identifier:,
-            applicant_tracking_system_id: ats_system.id,
-            url_ats_api: "#{ats_system.base_url_api}#{ats_identifier}",
-            url_ats_main: "#{ats_system.base_url_main}#{ats_identifier}",
-            description: data['description'],
-            company_website_url: data['website']
-            # facebook: data['facebook_url'],
-            # linkedin: data['linkedin_url'],
-          )
-
-          company.total_live = fetch_total_live(ats_system, ats_identifier)
-          p "Total live - #{company.total_live}"
-
-          p "Created company - #{company.company_name}" if company.persisted?
-        end
-        company
+      def company_details(ats_identifier)
+        url_ats_api = "#{base_url_api}#{ats_identifier}"
+        data = get_json_data(url_ats_api)
+        {
+          company_name: data['name'],
+          url_ats_api:,
+          url_ats_main: "#{base_url_main}#{ats_identifier}",
+          description: data['description'],
+          company_website_url: data['website'],
+          total_live: fetch_total_live(ats_identifier)
+          # facebook: data['facebook_url'],
+          # linkedin: data['linkedin_url'],
+        }
       end
 
-      def fetch_company_data(ats_system, ats_identifier)
-        company_api_url = "#{ats_system.base_url_api}#{ats_identifier}/"
-        uri = URI(company_api_url)
-        response = Net::HTTP.get(uri)
-        JSON.parse(response)
-      end
-
-      def fetch_total_live(ats_system, ats_identifier)
-        company_api_url = "#{ats_system.base_url_api}#{ats_identifier}/jobs/"
-        uri = URI(company_api_url)
-        response = Net::HTTP.get(uri)
-        data = JSON.parse(response)
+      def fetch_total_live(ats_identifier)
+        company_api_url = "#{base_url_api}#{ats_identifier}/jobs/"
+        data = get_json_data(company_api_url)
         data['count']
       end
     end

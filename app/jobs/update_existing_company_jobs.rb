@@ -1,5 +1,6 @@
 class UpdateExistingCompanyJobs < ApplicationJob
   include CompanyCsv
+  include Relevant
 
   # Why do we get all the job urls?
   # Wouldn't the best approach here be to create a csv with all the company data from the respective APIs
@@ -27,20 +28,20 @@ class UpdateExistingCompanyJobs < ApplicationJob
       next unless ['Greenhouse', 'Lever'].include?(ats_name)
 
       puts "Scanning #{ats_name} jobs:"
-      @ats_system = ApplicantTrackingSystem.find_by(name: ats_name)
+      @ats = ApplicantTrackingSystem.find_by(name: ats_name)
 
       ats_identifiers.each do |ats_identifier|
         puts "Looking at jobs with #{ats_identifier}..."
 
         # Find or create the company
-        next puts "Problem with #{ats_identifier}" unless (company = @ats_system.find_or_create_company(ats_identifier))
+        next puts "Problem with #{ats_identifier}" unless (company = @ats.find_or_create_company(ats_identifier))
 
-        company_jobs = @ats_system.fetch_company_jobs(ats_identifier)
+        company_jobs = @ats.fetch_company_jobs(ats_identifier)
 
         # Create new jobs using AtsSystem method
         company_jobs.each do |job_data|
-          @ats_system.find_or_create_job_by_data(company, job_data) if relevant?(job_data)
-          @job_urls.delete(@ats_system.fetch_url(job_data))
+          @ats.find_or_create_job_by_data(company, job_data) if relevant?(job_data)
+          @job_urls.delete(@ats.fetch_url(job_data))
         end
       end
     end

@@ -1,25 +1,37 @@
 module Scraper
   class DevitJobsService < ApplicationService
+    include Capybara::DSL
+    include CheckUrlIsValid
+
     def scrape_page
-      return "Unable to scrape DevIT: first create ATS" unless (ats = ApplicantTrackingSystem.find_by(name: 'Devit'))
+      return p "Unable to scrape DevIT: first create ATS" unless (@ats = ApplicantTrackingSystem.find_by(name: 'DevITJobs'))
 
-      url = ats.url_xml
-      jobs = page_doc(url).xpath('//jobs/job')
+      @redirect_urls = []
 
-      jobs.each do |job_data|
-        # TODO: check for apply redirect to different ATS
-        ats_identifier = job_data.css('company').text.gsub(' ', '-').gsub(/[^A-Za-z\-]/, '')
+      fetch_json_data.each do |job_data|
+        next if redirect?(job_data)
 
-        company = Company.find_or_create_by(ats_identifier:) do |new_company|
-          new_company.company_name = job_data.css('company').text
-          new_company.applicant_tracking_system = ats
-        end
-        ats.find_or_create_job_by_data(company, job_data)
+        company = @ats.find_or_create_company_by_data(job_data)
+        job = @ats.find_or_create_job_by_data(company, job_data)
+        p "Created DevIT job: #{job.job_title}"
       end
 
-      # NOTE: original implementation for technologies and locations were changed,
-      # I am not sure how locations and technologies works now, will leave for Dan to fix.
-      # technologies is currently part of the string in the description, some string manipulation is needed to get it.
+      p "grabbing jobs with DevIT redirects..."
+      ImportCompaniesFromList.new(@redirect_urls).call unless @redirect_urls.empty?
+    end
+
+    private
+
+    def fetch_json_data
+      url = @ats.url_all_jobs
+      response = get(url)
+      JSON.parse(response)
+    end
+
+    def redirect?(json_data)
+      return false unless json_data['redirectJobUrl']
+
+      @redirect_urls << json_data['redirectJobUrl']
     end
   end
 end

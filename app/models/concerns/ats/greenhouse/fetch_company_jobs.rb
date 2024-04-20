@@ -3,9 +3,7 @@ module Ats
     module FetchCompanyJobs
       def fetch_company_jobs(ats_identifier)
         company_api_url = "#{base_url_api}#{ats_identifier}/jobs"
-        return unless (response = get(company_api_url))
-
-        data = JSON.parse(response)
+        data = get_json_data(company_api_url)
         return data['jobs']
       end
     end

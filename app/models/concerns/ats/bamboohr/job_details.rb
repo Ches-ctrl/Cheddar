@@ -1,35 +1,40 @@
 module Ats
   module Bamboohr
     module JobDetails
-      def fetch_job_data(job, ats)
-        job_url_api = job.company.url_ats_api
-        job.api_url = job_url_api
+      private
+
+      def fetch_job_data(job)
         job_id = job.ats_job_id
 
-        uri = URI(job_url_api)
-        response = Net::HTTP.get(uri)
-        all_jobs_data = JSON.parse(response)
-        data = all_jobs_data["result"].find { |job| job["id"] == job_id }
+        all_jobs_data = get_json_data(job.api_url)
+        data = all_jobs_data["result"]&.find { |job| job["id"] == job_id }
 
         return data if data
 
-        p "Job with ID #{job.ats_job_id} is expired."
+        p "Job with ID #{job_id} is expired."
         job.live = false
         return nil
       end
 
-      def update_job_details(job, data)
-        p "Updating job details - #{job.job_title}"
-
-        location = "#{data['location']['city']}, #{data['location']['state']}" if data['location']['city'] && data['location']['state']
-
-        job.update(
+      def job_details(job, data)
+        job.assign_attributes(
           job_title: data['jobOpeningName'],
           department: data['departmentLabel'],
           employment_type: data['employmentStatusLabel'],
-          # location:,
-          ats_job_id: data['id']
+          non_geocoded_location_string: build_location_string(data),
+          job_posting_url: "#{base_url_main.sub('XXX', job.company.ats_identifier)}#{data['id']}"
         )
+      end
+
+      def job_url_api(_base_url, ats_identifier, _job_id)
+        company = Company.find_by(ats_identifier:)
+        company.url_ats_api
+      end
+
+      def build_location_string(data)
+        locality = data.dig('location', 'city')
+        country = data.dig('location', 'state')
+        [locality, country].reject(&:blank?).join(', ')
       end
     end
   end

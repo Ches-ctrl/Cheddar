@@ -1,38 +1,31 @@
 module Ats
   module Pinpointhq
     module CompanyDetails
-      def get_company_details(url, ats_system, ats_identifier)
-        p "Getting PinpointHQ company details - #{url}"
+      private
 
-        company_name = ats_identifier.capitalize
-        company = Company.find_by(company_name:)
-
-        if company
-          p "Existing company - #{company.company_name}"
-        else
-          api_url, main_url = replace_ats_identifier(ats_system, ats_identifier)
-          company = Company.create(
-            company_name:,
-            ats_identifier:,
-            applicant_tracking_system_id: ats_system.id,
-            url_ats_api: api_url,
-            url_ats_main: main_url
-          )
-
-          p "Created company - #{company.company_name}" if company.persisted?
-        end
-        company
+      def company_details(ats_identifier)
+        url_ats_api, url_ats_main = replace_ats_identifier(ats_identifier)
+        company_name, company_website_url, url_linkedin = scrape_company_page(url_ats_main)
+        {
+          company_name:,
+          url_ats_api:,
+          url_ats_main:,
+          company_website_url:,
+          url_linkedin:
+        }
       end
 
-      # TODO: Move this to main ATS model as common to multiple ATS systems
-
-      def replace_ats_identifier(ats_system, ats_identifier)
-        api_url = ats_system.base_url_api
-        main_url = ats_system.base_url_main
-
-        api_url.gsub!("XXX", ats_identifier)
-        main_url.gsub!("XXX", ats_identifier)
-        [api_url, main_url]
+      def scrape_company_page(url_ats_main)
+        html = URI.parse(url_ats_main).open
+        doc = Nokogiri::HTML.parse(html)
+        name = doc.at_xpath("//div[contains(@class, 'hide-sm-block')][1]//img/@alt")
+        company_name = name&.text&.sub(' - Home', '')
+        links = doc.xpath("//div[@class='external-footer__content']//a/@href").map(&:value)
+        website_link = links.first
+        linkedin_link = links.find { |link| link.include?('linkedin.com') }
+        company_website_url = website_link
+        url_linkedin = linkedin_link
+        [company_name, company_website_url, url_linkedin]
       end
     end
   end

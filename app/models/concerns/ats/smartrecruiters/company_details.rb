@@ -1,44 +1,45 @@
 module Ats
   module Smartrecruiters
     module CompanyDetails
-      def get_company_details(url, ats_system, ats_identifier)
-        p "Getting smartrecruiters company details - #{url}"
-
-        # TODO: Update to scrape company details given lack of API endpoint for company information
-        # TODO: Add total live based on total number of jobs returned by API call (for each ATS system)
-
-        company_name = ats_identifier.capitalize
-        company = Company.find_by(company_name:)
-
-        if company
-          p "Existing company - #{company.company_name}"
-        else
-          company = Company.create(
-            company_name:,
-            ats_identifier:,
-            applicant_tracking_system_id: ats_system.id,
-            url_ats_api: "#{ats_system.base_url_api}#{ats_identifier}",
-            url_ats_main: "#{ats_system.base_url_main}#{ats_identifier}"
-          )
-
-          company.total_live = fetch_total_live(ats_system, ats_identifier)
-          # p "Total live - #{company.total_live}"
-
-          p "Created company - #{company.company_name}" if company.persisted?
-        end
-        p company
-        company
+      def company_details(ats_identifier)
+        url_ats_api = "#{base_url_api}#{ats_identifier}/postings"
+        data = get_json_data(url_ats_api)
+        company_name, industry = fetch_name_and_industry(data)
+        {
+          company_name:,
+          description: fetch_description(data),
+          industry:,
+          url_ats_api:,
+          url_ats_main: "#{base_url_main}#{ats_identifier}",
+          total_live: fetch_total_live(ats_identifier)
+        }
       end
 
-      def fetch_total_live(ats_system, ats_identifier)
-        company_api_url = "#{ats_system.base_url_api}#{ats_identifier}/postings"
-        uri = URI(company_api_url)
-        response = Net::HTTP.get(uri)
-        data = JSON.parse(response)
+      def fetch_description(data)
+        data['content'].each do |posting|
+          next unless ['en', 'en-GB'].include?(posting['language'])
+
+          job_api = posting['ref']
+          detailed_data = get_json_data(job_api)
+          formatted_description = detailed_data.dig('jobAd', 'sections', 'companyDescription', 'text')
+          return sanitize(formatted_description)
+        end
+        return nil
+      end
+
+      def fetch_name_and_industry(data)
+        return unless data && data['totalFound'].positive?
+
+        name = data.dig('content', 0, 'company', 'name')
+        industry = data.dig('content', 0, 'industry', 'label')
+        [name, industry]
+      end
+
+      def fetch_total_live(ats_identifier)
+        company_api_url = "#{base_url_api}#{ats_identifier}/postings"
+        data = get_json_data(company_api_url)
         data['totalFound']
       end
-
-      # TODO: Add fetch company description off first job posting if there
     end
   end
 end

@@ -1,4 +1,36 @@
 module Constants
+  SENIORITY_TITLES = {
+      /staff/ => 'Senior',
+      /principal/ => 'Senior',
+      /\blead\b/ => 'Senior',
+      /senior/ => 'Senior',
+      /\biii\b/ => 'Mid-Level',
+      /\bii\b/ => 'Mid-Level',
+      /mid-?level/ => 'Mid-Level',
+      /mid-?weight/ => 'Mid-Level',
+      /\bmid\b/ => 'Mid-Level',
+      /junior/ => 'Junior',
+      /early.?career/ => 'Junior',
+      /\bi\b/ => 'Junior',
+      /associate/ => 'Junior',
+      /[gG]raduate/ => 'Graduate',
+      /[gG]rad/ => 'Graduate',
+      /[iI]ntern/ => 'Internship'
+  }
+
+  SENIORITY_DESCRIPTORS = {
+    /track record of/ => 'Junior',
+    /(commercial|professional|production|significant) experience(?!\s*(?:.{0,40}not\s+(?:essential|required)))/ => 'Mid-Level',
+    /proficien(cy|t) (in|with) (?!\s*(?:.{0,40}not\s+(?:essential|required)))/ => 'Mid-Level',
+    /deep.{0,28} (knowledge|expertise)(?!\s*(?:.{0,40}not\s+(?:essential|required)))/ => 'Mid-Level',
+    /experience (in|with).{0,50} (commercial|professional)/ => 'Mid-Level',
+    /experience.{3,28} non-internship/ => 'Mid-Level',
+    /(mid-level|intermediate).{0,28} (developer|engineer)/ => 'Mid-Level',
+    /extensive experience(?!\s*(?:.{0,40}not\s+(?:essential|required)))/ => 'Senior',
+    /(seasoned|senior).{0,28} (developer|engineer)/ => 'Senior',
+    /expert\b/ => 'Senior'
+  }
+
   JOB_LOCATION_KEYWORDS = [
     /london/,
     /england/,
@@ -100,4 +132,15 @@ module Constants
     /unix/,
     /\btcp\b/
   ]
+
+  CURRENCY_CONVERTER = {
+    '$' => ['$', ' USD'],
+    '£' => ['£', ' GBP'],
+    '€' => ['€', ' EUR'],
+    'usd' => ['$', ' USD'],
+    'can' => ['$', ' CAN'],
+    'aud' => ['$', ' AUD'],
+    'gbp' => ['£', ' GBP'],
+    'eur' => ['€', ' EUR']
+  }
 end
