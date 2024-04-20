@@ -2,6 +2,7 @@ module AtsUrlIdentifiers
   extend ActiveSupport::Concern
   include Constants
 
+  # Isn't this basically the same as determine_ats in applicant_tracking_system.rb?
   def match_ats(url)
     ats_hash.each do |regex, ats_name|
       return ApplicantTrackingSystem.find_by(name: ats_name) if url.match?(regex)
