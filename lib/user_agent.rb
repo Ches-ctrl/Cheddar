@@ -134,7 +134,7 @@ class UserAgent
     File.write(@versions_path, JSON.pretty_generate(versions))
   end
 
-  def randomize_version_number(version)
+  def self.randomize_version_number(version)
     parts = version.split('.').map(&:to_i)
     parts[0] = rand(parts[0] - 1..parts[0])
     parts[1..-1] = parts[1..].map { |part| rand(0..part) }

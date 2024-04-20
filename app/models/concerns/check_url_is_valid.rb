@@ -29,21 +29,33 @@ module CheckUrlIsValid
 
   def get(url, retries = 1)
     uri = URI(url)
-    error = nil
     retries.times do |attempt|
       response = Net::HTTP.get(uri)
       return response
     rescue Errno::ECONNRESET, OpenSSL::SSL::SSLError => e
-      error = e
       sleep 2 ** (attempt + 1) # Exponential backoff
       retry
+    rescue Net::HTTPError => e
+      puts "Failed to load #{url}: #{e.message}" # Don't retry
+      return nil
     end
     puts "Failed after #{retries} retries: #{error.message}"
     return nil
   end
 
+  def get_json_data(api_url)
+    response = get(api_url)
+    begin
+      JSON.parse(response)
+    rescue JSON::ParserError => e
+      p response
+      puts "Error fetching JSON data from #{api_url}: #{e.message}"
+      return {}
+    end
+  end
+
   def url_valid?(url)
     response = get_response(url)
-    !response.is_a?(Net::HTTPNotFound)
+    response.is_a?(Net::HTTPSuccess) || response.is_a?(Net::HTTPMovedPermanently)
   end
 end

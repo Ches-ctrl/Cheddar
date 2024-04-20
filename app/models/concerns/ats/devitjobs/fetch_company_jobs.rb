@@ -1,5 +1,5 @@
 module Ats
-  module Devit
+  module Devitjobs
     module FetchCompanyJobs
       extend ActiveSupport::Concern
 

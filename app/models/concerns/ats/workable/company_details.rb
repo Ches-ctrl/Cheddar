@@ -1,70 +1,56 @@
 module Ats
   module Workable
     module CompanyDetails
-      def get_company_details(url, ats_system, ats_identifier)
-        p "Getting workable company details - #{url}"
+      private
 
-        # TODO: Clarify whether to use company_name as the uniqueness criterion for companies
-        # TODO: Add capbilitiy to handle logos, mailbox, etc.
-
-        company_name, _, description = fetch_company_data(ats_system, ats_identifier)
-        company = Company.find_by(company_name:)
-
-        if company
-          p "Existing company - #{company.company_name}"
-          check_for_details(company, ats_system, ats_identifier, description)
-        else
-          company = Company.create(
-            company_name:,
-            description:,
-            ats_identifier:,
-            applicant_tracking_system_id: ats_system.id,
-            url_ats_api: "#{ats_system.base_url_api}#{ats_identifier}",
-            url_ats_main: "#{ats_system.base_url_main}#{ats_identifier}"
-          )
-          p "Created company - #{company.company_name}" if company.persisted?
-          check_for_careers_url_redirect(company)
-        end
-        company
+      def company_details(ats_identifier)
+        # TODO: Add capabilitiy to handle logos, mailbox, etc.
+        url_ats_api = "#{base_url_api}#{ats_identifier}"
+        url_ats_main = "#{base_url_main}#{ats_identifier}"
+        data = get_json_data(url_ats_api)
+        url_careers = check_for_careers_url_redirect(url_ats_main)
+        {
+          company_name: data['name'],
+          description: data.dig('details', 'overview', 'description'),
+          url_ats_api:,
+          url_ats_main:,
+          url_careers:,
+          company_website_url: data['url']
+          # logo_url: "https://workablehr.s3.amazonaws.com/uploads/account/logo/#{data['id']}/logo"
+        }
       end
 
-      def fetch_company_data(ats_system, ats_identifier)
-        company_api_url = "#{ats_system.base_url_api}#{ats_identifier}"
-        uri = URI(company_api_url)
-        response = Net::HTTP.get(uri)
-        data = JSON.parse(response)
-        [data['name'], data['url'], data['details']['overview']['description']]
+      def check_for_careers_url_redirect(url_ats_main)
       end
 
-      def check_for_details(company, ats_system, ats_identifier, description)
-        if company.description.nil?
-          p "Missing description for #{company.company_name}"
-          company.update(description:)
-        end
+      # TODO: If there's a scenario where check_for_details is necessary, call it from ApplicantTrackingSystem
 
-        if company.ats_identifier.nil?
-          p "Missing ATS identifier for #{company.company_name}"
-          company.update(ats_identifier:)
-        end
+      # def check_for_details(company, ats_system, ats_identifier, description)
+      #   if company.description.nil?
+      #     p "Missing description for #{company.company_name}"
+      #     company.update(description:)
+      #   end
 
-        if company.applicant_tracking_system_id.nil?
-          p "Missing ATS system for #{company.company_name}"
-          company.update(applicant_tracking_system_id: ats_system.id)
-        end
+      #   if company.ats_identifier.nil?
+      #     p "Missing ATS identifier for #{company.company_name}"
+      #     company.update(ats_identifier:)
+      #   end
 
-        if company.url_ats_api.nil?
-          p "Missing ATS API URL for #{company.company_name}"
-          company.update(url_ats_api: "#{ats_system.base_url_api}#{ats_identifier}")
-        end
+      #   if company.applicant_tracking_system_id.nil?
+      #     p "Missing ATS system for #{company.company_name}"
+      #     company.update(applicant_tracking_system_id: ats_system.id)
+      #   end
 
-        return unless company.url_ats_main.nil?
+      #   if company.url_ats_api.nil?
+      #     p "Missing ATS API URL for #{company.company_name}"
+      #     company.update(url_ats_api: "#{ats_system.base_url_api}#{ats_identifier}")
+      #   end
 
-        p "Missing ATS Main URL for #{company.company_name}"
-        company.update(url_ats_main: "#{ats_system.base_url_main}#{ats_identifier}")
-      end
+      #   return unless company.url_ats_main.nil?
 
-      def check_for_careers_url_redirect(company)
-      end
+      #   p "Missing ATS Main URL for #{company.company_name}"
+      #   company.update(url_ats_main: "#{ats_system.base_url_main}#{ats_identifier}")
+      # end
     end
   end
 end

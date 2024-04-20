@@ -1,4 +1,29 @@
 # rubocop:disable Metrics/BlockLength
+LIST_FILEPATH = Rails.root.join('storage', 'csv', 'ats_identifiers.csv')
+
+# TODO: Move this into a CsvController or similar
+
+class AtsIdentifiers
+  def self.load
+    company_list = Hash.new { |hash, key| hash[key] = Set.new }
+
+    CSV.foreach(LIST_FILEPATH) do |ats_name, ats_identifier|
+      company_list[ats_name] << ats_identifier
+    end
+    company_list
+  end
+
+  def self.save(fulllist)
+    CSV.open(LIST_FILEPATH, 'wb') do |csv|
+      fulllist.each do |ats_name, ats_list|
+        ats_list.each do |ats_id|
+          csv << [ats_name, ats_id]
+        end
+      end
+    end
+  end
+end
+
 namespace :import_csv do
   # Run this file using rake import_csv:command e.g. bright_network
 
@@ -35,6 +60,8 @@ namespace :import_csv do
 
   desc "Import CSV - other_company_urls"
   task other_company_urls: :environment do
+    company_list = AtsIdentifiers.load
+
     company_csv = 'storage/csv/other_company_urls.csv'
 
     puts Company.count
@@ -42,9 +69,11 @@ namespace :import_csv do
 
     CSV.foreach(company_csv, headers: true) do |row|
       url = row['company_url']
-      Url::CreateCompanyFromUrl.new(url).create_company
+      ats, company = Url::CreateCompanyFromUrl.new(url).create_company
+      company_list[ats.name] << company.ats_identifier if company.persisted?
     end
 
+    AtsIdentifiers.save(company_list)
     puts Company.count
   end
 
@@ -76,6 +105,8 @@ namespace :import_csv do
 
   desc "Import CSV - greenhouse"
   task greenhouse: :environment do
+    company_list = AtsIdentifiers.load
+
     jobs_csv = 'storage/csv/greenhouse_urls.csv'
 
     puts Job.count
@@ -83,24 +114,32 @@ namespace :import_csv do
 
     CSV.foreach(jobs_csv, headers: true) do |row|
       url = row['job_posting_url']
-      CreateJobFromUrl.new(url).create_company_then_job
+      ats, company = Url::CreateJobFromUrl.new(url).create_company_then_job
+      company_list[ats.name] << company.ats_identifier if company.persisted?
     end
 
+    AtsIdentifiers.save(company_list)
     puts Job.count
   end
 
   desc "Import CSV - other_ats"
   task other_ats: :environment do
+    company_list = AtsIdentifiers.load
+
     jobs_csv = 'storage/csv/other_ats_urls.csv'
+
+    # TODO: fix manatal as the API endpoint isn't yet working
 
     puts Job.count
     puts "Creating new jobs..."
 
     CSV.foreach(jobs_csv, headers: true) do |row|
       url = row['job_posting_url']
-      Url::CreateJobFromUrl.new(url).create_company_then_job
+      ats, company = Url::CreateJobFromUrl.new(url).create_company_then_job
+      company_list[ats.name] << company.ats_identifier if company.persisted?
     end
 
+    AtsIdentifiers.save(company_list)
     puts Job.count
   end
 
@@ -108,6 +147,8 @@ namespace :import_csv do
 
   desc "Import CSV - job_posting_urls"
   task job_posting_urls: :environment do
+    company_list = AtsIdentifiers.load
+
     jobs_csv = 'storage/csv/job_posting_urls.csv'
 
     puts Job.count
@@ -115,9 +156,11 @@ namespace :import_csv do
 
     CSV.foreach(jobs_csv, headers: true) do |row|
       url = row['job_posting_url']
-      CreateJobFromUrl.new(url).create_company_then_job
+      ats, company = Url::CreateJobFromUrl.new(url).create_company_then_job
+      company_list[ats.name] << company.ats_identifier if company.persisted?
     end
 
+    AtsIdentifiers.save(company_list)
     puts Job.count
   end
 

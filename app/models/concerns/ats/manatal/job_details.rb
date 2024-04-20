@@ -1,46 +1,53 @@
 module Ats
   module Manatal
     module JobDetails
-      def fetch_job_data(job, ats)
-        job_url_api = "#{ats.base_url_api}#{job.company.ats_identifier}/jobs/"
-        p "Fetching job data - #{job_url_api}"
+      private
 
+      def fetch_job_data(job)
         page = 1
         loop do
-          uri = URI("#{job_url_api}?page=#{page}")
-          response = Net::HTTP.get(uri)
-          all_jobs_data = JSON.parse(response)
-          jobs = all_jobs_data["results"]
+          url = "#{job.api_url}?page=#{page}"
+          p "Fetching job data - #{url}"
+
+          all_jobs_data = get_json_data(url)
+          return mark_job_expired(job) unless (jobs = all_jobs_data["results"]) && all_jobs_data["next"]
 
           data = jobs.find { |job_data| job_data["hash"] == job.ats_job_id }
 
           if data
-            job.api_url = "#{job_url_api}#{data['id']}"
+            job.api_url = "#{job.api_url}#{data['id']}"
             return data
           end
 
-          if all_jobs_data["next"].nil?
-            p "Job with ID #{job.ats_job_id} is expired."
-            job.live = false
-            return nil
-          else
-            page += 1
-          end
+          page += 1
         end
       end
 
-      def update_job_details(job, data)
-        p "Updating job details - #{job.job_title}"
+      def mark_job_expired(job)
+        p "Job with ID #{job.ats_job_id} is expired."
+        job.live = false
+        return nil
+      end
 
-        job.update(
+      def job_url_api(base_url, company_id, _job_id)
+        "#{base_url}#{company_id}/jobs/"
+      end
+
+      def job_details(job, data)
+        job.assign_attributes(
           job_title: data['position_name'],
           job_description: data['description'],
           department: data['departmentLabel'],
           employment_type: data['contract_details'],
-          # country: data['country'],
-          # location: data['location_display'],
-          ats_job_id: data['id']
+          non_geocoded_location_string: build_location_string(data),
+          job_posting_url: "#{base_url_main}#{job.company.ats_identifier}/job/#{job.ats_job_id}/apply"
         )
+      end
+
+      def build_location_string(data)
+        locality = data['location_display']
+        country = data['country']
+        [locality, country].reject(&:blank?).join(', ')
       end
     end
   end

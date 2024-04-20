@@ -4,7 +4,6 @@ module Ats
       def get_application_criteria(job)
         job.application_criteria = CORE_FIELDS
         GetForm.perform
-        job.save
       end
 
       CORE_FIELDS = {
@@ -42,7 +41,7 @@ module Ats
           locators: 'button[aria-describedby="resume-allowable-file-types"',
           required: true
         },
-        cover_letter: {
+        cover_letter_: {
           interaction: :upload,
           locators: 'button[aria-describedby="cover_letter-allowable-file-types"]',
           required: true

@@ -1,5 +1,25 @@
-puts "Deleting previous (1) Job Applications, (2) Users, (3) Jobs, (4) Companies, (5) ATSs, (6) Locations, (7) Countries, (8) Roles..."
+puts "How many jobs would you like to seed?"
 
+response = nil
+until response do
+  puts "Please enter a valid integer between 1 and 500:"
+  response = gets.chomp
+  if response == 'run updater'
+    # Scraper::DevitJob.perform_later
+    # ImportCompaniesFromList.new.call
+    # Xml::WorkableJob.perform_later
+    # ScrapeTrueUpJob.perform_later
+    # JobsUpdateJob.perform_later
+    exit
+  else
+    response = response.to_i
+    response = nil if response.zero? || response > 500
+  end
+end
+
+puts "Deleting previous (1) users, (2) jobs, (3)companies, (4) ATS Formats, (5) Applicant Tracking Systems, (6) Locations, (7) Countries, (8) Roles..."
+
+puts "-------------------------------------"
 puts "This may take a little while, worry not young padawan..."
 
 JobApplication.destroy_all
@@ -24,35 +44,46 @@ greenhouse_companies = [
   "ably30",
   "11fs",
   "clearscoretechnologylimited",
-  # "codepath",
-  # "copperco",
-  # "coreweave",
-  # "cultureamp",
-  # "deliveroo",
-  # "doctolib",
-  # "epicgames",
-  # "figma",
+  "codepath",
+  "copperco",
+  "coreweave",
+  "cultureamp",
+  "deliveroo",
+  "doctolib",
+  "epicgames",
+  "figma",
+  "forter",
+  "geniussports",
+  "getir",
+  "gomotive",
+  "grammarly",
+  "intercom",
+  "janestreet",
+  "knowde",
+  "narvar",
+  "niantic",
+  "opendoor"
 ]
 
 # TODO: Create company data to be able to seed from fixed CSV
 # Leaving this in for now but the below is defunct at the moment
 
-puts "Creating new companies..."
+# puts "Creating new companies..."
 
-companies_data = []
+# companies_data = []
 
-companies_data.each do |company_data|
-  Company.create(
-    company_name: company_data[:name],
-    company_category: company_data[:category],
-    company_website_url: company_data[:website_url]
-  )
-  puts "Created company - #{Company.last.company_name}"
-end
+# companies_data.each do |company_data|
+#   Company.create(
+#     company_name: company_data[:name],
+#     company_category: company_data[:category],
+#     company_website_url: company_data[:website_url]
+#   )
+#   puts "Created company - #{Company.last.company_name}"
+# end
 
-puts "Created #{Company.count} companies"
+# puts "Created #{Company.count} companies"
 
-puts "-------------------------------------"
+# puts "-------------------------------------"
 
 puts "Creating new roles..."
 
@@ -63,45 +94,23 @@ puts "Created #{Role.count} roles"
 
 puts "-------------------------------------"
 
-puts "\nHow many jobs do you want to seed in the database?\n"
+puts "Preparing to re-seed database with #{response} Greenhouse jobs...\n"
 
-# TODO: Move this logic as its the wrong place to call for background jobs updating as requires a re-seed to activate
+puts "Creating new jobs via Greenhouse API..."
 
-# response = nil
-# until response do
-#   puts "Please enter a valid integer between 1 and 500:"
-#   response = gets.chomp
-#   if response == 'run updater'
-#     # Scraper::DevitJob.perform_later
-#     # TODO: Fix CreateCompanyFromUrl as will now need to call the rake task instead (and all of this really needs moving to a controller)
-#     # CreateCompanyFromUrl.new.call
-#     # Xml::WorkableJob.perform_later
-#     # ScrapeTrueUpJob.perform_later
-#     UpdateExistingCompanyJobs.perform_later
-#     response = 1
-#   else
-#     response = response.to_i
-#     response = nil if response.zero? || response > 500
-#   end
-# end
+defunct_urls = []
 
-# puts "Preparing to re-seed database with #{response} Greenhouse jobs...\n"
+puts "\nBuilding a list of job urls from the following companies:"
 
-# puts "Creating new jobs via Greenhouse API..."
+relevant_job_urls = GetRelevantJobUrls.new(greenhouse_companies).fetch_jobs
+jobs_to_seed = relevant_job_urls.shuffle.take(response)
 
-# defunct_urls = []
-
-# puts "\nBuilding a list of job urls from the following companies:"
-
-# relevant_job_urls = GetRelevantJobUrls.new(greenhouse_companies).fetch_jobs
-# jobs_to_seed = relevant_job_urls.shuffle.take(response)
-
-jobs_to_seed = [
-  "https://boards.greenhouse.io/11fs/jobs/4296543101",
-]
+# jobs_to_seed = [
+#   "https://boards.greenhouse.io/11fs/jobs/4296543101",
+# ]
 
 jobs_to_seed.each do |url|
-  CreateJobFromUrl.new(url).create_company_then_job
+  Url::CreateJobFromUrl.new(url).create_company_then_job
 end
 
 puts "Created #{Job.count} jobs..."

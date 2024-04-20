@@ -1,33 +1,59 @@
 module Ats
   module Smartrecruiters
     module JobDetails
-      def fetch_job_data(job, ats)
-        job_url_api = "#{ats.base_url_api}#{job.company.ats_identifier}/postings/#{job.ats_job_id}"
-        job.api_url = job_url_api
-        uri = URI(job_url_api)
-        response = Net::HTTP.get(uri)
+      private
+
+      def fetch_job_data(job)
+        response = get(job.api_url)
         JSON.parse(response)
       end
 
-      def update_job_details(job, data)
-        p "Updating job details - #{job.job_title}"
+      def job_url_api(base_url, ats_identifier, job_id)
+        "#{base_url}#{ats_identifier}/postings/#{job_id}"
+      end
 
-        # country_custom_field = data['customField'].find { |field| field['fieldId'] == "COUNTRY" }
+      def job_details(job, data)
+        country_custom_field = data['customField'].find { |field| field['fieldId'] == "COUNTRY" }
 
-        job.update(
+        job.assign_attributes(
           job_title: data['name'],
-          job_description: data['jobAd']['sections']['jobDescription']['text'],
-          office_status: data['location']['remote'] ? 'Remote' : 'Office',
-          # location: "#{data['location']['city']}, #{country_custom_field['valueLabel']}",
-          # country: data['customField'][1]['valueLabel'],
-          seniority: data['experienceLevel']['label'],
-          department: data['function']['label'],
-          requirements: data['jobAd']['sections']['qualifications']['text'],
-          date_created: data['releasedDate'],
-          industry: data['industry']['label'],
-          employment_type: data['typeOfEmployment']['label'],
-          ats_job_id: data['id']
+          job_description: build_description(data.dig('jobAd', 'sections')),
+          job_posting_url: data['applyUrl'],
+          non_geocoded_location_string: [data.dig('location', 'city'), country_custom_field['valueLabel']].reject(&:blank?).join(', '),
+          seniority: fetch_seniority(data),
+          department: data.dig('department', 'label'),
+          requirements: data.dig('jobAd', 'sections', 'qualifications', 'text'),
+          date_created: (Date.parse(data['releasedDate']) if data['releasedDate']),
+          industry: data.dig('industry', 'label'),
+          employment_type: data.dig('typeOfEmployment', 'label'),
+          remote_only: data.dig('location', 'remote')
         )
+      end
+
+      def fetch_seniority(data)
+        convert = {
+          'entry_level' => 'Entry-Level',
+          'associate' => 'Junior',
+          'internship' => 'Internship',
+          'mid_senior_level' => 'Mid-Level',
+          'director' => 'Director',
+          'executive' => 'VP'
+        }
+        code = data.dig('experienceLevel', 'label')
+        convert[code]
+      end
+
+      def build_description(data)
+        # TODO: This should go in description_long, and the other parts in responsibilities, benefits
+        # and so on. Change this & change job show page to display description_long || description
+        [
+          ("<h2>#{data.dig('jobDescription', 'title')}</h2>" if data.dig('jobDescription', 'title')),
+          data.dig('jobDescription', 'text'),
+          ("<h2>#{data.dig('qualifications', 'title')}</h2>" if data.dig('qualifications', 'title')),
+          data.dig('qualifications', 'text'),
+          ("<h2>#{data.dig('additionalInformation', 'title')}</h2>" if data.dig('additionalInformation', 'title')),
+          data.dig('additionalInformation', 'text')
+        ].reject(&:blank?).join
       end
     end
   end

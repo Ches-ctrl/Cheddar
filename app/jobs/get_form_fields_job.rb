@@ -12,8 +12,7 @@ class GetFormFieldsJob < ApplicationJob
   # TODO: add test of filling out the form fields before job goes live
 
   def perform(job)
-    return if job.api_url.include?('lever') # Not yet able to handle Lever jobs
-    return if job.api_url.include?('devit') # Not yet able to handle DevIT jobs
+    return unless job.api_url&.include?('greenhouse') # Not yet able to handle Lever or DevIT jobs
 
     Capybara.current_driver = :selenium_chrome_headless
 
