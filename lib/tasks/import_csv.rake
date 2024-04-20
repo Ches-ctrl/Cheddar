@@ -127,6 +127,8 @@ namespace :import_csv do
 
     jobs_csv = 'storage/csv/other_ats_urls.csv'
 
+    # TODO: fix manatal as the API endpoint isn't yet working
+
     puts Job.count
     puts "Creating new jobs..."
 
