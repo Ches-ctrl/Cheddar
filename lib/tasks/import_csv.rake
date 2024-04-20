@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 LIST_FILEPATH = Rails.root.join('storage', 'csv', 'ats_identifiers.csv')
 
 # TODO: Move this into a CsvController or similar
@@ -196,7 +197,7 @@ namespace :import_csv do
       end
     end
 
-    sorted_ats_jobs_count = ats_jobs_count.sort_by { |ats, count| -count }
+    sorted_ats_jobs_count = ats_jobs_count.sort_by { |_ats, count| -count }
 
     CSV.open('storage/csv/no_of_jobs_by_ats.csv', 'w') do |csv|
       csv << ['ATS', 'Number of Jobs']
@@ -220,3 +221,4 @@ namespace :import_csv do
     puts User.count
   end
 end
+# rubocop:enable Metrics/BlockLength
