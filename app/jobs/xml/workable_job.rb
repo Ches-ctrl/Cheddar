@@ -3,7 +3,7 @@ module Xml
     queue_as :default
 
     def perform
-      Xml::WorkableService.new.scrape_page
+      Xml::WorkableService.new.import_xml
     end
   end
 end
