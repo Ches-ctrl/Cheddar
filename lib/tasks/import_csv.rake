@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 namespace :import_csv do
   # Run this file using rake import_csv:command e.g. bright_network
 
@@ -177,3 +178,4 @@ namespace :import_csv do
     puts User.count
   end
 end
+# rubocop:enable Metrics/BlockLength

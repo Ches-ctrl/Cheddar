@@ -1,7 +1,7 @@
 module Ats
   module Bamboohr
     module JobDetails
-      def fetch_job_data(job, ats)
+      def fetch_job_data(job, _ats)
         job_url_api = job.company.url_ats_api
         job.api_url = job_url_api
         job_id = job.ats_job_id
