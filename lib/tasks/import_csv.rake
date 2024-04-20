@@ -153,7 +153,7 @@ namespace :import_csv do
       end
     end
 
-    sorted_ats_jobs_count = ats_jobs_count.sort_by { |ats, count| -count }
+    sorted_ats_jobs_count = ats_jobs_count.sort_by { |_ats, count| -count }
 
     CSV.open('storage/csv/no_of_jobs_by_ats.csv', 'w') do |csv|
       csv << ['ATS', 'Number of Jobs']

@@ -1,7 +1,7 @@
 module Ats
   module Pinpointhq
     module JobDetails
-      def fetch_job_data(job, ats)
+      def fetch_job_data(job, _ats)
         # Move to main ATS model
         job_url_api = job.company.url_ats_api
         job.api_url = job_url_api

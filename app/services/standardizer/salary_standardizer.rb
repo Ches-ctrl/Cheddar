@@ -47,11 +47,11 @@ module Standardizer
 
       @job.salary = number_to_currency(salary_low, unit: currency[0], precision: 0) +
                     (if salary_high
-                      " - #{number_to_currency(salary_high, unit: currency[0],
-                                                            precision: 0)}"
-                    else
-                      ""
-                    end) +
+                       " - #{number_to_currency(salary_high, unit: currency[0],
+                                                             precision: 0)}"
+                     else
+                       ""
+                     end) +
                     currency[1] +
                     (equity ? " + equity" : "")
     end

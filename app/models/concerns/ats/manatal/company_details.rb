@@ -1,7 +1,7 @@
 module Ats
   module Manatal
     module CompanyDetails
-      def get_company_details(url, ats_system, ats_identifier)
+      def get_company_details(_url, ats_system, ats_identifier)
         data = fetch_company_data(ats_system, ats_identifier)
 
         p data

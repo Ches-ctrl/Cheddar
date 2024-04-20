@@ -23,102 +23,89 @@ class UserAgent
   end
 
   def update_firefox
-    begin
-      url = 'https://www.mozilla.org/en-US/firefox/releases/'
-      doc = Nokogiri::HTML(URI.open(url))
-      version = doc.css('ol.c-release-list ol li a').first.text
-      @firefox = version
-    rescue StandardError => e
-      puts "Error updating Firefox: #{e.message}"
-    end
+    url = 'https://www.mozilla.org/en-US/firefox/releases/'
+    doc = Nokogiri::HTML(URI.open(url))
+    version = doc.css('ol.c-release-list ol li a').first.text
+    @firefox = version
+  rescue StandardError => e
+    puts "Error updating Firefox: #{e.message}"
   end
 
   def update_chrome
-    begin
-      url = 'https://en.wikipedia.org/wiki/Google_Chrome'
-      doc = Nokogiri::HTML(URI.open(url))
-      raw = doc.css('td.infobox-data')[7].text
-      version = raw.slice(0...[raw.index('['), raw.index('/')].min)
-      @chrome = version
-    rescue StandardError => e
-      puts "Error updating Chrome: #{e.message}"
-    end
+    url = 'https://en.wikipedia.org/wiki/Google_Chrome'
+    doc = Nokogiri::HTML(URI.open(url))
+    raw = doc.css('td.infobox-data')[7].text
+    version = raw.slice(0...[raw.index('['), raw.index('/')].min)
+    @chrome = version
+  rescue StandardError => e
+    puts "Error updating Chrome: #{e.message}"
   end
 
   def update_safari
-    begin
-      url = 'https://en.wikipedia.org/wiki/Safari_(web_browser)'
-      doc = Nokogiri::HTML(URI.open(url))
-      version = doc.css('td.infobox-data')[2].text.slice(0...doc.css('td.infobox-data')[2].text.index('['))
-      @safari = version
-    rescue StandardError => e
-      puts "Error updating Safari: #{e.message}"
-    end
+    url = 'https://en.wikipedia.org/wiki/Safari_(web_browser)'
+    doc = Nokogiri::HTML(URI.open(url))
+    version = doc.css('td.infobox-data')[2].text.slice(0...doc.css('td.infobox-data')[2].text.index('['))
+    @safari = version
+  rescue StandardError => e
+    puts "Error updating Safari: #{e.message}"
   end
 
   def update_edge
-    begin
-      url = 'https://www.techspot.com/downloads/7158-microsoft-edge.html'
-      doc = Nokogiri::HTML(URI.open(url))
-      version = doc.css('div.subver').text
-      @edge = version
-    rescue StandardError => e
-      puts "Error updating Edge: #{e.message}"
-    end
+    url = 'https://www.techspot.com/downloads/7158-microsoft-edge.html'
+    doc = Nokogiri::HTML(URI.open(url))
+    version = doc.css('div.subver').text
+    @edge = version
+  rescue StandardError => e
+    puts "Error updating Edge: #{e.message}"
   end
 
   def update_vivaldi
-    begin
-      url = 'https://vivaldi.com/blog/'
-      doc = Nokogiri::HTML(URI.open(url))
-      text = doc.css('div.download-vivaldi-sidebar').text
-      text = text.split(' - ')[1]
-      text = text.gsub(' (', '.')
-      version = text.slice(0...text.index(')'))
-      @vivaldi = version
-    rescue StandardError => e
-      puts "Error updating Vivaldi: #{e.message}"
-    end
+    url = 'https://vivaldi.com/blog/'
+    doc = Nokogiri::HTML(URI.open(url))
+    text = doc.css('div.download-vivaldi-sidebar').text
+    text = text.split(' - ')[1]
+    text = text.gsub(' (', '.')
+    version = text.slice(0...text.index(')'))
+    @vivaldi = version
+  rescue StandardError => e
+    puts "Error updating Vivaldi: #{e.message}"
   end
 
   def update_opera
-    begin
-      url = 'https://en.wikipedia.org/wiki/Opera_(web_browser)'
-      doc = Nokogiri::HTML(URI.open(url))
-      version = doc.css('td.infobox-data')[2].css('div').first.text.slice(0...doc.css('td.infobox-data')[2].css('div').first.text.index('['))
-      @opera = version
-    rescue StandardError => e
-      puts "Error updating Opera: #{e.message}"
-    end
+    url = 'https://en.wikipedia.org/wiki/Opera_(web_browser)'
+    doc = Nokogiri::HTML(URI.open(url))
+    version = doc.css('td.infobox-data')[2].css('div').first.text.slice(0...doc.css('td.infobox-data')[2].css('div').first.text.index('['))
+    @opera = version
+  rescue StandardError => e
+    puts "Error updating Opera: #{e.message}"
   end
 
   def update_all
-    threads = []
-    %i[update_firefox update_chrome update_safari update_edge update_vivaldi update_opera].each do |method_name|
-      threads << Thread.new { send(method_name) }
+    threads = %i[update_firefox update_chrome update_safari update_edge update_vivaldi update_opera].map do |method_name|
+      Thread.new { send(method_name) }
     end
     threads.each(&:join)
 
     versions = {
-      'Firefox': @firefox,
-      'Chrome': @chrome,
-      'Edg': @edge,
-      'Vivaldi': @vivaldi,
-      'OPR': @opera,
-      'Safari': @safari
+      Firefox: @firefox,
+      Chrome: @chrome,
+      Edg: @edge,
+      Vivaldi: @vivaldi,
+      OPR: @opera,
+      Safari: @safari
     }
     versions.delete_if { |_, v| v.empty? || v.gsub('.', '').match?(/\D/) }
 
     previous_versions = JSON.parse(File.read(@versions_path))
     versions.merge!(previous_versions)
-    
+
     File.write(@versions_path, JSON.pretty_generate(versions))
   end
 
   def randomize_version_number(version)
     parts = version.split('.').map(&:to_i)
     parts[0] = rand(parts[0] - 1..parts[0])
-    parts[1..-1] = parts[1..-1].map { |part| rand(0..part) }
+    parts[1..-1] = parts[1..].map { |part| rand(0..part) }
     parts.join('.')
   end
 

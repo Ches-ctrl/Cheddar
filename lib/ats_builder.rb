@@ -19,7 +19,7 @@ class AtsBuilder
         url_all_jobs: row["url_all_jobs"],
         url_xml: row["url_xml"],
         url_rss: row["url_rss"],
-        login: row["login"],
+        login: row["login"]
       }
 
       ats.update(attributes_to_update)
