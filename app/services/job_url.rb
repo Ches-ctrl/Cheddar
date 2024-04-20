@@ -1,6 +1,8 @@
 class JobUrl
   include Constants
 
+  # TODO: Delete this as we now have CreateJobFromUrl which does the same functionality
+
   attr_reader :string
 
   def initialize(url)
