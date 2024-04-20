@@ -67,7 +67,7 @@ namespace :import_csv do
     CSV.foreach(company_csv, headers: true) do |row|
       url = row['company_url']
       ats, company = Url::CreateCompanyFromUrl.new(url).create_company
-      company_list[ats.name] << company.ats_identifier if company.persisted?
+      company_list[ats.name] << company.ats_identifier if company&.persisted?
     end
 
     AtsIdentifiers.save(company_list)
@@ -112,7 +112,7 @@ namespace :import_csv do
     CSV.foreach(jobs_csv, headers: true) do |row|
       url = row['job_posting_url']
       ats, company = Url::CreateJobFromUrl.new(url).create_company_then_job
-      company_list[ats.name] << company.ats_identifier if company.persisted?
+      company_list[ats.name] << company.ats_identifier if company&.persisted?
     end
 
     AtsIdentifiers.save(company_list)
@@ -131,7 +131,7 @@ namespace :import_csv do
     CSV.foreach(jobs_csv, headers: true) do |row|
       url = row['job_posting_url']
       ats, company = Url::CreateJobFromUrl.new(url).create_company_then_job
-      company_list[ats.name] << company.ats_identifier if company.persisted?
+      company_list[ats.name] << company.ats_identifier if company&.persisted?
     end
 
     AtsIdentifiers.save(company_list)
@@ -152,7 +152,7 @@ namespace :import_csv do
     CSV.foreach(jobs_csv, headers: true) do |row|
       url = row['job_posting_url']
       ats, company = Url::CreateJobFromUrl.new(url).create_company_then_job
-      company_list[ats.name] << company.ats_identifier if company.persisted?
+      company_list[ats.name] << company.ats_identifier if company&.persisted?
     end
 
     AtsIdentifiers.save(company_list)
@@ -192,7 +192,7 @@ namespace :import_csv do
       end
     end
 
-    sorted_ats_jobs_count = ats_jobs_count.sort_by { |ats, count| -count }
+    sorted_ats_jobs_count = ats_jobs_count.sort_by { |_ats, count| -count }
 
     CSV.open('storage/csv/no_of_jobs_by_ats.csv', 'w') do |csv|
       csv << ['ATS', 'Number of Jobs']

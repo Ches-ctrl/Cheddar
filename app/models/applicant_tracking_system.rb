@@ -60,6 +60,10 @@ class ApplicantTrackingSystem < ApplicationRecord
     refer_to_module(defined?(super) ? super : nil, __method__)
   end
 
+  def fetch_embedded_job_id(url)
+    refer_to_module(defined?(super) ? super : nil, __method__)
+  end
+
   private
 
   def try_standard_formats(url, regex_formats)
@@ -143,8 +147,7 @@ class ApplicantTrackingSystem < ApplicationRecord
   # -----------------------
 
   def find_or_create_job(company, ats_job_id, data = nil)
-    p company
-    return unless company.persisted?
+    return unless company&.persisted?
 
     job = Job.find_or_create_by(ats_job_id:) do |new_job|
       new_job.company = company

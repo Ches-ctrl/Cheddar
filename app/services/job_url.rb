@@ -1,3 +1,5 @@
+# This class is deprecated and will be deleted soon!
+
 class JobUrl
   include Constants
 

@@ -13,6 +13,7 @@ module Url
       # ---------------
 
       ats, company, job_id = Url::CreateCompanyFromUrl.new(@url).create_company
+      return handle_unparseable unless ats
       return [ats, company] unless job_id
 
       if job_is_live?(@url)
@@ -33,6 +34,21 @@ module Url
       # AddRemainingJobsToSite.new(urls, ats, company).add_jobs
 
       [ats, company, job]
+    end
+
+    def handle_unparseable
+      puts "Scraping meta tags for ATS information on #{@url}..."
+      ats, company = ScrapeMetaTags.new(@url).call
+      return [ats, company] if company&.persisted?
+
+      add_url_to_unparseable_list(ats&.name)
+    end
+
+    def add_url_to_unparseable_list(ats_name = 'Unknown')
+      db_filepath = Rails.root.join('storage', 'csv', 'unparseable_urls.csv')
+      CSV.open(db_filepath, 'a') do |csv|
+        csv << [@url, ats_name]
+      end
     end
   end
 end
