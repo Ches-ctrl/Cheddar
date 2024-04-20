@@ -1,4 +1,6 @@
 class CompanyIndustryService
+  # TODO: Let's discuss this in a little more detail (CC/DS)
+
   def self.lookup_industry(company_name, keywords)
     results = api_lookup(company_name)
     p results
