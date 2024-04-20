@@ -21,7 +21,7 @@ module Ats
       def update_job_details(job, data)
         p "Updating job details - #{job.job_title}"
 
-        location = "#{data['location']['city']}, #{data['location']['state']}" if data['location']['city'] && data['location']['state']
+        # location = "#{data['location']['city']}, #{data['location']['state']}" if data['location']['city'] && data['location']['state']
 
         job.update(
           job_title: data['jobOpeningName'],
