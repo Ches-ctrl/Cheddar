@@ -51,6 +51,9 @@ OPENAI_ACCESS_TOKEN = "your_openai_api_key"
 
 # Company Description Functionality
 CRUNCHBASE_API_KEY = "your_crunchbase_key"
+
+# Company Industry Service
+COMPANIES_HOUSE_API_KEY = "your_companies_house_api_key"
 ```
 
 ## Tech Stack 🧑‍💻
