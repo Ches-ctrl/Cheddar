@@ -3,7 +3,7 @@ class UserAgent
   require 'open-uri'
   require 'nokogiri'
 
-  # TODO: Fix this later as doesn't quite work properly. Do we want them to be class or instance methods? At the moment creates multiple versions of browserVersions.json
+  # TODO: Fix this later as doesn't quite work properly. Do we want them to be class or instance methods? At the moment creates multiple versions of browserVersions.json
 
   # Example 1: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36
   # Example 2: Mozilla/5.0 (Macintosh; Intel Mac OS X 13_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.2111.38 Safari/537.36 Vivaldi/5.1.1510.6
