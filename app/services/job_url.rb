@@ -32,7 +32,7 @@ class JobUrl
 
   def confirm_ats(list)
     p "Here are the ATS candidates:"
-    list.each { |ats| p "  #{ats.name}"}
+    list.each { |ats| p "  #{ats.name}" }
     # TODO: Confirm or reject each ats on the list with further verification methods, return confirmed_ats or nil
     return
   end
