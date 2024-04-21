@@ -1,6 +1,8 @@
 module Xml
   class WorkableService < ApplicationService
     # Docs: https://help.workable.com/hc/en-us/articles/4420464031767-Utilizing-the-XML-Job-Feed
+    # To use this:
+    # rake xml:workable
     # How this works:
     # NB. the Workable XML feed is sensitive to 403 Forbidden errors (too many requests)
     # The feed includes urls of the format: https://apply.workable.com/j/9A5B371BA0 (i.e. without the ats_identifier)
