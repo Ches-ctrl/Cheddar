@@ -1,5 +1,4 @@
 source "https://rubygems.org"
-# TODO: Add gems to their respective environments
 
 ruby "3.1.3"
 
@@ -46,43 +45,67 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-# TODO: Remove unnecssary gems that are no longer required
-
 # Le Wagon Standard Gems
-gem "bootstrap"
 gem "devise"
+gem "bootstrap"
 gem "autoprefixer-rails"
+gem "sassc-rails"
 gem "font-awesome-sass", "~> 6.5.1"
 gem "simple_form"
 gem 'psych', "~> 4.0" # Extra gem as per Le Wagon setup for Linux laptops
-gem "sassc-rails"
 
-# Additional Gems installed
-gem "ruby-openai"
+# Testing
 gem "capybara"
 gem "selenium-webdriver", "~> 4.18.1"
-gem "watir"
+gem "watir" # Do we still need this gem? @Ilya
+
+# Background Processing
 gem 'sidekiq', '~> 6.5.5'
 gem "sidekiq-failures", "~> 1.0"
 gem 'sidekiq-scheduler', '~> 5.0', '>= 5.0.3'
-gem 'rails-html-sanitizer'
-gem 'meta-tags'
-gem 'will_paginate', '~> 4.0' # update to kaminari now index page is fixed
-gem 'faraday'
 
-# Additional Gems for API and Scrape features
+# Storage
 gem "cloudinary"
-gem "pg_search"
-gem "nokogiri"
-gem 'geocoder'
-# gem "open-uri"
-gem 'csv' # can probably use ruby standard library
-gem 'avo'
-gem 'yomu' # this gem is no longer maintained
-gem 'tinymce-rails' # now have trix and action text
-gem 'htmltoword'
 
-# TODO: Add flipper, webmock, vcr
+# Admin
+gem 'avo'
+
+# AI
+gem "ruby-openai"
+
+# SEO
+gem 'meta-tags'
+
+# Importing, Parsing & APIs
+gem 'csv' # can probably use ruby standard library
+gem "nokogiri"
+gem 'faraday' # TODO: use this gem for API calls (not currently in action)
+gem 'rails-html-sanitizer'
+# gem 'flipper' # TODO: install this gem for feature flags
+
+# Monitoring
+# gem 'newrelic_rpm' # TODO: install this gem for monitoring
+
+# Analytics
+# gem 'analytics-ruby', '~> 2.4.0', :require => 'segment/analytics' # TODO: install this gem for analytics
+
+# Error Tracking
+# gem 'sentry-raven' # TODO: install this gem for error tracking
+
+# Security
+# gem 'brakeman', require: false # TODO: install this gem for security checks
+
+# Front-end
+gem 'will_paginate', '~> 4.0' # TODO: Update to kaminari now index page is fixed (better maintained / looks nicer)
+# gem 'kaminari'
+gem "high_voltage", "~> 3.1"
+gem 'tinymce-rails' # TODO: now have trix and action text (check whether we need to replace)
+
+# Features
+gem "pg_search"
+gem 'geocoder'
+gem 'yomu' # this gem is no longer maintained - used for custom cover letters
+gem 'htmltoword' # TODO: Check if we use this anywhere
 
 group :development, :test do
   gem "dotenv-rails"
@@ -93,6 +116,10 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+
+  # API Calls
+  # gem 'webmock' # TODO: install this gem for mocking API calls
+  # gem 'vcr' # TODO: install this gem for recording API calls
 end
 
 group :development do
@@ -101,8 +128,12 @@ group :development do
   gem 'bullet'
   gem "better_errors"
   gem "binding_of_caller"
+
+  # Performance
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
+  # gem "rack-mini-profiler" # TODO: install this gem for performance monitoring
+  # gem 'memory_profiler' # Additional gem for memory profiling
+  # gem 'stackprof' # Additional gem for call-stack profiling flamegraphs
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
@@ -111,10 +142,6 @@ group :development do
 end
 
 group :test do
-  # gem "capybara"
-  # gem "selenium-webdriver"
   gem 'factory_bot_rails', '6.4.3'
   gem 'shoulda-matchers', '6.1.0'
 end
-
-gem "high_voltage", "~> 3.1"

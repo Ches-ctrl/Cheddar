@@ -176,7 +176,8 @@ namespace :import_csv do
       'CO_job_posting_urls.csv',
       'GH_job_posting_urls.csv',
       'LU_job_posting_urls.csv',
-      'PA_job_posting_urls.csv',
+      'PA1_job_posting_urls.csv',
+      'PA2_job_posting_urls.csv',
       'UM_job_posting_urls.csv'
     ]
 
