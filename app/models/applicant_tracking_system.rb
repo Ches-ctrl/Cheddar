@@ -154,7 +154,7 @@ class ApplicantTrackingSystem < ApplicationRecord
       new_job.applicant_tracking_system = self
       new_job.api_url = job_url_api(base_url_api, company.ats_identifier, ats_job_id)
       data ||= fetch_job_data(new_job)
-      return if data.blank?
+      return if data.blank? || data['error'].present? || data.values.include?(404)
 
       job_details(new_job, data)
       fetch_additional_fields(new_job)
@@ -181,8 +181,7 @@ class ApplicantTrackingSystem < ApplicationRecord
   end
 
   def fetch_job_data(job)
-    response = get(job.api_url)
-    return JSON.parse(response)
+    get_json_data(job.api_url)
   end
 
   def fetch_additional_fields(job)
@@ -197,10 +196,10 @@ class ApplicantTrackingSystem < ApplicationRecord
   # -----------------------
 
   def convert_from_iso8601(iso8601_string)
-    return Time.iso8601(iso8601_string)
+    return Time.iso8601(iso8601_string) if iso8601_string
   end
 
   def convert_from_milliseconds(millisecond_string)
-    Time.at(millisecond_string.to_i / 1000)
+    Time.at(millisecond_string.to_i / 1000) if millisecond_string
   end
 end

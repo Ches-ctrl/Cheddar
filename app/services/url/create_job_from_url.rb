@@ -16,7 +16,7 @@ module Url
       return handle_unparseable unless ats
       return [ats, company] unless job_id
 
-      if job_is_live?(@url)
+      if job_is_live?(@url, ats)
         p "Live Job - #{@url}"
         job = ats.find_or_create_job(company, job_id)
         puts "Created job - #{job&.job_title}"
@@ -45,6 +45,9 @@ module Url
     end
 
     def add_url_to_unparseable_list(ats_name = 'Unknown')
+      # NB: This currently creates duplicate listings, which is annoying, but can't be fixed without
+      # reading the whole csv file when adding a single line. This issue will become moot once the csv
+      # file is replaced by a Url model with uniqueness validation
       db_filepath = Rails.root.join('storage', 'csv', 'unparseable_urls.csv')
       CSV.open(db_filepath, 'a') do |csv|
         csv << [@url, ats_name]

@@ -7,23 +7,39 @@ class ScrapeMetaTags
   def initialize(url)
     @url = url
     @external_links = []
+    @doc = nil
   end
 
   def call
-    return unless url_valid?(@url) # raise Invalid Url Error?
+    return unless able_to_fetch_document? # raise Invalid Url Error?
 
     p "Grabbing meta information for #{@url}"
 
-    fetch_doc
     fetch_links_from_meta_tags
     fetch_links_from_link_tags
     fetch_links_from_scripts
     fetch_link_from_apply_button
-    fetch_link_from_form
+    fetch_link_from_forms
     fetch_ats_candidates_company_and_job
   end
 
   private
+
+  def able_to_fetch_document?
+    loop do
+      puts "trying to get a response: #{@url}"
+      response = get_response(@url)
+      case response
+      when Net::HTTPSuccess
+        return fetch_doc
+      when Net::HTTPRedirection || Net::HTTPMovedPermanently
+        @url = fetch_redirect(@url, response)
+      else
+        p response
+        return false
+      end
+    end
+  end
 
   def fetch_doc
     html = URI.parse(@url).open
@@ -64,11 +80,13 @@ class ScrapeMetaTags
     @external_links << apply_link if apply_link
   end
 
-  def fetch_link_from_form
+  def fetch_link_from_forms
     puts "Fetching links from forms..."
-    form = @doc.xpath('//form')
-    form_link = form&.attr('action')&.value
-    @external_links << form_link if form_link
+    forms = @doc.xpath('//form')
+    forms.each do |form|
+      form_link = form.attr('action')
+      @external_links << form_link if form_link
+    end
   end
 
   def fetch_ats_candidates_company_and_job
@@ -78,7 +96,7 @@ class ScrapeMetaTags
     @external_links.each do |link|
       next unless (candidate = match_ats(link))
 
-      ats, company, job = CreateJobFromUrl.new(link).create_company_then_job
+      ats, company, job = Url::CreateJobFromUrl.new(link).create_company_then_job
       return if job&.persisted? # presumably job will be persisted even if not live? this might need tweaking with non-live jobs
 
       # TODO: Consider moving this logic to ApplicantTrackingSystem:
