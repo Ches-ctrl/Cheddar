@@ -82,7 +82,7 @@ gem 'yomu' # this gem is no longer maintained
 gem 'tinymce-rails' # now have trix and action text
 gem 'htmltoword'
 
-# TODO: Add flipper, webmock, vcr
+# TODO: Add flipper, webmock, vcr
 
 group :development, :test do
   gem "dotenv-rails"
