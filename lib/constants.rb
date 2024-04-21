@@ -1,21 +1,21 @@
 module Constants
   SENIORITY_TITLES = {
-      /staff/ => 'Senior',
-      /principal/ => 'Senior',
-      /\blead\b/ => 'Senior',
-      /senior/ => 'Senior',
-      /\biii\b/ => 'Mid-Level',
-      /\bii\b/ => 'Mid-Level',
-      /mid-?level/ => 'Mid-Level',
-      /mid-?weight/ => 'Mid-Level',
-      /\bmid\b/ => 'Mid-Level',
-      /junior/ => 'Junior',
-      /early.?career/ => 'Junior',
-      /\bi\b/ => 'Junior',
-      /associate/ => 'Junior',
-      /[gG]raduate/ => 'Graduate',
-      /[gG]rad/ => 'Graduate',
-      /[iI]ntern/ => 'Internship'
+    /staff/ => 'Senior',
+    /principal/ => 'Senior',
+    /\blead\b/ => 'Senior',
+    /senior/ => 'Senior',
+    /\biii\b/ => 'Mid-Level',
+    /\bii\b/ => 'Mid-Level',
+    /mid-?level/ => 'Mid-Level',
+    /mid-?weight/ => 'Mid-Level',
+    /\bmid\b/ => 'Mid-Level',
+    /junior/ => 'Junior',
+    /early.?career/ => 'Junior',
+    /\bi\b/ => 'Junior',
+    /associate/ => 'Junior',
+    /[gG]raduate/ => 'Graduate',
+    /[gG]rad/ => 'Graduate',
+    /[iI]ntern/ => 'Internship'
   }
 
   SENIORITY_DESCRIPTORS = {

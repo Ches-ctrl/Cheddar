@@ -1,4 +1,7 @@
+# rubocop:disable Metrics/BlockLength
 LIST_FILEPATH = Rails.root.join('storage', 'csv', 'ats_identifiers.csv')
+
+# TODO: Move this into a CsvController or similar
 
 class AtsIdentifiers
   def self.load
@@ -125,6 +128,8 @@ namespace :import_csv do
 
     jobs_csv = 'storage/csv/other_ats_urls.csv'
 
+    # TODO: fix manatal as the API endpoint isn't yet working
+
     puts Job.count
     puts "Creating new jobs..."
 
@@ -216,3 +221,4 @@ namespace :import_csv do
     puts User.count
   end
 end
+# rubocop:enable Metrics/BlockLength

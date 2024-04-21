@@ -5,7 +5,7 @@ module CheckUrlIsValid
 
   def job_is_live?(url, ats)
     response = get_response(url)
-    if response.is_a?(Net::HTTPRedirection)
+    if response.is_a?(Net::HTTPRedirection || Net::HTTPMovedPermanently)
       redirect = fetch_redirect(url, response)
       puts "checking the redirect url: #{redirect}"
       ats_identifier, job_id = ats.parse_url(redirect)

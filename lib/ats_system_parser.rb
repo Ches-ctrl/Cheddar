@@ -31,7 +31,7 @@ module AtsSystemParser
     "Manatal",
     "PinpointHQ",
     "Recruitee",
-    "SmartRecruiters",
+    "SmartRecruiters"
   ]
 
   ATS_SYSTEM_PARSER = {

@@ -41,7 +41,7 @@ class FormFiller
           FileUtils.rm_f(file_path)
         elsif field[0] == 'cover_letter_'
           file_path = Rails.root.join('tmp',
-          "Cover Letter - #{@job.job_title} - #{@job.company.company_name} - #{@user.first_name} #{@user.last_name}.docx")
+                                      "Cover Letter - #{@job.job_title} - #{@job.company.company_name} - #{@user.first_name} #{@user.last_name}.docx")
           FileUtils.rm_f(file_path)
         end
       end
@@ -53,7 +53,6 @@ class FormFiller
 
     # TODO: Add check on whether form has been submitted successfully
     # submit = find_submit_button.click rescue nil
-
 
     @job_application.update(status: 'Applied')
   end

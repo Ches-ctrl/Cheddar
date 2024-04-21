@@ -19,7 +19,7 @@ module Standardizer
       location_elements = location.split(/[•;]|&&|or/)
                                   .map do |element|
                                     element.gsub(%r{[.\-;(/]}, '')
-                                          .strip
+                                           .strip
                                   end
 
       # TODO: revise search to handle full addresses, not just city, country, postal_code
