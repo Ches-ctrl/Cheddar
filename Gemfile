@@ -70,7 +70,7 @@ gem "cloudinary"
 # Admin
 gem 'avo'
 
-# AI
+# AI
 gem "ruby-openai"
 
 # SEO
