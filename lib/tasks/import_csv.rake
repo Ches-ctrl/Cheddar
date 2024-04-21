@@ -1,7 +1,7 @@
 # rubocop:disable Metrics/BlockLength
 LIST_FILEPATH = Rails.root.join('storage', 'csv', 'ats_identifiers.csv')
 
-# TODO: Move this into a CsvController or similar
+# TODO: Move this into a collective CsvService that houses all logic
 
 class AtsIdentifiers
   def self.load

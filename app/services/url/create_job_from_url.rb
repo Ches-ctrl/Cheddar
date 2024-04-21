@@ -14,7 +14,7 @@ module Url
 
       ats, company, job_id = Url::CreateCompanyFromUrl.new(@url).create_company
       return handle_unparseable unless ats
-      return [ats, company] unless job_id
+      return nil unless job_id
 
       if job_is_live?(@url, ats)
         p "Live Job - #{@url}"
@@ -33,7 +33,7 @@ module Url
       # urls = ats.get_company_jobs(@url)
       # AddRemainingJobsToSite.new(urls, ats, company).add_jobs
 
-      [ats, company, job]
+      job
     end
 
     def handle_unparseable
