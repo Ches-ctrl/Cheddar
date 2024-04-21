@@ -1,10 +1,7 @@
 module Ats
   module Workable
     module JobDetails
-      def fetch_job_data(job)
-        response = get(job.api_url)
-        JSON.parse(response)
-      end
+      private
 
       def job_url_api(base_url, ats_identifier, job_id)
         "#{base_url}#{ats_identifier}/jobs/#{job_id}"

@@ -1,6 +1,6 @@
 module AtsUrlIdentifiers
   extend ActiveSupport::Concern
-  include Constants
+  include AtsSystemParser
 
   # Isn't this basically the same as determine_ats in applicant_tracking_system.rb?
   def match_ats(url)

@@ -70,7 +70,7 @@ namespace :import_csv do
     CSV.foreach(company_csv, headers: true) do |row|
       url = row['company_url']
       ats, company = Url::CreateCompanyFromUrl.new(url).create_company
-      company_list[ats.name] << company.ats_identifier if company.persisted?
+      company_list[ats.name] << company.ats_identifier if company&.persisted?
     end
 
     AtsIdentifiers.save(company_list)
@@ -115,7 +115,7 @@ namespace :import_csv do
     CSV.foreach(jobs_csv, headers: true) do |row|
       url = row['job_posting_url']
       ats, company = Url::CreateJobFromUrl.new(url).create_company_then_job
-      company_list[ats.name] << company.ats_identifier if company.persisted?
+      company_list[ats.name] << company.ats_identifier if company&.persisted?
     end
 
     AtsIdentifiers.save(company_list)
@@ -136,7 +136,7 @@ namespace :import_csv do
     CSV.foreach(jobs_csv, headers: true) do |row|
       url = row['job_posting_url']
       ats, company = Url::CreateJobFromUrl.new(url).create_company_then_job
-      company_list[ats.name] << company.ats_identifier if company.persisted?
+      company_list[ats.name] << company.ats_identifier if company&.persisted?
     end
 
     AtsIdentifiers.save(company_list)
@@ -157,7 +157,7 @@ namespace :import_csv do
     CSV.foreach(jobs_csv, headers: true) do |row|
       url = row['job_posting_url']
       ats, company = Url::CreateJobFromUrl.new(url).create_company_then_job
-      company_list[ats.name] << company.ats_identifier if company.persisted?
+      company_list[ats.name] << company.ats_identifier if company&.persisted?
     end
 
     AtsIdentifiers.save(company_list)
