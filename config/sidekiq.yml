@@ -12,9 +12,9 @@
   - active_storage_purge
 :scheduler:
   :schedule:
-    hello_world:
-      cron: '0 0 * * *'   # Runs once per day(at midnight)
-      class: Scraper::MonsterJob
+    # hello_world:
+    #   cron: '0 0 * * *'   # Runs once per day(at midnight)
+    #   class: Scraper::MonsterJob
     jobs_updater:
       cron: '0 3 * * *' # Runs once per day (at 3 am)
       class: UpdateExistingCompanyJobs
@@ -27,7 +27,7 @@
     #   cron: '0 1 * * *' # Runs once per day (at 1 am)
     #   class: Scraper::DevItJob
     #   queue: updates
-    # workable_scraper:
-    #   cron: '0 4 * * *' # Runs once per day (at 4 am)
-    #   class: Xml::WorkableJob
-    #   queue: updates
+    workable_xml_importer:
+      cron: '0 4 * * *' # Runs once per day (at 4 am)
+      class: Xml::WorkableJob
+      queue: updates
