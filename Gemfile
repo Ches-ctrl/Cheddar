@@ -116,6 +116,10 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+
+  # API Calls
+  # gem 'webmock' # TODO: install this gem for mocking API calls
+  # gem 'vcr' # TODO: install this gem for recording API calls
 end
 
 group :development do
@@ -124,10 +128,6 @@ group :development do
   gem 'bullet'
   gem "better_errors"
   gem "binding_of_caller"
-
-  # API Calls
-  # gem 'webmock' # TODO: install this gem for mocking API calls
-  # gem 'vcr' # TODO: install this gem for recording API calls
 
   # Performance
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
