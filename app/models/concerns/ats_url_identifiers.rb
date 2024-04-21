@@ -1,6 +1,6 @@
 module AtsUrlIdentifiers
   extend ActiveSupport::Concern
-  include Constants
+  include AtsSystemParser
 
   def match_ats(url)
     ats_hash.each do |regex, ats_name|

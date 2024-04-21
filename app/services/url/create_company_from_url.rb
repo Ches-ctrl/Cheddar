@@ -17,7 +17,7 @@ module Url
       # ---------------
 
       ats = ApplicantTrackingSystem.determine_ats(@url)
-      p "ATS - #{ats.name}"
+      p "ATS - #{ats&.name}"
 
       return unless ats
 
@@ -34,7 +34,7 @@ module Url
       # ---------------
 
       company = ats.find_or_create_company(ats_identifier)
-      if company.persisted?
+      if company&.persisted?
         puts "Created company - #{company.company_name}"
       else
         puts "Failed to create company from #{@url}"

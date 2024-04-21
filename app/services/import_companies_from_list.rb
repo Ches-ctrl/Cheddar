@@ -15,15 +15,9 @@ class ImportCompaniesFromList
 
   def call
     @urls.each do |url|
-      ats, ats_identifier, job_id = JobUrl.new(url).parse(@companies)
-      next puts "couldn't find ats for url: #{url}" unless ats
-      next puts "invalid identifier: #{ats_identifier}" unless ats_identifier
-
-      # disable job and company creation to save time
-      next puts "invalid identifier: #{ats_identifier}" unless ats_identifier && (company = ats.find_or_create_company(ats_identifier))
-
-      @companies[ats.name] << ats_identifier
-      puts "unable to create job with: #{url}" unless job_id && ats.find_or_create_job(company, job_id)
+      ats, company, job = CreateJobFromUrl.new(url).create_company_then_job
+      @companies[ats.name] << company.ats_identifier
+      puts "Unable to create job with: #{url}" unless company && job
     end
 
     puts "\nCreated #{Job.count - @no_of_jobs} new jobs with #{Company.count - @no_of_companies} new companies."
