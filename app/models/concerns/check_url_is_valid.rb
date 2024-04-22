@@ -3,6 +3,8 @@ module CheckUrlIsValid
 
   # TODO: This doesn't yet work sufficiently well - often you'll have a successfull or redirect HTTP call but an error message on the page so will need parsing by Nokogiri with a regex for the error message
   # Workable: query params - ?not_found=true redirect to main page
+  # Lever: Sorry, we couldn't find anything here. The job posting you're looking for might have closed, or it has been removed. (404 error).
+  # Bamboo: Thank you for your interest. Unfortunately, we are not hiring at this time. Please check back as we will most certainly be looking for great people to join our team in the future.
 
   def job_is_live?(url, ats)
     response = get_response(url)
