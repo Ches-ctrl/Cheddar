@@ -50,7 +50,7 @@ module Ats
         job.assign_attributes(
           description: data['description'],
           date_created: Date.parse(data['datePosted']),
-          application_deadline: Date.parse(data['validThrough'])
+          deadline: Date.parse(data['validThrough'])
         )
       end
 

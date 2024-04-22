@@ -47,6 +47,6 @@ class JobsController < ApplicationController
   # TODO: Remove #create and #job_params?
 
   def job_params
-    params.require(:job).permit(:title, :description, :salary, :posting_url, :application_deadline, :date_created, :company_id, :applicant_tracking_system_id, :ats_job_id, :non_geocoded_location_string, :department, :office, :live)
+    params.require(:job).permit(:title, :description, :salary, :posting_url, :deadline, :date_created, :company_id, :applicant_tracking_system_id, :ats_job_id, :non_geocoded_location_string, :department, :office, :live)
   end
 end
