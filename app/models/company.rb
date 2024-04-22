@@ -3,9 +3,9 @@ class Company < ApplicationRecord
   has_many :jobs, dependent: :destroy
 
   validates :company_name, presence: true, uniqueness: true
+  # validates :company_website_url, uniqueness: true
 
   before_save :set_website_url, :fetch_description
-  # validates :company_website_url, uniqueness: true
 
   # include PgSearch::Model
 
