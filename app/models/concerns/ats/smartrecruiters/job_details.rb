@@ -8,13 +8,11 @@ module Ats
       end
 
       def job_details(job, data)
-        country_custom_field = data['customField'].find { |field| field['fieldId'] == "COUNTRY" }
-
         job.assign_attributes(
           job_title: data['name'],
           job_description: build_description(data.dig('jobAd', 'sections')),
           job_posting_url: data['applyUrl'],
-          non_geocoded_location_string: [data.dig('location', 'city'), country_custom_field['valueLabel']].reject(&:blank?).join(', '),
+          non_geocoded_location_string: fetch_location(data),
           seniority: fetch_seniority(data),
           department: data.dig('department', 'label'),
           requirements: data.dig('jobAd', 'sections', 'qualifications', 'text'),
@@ -23,6 +21,16 @@ module Ats
           employment_type: data.dig('typeOfEmployment', 'label'),
           remote_only: data.dig('location', 'remote')
         )
+      end
+
+      def fetch_location(data)
+        country_custom_field = data['customField'].find { |field| field['fieldId'] == "COUNTRY" }
+
+        if data.dig('location', 'remote')
+          country_custom_field['valueLabel']
+        else
+          [data.dig('location', 'city'), country_custom_field['valueLabel']].reject(&:blank?).join(', ')
+        end
       end
 
       def fetch_seniority(data)

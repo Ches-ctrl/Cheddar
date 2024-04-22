@@ -67,7 +67,7 @@ class CategorySidebar
 
   def self.build_resources_hash
     @resources = {}
-    @count.each { |title, hash| hash.sort.reverse.to_h unless %i[posted seniority].include?(title) }
+    @count.each { |title, hash| @count[title] = hash.sort_by { |_k, v| -v }.to_h unless %i[posted seniorities].include?(title) }
     build_posted_array
     build_seniority_array
     build_location_array
@@ -90,7 +90,7 @@ class CategorySidebar
 
   def self.update_locations
     if @job.remote_only
-      @job.countries.each { |country| @count[:locations][[country.name]] += 1 }
+      @count[:locations][['Remote Only']] += 1
     else
       @job.locations.includes(:country).each do |location|
         name = [location.city, location.country&.name].compact
