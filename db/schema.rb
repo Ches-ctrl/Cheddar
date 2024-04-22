@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_22_071614) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_22_075814) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,22 +73,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_22_071614) do
   end
 
   create_table "companies", force: :cascade do |t|
-    t.string "company_name"
-    t.string "company_website_url"
-    t.string "company_category"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "location", default: "n/a"
-    t.string "industry", default: "n/a"
-    t.string "url_careers"
-    t.string "url_linkedin"
-    t.string "industry_subcategory", default: "n/a"
     t.bigint "applicant_tracking_system_id"
     t.string "ats_identifier"
     t.string "description"
-    t.integer "total_live", default: 0
+    t.string "url_website"
+    t.string "url_careers"
+    t.string "url_linkedin"
     t.string "url_ats_main"
     t.string "url_ats_api"
+    t.string "location", default: "n/a"
+    t.string "industry", default: "n/a"
+    t.string "sub_industry", default: "n/a"
+    t.integer "total_live", default: 0
     t.string "carbon_pledge"
   end
 
