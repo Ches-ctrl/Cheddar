@@ -21,7 +21,6 @@ module Avo
         # field :responsibilities, as: :textarea
         # field :requirements, as: :textarea
         # field :benefits, as: :textarea
-        field :captcha, as: :boolean
         # field :employment_type, as: :text
         field :location, as: :text
         field :country, as: :country
