@@ -94,7 +94,7 @@ class CategorySidebar
     else
       @job.locations.includes(:country).each do |location|
         name = [location.city, location.country&.name].compact
-        @count[:locations][name] += 1
+        @count[:locations][name] = (@count[:locations][name] || 0) + 1
       end
     end
   end
