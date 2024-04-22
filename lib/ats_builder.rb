@@ -12,7 +12,7 @@ class AtsBuilder
 
       attributes_to_update = {
         url_identifier: row["url_identifier"],
-        website_url: row["website_url"],
+        url_website: row["url_website"],
         url_linkedin: row["url_linkedin"],
         base_url_main: row["base_url_main"],
         base_url_api: row["base_url_api"],

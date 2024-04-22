@@ -9,7 +9,7 @@ module Avo
       def fields
         field :id, as: :id
         field :name, as: :text
-        field :website_url, as: :text
+        field :url_website, as: :text
         field :base_url_main, as: :text
         field :base_url_api, as: :text
         field :all_jobs_url, as: :text
