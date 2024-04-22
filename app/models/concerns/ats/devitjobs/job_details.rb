@@ -48,7 +48,7 @@ module Ats
         data = JSON.parse(script_element)
 
         job.assign_attributes(
-          job_description: data['description'],
+          description: data['description'],
           date_created: Date.parse(data['datePosted']),
           application_deadline: Date.parse(data['validThrough'])
         )

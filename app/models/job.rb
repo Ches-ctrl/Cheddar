@@ -30,7 +30,7 @@ class Job < ApplicationRecord
   # TODO: Update validate uniqueness as same job can have both a normal url and api url
 
   pg_search_scope :search_job,
-                  against: %i[title salary job_description],
+                  against: %i[title salary description],
                   associated_against: {
                     company: %i[name industry],
                     # locations: :city,

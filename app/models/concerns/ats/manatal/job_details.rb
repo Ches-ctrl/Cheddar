@@ -36,7 +36,7 @@ module Ats
       def job_details(job, data)
         job.assign_attributes(
           title: data['position_name'],
-          job_description: data['description'],
+          description: data['description'],
           department: data['departmentLabel'],
           employment_type: data['contract_details'],
           non_geocoded_location_string: build_location_string(data),

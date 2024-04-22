@@ -3,7 +3,7 @@ json.array! @jobs do |job|
   json.title job.title
   json.name job.company.name
   json.job_posting_url job.job_posting_url
-  json.job_description job.job_description
+  json.description job.description
   json.api_url job.api_url
   json.office job.office
   json.remote_only job.remote_only

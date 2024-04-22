@@ -26,7 +26,7 @@ module Ats
         job.assign_attributes(
           job_posting_url: data['hostedUrl'],
           title: data['text'],
-          job_description: build_description(data),
+          description: build_description(data),
           non_geocoded_location_string: build_location_string(data),
           remote_only: data['workplaceType'] == 'remote',
           department: data.dig('categories', 'team'),

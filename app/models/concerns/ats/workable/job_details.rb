@@ -10,7 +10,7 @@ module Ats
       def job_details(job, data)
         job.assign_attributes(
           title: data['title'],
-          job_description: build_description(data),
+          description: build_description(data),
           # location: "#{data['location']['city']}, #{data['location']['country']}",
           # country: data['location']['country'],
           job_posting_url: "#{url_base}#{job.company.ats_identifier}/j/#{data['shortcode']}",

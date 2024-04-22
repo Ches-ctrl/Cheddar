@@ -13,7 +13,7 @@ module Standardizer
       return unless @job.non_geocoded_location_string
 
       location = @job.non_geocoded_location_string
-      hybrid = location.downcase.include?('hybrid') || @job.job_description.downcase.include?('hybrid')
+      hybrid = location.downcase.include?('hybrid') || @job.description.downcase.include?('hybrid')
 
       JOB_LOCATION_FILTER_WORDS.each { |filter| location.gsub!(filter, '') }
       location_elements = location.split(/[•;]|&&|or/)

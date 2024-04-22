@@ -18,7 +18,7 @@ RSpec.feature "Jobs", type: :feature do
       create(:job, title: "Junior Test Developer", seniority: 'Junior', roles: [Role.find_by(name: 'dev_ops')])
       create(:job, title: "Data Analyst", seniority: 'Mid-Level', roles: [Role.find_by(name: 'data_engineer')])
       job1 = create(:job, title: "Senior UI Engineer", seniority: 'Senior', roles: [Role.find_by(name: 'front_end')])
-      job2 = create(:job, title: "Frontend Developer", job_description: "Ruby on Rails", roles: [Role.find_by(name: 'front_end')])
+      job2 = create(:job, title: "Frontend Developer", description: "Ruby on Rails", roles: [Role.find_by(name: 'front_end')])
       job3 = create(:job, title: "Ruby on Rails Developer")
 
       create(:jobs_location, job: job1, location: london)

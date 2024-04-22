@@ -12,7 +12,7 @@ module Ats
 
         job.assign_attributes(
           title: data['name'],
-          job_description: build_description(data.dig('jobAd', 'sections')),
+          description: build_description(data.dig('jobAd', 'sections')),
           job_posting_url: data['applyUrl'],
           non_geocoded_location_string: [data.dig('location', 'city'), country_custom_field['valueLabel']].reject(&:blank?).join(', '),
           seniority: fetch_seniority(data),

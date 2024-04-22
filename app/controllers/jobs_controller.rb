@@ -27,7 +27,7 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @company = @job.company
     @saved_job = SavedJob.new
-    @job_description = sanitize @job.job_description
+    @description = sanitize @job.description
   end
 
   def apply_to_selected_jobs
@@ -47,6 +47,6 @@ class JobsController < ApplicationController
   # TODO: Remove #create and #job_params?
 
   def job_params
-    params.require(:job).permit(:title, :job_description, :salary, :job_posting_url, :application_deadline, :date_created, :company_id, :applicant_tracking_system_id, :ats_job_id, :non_geocoded_location_string, :department, :office, :live)
+    params.require(:job).permit(:title, :description, :salary, :job_posting_url, :application_deadline, :date_created, :company_id, :applicant_tracking_system_id, :ats_job_id, :non_geocoded_location_string, :department, :office, :live)
   end
 end

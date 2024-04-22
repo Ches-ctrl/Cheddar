@@ -28,7 +28,7 @@ module Ats
         job.assign_attributes(
           title: data['title'],
           requirements: data['requirements'],
-          job_description: [data['description'], data['requirements']].reject(&:blank?).join,
+          description: [data['description'], data['requirements']].reject(&:blank?).join,
           salary: fetch_salary(data),
           department: data['department'],
           employment_type: fetch_employment_type(data),
