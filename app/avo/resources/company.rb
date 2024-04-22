@@ -10,7 +10,6 @@ module Avo
         field :id, as: :id
         field :company_name, as: :text
         field :company_website_url, as: :text
-        field :company_category, as: :text
         field :location, as: :text
         field :industry, as: :text
         field :url_careers, as: :text

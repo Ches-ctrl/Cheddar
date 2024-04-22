@@ -18,7 +18,7 @@ module Ats
         {
           company_name: data['company'],
           company_website_url: data['companyWebsiteLink'],
-          company_category: data['companyType'],
+          industry: data['companyType'],
           location: [data['address'], data['actualCity'], data['postalCode']].reject(&:blank?).join(', '),
           description: data['content']
           # img_url: data['logoImg'].include?('https://') ? data['logoImg'] : "https://static.devitjobs.uk/logo-images/#{data['logoImg']}"

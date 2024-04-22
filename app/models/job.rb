@@ -32,7 +32,7 @@ class Job < ApplicationRecord
   pg_search_scope :search_job,
                   against: %i[job_title salary job_description],
                   associated_against: {
-                    company: %i[company_name company_category],
+                    company: %i[company_name industry],
                     # locations: :city,
                     countries: :name
                   },
