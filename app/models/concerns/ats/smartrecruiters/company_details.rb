@@ -4,9 +4,9 @@ module Ats
       def company_details(ats_identifier)
         url_ats_api = "#{url_api}#{ats_identifier}/postings"
         data = get_json_data(url_ats_api)
-        company_name, industry = fetch_name_and_industry(data)
+        name, industry = fetch_name_and_industry(data)
         {
-          company_name:,
+          name:,
           description: fetch_description(data),
           industry:,
           url_ats_api:,

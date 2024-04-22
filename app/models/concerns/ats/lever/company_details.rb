@@ -6,10 +6,10 @@ module Ats
       def company_details(ats_identifier)
         url_ats_api = "#{url_api}#{ats_identifier}/?mode=json"
         url_ats_main = "#{url_base}#{ats_identifier}"
-        company_name, company_website_url = scrape_company_page(url_ats_main)
+        name, company_website_url = scrape_company_page(url_ats_main)
         data = get_json_data(url_ats_api)
         {
-          company_name:,
+          name:,
           description: data.dig(0, 'additionalPlain'),
           url_ats_api:,
           url_ats_main:,

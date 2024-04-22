@@ -7,8 +7,8 @@ module Scraper
       page_doc(url).css(".sc-dUWDJJ").css('.job-search-resultsstyle__CardGrid-sc-1wpt60k-3')
                    .css('ul')
                    .css('.job-cardstyle__JobCardComponent-sc-1mbmxes-0').each do |job|
-        company_name = job.css('.sc-gwZKzw').css('h3').css('span').text
-        company = Company.find_or_create_by(company_name:)
+        name = job.css('.sc-gwZKzw').css('h3').css('span').text
+        company = Company.find_or_create_by(name:)
 
         job_attributes = {
           job_title: job.css('.sc-gwZKzw').css('h3').css('a').text,

@@ -90,7 +90,7 @@ class CategorySidebar
     resources['company'] = jobs.map(&:company).uniq.map do |company|
       [
         'checkbox',
-        company.company_name,
+        company.name,
         company.id,
         jobs.count { |job| job.company == company },
         @params[:company]&.include?(company.id.to_s)

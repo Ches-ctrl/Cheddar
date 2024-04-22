@@ -9,7 +9,7 @@ module Ats
         data = get_json_data(url_ats_api)
         url_careers, company_website_url = check_for_careers_url_redirect(url_ats_main)
         {
-          company_name: data['name'],
+          name: data['name'],
           description: data['content'],
           url_ats_api:,
           url_ats_main:,

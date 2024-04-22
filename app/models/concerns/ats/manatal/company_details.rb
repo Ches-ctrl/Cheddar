@@ -7,7 +7,7 @@ module Ats
         url_ats_api = "#{url_api}#{ats_identifier}"
         data = get_json_data(url_ats_api)
         {
-          company_name: data['name'],
+          name: data['name'],
           url_ats_api:,
           url_ats_main: "#{url_base}#{ats_identifier}",
           description: data['description'],

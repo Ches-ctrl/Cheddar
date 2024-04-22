@@ -8,7 +8,7 @@ module Avo
 
       def fields
         field :id, as: :id
-        field :company_name, as: :text
+        field :name, as: :text
         field :company_website_url, as: :text
         field :location, as: :text
         field :industry, as: :text

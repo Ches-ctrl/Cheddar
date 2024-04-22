@@ -1,5 +1,5 @@
 RSpec.describe Scraper::DevitJobsService do
-  # let!(:kliq){ create(:company, company_name: 'Kliq Inc') }
+  # let!(:kliq){ create(:company, name: 'Kliq Inc') }
 
   # let(:xml_response) do
   #   builder = Nokogiri::XML::Builder.new do |xml|
@@ -10,7 +10,7 @@ RSpec.describe Scraper::DevitJobsService do
   #         xml.apply_url "https://frontend_application_url.com"
   #         xml.country "Spain"
   #         xml.salary "$50000"
-  #         xml.company "#{kliq.company_name}"
+  #         xml.company "#{kliq.name}"
   #         xml.description "Front end developer position"
   #         xml.pubdate "#{Date.current - 2.days}"
   #       }

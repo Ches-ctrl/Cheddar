@@ -97,7 +97,7 @@ class ApplicantTrackingSystem < ApplicationRecord
       company.assign_attributes(supplementary_data)
     end
 
-    p "Company created - #{company.company_name}" if company.new_record? && company.save
+    p "Company created - #{company.name}" if company.new_record? && company.save
 
     return company
   end
@@ -160,7 +160,7 @@ class ApplicantTrackingSystem < ApplicationRecord
       fetch_additional_fields(new_job)
     end
 
-    puts "Created new job - #{job.job_title} with #{company.company_name}"
+    puts "Created new job - #{job.job_title} with #{company.name}"
 
     return job
   end

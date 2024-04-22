@@ -10,7 +10,7 @@ module Ats
         data = get_json_data(url_ats_api)
         url_careers = check_for_careers_url_redirect(url_ats_main)
         {
-          company_name: data['name'],
+          name: data['name'],
           description: data.dig('details', 'overview', 'description'),
           url_ats_api:,
           url_ats_main:,
@@ -27,28 +27,28 @@ module Ats
 
       # def check_for_details(company, ats_system, ats_identifier, description)
       #   if company.description.nil?
-      #     p "Missing description for #{company.company_name}"
+      #     p "Missing description for #{company.name}"
       #     company.update(description:)
       #   end
 
       #   if company.ats_identifier.nil?
-      #     p "Missing ATS identifier for #{company.company_name}"
+      #     p "Missing ATS identifier for #{company.name}"
       #     company.update(ats_identifier:)
       #   end
 
       #   if company.applicant_tracking_system_id.nil?
-      #     p "Missing ATS system for #{company.company_name}"
+      #     p "Missing ATS system for #{company.name}"
       #     company.update(applicant_tracking_system_id: ats_system.id)
       #   end
 
       #   if company.url_ats_api.nil?
-      #     p "Missing ATS API URL for #{company.company_name}"
+      #     p "Missing ATS API URL for #{company.name}"
       #     company.update(url_ats_api: "#{ats_system.url_api}#{ats_identifier}")
       #   end
 
       #   return unless company.url_ats_main.nil?
 
-      #   p "Missing ATS Main URL for #{company.company_name}"
+      #   p "Missing ATS Main URL for #{company.name}"
       #   company.update(url_ats_main: "#{ats_system.url_base}#{ats_identifier}")
       # end
     end
