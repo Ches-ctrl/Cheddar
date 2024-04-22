@@ -31,8 +31,9 @@ class CategorySidebar
     end
   end
 
-  def self.fetch_sidebar_data
-    # Categories: posted, seniority, location, role, type, company
+  private
+
+  private_class_method def self.fetch_sidebar_data
     initialize_category_hashes
 
     jobs = Job.includes(:company, :roles, :locations, :countries).all
@@ -42,10 +43,9 @@ class CategorySidebar
     end
 
     build_resources_hash
-    p @resources
   end
 
-  def self.initialize_category_hashes
+  private_class_method def self.initialize_category_hashes
     @count = {
       when_posted: CONVERT_TO_DAYS.keys.to_h { |period| [period, 0] },
       seniorities: SENIORITIES.to_h { |seniority| [seniority, 0] },
@@ -56,7 +56,7 @@ class CategorySidebar
     }
   end
 
-  def self.update_category_hashes
+  private_class_method def self.update_category_hashes
     update_when_posted
     update_seniorities
     update_locations
@@ -65,7 +65,7 @@ class CategorySidebar
     update_companies
   end
 
-  def self.build_resources_hash
+  private_class_method def self.build_resources_hash
     @resources = {}
     @count.each { |title, hash| @count[title] = hash.sort_by { |_k, v| -v }.to_h unless %i[posted seniorities].include?(title) }
     build_posted_array
@@ -77,18 +77,18 @@ class CategorySidebar
     @resources
   end
 
-  def self.update_when_posted
+  private_class_method def self.update_when_posted
     CONVERT_TO_DAYS.each_key do |k|
       @count[:when_posted][k] += 1 if @job.date_created.end_of_day > CONVERT_TO_DAYS[k].days.ago.beginning_of_day
     end
   end
 
-  def self.update_seniorities
+  private_class_method def self.update_seniorities
     level = @job.seniority
     @count[:seniorities][level] += 1 if @count[:seniorities][level]
   end
 
-  def self.update_locations
+  private_class_method def self.update_locations
     if @job.remote_only
       @count[:locations][['Remote Only']] += 1
     else
@@ -99,24 +99,24 @@ class CategorySidebar
     end
   end
 
-  def self.update_roles
+  private_class_method def self.update_roles
     @job.roles.each do |role|
       name = role.name
       @count[:roles][name] += 1 if @count[:roles][name]
     end
   end
 
-  def self.update_types
+  private_class_method def self.update_types
     type = @job.employment_type
     @count[:types][type] += 1
   end
 
-  def self.update_companies
+  private_class_method def self.update_companies
     company = @job.company
     @count[:companies][company] += 1
   end
 
-  def self.build_posted_array
+  private_class_method def self.build_posted_array
     @resources['posted'] = @count[:when_posted].map do |period, count|
       next if count.zero?
 
@@ -131,7 +131,7 @@ class CategorySidebar
     end.compact
   end
 
-  def self.build_seniority_array
+  private_class_method def self.build_seniority_array
     @resources['seniority'] = @count[:seniorities].map do |seniority, count|
       next if count.zero?
 
@@ -146,7 +146,7 @@ class CategorySidebar
     end.compact
   end
 
-  def self.build_location_array
+  private_class_method def self.build_location_array
     @resources['location'] = @count[:locations].take(15).map do |location, count|
       location_id = location.first&.downcase&.gsub(' ', '_')
       [
@@ -159,7 +159,7 @@ class CategorySidebar
     end
   end
 
-  def self.build_role_array
+  private_class_method def self.build_role_array
     @resources['role'] = @count[:roles].map do |role, count|
       [
         'checkbox',
@@ -171,7 +171,7 @@ class CategorySidebar
     end
   end
 
-  def self.build_type_array
+  private_class_method def self.build_type_array
     @resources['type'] = @count[:types].map do |type, count|
       [
         'checkbox',
@@ -183,7 +183,7 @@ class CategorySidebar
     end
   end
 
-  def self.build_company_array
+  private_class_method def self.build_company_array
     @resources['company'] = @count[:companies].take(15).map do |company, count|
       [
         'checkbox',
