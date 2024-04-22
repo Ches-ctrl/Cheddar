@@ -46,8 +46,6 @@ module Ats
       end
 
       def build_description(data)
-        # TODO: This should go in description_long, and the other parts in responsibilities, benefits
-        # and so on. Change this & change job show page to display description_long || description
         [
           data['description'],
           ("<h2>#{data['key_responsibilities_header']}</h2>" if data['key_responsibilities_header']),
