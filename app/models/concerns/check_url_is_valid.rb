@@ -2,6 +2,7 @@ module CheckUrlIsValid
   extend ActiveSupport::Concern
 
   # TODO: This doesn't yet work sufficiently well - often you'll have a successfull or redirect HTTP call but an error message on the page so will need parsing by Nokogiri with a regex for the error message
+  # Workable: query params - ?not_found=true redirect to main page
 
   def job_is_live?(url, ats)
     response = get_response(url)
