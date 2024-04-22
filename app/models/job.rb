@@ -7,7 +7,7 @@ class Job < ApplicationRecord
   serialize :application_criteria, coder: JSON
 
   belongs_to :company
-  belongs_to :applicant_tracking_system, optional: true
+  belongs_to :applicant_tracking_system, optional: true # TODO: remove optional
 
   has_many :job_applications, dependent: :destroy
   has_many :saved_jobs, dependent: :destroy
