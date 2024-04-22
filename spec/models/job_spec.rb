@@ -10,8 +10,8 @@ RSpec.describe Job do
 
   describe 'Validations' do
     it { is_expected.to validate_presence_of(:title) }
-    it { is_expected.to validate_presence_of(:job_posting_url) }
-    xit { is_expected.to validate_uniqueness_of(:job_posting_url) }
+    it { is_expected.to validate_presence_of(:posting_url) }
+    xit { is_expected.to validate_uniqueness_of(:posting_url) }
   end
 
   # describe '.search_jobs' do

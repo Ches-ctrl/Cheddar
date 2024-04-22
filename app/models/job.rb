@@ -22,7 +22,7 @@ class Job < ApplicationRecord
 
   after_create :set_date_created, :update_requirements, :standardize_attributes
 
-  validates :job_posting_url, uniqueness: true, presence: true
+  validates :posting_url, uniqueness: true, presence: true
   validates :title, presence: true
 
   # after_create :update_application_criteria
@@ -50,8 +50,8 @@ class Job < ApplicationRecord
   end
 
   # def update_application_criteria
-  #   if job_posting_url.include?('greenhouse')
-  #     extra_fields = GetFormFieldsJob.perform_later(job_posting_url)
+  #   if posting_url.include?('greenhouse')
+  #     extra_fields = GetFormFieldsJob.perform_later(posting_url)
   #     # p extra_fields
   #   else
   #     p "No additional fields to add"

@@ -25,7 +25,7 @@ module Ats
 
       def job_details(job, data)
         job.assign_attributes(
-          job_posting_url: fetch_url(data),
+          posting_url: fetch_url(data),
           title: data['name'],
           salary: fetch_salary(data),
           remote_only: fetch_remote_only(data),
@@ -41,7 +41,7 @@ module Ats
       end
 
       def scrape_description_and_posting_date(job)
-        url = job.job_posting_url
+        url = job.posting_url
         html = URI.parse(url).open
         xml = Nokogiri::HTML.parse(html)
         script_element = xml.xpath('//script[@type="application/ld+json" and @data-react-helmet="true"]').first.content

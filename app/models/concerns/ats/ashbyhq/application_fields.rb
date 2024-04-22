@@ -5,7 +5,7 @@ module Ats
         p "Getting AshbyHQ application criteria"
         job.application_criteria = CANDIDATE_FIELDS
         job.save
-        # GetFormFieldsJob.perform_later(job.job_posting_url)
+        # GetFormFieldsJob.perform_later(job.posting_url)
       end
 
       def update_requirements(_job)

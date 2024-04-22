@@ -38,7 +38,7 @@ module Ats
           requirements: data['skills_knowledge_requirements'],
           responsibilities: data['key_responsibilities'],
           benefits: data['benefits'],
-          job_posting_url: data['url'],
+          posting_url: data['url'],
           application_deadline: (Date.parse(data['deadline_at']) if data['deadline_at']),
           remote_only: data['workplace_type'] == 'remote',
           hybrid: data['workplace_type'] == 'hybrid'

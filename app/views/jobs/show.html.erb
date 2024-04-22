@@ -11,7 +11,7 @@
         </div>
         <ul class="mb-0">
           <%# TODO: Add favicons for these %>
-          <%= link_to @job.job_posting_url, target: "_blank" do %>
+          <%= link_to @job.posting_url, target: "_blank" do %>
             <i class="fa-solid fa-external-link-alt"></i>
           <% end %>
           <% if @company.url_website.present? %>

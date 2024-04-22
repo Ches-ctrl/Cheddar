@@ -16,7 +16,7 @@ class GetFormFieldsJob < ApplicationJob
 
     Capybara.current_driver = :selenium_chrome_headless
 
-    visit(job.job_posting_url)
+    visit(job.posting_url)
     return if page.has_selector?('#flash_pending')
 
     begin

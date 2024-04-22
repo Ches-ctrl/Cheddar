@@ -95,11 +95,11 @@ namespace :import_csv do
   desc "Sort CSV - job_posting_urls"
   task sort_job_postings: :environment do
     csv = CSV.read('storage/csv/job_posting_urls.csv', headers: true)
-    sorted = csv.sort_by { |row| row['job_posting_url'] }
+    sorted = csv.sort_by { |row| row['posting_url'] }
 
     CSV.open('storage/csv/job_posting_urls.csv', 'w') do |csv|
-      csv << ['job_posting_url']
-      sorted.each { |row| csv << [row['job_posting_url']] }
+      csv << ['posting_url']
+      sorted.each { |row| csv << [row['posting_url']] }
     end
   end
 
@@ -113,7 +113,7 @@ namespace :import_csv do
     puts "Creating new jobs..."
 
     CSV.foreach(jobs_csv, headers: true) do |row|
-      url = row['job_posting_url']
+      url = row['posting_url']
       ats, company = Url::CreateJobFromUrl.new(url).create_company_then_job
       company_list[ats.name] << company.ats_identifier if company&.persisted?
     end
@@ -134,7 +134,7 @@ namespace :import_csv do
     puts "Creating new jobs..."
 
     CSV.foreach(jobs_csv, headers: true) do |row|
-      url = row['job_posting_url']
+      url = row['posting_url']
       ats, company = Url::CreateJobFromUrl.new(url).create_company_then_job
       company_list[ats.name] << company.ats_identifier if company&.persisted?
     end
@@ -155,7 +155,7 @@ namespace :import_csv do
     puts "Creating new jobs..."
 
     CSV.foreach(jobs_csv, headers: true) do |row|
-      url = row['job_posting_url']
+      url = row['posting_url']
       ats, company = Url::CreateJobFromUrl.new(url).create_company_then_job
       company_list[ats.name] << company.ats_identifier if company&.persisted?
     end
@@ -187,7 +187,7 @@ namespace :import_csv do
       CSV.foreach("storage/new/#{file}", headers: true) do |row|
         counter += 1
         begin
-          url = row['job_posting_url']
+          url = row['posting_url']
           p url
           ats = ApplicantTrackingSystem.determine_ats(url).name if url
           ats_jobs_count[ats] += 1 if ats

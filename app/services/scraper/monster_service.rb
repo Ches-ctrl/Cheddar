@@ -14,7 +14,7 @@ module Scraper
           title: job.css('.sc-gwZKzw').css('h3').css('a').text,
           company_id: company.id,
           description: job.css('.sc-eiQriw').css('p').text,
-          job_posting_url: job.css('.sc-gwZKzw').css('h3').css('a.sc-gAjuZT')[0]['href'],
+          posting_url: job.css('.sc-gwZKzw').css('h3').css('a.sc-gAjuZT')[0]['href'],
           location: job.css('.sc-gwZKzw').css('.sc-dABzDS').css('.sc-fICZUB').text,
           date_created: job.css('.sc-gwZKzw').css('.sc-keuYuY').text
         }

@@ -39,7 +39,7 @@ RSpec.describe Scraper::DevitJobsService do
   #   end
 
   #   context 'create jobs' do
-  #     before { create(:job, job_posting_url: 'https://frontend_application_url.com') }
+  #     before { create(:job, posting_url: 'https://frontend_application_url.com') }
 
   #     it 'only creates job that does not exist' do
   #       allow(subject).to receive(:page_doc).with('https://devitjobs.uk/job_feed.xml').and_return(xml_response)

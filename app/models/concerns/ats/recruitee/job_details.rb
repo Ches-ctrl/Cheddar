@@ -33,7 +33,7 @@ module Ats
           department: data['department'],
           employment_type: fetch_employment_type(data),
           non_geocoded_location_string: fetch_location(data),
-          job_posting_url: data['careers_apply_url'],
+          posting_url: data['careers_apply_url'],
           date_created: (Date.parse(data['updated_at']) if data['updated_at']),
           seniority: fetch_seniority(data),
           req_cv: data['options_cv'] == 'required',

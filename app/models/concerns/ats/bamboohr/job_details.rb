@@ -22,7 +22,7 @@ module Ats
           department: data['departmentLabel'],
           employment_type: data['employmentStatusLabel'],
           non_geocoded_location_string: build_location_string(data),
-          job_posting_url: "#{url_base.sub('XXX', job.company.ats_identifier)}#{data['id']}"
+          posting_url: "#{url_base.sub('XXX', job.company.ats_identifier)}#{data['id']}"
         )
       end
 

@@ -13,7 +13,7 @@ module Ats
           description: build_description(data),
           # location: "#{data['location']['city']}, #{data['location']['country']}",
           # country: data['location']['country'],
-          job_posting_url: "#{url_base}#{job.company.ats_identifier}/j/#{data['shortcode']}",
+          posting_url: "#{url_base}#{job.company.ats_identifier}/j/#{data['shortcode']}",
           department: data['department']&.first,
           requirements: data['requirements'],
           benefits: data['benefits'],

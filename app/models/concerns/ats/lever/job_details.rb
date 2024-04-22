@@ -24,7 +24,7 @@ module Ats
       def job_details(job, data)
         # TODO: add logic for office
         job.assign_attributes(
-          job_posting_url: data['hostedUrl'],
+          posting_url: data['hostedUrl'],
           title: data['text'],
           description: build_description(data),
           non_geocoded_location_string: build_location_string(data),

@@ -14,7 +14,7 @@ module Avo
         # field :date_created, as: :date
         # field :application_criteria, as: :textarea
         field :application_deadline, as: :date
-        # field :job_posting_url, as: :text
+        field :posting_url, as: :text
         field :company_id, as: :number
         field :applicant_tracking_system_id, as: :number
         field :application_details, as: :textarea

@@ -13,7 +13,7 @@ class UpdateExistingCompanyJobs < ApplicationJob
   def perform
     puts "Beginning jobs updater for companies already seeded to the DB..."
 
-    @job_urls = Job.all.to_set(&:job_posting_url)
+    @job_urls = Job.all.to_set(&:posting_url)
 
     fetch_jobs_and_companies
     destroy_defunct_jobs
@@ -60,9 +60,9 @@ class UpdateExistingCompanyJobs < ApplicationJob
 
   def destroy_defunct_jobs
     puts "Deleting jobs that are no longer live:"
-    @job_urls.each do |job_posting_url|
-      Job.find_by(job_posting_url:).destroy
-      puts "Destroyed #{job_posting_url}"
+    @job_urls.each do |posting_url|
+      Job.find_by(posting_url:).destroy
+      puts "Destroyed #{posting_url}"
     end
   end
 end

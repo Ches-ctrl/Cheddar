@@ -21,7 +21,7 @@ module Ats
           description: data['descriptionHtml'],
           non_geocoded_location_string: build_location_string(data),
           department: data['department'],
-          job_posting_url: data['jobUrl']
+          posting_url: data['jobUrl']
         )
       end
 

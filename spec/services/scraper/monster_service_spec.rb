@@ -5,7 +5,7 @@ RSpec.describe Scraper::MonsterService do
       title: 'Rails Engineer',
       company_id: company1.id,
       description: 'Ruby on Rails engineer with 3 years experience',
-      job_posting_url: 'https://dummy_job_url.com',
+      posting_url: 'https://dummy_job_url.com',
       location: 'Atlanta, Gerogia',
       date_created: DateTime.yesterday
     }
