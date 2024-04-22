@@ -7,14 +7,14 @@ module Ats
         url_ats_api = "#{url_api}#{ats_identifier}"
         url_ats_main = "#{url_base}#{ats_identifier}"
         data = get_json_data(url_ats_api)
-        url_careers, company_website_url = check_for_careers_url_redirect(url_ats_main)
+        url_careers, url_website = check_for_careers_url_redirect(url_ats_main)
         {
           name: data['name'],
           description: data['content'],
           url_ats_api:,
           url_ats_main:,
           url_careers:,
-          company_website_url:
+          url_website:
         }
       end
 

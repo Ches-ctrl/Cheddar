@@ -3,7 +3,7 @@ class Company < ApplicationRecord
   has_many :jobs, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
-  # validates :company_website_url, uniqueness: true
+  # validates :url_website, uniqueness: true
 
   before_save :set_website_url, :fetch_description
 
@@ -28,10 +28,10 @@ class Company < ApplicationRecord
   end
 
   def set_website_url
-    return if company_website_url.present?
+    return if url_website.present?
 
     clearbit_company_info = CompanyDomainService.lookup_domain(name)
-    self.company_website_url = clearbit_company_info['domain'] if clearbit_company_info && clearbit_company_info['domain'].present?
+    self.url_website = clearbit_company_info['domain'] if clearbit_company_info && clearbit_company_info['domain'].present?
   end
 
   def fetch_description

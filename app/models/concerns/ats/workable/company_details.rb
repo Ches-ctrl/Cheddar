@@ -15,7 +15,7 @@ module Ats
           url_ats_api:,
           url_ats_main:,
           url_careers:,
-          company_website_url: data['url']
+          url_website: data['url']
           # logo_url: "https://workablehr.s3.amazonaws.com/uploads/account/logo/#{data['id']}/logo"
         }
       end

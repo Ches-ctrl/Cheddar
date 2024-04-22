@@ -6,7 +6,7 @@
     <div class="col-5 d-flex flex-row align-items-center">
       <div class="d-flex justify-content-center align-items-center mx-2">
         <%= link_to company_path(job.company), target: "_blank" do %>
-          <%= image_tag("https://logo.clearbit.com/#{job.company.company_website_url}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", style: "width: 60px; height: 60px; padding-right: 0.5rem;") %>
+          <%= image_tag("https://logo.clearbit.com/#{job.company.url_website}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", style: "width: 60px; height: 60px; padding-right: 0.5rem;") %>
         <% end %>
       </div>
 

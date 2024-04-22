@@ -11,7 +11,7 @@ module Ats
           url_ats_api:,
           url_ats_main: "#{url_base}#{ats_identifier}",
           description: data['description'],
-          company_website_url: data['website'],
+          url_website: data['website'],
           total_live: fetch_total_live(ats_identifier)
           # facebook: data['facebook_url'],
           # linkedin: data['linkedin_url'],

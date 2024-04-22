@@ -14,7 +14,7 @@
             </div>
           </div>
         </div>
-        <%= image_tag("https://logo.clearbit.com/#{@company.company_website_url}",
+        <%= image_tag("https://logo.clearbit.com/#{@company.url_website}",
                       onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'",
                       style: "width: 65px; height: 65px; border-radius: 10px;",
                       class: "company-logo-img") %>
@@ -26,8 +26,8 @@
             <%# Add a tagline/short summary of info under company name? %>
           </div>
           <ul class="mb-0">
-            <% if @company.company_website_url.present? %>
-              <%= link_to @company.company_website_url do %>
+            <% if @company.url_website.present? %>
+              <%= link_to @company.url_website do %>
                 <li class="company-link-btn">Website <i class="fa-solid fa-arrow-up-right-from-square"></i></li>
               <% end %>
             <% end %>

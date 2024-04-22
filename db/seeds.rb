@@ -76,7 +76,7 @@ greenhouse_companies = [
 #   Company.create(
 #     name: company_data[:name],
 #     industry: company_data[:category],
-#     company_website_url: company_data[:url_website]
+#     url_website: company_data[:url_website]
 #   )
 #   puts "Created company - #{Company.last.name}"
 # end

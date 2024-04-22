@@ -17,7 +17,7 @@ module Ats
       def company_details_from_data(data)
         {
           name: data['company'],
-          company_website_url: data['companyWebsiteLink'],
+          url_website: data['companyWebsiteLink'],
           industry: data['companyType'],
           location: [data['address'], data['actualCity'], data['postalCode']].reject(&:blank?).join(', '),
           description: data['content']

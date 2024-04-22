@@ -5,12 +5,12 @@ module Ats
 
       def company_details(ats_identifier)
         url_ats_api, url_ats_main = replace_ats_identifier(ats_identifier)
-        name, company_website_url, url_linkedin = scrape_company_page(url_ats_main)
+        name, url_website, url_linkedin = scrape_company_page(url_ats_main)
         {
           name:,
           url_ats_api:,
           url_ats_main:,
-          company_website_url:,
+          url_website:,
           url_linkedin:
         }
       end
@@ -23,9 +23,9 @@ module Ats
         links = doc.xpath("//div[@class='external-footer__content']//a/@href").map(&:value)
         website_link = links.first
         linkedin_link = links.find { |link| link.include?('linkedin.com') }
-        company_website_url = website_link
+        url_website = website_link
         url_linkedin = linkedin_link
-        [name, company_website_url, url_linkedin]
+        [name, url_website, url_linkedin]
       end
     end
   end

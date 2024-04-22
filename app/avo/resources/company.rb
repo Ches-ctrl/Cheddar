@@ -12,7 +12,7 @@ module Avo
         field :applicant_tracking_system_id, as: :number
         field :ats_identifier, as: :text
         field :description, as: :textarea
-        field :company_website_url, as: :text
+        field :url_website, as: :text
         field :url_careers, as: :text
         field :url_linkedin, as: :text
         field :url_ats_main, as: :text

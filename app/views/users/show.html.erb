@@ -170,7 +170,7 @@
 
       <% @job_applications.each do |application| %>
         <div class="application-card-small">
-          <%= image_tag("https://logo.clearbit.com/#{application.job.company.company_website_url}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", style: "width: 60px; height: 60px;") %>
+          <%= image_tag("https://logo.clearbit.com/#{application.job.company.url_website}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", style: "width: 60px; height: 60px;") %>
 
           <div class="profile-application-details">
             <p><strong><%= application.job.job_title %></strong></p>
