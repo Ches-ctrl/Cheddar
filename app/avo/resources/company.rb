@@ -19,7 +19,7 @@ module Avo
         field :url_ats_api, as: :text
         field :location, as: :text
         field :industry, as: :text
-        field :industry_subcategory, as: :text
+        field :sub_industry, as: :text
         field :total_live, as: :number
         field :applicant_tracking_system, as: :belongs_to
         field :jobs, as: :has_many

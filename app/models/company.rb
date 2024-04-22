@@ -46,6 +46,6 @@ class Company < ApplicationRecord
     industry, subcategory = CompanyIndustryService.lookup_industry(name, @name_keywords)
 
     self.industry = industry
-    self.industry_subcategory = subcategory
+    self.sub_industry = subcategory
   end
 end
