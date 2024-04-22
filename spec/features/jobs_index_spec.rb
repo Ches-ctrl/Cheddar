@@ -14,12 +14,12 @@ RSpec.feature "Jobs", type: :feature do
       end
       london = create(:location, city: "London")
 
-      create(:job, job_title: "Graduate Software Developer", seniority: 'Entry-Level', roles: [Role.find_by(name: 'mobile')])
-      create(:job, job_title: "Junior Test Developer", seniority: 'Junior', roles: [Role.find_by(name: 'dev_ops')])
-      create(:job, job_title: "Data Analyst", seniority: 'Mid-Level', roles: [Role.find_by(name: 'data_engineer')])
-      job1 = create(:job, job_title: "Senior UI Engineer", seniority: 'Senior', roles: [Role.find_by(name: 'front_end')])
-      job2 = create(:job, job_title: "Frontend Developer", job_description: "Ruby on Rails", roles: [Role.find_by(name: 'front_end')])
-      job3 = create(:job, job_title: "Ruby on Rails Developer")
+      create(:job, title: "Graduate Software Developer", seniority: 'Entry-Level', roles: [Role.find_by(name: 'mobile')])
+      create(:job, title: "Junior Test Developer", seniority: 'Junior', roles: [Role.find_by(name: 'dev_ops')])
+      create(:job, title: "Data Analyst", seniority: 'Mid-Level', roles: [Role.find_by(name: 'data_engineer')])
+      job1 = create(:job, title: "Senior UI Engineer", seniority: 'Senior', roles: [Role.find_by(name: 'front_end')])
+      job2 = create(:job, title: "Frontend Developer", job_description: "Ruby on Rails", roles: [Role.find_by(name: 'front_end')])
+      job3 = create(:job, title: "Ruby on Rails Developer")
 
       create(:jobs_location, job: job1, location: london)
       create(:jobs_location, job: job2, location: london)
@@ -107,8 +107,8 @@ RSpec.feature "Jobs", type: :feature do
 
     #   check(company)
 
-    #   expect(page).to have_content(job1.job_title)
-    #   expect(page).not_to have_content(job2.job_title)
+    #   expect(page).to have_content(job1.title)
+    #   expect(page).not_to have_content(job2.title)
     # end
 
     # scenario 'User can query "Ruby" with multiple sidebar filters' do
@@ -137,8 +137,8 @@ RSpec.feature "Jobs", type: :feature do
 
     #   find('a[aria-label="Page 2"]').click
 
-    #   expect(page).to have_content(job2.job_title)
-    #   expect(page).not_to have_content(job1.job_title)
+    #   expect(page).to have_content(job2.title)
+    #   expect(page).not_to have_content(job1.title)
     # end
   end
 

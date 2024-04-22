@@ -23,14 +23,14 @@ class Job < ApplicationRecord
   after_create :set_date_created, :update_requirements, :standardize_attributes
 
   validates :job_posting_url, uniqueness: true, presence: true
-  validates :job_title, presence: true
+  validates :title, presence: true
 
   # after_create :update_application_criteria
 
   # TODO: Update validate uniqueness as same job can have both a normal url and api url
 
   pg_search_scope :search_job,
-                  against: %i[job_title salary job_description],
+                  against: %i[title salary job_description],
                   associated_against: {
                     company: %i[name industry],
                     # locations: :city,

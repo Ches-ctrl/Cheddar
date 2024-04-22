@@ -9,7 +9,7 @@ module Ats
 
       def job_details(job, data)
         job.assign_attributes(
-          job_title: data['title'],
+          title: data['title'],
           job_description: build_description(data),
           # location: "#{data['location']['city']}, #{data['location']['country']}",
           # country: data['location']['country'],

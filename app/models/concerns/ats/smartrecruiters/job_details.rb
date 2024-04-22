@@ -11,7 +11,7 @@ module Ats
         country_custom_field = data['customField'].find { |field| field['fieldId'] == "COUNTRY" }
 
         job.assign_attributes(
-          job_title: data['name'],
+          title: data['name'],
           job_description: build_description(data.dig('jobAd', 'sections')),
           job_posting_url: data['applyUrl'],
           non_geocoded_location_string: [data.dig('location', 'city'), country_custom_field['valueLabel']].reject(&:blank?).join(', '),

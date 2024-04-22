@@ -160,7 +160,7 @@ class ApplicantTrackingSystem < ApplicationRecord
       fetch_additional_fields(new_job)
     end
 
-    puts "Created new job - #{job.job_title} with #{company.name}"
+    puts "Created new job - #{job.title} with #{company.name}"
 
     return job
   end

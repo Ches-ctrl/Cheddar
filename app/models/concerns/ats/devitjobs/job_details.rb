@@ -6,9 +6,9 @@ module Ats
       private
 
       def fetch_title_and_location(job_data)
-        job_title = job_data.css('title').text
+        title = job_data.css('title').text
         job_location = job_data.css('location').text
-        [job_title, job_location]
+        [title, job_location]
       end
 
       def fetch_url(job_data)
@@ -26,7 +26,7 @@ module Ats
       def job_details(job, data)
         job.assign_attributes(
           job_posting_url: fetch_url(data),
-          job_title: data['name'],
+          title: data['name'],
           salary: fetch_salary(data),
           remote_only: fetch_remote_only(data),
           non_geocoded_location_string: build_location_string(job.remote_only, data),
@@ -37,7 +37,7 @@ module Ats
         scrape_description_and_posting_date(job)
         # associate_technologies(job, data)
         fetch_additional_fields(job)
-        puts "Created new job - #{job.job_title} with #{job.company.name}"
+        puts "Created new job - #{job.title} with #{job.company.name}"
       end
 
       def scrape_description_and_posting_date(job)

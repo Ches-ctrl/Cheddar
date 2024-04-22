@@ -11,9 +11,9 @@
       </div>
 
       <%# Job Title, Company, Location %>
-      <div class="d-flex flex-column justify-content-center align-items-start" data-role="<%= job.job_title %>">
+      <div class="d-flex flex-column justify-content-center align-items-start" data-role="<%= job.title %>">
         <%= link_to job_path(job), target: "_blank" do %>
-          <strong><%= job.job_title.truncate(35) %></strong>
+          <strong><%= job.title.truncate(35) %></strong>
         <% end %>
 
         <%= link_to company_path(job.company), target: "_blank" do %>

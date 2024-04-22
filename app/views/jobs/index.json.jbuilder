@@ -1,6 +1,6 @@
 json.array! @jobs do |job|
   json.id job.id
-  json.job_title job.job_title
+  json.title job.title
   json.name job.company.name
   json.job_posting_url job.job_posting_url
   json.job_description job.job_description

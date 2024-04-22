@@ -8,7 +8,7 @@ module Avo
 
       def fields
         # field :id, as: :id
-        field :job_title, as: :text
+        field :title, as: :text
         # field :job_description, as: :text
         field :salary, as: :number
         # field :date_created, as: :date

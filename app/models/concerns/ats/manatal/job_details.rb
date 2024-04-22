@@ -35,7 +35,7 @@ module Ats
 
       def job_details(job, data)
         job.assign_attributes(
-          job_title: data['position_name'],
+          title: data['position_name'],
           job_description: data['description'],
           department: data['departmentLabel'],
           employment_type: data['contract_details'],

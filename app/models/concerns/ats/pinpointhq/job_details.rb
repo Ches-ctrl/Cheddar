@@ -29,7 +29,7 @@ module Ats
 
       def job_details(job, data)
         job.assign_attributes(
-          job_title: data['title'],
+          title: data['title'],
           job_description: build_description(data),
           salary: fetch_salary(data),
           employment_type: data['employment_type'].gsub('_', '-').capitalize,

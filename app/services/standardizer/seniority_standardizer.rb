@@ -24,7 +24,7 @@ module Standardizer
 
     def standardize
       SENIORITY_TITLES.each do |keyword, level|
-        return @job.seniority = level if @job.job_title.downcase.match?(keyword)
+        return @job.seniority = level if @job.title.downcase.match?(keyword)
       end
 
       years_experience = @job.job_description.downcase.scan(/(\d+)\s*(?:-|\s(?:to)?\s|\sto\s)?\s*\d*\+? year.{0,40} experience/).flatten.map(&:to_i).max

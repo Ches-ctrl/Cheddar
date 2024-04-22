@@ -57,7 +57,7 @@ module Standardizer
 
     def standardize
       title_roles = ROLE_TITLES.inject([]) do |array, (keyword, role)|
-        @job.job_title.downcase.match?(keyword) ? array << role : array
+        @job.title.downcase.match?(keyword) ? array << role : array
       end
       roles = ROLE_DESCRIPTORS.inject([]) do |array, (phrase, role)|
         @job.job_description.downcase.match?(phrase) ? array << role : array
