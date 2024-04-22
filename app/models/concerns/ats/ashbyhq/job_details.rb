@@ -19,7 +19,6 @@ module Ats
         job.assign_attributes(
           job_title: data['title'],
           job_description: data['descriptionHtml'],
-          office_status: data['remote'] ? 'Remote' : 'On-site',
           non_geocoded_location_string: build_location_string(data),
           department: data['department'],
           job_posting_url: data['jobUrl']

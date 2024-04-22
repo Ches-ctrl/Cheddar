@@ -30,7 +30,6 @@ module Avo
         field :cheddar_applicants_count, as: :number
         field :bonus, as: :number
         field :industry_subcategory, as: :text
-        field :office_status, as: :text
         field :create_account, as: :boolean
         field :req_cv, as: :boolean
         field :req_cover_letter, as: :boolean
