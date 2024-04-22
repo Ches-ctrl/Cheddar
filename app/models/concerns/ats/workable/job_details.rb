@@ -17,7 +17,7 @@ module Ats
           department: data['department']&.first,
           requirements: data['requirements'],
           benefits: data['benefits'],
-          date_created: (Date.parse(data['published']) if data['published']),
+          date_posted: (Date.parse(data['published']) if data['published']),
           remote_only: data['workplace'] == 'remote',
           hybrid: data['workplace'] == 'hybrid'
         )

@@ -30,7 +30,7 @@ module Ats
           non_geocoded_location_string: detailed_data.dig('location', 'name'),
           department: detailed_data.dig('departments', 0, 'name'),
           office: detailed_data.dig('offices', 0, 'name'),
-          date_created: convert_from_iso8601(detailed_data['updated_at'])
+          date_posted: convert_from_iso8601(detailed_data['updated_at'])
         )
       end
     end

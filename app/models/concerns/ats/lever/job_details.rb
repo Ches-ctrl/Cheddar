@@ -30,7 +30,7 @@ module Ats
           non_geocoded_location_string: build_location_string(data),
           remote_only: data['workplaceType'] == 'remote',
           department: data.dig('categories', 'team'),
-          date_created: convert_from_milliseconds(data['createdAt'])
+          date_posted: convert_from_milliseconds(data['createdAt'])
         )
         fetch_additional_fields(job)
       end

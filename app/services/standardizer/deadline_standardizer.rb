@@ -5,8 +5,8 @@ module Standardizer
     end
 
     def standardize
-      @job.date_created ||= @job.created_at
-      # @job.deadline ||= @job.date_created + 30.days
+      @job.date_posted ||= @job.created_at
+      # @job.deadline ||= @job.date_posted + 30.days
     end
   end
 end

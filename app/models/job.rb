@@ -90,7 +90,7 @@ class Job < ApplicationRecord
 
   def self.filter_and_sort(params)
     filters = {
-      date_created: filter_by_when_posted(params[:posted]),
+      date_posted: filter_by_when_posted(params[:posted]),
       seniority: filter_by_seniority(params[:seniority]),
       locations: filter_by_location(params[:location]),
       roles: filter_by_role(params[:role]),
@@ -106,7 +106,7 @@ class Job < ApplicationRecord
   private
 
   def set_date_created
-    self.date_created ||= Date.today
+    self.date_posted ||= Date.today
   end
 
   def update_requirements

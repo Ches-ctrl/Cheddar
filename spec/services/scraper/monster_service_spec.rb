@@ -7,7 +7,7 @@ RSpec.describe Scraper::MonsterService do
       description: 'Ruby on Rails engineer with 3 years experience',
       posting_url: 'https://dummy_job_url.com',
       location: 'Atlanta, Gerogia',
-      date_created: DateTime.yesterday
+      date_posted: DateTime.yesterday
     }
   end
   xit 'creates companies that do not exists already' do

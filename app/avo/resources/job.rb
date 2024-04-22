@@ -11,7 +11,7 @@ module Avo
         field :title, as: :text
         field :description, as: :text
         field :salary, as: :number
-        # field :date_created, as: :date
+        # field :date_posted, as: :date
         # field :application_criteria, as: :textarea
         field :deadline, as: :date
         field :posting_url, as: :text

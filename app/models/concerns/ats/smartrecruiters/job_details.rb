@@ -18,7 +18,7 @@ module Ats
           seniority: fetch_seniority(data),
           department: data.dig('department', 'label'),
           requirements: data.dig('jobAd', 'sections', 'qualifications', 'text'),
-          date_created: (Date.parse(data['releasedDate']) if data['releasedDate']),
+          date_posted: (Date.parse(data['releasedDate']) if data['releasedDate']),
           industry: data.dig('industry', 'label'),
           employment_type: data.dig('typeOfEmployment', 'label'),
           remote_only: data.dig('location', 'remote')
