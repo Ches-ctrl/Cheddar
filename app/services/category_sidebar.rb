@@ -17,142 +17,181 @@ class CategorySidebar
     'SVP / Partner'
   ]
   CONVERT_TO_DAYS = {
-    'today' => 0,
-    '3-days' => 3,
-    'week' => 7,
-    'month' => 30,
-    'any-time' => 99_999
+    'Today' => 0,
+    'Last 3 days' => 3,
+    'Within a week' => 7,
+    'Within a month' => 30,
+    'Any time' => 99_999
   }
 
-  def initialize(params)
-    @params = params
-  end
-
   def self.build_with(params)
+    @params = params
     Rails.cache.fetch('category_sidebar', expires_in: 2.hours, race_condition_ttl: 10.seconds) do
-      fetch_sidebar_data(params)
+      fetch_sidebar_data
     end
   end
 
-  def self.fetch_sidebar_data(params)
+  def self.fetch_sidebar_data
     # Categories: posted, seniority, location, role, type, company
-    build_category_hashes
+    initialize_category_hashes
 
     jobs = Job.includes(:company, :roles, :locations, :countries).all
     jobs.each do |job|
       @job = job
-      update_when_posted
-      update_locations
+      update_category_hashes
+    end
+
+    build_resources_hash
+    p @resources
+  end
+
+  def self.initialize_category_hashes
+    @count = {
+      when_posted: CONVERT_TO_DAYS.keys.to_h { |period| [period, 0] },
+      seniorities: SENIORITIES.to_h { |seniority| [seniority, 0] },
+      locations: Hash.new(0),
+      roles: Role.all.to_h { |role| [role.name, 0] },
+      types: Hash.new(0),
+      companies: Hash.new(0)
+    }
+  end
+
+  def self.update_category_hashes
+    update_when_posted
+    update_seniorities
+    update_locations
+    update_roles
+    update_types
+    update_companies
+  end
+
+  def self.build_resources_hash
+    @resources = {}
+    @count.each { |title, hash| hash.sort.reverse.to_h unless %i[posted seniority].include?(title) }
+    build_posted_array
+    build_seniority_array
+    build_location_array
+    build_role_array
+    build_type_array
+    build_company_array
+    @resources
+  end
+
+  def self.update_when_posted
+    CONVERT_TO_DAYS.each do |k, _v|
+      @count[:when_posted][k] += 1 if @job.date_created.end_of_day > CONVERT_TO_DAYS[k].days.ago.beginning_of_day
     end
   end
 
-  def self.build_category_hashes
-    @when_posted = WHEN_POSTED.to_h { |seniority| [seniority, 0] }
-    @seniorities = SENIORITIES.to_h { |seniority| [seniority, 0] }
-    @locations = Hash.new(0)
-    @roles = Role.all.to_h { |role| [role.name, 0] }
-    @types = Hash.new(0)
-    @company = Hash.new(0)
+  def self.update_seniorities
+    level = @job.seniority
+    @count[:seniorities][level] += 1 if @count[:seniorities][level]
   end
 
   def self.update_locations
     if @job.remote_only
-      @job.countries.each { |country| @locations[[country.name]] += 1 }
+      @job.countries.each { |country| @count[:locations][[country.name]] += 1 }
     else
       @job.locations.includes(:country).each do |location|
         name = [location.city, location.country&.name].compact
-        @locations[name] += 1
+        @count[:locations][name] += 1
       end
     end
   end
 
-  def build
-    # Where necessary, parse from Job.attributes
-    # TODO: Fix eager /lazy loading issue - this is a N+1 query but also gives a warning if removed - something wrong with the setup
-    jobs = Job.includes(:company, :roles, :locations, :countries).all
-
-    locations = []
-    jobs.each do |job|
-      if job.remote_only
-        locations << ["Remote (#{job.countries.map(&:name).join(', ')})"]
-      else
-        job.locations.includes(:country).each do |location|
-          locations << [location.city, location.country&.name].compact
-        end
-      end
+  def self.update_roles
+    @job.roles.each do |role|
+      name = role.name
+      @count[:roles][name] += 1 if @count[:roles][name]
     end
+  end
 
-    roles = jobs.inject([]) { |all_roles, job| all_roles + job.roles.map(&:name) }
+  def self.update_types
+    type = @job.employment_type
+    @count[:types][type] += 1
+  end
 
-    when_posted = ['Today', 'Last 3 days', 'Within a week', 'Within a month', 'Any time']
+  def self.update_companies
+    company = @job.company
+    @count[:companies][company] += 1
+  end
 
-    seniorities = ['Internship', 'Entry-Level', 'Junior', 'Mid-Level', 'Senior', 'Director', 'VP', 'SVP / Partner']
-
-    # For each item, store: [type, display_name, element_id, matching_jobs_count, checked]
-    resources = {}
-    resources['posted'] = when_posted.map do |period|
-      id = period.downcase.gsub(/last |within a /, '').gsub(' ', '-')
-      count = jobs.count { |job| job.date_created.end_of_day > CONVERT_TO_DAYS[id].days.ago.beginning_of_day }
+  def self.build_posted_array
+    @resources['posted'] = @count[:when_posted].map do |period, count|
       next if count.zero?
 
+      period_id = period.downcase.gsub(/last |within a /, '').gsub(' ', '-')
       [
         'radio',
         period,
-        id,
+        period_id,
         count,
-        @params[:posted] ? @params[:posted].include?(id) : period == 'Any time'
+        @params[:posted] ? @params[:posted].include?(period_id) : period == 'Any time'
       ]
     end.compact
-    resources['seniority'] = seniorities.map do |seniority|
-      count = jobs.count { |job| job.seniority == seniority }
+  end
+
+  def self.build_seniority_array
+    @resources['seniority'] = @count[:seniorities].map do |seniority, count|
       next if count.zero?
 
+      seniority_id = seniority.downcase.split.first
       [
         'checkbox',
         seniority,
-        seniority.downcase.split.first,
+        seniority_id,
         count,
-        @params[:seniority]&.include?(seniority.downcase.split.first)
+        @params[:seniority]&.include?(seniority_id)
       ]
     end.compact
-    resources['location'] = locations.compact.uniq.map do |location|
+  end
+
+  def self.build_location_array
+    @resources['location'] = @count[:locations].take(15).map do |location, count|
+      location_id = location.first&.downcase&.gsub(' ', '_')
       [
         'checkbox',
         location.join(', '),
-        location.first&.downcase&.gsub(' ', '_'),
-        locations.count(location),
-        @params[:location]&.include?(location.first&.downcase&.gsub(' ', '_'))
+        location_id,
+        count,
+        @params[:location]&.include?(location_id)
       ]
     end
-    resources['role'] = roles.uniq.map do |role|
+  end
+
+  def self.build_role_array
+    @resources['role'] = @count[:roles].map do |role, count|
       [
         'checkbox',
         role.split('_').map(&:titleize).join('-'),
         role,
-        roles.count(role),
+        count,
         @params[:role]&.include?(role)
       ]
     end
-    resources['type'] = jobs.map(&:employment_type).uniq.map do |employment|
+  end
+
+  def self.build_type_array
+    @resources['type'] = @count[:types].map do |type, count|
       [
         'checkbox',
-        employment,
-        employment.downcase.gsub('-', '_'),
-        jobs.count { |job| job.employment_type == employment },
-        @params[:type]&.include?(employment)
+        type,
+        type.downcase.gsub('-', '_'),
+        count,
+        @params[:type]&.include?(type)
       ]
     end
-    resources['company'] = jobs.map(&:company).uniq.map do |company|
+  end
+
+  def self.build_company_array
+    @resources['company'] = @count[:companies].take(15).map do |company, count|
       [
         'checkbox',
         company.company_name,
         company.id,
-        jobs.count { |job| job.company == company },
+        count,
         @params[:company]&.include?(company.id.to_s)
       ]
     end
-
-    resources.each { |title, array| array.sort_by! { |item| [-item[3]] } unless %w[posted seniority].include?(title) }
-    return resources
   end
 end
