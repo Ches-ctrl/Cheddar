@@ -15,7 +15,7 @@ class AtsBuilder
         url_website: row["url_website"],
         url_linkedin: row["url_linkedin"],
         url_base: row["url_base"],
-        base_url_api: row["base_url_api"],
+        url_api: row["url_api"],
         url_all_jobs: row["url_all_jobs"],
         url_xml: row["url_xml"],
         url_rss: row["url_rss"],

@@ -11,7 +11,7 @@ module Avo
         field :name, as: :text
         field :url_website, as: :text
         field :url_base, as: :text
-        field :base_url_api, as: :text
+        field :url_api, as: :text
         field :all_jobs_url, as: :text
         field :companies, as: :has_many
         field :jobs, as: :has_many

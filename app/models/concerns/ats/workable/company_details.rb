@@ -5,7 +5,7 @@ module Ats
 
       def company_details(ats_identifier)
         # TODO: Add capabilitiy to handle logos, mailbox, etc.
-        url_ats_api = "#{base_url_api}#{ats_identifier}"
+        url_ats_api = "#{url_api}#{ats_identifier}"
         url_ats_main = "#{url_base}#{ats_identifier}"
         data = get_json_data(url_ats_api)
         url_careers = check_for_careers_url_redirect(url_ats_main)
@@ -43,7 +43,7 @@ module Ats
 
       #   if company.url_ats_api.nil?
       #     p "Missing ATS API URL for #{company.company_name}"
-      #     company.update(url_ats_api: "#{ats_system.base_url_api}#{ats_identifier}")
+      #     company.update(url_ats_api: "#{ats_system.url_api}#{ats_identifier}")
       #   end
 
       #   return unless company.url_ats_main.nil?

@@ -2,7 +2,7 @@ module Ats
   module Smartrecruiters
     module CompanyDetails
       def company_details(ats_identifier)
-        url_ats_api = "#{base_url_api}#{ats_identifier}/postings"
+        url_ats_api = "#{url_api}#{ats_identifier}/postings"
         data = get_json_data(url_ats_api)
         company_name, industry = fetch_name_and_industry(data)
         {
@@ -36,7 +36,7 @@ module Ats
       end
 
       def fetch_total_live(ats_identifier)
-        company_api_url = "#{base_url_api}#{ats_identifier}/postings"
+        company_api_url = "#{url_api}#{ats_identifier}/postings"
         data = get_json_data(company_api_url)
         data['totalFound']
       end

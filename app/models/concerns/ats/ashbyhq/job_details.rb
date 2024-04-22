@@ -32,8 +32,8 @@ module Ats
         [locality, country].reject(&:blank?).join(', ')
       end
 
-      def job_url_api(base_url_api, ats_identifier, _ats_job_id)
-        "#{base_url_api}#{ats_identifier}?includeCompensation=true"
+      def job_url_api(url_api, ats_identifier, _ats_job_id)
+        "#{url_api}#{ats_identifier}?includeCompensation=true"
       end
     end
   end
