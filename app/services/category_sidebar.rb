@@ -1,4 +1,21 @@
 class CategorySidebar
+  WHEN_POSTED = [
+    'Today',
+    'Last 3 days',
+    'Within a week',
+    'Within a month',
+    'Any time'
+  ]
+  SENIORITIES = [
+    'Internship',
+    'Entry-Level',
+    'Junior',
+    'Mid-Level',
+    'Senior',
+    'Director',
+    'VP',
+    'SVP / Partner'
+  ]
   CONVERT_TO_DAYS = {
     'today' => 0,
     '3-days' => 3,
@@ -9,6 +26,44 @@ class CategorySidebar
 
   def initialize(params)
     @params = params
+  end
+
+  def self.build_with(params)
+    Rails.cache.fetch('category_sidebar', expires_in: 2.hours, race_condition_ttl: 10.seconds) do
+      fetch_sidebar_data(params)
+    end
+  end
+
+  def self.fetch_sidebar_data(params)
+    # Categories: posted, seniority, location, role, type, company
+    build_category_hashes
+
+    jobs = Job.includes(:company, :roles, :locations, :countries).all
+    jobs.each do |job|
+      @job = job
+      update_when_posted
+      update_locations
+    end
+  end
+
+  def self.build_category_hashes
+    @when_posted = WHEN_POSTED.to_h { |seniority| [seniority, 0] }
+    @seniorities = SENIORITIES.to_h { |seniority| [seniority, 0] }
+    @locations = Hash.new(0)
+    @roles = Role.all.to_h { |role| [role.name, 0] }
+    @types = Hash.new(0)
+    @company = Hash.new(0)
+  end
+
+  def self.update_locations
+    if @job.remote_only
+      @job.countries.each { |country| @locations[[country.name]] += 1 }
+    else
+      @job.locations.includes(:country).each do |location|
+        name = [location.city, location.country&.name].compact
+        @locations[name] += 1
+      end
+    end
   end
 
   def build
