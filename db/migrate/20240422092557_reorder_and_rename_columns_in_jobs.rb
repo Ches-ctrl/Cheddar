@@ -11,7 +11,5 @@ class ReorderAndRenameColumnsInJobs < ActiveRecord::Migration[7.1]
     rename_column :jobs, :industry_subcategory, :sub_industry
     rename_column :jobs, :date_created, :date_posted
     rename_column :jobs, :remote_only, :remote
-
-    change_column_default :jobs, :live, from: false, to: true
   end
 end
