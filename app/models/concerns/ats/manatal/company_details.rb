@@ -9,7 +9,7 @@ module Ats
         {
           company_name: data['name'],
           url_ats_api:,
-          url_ats_main: "#{base_url_main}#{ats_identifier}",
+          url_ats_main: "#{url_base}#{ats_identifier}",
           description: data['description'],
           company_website_url: data['website'],
           total_live: fetch_total_live(ats_identifier)

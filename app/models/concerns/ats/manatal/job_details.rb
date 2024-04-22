@@ -40,7 +40,7 @@ module Ats
           department: data['departmentLabel'],
           employment_type: data['contract_details'],
           non_geocoded_location_string: build_location_string(data),
-          job_posting_url: "#{base_url_main}#{job.company.ats_identifier}/job/#{job.ats_job_id}/apply"
+          job_posting_url: "#{url_base}#{job.company.ats_identifier}/job/#{job.ats_job_id}/apply"
         )
       end
 

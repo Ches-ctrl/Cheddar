@@ -133,7 +133,7 @@ class ApplicantTrackingSystem < ApplicationRecord
 
   def replace_ats_identifier(ats_identifier)
     api_url = base_url_api
-    main_url = base_url_main
+    main_url = url_base
 
     api_url.gsub!("XXX", ats_identifier)
     main_url.gsub!("XXX", ats_identifier)

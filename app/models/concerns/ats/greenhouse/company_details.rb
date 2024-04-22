@@ -5,7 +5,7 @@ module Ats
 
       def company_details(ats_identifier)
         url_ats_api = "#{base_url_api}#{ats_identifier}"
-        url_ats_main = "#{base_url_main}#{ats_identifier}"
+        url_ats_main = "#{url_base}#{ats_identifier}"
         data = get_json_data(url_ats_api)
         url_careers, company_website_url = check_for_careers_url_redirect(url_ats_main)
         {

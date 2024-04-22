@@ -10,7 +10,7 @@ module Avo
         field :id, as: :id
         field :name, as: :text
         field :url_website, as: :text
-        field :base_url_main, as: :text
+        field :url_base, as: :text
         field :base_url_api, as: :text
         field :all_jobs_url, as: :text
         field :companies, as: :has_many

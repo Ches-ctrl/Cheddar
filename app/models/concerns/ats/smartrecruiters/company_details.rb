@@ -10,7 +10,7 @@ module Ats
           description: fetch_description(data),
           industry:,
           url_ats_api:,
-          url_ats_main: "#{base_url_main}#{ats_identifier}",
+          url_ats_main: "#{url_base}#{ats_identifier}",
           total_live: fetch_total_live(ats_identifier)
         }
       end

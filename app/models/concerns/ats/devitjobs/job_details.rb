@@ -12,7 +12,7 @@ module Ats
       end
 
       def fetch_url(job_data)
-        base_url_main + job_data['jobUrl']
+        url_base + job_data['jobUrl']
       end
 
       def fetch_id(job_data)
