@@ -78,7 +78,7 @@ class CategorySidebar
   end
 
   def self.update_when_posted
-    CONVERT_TO_DAYS.each do |k, _v|
+    CONVERT_TO_DAYS.each_key do |k|
       @count[:when_posted][k] += 1 if @job.date_created.end_of_day > CONVERT_TO_DAYS[k].days.ago.beginning_of_day
     end
   end
