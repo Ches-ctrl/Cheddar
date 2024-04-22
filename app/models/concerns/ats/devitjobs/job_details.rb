@@ -28,8 +28,8 @@ module Ats
           posting_url: fetch_url(data),
           title: data['name'],
           salary: fetch_salary(data),
-          remote_only: fetch_remote_only(data),
-          non_geocoded_location_string: build_location_string(job.remote_only, data),
+          remote: fetch_remote_only(data),
+          non_geocoded_location_string: build_location_string(job.remote, data),
           employment_type: data['jobType'],
           seniority: fetch_seniority(data)
         )
@@ -68,8 +68,8 @@ module Ats
         data['isFullRemote'] || (data['perkKeys'].present? && data['perkKeys'].include?('remotefull'))
       end
 
-      def build_location_string(remote_only, data)
-        remote_only ? "United Kingdom" : [data['address'], data['actualCity'], data['postalCode'], 'United Kingdom'].reject(&:blank?).join(', ')
+      def build_location_string(remote, data)
+        remote ? "United Kingdom" : [data['address'], data['actualCity'], data['postalCode'], 'United Kingdom'].reject(&:blank?).join(', ')
       end
 
       def associate_technologies(job, data)

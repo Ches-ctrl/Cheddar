@@ -38,7 +38,7 @@ module Ats
           seniority: fetch_seniority(data),
           req_cv: data['options_cv'] == 'required',
           req_cover_letter: data['options_cover_letter'] == 'required',
-          remote_only: data['remote'],
+          remote: data['remote'],
           hybrid: data['hybrid']
         )
       end

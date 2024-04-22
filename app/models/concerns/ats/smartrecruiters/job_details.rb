@@ -21,7 +21,7 @@ module Ats
           date_posted: (Date.parse(data['releasedDate']) if data['releasedDate']),
           industry: data.dig('industry', 'label'),
           employment_type: data.dig('typeOfEmployment', 'label'),
-          remote_only: data.dig('location', 'remote')
+          remote: data.dig('location', 'remote')
         )
       end
 

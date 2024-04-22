@@ -143,7 +143,7 @@ class Job < ApplicationRecord
   private_class_method def self.filter_by_location(param)
     return unless param.present?
 
-    locations = param.split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') unless location == 'remote_only' }.compact
+    locations = param.split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') unless location == 'remote' }.compact
     { city: locations }
   end
 

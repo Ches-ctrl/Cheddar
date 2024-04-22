@@ -40,7 +40,7 @@ module Ats
           benefits: data['benefits'],
           posting_url: data['url'],
           deadline: (Date.parse(data['deadline_at']) if data['deadline_at']),
-          remote_only: data['workplace_type'] == 'remote',
+          remote: data['workplace_type'] == 'remote',
           hybrid: data['workplace_type'] == 'hybrid'
         )
       end

@@ -21,7 +21,7 @@
         <% end %>
 
         <div class="text-sm">
-          <% if job.remote_only || job.locations.empty? %>
+          <% if job.remote || job.locations.empty? %>
             Remote
           <% else %>
             <%= job.locations.map(&:city).join(' | ') %>
@@ -42,7 +42,7 @@
       <div class="basic-info d-flex flex-column align-items-end justify-space-between text-sm">
         <div class="salaryBudget"><%= job.salary.present? ? job.salary : "<br>".html_safe %></div>
         <div class="my-1"><%= job.employment_type %> •
-          <% if job.remote_only %>
+          <% if job.remote %>
             <%= "Remote"%>
           <% elsif job.hybrid %>
             <%= "Hybrid" %>

@@ -28,7 +28,7 @@ module Ats
           title: data['text'],
           description: build_description(data),
           non_geocoded_location_string: build_location_string(data),
-          remote_only: data['workplaceType'] == 'remote',
+          remote: data['workplaceType'] == 'remote',
           department: data.dig('categories', 'team'),
           date_posted: convert_from_milliseconds(data['createdAt'])
         )

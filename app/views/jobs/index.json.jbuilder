@@ -6,7 +6,7 @@ json.array! @jobs do |job|
   json.description job.description
   json.api_url job.api_url
   json.office job.office
-  json.remote_only job.remote_only
+  json.remote job.remote
   json.hybrid job.hybrid
   json.latitude job.latitude
   json.longitude job.longitude

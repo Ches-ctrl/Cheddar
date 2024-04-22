@@ -40,7 +40,7 @@ module Standardizer
       end
 
       @job.hybrid = hybrid
-      @job.remote_only ||= @job.locations.empty?
+      @job.remote ||= @job.locations.empty?
     end
 
     private

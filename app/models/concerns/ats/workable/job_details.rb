@@ -18,7 +18,7 @@ module Ats
           requirements: data['requirements'],
           benefits: data['benefits'],
           date_posted: (Date.parse(data['published']) if data['published']),
-          remote_only: data['workplace'] == 'remote',
+          remote: data['workplace'] == 'remote',
           hybrid: data['workplace'] == 'hybrid'
         )
       end

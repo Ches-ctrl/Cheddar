@@ -18,7 +18,7 @@ class CategorySidebar
 
     locations = []
     jobs.each do |job|
-      if job.remote_only
+      if job.remote
         locations << ["Remote (#{job.countries.map(&:name).join(', ')})"]
       else
         job.locations.includes(:country).each do |location|
