@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_23_062753) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_23_183523) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -142,35 +142,35 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_23_062753) do
   create_table "jobs", force: :cascade do |t|
     t.string "title"
     t.string "description", default: "n/a"
-    t.string "salary"
-    t.date "date_posted"
-    t.text "application_criteria"
-    t.date "deadline"
-    t.string "posting_url"
     t.bigint "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "applicant_tracking_system_id"
-    t.text "application_details"
+    t.string "ats_job_id"
+    t.string "posting_url"
+    t.string "apply_url"
+    t.string "api_url"
+    t.boolean "live", default: true
+    t.date "date_posted"
+    t.date "deadline"
+    t.text "application_criteria"
     t.text "responsibilities"
     t.text "requirements"
     t.text "benefits"
     t.string "employment_type", default: "Full-time"
-    t.string "non_geocoded_location_string"
-    t.string "industry"
     t.string "seniority"
-    t.integer "applicants_count", default: 0
-    t.integer "cheddar_applicants_count", default: 0
-    t.integer "bonus"
+    t.string "industry"
     t.string "sub_industry"
-    t.boolean "live", default: false
-    t.string "ats_job_id"
     t.string "department"
-    t.string "api_url"
     t.string "office"
     t.boolean "remote"
     t.boolean "hybrid"
+    t.string "non_geocoded_location_string"
+    t.string "salary"
+    t.integer "bonus"
     t.boolean "apply_with_cheddar", default: false
+    t.integer "applicants_count", default: 0
+    t.integer "cheddar_applicants_count", default: 0
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
