@@ -20,9 +20,9 @@ class Company < ApplicationRecord
   private
 
   # TODO: Fix this as may break with new naming setup @Dan
+  # TODO: Do we call this? If not then remove
 
   def standardize_name
-    name = name
     name.strip!
     self.name = name.split.reject { |word| COMPANY_NAME_FILTER.any? { |filter| word.match?(filter) } }.join(' ')
   end
