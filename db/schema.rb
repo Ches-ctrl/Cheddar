@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_22_092557) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_23_060045) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -251,6 +251,25 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_22_092557) do
     t.index ["job_playlist_id"], name: "index_playlist_jobs_on_job_playlist_id"
   end
 
+  create_table "requirements", force: :cascade do |t|
+    t.bigint "job_id"
+    t.boolean "work_eligibility"
+    t.string "difficulty"
+    t.integer "no_of_qs", default: 0
+    t.boolean "create_account", default: false
+    t.boolean "resume", default: true
+    t.boolean "cover_letter", default: false
+    t.boolean "video_interview", default: false
+    t.boolean "online_assessment", default: false
+    t.boolean "first_round", default: true
+    t.boolean "second_round", default: true
+    t.boolean "third_round", default: false
+    t.boolean "assessment_centre", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_requirements_on_job_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -320,6 +339,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_22_092557) do
   add_foreign_key "locations", "countries"
   add_foreign_key "playlist_jobs", "job_playlists"
   add_foreign_key "playlist_jobs", "jobs"
+  add_foreign_key "requirements", "jobs"
   add_foreign_key "saved_jobs", "jobs"
   add_foreign_key "saved_jobs", "users"
 end
