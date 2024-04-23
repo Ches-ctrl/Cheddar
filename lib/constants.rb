@@ -138,7 +138,9 @@ module Constants
     '£' => ['£', ' GBP'],
     '€' => ['€', ' EUR'],
     'usd' => ['$', ' USD'],
-    'can' => ['$', ' CAN'],
+    'can' => ['$', ' CAD'],
+    'cdn' => ['$', ' CAD'],
+    'cad' => ['$', ' CAD'],
     'aud' => ['$', ' AUD'],
     'gbp' => ['£', ' GBP'],
     'eur' => ['€', ' EUR']
