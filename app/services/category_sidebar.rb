@@ -1,11 +1,4 @@
 class CategorySidebar
-  WHEN_POSTED = [
-    'Today',
-    'Last 3 days',
-    'Within a week',
-    'Within a month',
-    'Any time'
-  ]
   SENIORITIES = [
     'Internship',
     'Entry-Level',
@@ -48,13 +41,14 @@ class CategorySidebar
 
   private_class_method def self.initialize_category_hashes
     @count = {
-      when_posted: CONVERT_TO_DAYS.keys.to_h { |period| [period, 0] },
+      when_posted: CONVERT_TO_DAYS.keys.reverse.to_h { |period| [period, 0] },
       seniorities: SENIORITIES.to_h { |seniority| [seniority, 0] },
       locations: Hash.new(0),
       roles: Hash.new(0),
       types: Hash.new(0),
       companies: Hash.new(0)
     }
+    @date_cutoffs = CONVERT_TO_DAYS.transform_values { |v| v.days.ago.beginning_of_day }
     # TODO: look for ways to improve efficiency below. Converting to_set makes lookup faster.
     @jobs_with_any_posted = Job.including_any(@params, :posted).to_set
     @jobs_with_any_seniority = Job.including_any(@params, :seniority).to_set
@@ -75,7 +69,7 @@ class CategorySidebar
 
   private_class_method def self.build_resources_hash
     @resources = {}
-    @count.each { |title, hash| @count[title] = hash.sort_by { |_k, v| -v }.to_h unless %i[posted seniorities].include?(title) }
+    @count.each { |title, hash| @count[title] = hash.sort_by { |_k, v| -v }.to_h unless %i[when_posted seniorities].include?(title) }
     build_posted_array
     build_seniority_array
     build_location_array
@@ -86,8 +80,9 @@ class CategorySidebar
   end
 
   private_class_method def self.update_when_posted
-    CONVERT_TO_DAYS.each_key do |k|
-      @count[:when_posted][k] += 1 if @job.date_created.end_of_day > CONVERT_TO_DAYS[k].days.ago.beginning_of_day
+    date_created = @job.date_created.end_of_day
+    @date_cutoffs.each do |period, cutoff|
+      @count[:when_posted][period] += 1 if date_created > cutoff
     end
   end
 
