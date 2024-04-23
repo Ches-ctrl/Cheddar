@@ -112,16 +112,21 @@ class Job < ApplicationRecord
   end
 
   def update_requirements
-    self.no_of_questions = application_criteria.size
+    # All jobs need requirements so we should always create these on job creation
+    requirement = Requirement.create(job: self)
+    requirement.no_of_qs = application_criteria.size
 
-    update_requirement('resume', 'req_cv')
-    update_requirement('cover_letter', 'req_cover_letter')
-    update_requirement('work_eligibility', 'work_eligibility')
+    # TODO: Add overall assessment of difficulty based on number of questions, type of questions, etc.
+    # TODO: Update this to match new structure with requirements not on job
+
+    # update_requirement('resume', 'resume')
+    # update_requirement('cover_letter', 'cover_letter')
+    # update_requirement('work_eligibility', 'work_eligibility')
   end
 
-  def update_requirement(criterion_key, attribute_name)
-    send("#{attribute_name}=", application_criteria.dig(criterion_key, 'required') || false)
-  end
+  # def update_requirement(criterion_key, attribute_name)
+  #   send("#{attribute_name}=", application_criteria.dig(criterion_key, 'required') || false)
+  # end
 
   def standardize_attributes
     Standardizer::JobStandardizer.new(self).standardize
@@ -215,13 +220,3 @@ end
 # t.integer "cheddar_applicants_count", default: 0
 
 # t.string "non_geocoded_location_string"
-
-# t.integer "no_of_questions", default: 0
-# t.boolean "create_account", default: false
-# t.boolean "req_cv", default: true
-# t.boolean "req_cover_letter", default: false
-# t.boolean "req_video_interview", default: false
-# t.boolean "req_online_assessment", default: false
-# t.boolean "req_first_round", default: true
-# t.boolean "req_second_round", default: true
-# t.boolean "req_assessment_centre", default: false
