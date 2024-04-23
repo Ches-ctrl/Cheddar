@@ -55,15 +55,22 @@ class CategorySidebar
       types: Hash.new(0),
       companies: Hash.new(0)
     }
+    # TODO: look for ways to improve efficiency below. Converting to_set makes lookup faster.
+    @jobs_with_any_posted = Job.including_any(@params, :posted).to_set
+    @jobs_with_any_seniority = Job.including_any(@params, :seniority).to_set
+    @jobs_with_any_location = Job.including_any(@params, :location).to_set
+    @jobs_with_any_role = Job.including_any(@params, :roles).to_set
+    @jobs_with_any_type = Job.including_any(@params, :type).to_set
+    @jobs_with_any_company = Job.including_any(@params, :company).to_set
   end
 
   private_class_method def self.update_category_hashes
-    update_when_posted if Job.including_any(@params, :posted).include?(@job)
-    update_seniorities if Job.including_any(@params, :seniority).include?(@job)
-    update_locations if Job.including_any(@params, :location).include?(@job)
-    update_roles if Job.including_any(@params, :roles).include?(@job)
-    update_types if Job.including_any(@params, :type).include?(@job)
-    update_companies if Job.including_any(@params, :company).include?(@job)
+    update_when_posted if @jobs_with_any_posted.include?(@job)
+    update_seniorities if @jobs_with_any_seniority.include?(@job)
+    update_locations if @jobs_with_any_location.include?(@job)
+    update_roles if @jobs_with_any_role.include?(@job)
+    update_types if @jobs_with_any_type.include?(@job)
+    update_companies if @jobs_with_any_company.include?(@job)
   end
 
   private_class_method def self.build_resources_hash
