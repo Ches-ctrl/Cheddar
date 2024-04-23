@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_23_060045) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_23_062753) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -163,18 +163,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_23_060045) do
     t.integer "cheddar_applicants_count", default: 0
     t.integer "bonus"
     t.string "sub_industry"
-    t.boolean "create_account", default: false
-    t.boolean "req_cv", default: true
-    t.boolean "req_cover_letter", default: false
-    t.boolean "req_video_interview", default: false
-    t.boolean "req_online_assessment", default: false
-    t.boolean "req_first_round", default: true
-    t.boolean "req_second_round", default: true
-    t.boolean "req_assessment_centre", default: false
     t.boolean "live", default: false
     t.string "ats_job_id"
-    t.integer "no_of_questions", default: 0
-    t.boolean "work_eligibility", default: true
     t.string "department"
     t.string "api_url"
     t.string "office"
