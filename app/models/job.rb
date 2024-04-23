@@ -171,7 +171,6 @@ class Job < ApplicationRecord
   end
 end
 
-
 # TODO: Move application_requirements into a separate table requirements so job.requirements.cv is the query
 # TODO: add description_html and other html fields?
 # TODO: fully reconcile job fields by back-engineering ATS APIs - requires data build prior to this
