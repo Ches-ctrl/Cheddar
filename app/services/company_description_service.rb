@@ -20,8 +20,8 @@ class CompanyDescriptionService
 
       # TODO: fix as will no longer work with name rather than name @Dan
 
-      name = match.dig('identifier', 'value')
-      return unless name.downcase.gsub(' ', '') == name.downcase.gsub(' ', '')
+      check_name = match.dig('identifier', 'value')
+      return unless check_name.downcase.gsub(' ', '') == name.downcase.gsub(' ', '')
 
       description = match['short_description']
       keywords = match.dig('identifier', 'permalink').split('-')
