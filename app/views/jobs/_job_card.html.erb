@@ -62,9 +62,9 @@
       <div class="d-flex flex-column align-items-center justify-content-center text-sm">
         <div class="apply-rating">
           <%# To-do: Create a difficulty column for jobs table and transfer this logic to JobCreator; eventually GetFormFieldsJob will distinguish between input and text fields (for longer responses), which will help with accurate classification %>
-          <% if job.no_of_questions < 8 && !job.req_cover_letter %>
+          <% if job.requirement.no_of_qs < 8 && !job.requirement.cover_letter %>
             <% apply_rating = 'easy' %>
-          <% elsif job.no_of_questions > 15 %>
+          <% elsif job.requirement.no_of_qs > 15 %>
             <% apply_rating = 'hard' %>
           <% else %>
             <% apply_rating = 'medium' %>

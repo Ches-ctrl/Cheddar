@@ -36,8 +36,8 @@ module Ats
           posting_url: data['careers_apply_url'],
           date_posted: (Date.parse(data['updated_at']) if data['updated_at']),
           seniority: fetch_seniority(data),
-          req_cv: data['options_cv'] == 'required',
-          req_cover_letter: data['options_cover_letter'] == 'required',
+          # req_cv: data['options_cv'] == 'required',
+          # req_cover_letter: data['options_cover_letter'] == 'required',
           remote: data['remote'],
           hybrid: data['hybrid']
         )
