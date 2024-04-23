@@ -24,7 +24,8 @@ class CategorySidebar
     'Any time' => 99_999
   }
 
-  def self.build_with(params)
+  def self.build_with(jobs, params)
+    @jobs = jobs
     @params = params
     Rails.cache.fetch('category_sidebar', expires_in: 2.hours, race_condition_ttl: 10.seconds) do
       fetch_sidebar_data
@@ -50,19 +51,19 @@ class CategorySidebar
       when_posted: CONVERT_TO_DAYS.keys.to_h { |period| [period, 0] },
       seniorities: SENIORITIES.to_h { |seniority| [seniority, 0] },
       locations: Hash.new(0),
-      roles: Role.all.to_h { |role| [role.name, 0] },
+      roles: Hash.new(0),
       types: Hash.new(0),
       companies: Hash.new(0)
     }
   end
 
   private_class_method def self.update_category_hashes
-    update_when_posted
-    update_seniorities
-    update_locations
-    update_roles
-    update_types
-    update_companies
+    update_when_posted if Job.including_any(@params, :posted).include?(@job)
+    update_seniorities if Job.including_any(@params, :seniority).include?(@job)
+    update_locations if Job.including_any(@params, :location).include?(@job)
+    update_roles if Job.including_any(@params, :roles).include?(@job)
+    update_types if Job.including_any(@params, :type).include?(@job)
+    update_companies if Job.including_any(@params, :company).include?(@job)
   end
 
   private_class_method def self.build_resources_hash

@@ -103,6 +103,11 @@ class Job < ApplicationRecord
     params[:query].present? ? jobs.search_job(params[:query]) : jobs
   end
 
+  def self.including_any(params, param)
+    exclusive_params = params.reject { |k, _v| k == param.to_s }
+    filter_and_sort(exclusive_params)
+  end
+
   private
 
   def set_date_created
