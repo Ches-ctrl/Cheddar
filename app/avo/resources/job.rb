@@ -30,17 +30,8 @@ module Avo
         field :cheddar_applicants_count, as: :number
         field :bonus, as: :number
         field :sub_industry, as: :text
-        field :create_account, as: :boolean
-        field :req_cv, as: :boolean
-        field :req_cover_letter, as: :boolean
-        field :req_video_interview, as: :boolean
-        field :req_online_assessment, as: :boolean
-        field :req_first_round, as: :boolean
-        field :req_second_round, as: :boolean
-        field :req_assessment_centre, as: :boolean
         field :live, as: :boolean
         field :ats_job_id, as: :text
-        field :ats_format_id, as: :number
         field :company, as: :belongs_to
         field :applicant_tracking_system, as: :belongs_to
         field :job_applications, as: :has_many
