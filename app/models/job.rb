@@ -9,6 +9,8 @@ class Job < ApplicationRecord
   belongs_to :company
   belongs_to :applicant_tracking_system, optional: true # TODO: remove optional
 
+  has_one :requirement, dependent: :destroy
+
   has_many :job_applications, dependent: :destroy
   has_many :saved_jobs, dependent: :destroy
   has_many :playlist_jobs
