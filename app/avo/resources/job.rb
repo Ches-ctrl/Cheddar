@@ -17,7 +17,6 @@ module Avo
         field :posting_url, as: :text
         field :company_id, as: :number
         field :applicant_tracking_system_id, as: :number
-        field :application_details, as: :textarea
         # field :responsibilities, as: :textarea
         # field :requirements, as: :textarea
         # field :benefits, as: :textarea
