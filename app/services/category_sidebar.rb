@@ -53,7 +53,7 @@ class CategorySidebar
     @jobs_with_any_posted = Job.including_any(@params, :posted).to_set
     @jobs_with_any_seniority = Job.including_any(@params, :seniority).to_set
     @jobs_with_any_location = Job.including_any(@params, :location).to_set
-    @jobs_with_any_role = Job.including_any(@params, :roles).to_set
+    @jobs_with_any_role = Job.including_any(@params, :role).to_set
     @jobs_with_any_type = Job.including_any(@params, :type).to_set
     @jobs_with_any_company = Job.including_any(@params, :company).to_set
   end
