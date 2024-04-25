@@ -39,20 +39,27 @@ module CheckUrlIsValid
     return response
   end
 
-  def get(url, retries = 1)
+  def get(url, max_retries = 1)
     uri = URI(url)
-    retries.times do |attempt|
+    retries = 0
+    begin
       response = Net::HTTP.get(uri)
-      return response
     rescue Errno::ECONNRESET, OpenSSL::SSL::SSLError => e
-      sleep 2 ** (attempt + 1) # Exponential backoff
-      retry
+      retries += 1
+      if retries <= max_retries
+        sleep 2 ** retries # Exponential backoff
+        retry
+      else
+        puts "Failed after #{retries} retries: #{error.message}"
+        return nil
+      end
     rescue Net::HTTPError => e
       puts "Failed to load #{url}: #{e.message}" # Don't retry
       return nil
     end
-    puts "Failed after #{retries} retries: #{error.message}"
-    return nil
+
+    p response
+    return response
   end
 
   def get_json_data(api_url)
@@ -60,7 +67,6 @@ module CheckUrlIsValid
     begin
       JSON.parse(response)
     rescue JSON::ParserError => e
-      p response
       puts "Error fetching JSON data from #{api_url}: #{e.message}"
       return {}
     end
