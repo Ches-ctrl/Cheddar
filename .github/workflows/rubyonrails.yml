@@ -13,6 +13,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      SCRAPING_ANT_API_KEY: ${{ secrets.SCRAPING_ANT_API_KEY }}
     services:
       redis:
         image: redis:latest

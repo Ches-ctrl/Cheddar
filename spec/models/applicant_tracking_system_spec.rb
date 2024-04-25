@@ -13,7 +13,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model do
 
   context "with the currently written modules" do
     before do
-      allow($stdout).to receive(:write) # suppresses terminal clutter
+      # allow($stdout).to receive(:write) # suppresses terminal clutter
 
       ats_csv = 'storage/csv/ats_systems.csv'
       AtsBuilder.new(ats_csv).build
@@ -88,9 +88,9 @@ RSpec.describe ApplicantTrackingSystem, type: :model do
       @smartrecruiters.find_or_create_company('Gousto1')
       expect(Company.last.company_name).to eq('Gousto')
 
-      # This test runs into a Cloudflare rate-limiting firewall
-      # @workable.find_or_create_company('kroo')
-      # expect(Company.last.company_name).to eq('Kroo Bank Ltd')
+      # This test will route through proxy when API rate limit is reached
+      @workable.find_or_create_company('kroo')
+      expect(Company.last.company_name).to eq('Kroo Bank Ltd')
     end
 
     it 'can create a job with AshbyHQ' do
