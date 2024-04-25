@@ -63,7 +63,7 @@ module CheckUrlIsValid
   end
 
   def get_with_proxy(url)
-    proxy_url = "https://api.scrapingant.com/v2/general?url=#{url}&x-api-key=#{ENV.fetch('SCRAPING_ANT_API_KEY')}"
+    proxy_url = "http://api.scrapeup.com/?api_key=#{ENV.fetch('SCRAPEUP_API_KEY')}&url=#{url}"
     puts "REQUEST DENIED, REROUTING THROUGH PROXY: #{proxy_url}"
     get(proxy_url)
   end
@@ -76,9 +76,7 @@ module CheckUrlIsValid
     rescue JSON::ParserError => e
       if use_proxy && retries_left.positive?
         retries_left -= 1
-        html = get_with_proxy(api_url)
-        doc = Nokogiri::HTML(html)
-        response = doc.at('pre').text
+        response = get_with_proxy(api_url)
         retry
       else
         puts "Error fetching JSON data from #{api_url}: #{e.message}"

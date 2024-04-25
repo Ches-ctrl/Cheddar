@@ -13,7 +13,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model do
 
   context "with the currently written modules" do
     before do
-      # allow($stdout).to receive(:write) # suppresses terminal clutter
+      allow($stdout).to receive(:write) # suppresses terminal clutter
 
       ats_csv = 'storage/csv/ats_systems.csv'
       AtsBuilder.new(ats_csv).build
