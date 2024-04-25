@@ -1,9 +1,6 @@
 module Ats
   module Greenhouse
     module JobDetails
-      include ActionView::Helpers::NumberHelper
-      include Constants
-
       private
 
       def fetch_title_and_location(job_data)

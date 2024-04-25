@@ -1,6 +1,8 @@
 module Ats
   module Smartrecruiters
     module CompanyDetails
+      private
+
       def company_details(ats_identifier)
         url_ats_api = "#{base_url_api}#{ats_identifier}/postings"
         data = get_json_data(url_ats_api)

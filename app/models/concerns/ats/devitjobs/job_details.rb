@@ -1,8 +1,6 @@
 module Ats
   module Devitjobs
     module JobDetails
-      include ActionView::Helpers::NumberHelper
-
       private
 
       def fetch_title_and_location(job_data)

@@ -1,9 +1,6 @@
 module Ats
   module Pinpointhq
     module JobDetails
-      include ActionView::Helpers::NumberHelper
-      include Constants
-
       private
 
       def fetch_job_data(job)
