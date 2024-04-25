@@ -2,8 +2,6 @@ class ApplicantTrackingSystem < ApplicationRecord
   include CheckUrlIsValid
   include AtsSystemParser
   include AtsRouter
-  include ActionView::Helpers::NumberHelper
-  include Constants
 
   has_many :companies
   has_many :jobs, dependent: :destroy
