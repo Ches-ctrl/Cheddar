@@ -13,8 +13,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      SCRAPING_ANT_API_KEY: ${{ secrets.SCRAPING_ANT_API_KEY }}
     services:
       redis:
         image: redis:latest
@@ -29,6 +27,7 @@ jobs:
           POSTGRES_USER: rails
           POSTGRES_PASSWORD: password
     env:
+      SCRAPING_ANT_API_KEY: ${{ secrets.SCRAPING_ANT_API_KEY }}
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
     steps:
