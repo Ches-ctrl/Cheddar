@@ -63,32 +63,48 @@ RSpec.describe ApplicantTrackingSystem, type: :model do
       expect(@workable.parse_url(workable_url)).to eq(['kroo', '13AE03BA88'])
     end
 
-    it 'can create a company with each ATS' do
+    it 'can create a company with AshbyHQ' do
       @ashbyhq.find_or_create_company('lightdash')
       expect(Company.last.company_name).to eq('Lightdash')
+    end
 
-      @bamboohr.find_or_create_company('avidbots')
+    it 'can create a company with BambooHR' do
+    @bamboohr.find_or_create_company('avidbots')
       expect(Company.last.company_name).to eq('Avidbots')
+    end
 
+    it 'can create a company with Greenhouse' do
       @gh.find_or_create_company('codepath')
       expect(Company.last.company_name).to eq('CodePath')
+    end
 
+    it 'can create a company with Lever' do
       @lever.find_or_create_company('GoToGroup')
       expect(Company.last.company_name).to eq('GoTo Group')
+    end
 
+    it 'can create a company with Manatal' do
       @manatal.find_or_create_company('ptc-group')
       expect(Company.last.company_name).to eq('PTC Group')
+    end
 
+    it 'can create a company with PinpointHQ' do
       @pinpointhq.find_or_create_company('bathspa')
       expect(Company.last.company_name).to eq('Bath Spa University')
+    end
 
+    it 'can create a company with Recruitee' do
       @recruitee.find_or_create_company('midas')
       expect(Company.last.company_name).to eq('Midas')
+    end
 
+    it 'can create a company with SmartRecruiters' do
       @smartrecruiters.find_or_create_company('Gousto1')
       expect(Company.last.company_name).to eq('Gousto')
+    end
 
       # This test will route through proxy when API rate limit is reached
+    it 'can create a company with Workable' do
       @workable.find_or_create_company('kroo')
       expect(Company.last.company_name).to eq('Kroo Bank Ltd')
     end
@@ -170,6 +186,16 @@ RSpec.describe ApplicantTrackingSystem, type: :model do
       job_id = feed.dig('content', 0, 'id')
       company = @smartrecruiters.find_or_create_company('Gousto1')
       job = @smartrecruiters.find_or_create_job(company, job_id)
+      expect(job.job_title).to eq(job_title)
+    end
+
+    it 'can create a job with Workable' do
+      url = "https://jobs.workable.com/api/v1/companies/b7243622-5cc9-4572-9d52-e76cd62d85d8"
+      feed = get_json_data(url)
+      job_title = feed.dig('jobs', 0, 'title')
+      job_id = feed.dig('jobs', 0, 'applyUrl').match(%r{https://apply\.workable\.com/j/(\w+)/apply})[1]
+      company = @workable.find_or_create_company('southern-national')
+      job = @workable.find_or_create_job(company, job_id)
       expect(job.job_title).to eq(job_title)
     end
   end
