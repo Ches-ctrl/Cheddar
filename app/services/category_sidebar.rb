@@ -80,9 +80,9 @@ class CategorySidebar
   end
 
   private_class_method def self.update_when_posted
-    date_created = @job.date_created.end_of_day
+    date_posted = @job.date_posted.end_of_day
     @date_cutoffs.each do |period, cutoff|
-      @count[:when_posted][period] += 1 if date_created > cutoff
+      @count[:when_posted][period] += 1 if date_posted > cutoff
     end
   end
 
