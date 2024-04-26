@@ -5,7 +5,7 @@ until response do
   puts "Please enter a valid integer between 1 and 500:"
   response = gets.chomp
   if response == 'run updater'
-    # Scraper::DevitJob.perform_later
+    Scraper::WorkableJob.perform_later
     # ImportCompaniesFromList.new.call
     # Xml::WorkableJob.perform_later
     # ScrapeTrueUpJob.perform_later
@@ -98,7 +98,7 @@ puts "Preparing to re-seed database with #{response} Greenhouse jobs...\n"
 
 puts "Creating new jobs via Greenhouse API..."
 
-defunct_urls = []
+# defunct_urls = []
 
 puts "\nBuilding a list of job urls from the following companies:"
 

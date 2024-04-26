@@ -99,8 +99,13 @@ class Job < ApplicationRecord
     }.compact
 
     associations = build_associations(params)
-    jobs = joins(associations).where(filters)
+    jobs = left_joins(associations).where(filters)
     params[:query].present? ? jobs.search_job(params[:query]) : jobs
+  end
+
+  def self.including_any(params, param)
+    exclusive_params = params.reject { |k, _v| k == param.to_s }
+    filter_and_sort(exclusive_params)
   end
 
   private
@@ -143,7 +148,7 @@ class Job < ApplicationRecord
   private_class_method def self.filter_by_location(param)
     return unless param.present?
 
-    locations = param.split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') unless location == 'remote_only' }.compact
+    locations = param.split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') unless location == 'remote_only' }
     { city: locations }
   end
 

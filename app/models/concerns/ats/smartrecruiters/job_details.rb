@@ -8,21 +8,30 @@ module Ats
       end
 
       def job_details(job, data)
-        country_custom_field = data['customField'].find { |field| field['fieldId'] == "COUNTRY" }
-
         job.assign_attributes(
           job_title: data['name'],
           job_description: build_description(data.dig('jobAd', 'sections')),
           job_posting_url: data['applyUrl'],
-          non_geocoded_location_string: [data.dig('location', 'city'), country_custom_field['valueLabel']].reject(&:blank?).join(', '),
+          remote_only: data.dig('location', 'remote'),
+          non_geocoded_location_string: fetch_location(job, data),
           seniority: fetch_seniority(data),
           department: data.dig('department', 'label'),
           requirements: data.dig('jobAd', 'sections', 'qualifications', 'text'),
           date_created: (Date.parse(data['releasedDate']) if data['releasedDate']),
           industry: data.dig('industry', 'label'),
-          employment_type: data.dig('typeOfEmployment', 'label'),
-          remote_only: data.dig('location', 'remote')
+          employment_type: data.dig('typeOfEmployment', 'label')
         )
+      end
+
+      def fetch_location(job, data)
+        country_custom_field = data['customField']&.find { |field| field['fieldId'] == "COUNTRY" }
+        country_string = country_custom_field&.dig('valueLabel')
+
+        if job.remote_only
+          country_string
+        else
+          [data.dig('location', 'city'), country_string].reject(&:blank?).join(', ')
+        end
       end
 
       def fetch_seniority(data)
