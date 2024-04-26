@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_23_183523) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_24_064352) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,6 +70,26 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_23_183523) do
     t.text "cover_letter_content"
     t.boolean "required"
     t.index ["job_application_id"], name: "index_application_responses_on_job_application_id"
+  end
+
+  create_table "climate_commitments", force: :cascade do |t|
+    t.bigint "company_id"
+    t.string "data_source", null: false
+    t.string "eunzdp_lei"
+    t.string "ox_id_code"
+    t.boolean "race_to_zero"
+    t.boolean "sbti_commitment"
+    t.string "interim_target"
+    t.string "final_target"
+    t.integer "interim_target_year"
+    t.integer "final_target_year"
+    t.boolean "scope_1"
+    t.boolean "scope_2"
+    t.boolean "scope_3"
+    t.string "source_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_climate_commitments_on_company_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -315,6 +335,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_23_183523) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "application_responses", "job_applications"
+  add_foreign_key "climate_commitments", "companies"
   add_foreign_key "educations", "users"
   add_foreign_key "job_applications", "jobs"
   add_foreign_key "job_applications", "users"
