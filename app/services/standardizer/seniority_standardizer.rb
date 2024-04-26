@@ -23,6 +23,8 @@ module Standardizer
     end
 
     def standardize
+      return if @job.seniority
+
       SENIORITY_TITLES.each do |keyword, level|
         return @job.seniority = level if @job.title.downcase.match?(keyword)
       end

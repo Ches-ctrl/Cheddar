@@ -1,126 +1,84 @@
 require 'rails_helper'
 
 # rubocop:disable Metrics/BlockLength
-RSpec.feature "Jobs", type: :feature do
-  # TODO: Fix test suite
-
+RSpec.feature "Jobs index page", type: :feature do
   context "With jobs to display:" do
     before do
-      role_names = ["front_end", "back_end", "full_stack", "dev_ops", "qa_test_engineer", "mobile", "data_engineer"]
-
-      create_list(:role, role_names.size) do |role, index|
-        role.name = role_names[index]
-        role.save!
-      end
-      london = create(:location, city: "London")
-
-      create(:job, title: "Graduate Software Developer", seniority: 'Entry-Level', roles: [Role.find_by(name: 'mobile')])
-      create(:job, title: "Junior Test Developer", seniority: 'Junior', roles: [Role.find_by(name: 'dev_ops')])
-      create(:job, title: "Data Analyst", seniority: 'Mid-Level', roles: [Role.find_by(name: 'data_engineer')])
-      job1 = create(:job, title: "Senior UI Engineer", seniority: 'Senior', roles: [Role.find_by(name: 'front_end')])
-      job2 = create(:job, title: "Frontend Developer", description: "Ruby on Rails", roles: [Role.find_by(name: 'front_end')])
-      job3 = create(:job, title: "Ruby on Rails Developer")
-
-      create(:jobs_location, job: job1, location: london)
-      create(:jobs_location, job: job2, location: london)
-      create(:jobs_location, job: job3, location: london)
-
+      create(:job, :entry_level_mobile, title: "Graduate Software Developer")
+      create(:job, :junior_dev_ops, title: "Junior Test Developer")
+      create(:job, :mid_level_data, title: "Data Analyst")
+      create(:job, :senior_front_end, :in_london, title: "Senior UI Engineer")
+      create(:job, :ruby_front_end, :in_london, title: "Frontend Developer")
+      create(:job, :in_london, title: "Ruby on Rails Developer")
       visit jobs_path
     end
 
-    # scenario "Displays all jobs" do
-    #   expect(page).to have_content("Graduate Software Developer")
-    #   expect(page).to have_content("Data Analyst")
-    #   expect(page).to have_content("Senior UI Engineer")
-    #   expect(page).to have_content("#{Job.all.count} jobs")
-    # end
+    scenario "Displays all jobs" do
+      expect(page).to have_content("Graduate Software Developer")
+      expect(page).to have_content("Data Analyst")
+      expect(page).to have_content("Senior UI Engineer")
+      expect(page).to have_content("#{Job.all.count} jobs")
+    end
 
-    # scenario "User can select three jobs" do
-    #   all('.custom-checkbox').take(3).each do |checkbox|
-    #     checkbox.click
-    #   end
+    scenario 'User can query "Ruby on Rails" jobs' do
+      fill_in 'query', with: 'ruby on rails'
+      find('#search-button').click
 
-    #   all('.select-job-box').take(3).each do |checkbox|
-    #     expect(checkbox).to be_checked
-    #   end
+      expect(page).to have_content("Frontend Developer")
+      expect(page).to have_content("Ruby on Rails Developer")
 
-    #   expect(page).to have_button("Shortlist 3 Job")
-    # end
+      expect(page).not_to have_content("Senior UI Engineer")
+    end
 
-    # scenario "User can deselect two of them" do
-    #   all('.custom-checkbox').take(3).each do |checkbox|
-    #     checkbox.click
-    #   end
+    scenario "User can filter jobs by seniority" do
+      check('entry-level')
+      check('mid-level')
+      check('senior')
 
-    #   all('.custom-checkbox').take(2).each do |checkbox|
-    #     checkbox.click
-    #   end
+      expect(page).to have_content("Graduate Software Developer")
+      expect(page).to have_content("Data Analyst")
+      expect(page).to have_content("Senior UI Engineer")
 
-    #   expect(all('.select-job-box')[2]).to be_checked
-    #   expect(all('.select-job-box')[1]).to_not be_checked
+      expect(page).not_to have_content("Junior Test Developer")
+    end
 
-    #   expect(page).to have_button("Shortlist 1 Job")
-    # end
+    scenario "User can filter jobs by location" do
+      check('london')
 
-    # scenario 'User can query "Ruby on Rails" jobs' do
-    #   fill_in 'query', with: 'ruby on rails'
-    #   find('#search-button').click
+      expect(page).to have_content("#{Job.joins(jobs_locations: :location).where(locations: { city: 'London' }).count} jobs")
+    end
 
-    #   expect(page).to have_content("Frontend Developer")
-    #   expect(page).to have_content("Ruby on Rails Developer")
+    scenario "User can filter jobs by role" do
+      check('front_end')
+      check('data_engineer')
 
-    #   expect(page).not_to have_content("Senior UI Engineer")
-    # end
+      expect(page).to have_content("Senior UI Engineer")
+      expect(page).to have_content("Data Analyst")
 
-    # scenario "User can filter jobs by seniority" do
-    #   check('entry-level')
-    #   check('mid-level')
-    #   check('senior')
+      expect(page).not_to have_content("Junior Test Developer")
+    end
 
-    #   expect(page).to have_content("Graduate Software Developer")
-    #   expect(page).to have_content("Data Analyst")
-    #   expect(page).to have_content("Senior UI Engineer")
+    scenario "User can filter jobs by company" do
+      job1 = Job.first
+      job2 = Job.where.not(company: job1.company).first
+      company = job1.company.id.to_s
 
-    #   expect(page).not_to have_content("Junior Test Developer")
-    # end
+      check(company)
 
-    # scenario "User can filter jobs by location" do
-    #   check('london')
+      expect(page).to have_content(job1.title)
+      expect(page).not_to have_content(job2.title)
+    end
 
-    #   expect(page).to have_content("#{Job.joins(jobs_locations: :location).where(locations: { city: 'London' }).count} jobs")
-    # end
+    scenario 'User can query "Ruby" with multiple sidebar filters' do
+      fill_in 'query', with: 'ruby'
+      find('#search-button').click
 
-    # scenario "User can filter jobs by role" do
-    #   check('front_end')
-    #   check('data_engineer')
+      check('london')
+      check('front_end')
 
-    #   expect(page).to have_content("Senior UI Engineer")
-    #   expect(page).to have_content("Data Analyst")
-
-    #   expect(page).not_to have_content("Junior Test Developer")
-    # end
-
-    # scenario "User can filter jobs by company" do
-    #   job1 = Job.first
-    #   job2 = Job.where.not(company: job1.company).first
-    #   company = job1.company.id.to_s
-
-    #   check(company)
-
-    #   expect(page).to have_content(job1.title)
-    #   expect(page).not_to have_content(job2.title)
-    # end
-
-    # scenario 'User can query "Ruby" with multiple sidebar filters' do
-    #   fill_in 'query', with: 'ruby'
-    #   find('#search-button').click
-
-    #   check('london')
-    #   check('front_end')
-
-    #   expect(page).to have_content("Frontend Developer")
-    #   expect(page).not_to have_content("Ruby on Rails Developer")
-    # end
+      expect(page).to have_content("Frontend Developer")
+      expect(page).not_to have_content("Ruby on Rails Developer")
+    end
   end
 
   context "With multiple pages of jobs to display:" do
@@ -130,16 +88,16 @@ RSpec.feature "Jobs", type: :feature do
       visit jobs_path(seniority: 'Senior')
     end
 
-    # scenario "User can visit the next page of job postings" do
-    #   jobs_per_page = find('body').text.match(/Displaying Jobs? \d+ - (\d+) of \d+/i)[1].to_i
-    #   job1 = Job.all[jobs_per_page - 1]
-    #   job2 = Job.all[jobs_per_page + 1]
+    scenario "User can visit the next page of job postings" do
+      jobs_per_page = find('body').text.match(/Displaying Jobs? \d+ - (\d+) of \d+/i)[1].to_i
+      job1 = Job.all[jobs_per_page - 1]
+      job2 = Job.all[jobs_per_page + 1]
 
-    #   find('a[aria-label="Page 2"]').click
+      find('a[aria-label="Page 2"]').click
 
-    #   expect(page).to have_content(job2.title)
-    #   expect(page).not_to have_content(job1.title)
-    # end
+      expect(page).to have_content(job2.title)
+      expect(page).not_to have_content(job1.title)
+    end
   end
 
   context "With no jobs to display:" do
@@ -159,19 +117,19 @@ RSpec.feature "Jobs", type: :feature do
       visit jobs_path
     end
 
-    # scenario "User can save and unsave jobs by clicking the bookmark icon" do
-    #   2.times do
-    #     all('i.fa-regular.fa-bookmark').first.click
-    #     sleep 1
-    #   end
+    scenario "User can save and unsave jobs by clicking the bookmark icon" do
+      2.times do
+        all('i.fa-regular.fa-bookmark').first.click
+        sleep 1
+      end
 
-    #   expect(SavedJob.all.count).to eq(2)
+      expect(SavedJob.all.count).to eq(2)
 
-    #   all('i.fa-solid.fa-bookmark').first.click
-    #   sleep 1
+      all('i.fa-solid.fa-bookmark').first.click
+      sleep 1
 
-    #   expect(SavedJob.all.count).to eq(1)
-    # end
+      expect(SavedJob.all.count).to eq(1)
+    end
   end
 end
 # rubocop:enable Metrics/BlockLength

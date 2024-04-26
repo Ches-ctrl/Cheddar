@@ -14,6 +14,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     services:
+      redis:
+        image: redis:latest
+        ports:
+          - 6379:6379
       postgres:
         image: postgres:11-alpine
         ports:
@@ -23,6 +27,7 @@ jobs:
           POSTGRES_USER: rails
           POSTGRES_PASSWORD: password
     env:
+      SCRAPEUP_API_KEY: ${{ secrets.SCRAPEUP_API_KEY }}
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
     steps:

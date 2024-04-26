@@ -7,6 +7,10 @@ module Ats
         "#{base_url}#{ats_identifier}/jobs/#{job_id}"
       end
 
+      def fetch_job_data(job)
+        get_json_data(job.api_url, use_proxy: true)
+      end
+
       def job_details(job, data)
         job.assign_attributes(
           title: data['title'],
