@@ -93,7 +93,7 @@ class CategorySidebar
 
   private_class_method def self.update_locations
     if @job.remote
-      @count[:locations][['Remote Only']] += 1
+      @count[:locations][['remote']] += 1
     else
       @job.locations.includes(:country).each do |location|
         name = [location.city, location.country&.name].compact
