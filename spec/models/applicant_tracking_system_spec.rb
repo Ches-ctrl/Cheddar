@@ -65,48 +65,48 @@ RSpec.describe ApplicantTrackingSystem, type: :model do
 
     it 'can create a company with AshbyHQ' do
       @ashbyhq.find_or_create_company('lightdash')
-      expect(Company.last.company_name).to eq('Lightdash')
+      expect(Company.last.name).to eq('Lightdash')
     end
 
     it 'can create a company with BambooHR' do
     @bamboohr.find_or_create_company('avidbots')
-      expect(Company.last.company_name).to eq('Avidbots')
+      expect(Company.last.name).to eq('Avidbots')
     end
 
     it 'can create a company with Greenhouse' do
       @gh.find_or_create_company('codepath')
-      expect(Company.last.company_name).to eq('CodePath')
+      expect(Company.last.name).to eq('CodePath')
     end
 
     it 'can create a company with Lever' do
       @lever.find_or_create_company('GoToGroup')
-      expect(Company.last.company_name).to eq('GoTo Group')
+      expect(Company.last.name).to eq('GoTo Group')
     end
 
     it 'can create a company with Manatal' do
       @manatal.find_or_create_company('ptc-group')
-      expect(Company.last.company_name).to eq('PTC Group')
+      expect(Company.last.name).to eq('PTC Group')
     end
 
     it 'can create a company with PinpointHQ' do
       @pinpointhq.find_or_create_company('bathspa')
-      expect(Company.last.company_name).to eq('Bath Spa University')
+      expect(Company.last.name).to eq('Bath Spa University')
     end
 
     it 'can create a company with Recruitee' do
       @recruitee.find_or_create_company('midas')
-      expect(Company.last.company_name).to eq('Midas')
+      expect(Company.last.name).to eq('Midas')
     end
 
     it 'can create a company with SmartRecruiters' do
       @smartrecruiters.find_or_create_company('Gousto1')
-      expect(Company.last.company_name).to eq('Gousto')
+      expect(Company.last.name).to eq('Gousto')
     end
 
       # This test will route through proxy when API rate limit is reached
     it 'can create a company with Workable' do
       @workable.find_or_create_company('kroo')
-      expect(Company.last.company_name).to eq('Kroo Bank Ltd')
+      expect(Company.last.name).to eq('Kroo Bank Ltd')
     end
 
     it 'can create a job with AshbyHQ' do
