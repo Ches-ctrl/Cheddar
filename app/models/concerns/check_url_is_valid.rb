@@ -42,30 +42,49 @@ module CheckUrlIsValid
     return response
   end
 
-  def get(url, retries = 1)
+  def get(url, max_retries = 1)
     uri = URI(url)
-    retries.times do |attempt|
+    retries = 0
+    begin
       response = Net::HTTP.get(uri)
-      return response
     rescue Errno::ECONNRESET, OpenSSL::SSL::SSLError => e
-      sleep 2 ** (attempt + 1) # Exponential backoff
-      retry
+      retries += 1
+      if retries <= max_retries
+        sleep 2 ** retries # Exponential backoff
+        retry
+      else
+        puts "Failed after #{retries} retries: #{error.message}"
+        return nil
+      end
     rescue Net::HTTPError => e
       puts "Failed to load #{url}: #{e.message}" # Don't retry
       return nil
     end
-    puts "Failed after #{retries} retries: #{error.message}"
-    return nil
+
+    p response
+    return response
   end
 
-  def get_json_data(api_url)
+  def get_with_proxy(url)
+    proxy_url = "http://api.scrapeup.com/?api_key=#{ENV.fetch('SCRAPEUP_API_KEY')}&url=#{url}"
+    puts "REQUEST DENIED, REROUTING THROUGH PROXY: #{proxy_url}"
+    get(proxy_url)
+  end
+
+  def get_json_data(api_url, use_proxy: false)
+    retries_left = 1
     response = get(api_url)
     begin
       JSON.parse(response)
     rescue JSON::ParserError => e
-      p response
-      puts "Error fetching JSON data from #{api_url}: #{e.message}"
-      return {}
+      if use_proxy && retries_left.positive?
+        retries_left -= 1
+        response = get_with_proxy(api_url)
+        retry
+      else
+        puts "Error fetching JSON data from #{api_url}: #{e.message}"
+        return {}
+      end
     end
   end
 

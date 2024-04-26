@@ -13,8 +13,8 @@ module Constants
     /early.?career/ => 'Junior',
     /\bi\b/ => 'Junior',
     /associate/ => 'Junior',
-    /[gG]raduate/ => 'Graduate',
-    /[gG]rad/ => 'Graduate',
+    /[gG]raduate/ => 'Entry-Level',
+    /[gG]rad/ => 'Entry-Level',
     /[iI]ntern/ => 'Internship'
   }
 
@@ -138,7 +138,9 @@ module Constants
     '£' => ['£', ' GBP'],
     '€' => ['€', ' EUR'],
     'usd' => ['$', ' USD'],
-    'can' => ['$', ' CAN'],
+    'can' => ['$', ' CAD'],
+    'cdn' => ['$', ' CAD'],
+    'cad' => ['$', ' CAD'],
     'aud' => ['$', ' AUD'],
     'gbp' => ['£', ' GBP'],
     'eur' => ['€', ' EUR']

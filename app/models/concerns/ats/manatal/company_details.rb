@@ -4,7 +4,7 @@ module Ats
       private
 
       def company_details(ats_identifier)
-        url_ats_api = "#{url_api}#{ats_identifier}"
+        url_ats_api = "#{url_api}#{ats_identifier}/"
         data = get_json_data(url_ats_api)
         {
           name: data['name'],

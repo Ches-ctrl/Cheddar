@@ -21,7 +21,7 @@ module Standardizer
       return if matches.empty?
 
       currency_match = matches.find do |expression|
-        expression[0].match?(/(gbp|eur|usd|can|aud)/i)
+        expression[0].match?(/(gbp|eur|usd|can|cdn|cad|aud)/i)
       end&.first&.downcase&.gsub(/[^a-z]/, '') || matches[0][0].match(/([£$€])/)[1]
       currency = currency_match.blank? ? ['', ''] : CURRENCY_CONVERTER[currency_match]
 
@@ -32,7 +32,7 @@ module Standardizer
 
       if currency_match == '$' && !@job.countries.empty?
         currency[1] = ' AUD' if @job.countries.first.name == 'Australia'
-        currency[1] = ' CAN' if @job.countries.first.name == 'Canada'
+        currency[1] = ' CAD' if @job.countries.first.name == 'Canada'
       end
 
       @job.salary = number_to_currency(salary_low, unit: currency[0], precision: 0) +

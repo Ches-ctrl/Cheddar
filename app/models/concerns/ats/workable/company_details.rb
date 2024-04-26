@@ -7,7 +7,7 @@ module Ats
         # TODO: Add capabilitiy to handle logos, mailbox, etc.
         url_ats_api = "#{url_api}#{ats_identifier}"
         url_ats_main = "#{url_base}#{ats_identifier}"
-        data = get_json_data(url_ats_api)
+        data = get_json_data(url_ats_api, use_proxy: true)
         url_careers = check_for_careers_url_redirect(url_ats_main)
         {
           name: data['name'],
