@@ -37,7 +37,7 @@ FactoryBot.define do
     end
 
     trait :ruby_front_end do
-      job_description { 'Ruby on Rails' }
+      description { 'Ruby on Rails' }
       after(:build) do |job|
         job.roles << Role.find_or_create_by(name: 'front_end')
       end
