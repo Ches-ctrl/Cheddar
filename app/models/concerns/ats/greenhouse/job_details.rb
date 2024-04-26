@@ -33,7 +33,7 @@ module Ats
           non_geocoded_location_string: data.dig('location', 'name'),
           department: data.dig('departments', 0, 'name'),
           office: data.dig('offices', 0, 'name'),
-          date_posted: convert_from_iso8601(data['updated_at'])
+          date_posted: convert_from_iso8601(data['updated_at']),
           employment_type: fetch_employment_type(data) || 'Full-time',
           salary: fetch_salary(data)
         )
