@@ -112,91 +112,91 @@ RSpec.describe ApplicantTrackingSystem, type: :model do
     it 'can create a job with AshbyHQ' do
       url = "https://api.ashbyhq.com/posting-api/job-board/lightdash?includeCompensation=true"
       feed = get_json_data(url)
-      job_title = feed.dig('jobs', 0, 'title')
+      title = feed.dig('jobs', 0, 'title')
       job_id = feed.dig('jobs', 0, 'id')
       company = @ashbyhq.find_or_create_company('lightdash')
       job = @ashbyhq.find_or_create_job(company, job_id)
-      expect(job.job_title).to eq(job_title)
+      expect(job.title).to eq(title)
     end
 
     it 'can create a job with BambooHR' do
       url = "https://premise.bamboohr.com/careers/list"
       feed = get_json_data(url)
-      job_title = feed.dig('result', 0, 'jobOpeningName')
+      title = feed.dig('result', 0, 'jobOpeningName')
       job_id = feed.dig('result', 0, 'id')
       company = @bamboohr.find_or_create_company('premise')
       job = @bamboohr.find_or_create_job(company, job_id)
-      expect(job.job_title).to eq(job_title)
+      expect(job.title).to eq(title)
     end
 
     it 'can create a job with Greenhouse' do
       url = "https://boards-api.greenhouse.io/v1/boards/codepath/jobs/"
       feed = get_json_data(url)
-      job_title = feed.dig('jobs', 0, 'title')
+      title = feed.dig('jobs', 0, 'title')
       job_id = feed.dig('jobs', 0, 'id')
       company = @gh.find_or_create_company('codepath')
       job = @gh.find_or_create_job(company, job_id)
-      expect(job.job_title).to eq(job_title)
+      expect(job.title).to eq(title)
     end
 
     it 'can create a job with Lever' do
       url = "https://api.lever.co/v0/postings/GoToGroup/?mode=json"
       feed = get_json_data(url)
-      job_title = feed.dig(0, 'text')
+      title = feed.dig(0, 'text')
       job_id = feed.dig(0, 'id')
       company = @lever.find_or_create_company('GoToGroup')
       job = @lever.find_or_create_job(company, job_id)
-      expect(job.job_title).to eq(job_title)
+      expect(job.title).to eq(title)
     end
 
     it 'can create a job with Manatal' do
       url = "https://core.api.manatal.com/open/v3/career-page/ptc-group/jobs/"
       feed = get_json_data(url)
-      job_title = feed.dig('results', 0, 'position_name')
+      title = feed.dig('results', 0, 'position_name')
       job_id = feed.dig('results', 0, 'hash')
       company = @manatal.find_or_create_company('ptc-group')
       job = @manatal.find_or_create_job(company, job_id)
-      expect(job.job_title).to eq(job_title)
+      expect(job.title).to eq(title)
     end
 
     it 'can create a job with PinpointHQ' do
       url = "https://bathspa.pinpointhq.com/postings.json"
       feed = get_json_data(url)
-      job_title = feed.dig('data', 0, 'title')
+      title = feed.dig('data', 0, 'title')
       job_id = feed.dig('data', 0, 'path').sub('/en/postings/', '')
       company = @pinpointhq.find_or_create_company('bathspa')
       job = @pinpointhq.find_or_create_job(company, job_id)
-      expect(job.job_title).to eq(job_title)
+      expect(job.title).to eq(title)
     end
 
     it 'can create a job with Recruitee' do
       url = "https://midas.recruitee.com/api/offers/"
       feed = get_json_data(url)
-      job_title = feed.dig('offers', 0, 'title')
+      title = feed.dig('offers', 0, 'title')
       job_id = feed.dig('offers', 0, 'slug')
       company = @recruitee.find_or_create_company('midas')
       job = @recruitee.find_or_create_job(company, job_id)
-      expect(job.job_title).to eq(job_title)
+      expect(job.title).to eq(title)
     end
 
     it 'can create a job with SmartRecruiters' do
       url = "https://api.smartrecruiters.com/v1/companies/Gousto1/postings"
       feed = get_json_data(url)
-      job_title = feed.dig('content', 0, 'name')
+      title = feed.dig('content', 0, 'name')
       job_id = feed.dig('content', 0, 'id')
       company = @smartrecruiters.find_or_create_company('Gousto1')
       job = @smartrecruiters.find_or_create_job(company, job_id)
-      expect(job.job_title).to eq(job_title)
+      expect(job.title).to eq(title)
     end
 
     it 'can create a job with Workable' do
       url = "https://jobs.workable.com/api/v1/companies/b7243622-5cc9-4572-9d52-e76cd62d85d8"
       feed = get_json_data(url)
-      job_title = feed.dig('jobs', 0, 'title')
+      title = feed.dig('jobs', 0, 'title')
       job_id = feed.dig('jobs', 0, 'applyUrl').match(%r{https://apply\.workable\.com/j/(\w+)/apply})[1]
       company = @workable.find_or_create_company('southern-national')
       job = @workable.find_or_create_job(company, job_id)
-      expect(job.job_title).to eq(job_title)
+      expect(job.title).to eq(title)
     end
   end
 end
