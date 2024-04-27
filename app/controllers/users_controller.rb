@@ -2,10 +2,10 @@ class UsersController < ApplicationController
   require 'open-uri'
   require 'yomu'
 
-  before_action :flipper_test
+  before_action :profile_page_status, only: [:show]
 
-  def flipper_test
-    render 'errors/unavailable' unless Flipper.enabled?(:profile_page)
+  def profile_page_status
+    redirect_to root_url, notice: "Profile page coming soon!" unless Flipper.enabled?(:profile_page)
   end
 
   def show
