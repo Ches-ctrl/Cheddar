@@ -81,7 +81,7 @@ gem 'csv' # can probably use ruby standard library
 gem "nokogiri"
 gem 'faraday' # TODO: use this gem for API calls (not currently in action)
 gem 'rails-html-sanitizer'
-# gem 'flipper' # TODO: install this gem for feature flags
+gem "flipper-active_record", "~> 1.3"
 
 # Monitoring
 # gem 'newrelic_rpm' # TODO: install this gem for monitoring
