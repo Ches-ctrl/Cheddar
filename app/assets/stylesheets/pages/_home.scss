@@ -29,6 +29,12 @@
 
 #punchline {
   box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.9);
+
+  h1 {
+    font-weight: 800;
+    width: 80%;
+    font-size: 40px;
+  }
 }
 
 .bg-image {
@@ -63,7 +69,43 @@ $container-max-widths: (
   xl: 1140px,
   xxl: 1320px
 );
+.step-icon {
+  width: 40px;
+}
+@media (max-width: 768px) {
+  .arrow-01, .arrow-02, .arrow-03 {
+    display: none;
+  }
+}
+.arrow-01, .arrow-02, .arrow-03 {
+  width: 80%;
+  position: absolute;
+}
+
+.arrow-01 {
+  top: -45px;
+  left: 61%;
+}
+
+.arrow-02 {
+  top: 61px;
+  left: 61%;
+}
+
+.arrow-03 {
+  top: -45px;
+  left: 61%;
+}
 
 .steps-to-apply {
   color: $main-color;
+
+  h5 {
+    margin-top: 5rem;
+  }
+
+  h3 {
+    font-weight: 600;
+    margin-bottom: 6rem;
+  }
 }
