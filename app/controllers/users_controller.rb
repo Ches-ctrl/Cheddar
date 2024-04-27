@@ -1,7 +1,13 @@
-require 'open-uri'
-require 'yomu'
-
 class UsersController < ApplicationController
+  require 'open-uri'
+  require 'yomu'
+
+  before_action :flipper_test
+
+  def flipper_test
+    render 'errors/unavailable' unless Flipper.enabled?(:profile_page)
+  end
+
   def show
     @user = current_user
     @job_applications = JobApplication.includes(job: [:company]).where(user_id: @user.id)
