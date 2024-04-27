@@ -1,5 +1,5 @@
 RSpec.describe Scraper::DevitJobsService do
-  # let!(:kliq){ create(:company, company_name: 'Kliq Inc') }
+  # let!(:kliq){ create(:company, name: 'Kliq Inc') }
 
   # let(:xml_response) do
   #   builder = Nokogiri::XML::Builder.new do |xml|
@@ -10,7 +10,7 @@ RSpec.describe Scraper::DevitJobsService do
   #         xml.apply_url "https://frontend_application_url.com"
   #         xml.country "Spain"
   #         xml.salary "$50000"
-  #         xml.company "#{kliq.company_name}"
+  #         xml.company "#{kliq.name}"
   #         xml.description "Front end developer position"
   #         xml.pubdate "#{Date.current - 2.days}"
   #       }
@@ -39,7 +39,7 @@ RSpec.describe Scraper::DevitJobsService do
   #   end
 
   #   context 'create jobs' do
-  #     before { create(:job, job_posting_url: 'https://frontend_application_url.com') }
+  #     before { create(:job, posting_url: 'https://frontend_application_url.com') }
 
   #     it 'only creates job that does not exist' do
   #       allow(subject).to receive(:page_doc).with('https://devitjobs.uk/job_feed.xml').and_return(xml_response)

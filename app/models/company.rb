@@ -2,14 +2,14 @@ class Company < ApplicationRecord
   belongs_to :applicant_tracking_system, optional: true
   has_many :jobs, dependent: :destroy
 
-  validates :company_name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true
+  # validates :url_website, uniqueness: true
 
   before_save :set_website_url, :fetch_description
-  # validates :company_website_url, uniqueness: true
 
   # include PgSearch::Model
 
-  # multisearchable against: [:company_name]
+  # multisearchable against: [:name]
 
   COMPANY_NAME_FILTER = [
     /\blimited\b/i,
@@ -19,21 +19,23 @@ class Company < ApplicationRecord
 
   private
 
+  # TODO: Fix this as may break with new naming setup @Dan
+  # TODO: Do we call this? If not then remove
+
   def standardize_name
-    name = company_name
     name.strip!
-    self.company_name = name.split.reject { |word| COMPANY_NAME_FILTER.any? { |filter| word.match?(filter) } }.join(' ')
+    self.name = name.split.reject { |word| COMPANY_NAME_FILTER.any? { |filter| word.match?(filter) } }.join(' ')
   end
 
   def set_website_url
-    return if company_website_url.present?
+    return if url_website.present?
 
-    clearbit_company_info = CompanyDomainService.lookup_domain(company_name)
-    self.company_website_url = clearbit_company_info['domain'] if clearbit_company_info && clearbit_company_info['domain'].present?
+    clearbit_company_info = CompanyDomainService.lookup_domain(name)
+    self.url_website = clearbit_company_info['domain'] if clearbit_company_info && clearbit_company_info['domain'].present?
   end
 
   def fetch_description
-    inferred_description, @name_keywords = CompanyDescriptionService.lookup_company(company_name, ats_identifier)
+    inferred_description, @name_keywords = CompanyDescriptionService.lookup_company(name, ats_identifier)
 
     self.description = inferred_description if description.blank?
   end
@@ -41,11 +43,9 @@ class Company < ApplicationRecord
   def fetch_industry
     return unless industry == 'n/a'
 
-    industry, subcategory = CompanyIndustryService.lookup_industry(company_name, @name_keywords)
+    industry, subcategory = CompanyIndustryService.lookup_industry(name, @name_keywords)
 
     self.industry = industry
-    self.industry_subcategory = subcategory
+    self.sub_industry = subcategory
   end
 end
-
-# TODO: Clarify why we have company_name and company_website_url rather than name and website as column names

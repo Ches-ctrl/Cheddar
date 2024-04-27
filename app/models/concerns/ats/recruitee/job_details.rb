@@ -26,19 +26,19 @@ module Ats
 
       def job_details(job, data)
         job.assign_attributes(
-          job_title: data['title'],
+          title: data['title'],
           requirements: data['requirements'],
-          job_description: [data['description'], data['requirements']].reject(&:blank?).join,
+          description: [data['description'], data['requirements']].reject(&:blank?).join,
           salary: fetch_salary(data),
           department: data['department'],
           employment_type: fetch_employment_type(data),
           non_geocoded_location_string: fetch_location(data),
-          job_posting_url: data['careers_apply_url'],
-          date_created: (Date.parse(data['updated_at']) if data['updated_at']),
+          posting_url: data['careers_apply_url'],
+          date_posted: (Date.parse(data['updated_at']) if data['updated_at']),
           seniority: fetch_seniority(data),
-          req_cv: data['options_cv'] == 'required',
-          req_cover_letter: data['options_cover_letter'] == 'required',
-          remote_only: data['remote'],
+          # req_cv: data['options_cv'] == 'required',
+          # req_cover_letter: data['options_cover_letter'] == 'required',
+          remote: data['remote'],
           hybrid: data['hybrid']
         )
       end

@@ -105,7 +105,7 @@ class ScrapeMetaTags
         job = ats.find_or_create_job(company, job_id) if job_id
         return if job&.persisted?
 
-        puts "Associated #{link} from #{@url} meta tags with #{ats.name} and #{company.company_name} but couldn't create job."
+        puts "Associated #{link} from #{@url} meta tags with #{ats.name} and #{company.name} but couldn't create job."
         puts "Adding ats_identifier #{company.ats_identifier} to ats_identifiers csv"
         return [ats, company]
       end

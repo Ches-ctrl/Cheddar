@@ -4,12 +4,12 @@ require 'rails_helper'
 RSpec.feature "Jobs index page", type: :feature do
   context "With jobs to display:" do
     before do
-      create(:job, :entry_level_mobile, job_title: "Graduate Software Developer")
-      create(:job, :junior_dev_ops, job_title: "Junior Test Developer")
-      create(:job, :mid_level_data, job_title: "Data Analyst")
-      create(:job, :senior_front_end, :in_london, job_title: "Senior UI Engineer")
-      create(:job, :ruby_front_end, :in_london, job_title: "Frontend Developer")
-      create(:job, :in_london, job_title: "Ruby on Rails Developer")
+      create(:job, :entry_level_mobile, title: "Graduate Software Developer")
+      create(:job, :junior_dev_ops, title: "Junior Test Developer")
+      create(:job, :mid_level_data, title: "Data Analyst")
+      create(:job, :senior_front_end, :in_london, title: "Senior UI Engineer")
+      create(:job, :ruby_front_end, :in_london, title: "Frontend Developer")
+      create(:job, :in_london, title: "Ruby on Rails Developer")
       visit jobs_path
     end
 
@@ -65,8 +65,8 @@ RSpec.feature "Jobs index page", type: :feature do
 
       check(company)
 
-      expect(page).to have_content(job1.job_title)
-      expect(page).not_to have_content(job2.job_title)
+      expect(page).to have_content(job1.title)
+      expect(page).not_to have_content(job2.title)
     end
 
     scenario 'User can query "Ruby" with multiple sidebar filters' do
@@ -95,8 +95,8 @@ RSpec.feature "Jobs index page", type: :feature do
 
       find('a[aria-label="Page 2"]').click
 
-      expect(page).to have_content(job2.job_title)
-      expect(page).not_to have_content(job1.job_title)
+      expect(page).to have_content(job2.title)
+      expect(page).not_to have_content(job1.title)
     end
   end
 

@@ -15,7 +15,7 @@ class ApplyJob < ApplicationJob
     fields_to_fill = application_criteria
 
     form_filler = FormFiller.new
-    form_filler.fill_out_form(job.job_posting_url, fields_to_fill, job_application_id)
+    form_filler.fill_out_form(job.posting_url, fields_to_fill, job_application_id)
 
     user_channel_name = "job_applications_#{user.id}"
 

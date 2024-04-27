@@ -1,17 +1,17 @@
 class CompanyIndustryService
   # TODO: Let's discuss this in a little more detail (CC/DS)
 
-  def self.lookup_industry(company_name, keywords)
-    results = api_lookup(company_name)
+  def self.lookup_industry(name, keywords)
+    results = api_lookup(name)
     p results
 
-    # @company_words = company_name.split(/(?<=[a-z])(?=[A-Z])| /)
+    # @company_words = name.split(/(?<=[a-z])(?=[A-Z])| /)
     @company_words = keywords.map(&:downcase)
     candidates = []
     results['items'].each do |result|
       next if result['company_type'] == 'oversea-company'
 
-      matching_words, number_of_words = compare(result['company_name'])
+      matching_words, number_of_words = compare(result['name'])
       candidates << [matching_words, number_of_words, result['sic_codes'] || []]
     end
     p candidates
@@ -38,9 +38,9 @@ class CompanyIndustryService
 
   private
 
-  private_class_method def self.api_lookup(company_name)
+  private_class_method def self.api_lookup(name)
     base_url = 'https://api.company-information.service.gov.uk/'
-    resource_path = "advanced-search/companies?company_name_includes=#{URI.encode_www_form_component(company_name&.downcase)}&company_status=active&size=20"
+    resource_path = "advanced-search/companies?company_name_includes=#{URI.encode_www_form_component(name&.downcase)}&company_status=active&size=20"
 
     response = HTTParty.get(
       "#{base_url}#{resource_path}",

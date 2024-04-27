@@ -9,17 +9,17 @@ module Ats
 
       def job_details(job, data)
         job.assign_attributes(
-          job_title: data['name'],
-          job_description: build_description(data.dig('jobAd', 'sections')),
-          job_posting_url: data['applyUrl'],
-          remote_only: data.dig('location', 'remote'),
+          title: data['name'],
+          description: build_description(data.dig('jobAd', 'sections')),
+          posting_url: data['applyUrl'],
           non_geocoded_location_string: fetch_location(job, data),
           seniority: fetch_seniority(data),
           department: data.dig('department', 'label'),
           requirements: data.dig('jobAd', 'sections', 'qualifications', 'text'),
-          date_created: (Date.parse(data['releasedDate']) if data['releasedDate']),
+          date_posted: (Date.parse(data['releasedDate']) if data['releasedDate']),
           industry: data.dig('industry', 'label'),
-          employment_type: data.dig('typeOfEmployment', 'label')
+          employment_type: data.dig('typeOfEmployment', 'label'),
+          remote: data.dig('location', 'remote')
         )
       end
 
@@ -27,7 +27,7 @@ module Ats
         country_custom_field = data['customField']&.find { |field| field['fieldId'] == "COUNTRY" }
         country_string = country_custom_field&.dig('valueLabel')
 
-        if job.remote_only
+        if job.remote
           country_string
         else
           [data.dig('location', 'city'), country_string].reject(&:blank?).join(', ')
@@ -48,8 +48,6 @@ module Ats
       end
 
       def build_description(data)
-        # TODO: This should go in description_long, and the other parts in responsibilities, benefits
-        # and so on. Change this & change job show page to display description_long || description
         [
           ("<h2>#{data.dig('jobDescription', 'title')}</h2>" if data.dig('jobDescription', 'title')),
           data.dig('jobDescription', 'text'),

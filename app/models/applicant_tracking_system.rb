@@ -97,7 +97,7 @@ class ApplicantTrackingSystem < ApplicationRecord
       company.assign_attributes(supplementary_data)
     end
 
-    p "Company created - #{company.company_name}" if company.new_record? && company.save
+    p "Company created - #{company.name}" if company.new_record? && company.save
 
     return company
   end
@@ -132,8 +132,8 @@ class ApplicantTrackingSystem < ApplicationRecord
   end
 
   def replace_ats_identifier(ats_identifier)
-    api_url = base_url_api
-    main_url = base_url_main
+    api_url = url_api
+    main_url = url_base
 
     api_url.gsub!("XXX", ats_identifier)
     main_url.gsub!("XXX", ats_identifier)
@@ -152,7 +152,7 @@ class ApplicantTrackingSystem < ApplicationRecord
     job = Job.find_or_create_by(ats_job_id:) do |new_job|
       new_job.company = company
       new_job.applicant_tracking_system = self
-      new_job.api_url = job_url_api(base_url_api, company.ats_identifier, ats_job_id)
+      new_job.api_url = job_url_api(url_api, company.ats_identifier, ats_job_id)
       data ||= fetch_job_data(new_job)
       return if data.blank? || data['error'].present? || data.values.include?(404)
 
@@ -160,7 +160,7 @@ class ApplicantTrackingSystem < ApplicationRecord
       fetch_additional_fields(new_job)
     end
 
-    puts "Created new job - #{job.job_title} with #{company.company_name}"
+    puts "Created new job - #{job.title} with #{company.name}"
 
     return job
   end
@@ -176,7 +176,7 @@ class ApplicantTrackingSystem < ApplicationRecord
     refer_to_module(defined?(super) ? super : nil, __method__)
   end
 
-  def job_url_api(base_url_api, ats_identifier, ats_job_id)
+  def job_url_api(url_api, ats_identifier, ats_job_id)
     refer_to_module(defined?(super) ? super : nil, __method__)
   end
 

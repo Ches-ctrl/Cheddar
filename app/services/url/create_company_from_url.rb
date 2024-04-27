@@ -35,7 +35,7 @@ module Url
 
       company = ats.find_or_create_company(ats_identifier)
       if company&.persisted?
-        puts "Created company - #{company.company_name}"
+        puts "Created company - #{company.name}"
       else
         puts "Failed to create company from #{@url}"
       end

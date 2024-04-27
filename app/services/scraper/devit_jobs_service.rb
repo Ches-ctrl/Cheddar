@@ -13,7 +13,7 @@ module Scraper
 
         company = @ats.find_or_create_company_by_data(job_data)
         job = @ats.find_or_create_job_by_data(company, job_data)
-        p "Created DevIT job: #{job.job_title}"
+        p "Created DevIT job: #{job.title}"
       end
 
       p "grabbing jobs with DevIT redirects..."

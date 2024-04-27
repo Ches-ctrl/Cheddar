@@ -89,6 +89,12 @@ gem 'rails-html-sanitizer'
 # Analytics
 # gem 'analytics-ruby', '~> 2.4.0', :require => 'segment/analytics' # TODO: install this gem for analytics
 
+# Logs
+# gem 'logstasher' # ? Install? Free but may be complicated. Check on Heroku
+
+# Notifications
+# gem 'noticed' # TODO: install this gem for notifications
+
 # Error Tracking
 # gem 'sentry-raven' # TODO: install this gem for error tracking
 

@@ -7,7 +7,9 @@ class Job < ApplicationRecord
   serialize :application_criteria, coder: JSON
 
   belongs_to :company
-  belongs_to :applicant_tracking_system, optional: true
+  belongs_to :applicant_tracking_system, optional: true # TODO: remove optional
+
+  has_one :requirement, dependent: :destroy
 
   has_many :job_applications, dependent: :destroy
   has_many :saved_jobs, dependent: :destroy
@@ -22,17 +24,17 @@ class Job < ApplicationRecord
 
   after_create :set_date_created, :update_requirements, :standardize_attributes
 
-  validates :job_posting_url, uniqueness: true, presence: true
-  validates :job_title, presence: true
+  validates :posting_url, uniqueness: true, presence: true
+  validates :title, presence: true
 
   # after_create :update_application_criteria
 
   # TODO: Update validate uniqueness as same job can have both a normal url and api url
 
   pg_search_scope :search_job,
-                  against: %i[job_title salary job_description],
+                  against: %i[title salary description],
                   associated_against: {
-                    company: %i[company_name company_category],
+                    company: %i[name industry],
                     # locations: :city,
                     countries: :name
                   },
@@ -50,8 +52,8 @@ class Job < ApplicationRecord
   end
 
   # def update_application_criteria
-  #   if job_posting_url.include?('greenhouse')
-  #     extra_fields = GetFormFieldsJob.perform_later(job_posting_url)
+  #   if posting_url.include?('greenhouse')
+  #     extra_fields = GetFormFieldsJob.perform_later(posting_url)
   #     # p extra_fields
   #   else
   #     p "No additional fields to add"
@@ -90,7 +92,7 @@ class Job < ApplicationRecord
 
   def self.filter_and_sort(params)
     filters = {
-      date_created: filter_by_when_posted(params[:posted]),
+      date_posted: filter_by_when_posted(params[:posted]),
       seniority: filter_by_seniority(params[:seniority]),
       locations: filter_by_location(params[:location]),
       roles: filter_by_role(params[:role]),
@@ -111,20 +113,25 @@ class Job < ApplicationRecord
   private
 
   def set_date_created
-    self.date_created ||= Date.today
+    self.date_posted ||= Date.today
   end
 
   def update_requirements
-    self.no_of_questions = application_criteria.size
+    # All jobs need requirements so we should always create these on job creation
+    requirement = Requirement.create(job: self)
+    requirement.no_of_qs = application_criteria.size
 
-    update_requirement('resume', 'req_cv')
-    update_requirement('cover_letter', 'req_cover_letter')
-    update_requirement('work_eligibility', 'work_eligibility')
+    # TODO: Add overall assessment of difficulty based on number of questions, type of questions, etc.
+    # TODO: Update this to match new structure with requirements not on job
+
+    # update_requirement('resume', 'resume')
+    # update_requirement('cover_letter', 'cover_letter')
+    # update_requirement('work_eligibility', 'work_eligibility')
   end
 
-  def update_requirement(criterion_key, attribute_name)
-    send("#{attribute_name}=", application_criteria.dig(criterion_key, 'required') || false)
-  end
+  # def update_requirement(criterion_key, attribute_name)
+  #   send("#{attribute_name}=", application_criteria.dig(criterion_key, 'required') || false)
+  # end
 
   def standardize_attributes
     Standardizer::JobStandardizer.new(self).standardize
@@ -148,7 +155,7 @@ class Job < ApplicationRecord
   private_class_method def self.filter_by_location(param)
     return unless param.present?
 
-    locations = param.split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') unless location == 'remote_only' }
+    locations = param.split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') unless location == 'remote' }
     { city: locations }
   end
 
@@ -168,3 +175,6 @@ class Job < ApplicationRecord
     param.split.map { |employment| employment.gsub('_', '-').capitalize }
   end
 end
+
+# TODO: add description_html and other html fields?
+# TODO: fully reconcile job fields by back-engineering ATS APIs - requires data build prior to this

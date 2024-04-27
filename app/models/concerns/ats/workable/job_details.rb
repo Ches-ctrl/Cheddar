@@ -13,23 +13,21 @@ module Ats
 
       def job_details(job, data)
         job.assign_attributes(
-          job_title: data['title'],
-          job_description: build_description(data),
+          title: data['title'],
+          description: build_description(data),
           # location: "#{data['location']['city']}, #{data['location']['country']}",
           # country: data['location']['country'],
-          job_posting_url: "#{base_url_main}#{job.company.ats_identifier}/j/#{data['shortcode']}",
+          posting_url: "#{url_base}#{job.company.ats_identifier}/j/#{data['shortcode']}",
           department: data['department']&.first,
           requirements: data['requirements'],
           benefits: data['benefits'],
-          date_created: (Date.parse(data['published']) if data['published']),
-          remote_only: data['workplace'] == 'remote',
+          date_posted: (Date.parse(data['published']) if data['published']),
+          remote: data['workplace'] == 'remote',
           hybrid: data['workplace'] == 'hybrid'
         )
       end
 
       def build_description(data)
-        # TODO: This should go in description_long, and the other parts in responsibilities, benefits
-        # and so on. Change this & change job show page to display description_long || description
         [
           data['description'],
           ("<h2>Requirements</h2>" if data['requirements']),
