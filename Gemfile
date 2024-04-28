@@ -75,6 +75,10 @@ gem "ruby-openai"
 
 # SEO
 gem 'meta-tags'
+# gem 'sitemap_generator' # TODO: install this gem for sitemap generation
+
+# Email
+# gem 'sendgrid-ruby' # TODO: install this gem for sending emails
 
 # Importing, Parsing & APIs
 gem 'csv' # can probably use ruby standard library
@@ -122,6 +126,9 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+
+  # Email
+  # gem 'letter_opener' # TODO: install this gem for email testing
 
   # API Calls
   # gem 'webmock' # TODO: install this gem for mocking API calls
