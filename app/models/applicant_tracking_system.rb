@@ -111,11 +111,11 @@ class ApplicantTrackingSystem < ApplicationRecord
   # Company Details
   # -----------------------
 
-  private
-
   def company_details(ats_identifier, data = nil)
     refer_to_module(defined?(super) ? super : nil, __method__)
   end
+
+  private
 
   def company_details_from_data(data)
     refer_to_module(defined?(super) ? super : nil, __method__)
@@ -158,9 +158,8 @@ class ApplicantTrackingSystem < ApplicationRecord
 
       job_details(new_job, data)
       fetch_additional_fields(new_job)
+      puts "Created new job - #{job.job_title} with #{company.company_name}"
     end
-
-    puts "Created new job - #{job.job_title} with #{company.company_name}"
 
     return job
   end
@@ -168,6 +167,10 @@ class ApplicantTrackingSystem < ApplicationRecord
   def find_or_create_job_by_data(company, data)
     ats_job_id = fetch_id(data)
     find_or_create_job(company, ats_job_id, data)
+  end
+
+  def fetch_company_jobs(company)
+    refer_to_module(defined?(super) ? super : nil, __method__)
   end
 
   private

@@ -2,7 +2,8 @@ class Company < ApplicationRecord
   belongs_to :applicant_tracking_system, optional: true
   has_many :jobs, dependent: :destroy
 
-  validates :company_name, presence: true, uniqueness: true
+  validates :company_name, presence: true
+  validates :ats_identifier, presence: true, uniqueness: true
 
   before_save :set_website_url, :fetch_description
   # validates :company_website_url, uniqueness: true
@@ -11,24 +12,13 @@ class Company < ApplicationRecord
 
   # multisearchable against: [:company_name]
 
-  COMPANY_NAME_FILTER = [
-    /\blimited\b/i,
-    /\bltd\b/i,
-    /\(.+\)/
-  ]
-
   private
-
-  def standardize_name
-    name = company_name
-    name.strip!
-    self.company_name = name.split.reject { |word| COMPANY_NAME_FILTER.any? { |filter| word.match?(filter) } }.join(' ')
-  end
 
   def set_website_url
     return if company_website_url.present?
 
     clearbit_company_info = CompanyDomainService.lookup_domain(company_name)
+    puts "clearbit_company_info: #{clearbit_company_info}"
     self.company_website_url = clearbit_company_info['domain'] if clearbit_company_info && clearbit_company_info['domain'].present?
   end
 

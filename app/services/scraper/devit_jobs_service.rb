@@ -17,6 +17,7 @@ module Scraper
       end
 
       p "grabbing jobs with DevIT redirects..."
+      # This can be handled by CreateJobFromUrl
       ImportCompaniesFromList.new(@redirect_urls).call unless @redirect_urls.empty?
     end
 

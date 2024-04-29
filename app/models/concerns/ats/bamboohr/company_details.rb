@@ -10,15 +10,14 @@ module Ats
           company_name:,
           url_ats_api:,
           url_ats_main:,
-          total_live: fetch_total_live(ats_identifier)
+          total_live: fetch_total_live(url_ats_api)
         }
       end
 
-      def fetch_total_live(ats_identifier)
-        company_api_url = replace_ats_identifier(ats_identifier).first
-        p "Company API URL - #{company_api_url}"
+      def fetch_total_live(url_ats_api)
+        p "Company API URL - #{url_ats_api}"
 
-        data = get_json_data(company_api_url)
+        data = get_json_data(url_ats_api)
         data.dig('meta', 'totalCount')
       end
     end
