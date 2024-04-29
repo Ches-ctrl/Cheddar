@@ -14,20 +14,29 @@ class JobApplicationsController < ApplicationController
   end
 
   def new
-    redirect_back(fallback_location: saved_jobs_path) and return if cookies[:selected_job_ids].nil?
+    redirect_back(fallback_location: saved_jobs_path) and return if params[:job_ids].nil?
 
     if current_user.present?
-      job_ids = cookies[:selected_job_ids].split("&")
+      job_ids = params[:job_ids]
       @selected_jobs = Job.includes(:company).where(id: job_ids)
 
       @job_applications = @selected_jobs.map do |job|
-        job_application = job.new_job_application_for_user(current_user)
-        [job, job_application]
+        job_application = current_user.job_applications.build(job: job, status: "Pre-application")
+        job.application_criteria.each do |field, details|
+          job_application.application_responses.build(
+            field_name: field,
+            field_locator: details["locators"],
+            interaction: details["interaction"],
+            field_option: details["option"],
+            field_options: details["options"].to_json,
+            required: details["required"],
+            field_value: current_user.try(field) || ""
+          )
+        end
+        job_application
       end
-      # Renders the staging page where the user can review and confirm applications
     else
-      @selected_jobs = Job.where(cookies[:selected_job_ids].split("&"))
-      flash[:alert] = "You need to be logged in to create job applications."
+      redirect_to new_user_registration_path, alert: 'Please sign up or log in to apply for jobs.'
     end
   end
 
@@ -38,85 +47,33 @@ class JobApplicationsController < ApplicationController
   def create
     Rails.logger.debug "Received params: #{params.inspect}" # Log the incoming parameters
     p "Starting the create method."
-    job = Job.find(params[:job_id])
-    @job_application = JobApplication.new(job_application_params)
-    @job_application.user = current_user
-    @job_application.job = job
-    @job_application.status = "Application queued"
+    job_application = current_user.job_applications.build(job_application_params)
+    job_application.job = Job.find(params[:job_id])
+    job_application.status = "Pre-application"
 
-    # TODO: Fix as at the moment this logic doesn't work as it is overwritten by the front-end javascript redirects
-    if current_user.resume.attached?
-      puts "Moving you along the user has a resume attached path."
-      # TODO: Add validation to check that the user has filled in their core details
-      params[:job_application][:application_responses_attributes].each_value do |response_attributes|
-        next unless response_attributes[:field_name] == "cover_letter_"
-
-        cover_letter_content = response_attributes[:cover_letter_content]
-        next unless cover_letter_content
-
-        p "Cover letter content present"
-        @job_application.application_responses.each do |response|
-          response.field_value = cover_letter_content if response.field_name == "cover_letter_"
-        end
-      end
-
-      if @job_application.save
-
-        p "Job application saved."
-
-        user_channel_name = "job_applications_#{current_user.id}"
-        user_saved_jobs = SavedJob.where(user_id: current_user.id)
-        user_saved_jobs.find_by(job_id: @job_application.job.id).destroy
-        ActionCable.server.broadcast(
-          user_channel_name,
-          {
-            event: "job-application-created",
-            job_application_id: @job_application.id,
-            # user_id: @job_application.user_id,
-            job_id: @job_application.job_id,
-            status: @job_application.status
-          }
-        )
-
-        ApplyJob.perform_later(@job_application.id, current_user.id)
-        @job_application.update(status: "Application pending")
-
-        ActionCable.server.broadcast(
-          user_channel_name,
-          {
-            event: "job-application-submitted",
-            job_application_id: @job_application.id,
-            user_id: @job_application.user_id,
-            job_id: @job_application.job_id,
-            status: @job_application.status
-            # Include any additional data you want to send to the frontend
-          }
-        )
-
-        p "Job Application Status: #{@job_application.status}"
-
-        ids = cookies[:selected_job_ids].split("&")
-        ids.delete(job.id.to_s)
-
-        p "IDs: #{ids}"
-
-        # Believe this automatically adds & between the cookies?
-        cookies[:selected_job_ids] = ids
-
-        p "Cookies: #{cookies[:selected_job_ids]}"
-        # Not necessary to redirect after each individual #create
-        # redirect_to job_applications_path, notice: 'Your applications have been submitted.'
-      else
-        # p "Rendering new"
-        render :new
-        p "Couldn't save job application."
-      end
+    if job_application.save
+      process_application(job_application)
+      # redirect_to saved_jobs_path, notice: 'Job application successfully submitted!'
     else
-      # p "User doesn't have a resume attached."
-      redirect_to edit_user_registration_path(current_user),
-                  alert: 'Please update your core details and attach a CV before applying.'
-      return
+      Rails.logger.debug "Failed to save job application: #{job_application.errors.full_messages.join(", ")}"
+      p "Failed to save: #{job_application.errors.full_messages}"
+      flash[:alert] = 'There was an error submitting your application. Please try again.'
+      render :new, alert: 'There was an error submitting your application. Please try again.'
     end
+  end
+
+  def process_application(job_application)
+    ApplyJob.perform_later(job_application.id, current_user.id)
+    job_application.update(status: "Application pending")
+    user_saved_jobs = SavedJob.where(user_id: current_user.id)
+    user_saved_jobs.find_by(job_id: job_application.job.id).destroy
+    ActionCable.server.broadcast("job_applications_#{current_user.id}", {
+      event: "job-application-submitted",
+      job_application_id: job_application.id,
+      user_id: current_user.id,
+      job_id: job_application.job_id,
+      status: job_application.status
+    })
   end
 
   # def status
@@ -140,7 +97,18 @@ class JobApplicationsController < ApplicationController
   # TODO: Update job_application_params to include the user inputs
 
   def job_application_params
-    params.require(:job_application).permit(application_responses_attributes: [:field_name, { field_value: [] },
-                                                                               :field_value, :field_locator, :interaction, :field_option, :field_options, :cover_letter_content, :required])
+    params.require(:job_application).permit(
+      :job_id,
+      application_responses_attributes: [:field_name,
+                                        {field_value: []},
+                                        :field_value,
+                                        :field_locator,
+                                        :interaction,
+                                        :field_option,
+                                        :field_options,
+                                        :cover_letter_content,
+                                        :required,
+                                        ]
+      )
   end
 end

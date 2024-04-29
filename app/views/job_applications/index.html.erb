@@ -16,7 +16,7 @@
         <div class="application-secondary-info-left">
           <p><%= application.job.description %></p>
           <div>
-            <span class="meta-info">Applications Close: <%= application.job.deadline.strftime('%d %B %Y') %> - </span>
+            <span class="meta-info">Applications Close: <%= application.job.deadline.strftime('%d %B %Y') if application.job.deadline %> - </span>
             <span class="meta-info">Date Applied: <%= application.updated_at.strftime('%d %B %Y') %></span>
           </div>
           <hr class="d-none">

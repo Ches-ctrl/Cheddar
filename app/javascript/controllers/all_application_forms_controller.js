@@ -28,37 +28,36 @@ export default class extends Controller {
     }
   }
 
-  submitForm(event) {
-    event.preventDefault();
-    const thisForm = event.target
-    for (let i = 0; i < this.formTargets.length; i++) {
-      if (this.formTargets[i] === thisForm) {
-        this.updateCoverLetterContent(i);
-        break;
-      }
-    }
-    console.log(thisForm)
-    thisForm.submit();
-  }
+  // submitForm(event) {
+  //   event.preventDefault();
+  //   const thisForm = event.target
+  //   // for (let i = 0; i < this.formTargets.length; i++) {
+  //   //   if (this.formTargets[i] === thisForm) {
+  //   //     this.updateCoverLetterContent(i);
+  //   //     break;
+  //   //   }
+  //   // }
+  //   console.log(thisForm)
+  //   thisForm.submit();
+  // }
 
   async submitAllForms(event) {
     event.preventDefault();
     this.buttonTarget.disabled = true;
     this.overlayTarget.classList.remove("d-none");
 
-    for (let i = 0; i < this.formTargets.length; i++) {
-      this.updateCoverLetterContent(i);
-    }
+    const submissions = this.formTargets.map(async (form, index) => {
+      this.updateCoverLetterContent(index);
 
-    try {
-      await Promise.all(this.formTargets.map((form) => form.requestSubmit()));
-      console.log(this.formTargets.length)
-      alert("All forms submitted successfully");
-    } catch (error) {
-      alert("Error submitting forms:", error);
-    }
-
+      const formData = new FormData(form);
+      return fetch(form.action, {
+        method: 'POST',
+        body: formData
+      });
+    });
   }
+
+
 
   createWebSocketChannel(userValue) {
     // console.log("Creating websocket channel");
