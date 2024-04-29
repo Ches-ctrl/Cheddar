@@ -18,7 +18,7 @@ module Ats
       end
 
       def job_url_api(base_url, company_id, job_id)
-        "#{base_url}#{company_id}/#{job_id}?mode=json"
+        "#{base_url}#{company_id}/#{job_id}?customQuestions=true"
       end
 
       def job_details(job, data)

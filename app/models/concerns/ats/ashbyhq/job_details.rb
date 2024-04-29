@@ -1,6 +1,17 @@
 module Ats
   module Ashbyhq
     module JobDetails
+      def fetch_title_and_location(job_data)
+        title = job_data['title']
+        job_location = job_data['location']
+        [title, job_location]
+      end
+
+      def fetch_id(job_data)
+        p "Fetching ID: #{job_data['id']}"
+        job_data['id']
+      end
+
       private
 
       def fetch_job_data(job)
@@ -31,7 +42,7 @@ module Ats
         [locality, country].reject(&:blank?).join(', ')
       end
 
-      def job_url_api(url_api, ats_identifier, _ats_job_id)
+      def job_url_api(url_api, ats_identifier, _job_id)
         "#{url_api}#{ats_identifier}?includeCompensation=true"
       end
     end

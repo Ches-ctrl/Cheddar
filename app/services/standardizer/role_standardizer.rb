@@ -60,7 +60,7 @@ module Standardizer
         @job.title.downcase.match?(keyword) ? array << role : array
       end
       roles = ROLE_DESCRIPTORS.inject([]) do |array, (phrase, role)|
-        @job.description.downcase.match?(phrase) ? array << role : array
+        @job.description&.downcase&.match?(phrase) ? array << role : array
       end
 
       if title_roles.include?('front_end')
