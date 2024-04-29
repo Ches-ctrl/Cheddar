@@ -7,9 +7,9 @@ module Ats
       private
 
       def fetch_title_and_location(job_data)
-        job_title = job_data['title']
+        title = job_data['title']
         job_location = job_data.dig('location', 'name')
-        [job_title, job_location]
+        [title, job_location]
       end
 
       def fetch_url(job_data)
@@ -27,13 +27,13 @@ module Ats
 
       def job_details(job, data)
         job.assign_attributes(
-          job_posting_url: data['absolute_url'],
-          job_title: data['title'],
-          job_description: data['content'],
+          posting_url: data['absolute_url'],
+          title: data['title'],
+          description: data['content'],
           non_geocoded_location_string: data.dig('location', 'name'),
           department: data.dig('departments', 0, 'name'),
           office: data.dig('offices', 0, 'name'),
-          date_created: convert_from_iso8601(data['updated_at']),
+          date_posted: convert_from_iso8601(data['updated_at']),
           employment_type: fetch_employment_type(data) || 'Full-time',
           salary: fetch_salary(data)
         )

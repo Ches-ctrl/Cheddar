@@ -3,8 +3,7 @@ module Ats
     module FetchCompanyJobs
       def fetch_company_jobs(company)
         endpoint = "#{company.url_ats_api}/jobs"
-        data = get_json_data(endpoint)
-        return data
+        get_json_data(endpoint)
       end
     end
   end

@@ -17,12 +17,11 @@ module Ats
 
       def job_details(job, data)
         job.assign_attributes(
-          job_title: data['title'],
-          job_description: data['descriptionHtml'],
-          office_status: data['remote'] ? 'Remote' : 'On-site',
+          title: data['title'],
+          description: data['descriptionHtml'],
           non_geocoded_location_string: build_location_string(data),
           department: data['department'],
-          job_posting_url: data['jobUrl']
+          posting_url: data['jobUrl']
         )
       end
 
@@ -32,8 +31,8 @@ module Ats
         [locality, country].reject(&:blank?).join(', ')
       end
 
-      def job_url_api(base_url_api, ats_identifier, _ats_job_id)
-        "#{base_url_api}#{ats_identifier}?includeCompensation=true"
+      def job_url_api(url_api, ats_identifier, _ats_job_id)
+        "#{url_api}#{ats_identifier}?includeCompensation=true"
       end
     end
   end

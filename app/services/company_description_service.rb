@@ -1,6 +1,6 @@
 class CompanyDescriptionService
-  def self.lookup_company(company_name, ats_identifier)
-    uri = URI("https://api.crunchbase.com/api/v4/autocompletes?query=#{URI.encode_www_form_component(company_name)}&user_key=#{ENV.fetch('CRUNCHBASE_API_KEY', nil)}")
+  def self.lookup_company(name, ats_identifier)
+    uri = URI("https://api.crunchbase.com/api/v4/autocompletes?query=#{URI.encode_www_form_component(name)}&user_key=#{ENV.fetch('CRUNCHBASE_API_KEY', nil)}")
     request = Net::HTTP::Get.new(uri)
     request['Accept'] = 'application/json'
 
@@ -18,8 +18,10 @@ class CompanyDescriptionService
       match_array = top_matches.map.with_index { |match, index| [compare(ats_identifier, match.dig('identifier', 'permalink')), index, match] }
       match = match_array.min_by { |a, b| [-a, b] }[2]
 
-      name = match.dig('identifier', 'value')
-      return unless name.downcase.gsub(' ', '') == company_name.downcase.gsub(' ', '')
+      # TODO: fix as will no longer work with name rather than name @Dan
+
+      check_name = match.dig('identifier', 'value')
+      return unless check_name.downcase.gsub(' ', '') == name.downcase.gsub(' ', '')
 
       description = match['short_description']
       keywords = match.dig('identifier', 'permalink').split('-')

@@ -35,12 +35,12 @@ module Ats
 
       def job_details(job, data)
         job.assign_attributes(
-          job_title: data['position_name'],
-          job_description: data['description'],
+          title: data['position_name'],
+          description: data['description'],
           department: data['departmentLabel'],
           employment_type: data['contract_details'],
           non_geocoded_location_string: build_location_string(data),
-          job_posting_url: "#{base_url_main}#{job.company.ats_identifier}/job/#{job.ats_job_id}/apply"
+          posting_url: "#{url_base}#{job.company.ats_identifier}/job/#{job.ats_job_id}/apply"
         )
       end
 

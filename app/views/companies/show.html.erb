@@ -14,7 +14,7 @@
             </div>
           </div>
         </div>
-        <%= image_tag("https://logo.clearbit.com/#{@company.company_website_url}",
+        <%= image_tag("https://logo.clearbit.com/#{@company.url_website}",
                       onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'",
                       style: "width: 65px; height: 65px; border-radius: 10px;",
                       class: "company-logo-img") %>
@@ -22,12 +22,12 @@
       <div class="company-main-content">
         <div class="d-flex align-items-center justify-content-between pb-4">
           <div>
-            <h1 class="mb-0"><%= @company.company_name %></h1>
+            <h1 class="mb-0"><%= @company.name %></h1>
             <%# Add a tagline/short summary of info under company name? %>
           </div>
           <ul class="mb-0">
-            <% if @company.company_website_url.present? %>
-              <%= link_to @company.company_website_url do %>
+            <% if @company.url_website.present? %>
+              <%= link_to @company.url_website do %>
                 <li class="company-link-btn">Website <i class="fa-solid fa-arrow-up-right-from-square"></i></li>
               <% end %>
             <% end %>
@@ -55,7 +55,7 @@
         <div class="row">
           <div class="col-4 company-left-info">
             <h3>Industry</h3>
-            <p><%= @company.industry %>, <%= @company.industry_subcategory %></p>
+            <p><%= @company.industry %>, <%= @company.sub_industry %></p>
             <h3>Company size</h3>
             <h3>Specialities</h3>
           </div>
@@ -67,7 +67,7 @@
                 <%= link_to job_path(job), target: "_blank" do %>
                   <div class="d-flex justify-content-between">
                     <div>
-                      <h6><%= job.job_title %></h6>
+                      <h6><%= job.title %></h6>
                       <p class="location"><i class="fa-solid fa-location-dot"></i> <%= job.non_geocoded_location_string %></p>
                     </div>
                     <p class="seniority"><%= job.seniority %></p>

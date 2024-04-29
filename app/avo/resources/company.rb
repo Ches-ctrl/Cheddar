@@ -8,20 +8,19 @@ module Avo
 
       def fields
         field :id, as: :id
-        field :company_name, as: :text
-        field :company_website_url, as: :text
-        field :company_category, as: :text
-        field :location, as: :text
-        field :industry, as: :text
-        field :url_careers, as: :text
-        field :url_linkedin, as: :text
-        field :industry_subcategory, as: :text
+        field :name, as: :text
         field :applicant_tracking_system_id, as: :number
         field :ats_identifier, as: :text
         field :description, as: :textarea
-        field :total_live, as: :number
+        field :url_website, as: :text
+        field :url_careers, as: :text
+        field :url_linkedin, as: :text
         field :url_ats_main, as: :text
         field :url_ats_api, as: :text
+        field :location, as: :text
+        field :industry, as: :text
+        field :sub_industry, as: :text
+        field :total_live, as: :number
         field :applicant_tracking_system, as: :belongs_to
         field :jobs, as: :has_many
       end

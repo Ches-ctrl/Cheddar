@@ -57,7 +57,7 @@ module Ats
         return true if saved_ids.include?(potential_identifier)
 
         puts "\nTesting the ats_identifier: #{potential_identifier}"
-        url = "#{base_url_api}#{potential_identifier}/"
+        url = "#{url_api}#{potential_identifier}/"
         return potential_identifier if url_valid?(url)
 
         puts "The identifier was invalid."

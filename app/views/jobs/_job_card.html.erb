@@ -6,22 +6,22 @@
     <div class="col-5 d-flex flex-row align-items-center">
       <div class="d-flex justify-content-center align-items-center mx-2">
         <%= link_to company_path(job.company), target: "_blank" do %>
-          <%= image_tag("https://logo.clearbit.com/#{job.company.company_website_url}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", style: "width: 60px; height: 60px; padding-right: 0.5rem;") %>
+          <%= image_tag("https://logo.clearbit.com/#{job.company.url_website}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", style: "width: 60px; height: 60px; padding-right: 0.5rem;") %>
         <% end %>
       </div>
 
       <%# Job Title, Company, Location %>
-      <div class="d-flex flex-column justify-content-center align-items-start" data-role="<%= job.job_title %>">
+      <div class="d-flex flex-column justify-content-center align-items-start" data-role="<%= job.title %>">
         <%= link_to job_path(job), target: "_blank" do %>
-          <strong><%= job.job_title.truncate(35) %></strong>
+          <strong><%= job.title.truncate(35) %></strong>
         <% end %>
 
         <%= link_to company_path(job.company), target: "_blank" do %>
-          <strong class="text-sm"><%= job.company.company_name %></strong>
+          <strong class="text-sm"><%= job.company.name %></strong>
         <% end %>
 
         <div class="text-sm">
-          <% if job.remote_only || job.locations.empty? %>
+          <% if job.remote || job.locations.empty? %>
             Remote
           <% else %>
             <%= job.locations.map(&:city).join(' | ') %>
@@ -42,7 +42,7 @@
       <div class="basic-info d-flex flex-column align-items-end justify-space-between text-sm">
         <div class="salaryBudget"><%= job.salary.present? ? job.salary : "<br>".html_safe %></div>
         <div class="my-1"><%= job.employment_type %> •
-          <% if job.remote_only %>
+          <% if job.remote %>
             <%= "Remote"%>
           <% elsif job.hybrid %>
             <%= "Hybrid" %>
@@ -50,7 +50,7 @@
             <%= "In-office" %>
           <% end %>
         </div>
-        <div><%= job.date_created.strftime("%d/%m") %> <span class="meter"><hr class="line-horizontal"><div class="triangle-inverted-blue" style="left:<%= (job.application_deadline.nil? || job.application_deadline < Date.today) ? 50 : (Date.today - job.date_created).to_i.fdiv((job.application_deadline - job.date_created).to_i) * 100 %>%;"></div></span> <%= (job.application_deadline.nil? || job.application_deadline < Date.today) ? "Rolling" : job.application_deadline.strftime("%d/%m") %></div>
+        <div><%= job.date_posted.strftime("%d/%m") %> <span class="meter"><hr class="line-horizontal"><div class="triangle-inverted-blue" style="left:<%= (job.deadline.nil? || job.deadline < Date.today) ? 50 : (Date.today - job.date_posted).to_i.fdiv((job.deadline - job.date_posted).to_i) * 100 %>%;"></div></span> <%= (job.deadline.nil? || job.deadline < Date.today) ? "Rolling" : job.deadline.strftime("%d/%m") %></div>
       </div>
 
       <%# Net Zero Rating %>
@@ -62,9 +62,9 @@
       <div class="d-flex flex-column align-items-center justify-content-center text-sm">
         <div class="apply-rating">
           <%# To-do: Create a difficulty column for jobs table and transfer this logic to JobCreator; eventually GetFormFieldsJob will distinguish between input and text fields (for longer responses), which will help with accurate classification %>
-          <% if job.no_of_questions < 8 && !job.req_cover_letter %>
+          <% if job.requirement.no_of_qs < 8 && !job.requirement.cover_letter %>
             <% apply_rating = 'easy' %>
-          <% elsif job.no_of_questions > 15 %>
+          <% elsif job.requirement.no_of_qs > 15 %>
             <% apply_rating = 'hard' %>
           <% else %>
             <% apply_rating = 'medium' %>

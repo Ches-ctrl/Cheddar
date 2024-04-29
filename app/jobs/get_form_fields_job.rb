@@ -16,7 +16,7 @@ class GetFormFieldsJob < ApplicationJob
 
     Capybara.current_driver = :selenium_chrome_headless
 
-    visit(job.job_posting_url)
+    visit(job.posting_url)
     return if page.has_selector?('#flash_pending')
 
     begin
@@ -106,7 +106,7 @@ class GetFormFieldsJob < ApplicationJob
 
     p "job is #{job}"
 
-    job.no_of_questions = attributes.keys.count
+    job.requirement.no_of_qs = attributes.keys.count
 
     unless extra_fields.nil?
       job.application_criteria = job.application_criteria.merge(extra_fields)

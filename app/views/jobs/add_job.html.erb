@@ -4,7 +4,7 @@
     <div class="col-md-10 p-0 m-0">
       <div class="form-box">
         <%= simple_form_for [@job] do |f| %>
-          <%= f.input :job_posting_url, label_html: { style: 'font-style: italic;' }, input_html: { class: 'rounded-4' } %>
+          <%= f.input :posting_url, label_html: { style: 'font-style: italic;' }, input_html: { class: 'rounded-4' } %>
           <%= f.submit 'Add this job', class: 'btn btn-add-info'%>
         <% end %>
       </div>

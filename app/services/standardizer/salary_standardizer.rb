@@ -8,7 +8,7 @@ module Standardizer
     end
 
     def standardize
-      return unless (search_field = @job.salary || @job.job_description)
+      return unless (search_field = @job.salary || @job.description)
 
       # salary_regex recognises five or six-figure numbers with comma separators that
       # either have a currency symbol or are followed by currency abbreviation e.g. GBP
@@ -16,7 +16,7 @@ module Standardizer
         '([$£€] ?\d{2,3},\d{3}|\d{2,3},\d{3}(?= ?- ?\d{2,3},\d{3} ?(?:gbp|eur|usd|can|aud))|\d{2,3},\d{3} ?(?:gbp|eur|usd|can|aud)|(?<=[$£€]\d{2},\d{3} - )\d{2,3},\d{3}|(?<=[$£€]\d{3},\d{3} - )\d{2,3},\d{3})', 'i'
       )
       matches = search_field.scan(salary_regex)
-      equity = @job.job_description&.match?(/\d{2,3},\d{3}.{0,28}equity/i)
+      equity = @job.description&.match?(/\d{2,3},\d{3}.{0,28}equity/i)
 
       return if matches.empty?
 

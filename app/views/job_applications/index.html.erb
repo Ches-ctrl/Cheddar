@@ -6,17 +6,17 @@
         <button class="toggle-reveal-application-details" data-reveal-myapplication-details-target="toggleReveal" data-action="click->reveal-myapplication-details#revealApplicationDetails">
           <i class="fa-solid fa-caret-right"></i>
         </button>
-        <h5 class="m-0"><%= application.job.job_title %> @
-        <%= application.job.company.company_name %> </h5> -
+        <h5 class="m-0"><%= application.job.title %> @
+        <%= application.job.company.name %> </h5> -
         <%= application.status %>
       </div>
 
       <div id="<%= application.id %>" class="application-secondary-info" data-reveal-myapplication-details-target="applicationDetails">
 
         <div class="application-secondary-info-left">
-          <p><%= application.job.job_description %></p>
+          <p><%= application.job.description %></p>
           <div>
-            <span class="meta-info">Applications Close: <%= application.job.application_deadline.strftime('%d %B %Y') %> - </span>
+            <span class="meta-info">Applications Close: <%= application.job.deadline.strftime('%d %B %Y') %> - </span>
             <span class="meta-info">Date Applied: <%= application.updated_at.strftime('%d %B %Y') %></span>
           </div>
           <hr class="d-none">

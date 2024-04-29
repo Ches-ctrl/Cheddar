@@ -80,9 +80,9 @@ class CategorySidebar
   end
 
   private_class_method def self.update_when_posted
-    date_created = @job.date_created.end_of_day
+    date_posted = @job.date_posted.end_of_day
     @date_cutoffs.each do |period, cutoff|
-      @count[:when_posted][period] += 1 if date_created > cutoff
+      @count[:when_posted][period] += 1 if date_posted > cutoff
     end
   end
 
@@ -92,8 +92,8 @@ class CategorySidebar
   end
 
   private_class_method def self.update_locations
-    if @job.remote_only
-      @count[:locations][['Remote Only']] += 1
+    if @job.remote
+      @count[:locations][['remote']] += 1
     else
       @job.locations.includes(:country).each do |location|
         name = [location.city, location.country&.name].compact
@@ -190,7 +190,7 @@ class CategorySidebar
     @resources['company'] = @count[:companies].take(15).map do |company, count|
       [
         'checkbox',
-        company.company_name,
+        company.name,
         company.id,
         count,
         @params[:company]&.include?(company.id.to_s)
