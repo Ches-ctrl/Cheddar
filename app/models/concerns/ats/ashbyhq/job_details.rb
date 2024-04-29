@@ -3,7 +3,7 @@ module Ats
     module JobDetails
       def fetch_title_and_location(job_data)
         title = job_data['title']
-        job_location = job_data['location']
+        job_location = build_location_string(job_data)
         [title, job_location]
       end
 
@@ -27,12 +27,14 @@ module Ats
       end
 
       def job_details(job, data)
+        title, location = fetch_title_and_location(data)
         job.assign_attributes(
-          title: data['title'],
+          title:,
           description: data['descriptionHtml'],
-          non_geocoded_location_string: build_location_string(data),
+          non_geocoded_location_string: location,
           department: data['department'],
-          posting_url: data['jobUrl']
+          posting_url: data['jobUrl'],
+          remote: data['isRemote']
         )
       end
 

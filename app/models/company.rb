@@ -14,17 +14,22 @@ class Company < ApplicationRecord
   # multisearchable against: [:name]
 
   def create_all_relevant_jobs
+    jobs_created = 0
     ats = applicant_tracking_system
     all_jobs = ats.fetch_company_jobs(ats_identifier)
     all_jobs.each do |job_data|
-      puts "ATS is #{ats.name}"
-      puts "Individual endpoint exists: #{ats.individual_job_endpoint_exists?}"
-      next unless relevant?(ats, job_data)
+      # puts "ATS is #{ats.name}"
+      # puts "Individual endpoint exists: #{ats.individual_job_endpoint_exists?}"
+      details = ats.fetch_title_and_location(job_data)
+      next unless relevant?(*details)
+
+      jobs_created += 1
       next ats.find_or_create_job_by_data(self, job_data) unless ats.individual_job_endpoint_exists?
 
       job_id = ats.fetch_id(job_data)
       ats.find_or_create_job(self, job_id)
     end
+    puts "Created #{jobs_created} new jobs with #{name}."
   end
 
   private

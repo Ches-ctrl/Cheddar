@@ -6,7 +6,8 @@ module Ats
       def fetch_title_and_location(job_data)
         title = job_data['text']
         job_location = build_location_string(job_data)
-        [title, job_location]
+        remote = job_data['workplaceType'] == 'remote'
+        [title, job_location, remote]
       end
 
       def fetch_url(job_data)
@@ -22,13 +23,13 @@ module Ats
       end
 
       def job_details(job, data)
-        # TODO: add logic for office
+        title, location, remote = fetch_title_and_location(data)
         job.assign_attributes(
           posting_url: data['hostedUrl'],
-          title: data['text'],
+          title:,
           description: build_description(data),
-          non_geocoded_location_string: build_location_string(data),
-          remote: data['workplaceType'] == 'remote',
+          non_geocoded_location_string: location,
+          remote:,
           department: data.dig('categories', 'team'),
           date_posted: convert_from_milliseconds(data['createdAt'])
         )

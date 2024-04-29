@@ -26,11 +26,12 @@ module Ats
       end
 
       def job_details(job, data)
+        title, location = fetch_title_and_location(data)
         job.assign_attributes(
           posting_url: data['absolute_url'],
-          title: data['title'],
+          title:,
           description: data['content'],
-          non_geocoded_location_string: data.dig('location', 'name'),
+          non_geocoded_location_string: location,
           department: data.dig('departments', 0, 'name'),
           office: data.dig('offices', 0, 'name'),
           date_posted: convert_from_iso8601(data['updated_at']),

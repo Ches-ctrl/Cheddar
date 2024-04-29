@@ -170,9 +170,9 @@ class ApplicantTrackingSystem < ApplicationRecord
   end
 
   def individual_job_endpoint_exists?
-    # This checks the job_url_api method to see if job_id is a parameter. If not, there's no individual endpoint.
-    # An alternative would be to add an all_jobs_api column to ATS and check whether that is nil
-    # Also, Lever needs a custom method here b/c it has an individual endpoint but it gives no data that the all_jobs endpoint doesn't give.
+    # This checks whether job_data is fetched from a job-specific endpoint.
+    # Return false with Lever because its job-specific endpoint gives no additional data on top of
+    # what the company endpoint gives.
     return false if name == 'Lever'
 
     parameters = method(:job_url_api).parameters
