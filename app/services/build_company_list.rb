@@ -13,11 +13,11 @@ class BuildCompanyList
 
     Company.includes(:applicant_tracking_system).all.each do |company|
       details = [
-        company.company_name,
+        company.name,
         company.applicant_tracking_system.name,
         company.ats_identifier,
         company.description,
-        company.company_website_url,
+        company.website_url,
         company.url_careers,
         company.url_linkedin,
         company.url_ats_main,
@@ -31,14 +31,13 @@ class BuildCompanyList
       CSV.open(company_csv_filepath, 'a') do |csv|
         csv << details
       end
-
     end
     puts "Finished building list."
   end
 
   def self.call
     ats_identifiers_filepath = Rails.root.join('storage', 'csv', 'ats_identifiers.csv')
-    company_csv_filepath = Rails.root.join('storage', 'csv', 'company_names_and_websites.csv')
+    # company_csv_filepath = Rails.root.join('storage', 'csv', 'company_names_and_websites.csv')
     invalid_ids_filepath = Rails.root.join('storage', 'csv', 'invalid_ids.csv')
     # headers = ['name', 'website']
     headers = ['ats,ats_identifier']
@@ -65,8 +64,8 @@ class BuildCompanyList
       end
 
       details = [
-        company.company_name,
-        company.company_website_url
+        company.name,
+        company.website_url
       ].compact
       puts "Company name: #{details[0]}, Website: #{details[1]}"
 

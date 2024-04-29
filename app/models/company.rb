@@ -2,7 +2,7 @@ class Company < ApplicationRecord
   belongs_to :applicant_tracking_system, optional: true
   has_many :jobs, dependent: :destroy
 
-  validates :company_name, presence: true
+  validates :name, presence: true
   validates :ats_identifier, presence: true, uniqueness: true
 
   before_save :set_website_url, :fetch_description
