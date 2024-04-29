@@ -1,10 +1,8 @@
 module Ats
   module Ashbyhq
     module FetchCompanyJobs
-      private
-
-      def fetch_company_jobs(company)
-        endpoint = company.url_ats_api
+      def fetch_company_jobs(ats_identifier)
+        endpoint = "#{url_api}#{ats_identifier}?includeCompensation=true"
         data = get_json_data(endpoint)
         return data['jobs']
       end

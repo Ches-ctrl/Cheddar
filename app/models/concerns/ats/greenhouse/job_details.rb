@@ -4,21 +4,21 @@ module Ats
       include ActionView::Helpers::NumberHelper
       include Constants
 
-      private
-
       def fetch_title_and_location(job_data)
         title = job_data['title']
         job_location = job_data.dig('location', 'name')
         [title, job_location]
       end
 
-      def fetch_url(job_data)
-        job_data['absolute_url']
-      end
-
       def fetch_id(job_data)
         p "Fetching ID: #{job_data['id']}"
         job_data['id']
+      end
+
+      private
+
+      def fetch_url(job_data)
+        job_data['absolute_url']
       end
 
       def job_url_api(base_url, company_id, job_id)

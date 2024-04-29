@@ -1,4 +1,6 @@
 class Company < ApplicationRecord
+  include Relevant
+
   belongs_to :applicant_tracking_system, optional: true
   has_many :jobs, dependent: :destroy
 
@@ -10,6 +12,17 @@ class Company < ApplicationRecord
   # include PgSearch::Model
 
   # multisearchable against: [:name]
+
+  def create_all_relevant_jobs
+    ats = applicant_tracking_system
+    all_jobs = ats.fetch_company_jobs(ats_identifier)
+    all_jobs.each do |job_data|
+      if relevant?(ats, job_data)
+        job_id = ats.fetch_id(job_data)
+        ats.find_or_create_job(self, job_id)
+      end
+    end
+  end
 
   private
 

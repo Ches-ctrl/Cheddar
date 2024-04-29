@@ -2,8 +2,8 @@ module Relevant
   extend ActiveSupport::Concern
   include Constants
 
-  def relevant?(job_data)
-    title, job_location = @ats.fetch_title_and_location(job_data)
+  def relevant?(ats, job_data)
+    title, job_location = ats.fetch_title_and_location(job_data)
 
     title &&
       job_location &&

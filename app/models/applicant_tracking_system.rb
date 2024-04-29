@@ -169,7 +169,11 @@ class ApplicantTrackingSystem < ApplicationRecord
     find_or_create_job(company, ats_job_id, data)
   end
 
-  def fetch_company_jobs(company)
+  def fetch_company_jobs(ats_identifier)
+    refer_to_module(defined?(super) ? super : nil, __method__)
+  end
+
+  def fetch_title_and_location(data)
     refer_to_module(defined?(super) ? super : nil, __method__)
   end
 
