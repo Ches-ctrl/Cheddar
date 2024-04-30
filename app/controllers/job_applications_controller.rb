@@ -21,7 +21,7 @@ class JobApplicationsController < ApplicationController
       @selected_jobs = Job.includes(:company).where(id: job_ids)
 
       @job_applications = @selected_jobs.map do |job|
-        job_application = current_user.job_applications.build(job: job, status: "Pre-application")
+        job_application = current_user.job_applications.build(job:, status: "Pre-application")
         job.application_criteria.each do |field, details|
           job_application.application_responses.build(
             field_name: field,
@@ -55,7 +55,7 @@ class JobApplicationsController < ApplicationController
       process_application(job_application)
       # redirect_to saved_jobs_path, notice: 'Job application successfully submitted!'
     else
-      Rails.logger.debug "Failed to save job application: #{job_application.errors.full_messages.join(", ")}"
+      Rails.logger.debug "Failed to save job application: #{job_application.errors.full_messages.join(', ')}"
       p "Failed to save: #{job_application.errors.full_messages}"
       flash[:alert] = 'There was an error submitting your application. Please try again.'
       render :new, alert: 'There was an error submitting your application. Please try again.'
@@ -68,12 +68,12 @@ class JobApplicationsController < ApplicationController
     user_saved_jobs = SavedJob.where(user_id: current_user.id)
     user_saved_jobs.find_by(job_id: job_application.job.id).destroy
     ActionCable.server.broadcast("job_applications_#{current_user.id}", {
-      event: "job-application-submitted",
-      job_application_id: job_application.id,
-      user_id: current_user.id,
-      job_id: job_application.job_id,
-      status: job_application.status
-    })
+                                   event: "job-application-submitted",
+                                   job_application_id: job_application.id,
+                                   user_id: current_user.id,
+                                   job_id: job_application.job_id,
+                                   status: job_application.status
+                                 })
   end
 
   # def status
@@ -99,16 +99,7 @@ class JobApplicationsController < ApplicationController
   def job_application_params
     params.require(:job_application).permit(
       :job_id,
-      application_responses_attributes: [:field_name,
-                                        {field_value: []},
-                                        :field_value,
-                                        :field_locator,
-                                        :interaction,
-                                        :field_option,
-                                        :field_options,
-                                        :cover_letter_content,
-                                        :required,
-                                        ]
-      )
+      application_responses_attributes: [:field_name, { field_value: [] }, :field_value, :field_locator, :interaction, :field_option, :field_options, :cover_letter_content, :required]
+    )
   end
 end
