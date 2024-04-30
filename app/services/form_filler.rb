@@ -45,8 +45,8 @@ class FormFiller
           FileUtils.rm_f(file_path)
         end
       end
-    # rescue StandardError
-      # nil
+    rescue StandardError
+      nil
     ensure
       session.driver.quit
     end
