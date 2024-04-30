@@ -1,0 +1,141 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://apply.workable.com/api/v1/accounts/kroo
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - apply.workable.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 30 Apr 2024 14:54:10 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding, Origin
+      Access-Control-Allow-Origin:
+      - http://apply.workable.com
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Set-Cookie:
+      - __cf_bm=qh76t0lfZyJWzNRcoq0ZM_YfH1eRaQH0ZTczBS9lAhA-1714488850-1.0.1.1-VL_gkKmuEEHqik2f2kL8Gsiw1QuHXuGJcAPYazLV2cefplTBUb6S4cdBSBSyIs61OYG3c2qAWuFo1BdZ232GRg;
+        path=/; expires=Tue, 30-Apr-24 15:24:10 GMT; domain=.workable.com; HttpOnly;
+        Secure; SameSite=None
+      - wmc=%7B%22cookie_id%22%3A%22ac54e33b-6244-45d3-9d36-67d197a6bb6b%22%7D; path=/;
+        expires=Mon, 01 May 2034 02:54:10 GMT; domain=.workable.com; samesite=none;
+        secure
+      Expect-Ct:
+      - enforce, max-age=86400
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Sv:
+      - 937c2fd34e9bf1ab26776b33cf81a156e89b3989dc216f286d21567de7ac4f2c
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Kb:
+      - 'false'
+      X-Ts:
+      - '0'
+      Content-Security-Policy-Report-Only:
+      - frame-ancestors *; report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pubcbe8d2ef0966e8645a91099cfac490bb&dd-evp-origin=content-security-policy&ddsource=csp-report&ddtags=%40http.headers.cfray%3A87c85d92a93d94d3
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 87c85d92a93d94d3-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJpZCI6NDM5OTYzLCJ1aWQiOiJhODc0NmIzOC1lOGFhLTQzYTEtYjI4My01ZjhmMjZkYzliMWIiLCJsb2dvIjoiaHR0cHM6Ly93b3JrYWJsZWhyLnMzLmFtYXpvbmF3cy5jb20vdXBsb2Fkcy9hY2NvdW50L2xvZ28vNDM5OTYzL2xvZ28iLCJzdWJkb21haW4iOiJrcm9vIiwibmFtZSI6Iktyb28gQmFuayBMdGQiLCJ1cmwiOiJodHRwczovL2tyb28uY29tLyIsImxhbmd1YWdlcyI6eyJkZWZhdWx0IjoiZW4iLCJvcHRpb25zIjpbeyJuYW1lIjoiZW4iLCJwdWJsaXNoZWQiOnRydWUsImVuYWJsZWQiOnRydWUsInZpc2libGUiOnRydWV9XX0sImRldGFpbHMiOnsib3ZlcnZpZXciOnsiZGVzY3JpcHRpb24iOiI8cD5XZeKAmXJlIG9uIGEgbWlzc2lvbiB0byBidWlsZCB0aGUgd29ybGTigJlzIGdyZWF0ZXN0IHNvY2lhbCBiYW5rLiBXZSBiZWxpZXZlIHRoYXQgYmFua2luZyBuZWVkcyB0byBjaGFuZ2UgZm9yIHRoZSBiZXR0ZXIsIGJlY2F1c2Ugd2hlbiBtb25leSBpcyB1c2VkIGNvcnJlY3RseSwgaXQgY2FuIHRyYW5zZm9ybSBvdXIgZGFpbHkgbGl2ZXMgYW5kIHBvc2l0aXZlbHkgaW1wYWN0IHRoZSBwbGFuZXQuPC9wPiJ9LCJlZW9jIjp7ImRpc2NsYWltZXIiOm51bGx9LCJvZmNjcCI6ZmFsc2UsImdkcHIiOnsidXJsIjoiaHR0cHM6Ly9hcHBseS53b3JrYWJsZS5jb20va3Jvby9nZHByX3BvbGljeSIsInJlcXVlc3RBcHBsaWNhbnRDb25zZW50IjpmYWxzZX0sIm1haWxib3giOnsiZW5hYmxlZCI6ZmFsc2UsInRleHQiOm51bGwsImVtYWlsIjoia3Jvb0Bqb2JzLndvcmthYmxlbWFpbC5jb20ifSwiZ3Vlc3NBdmF0YXIiOmZhbHNlLCJhcHBseVdpdGhMaW5rZWRpbiI6eyJhcHBJZCI6Ijc3c2JkcDMyenJmcTBwIiwicnNjT3JnYW5pemF0aW9uSWQiOiJ1cm46bGk6b3JnYW5pemF0aW9uOjExMDQ1MzA0IiwiYXdsaU9yZ2FuaXphdGlvbklkIjoidXJuOmxpOm9yZ2FuaXphdGlvbjoxMTA0NTMwNCJ9LCJhcHBseVdpdGhJbmRlZWQiOnRydWUsImRlcGFydG1lbnRzUHVibGljTGV2ZWwiOjF9fQ==
+  recorded_at: Tue, 30 Apr 2024 14:54:10 GMT
+- request:
+    method: get
+    uri: https://api.crunchbase.com/api/v4/autocompletes?query=Kroo%20Bank%20Ltd&user_key=9eebe4bdec6f10ec631cbb8573cb8de2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.crunchbase.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, private
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 30 Apr 2024 14:54:11 GMT
+      Etag:
+      - W/"1714488851239"
+      Server:
+      - openresty
+      X-Cb-Engine:
+      - autocomplete:algolia
+      X-Cb-Engine-Cached:
+      - 'false'
+      X-Cb-Engine-Took:
+      - '30'
+      X-Cb-Request-Took:
+      - '59'
+      Content-Length:
+      - '3572'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"count":68320,"entities":[{"facet_ids":["contact","semrush","company","rank","builtwith","bombora","ai_insight"],"identifier":{"uuid":"2e889d3d-66da-9ffa-0e65-3892648b94cd","value":"Family
+        Bank Ltd","image_id":"v1499954133/uywkdicaphxfu0h5kd2d.png","permalink":"family-bank-ltd","entity_def_id":"organization"},"short_description":"Family
+        Bank is commercial bank regulated by the Central Bank of Kenya (CBK) and a
+        member of the Deposit Protection Fund (DPF)."},{"facet_ids":["contact","investor","apptopia","semrush","rank","builtwith"],"identifier":{"uuid":"bcc92f35-4ea0-edef-1865-105425e90c57","value":"One
+        Bank Ltd","image_id":"v1442886021/wejvijyxme6lalyhebnn.png","permalink":"one-bank-ltd","entity_def_id":"organization"},"short_description":"OBL
+        is a Private Sector Commercial Bank"},{"facet_ids":["contact","siftery","investor","apptopia","semrush","company","rank","builtwith","bombora","ai_insight"],"identifier":{"uuid":"525d011e-1d7d-719f-3e61-d67923692ce7","value":"Aozora
+        Bank Ltd.","image_id":"v1499754081/np74acysepiti30iyecx.png","permalink":"aozora-bank-ltd","entity_def_id":"organization"},"short_description":"Aozora
+        Bank is a full-service commercial bank that provides advisory and financial
+        services to corporate and retail clients."},{"facet_ids":["contact","company","rank","builtwith","bombora"],"identifier":{"uuid":"ffe9bf30-edf4-1d85-0458-7f76b79dbb69","value":"Fina
+        Bank Ltd.","image_id":"v1484559007/gxiva2oubchxboscyoeh.png","permalink":"fina-bank-ltd","entity_def_id":"organization"},"short_description":"Fina
+        Bank Ltd. provides business and personal banking services."},{"facet_ids":["company","rank","builtwith"],"identifier":{"uuid":"68b3645d-4f3b-4e79-b66a-670758eaf1c5","value":"Public
+        Bank Ltd","image_id":"0920a5e8d3c78462c062","permalink":"public-bank-ltd","entity_def_id":"organization"},"short_description":"Public
+        Bank is a bank providing offshore banking services."},{"facet_ids":["rank","contact","builtwith","company"],"identifier":{"uuid":"496002ef-3f00-44f3-bd44-1e2ffcd9fd14","value":"Unguka
+        Bank Ltd","permalink":"unguka-bank-ltd","entity_def_id":"organization"},"short_description":"Unguka
+        Bank Limited provides banking services for small and medium businesses."},{"facet_ids":["company","rank"],"identifier":{"uuid":"89293704-0c7e-47de-873e-a1062e9f3ea9","value":"Nile
+        Bank Ltd.","permalink":"nile-bank-ltd","entity_def_id":"organization"},"short_description":"Nile
+        Bank Ltd. provides banking products and services."},{"facet_ids":["company","rank"],"identifier":{"uuid":"0b4a3fd5-6fb0-452b-ba8b-eb40d763d763","value":"Union
+        Bank Ltd","permalink":"union-bank-ltd","entity_def_id":"organization"},"short_description":"Union
+        Bank Ltd is a bank in Pakistan."},{"facet_ids":["contact","siftery","ipqwery","apptopia","semrush","company","rank","bombora","ai_insight","key_event"],"identifier":{"uuid":"c49dd930-141c-a53d-c877-c21cd325171b","value":"Crown
+        Agents Bank Ltd","image_id":"msq2ilparzn8mzuvv4h0","permalink":"crown-agents-bank-ltd","entity_def_id":"organization"},"short_description":"Crown
+        Agents Bank Limited provides banking, public financial management, procurement,
+        supply chain management."},{"facet_ids":["rank","builtwith","company"],"identifier":{"uuid":"75bf5b48-3815-6a21-5ac4-909b391c616b","value":"Oriental
+        Commercial Bank Ltd.","image_id":"v1465976571/jtlgggz3a1blne1876s7.png","permalink":"oriental-commercial-bank-ltd","entity_def_id":"organization"},"short_description":"Oriental
+        Commercial Bank Ltd. highly efficient banks by providing professionally sound
+        and personalized banking services."}]}'
+  recorded_at: Tue, 30 Apr 2024 14:54:11 GMT
+recorded_with: VCR 6.2.0

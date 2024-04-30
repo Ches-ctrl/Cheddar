@@ -1,15 +1,4 @@
-COMPANIES = {
-  'AshbyHQ' => 'lightdash',
-  'BambooHR' => 'avidbots',
-  'DevITJobs' => 'BAE-Systems',
-  'Greenhouse' => 'codepath',
-  'Lever' => 'GoToGroup',
-  'Manatal' => 'ptc-group',
-  'PinpointHQ' => 'auroraer',
-  'Recruitee' => 'midas',
-  'SmartRecruiters' => 'Gousto1',
-  'Workable' => 'kroo',
-}
+require Rails.root.join('spec', 'support', 'spec_constants.rb')
 
 RSpec.describe Company do
   describe 'Associations' do
@@ -17,7 +6,7 @@ RSpec.describe Company do
     it { is_expected.to belong_to(:applicant_tracking_system).optional(true) }
   end
 
-  describe 'Validations' do
+  describe 'Validations', :vcr do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_uniqueness_of(:ats_identifier) }
   end
