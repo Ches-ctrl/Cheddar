@@ -15,11 +15,19 @@
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'rails_helper'
 require 'capybara/rspec'
+require 'webmock/rspec'
 
 Capybara.configure do |config|
   config.run_server = true
   config.raise_server_errors = true
   config.server = :default
+end
+
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/fixtures/cassettes"
+  config.hook_into :webmock
+  config.configure_rspec_metadata!
+  config.ignore_hosts 'autocomplete.clearbit.com'
 end
 
 RSpec.configure do |config|

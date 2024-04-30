@@ -31,7 +31,7 @@ RSpec.describe Company do
     end
 
     COMPANIES.each do |ats_name, ats_id|
-      it "can create all relevant jobs with #{ats_name}" do
+      it "can create all relevant jobs with #{ats_name}", :vcr do
         ats = ApplicantTrackingSystem.find_by(name: ats_name)
         company = ats.find_or_create_company(ats_id)
         unless company.persisted?
