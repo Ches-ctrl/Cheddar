@@ -58,6 +58,4 @@ jobs:
           bundler-cache: true
 
       - name: Lint Ruby files
-        env:
-          RUBOCOP_CONFIG: .github/config/.rubocop.yml
-        run: bundle exec rubocop --parallel -c $RUBOCOP_CONFIG
+        run: bundle exec rubocop --parallel
