@@ -18,16 +18,17 @@ class Company < ApplicationRecord
     ats = applicant_tracking_system
     all_jobs = ats.fetch_company_jobs(ats_identifier)
     all_jobs.each do |job_data|
-      # puts "ATS is #{ats.name}"
-      # puts "Individual endpoint exists: #{ats.individual_job_endpoint_exists?}"
       details = ats.fetch_title_and_location(job_data)
       next unless relevant?(*details)
 
-      jobs_created += 1
-      next ats.find_or_create_job_by_data(self, job_data) unless ats.individual_job_endpoint_exists?
-
-      job_id = ats.fetch_id(job_data)
-      ats.find_or_create_job(self, job_id)
+      # create jobs with data from ATS company endpoint unless individual job endpoint exists:
+      if ats.individual_job_endpoint_exists?
+        job_id = ats.fetch_id(job_data)
+        job = ats.find_or_create_job(self, job_id)
+      else
+        job = ats.find_or_create_job_by_data(self, job_data)
+      end
+      jobs_created += 1 if job&.persisted?
     end
     puts "Created #{jobs_created} new jobs with #{name}."
   end

@@ -6,8 +6,8 @@ module Ats
       def fetch_title_and_location(job_data)
         title = job_data['jobOpeningName']
         job_location = build_location_string(job_data)
-        remote = job_remote?(job_data) || job_data.dig('location', 'addressCountry').nil?
-        [title, job_location, remote]
+        ignore_job_location = job_data.dig('location', 'addressCountry').nil?
+        [title, job_location, ignore_job_location]
       end
 
       def fetch_id(job_data)

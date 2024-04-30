@@ -41,7 +41,6 @@ jobs:
       # Add or replace database setup steps here
       - name: Create db
         run: bundle exec rails db:create
-
       - name: Set up database schema
         run: bin/rails db:schema:load
       # Add or replace test runners here
@@ -59,4 +58,6 @@ jobs:
           bundler-cache: true
 
       - name: Lint Ruby files
+        env:
+          RUBOCOP_CONFIG: .github/config/.rubocop.yml
         run: bundle exec rubocop --parallel

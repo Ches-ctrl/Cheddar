@@ -1,21 +1,20 @@
 module Ats
   module Lever
     module JobDetails
-      private
-
       def fetch_title_and_location(job_data)
         title = job_data['text']
         job_location = build_location_string(job_data)
-        remote = job_data['workplaceType'] == 'remote'
-        [title, job_location, remote]
+        [title, job_location]
+      end
+
+      private
+
+      def fetch_id(job_data)
+        job_data['id']
       end
 
       def fetch_url(job_data)
         job_data['hostedUrl']
-      end
-
-      def fetch_id(job_data)
-        job_data['id']
       end
 
       def job_url_api(base_url, company_id, job_id)
@@ -23,13 +22,13 @@ module Ats
       end
 
       def job_details(job, data)
-        title, location, remote = fetch_title_and_location(data)
+        title, location = fetch_title_and_location(data)
         job.assign_attributes(
           posting_url: data['hostedUrl'],
           title:,
           description: build_description(data),
           non_geocoded_location_string: location,
-          remote:,
+          remote: data['workplaceType'] == 'remote',
           department: data.dig('categories', 'team'),
           date_posted: convert_from_milliseconds(data['createdAt'])
         )
