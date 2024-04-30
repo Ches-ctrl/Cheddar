@@ -4,13 +4,25 @@ module Ats
       include ActionView::Helpers::NumberHelper
       include Constants
 
+      def fetch_title_and_location(job_data)
+        title = job_data['title']
+        location = build_location_string(job_data)
+        [title, location]
+      end
+
+      def fetch_id(job_data)
+        path = job_data['path']
+        result = path&.match(%r{postings/([a-z\-0-9]+)})
+        result[1] if result
+      end
+
       private
 
       def fetch_job_data(job)
         job_apply_url = "#{job.company.url_ats_main}o/#{job.ats_job_id}/c/new"
 
         all_jobs_data = get_json_data(job.api_url)
-        data = all_jobs_data["offers"].find { |job| job["careers_apply_url"] == job_apply_url }
+        data = all_jobs_data["offers"]&.find { |job_data| job_data["careers_apply_url"] == job_apply_url }
 
         return data if data
 
@@ -25,14 +37,15 @@ module Ats
       end
 
       def job_details(job, data)
+        title, location = fetch_title_and_location(data)
         job.assign_attributes(
-          title: data['title'],
+          title:,
           requirements: data['requirements'],
           description: [data['description'], data['requirements']].reject(&:blank?).join,
           salary: fetch_salary(data),
           department: data['department'],
           employment_type: fetch_employment_type(data),
-          non_geocoded_location_string: fetch_location(data),
+          non_geocoded_location_string: location,
           posting_url: data['careers_apply_url'],
           date_posted: (Date.parse(data['updated_at']) if data['updated_at']),
           seniority: fetch_seniority(data),
@@ -43,9 +56,14 @@ module Ats
         )
       end
 
-      def fetch_location(data)
-        location = data['location']
-        location == 'Remote job' ? data.dig('locations', 0, 'country') : location
+      def build_location_string(data)
+        locations = data['locations']&.map do |location|
+          city = location['city'] || location['name']
+          state = location['state']
+          country = location['country']
+          [city, state, country].reject(&:blank?).join(', ')
+        end
+        locations.reject(&:blank?).join(' && ')
       end
 
       def fetch_employment_type(data)

@@ -43,6 +43,12 @@ module Standardizer
       @job.remote ||= @job.locations.empty?
     end
 
+    def simple_standardize(string)
+      JOB_LOCATION_FILTER_WORDS.each { |filter| string.gsub!(filter, '') }
+      city, country = standardize_city_and_country(string)
+      [city, country].reject(&:blank?).join(', ')
+    end
+
     private
 
     def check_for_multiple_locations(string)

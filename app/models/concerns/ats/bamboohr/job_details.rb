@@ -4,10 +4,13 @@ module Ats
       include Relevant
 
       def fetch_title_and_location(job_data)
+        # This method is called with job_data from company endpoint, which gives limited
+        # location info; simple_standardize ensures that location includes a country for
+        # purposes of determining whether job is relevant.
         title = job_data['jobOpeningName']
-        job_location = build_location_string(job_data)
-        ignore_job_location = job_data.dig('location', 'addressCountry').nil?
-        [title, job_location, ignore_job_location]
+        location_string = build_location_string(job_data)
+        location = Standardizer::LocationStandardizer.new('').simple_standardize(location_string)
+        [title, location]
       end
 
       def fetch_id(job_data)
@@ -18,9 +21,8 @@ module Ats
       private
 
       def job_details(job, data)
-        title, location = fetch_title_and_location(data)
         job.assign_attributes(
-          title:,
+          title: data['jobOpeningName'],
           description: data['description'],
           salary: data['compensation'],
           date_posted: (Date.parse(data['datePosted']) if data['datePosted']),
@@ -29,7 +31,7 @@ module Ats
           employment_type: data['employmentStatusLabel'],
           remote: job_remote?(data),
           hybrid: job_hybrid?(data),
-          non_geocoded_location_string: location,
+          non_geocoded_location_string: build_location_string(data),
           posting_url: "#{url_base.sub('XXX', job.company.ats_identifier)}#{data['id']}",
           live: data['jobOpeningStatus'] == 'Open'
         )
@@ -41,13 +43,7 @@ module Ats
       end
 
       def fetch_job_data(job)
-        # Check relevancy again with the full location data
-        # If not relevant, scuttle job creation by returning nil
-        data = get_json_data(job.api_url)&.dig('result', 'jobOpening')
-        p data
-        details = fetch_title_and_location(data)
-        p details
-        relevant?(*details) ? data : nil
+        get_json_data(job.api_url)&.dig('result', 'jobOpening')
       end
 
       def job_remote?(data)
