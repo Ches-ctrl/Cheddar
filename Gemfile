@@ -102,9 +102,6 @@ gem "flipper-active_record", "~> 1.3"
 # Error Tracking
 # gem 'sentry-raven' # TODO: install this gem for error tracking
 
-# Security
-# gem 'brakeman', require: false # TODO: install this gem for security checks
-
 # Front-end
 gem 'will_paginate', '~> 4.0' # TODO: Update to kaminari now index page is fixed (better maintained / looks nicer)
 # gem 'kaminari'
@@ -141,6 +138,9 @@ group :development do
   gem 'bullet'
   gem "better_errors"
   gem "binding_of_caller"
+
+  # Security
+  # gem 'brakeman', require: false # TODO: install this gem for security checks
 
   # Performance
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
