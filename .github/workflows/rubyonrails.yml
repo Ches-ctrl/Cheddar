@@ -60,4 +60,4 @@ jobs:
       - name: Lint Ruby files
         env:
           RUBOCOP_CONFIG: .github/config/.rubocop.yml
-        run: bundle exec rubocop --parallel
+        run: bundle exec rubocop --parallel -c $RUBOCOP_CONFIG

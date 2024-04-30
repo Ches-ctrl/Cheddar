@@ -50,6 +50,17 @@ RSpec.configure do |config|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
 
+  WebMock.allow_net_connect!
+  config.around do |example|
+    if example.metadata.key?(:vcr)
+      WebMock.enable!
+      example.run
+      WebMock.disable!
+    else
+      VCR.turned_off { example.run }
+    end
+  end
+
   # rspec-mocks config goes here. You can use an alternate test double
   # library (such as bogus or mocha) by changing the `mock_with` option here.
   config.mock_with :rspec do |mocks|
