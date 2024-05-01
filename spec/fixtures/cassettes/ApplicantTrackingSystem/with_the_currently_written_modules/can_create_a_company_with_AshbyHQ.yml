@@ -1,67 +1,66 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: https://autocomplete.clearbit.com/v1/companies/suggest?query=Lightdash
+    method: post
+    uri: https://jobs.ashbyhq.com/api/non-user-graphql?op=ApiOrganizationFromHostedJobsPageName
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: '{"query":"query ApiOrganizationFromHostedJobsPageName($organizationHostedJobsPageName:
+        String!) {  organization: organizationFromHostedJobsPageName(    organizationHostedJobsPageName:
+        $organizationHostedJobsPageName  ) {    ...OrganizationParts    __typename  }}fragment
+        OrganizationParts on Organization {  name  publicWebsite  customJobsPageUrl  hostedJobsPageSlug  allowJobPostIndexing  theme
+        {    colors    showJobFilters    showTeams    showAutofillApplicationsBox    logoWordmarkImageUrl    logoSquareImageUrl    applicationSubmittedSuccessMessage    jobBoardTopDescriptionHtml    jobBoardBottomDescriptionHtml    __typename  }  appConfirmationTrackingPixelHtml  recruitingPrivacyPolicyUrl  activeFeatureFlags  timezone  __typename
+        }","variables":{"organizationHostedJobsPageName":"lightdash"}}'
     headers:
+      Content-Type:
+      - application/json
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - application/json
+      - "*/*"
       User-Agent:
       - Ruby
-      Host:
-      - autocomplete.clearbit.com
   response:
     status:
       code: 200
       message: OK
     headers:
+      Date:
+      - Wed, 01 May 2024 14:14:37 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
       Connection:
       - keep-alive
-      Content-Length:
-      - '96'
-      Cache-Control:
-      - public, must-revalidate, max-age=2629746
-      Content-Type:
-      - application/json
-      X-Envoy-Response-Flags:
-      - "-"
-      Server:
-      - Clearbit
-      Via:
-      - 1.1 varnish, 1.1 varnish
-      Access-Control-Allow-Origin:
-      - "*"
-      Accept-Ranges:
-      - bytes
-      Age:
-      - '109918'
-      Date:
-      - Tue, 30 Apr 2024 14:53:45 GMT
-      X-Served-By:
-      - cache-sjc1000140-SJC, cache-lcy-eglc8600023-LCY
-      X-Cache:
-      - HIT, HIT
-      X-Cache-Hits:
-      - 3, 0
-      X-Timer:
-      - S1714488826.663413,VS0,VE1
-      Vary:
-      - Accept-Encoding
-      Content-Security-Policy-Report-Only:
-      - default-src 'self';
+      X-Ashby-Request-Id:
+      - 01HWT83Q4R8V89DQVKC1NS3KMV
       X-Content-Type-Options:
       - nosniff
+      X-Frame-Options:
+      - DENY
+      Referrer-Policy:
+      - same-origin
+      Cache-Control:
+      - no-store
+      Access-Control-Allow-Origin:
+      - "*"
+      Cf-Cache-Status:
+      - DYNAMIC
       Strict-Transport-Security:
-      - max-age=31557600
+      - max-age=31536000; includeSubDomains; preload
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 87d061008f6e9437-LHR
+      Alt-Svc:
+      - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
-      string: '[{"name":"Lightdash","domain":"lightdash.com","logo":"https://logo.clearbit.com/lightdash.com"}]'
-  recorded_at: Tue, 30 Apr 2024 14:53:45 GMT
+      string: '{"data":{"organization":{"name":"Lightdash","publicWebsite":"https://www.lightdash.com/","customJobsPageUrl":null,"hostedJobsPageSlug":"Lightdash","allowJobPostIndexing":true,"theme":{"colors":{"version":"1","colorPrimary600":"#7262FF","colorPrimary900":"#7262FF"},"showJobFilters":false,"showTeams":false,"showAutofillApplicationsBox":true,"logoWordmarkImageUrl":"https://app.ashbyhq.com/api/images/org-theme-wordmark/118a5d75-b907-4616-ade7-b67eaa6b5c16/314e7c4e-d0d9-494f-b7cd-7d008d80f41e.png","logoSquareImageUrl":"https://app.ashbyhq.com/api/images/org-theme-logo/118a5d75-b907-4616-ade7-b67eaa6b5c16/0e2997f7-6255-4c9e-9ea4-0199b51c80ef.png","applicationSubmittedSuccessMessage":null,"jobBoardTopDescriptionHtml":null,"jobBoardBottomDescriptionHtml":null,"__typename":"Theme"},"appConfirmationTrackingPixelHtml":null,"recruitingPrivacyPolicyUrl":null,"activeFeatureFlags":["AnonymousCandidateExperience","JobPostingApplicationDeadlines","SchedulingNewAvailabileTimesCalculation","ThirdPartyJobBoardListingControl","UnsubscribeLinks","VirusScanFiles","VirusScanShowResults"],"timezone":"Europe/London","__typename":"Organization"}}}
+
+        '
+  recorded_at: Wed, 01 May 2024 14:14:36 GMT
 - request:
     method: get
     uri: https://api.crunchbase.com/api/v4/autocompletes?query=Lightdash&user_key=9eebe4bdec6f10ec631cbb8573cb8de2
@@ -87,9 +86,9 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 30 Apr 2024 14:53:46 GMT
+      - Wed, 01 May 2024 14:14:37 GMT
       Etag:
-      - W/"1714488826374"
+      - W/"1714572877672"
       Server:
       - openresty
       X-Cb-Engine:
@@ -97,9 +96,9 @@ http_interactions:
       X-Cb-Engine-Cached:
       - 'false'
       X-Cb-Engine-Took:
-      - '18'
+      - '20'
       X-Cb-Request-Took:
-      - '46'
+      - '50'
       Content-Length:
       - '4038'
       Connection:
@@ -126,5 +125,5 @@ http_interactions:
         economy that inspires businesses and changes lives."},{"facet_ids":["contact","siftery","apptopia","semrush","company","rank","bombora"],"identifier":{"uuid":"df1edc03-4105-41d5-9f4e-ea3f68115d80","value":"Lightshade","image_id":"z5q8qmmyrx8th2i8cr5x","permalink":"lightshade-assets","entity_def_id":"organization"},"short_description":"Lightshade
         is an online store that sells cannabis, edibles, concentrates, tinctures,
         topicals, and other cannabis-related products."}]}'
-  recorded_at: Tue, 30 Apr 2024 14:53:46 GMT
+  recorded_at: Wed, 01 May 2024 14:14:37 GMT
 recorded_with: VCR 6.2.0

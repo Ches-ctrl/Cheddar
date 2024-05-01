@@ -43,17 +43,17 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Age:
-      - '872109'
+      - '956157'
       Date:
-      - Tue, 30 Apr 2024 14:54:06 GMT
+      - Wed, 01 May 2024 14:14:53 GMT
       X-Served-By:
-      - cache-sjc1000104-SJC, cache-lcy-eglc8600040-LCY
+      - cache-sjc1000104-SJC, cache-lon4254-LON
       X-Cache:
       - HIT, HIT
       X-Cache-Hits:
-      - 17, 0
+      - 12, 0
       X-Timer:
-      - S1714488846.249896,VS0,VE1
+      - S1714572894.940199,VS0,VE1
       Vary:
       - Accept-Encoding
       Content-Security-Policy-Report-Only:
@@ -66,7 +66,7 @@ http_interactions:
       encoding: ASCII-8BIT
       string: !binary |-
         W3sibmFtZSI6Ik1pZGFzYnV5IiwiZG9tYWluIjoibWlkYXNidXkuY29tIiwibG9nbyI6Imh0dHBzOi8vbG9nby5jbGVhcmJpdC5jb20vbWlkYXNidXkuY29tIn0seyJuYW1lIjoiTWlkYXMiLCJkb21haW4iOiJtaWRhcy5jb20iLCJsb2dvIjoiaHR0cHM6Ly9sb2dvLmNsZWFyYml0LmNvbS9taWRhcy5jb20ifSx7Im5hbWUiOiLZhduM2K/Yp9izINiz2LHZhdin24zZhyAtINii2YXZiNiy2LQg2LPYsdmF2KfbjNmHINqv2LDYp9ix24wg2K/YsSDYqNin2LLYp9ix2YfYp9uMINmF2KfZhNuMINmIINio2YjYsdizIiwiZG9tYWluIjoibWlkYXNzYXJtYXllLmNvbSIsImxvZ28iOiJodHRwczovL2xvZ28uY2xlYXJiaXQuY29tL21pZGFzc2FybWF5ZS5jb20ifSx7Im5hbWUiOiJNaWRhcyBGdXJuaXR1cmUiLCJkb21haW4iOiJtaWRhc2Z1cm5pdHVyZS5jb20iLCJsb2dvIjoiaHR0cHM6Ly9sb2dvLmNsZWFyYml0LmNvbS9taWRhc2Z1cm5pdHVyZS5jb20ifSx7Im5hbWUiOiJNSURBUyBFZHVjYXRpb24iLCJkb21haW4iOiJtaWRhc2VkdWNhdGlvbi5jb20iLCJsb2dvIjoiaHR0cHM6Ly9sb2dvLmNsZWFyYml0LmNvbS9taWRhc2VkdWNhdGlvbi5jb20ifV0=
-  recorded_at: Tue, 30 Apr 2024 14:54:06 GMT
+  recorded_at: Wed, 01 May 2024 14:14:53 GMT
 - request:
     method: get
     uri: https://api.crunchbase.com/api/v4/autocompletes?query=Midas&user_key=9eebe4bdec6f10ec631cbb8573cb8de2
@@ -92,9 +92,9 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 30 Apr 2024 14:54:06 GMT
+      - Wed, 01 May 2024 14:14:54 GMT
       Etag:
-      - W/"1714488846941"
+      - W/"1714572894526"
       Server:
       - openresty
       X-Cb-Engine:
@@ -102,9 +102,9 @@ http_interactions:
       X-Cb-Engine-Cached:
       - 'false'
       X-Cb-Engine-Took:
-      - '6'
+      - '5'
       X-Cb-Request-Took:
-      - '41'
+      - '33'
       Content-Length:
       - '3729'
       Connection:
@@ -113,5 +113,5 @@ http_interactions:
       encoding: ASCII-8BIT
       string: !binary |-
         eyJjb3VudCI6MTg3MywiZW50aXRpZXMiOlt7ImZhY2V0X2lkcyI6WyJjb250YWN0Iiwic2lmdGVyeSIsImFiZXJkZWVuIiwiYXBwdG9waWEiLCJzZW1ydXNoIiwiY29tcGFueSIsInJhbmsiLCJidWlsdHdpdGgiLCJib21ib3JhIl0sImlkZW50aWZpZXIiOnsidXVpZCI6ImQ5ZWEwOGE1LTdhZTMtMjFlNi1hZDJmLTdmYjQ2ODU3NTAyYyIsInZhbHVlIjoiTWlkYXMiLCJpbWFnZV9pZCI6InRkdmNqZ2NsaWtrYXh4MzVjaGVnIiwicGVybWFsaW5rIjoibWlkYXMtMiIsImVudGl0eV9kZWZfaWQiOiJvcmdhbml6YXRpb24ifSwic2hvcnRfZGVzY3JpcHRpb24iOiJNaWRhcyBpcyBvbmUgb2YgdGhlIHdvcmxk4oCZcyBsYXJnZXN0IHByb3ZpZGVycyBvZiBhdXRvbW90aXZlIHNlcnZpY2UifSx7ImZhY2V0X2lkcyI6WyJzaWZ0ZXJ5Iiwic2VtcnVzaCIsImNvbXBhbnkiLCJyYW5rIiwiYnVpbHR3aXRoIl0sImlkZW50aWZpZXIiOnsidXVpZCI6IjQ5MjY1MzE2LTVhYzQtNzkwYi1lMDZmLTVjM2UwMzJiYmRhMSIsInZhbHVlIjoiTUlEQVMiLCJpbWFnZV9pZCI6InYxNDAwMDU3MTQyL2hpZ2w4eHV1dml0ZHJ6Mmx0YmpuLnBuZyIsInBlcm1hbGluayI6Im1pZGFzIiwiZW50aXR5X2RlZl9pZCI6Im9yZ2FuaXphdGlvbiJ9LCJzaG9ydF9kZXNjcmlwdGlvbiI6Ik1JREFTIGRlbGl2ZXIgY2xvdWQtaG9zdGVkIGFuZCBvbi1wcmVtaXNlIHdlYiBiYXNlZCBSb29tIEJvb2tpbmcgYW5kIFJlc291cmNlIFNjaGVkdWxpbmcgc29sdXRpb25zIn0seyJmYWNldF9pZHMiOlsiY29udGFjdCIsImFwcHRvcGlhIiwic2VtcnVzaCIsImNvbXBhbnkiLCJyYW5rIiwiYnVpbHR3aXRoIl0sImlkZW50aWZpZXIiOnsidXVpZCI6IjExMDVjNmMwLTRhMzItNDY2NC04ODk3LThkNjBiYWIwNWZlNSIsInZhbHVlIjoiTWlkYXMiLCJpbWFnZV9pZCI6InM5c2JkMHZienVwdDBqeG5kZWU4IiwicGVybWFsaW5rIjoibWlkYXMtNWZlNSIsImVudGl0eV9kZWZfaWQiOiJvcmdhbml6YXRpb24ifSwic2hvcnRfZGVzY3JpcHRpb24iOiJNaWRhcyBpcyB0aGUgZmlyc3QgbmVvYnJva2VyIG9mIFR1cmtleSwgcHJvdmlkaW5nIHplcm8gY29tbWlzc2lvbiBUdXJraXNoIGFuZCBBbWVyaWNhbiBzdG9ja3MuIn0seyJmYWNldF9pZHMiOlsiY29udGFjdCIsImludmVzdG9yIiwic2VtcnVzaCIsInJhbmsiLCJidWlsdHdpdGgiXSwiaWRlbnRpZmllciI6eyJ1dWlkIjoiYWI2OGYyMjYtZWRmMC00NzQzLWFmYTMtYTVlMmJhYThkZDI5IiwidmFsdWUiOiJNaWRhcy5JbnZlc3RtZW50cyIsImltYWdlX2lkIjoicG9ic3FhbHBvd3JzcW5qcmk3aXMiLCJwZXJtYWxpbmsiOiJtaWRhcy1pbnZlc3RtZW50cyIsImVudGl0eV9kZWZfaWQiOiJvcmdhbml6YXRpb24ifSwic2hvcnRfZGVzY3JpcHRpb24iOiJNaWRhcy5JbnZlc3RtZW50cyBpcyBhIGN1c3RvZGlhbCDigJxDZURlRmnigJ0gY3J5cHRvLWludmVzdG1lbnQgcGxhdGZvcm0gZm9jdXNpbmcgb24gcHJvZHVjaW5nIHBhc3NpdmUgaW5jb21lIG9uIGNyeXB0byBhc3NldHMgdW5kZXIgbWFuYWdlbWVudC4ifSx7ImZhY2V0X2lkcyI6WyJjb250YWN0IiwiYWJlcmRlZW4iLCJzZW1ydXNoIiwiY29tcGFueSIsInJhbmsiXSwiaWRlbnRpZmllciI6eyJ1dWlkIjoiYzI1MzUwN2EtNmRlOC00MDkzLWJiYWUtZDg0YjRjNGI4NDBiIiwidmFsdWUiOiJNaWRhcyIsImltYWdlX2lkIjoiYnF6ZWx2bzNucXNuM3ZneGx6eXgiLCJwZXJtYWxpbmsiOiJtaWRhcy04NDBiIiwiZW50aXR5X2RlZl9pZCI6Im9yZ2FuaXphdGlvbiJ9LCJzaG9ydF9kZXNjcmlwdGlvbiI6Ik1pZGFzIGlzIGEgc3RhZmZpbmcgY29tcGFueSB0aGF0IHByb3ZpZGVzIG1hbmFnZW1lbnQgaGVhZGh1bnRpbmcsIHJlY3J1aXRtZW50LCBjb25zdWx0aW5nLCBzdGFmZiBhdWdtZW50YXRpb24sIGFuZCBtYW5hZ2VkIElUIHNlcnZpY2VzLiJ9LHsiZmFjZXRfaWRzIjpbImFiZXJkZWVuIiwic2VtcnVzaCIsImNvbXBhbnkiLCJyYW5rIiwiYm9tYm9yYSIsImFpX2luc2lnaHQiXSwiaWRlbnRpZmllciI6eyJ1dWlkIjoiMjNhNDBiZGQtODBjZC00N2QwLTlkZjQtYjdiNWRjMTQzNjZmIiwidmFsdWUiOiJNSURBUyBIZWFsdGhjYXJlIFNvbHV0aW9ucyIsImltYWdlX2lkIjoibXc0ZXpqZWd4aHZja3ozd2lpaGgiLCJwZXJtYWxpbmsiOiJtaWRhcy1oZWFsdGhjYXJlLXNvbHV0aW9ucyIsImVudGl0eV9kZWZfaWQiOiJvcmdhbml6YXRpb24ifSwic2hvcnRfZGVzY3JpcHRpb24iOiJNSURBUyBIZWFsdGhjYXJlIFNvbHV0aW9ucycgb2JqZWN0aXZlIGlzIHRvIGVuY291cmFnZSBhbmQgZW5hYmxlIHRoZWlyIHNhZmUgdXNlLCBoYW5kbGluZywgc3RvcmFnZSwgcmV0dXJuLCBhbmQgZGlzcG9zYWwuIn0seyJmYWNldF9pZHMiOlsiY29udGFjdCIsImFiZXJkZWVuIiwiY29tcGFueSIsInJhbmsiLCJidWlsdHdpdGgiXSwiaWRlbnRpZmllciI6eyJ1dWlkIjoiYTcxMDU5ZjUtY2NjMy00Y2M1LWEyNjYtOTVkOGM5MTdiNDlhIiwidmFsdWUiOiJNaWRhcyIsImltYWdlX2lkIjoiYWh2Y3hhY3BlZ2h6dGs4Z2M0bDIiLCJwZXJtYWxpbmsiOiJtaWRhcy1iNDlhIiwiZW50aXR5X2RlZl9pZCI6Im9yZ2FuaXphdGlvbiJ9LCJzaG9ydF9kZXNjcmlwdGlvbiI6Ik1pZGFzIGlzIGFuIGV4ZWN1dGl2ZSByZWNydWl0bWVudCBjb25zdWx0YW5jeSBhbHNvIHByb3ZpZGUgc2VydmljZXMgbGlrZSBzYWxlcyBhbmQgbWFya2V0aW5nIGZvciBkaWZmZXJlbnQgc2VjdG9ycyBzdWNoIGFzIGhlYWx0aGNhcmUuIn0seyJmYWNldF9pZHMiOlsiY29tcGFueSIsInJhbmsiLCJidWlsdHdpdGgiXSwiaWRlbnRpZmllciI6eyJ1dWlkIjoiOTRhZmU3ZjgtYzUzYy00NDk3LWE5ZjUtOWFjMmUxZGRkZTQzIiwidmFsdWUiOiJNSURBUyIsImltYWdlX2lkIjoiY2JiOTVhZjcyZGRiMDEyZDAzNjIiLCJwZXJtYWxpbmsiOiJtaWRhcy1kZTQzIiwiZW50aXR5X2RlZl9pZCI6Im9yZ2FuaXphdGlvbiJ9LCJzaG9ydF9kZXNjcmlwdGlvbiI6Ik1JREFTIGlzIGEgbWFudWZhY3R1cmVyIG9mIHByb2Nlc3Npbmcgc3lzdGVtcyBhbmQgaW5kdXN0cmlhbCBlcXVpcG1lbnQuIn0seyJmYWNldF9pZHMiOlsiY29tcGFueSIsInJhbmsiLCJidWlsdHdpdGgiXSwiaWRlbnRpZmllciI6eyJ1dWlkIjoiNTBkMmRkNDMtN2JhOS00MDNmLWE4NWQtYmRiOGQ5NDg2NTAwIiwidmFsdWUiOiJNaWRhcyIsImltYWdlX2lkIjoiZm0zbzlrb3N3aWZwdXZldjVzeXYiLCJwZXJtYWxpbmsiOiJtaWRhcy02NTAwIiwiZW50aXR5X2RlZl9pZCI6Im9yZ2FuaXphdGlvbiJ9LCJzaG9ydF9kZXNjcmlwdGlvbiI6Ik1pZGFzIGlzIGEgc29sYXIgcGFuZWwgaW5zdGFsbGF0aW9uIGNvbXBhbnkgdGhhdCBtYW51ZmFjdHVyZXMgc29sYXIgcGhvdG92b2x0YWljIG1vZHVsZXMuIn0seyJmYWNldF9pZHMiOlsic2VtcnVzaCIsImNvbXBhbnkiLCJyYW5rIiwiYnVpbHR3aXRoIiwiYWlfaW5zaWdodCJdLCJpZGVudGlmaWVyIjp7InV1aWQiOiJhOGUxNGRkNC04ZWQzLTQzOTEtYTFjZS0xYjMzOTgyYWViNWYiLCJ2YWx1ZSI6Ik1pZGFzIiwiaW1hZ2VfaWQiOiJmMjRpZWZpZ3FhcG5teGM2MWVocCIsInBlcm1hbGluayI6Im1pZGFzLWViNWYiLCJlbnRpdHlfZGVmX2lkIjoib3JnYW5pemF0aW9uIn0sInNob3J0X2Rlc2NyaXB0aW9uIjoiTWlkYXMgaXMgYSBjcnlwdG9jdXJyZW5jeSBhcHBsaWNhdGlvbiB0aGF0IGFsbG93cyB1c2VycyB0byBzZWxsIGFuZCBpbnZlc3QgaW4gY3J5cHRvY3VycmVuY3kgYW5kIHRva2Vucy4ifV19
-  recorded_at: Tue, 30 Apr 2024 14:54:06 GMT
+  recorded_at: Wed, 01 May 2024 14:14:54 GMT
 recorded_with: VCR 6.2.0
