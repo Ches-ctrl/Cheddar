@@ -28,19 +28,6 @@ export default class extends Controller {
     }
   }
 
-  // submitForm(event) {
-  //   event.preventDefault();
-  //   const thisForm = event.target
-  //   // for (let i = 0; i < this.formTargets.length; i++) {
-  //   //   if (this.formTargets[i] === thisForm) {
-  //   //     this.updateCoverLetterContent(i);
-  //   //     break;
-  //   //   }
-  //   // }
-  //   console.log(thisForm)
-  //   thisForm.submit();
-  // }
-
   async submitAllForms(event) {
     event.preventDefault();
     this.buttonTarget.disabled = true;
