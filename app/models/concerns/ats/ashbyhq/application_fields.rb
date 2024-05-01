@@ -3,19 +3,20 @@ module Ats
     module ApplicationFields
       def get_application_criteria(job)
         p "Getting AshbyHQ application criteria"
-        data = fetch_api_data(job.ats_job_id, job.company.ats_identifier)
+        data = fetch_job_api_data(job.ats_job_id, job.company.ats_identifier)
         return unless (job_data = data.dig('data', 'jobPosting'))
 
         job.application_criteria = build_application_criteria_from(job_data)
+        job.update(deadline: job_data['applicationDeadline']) # not sure what format
         job.save
         # GetFormFieldsJob.perform_later(job.posting_url)
       end
 
-      def fetch_api_data(job_id, ats_identifier)
+      def fetch_job_api_data(job_id, ats_identifier)
         url = 'https://jobs.ashbyhq.com/api/non-user-graphql?op=ApiJobPosting'
         headers = { 'Content-Type' => 'application/json' }
         body = {
-          query: "query ApiJobPosting($organizationHostedJobsPageName: String!, $jobPostingId: String!) {  jobPosting(    organizationHostedJobsPageName: $organizationHostedJobsPageName    jobPostingId: $jobPostingId  ) {    id    title    departmentName    locationName    employmentType    descriptionHtml    isListed    isConfidential    teamNames    applicationForm {      ...FormRenderParts      __typename    }    surveyForms {      ...FormRenderParts      __typename    }    secondaryLocationNames    compensationTierSummary    compensationTiers {      id      title      tierSummary      __typename    }    applicationDeadline    compensationTierGuideUrl    scrapeableCompensationSalarySummary    compensationPhilosophyHtml    applicationLimitCalloutHtml    shouldAskForTextingConsent    candidateTextingPrivacyPolicyUrl    __typename  }}fragment JSONBoxParts on JSONBox {  value  __typename}fragment FileParts on File {  id  filename  __typename}fragment FormFieldEntryParts on FormFieldEntry {  id  field  fieldValue {    ... on JSONBox {      ...JSONBoxParts      __typename    }    ... on File {      ...FileParts      __typename    }    ... on FileList {      files {        ...FileParts        __typename      }      __typename    }    __typename  }  isRequired  descriptionHtml  isHidden  __typename}fragment FormRenderParts on FormRender {  id  formControls {    identifier    title    __typename  }  errorMessages  sections {    title    descriptionHtml    fieldEntries {      ...FormFieldEntryParts      __typename    }    isHidden    __typename  }  sourceFormDefinitionId  __typename}",
+          query: "query ApiJobPosting($organizationHostedJobsPageName: String!, $jobPostingId: String!) {  jobPosting(    organizationHostedJobsPageName: $organizationHostedJobsPageName    jobPostingId: $jobPostingId  ) {    applicationForm {      ...FormRenderParts      __typename    }    surveyForms {      ...FormRenderParts      __typename    }    applicationDeadline    __typename  }}fragment JSONBoxParts on JSONBox {  value  __typename}fragment FileParts on File {  id  filename  __typename}fragment FormFieldEntryParts on FormFieldEntry {  id  field  fieldValue {    ... on JSONBox {      ...JSONBoxParts      __typename    }    ... on File {      ...FileParts      __typename    }    ... on FileList {      files {        ...FileParts        __typename      }      __typename    }    __typename  }  isRequired  descriptionHtml  isHidden  __typename}fragment FormRenderParts on FormRender {  id  formControls {    identifier    title    __typename  }  errorMessages  sections {    fieldEntries {      ...FormFieldEntryParts      __typename    }    isHidden    __typename  }  sourceFormDefinitionId  __typename}",
           variables: {
             jobPostingId: job_id,
             organizationHostedJobsPageName: ats_identifier
@@ -30,58 +31,68 @@ module Ats
         attributes = {}
 
         application_form = data.dig('applicationForm', 'sections')
+        data['surveyForms'].each do |survey_form|
+          application_form += survey_form['sections']
+        end
+
         application_form.each do |section|
           next if section['isHidden']
 
-          section['fieldEntries'].each do |question|
-            next if question['isHidden']
-
-            attributes.merge! get_attributes(question)
+          section['fieldEntries'].each do |field|
+            attributes.merge! get_attributes(field) unless field['isHidden']
           end
         end
-        survey_forms = data['surveyForms']
-        survey_forms.each do |survey_form|
-          survey_form['sections'].each do |section|
-            section['fieldEntries'].each do |question|
-              next if question['isHidden']
 
-              attributes.merge! get_attributes(question)
-            end
-          end
-        end
         return attributes
       end
 
-      def get_attributes(question)
-        title = question.dig('field', 'title')
-        description = question['descriptionHtml']
-        name = [title, description].reject(&:blank?).join('<br>')
+      def get_attributes(field)
+        title = field.dig('field', 'title')
+        description = field['descriptionHtml']
+        name = [title, description].reject(&:blank?).join('<br><br>')
 
-        interaction = INTERACTIONS[question.dig('field', 'type')]
-        { name => {
-                    interaction:,
-                    locators: question['path'],
-                    required: question['isRequired'],
-                    options: question.dig('field', 'selectableValues')&.map { |option| option['label'] }
-                  } }
+        interaction, options = get_interaction_and_options(field)
+        field_attributes = {
+          interaction:,
+          locators: field.dig('field', 'path'),
+          required: field['isRequired'],
+          options:
+        }.compact
+        { name => field_attributes }
+      end
+
+      def get_interaction_and_options(field)
+        interaction = FIELD_TYPES[field.dig('field', 'type')]
+        options = field.dig('field', 'selectableValues')&.map { |option| option['label'] }
+        if interaction == :boolean
+          options ||= ['Yes', 'No']
+          interaction = :select
+        end
+        [interaction, options]
       end
 
       def update_requirements(_job)
         p "Updating job requirements"
       end
 
-      # Organised into sections (sections have labels)
-      # May need to do this off of labels rather than locators given form structure
+      # TODO: check the FIELD_TYPES dictionary against what's required for the actual application form
 
-      INTERACTIONS = {
+      FIELD_TYPES = {
         'String' => :input,
         'Email' => :input,
         'File' => :upload,
-        'Boolean' => :checkbox,
+        'Date' => :date,
+        'Number' => :number,
+        'Boolean' => :boolean,
         'LongText' => :input,
-        'ValueSelect' => :checkbox,
-        'MultiValueSelect' => :select
+        'ValueSelect' => :select,
+        'MultiValueSelect' => :checkbox,
+        'Phone' => :input,
+        'Score' => :input,
+        'SocialLink' => :input
       }
+
+      # TODO: Is the rest of this relevant? Delete if not.
 
       CANDIDATE_FIELDS = {
         full_name: {

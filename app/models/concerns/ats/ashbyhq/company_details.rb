@@ -12,7 +12,7 @@ module Ats
       end
 
       def supplementary_data(ats_identifier)
-        data = fetch_api_data(ats_identifier)
+        data = fetch_company_api_data(ats_identifier)
         company_data = data.dig('data', 'organization')
         return {} unless company_data
 
@@ -32,10 +32,11 @@ module Ats
         ].reject(&:blank?).join
       end
 
-      def fetch_api_data(ats_identifier)
+      def fetch_company_api_data(ats_identifier)
         url = 'https://jobs.ashbyhq.com/api/non-user-graphql?op=ApiOrganizationFromHostedJobsPageName'
         headers = { 'Content-Type' => 'application/json' }
         body = {
+          # TODO: make this query more selective
           query: "query ApiOrganizationFromHostedJobsPageName($organizationHostedJobsPageName: String!) {  organization: organizationFromHostedJobsPageName(    organizationHostedJobsPageName: $organizationHostedJobsPageName  ) {    ...OrganizationParts    __typename  }}fragment OrganizationParts on Organization {  name  publicWebsite  customJobsPageUrl  hostedJobsPageSlug  allowJobPostIndexing  theme {    colors    showJobFilters    showTeams    showAutofillApplicationsBox    logoWordmarkImageUrl    logoSquareImageUrl    applicationSubmittedSuccessMessage    jobBoardTopDescriptionHtml    jobBoardBottomDescriptionHtml    __typename  }  appConfirmationTrackingPixelHtml  recruitingPrivacyPolicyUrl  activeFeatureFlags  timezone  __typename }",
           variables: {
             organizationHostedJobsPageName: ats_identifier
