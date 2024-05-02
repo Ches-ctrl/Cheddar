@@ -1,4 +1,6 @@
-.btn-main {
+
+
+.btn-chrome {
     align-items: center;
     background-image: linear-gradient(144deg, #001d4aff, #0f659f 98%);
     border: 0;
@@ -7,7 +9,7 @@
     box-sizing: border-box;
     color: #FFFFFF;
     display: flex;
-    font-size: 40px;
+    font-size: 16px;
     font-weight: 700;
     justify-content: center;
     line-height: 1em;
@@ -21,3 +23,14 @@
     white-space: nowrap;
     cursor: pointer;
 }
+
+.navbar {
+    text-decoration: none;
+    padding: 0;
+    color: white;
+}
+
+.logo {
+    height: 25px;
+}
+
