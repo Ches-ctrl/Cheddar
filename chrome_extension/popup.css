@@ -1,0 +1,23 @@
+.btn-main {
+    align-items: center;
+    background-image: linear-gradient(144deg, #001d4aff, #0f659f 98%);
+    border: 0;
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.1) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    font-size: 40px;
+    font-weight: 700;
+    justify-content: center;
+    line-height: 1em;
+    min-width: 80px;
+    padding: 19px 24px;
+    text-decoration: none;
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
+}
