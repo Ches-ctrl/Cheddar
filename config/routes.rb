@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   end
 
   resources :companies, only: [:index, :show]
-  resources :job_applications, only: [:index, :show, :new, :success] do
+  resources :job_applications, only: [:index, :show, :new, :success, :create] do
     member do
       get :status
     end
