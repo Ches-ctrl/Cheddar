@@ -125,12 +125,18 @@ class ScrapeMetaTags
 
       @candidates << candidate
     end
-    return if @candidates.empty?
+    return check_for_grnhse_app if @candidates.empty?
 
     @candidates.uniq!
     best_candidate = @candidates.size > 1 ? pick_best_candidate : @candidates.first
 
     [best_candidate]
+  end
+
+  def check_for_grnhse_app
+    grnhse_app_div = @doc.at('div#grnhse_app')
+    gh_job_post_id_input = @doc.at('input#ghJobPostId')
+    return [ApplicantTrackingSystem.find_by(name: 'Greenhouse')] if grnhse_app_div || gh_job_post_id_input
   end
 
   def apply_button

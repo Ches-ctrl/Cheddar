@@ -157,7 +157,7 @@ class ApplicantTrackingSystem < ApplicationRecord
       return if data.blank? || data['error'].present? || data.values.include?(404)
 
       job_details(new_job, data)
-      fetch_additional_fields(new_job)
+      fetch_additional_fields(new_job, data)
       puts "Created new job - #{new_job.title} with #{company.name}"
     end
 
@@ -201,8 +201,8 @@ class ApplicantTrackingSystem < ApplicationRecord
     get_json_data(job.api_url)
   end
 
-  def fetch_additional_fields(job)
-    get_application_criteria(job)
+  def fetch_additional_fields(job, data)
+    get_application_criteria(job, data)
     p "job fields getting"
     job.save! # must save before passing to Sidekiq job
     GetFormFieldsJob.perform_later(job) # TODO: create separate module methods for this

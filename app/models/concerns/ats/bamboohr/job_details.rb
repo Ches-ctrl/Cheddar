@@ -21,6 +21,7 @@ module Ats
       private
 
       def job_details(job, data)
+        data = data['jobOpening']
         job.assign_attributes(
           title: data['jobOpeningName'],
           description: data['description'],
@@ -32,7 +33,7 @@ module Ats
           remote: job_remote?(data),
           hybrid: job_hybrid?(data),
           non_geocoded_location_string: build_location_string(data),
-          posting_url: "#{url_base.sub('XXX', job.company.ats_identifier)}#{data['id']}",
+          posting_url: data['jobOpeningShareUrl'],
           live: data['jobOpeningStatus'] == 'Open'
         )
       end
@@ -43,7 +44,7 @@ module Ats
       end
 
       def fetch_job_data(job)
-        get_json_data(job.api_url)&.dig('result', 'jobOpening')
+        get_json_data(job.api_url)&.dig('result')
       end
 
       def job_remote?(data)

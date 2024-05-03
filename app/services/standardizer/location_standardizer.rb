@@ -45,6 +45,8 @@ module Standardizer
 
     def simple_standardize(string)
       JOB_LOCATION_FILTER_WORDS.each { |filter| string.gsub!(filter, '') }
+      return unless string.match?(/[A-Za-z]/) # string must contain at least one letter
+
       city, country = standardize_city_and_country(string)
       [city, country].reject(&:blank?).join(', ')
     end

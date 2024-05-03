@@ -1,7 +1,7 @@
 module Ats
   module Ashbyhq
     module ApplicationFields
-      def get_application_criteria(job)
+      def get_application_criteria(job, _data)
         p "Getting AshbyHQ application criteria"
         data = fetch_job_api_data(job.ats_job_id, job.company.ats_identifier)
         return unless (job_data = data.dig('data', 'jobPosting'))
@@ -11,6 +11,8 @@ module Ats
         job.save
         # GetFormFieldsJob.perform_later(job.posting_url)
       end
+
+      private
 
       def fetch_job_api_data(job_id, ats_identifier)
         url = 'https://jobs.ashbyhq.com/api/non-user-graphql?op=ApiJobPosting'
