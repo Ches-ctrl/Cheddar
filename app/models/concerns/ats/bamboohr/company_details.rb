@@ -1,6 +1,8 @@
 module Ats
   module Bamboohr
     module CompanyDetails
+      include CheckUrlIsValid
+
       private
 
       def company_details(ats_identifier)

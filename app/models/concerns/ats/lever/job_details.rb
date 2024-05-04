@@ -32,7 +32,6 @@ module Ats
           department: data.dig('categories', 'team'),
           date_posted: convert_from_milliseconds(data['createdAt'])
         )
-        fetch_additional_fields(job)
       end
 
       def build_description(data)

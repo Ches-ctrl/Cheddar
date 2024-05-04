@@ -38,7 +38,6 @@ module Ats
 
         scrape_description_and_posting_date(job)
         # associate_technologies(job, data)
-        fetch_additional_fields(job)
         puts "Created new job - #{job.title} with #{job.company.name}"
       end
 
