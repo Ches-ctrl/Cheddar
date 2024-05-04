@@ -23,7 +23,8 @@ module Ats
 
       def fetch_company_api_data(url_ats_main)
         endpoint = "#{url_ats_main}company-info"
-        get_json_data(endpoint)
+        data = get_json_data(endpoint)
+        data&.dig('result')
       end
     end
   end
