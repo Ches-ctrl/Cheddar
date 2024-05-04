@@ -1,8 +1,6 @@
 module Ats
   module Bamboohr
     module CompanyDetails
-      include CheckUrlIsValid
-
       private
 
       def company_details(ats_identifier)
@@ -25,7 +23,7 @@ module Ats
 
       def fetch_company_api_data(url_ats_main)
         endpoint = "#{url_ats_main}company-info"
-        fetch_json_data(endpoint)
+        get_json_data(endpoint)
       end
     end
   end
