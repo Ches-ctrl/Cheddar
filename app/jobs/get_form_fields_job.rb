@@ -14,7 +14,9 @@ class GetFormFieldsJob < ApplicationJob
   def perform(job)
     return unless job.api_url&.include?('greenhouse') # Not yet able to handle Lever or DevIT jobs
 
-    Capybara.current_driver = :selenium_chrome_headless
+    Capybara.current_driver = :selenium_chrome_headless # session = Capybara::Session.new(:selenium_chrome_headless)
+    # all the capybara commands should be session.visit
+    # begin, rescue, ensure
 
     visit(job.posting_url)
     return if page.has_selector?('#flash_pending')

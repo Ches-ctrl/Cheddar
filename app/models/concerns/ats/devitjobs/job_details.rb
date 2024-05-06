@@ -1,13 +1,16 @@
 module Ats
   module Devitjobs
     module JobDetails
-      private
+      include ActionView::Helpers::NumberHelper
 
       def fetch_title_and_location(job_data)
-        title = job_data.css('title').text
-        job_location = job_data.css('location').text
-        [title, job_location]
+        title = job_data['name']
+        remote = fetch_remote_only(job_data)
+        job_location = build_location_string(remote, job_data)
+        [title, job_location, remote]
       end
+
+      private
 
       def fetch_url(job_data)
         url_base + job_data['jobUrl']
@@ -22,19 +25,19 @@ module Ats
       end
 
       def job_details(job, data)
+        title, location, remote = fetch_title_and_location(data)
         job.assign_attributes(
           posting_url: fetch_url(data),
-          title: data['name'],
+          title:,
           salary: fetch_salary(data),
-          remote: fetch_remote_only(data),
-          non_geocoded_location_string: build_location_string(job.remote, data),
+          remote:,
+          non_geocoded_location_string: location,
           employment_type: data['jobType'],
           seniority: fetch_seniority(data)
         )
 
         scrape_description_and_posting_date(job)
         # associate_technologies(job, data)
-        fetch_additional_fields(job)
         puts "Created new job - #{job.title} with #{job.company.name}"
       end
 

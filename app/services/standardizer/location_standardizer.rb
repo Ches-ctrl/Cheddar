@@ -13,7 +13,7 @@ module Standardizer
       return unless @job.non_geocoded_location_string
 
       location = @job.non_geocoded_location_string
-      hybrid = location.downcase.include?('hybrid') || @job.description.downcase.include?('hybrid')
+      hybrid = location.downcase.include?('hybrid') || @job.description&.downcase&.include?('hybrid')
 
       JOB_LOCATION_FILTER_WORDS.each { |filter| location.gsub!(filter, '') }
       location_elements = location.split(/[•;]|&&|or/)
@@ -41,6 +41,14 @@ module Standardizer
 
       @job.hybrid = hybrid
       @job.remote ||= @job.locations.empty?
+    end
+
+    def simple_standardize(string)
+      JOB_LOCATION_FILTER_WORDS.each { |filter| string.gsub!(filter, '') }
+      return unless string.match?(/[A-Za-z]/) # string must contain at least one letter
+
+      city, country = standardize_city_and_country(string)
+      [city, country].reject(&:blank?).join(', ')
     end
 
     private

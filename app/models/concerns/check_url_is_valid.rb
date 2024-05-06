@@ -47,7 +47,7 @@ module CheckUrlIsValid
     retries = 0
     begin
       response = Net::HTTP.get(uri)
-    rescue Errno::ECONNRESET, OpenSSL::SSL::SSLError => e
+    rescue Errno::ECONNRESET, OpenSSL::SSL::SSLError, Net::OpenTimeout => e
       retries += 1
       if retries <= max_retries
         sleep 2 ** retries # Exponential backoff
@@ -61,7 +61,6 @@ module CheckUrlIsValid
       return nil
     end
 
-    p response
     return response
   end
 
@@ -74,6 +73,8 @@ module CheckUrlIsValid
   def get_json_data(api_url, use_proxy: false)
     retries_left = 1
     response = get(api_url)
+    return {} if response == "Not Found" # Workable 404 response
+
     begin
       JSON.parse(response)
     rescue JSON::ParserError => e

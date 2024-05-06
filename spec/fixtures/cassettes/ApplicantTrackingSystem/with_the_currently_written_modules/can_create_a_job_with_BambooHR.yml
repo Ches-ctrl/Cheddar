@@ -1,0 +1,678 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://premise.bamboohr.com/careers/list
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - premise.bamboohr.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 01 May 2024 14:15:03 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=nGxZHIwke1ua38AAUl7B1yh8Nz9rL-Ta; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=tPQmLotY_JBZh0gHPR7MXMg5snHMfGGES6XZVyHkxr8-1714572903822-0.0.1.1-604800000;
+        path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache, private
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self'' data: blob: https://*.bamboohr.com https://*.bamboohr.co.uk
+        *.cloudfront.net d24d2g0g8l15q8.cloudfront.net d3lfqt3qfgn8k7.cloudfront.net
+        dwc7c3b4xwlvf.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://*.browser-intake-datadoghq.com https://*.facebook.com
+        https://*.linkedin.com https://*.segment.io https://*.small-improvements.com
+        https://api.rollbar.com https://app.bamboohr.co.uk https://bam.nr-data.net
+        https://connect.facebook.net *.algolianet.com *.algolia.net embedwistia-a.akamaihd.net
+        app.pendo.io cdn.pendo.io pendo-io-extensions.storage.googleapis.com pendo-static-5734959405072384.storage.googleapis.com
+        https://*.wistia.com https://*.wistia.net https://fonts.googleapis.com https://fonts.gstatic.com
+        https://example.com https://www.google-analytics.com https://payments.subscriptionplatform.com
+        https://s-static.ak.facebook.com themes.googleusercontent.com https://wufoo.com
+        https://*.wufoo.com https://www.google.com https://tagmanager.google.com https://bamboohr.formstack.com
+        https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://portal-2.flatfile.io
+        https://*.zuora.com https://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com
+        https://*.salesforceliveagent.com https://*.force.com https://*.site.com wss://*.pusher.com
+        https://*.checkr.com https://accounts.google.com https://login.microsoftonline.com
+        https://app.cronofy.com maps.googleapis.com ''unsafe-inline'' ''unsafe-eval''
+        ; script-src ''self'' *.bamboohr.com *.bamboohr.co.uk data: blob: about https://*.bamboohr.com
+        https://cdn.api.twitter.com https://connect.facebook.net https://bam.nr-data.net
+        *.cloudfront.net d24d2g0g8l15q8.cloudfront.net dwc7c3b4xwlvf.cloudfront.net
+        d3lfqt3qfgn8k7.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://accounts.google.com https://login.microsoftonline.com
+        *.newrelic.com http://*.newrelic.com https://fast.wistia.net https://fast.wistia.com
+        get.bamboohr.com *.algolianet.com *.algolia.net app.pendo.io pendo-io-static.storage.googleapis.com
+        cdn.pendo.io pendo-static-5734959405072384.storage.googleapis.com https://pi.pardot.com
+        https://www.my1login.com https://app.onelogin.com https://ajax.googleapis.com
+        http://ajax.googleapis.com https://ssl.google-analytics.com https://www.googletagmanager.com
+        https://tagmanager.google.com https://www.google-analytics.com https://www.google.com
+        https://s3.amazonaws.com https://cdnjs.cloudflare.com https://wufoo.com https://*.wufoo.com
+        https://*.linkedin.com https://bat.bing.com/bat.js https://www.googleadservices.com/pagead/conversion_async.js
+        https://s.adroll.com/j/roundtrip.js https://*.segment.com https://*.segment.io
+        https://bamboohr.formstack.com https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://*.zuora.com https://*.pusher.com
+        wss://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com https://*.salesforceliveagent.com
+        https://*.force.com https://*.site.com https://*.checkr.com https://www.google.com/recaptcha/
+        https://www.gstatic.com/recaptcha/ https://www.recaptcha.net/recaptcha/ https://portal-2.flatfile.io
+        https://app.cronofy.com maps.googleapis.com ''unsafe-inline'' ''unsafe-eval''
+        ; img-src * data: blob: ; report-uri /ajax/parse_csp_report.php ; worker-src
+        ''self'' data: blob: ;'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Authorization,User-Agent
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 87d061a7fe5b94ed-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"meta":{"totalCount":12},"result":[{"id":"42","jobOpeningName":"Business
+        Development Director, Public Sector","departmentId":"19016","departmentLabel":"40-000
+        - Sales","employmentStatusLabel":"Full-Time","location":{"city":"Washington","state":"District
+        of Columbia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"45","jobOpeningName":"Lead
+        Product Manager,  CPG & Retail Execution","departmentId":"19029","departmentLabel":"30-000
+        - Product","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"1"},{"id":"46","jobOpeningName":"Sales
+        Development Representative","departmentId":"19016","departmentLabel":"40-000
+        - Sales","employmentStatusLabel":"Full-Time DEEL","location":{"city":"Bogota","state":null},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"51","jobOpeningName":"Client
+        Service Trainee","departmentId":"19034","departmentLabel":"50-000 - Customer
+        Success","employmentStatusLabel":"Full-Time","location":{"city":"Bogota","state":null},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"53","jobOpeningName":"Data
+        Analytics Manager","departmentId":"19016","departmentLabel":"40-000 - Sales","employmentStatusLabel":"Full-Time","location":{"city":"Washington","state":"District
+        of Columbia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"55","jobOpeningName":"Sales
+        Development Representative","departmentId":"19016","departmentLabel":"40-000
+        - Sales","employmentStatusLabel":"Full-Time DEEL","location":{"city":"Ciudad
+        de M\u00e9xico","state":"CDMX"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"0"},{"id":"57","jobOpeningName":"Field
+        Manager (Bolivia)","departmentId":"19024","departmentLabel":"70-000 - Global
+        Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"La
+        Paz"},"isRemote":null,"locationType":"1"},{"id":"58","jobOpeningName":"Field
+        & Study Leader (Bolivia)","departmentId":"19024","departmentLabel":"70-000
+        - Global Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"La
+        Paz"},"isRemote":null,"locationType":"1"},{"id":"59","jobOpeningName":"Field
+        Trainer (Bolivia)","departmentId":"19024","departmentLabel":"70-000 - Global
+        Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"La
+        Paz"},"isRemote":null,"locationType":"1"},{"id":"60","jobOpeningName":"Operation
+        Leader (Bolivia)","departmentId":"19024","departmentLabel":"70-000 - Global
+        Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"La
+        Paz"},"isRemote":null,"locationType":"1"},{"id":"61","jobOpeningName":"Account
+        Executive (Bolivia)","departmentId":"19024","departmentLabel":"70-000 - Global
+        Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
+        Cruz de la Sierra"},"isRemote":null,"locationType":"1"},{"id":"62","jobOpeningName":"Client
+        Service Executive (Bolivia)","departmentId":"19024","departmentLabel":"70-000
+        - Global Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
+        Cruz de la Sierra"},"isRemote":null,"locationType":"1"}]}'
+  recorded_at: Wed, 01 May 2024 14:15:03 GMT
+- request:
+    method: get
+    uri: https://premise.bamboohr.com/careers/list
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - premise.bamboohr.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 01 May 2024 14:15:04 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=uz7%2CpohxssujXLLK6Mz7kcIQPTsK9dPe; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=8KecHDcnyXvbM7mWaszeTKl4zO2.CFxspOD.EyPyjxM-1714572904013-0.0.1.1-604800000;
+        path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache, private
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self'' data: blob: https://*.bamboohr.com https://*.bamboohr.co.uk
+        *.cloudfront.net d24d2g0g8l15q8.cloudfront.net d3lfqt3qfgn8k7.cloudfront.net
+        dwc7c3b4xwlvf.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://*.browser-intake-datadoghq.com https://*.facebook.com
+        https://*.linkedin.com https://*.segment.io https://*.small-improvements.com
+        https://api.rollbar.com https://app.bamboohr.co.uk https://bam.nr-data.net
+        https://connect.facebook.net *.algolianet.com *.algolia.net embedwistia-a.akamaihd.net
+        app.pendo.io cdn.pendo.io pendo-io-extensions.storage.googleapis.com pendo-static-5734959405072384.storage.googleapis.com
+        https://*.wistia.com https://*.wistia.net https://fonts.googleapis.com https://fonts.gstatic.com
+        https://example.com https://www.google-analytics.com https://payments.subscriptionplatform.com
+        https://s-static.ak.facebook.com themes.googleusercontent.com https://wufoo.com
+        https://*.wufoo.com https://www.google.com https://tagmanager.google.com https://bamboohr.formstack.com
+        https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://portal-2.flatfile.io
+        https://*.zuora.com https://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com
+        https://*.salesforceliveagent.com https://*.force.com https://*.site.com wss://*.pusher.com
+        https://*.checkr.com https://accounts.google.com https://login.microsoftonline.com
+        https://app.cronofy.com maps.googleapis.com ''unsafe-inline'' ''unsafe-eval''
+        ; script-src ''self'' *.bamboohr.com *.bamboohr.co.uk data: blob: about https://*.bamboohr.com
+        https://cdn.api.twitter.com https://connect.facebook.net https://bam.nr-data.net
+        *.cloudfront.net d24d2g0g8l15q8.cloudfront.net dwc7c3b4xwlvf.cloudfront.net
+        d3lfqt3qfgn8k7.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://accounts.google.com https://login.microsoftonline.com
+        *.newrelic.com http://*.newrelic.com https://fast.wistia.net https://fast.wistia.com
+        get.bamboohr.com *.algolianet.com *.algolia.net app.pendo.io pendo-io-static.storage.googleapis.com
+        cdn.pendo.io pendo-static-5734959405072384.storage.googleapis.com https://pi.pardot.com
+        https://www.my1login.com https://app.onelogin.com https://ajax.googleapis.com
+        http://ajax.googleapis.com https://ssl.google-analytics.com https://www.googletagmanager.com
+        https://tagmanager.google.com https://www.google-analytics.com https://www.google.com
+        https://s3.amazonaws.com https://cdnjs.cloudflare.com https://wufoo.com https://*.wufoo.com
+        https://*.linkedin.com https://bat.bing.com/bat.js https://www.googleadservices.com/pagead/conversion_async.js
+        https://s.adroll.com/j/roundtrip.js https://*.segment.com https://*.segment.io
+        https://bamboohr.formstack.com https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://*.zuora.com https://*.pusher.com
+        wss://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com https://*.salesforceliveagent.com
+        https://*.force.com https://*.site.com https://*.checkr.com https://www.google.com/recaptcha/
+        https://www.gstatic.com/recaptcha/ https://www.recaptcha.net/recaptcha/ https://portal-2.flatfile.io
+        https://app.cronofy.com maps.googleapis.com ''unsafe-inline'' ''unsafe-eval''
+        ; img-src * data: blob: ; report-uri /ajax/parse_csp_report.php ; worker-src
+        ''self'' data: blob: ;'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Authorization,User-Agent
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 87d061a919989550-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"meta":{"totalCount":12},"result":[{"id":"42","jobOpeningName":"Business
+        Development Director, Public Sector","departmentId":"19016","departmentLabel":"40-000
+        - Sales","employmentStatusLabel":"Full-Time","location":{"city":"Washington","state":"District
+        of Columbia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"45","jobOpeningName":"Lead
+        Product Manager,  CPG & Retail Execution","departmentId":"19029","departmentLabel":"30-000
+        - Product","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"1"},{"id":"46","jobOpeningName":"Sales
+        Development Representative","departmentId":"19016","departmentLabel":"40-000
+        - Sales","employmentStatusLabel":"Full-Time DEEL","location":{"city":"Bogota","state":null},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"51","jobOpeningName":"Client
+        Service Trainee","departmentId":"19034","departmentLabel":"50-000 - Customer
+        Success","employmentStatusLabel":"Full-Time","location":{"city":"Bogota","state":null},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"53","jobOpeningName":"Data
+        Analytics Manager","departmentId":"19016","departmentLabel":"40-000 - Sales","employmentStatusLabel":"Full-Time","location":{"city":"Washington","state":"District
+        of Columbia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"55","jobOpeningName":"Sales
+        Development Representative","departmentId":"19016","departmentLabel":"40-000
+        - Sales","employmentStatusLabel":"Full-Time DEEL","location":{"city":"Ciudad
+        de M\u00e9xico","state":"CDMX"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"0"},{"id":"57","jobOpeningName":"Field
+        Manager (Bolivia)","departmentId":"19024","departmentLabel":"70-000 - Global
+        Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"La
+        Paz"},"isRemote":null,"locationType":"1"},{"id":"58","jobOpeningName":"Field
+        & Study Leader (Bolivia)","departmentId":"19024","departmentLabel":"70-000
+        - Global Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"La
+        Paz"},"isRemote":null,"locationType":"1"},{"id":"59","jobOpeningName":"Field
+        Trainer (Bolivia)","departmentId":"19024","departmentLabel":"70-000 - Global
+        Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"La
+        Paz"},"isRemote":null,"locationType":"1"},{"id":"60","jobOpeningName":"Operation
+        Leader (Bolivia)","departmentId":"19024","departmentLabel":"70-000 - Global
+        Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"La
+        Paz"},"isRemote":null,"locationType":"1"},{"id":"61","jobOpeningName":"Account
+        Executive (Bolivia)","departmentId":"19024","departmentLabel":"70-000 - Global
+        Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
+        Cruz de la Sierra"},"isRemote":null,"locationType":"1"},{"id":"62","jobOpeningName":"Client
+        Service Executive (Bolivia)","departmentId":"19024","departmentLabel":"70-000
+        - Global Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
+        Cruz de la Sierra"},"isRemote":null,"locationType":"1"}]}'
+  recorded_at: Wed, 01 May 2024 14:15:03 GMT
+- request:
+    method: get
+    uri: https://autocomplete.clearbit.com/v1/companies/suggest?query=Premise
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - autocomplete.clearbit.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '468'
+      Cache-Control:
+      - public, must-revalidate, max-age=2629746
+      Content-Type:
+      - application/json
+      X-Envoy-Response-Flags:
+      - "-"
+      Server:
+      - Clearbit
+      Via:
+      - 1.1 varnish, 1.1 varnish
+      Access-Control-Allow-Origin:
+      - "*"
+      Accept-Ranges:
+      - bytes
+      Age:
+      - '193969'
+      Date:
+      - Wed, 01 May 2024 14:15:04 GMT
+      X-Served-By:
+      - cache-sjc1000117-SJC, cache-lon420105-LON
+      X-Cache:
+      - HIT, MISS
+      X-Cache-Hits:
+      - 3, 0
+      X-Timer:
+      - S1714572904.052805,VS0,VE139
+      Vary:
+      - Accept-Encoding
+      Content-Security-Policy-Report-Only:
+      - default-src 'self';
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31557600
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"name":"Premise Health","domain":"premisehealth.com","logo":"https://logo.clearbit.com/premisehealth.com"},{"name":"Premise","domain":"premise.com","logo":"https://logo.clearbit.com/premise.com"},{"name":"Premise","domain":"premiseco.com","logo":"https://logo.clearbit.com/premiseco.com"},{"name":"PREMISE","domain":"premise.tv","logo":"https://logo.clearbit.com/premise.tv"},{"name":"PremiSec","domain":"premisec.se","logo":"https://logo.clearbit.com/premisec.se"}]'
+  recorded_at: Wed, 01 May 2024 14:15:04 GMT
+- request:
+    method: get
+    uri: https://api.crunchbase.com/api/v4/autocompletes?query=Premise&user_key=9eebe4bdec6f10ec631cbb8573cb8de2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.crunchbase.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, private
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 01 May 2024 14:15:04 GMT
+      Etag:
+      - W/"1714572904780"
+      Server:
+      - openresty
+      X-Cb-Engine:
+      - autocomplete:algolia
+      X-Cb-Engine-Cached:
+      - 'false'
+      X-Cb-Engine-Took:
+      - '15'
+      X-Cb-Request-Took:
+      - '43'
+      Content-Length:
+      - '3991'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"count":1609,"entities":[{"facet_ids":["contact","siftery","ipqwery","privco","apptopia","semrush","company","rank","builtwith","bombora","ai_insight"],"identifier":{"uuid":"4f680a26-074b-b8fa-7fa4-e5cfb5f0c30d","value":"Premise
+        Data","image_id":"jwzjzghwlokbkqugqjgs","permalink":"premise","entity_def_id":"organization"},"short_description":"Premise
+        is a data and analytics platform powered by a global network of on-the-ground
+        contributors, data science, and machine learning. "},{"facet_ids":["contact","siftery","aberdeen","company","rank","builtwith","bombora"],"identifier":{"uuid":"0dc67892-3bf4-458b-88bd-6fa0ed027fa7","value":"Premise","image_id":"nqukjb1x3ficnuvq3ltx","permalink":"premise-7fa7","entity_def_id":"organization"},"short_description":"Premise
+        offers wireless communication, solar energy, and electrical infrastructures
+        construction and project management."},{"facet_ids":["contact","siftery","company","rank","builtwith","bombora"],"identifier":{"uuid":"50acb0f9-235a-48bc-b63e-8ccb6ecd6e6d","value":"Premise","image_id":"bqghdyngj2mdnowoavpx","permalink":"premise-6e6d","entity_def_id":"organization"},"short_description":"Premise
+        is an advertising agency that offers marketing, branding, logo design, and
+        website design services."},{"facet_ids":["rank","contact","builtwith","company"],"identifier":{"uuid":"150f57d9-f35b-461d-a60c-ce4a8e3f7ee2","value":"Premise","image_id":"nc3wsscpagee2zr9e5r4","permalink":"premise-7ee2","entity_def_id":"organization"},"short_description":"Premise
+        is a consulting company that specializes in engineering, planning, architecture,
+        agricultural science, & environmental science."},{"facet_ids":["company","rank","builtwith","semrush"],"identifier":{"uuid":"564e0109-955b-46dd-ba2d-6ff825419f89","value":"Premise","image_id":"pa180nfvkaaeuepovdzt","permalink":"premise-9f89","entity_def_id":"organization"},"short_description":"Premise
+        offers online conversation-style classes that engages students through literature,
+        non-fiction, and film for students and adults."},{"facet_ids":["contact","siftery","ipqwery","aberdeen","apptopia","semrush","company","rank","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"1f5a1a2e-59cc-a546-1a39-8e4710c288ce","value":"Premise
+        Health","image_id":"v1498216139/cdagnkqmd5lcj6k1fyh1.png","permalink":"premise-health","entity_def_id":"organization"},"short_description":"Premise
+        Health offers online health programs for organizations."},{"facet_ids":["contact","siftery","aberdeen","company","rank","builtwith","bombora"],"identifier":{"uuid":"ec381518-36e5-49be-b7a9-97dbe93205c5","value":"Premise
+        One","image_id":"wpbno23db75ovyxqudjg","permalink":"premise-one","entity_def_id":"organization"},"short_description":"Premise
+        One is a Provider of communications and engineered camera solution for a variety
+        of industries in the U.S."},{"facet_ids":["contact","siftery","company","rank","builtwith","bombora"],"identifier":{"uuid":"e3fa1366-0c68-482e-9fc2-0725a3da5b31","value":"Premise
+        Led","image_id":"rr466s0qx5mv52m5du0o","permalink":"premise-led","entity_def_id":"organization"},"short_description":"Premise
+        Led is an electrical and electronics manufacturing company located in Toronto."},{"facet_ids":["contact","siftery","aberdeen","company","rank","bombora"],"identifier":{"uuid":"dc15f375-f04a-4523-9ad6-bb49c8240675","value":"Premise
+        Solutions","image_id":"cxz93xh5w18laies1ubh","permalink":"premise-solutions","entity_def_id":"organization"},"short_description":"Premise
+        Solutions provides network infrastructure and information technology services."},{"facet_ids":["contact","aberdeen","company","rank","builtwith","bombora"],"identifier":{"uuid":"d547e691-0ab8-4103-918b-5fa3051d0904","value":"Premises
+        Systems","image_id":"uclhq3qdgrkfkr23sovv","permalink":"premises-systems","entity_def_id":"organization"},"short_description":"Premises
+        Systems designs, implements and maintains single and multi-site IP-based communication
+        networks and wireless technology."}]}'
+  recorded_at: Wed, 01 May 2024 14:15:04 GMT
+- request:
+    method: get
+    uri: https://premise.bamboohr.com/careers/42/detail
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - premise.bamboohr.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 01 May 2024 14:15:05 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=gLaHnodYdwayJXbeZ4WdKl1c3QgJsYdf; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=gmzO30c93hMTAUjfvJ2_C.xUWZyH13ehyHrKA5pTwTY-1714572905074-0.0.1.1-604800000;
+        path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache, private
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self'' data: blob: https://*.bamboohr.com https://*.bamboohr.co.uk
+        *.cloudfront.net d24d2g0g8l15q8.cloudfront.net d3lfqt3qfgn8k7.cloudfront.net
+        dwc7c3b4xwlvf.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://*.browser-intake-datadoghq.com https://*.facebook.com
+        https://*.linkedin.com https://*.segment.io https://*.small-improvements.com
+        https://api.rollbar.com https://app.bamboohr.co.uk https://bam.nr-data.net
+        https://connect.facebook.net *.algolianet.com *.algolia.net embedwistia-a.akamaihd.net
+        app.pendo.io cdn.pendo.io pendo-io-extensions.storage.googleapis.com pendo-static-5734959405072384.storage.googleapis.com
+        https://*.wistia.com https://*.wistia.net https://fonts.googleapis.com https://fonts.gstatic.com
+        https://example.com https://www.google-analytics.com https://payments.subscriptionplatform.com
+        https://s-static.ak.facebook.com themes.googleusercontent.com https://wufoo.com
+        https://*.wufoo.com https://www.google.com https://tagmanager.google.com https://bamboohr.formstack.com
+        https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://portal-2.flatfile.io
+        https://*.zuora.com https://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com
+        https://*.salesforceliveagent.com https://*.force.com https://*.site.com wss://*.pusher.com
+        https://*.checkr.com https://accounts.google.com https://login.microsoftonline.com
+        https://app.cronofy.com maps.googleapis.com ''unsafe-inline'' ''unsafe-eval''
+        ; script-src ''self'' *.bamboohr.com *.bamboohr.co.uk data: blob: about https://*.bamboohr.com
+        https://cdn.api.twitter.com https://connect.facebook.net https://bam.nr-data.net
+        *.cloudfront.net d24d2g0g8l15q8.cloudfront.net dwc7c3b4xwlvf.cloudfront.net
+        d3lfqt3qfgn8k7.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://accounts.google.com https://login.microsoftonline.com
+        *.newrelic.com http://*.newrelic.com https://fast.wistia.net https://fast.wistia.com
+        get.bamboohr.com *.algolianet.com *.algolia.net app.pendo.io pendo-io-static.storage.googleapis.com
+        cdn.pendo.io pendo-static-5734959405072384.storage.googleapis.com https://pi.pardot.com
+        https://www.my1login.com https://app.onelogin.com https://ajax.googleapis.com
+        http://ajax.googleapis.com https://ssl.google-analytics.com https://www.googletagmanager.com
+        https://tagmanager.google.com https://www.google-analytics.com https://www.google.com
+        https://s3.amazonaws.com https://cdnjs.cloudflare.com https://wufoo.com https://*.wufoo.com
+        https://*.linkedin.com https://bat.bing.com/bat.js https://www.googleadservices.com/pagead/conversion_async.js
+        https://s.adroll.com/j/roundtrip.js https://*.segment.com https://*.segment.io
+        https://bamboohr.formstack.com https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://*.zuora.com https://*.pusher.com
+        wss://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com https://*.salesforceliveagent.com
+        https://*.force.com https://*.site.com https://*.checkr.com https://www.google.com/recaptcha/
+        https://www.gstatic.com/recaptcha/ https://www.recaptcha.net/recaptcha/ https://portal-2.flatfile.io
+        https://app.cronofy.com maps.googleapis.com ''unsafe-inline'' ''unsafe-eval''
+        ; img-src * data: blob: ; report-uri /ajax/parse_csp_report.php ; worker-src
+        ''self'' data: blob: ;'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Authorization,User-Agent
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/csp-reporting.cloudflare.com\/cdn-cgi\/script_monitor\/report?m=02.v_flG13Owq2B.CSJmYg7CLDMf3JlOpLDOMYtyJMA-1714572905-1.0.1.1-nkYUVMXU5rBzfpwLc1SIP1t6I7EXd.nYBZFX.EvvvWtQMjPk67hrpX79AgZsDDew5Goej6LIDOjDSHdU5x8m80rlibvp5O7xa2tyaraUso_MBSUdSVTgouYvi6uiWAEjoPrbTxDdeM70pg3FP9WdAqKieABbZIVhsg6pRvO5TCU"}],"group":"cf-csp-endpoint","max_age":86400}'
+      Content-Security-Policy-Report-Only:
+      - script-src 'none'; report-uri https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report?m=02.v_flG13Owq2B.CSJmYg7CLDMf3JlOpLDOMYtyJMA-1714572905-1.0.1.1-nkYUVMXU5rBzfpwLc1SIP1t6I7EXd.nYBZFX.EvvvWtQMjPk67hrpX79AgZsDDew5Goej6LIDOjDSHdU5x8m80rlibvp5O7xa2tyaraUso_MBSUdSVTgouYvi6uiWAEjoPrbTxDdeM70pg3FP9WdAqKieABbZIVhsg6pRvO5TCU;
+        report-to cf-csp-endpoint
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 87d061af89c079b9-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"meta":{},"result":{"jobOpening":{"jobOpeningShareUrl":"https:\/\/premise.bamboohr.com\/careers\/42","jobOpeningName":"Business
+        Development Director, Public Sector","jobOpeningStatus":"Open","jobCategoryId":null,"departmentId":"19016","departmentLabel":"40-000
+        - Sales","employmentStatusLabel":"Full-Time","location":{"city":"Washington","state":"District
+        of Columbia","postalCode":"20037","addressCountry":"United States"},"atsLocation":{"country":null,"countryId":null,"state":null,"city":null},"description":"<p><span
+        style=\"font-weight: bold;\"><span style=\"font-size: 13px; font-family: Arial,
+        sans-serif;\">Premise <\/span><\/span><span style=\"font-size: 13px; font-family:
+        Arial, sans-serif;\">is growing! We\u2019re hiring a Business Development
+        Manager to help us expand our client base. Premise is unlike any other company
+        in the Federal Civilian industry - a venture-funded technology firm seeking
+        to disrupt remote data collection and analytics. We\u2019re looking for an
+        ambitious risk-taker who loves to be challenged, relishes the idea of helping
+        build a different kind solution, and believes in the power of data to improve
+        outcomes.\u00a0<\/span><\/p>\n<p>\u00a0<\/p>\n<p><span style=\"font-weight:
+        bold;\"><span style=\"font-size: 13px; font-family: Arial, sans-serif;\">The
+        Role. <\/span><\/span><span style=\"font-size: 13px; font-family: Arial, sans-serif;\">You
+        will be responsible for identifying opportunities within federal civilian
+        agencies and prime contractors\/service providers of the US Government as
+        well as communicating and coordinating business opportunities with key stakeholders
+        within Premise.\u00a0 You will use your extensive background in sales to define
+        capture strategies for U.S. Federal customers\u00a0 in order to achieve successful
+        program awards and product sales. Duties will include and are not limited
+        to:<\/span><\/p>\n<ul>\n<li><span style=\"font-size: 13px; font-family: Arial,
+        sans-serif;\">Manage pursuit and capture of new program or product sales through
+        extensive interfacing with government agencies in order to achieve sales goals.<\/span><\/li>\n<li><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">Develop new business
+        via phone, email and social media to educate the prospect, introduce our solution,
+        and identify appropriate budgetary holders and end users within the Federal
+        space.<\/span><\/li>\n<li><span style=\"font-size: 13px; font-family: Arial,
+        sans-serif;\">Follow up on inbound marketing leads and outbound prospects
+        through a strategic touch plan to generate additional interest in Premise
+        Data and qualify for a potential opportunity<\/span><\/li>\n<li><span style=\"font-size:
+        13px; font-family: Arial, sans-serif;\">Conduct research to identify potential
+        opportunities and understand challenges our clients and prospects today.<\/span><\/li>\n<li><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">Identify key buying
+        influencers within these prospects to determine budget and timeline.<\/span><\/li>\n<li><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">Work with the key
+        sales drivers to develop and grow the sales pipeline to consistently meet
+        quarterly revenue goals<\/span><\/li>\n<li><span style=\"font-size: 13px;
+        font-family: Arial, sans-serif;\">Use Salesforce CRM to track all sales activities
+        properly and manage contact\/lead data for accuracy<\/span><\/li>\n<li><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">Experience owning
+        and executing sales opportunities, setting sales strategy, tactics, proposals,
+        and negotiations for new and disruptive product solutions as well as coordinating
+        qualified new business capture and sales with government agencies.\u00a0<\/span><\/li>\n<li><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">Lead sales capture
+        efforts for advanced programs and new technical solutions for the customer
+        that align to the business growth strategies of the division.\u00a0<\/span><\/li>\n<li><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">Contribute to team
+        effort by accomplishing related results as needed.<\/span><\/li>\n<li><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">Mainstream the
+        use of remote data collection and analytics software in the Public Sector<\/span><\/li>\n<li><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">Map clients\u2019
+        needs to the appropriate Premise software license and support offerings<\/span><\/li>\n<li><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">Guide clients through
+        a structured sales process that results in their purchase of Premise <\/span><em><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">on our terms<\/span><\/em><\/li>\n<\/ul>\n<p><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">Qualifications:<\/span><\/p>\n<ul>\n<li><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">Bachelor\u2019s
+        Degree or higher<\/span><\/li>\n<li><span style=\"font-size: 13px; font-family:
+        Arial, sans-serif;\">5+ years of experience in the geospatial, software or
+        analytics industry<\/span><\/li>\n<li><span style=\"font-size: 13px; font-family:
+        Arial, sans-serif;\">Active Top Secret security clearance or higher<\/span><\/li>\n<li><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">5+ years of experience
+        working with U.S. federal customers<\/span><\/li>\n<li><span style=\"font-size:
+        13px; font-family: Arial, sans-serif;\">Full-cycle direct business development
+        experience with a concentration in technical and\/or\u00a0 enterprise government
+        sales\u00a0<\/span><\/li>\n<li><span style=\"font-size: 13px; font-family:
+        Arial, sans-serif;\">Excellent verbal and written communication skills<\/span><\/li>\n<li><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">Strong organizational
+        skills as a good time manager and effective multi-tasker<\/span><\/li>\n<li><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">Superior complex
+        problem solving and decision-making abilities<\/span><\/li>\n<\/ul>\n<p><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">Desired Skills:<\/span><\/p>\n<ul>\n<li><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">Familiarity with
+        introducing disruptive technologies to the public sector.<\/span><\/li>\n<li><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">Previous experience
+        managing Programs of Record within the public sector.<\/span><\/li>\n<li><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">Experience managing
+        opportunity pipeline in Salesforce<\/span><\/li>\n<li><span style=\"font-size:
+        13px; font-family: Arial, sans-serif;\">Experience in multiple federal civilian
+        agencies and interagency assignments<\/span><\/li>\n<\/ul>\n<p>\u00a0<\/p>\n<p><span
+        style=\"font-weight: bold;\"><span style=\"font-size: 13px; font-family: Arial,
+        sans-serif;\">The Following Traits Probably Describe You (This is What We
+        are Interviewing for):<\/span><\/span><\/p>\n<ul>\n<li><span style=\"font-weight:
+        bold;\"><span style=\"font-size: 13px; font-family: Arial, sans-serif;\">You
+        have grit. <\/span><\/span><span style=\"font-size: 13px; font-family: Arial,
+        sans-serif;\">Marketing and selling a disruptive technology product in the
+        international development market requires incredible perseverance.\u00a0<\/span><\/li>\n<\/ul>\n<ul>\n<li><span
+        style=\"font-weight: bold;\"><span style=\"font-size: 13px; font-family: Arial,
+        sans-serif;\">You hustle. <\/span><\/span><span style=\"font-size: 13px; font-family:
+        Arial, sans-serif;\">We\u2019re looking for a high energy candidate that never
+        waits to be told what to do and isn\u2019t afraid to be aggressive.\u00a0<\/span><\/li>\n<\/ul>\n<ul>\n<li><span
+        style=\"font-weight: bold;\"><span style=\"font-size: 13px; font-family: Arial,
+        sans-serif;\">You have the Federal Civilian Sector knowledge. <\/span><\/span><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">Our ideal candidate
+        is intimately familiar with how different agencies and organizations do business.\u00a0<\/span><\/li>\n<\/ul>\n<ul>\n<li><span
+        style=\"font-weight: bold;\"><span style=\"font-size: 13px; font-family: Arial,
+        sans-serif;\">You\u2019re comfortable with data and technology. <\/span><\/span><span
+        style=\"font-size: 13px; font-family: Arial, sans-serif;\">You don\u2019t
+        need to be an expert, but you should be comfortable with basic statistics
+        and geospatial concepts.\u00a0<\/span><\/li>\n<\/ul>\n<ul>\n<li><span style=\"font-weight:
+        bold;\"><span style=\"font-size: 13px; font-family: Arial, sans-serif;\">You\u2019re
+        a natural teacher and performer.<\/span><\/span><span style=\"font-size: 13px;
+        font-family: Arial, sans-serif;\"> You will spend a lot of time presenting
+        to prospective clients and teaching them how remote data collection and analytics
+        can improve their programs. You should be comfortable spending part of every
+        day in \u201cperformance mode.\u201d\u00a0<\/span><\/li>\n<\/ul>\n<p><span
+        style=\"font-weight: bold;\"><span style=\"font-size: 13px;\">Press:<\/span><\/span><\/p>\n<p><a
+        rel=\"noopener noreferrer\" href=\"https:\/\/www.prnewswire.com\/news-releases\/premise-data-raises-85-million-to-transform-market-intelligence-by-scaling-its-machine-learning-and-human-intelligence-platform-301207754.html\"><span
+        style=\"font-size: 13px;\">Premise Data Raises $85 Million To Transform Market
+        Intelligence By Scaling Its Machine Learning And Human Intelligence Platform<\/span><\/a><span
+        style=\"font-size: 13px;\"> (PRNewswire)<\/span><\/p>\n<p><a rel=\"noopener
+        noreferrer\" href=\"https:\/\/www.forbes.com\/americas-best-startup-employers\/#410225a36527\"><span
+        style=\"font-size: 13px;\">Forbes Recognizes Premise Data Among Best Startup
+        Employers For 2021<\/span><\/a><span style=\"font-size: 13px;\"> (Forbes)<\/span><\/p>\n<p><a
+        rel=\"noopener noreferrer\" href=\"https:\/\/www.prnewswire.com\/news-releases\/premise-data-ranked-182nd-fastest-growing-company-in-north-america-on-deloittes-2020-technology-fast-500-301177559.html\"><span
+        style=\"font-size: 13px;\">Premise Data Ranked 182nd Fastest-Growing Company
+        in North America on Deloitte''s 2020 Technology Fast 500\u2122<\/span><\/a><span
+        style=\"font-size: 13px;\"> (PRNewswire)<\/span><\/p>\n<p><a rel=\"noopener
+        noreferrer\" href=\"https:\/\/www.economist.com\/science-and-technology\/2019\/07\/06\/armed-with-smartphones-colombians-are-taking-on-the-local-mozzies\"><span
+        style=\"font-size: 13px;\">Armed with smartphones, Colombians are taking on
+        the local mozzies<\/span><\/a><span style=\"font-size: 13px;\"> (The Economist)<\/span><\/p>\n<p><a
+        rel=\"noopener noreferrer\" href=\"https:\/\/www.vox.com\/science-and-health\/21546014\/mask-mandates-coronavirus-covid-19\"><span
+        style=\"font-size: 13px;\">Why every state should adopt a mask mandate, in
+        4 charts<\/span><\/a><span style=\"font-size: 13px;\"> (Vox)<\/span><\/p>\n<p><a
+        rel=\"noopener noreferrer\" href=\"http:\/\/www.wired.co.uk\/magazine\/archive\/2016\/04\/features\/premise-app-food-tracking-brazil-philippines\"><span
+        style=\"font-size: 13px;\">Photos are creating a real-time food index<\/span><\/a><span
+        style=\"font-size: 13px;\"> (Wired)<\/span><\/p>","compensation":null,"datePosted":"2024-02-28","minimumExperience":"Manager\/Supervisor","locationType":"2"},"formFields":{"firstName":{"isRequired":true,"value":""},"lastName":{"isRequired":true,"value":""},"email":{"isRequired":true,"value":""},"phone":{"isRequired":true,"value":""},"streetAddress":{"isRequired":true,"value":""},"city":{"isRequired":true,"value":""},"state":{"isRequired":true,"value":"","options":[{"id":"2","text":"AK"},{"id":"1","text":"AL"},{"id":"4","text":"AR"},{"id":"361","text":"AS"},{"id":"3","text":"AZ"},{"id":"5","text":"CA"},{"id":"6","text":"CO"},{"id":"7","text":"CT"},{"id":"9","text":"DC"},{"id":"8","text":"DE"},{"id":"10","text":"FL"},{"id":"356","text":"FM"},{"id":"11","text":"GA"},{"id":"354","text":"GU"},{"id":"12","text":"HI"},{"id":"16","text":"IA"},{"id":"13","text":"ID"},{"id":"14","text":"IL"},{"id":"15","text":"IN"},{"id":"17","text":"KS"},{"id":"18","text":"KY"},{"id":"19","text":"LA"},{"id":"22","text":"MA"},{"id":"21","text":"MD"},{"id":"20","text":"ME"},{"id":"355","text":"MH"},{"id":"23","text":"MI"},{"id":"24","text":"MN"},{"id":"26","text":"MO"},{"id":"357","text":"MP"},{"id":"25","text":"MS"},{"id":"27","text":"MT"},{"id":"34","text":"NC"},{"id":"35","text":"ND"},{"id":"28","text":"NE"},{"id":"30","text":"NH"},{"id":"31","text":"NJ"},{"id":"32","text":"NM"},{"id":"29","text":"NV"},{"id":"33","text":"NY"},{"id":"36","text":"OH"},{"id":"37","text":"OK"},{"id":"38","text":"OR"},{"id":"39","text":"PA"},{"id":"359","text":"PR"},{"id":"358","text":"PW"},{"id":"40","text":"RI"},{"id":"41","text":"SC"},{"id":"42","text":"SD"},{"id":"43","text":"TN"},{"id":"44","text":"TX"},{"id":"45","text":"UT"},{"id":"47","text":"VA"},{"id":"360","text":"VI"},{"id":"46","text":"VT"},{"id":"48","text":"WA"},{"id":"50","text":"WI"},{"id":"49","text":"WV"},{"id":"51","text":"WY"}]},"zip":{"isRequired":true,"value":""},"countryId":{"isRequired":true,"value":"1","options":[{"id":"1","text":"United
+        States"},{"id":"2","text":"Canada"},{"id":"3","text":"Australia"},{"id":"4","text":"Afghanistan"},{"id":"5","text":"Albania"},{"id":"6","text":"Algeria"},{"id":"7","text":"American
+        Samoa"},{"id":"8","text":"Andorra"},{"id":"9","text":"Anguilla"},{"id":"10","text":"Angola"},{"id":"11","text":"Antarctica"},{"id":"12","text":"Antigua
+        and Barbuda"},{"id":"13","text":"Argentina"},{"id":"14","text":"Armenia"},{"id":"15","text":"Aruba"},{"id":"16","text":"Austria"},{"id":"17","text":"Azerbaijan"},{"id":"18","text":"Bahamas"},{"id":"19","text":"Bahrain"},{"id":"20","text":"Bangladesh"},{"id":"21","text":"Barbados"},{"id":"22","text":"Belgium"},{"id":"23","text":"Belize"},{"id":"24","text":"Benin"},{"id":"25","text":"Bermuda"},{"id":"26","text":"Bhutan"},{"id":"27","text":"Bolivia"},{"id":"28","text":"Bosnia
+        and Herzegovina"},{"id":"29","text":"Botswana"},{"id":"30","text":"Bouvet
+        Island"},{"id":"31","text":"Brazil"},{"id":"32","text":"British Indian Ocean
+        Territory"},{"id":"33","text":"Brunei Darussalam"},{"id":"34","text":"Bulgaria"},{"id":"35","text":"Burkina
+        Faso"},{"id":"36","text":"Burundi"},{"id":"37","text":"Cambodia"},{"id":"38","text":"Cameroon"},{"id":"39","text":"Cape
+        Verde"},{"id":"40","text":"Cayman Islands"},{"id":"41","text":"Central African
+        Republic"},{"id":"42","text":"Chad"},{"id":"43","text":"Chile"},{"id":"44","text":"China"},{"id":"45","text":"Christmas
+        Island"},{"id":"46","text":"Cocos (Keeling Islands)"},{"id":"47","text":"Colombia"},{"id":"48","text":"Comoros"},{"id":"49","text":"Congo"},{"id":"50","text":"Cook
+        Islands"},{"id":"51","text":"Costa Rica"},{"id":"52","text":"Cote D''Ivoire
+        (Ivory Coast)"},{"id":"53","text":"Croatia (Hrvatska)"},{"id":"54","text":"Cuba"},{"id":"55","text":"Cyprus"},{"id":"56","text":"Czech
+        Republic"},{"id":"57","text":"Denmark"},{"id":"58","text":"Djibouti"},{"id":"59","text":"Dominica"},{"id":"60","text":"Dominican
+        Republic"},{"id":"61","text":"East Timor"},{"id":"62","text":"Egypt"},{"id":"63","text":"El
+        Salvador"},{"id":"64","text":"Ecuador"},{"id":"65","text":"Equatorial Guinea"},{"id":"66","text":"Eritrea"},{"id":"67","text":"Estonia"},{"id":"68","text":"Ethiopia"},{"id":"69","text":"Falkland
+        Islands (Malvinas)"},{"id":"70","text":"Faroe Islands"},{"id":"71","text":"Fiji"},{"id":"72","text":"Finland"},{"id":"73","text":"France"},{"id":"74","text":"France,
+        Metropolitan"},{"id":"75","text":"French Guiana"},{"id":"76","text":"French
+        Polynesia"},{"id":"77","text":"French Southern Territories"},{"id":"78","text":"French
+        West Indies"},{"id":"79","text":"Gabon"},{"id":"80","text":"Gambia"},{"id":"81","text":"Georgia"},{"id":"82","text":"Germany"},{"id":"83","text":"Ghana"},{"id":"84","text":"Gibraltar"},{"id":"85","text":"Greece"},{"id":"86","text":"Greenland"},{"id":"87","text":"Grenada"},{"id":"88","text":"Guadeloupe"},{"id":"89","text":"Guam"},{"id":"90","text":"Guatemala"},{"id":"91","text":"Guinea"},{"id":"92","text":"Guinea-Bissau"},{"id":"93","text":"Guyana"},{"id":"94","text":"Haiti"},{"id":"95","text":"Heard
+        and McDonald Islands"},{"id":"96","text":"Honduras"},{"id":"97","text":"Hong
+        Kong"},{"id":"98","text":"Hungary"},{"id":"99","text":"Iceland"},{"id":"100","text":"India"},{"id":"101","text":"Indonesia"},{"id":"102","text":"Iran"},{"id":"103","text":"Iraq"},{"id":"104","text":"Ireland"},{"id":"105","text":"Israel"},{"id":"106","text":"Italy"},{"id":"107","text":"Jamaica"},{"id":"108","text":"Japan"},{"id":"109","text":"Jordan"},{"id":"110","text":"Kazakhstan"},{"id":"111","text":"Kenya"},{"id":"112","text":"Kiribati"},{"id":"113","text":"Korea
+        (North)"},{"id":"114","text":"Korea (South)"},{"id":"115","text":"Kuwait"},{"id":"116","text":"Kyrgyzstan"},{"id":"117","text":"Laos"},{"id":"118","text":"Latvia"},{"id":"119","text":"Lebanon"},{"id":"120","text":"Lesotho"},{"id":"121","text":"Liberia"},{"id":"122","text":"Libya"},{"id":"123","text":"Liechtenstein"},{"id":"124","text":"Lithuania"},{"id":"125","text":"Luxembourg"},{"id":"126","text":"Macao"},{"id":"127","text":"Macedonia"},{"id":"128","text":"Madagascar"},{"id":"129","text":"Malawi"},{"id":"130","text":"Malaysia"},{"id":"131","text":"Maldives"},{"id":"132","text":"Mali"},{"id":"133","text":"Malta"},{"id":"134","text":"Marshall
+        Islands"},{"id":"135","text":"Martinique"},{"id":"136","text":"Mauritania"},{"id":"137","text":"Mauritius"},{"id":"138","text":"Mayotte"},{"id":"139","text":"Mexico"},{"id":"140","text":"Micronesia"},{"id":"141","text":"Moldova"},{"id":"142","text":"Monaco"},{"id":"143","text":"Mongolia"},{"id":"144","text":"Montenegro"},{"id":"145","text":"Montserrat"},{"id":"146","text":"Morocco"},{"id":"147","text":"Mozambique"},{"id":"148","text":"Namibia"},{"id":"149","text":"Nauru"},{"id":"150","text":"Nepal"},{"id":"151","text":"Netherlands"},{"id":"152","text":"Netherlands
+        Antilles"},{"id":"153","text":"New Caledonia"},{"id":"154","text":"New Zealand"},{"id":"155","text":"Nicaragua"},{"id":"156","text":"Niger"},{"id":"157","text":"Nigeria"},{"id":"158","text":"Niue"},{"id":"159","text":"Norfolk
+        Island"},{"id":"160","text":"Northern Mariana Islands"},{"id":"161","text":"Norway"},{"id":"162","text":"Oman"},{"id":"163","text":"Pakistan"},{"id":"164","text":"Palau"},{"id":"165","text":"Panama"},{"id":"166","text":"Papua
+        New Guinea"},{"id":"167","text":"Paraguay"},{"id":"168","text":"Peru"},{"id":"169","text":"Philippines"},{"id":"170","text":"Pitcairn"},{"id":"171","text":"Poland"},{"id":"172","text":"Portugal"},{"id":"173","text":"Puerto
+        Rico"},{"id":"174","text":"Qatar"},{"id":"175","text":"Rwanda"},{"id":"176","text":"Reunion"},{"id":"177","text":"Romania"},{"id":"178","text":"Russian
+        Federation"},{"id":"179","text":"Samoa"},{"id":"180","text":"San Marino"},{"id":"181","text":"Sao
+        Tome and Principe"},{"id":"182","text":"Saudi Arabia"},{"id":"183","text":"Senegal"},{"id":"184","text":"Serbia"},{"id":"185","text":"Seychelles"},{"id":"186","text":"Sierra
+        Leone"},{"id":"187","text":"Singapore"},{"id":"188","text":"Slovakia"},{"id":"189","text":"Slovenia"},{"id":"190","text":"Solomon
+        Islands"},{"id":"191","text":"South Africa"},{"id":"192","text":"Spain"},{"id":"193","text":"Sri
+        Lanka"},{"id":"194","text":"St. Helena"},{"id":"195","text":"Saint Kitts and
+        Nevis"},{"id":"196","text":"Saint Lucia"},{"id":"197","text":"St. Pierre and
+        Miquelon"},{"id":"198","text":"Saint Vincent and the Grenadines"},{"id":"199","text":"Sudan"},{"id":"200","text":"Suriname"},{"id":"201","text":"Svalbard"},{"id":"202","text":"Swaziland"},{"id":"203","text":"Sweden"},{"id":"204","text":"Switzerland"},{"id":"205","text":"Syria"},{"id":"206","text":"Taiwan"},{"id":"207","text":"Tajikistan"},{"id":"208","text":"Tanzania"},{"id":"209","text":"Thailand"},{"id":"210","text":"Togo"},{"id":"211","text":"Tokelau"},{"id":"212","text":"Tonga"},{"id":"213","text":"Trinidad
+        and Tobago"},{"id":"214","text":"Tunisia"},{"id":"215","text":"Turkey"},{"id":"216","text":"Turkmenistan"},{"id":"217","text":"Turks
+        and Caicos Islands"},{"id":"218","text":"Tuvalu"},{"id":"219","text":"Uganda"},{"id":"220","text":"Ukraine"},{"id":"221","text":"United
+        Arab Emirates"},{"id":"222","text":"United Kingdom"},{"id":"223","text":"US
+        Minor Outlying Islands"},{"id":"224","text":"Uruguay"},{"id":"225","text":"Uzbekistan"},{"id":"226","text":"Vanuatu"},{"id":"227","text":"Vatican
+        City State"},{"id":"228","text":"Venezuela"},{"id":"229","text":"Viet Nam"},{"id":"230","text":"Virgin
+        Islands (British)"},{"id":"231","text":"Virgin Islands, U.S."},{"id":"232","text":"Wallis
+        and Futuna Islands"},{"id":"233","text":"Western Sahara"},{"id":"234","text":"Yemen"},{"id":"235","text":"Yugoslavia"},{"id":"236","text":"Zaire"},{"id":"237","text":"Zambia"},{"id":"238","text":"\u00c5land
+        Islands"},{"id":"239","text":"Saint Barth\u00e9lemy"},{"id":"240","text":"Bonaire,
+        Sint Eustatius and Saba"},{"id":"241","text":"Belarus"},{"id":"242","text":"Congo,
+        the Democratic Republic of the"},{"id":"243","text":"Cura\u00e7ao"},{"id":"244","text":"Guernsey"},{"id":"245","text":"South
+        Georgia and the South Sandwich Islands"},{"id":"246","text":"Isle of Man"},{"id":"247","text":"Jersey"},{"id":"248","text":"Myanmar"},{"id":"249","text":"Palestinian
+        Territories"},{"id":"250","text":"Somalia"},{"id":"251","text":"South Sudan"},{"id":"252","text":"Sint
+        Maarten (Dutch part)"},{"id":"253","text":"Zimbabwe"},{"id":"254","text":"Kosovo"},{"id":"255","text":"Kurdistan"},{"id":"256","text":"Saint
+        Martin (French part)"}]},"linkedinUrl":{"isRequired":false,"value":""},"dateAvailable":{"isRequired":false,"value":""},"desiredPay":{"isRequired":false,"value":""},"websiteUrl":{"isRequired":false,"value":""},"resumeFileId":{"isRequired":true,"value":""},"customQuestions":[],"genderId":[],"ethnicityId":[],"veteranStatusId":[],"disabilityId":[]}}}'
+  recorded_at: Wed, 01 May 2024 14:15:05 GMT
+recorded_with: VCR 6.2.0

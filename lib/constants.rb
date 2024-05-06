@@ -32,6 +32,7 @@ module Constants
   }
 
   JOB_LOCATION_KEYWORDS = [
+    /remote/,
     /london/,
     /england/,
     /united kingdom/,
@@ -85,6 +86,7 @@ module Constants
     /\bios\b/,
     /android/,
     /data scientist/,
+    /dataops/,
     /\bml\b/,
     /\bai\b/,
     /machine learning/,

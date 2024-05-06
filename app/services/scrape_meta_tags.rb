@@ -18,6 +18,8 @@ class ScrapeMetaTags
     fetch_links_from_meta_tags
     fetch_links_from_link_tags
     fetch_links_from_scripts
+    fetch_links_from_iframes
+    fetch_links_from_anchor_tags
     fetch_link_from_apply_button
     fetch_link_from_forms
     fetch_ats_candidates_company_and_job
@@ -52,6 +54,16 @@ class ScrapeMetaTags
     meta_tags.each do |tag|
       @external_links << tag.value if tag.value.match?(%r{https?://})
     end
+  end
+
+  def fetch_links_from_iframes
+    puts "Fetching links from iframes..."
+    @external_links += @doc.xpath('//iframe/@src').map(&:to_s)
+  end
+
+  def fetch_links_from_anchor_tags
+    puts "Fetching links from anchor tags..."
+    @external_links += @doc.xpath('//a/@href').map(&:to_s)
   end
 
   def fetch_links_from_link_tags
@@ -96,6 +108,7 @@ class ScrapeMetaTags
     @external_links.each do |link|
       next unless (candidate = match_ats(link))
 
+      p "Found a promising link: #{link}..."
       ats, company, job = Url::CreateJobFromUrl.new(link).create_company_then_job
       return if job&.persisted? # presumably job will be persisted even if not live? this might need tweaking with non-live jobs
 
@@ -112,12 +125,18 @@ class ScrapeMetaTags
 
       @candidates << candidate
     end
-    return if @candidates.empty?
+    return check_for_grnhse_app if @candidates.empty?
 
     @candidates.uniq!
     best_candidate = @candidates.size > 1 ? pick_best_candidate : @candidates.first
 
     [best_candidate]
+  end
+
+  def check_for_grnhse_app
+    grnhse_app_div = @doc.at('div#grnhse_app')
+    gh_job_post_id_input = @doc.at('input#ghJobPostId')
+    return [ApplicantTrackingSystem.find_by(name: 'Greenhouse')] if grnhse_app_div || gh_job_post_id_input
   end
 
   def apply_button

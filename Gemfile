@@ -122,10 +122,6 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
-
-  # API Calls
-  # gem 'webmock' # TODO: install this gem for mocking API calls
-  # gem 'vcr' # TODO: install this gem for recording API calls
 end
 
 group :development do
@@ -150,4 +146,8 @@ end
 group :test do
   gem 'factory_bot_rails', '6.4.3'
   gem 'shoulda-matchers', '6.1.0'
+
+  # API Calls
+  gem 'vcr'
+  gem 'webmock'
 end
