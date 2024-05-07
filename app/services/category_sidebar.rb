@@ -30,7 +30,7 @@ class CategorySidebar
   private_class_method def self.fetch_sidebar_data
     initialize_category_hashes
 
-    jobs = Job.includes(:company, :roles, :locations, :countries).all
+    jobs = Job.includes(:roles, :locations, :countries).all
     jobs.each do |job|
       @job = job
       update_category_hashes
@@ -45,8 +45,7 @@ class CategorySidebar
       seniorities: SENIORITIES.to_h { |seniority| [seniority, 0] },
       locations: Hash.new(0),
       roles: Hash.new(0),
-      types: Hash.new(0),
-      companies: Hash.new(0)
+      types: Hash.new(0)
     }
     @date_cutoffs = CONVERT_TO_DAYS.transform_values { |v| v.days.ago.beginning_of_day }
     # TODO: look for ways to improve efficiency below. Converting to_set makes lookup faster.
@@ -55,7 +54,6 @@ class CategorySidebar
     @jobs_with_any_location = Job.including_any(@params, :location).to_set
     @jobs_with_any_role = Job.including_any(@params, :role).to_set
     @jobs_with_any_type = Job.including_any(@params, :type).to_set
-    @jobs_with_any_company = Job.including_any(@params, :company).to_set
   end
 
   private_class_method def self.update_category_hashes
@@ -64,7 +62,6 @@ class CategorySidebar
     update_locations if @jobs_with_any_location.include?(@job)
     update_roles if @jobs_with_any_role.include?(@job)
     update_types if @jobs_with_any_type.include?(@job)
-    update_companies if @jobs_with_any_company.include?(@job)
   end
 
   private_class_method def self.build_resources_hash
@@ -75,7 +72,6 @@ class CategorySidebar
     build_location_array
     build_role_array
     build_type_array
-    build_company_array
     @resources
   end
 
@@ -112,11 +108,6 @@ class CategorySidebar
   private_class_method def self.update_types
     type = @job.employment_type
     @count[:types][type] += 1
-  end
-
-  private_class_method def self.update_companies
-    company = @job.company
-    @count[:companies][company] += 1
   end
 
   private_class_method def self.build_posted_array
@@ -182,18 +173,6 @@ class CategorySidebar
         type.downcase.gsub('-', '_'),
         count,
         @params[:type]&.include?(type)
-      ]
-    end
-  end
-
-  private_class_method def self.build_company_array
-    @resources['company'] = @count[:companies].take(15).map do |company, count|
-      [
-        'checkbox',
-        company.name,
-        company.id,
-        count,
-        @params[:company]&.include?(company.id.to_s)
       ]
     end
   end
