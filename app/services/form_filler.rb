@@ -47,6 +47,8 @@ class FormFiller
   end
 
   def submit_application
+    # TODO: Once we have a better sense of how form submission varies by ATS, can refactor so that
+    # the generic code goes here and the ATS-specific elements are referred to the ats_module
     return super if defined?(super)
 
     puts "Write a submit method for #{@ats.name}!"

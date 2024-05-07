@@ -17,10 +17,10 @@ module Ats
 
       def build_core_fields(data)
         attributes = CORE_FIELDS
-        attributes['Phone number'][:required] = data['options_phone'] == 'required'
-        attributes['Photo'][:required] = data['options_photo'] == 'required'
-        attributes['Cover letter'][:required] = data['options_cover_letter'] == 'required'
-        attributes['CV or resume'][:required] = data['options_cv'] == 'required'
+        attributes['phone'][:required] = data['options_phone'] == 'required'
+        attributes['photo'][:required] = data['options_photo'] == 'required'
+        attributes['cover_letter'][:required] = data['options_cover_letter'] == 'required'
+        attributes['resume/cv'][:required] = data['options_cv'] == 'required'
         attributes
       end
 
@@ -38,16 +38,18 @@ module Ats
           field = data[i]
           kind = field['kind']
           interaction, options = fetch_interaction_and_options(field, FIELD_TYPES[kind])
-          question = [info, field['body']].reject(&:blank?).join('<br><br>')
+          question = field['body']
+          name = standardize_question(question)
+          label = [info, question].reject(&:blank?).join('<br><br>')
           additional_fields.merge!(
-            question => {
+            name => {
               interaction:,
               locators: [
                 "[open_question_answers_attributes][#{field['position']}][open_question_id]=#{field['id']}",
-                "[open_question_answers_attributes][#{field['position']}]#{CONTENT_CONVERTER[field['kind']]}="
+                "[open_question_answers_attributes][#{field['position']}]#{CONTENT_CONVERTER[kind]}="
               ],
               required: field['required'],
-              kind:,
+              label:,
               character_length: field.dig('options', 'length'),
               options:
             }.reject { |_, v| v.blank? }
@@ -56,6 +58,11 @@ module Ats
           i += 1
         end
         additional_fields
+      end
+
+      def standardize_question(question)
+        standardized = question.strip.downcase.gsub(' ', '_').gsub(/[^a-z_]/, '')
+        STANDARD_QUESTIONS[standardized] || standardized
       end
 
       def fetch_interaction_and_options(field, interaction)
@@ -71,31 +78,37 @@ module Ats
       end
 
       CORE_FIELDS = {
-        'Full name' => {
+        'full_name' => {
           interaction: :input,
           locators: ['candidate[name]'],
-          required: true
+          required: true,
+          label: 'Full name'
         },
-        'Email address' => {
+        'email' => {
           interaction: :input,
           locators: ['candidate[email]'],
-          required: true
+          required: true,
+          label: 'Email address'
         },
-        'Phone number' => {
+        'phone' => {
           interaction: :input,
-          locators: ['candidate[phone]']
+          locators: ['candidate[phone]'],
+          label: 'Phone number'
         },
-        'Photo' => {
+        'photo' => {
           interaction: :upload,
-          locators: ['candidate[photo]']
+          locators: ['candidate[photo]'],
+          label: 'Photo'
         },
-        'Cover letter' => {
+        'cover_letter' => {
           interaction: :upload,
-          locators: ['candidate[cover_letter]']
+          locators: ['candidate[cover_letter]'],
+          label: 'Cover letter'
         },
-        'CV or resume' => {
+        'resume/cv' => {
           interaction: :upload,
-          locators: ['candidate[cv]']
+          locators: ['candidate[cv]'],
+          label: 'CV or resume'
         }
       }
 
@@ -124,6 +137,8 @@ module Ats
         'boolean' => '[flag]',
         'legal' => '[flag]'
       }
+
+      STANDARD_QUESTIONS = {}
     end
   end
 end

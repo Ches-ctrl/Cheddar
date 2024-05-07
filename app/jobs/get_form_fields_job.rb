@@ -44,21 +44,20 @@ class GetFormFieldsJob < ApplicationJob
 
       # Stripping text, downcasing and replacing spaces with underscores to act as primary keys
 
-      label_text = label.xpath('descendant-or-self::text()[not(parent::select or parent::option or parent::ul or parent::label/input[@type="checkbox"])]').text.strip.downcase.gsub(
-        " ", "_"
-      )
+      label_text = label.xpath('descendant-or-self::text()[not(parent::select or parent::option or parent::ul or parent::label/input[@type="checkbox"])]').text.strip
 
       required = label_text.include?("*")
       label_text = label_text.split("*")[0]
 
-      name = label_text
+      name = label_text.strip.downcase.gsub(" ", "_")
       standard_fields = ['first_name', 'last_name', 'email', 'phone', 'resume/cv', 'cover_letter', 'city']
       next if !name || name == "" || standard_fields.include?(remove_trailing_underscore(name))
       next if label.parent.name == 'label'
 
       attributes[name] = {
         interaction: :input,
-        required:
+        required:,
+        label: label_text
       }
 
       inputs = label.css('input', 'textarea').reject { |input| input['type'] == 'hidden' || !input['id'] }

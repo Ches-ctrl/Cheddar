@@ -25,6 +25,7 @@ class JobApplicationsController < ApplicationController
         job.application_criteria.each do |field, details|
           job_application.application_responses.build(
             field_name: field,
+            field_label: details["label"],
             field_locator: details["locators"],
             interaction: details["interaction"],
             field_option: details["option"],

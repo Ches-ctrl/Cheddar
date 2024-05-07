@@ -10,41 +10,49 @@ module Ats
         first_name: {
           interaction: :input,
           locators: 'first_name',
-          required: true
+          required: true,
+          label: 'First Name'
         },
         last_name: {
           interaction: :input,
           locators: 'last_name',
-          required: true
+          required: true,
+          label: 'Last Name'
         },
         email: {
           interaction: :input,
           locators: 'email',
-          required: true
+          required: true,
+          label: 'Email'
         },
         phone_number: {
           interaction: :input,
           locators: 'phone',
-          required: true
+          required: true,
+          label: 'Phone'
         },
         city: {
           interaction: :input,
           locators: 'job_application[location]',
-          required: true
+          required: true,
+          label: 'City'
         },
         location_click: {
           interaction: :listbox,
-          locators: 'ul#location_autocomplete-items-popup'
+          locators: 'ul#location_autocomplete-items-popup',
+          label: 'location_click'
         },
         resume: {
           interaction: :upload,
           locators: 'button[aria-describedby="resume-allowable-file-types"',
-          required: true
+          required: true,
+          label: 'Resume/CV'
         },
         cover_letter_: {
           interaction: :upload,
           locators: 'button[aria-describedby="cover_letter-allowable-file-types"]',
-          required: true
+          required: true,
+          label: 'Cover Letter'
         }
       }
 
@@ -54,72 +62,86 @@ module Ats
           locators: 's2id_education_school_name_0',
           required: true,
           placeholder: 'Select a School',
-          data_url: 'https://boards-api.greenhouse.io/v1/boards/phonepe/education/schools'
+          data_url: 'https://boards-api.greenhouse.io/v1/boards/phonepe/education/schools',
+          label: 'School'
         },
         degree: {
           interaction: :select,
           locators: 's2id_education_degree_0',
-          required: false
+          required: false,
+          label: 'Degree'
         },
         discipline: {
           interaction: :select,
           locators: 's2id_education_discipline_0',
-          required: false
+          required: false,
+          label: 'Discipline'
         },
         ed_start_date_year: {
           interaction: :input,
           locators: 'job_application[educations][][start_date][year]',
-          required: true
+          required: true,
+          label: 'Education Start Date Year'
         },
         ed_end_date_year: {
           interaction: :input,
           locators: 'job_application[educations][][end_date][year]',
-          required: true
+          required: true,
+          label: 'Education End Date Year'
         },
         company_name: {
           interaction: :input,
           locators: 'job_application[employments][][company_name]',
-          required: true
+          required: true,
+          label: 'Company Name'
         },
         title: {
           interaction: :input,
           locators: 'job_application[employments][][title]',
-          required: true
+          required: true,
+          label: 'Title'
         },
         emp_start_date_month: {
           interaction: :input,
           locators: 'job_application[employments][][start_date][month]',
-          required: true
+          required: true,
+          label: 'Employment Start Date Month'
         },
         emp_start_date_year: {
           interaction: :input,
           locators: 'job_application[employments][][start_date][year]',
-          required: true
+          required: true,
+          label: 'Employment Start Date Year'
         },
         emp_end_date_month: {
           interaction: :input,
           locators: 'job_application[employments][][end_date][month]',
-          required: true
+          required: true,
+          label: 'Employment End Date Month'
         },
         emp_end_date_year: {
           interaction: :input,
           locators: 'job_application[employments][][end_date][year]',
-          required: true
+          required: true,
+          label: 'Employment End Date Year'
         },
         linkedin_profile: {
           interaction: :input,
           locators: 'input[autocomplete="custom-question-linkedin-profile"]',
-          required: false
+          required: false,
+          label: 'LinkedIn Profile'
         },
         personal_website: {
           interaction: :input,
           locators: 'input[autocomplete="custom-question-website"], input[autocomplete="custom-question-portfolio-linkwebsite"]',
-          required: false
+          required: false,
+          label: 'Personal Website'
         },
         gender: {
           interaction: :input,
           locators: 'input[autocomplete="custom-question-website"], input[autocomplete="custom-question-portfolio-linkwebsite"]',
-          required: false
+          required: false,
+          label: 'Gender'
         }
         # location_click: {
         #   interaction: :listbox,
