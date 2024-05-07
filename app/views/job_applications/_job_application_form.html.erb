@@ -43,7 +43,7 @@
               </div>
 
             <% when "upload" %>
-              <% if response.field_name == "resume" %>
+              <% if ['resume', 'CV or resume'].include?(response.field_name) %>
                 <div class="col-sm-12 mr-2">
                   <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                   <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
@@ -52,7 +52,7 @@
                   <%= ff.input :field_value, required: response.required, label_html: { class: "d-none"}, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input" }, value: current_user.resume.attached? ? current_user.resume.filename : "No CV / resume attached", disabled: true }, wrapper_html: { class: 'wrapper-mb-0' } %>
                 </div>
 
-              <% elsif response.field_name == "cover_letter_" %>
+              <% elsif ['cover_letter_', 'Cover letter'].include?(response.field_name) %>
                 <div class="col-sm-12 mr-2", data-controller="template-select">
                   <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                   <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
@@ -66,6 +66,14 @@
 
                   <textarea id=<%= "coverLetterEditor-#{job_application.job.id}" %> class = "d-none" data-template-select-target="editor" data-all-application-forms-target="editor"></textarea>
                   <%= ff.hidden_field :cover_letter_content, id: "hiddenCoverLetterField-#{job_application.job.id}", data: { all_application_forms_target: "content" } %>
+                </div>
+              <% elsif ['Photo'].include?(response.field_name) %>
+                <div class="col-sm-12 mr-2">
+                  <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                  <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                  <%= ff.input :interaction, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                  <%= ff.input :field_option, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
+                  <%= ff.input :field_value, required: response.required, label_html: { class: "d-none"}, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input" }, value: current_user.photo.key.present? ? cl_image_path(current_user.photo.key) : "Upload a photo", disabled: true }, wrapper_html: { class: 'wrapper-mb-0' } %>
                 </div>
               <% end %>
 
