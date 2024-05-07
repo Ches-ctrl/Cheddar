@@ -8,7 +8,11 @@ module Api
         posting_url = params[:posting_url]
         p "posting_url: #{posting_url}"
 
-        render json: { message: 'Job added successfully' }, status: :ok
+        if posting_url
+          render json: { message: 'Posting URL sent successfully' }, status: :ok
+        else
+          render json: { message: 'Post API connected but no posting_url' }, status: :ok
+        end
 
         # if CreateJobFromUrl.call(posting_url)
         #   render json: { message: 'Job added successfully' }, status: :ok
