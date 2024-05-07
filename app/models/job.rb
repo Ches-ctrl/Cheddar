@@ -60,26 +60,6 @@ class Job < ApplicationRecord
   #   end
   # end
 
-  def new_job_application_for_user(user)
-    job_application = JobApplication.new(user:, job: self, status: "Pre-application")
-    application_criteria.each do |field, details|
-      application_response = job_application.application_responses.build(
-        field_name: field,
-        field_locator: details["locators"],
-        interaction: details["interaction"],
-        field_option: details["option"],
-        required: details["required"]
-      )
-
-      # TODO: Add boolean required field (include in params and form submission page)
-
-      application_response.field_options = details["options"] if details["options"].present?
-      application_response.field_value = user.try(field) || ""
-    end
-
-    job_application
-  end
-
   CONVERT_TO_DAYS = {
     'today' => 0,
     '3-days' => 3,

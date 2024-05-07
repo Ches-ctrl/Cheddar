@@ -26,9 +26,9 @@
   <%# Iterate over each selected job %>
   <div id="applicationCarousel" class="carousel slide carousel-fade">
     <div class="carousel-inner px-5">
-      <% @job_applications.each_with_index do |job, index| %>
+      <% @job_applications.each_with_index do |job_application, index| %>
         <div class="carousel-item <%= index == 0 ? "active" : "" %>">
-          <%= render partial: 'job_application_form', locals: {job: job, index: index } %>
+          <%= render partial: 'job_application_form', locals: {job_application: job_application, index: index } %>
         </div>
       <% end %>
     </div>
