@@ -117,7 +117,7 @@
                 <%# TODO: Update schema so that field_options is an array rather than string to prevent current need for JSON.parse %>
               </div>
             <% end %>
-            <% if response.field_name == "last_name" || response.field_name == "Name" %><%# This is very dodgy code %>
+            <% if response.field_name == "last_name" || response.field_name == "Name" || response.field_name == "Full name" %><%# This is very dodgy code %>
               </div>
             <% end %>
           </div>

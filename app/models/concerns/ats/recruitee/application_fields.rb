@@ -5,7 +5,7 @@ module Ats
         p "Getting Recruitee application criteria"
         job.application_criteria = build_application_criteria_from(data)
         job.save
-        # GetFormFieldsJob.perform_later(job.posting_url)
+        # TODO: update job.requirement
       end
 
       def build_application_criteria_from(data)
