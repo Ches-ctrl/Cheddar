@@ -39,37 +39,48 @@
 </div>
 
 <div class="container-md steps-to-apply">
-  <h3 class="text-center mb-5">Steps to apply</h3>
+  <h3 class="text-center">Steps to apply</h3>
   <div class="row justify-content-around">
-    <div class="col-md-3 mb-3">
+    <div class="col-md-3 mb-3" style="position: relative;">
       <div class="box p-3 text-center">
         <div>
-          <i class="fa-solid fa-magnifying-glass fa-3x mb-3"></i>
-          <p>Search for jobs</p>
+          <%# <i class="fa-solid fa-magnifying-glass fa-3x mb-3"></i> %>
+          <%= image_tag "steps-to-apply/search-step.svg", alt: "search-icon", class:"step-icon" %>
+          <h5>Select suitable jobs</h5>
+          <p class="mt-4">Phasellus quis eleifend ex. Morbi nec fringilla nibh.</p>
         </div>
       </div>
+    <%= image_tag "steps-to-apply/Arrows-01.svg", alt:"arrow-01", class:"arrow-01"%>
+    </div>
+    <div class="col-md-3 mb-3" style="position: relative;">
+      <div class="box p-3 text-center">
+        <div>
+          <%= image_tag "steps-to-apply/create-step.svg", alt: "search-icon", class:"step-icon" %>
+          <%# <i class="fa-solid fa-user-plus fa-3x mb-3"></i> %>
+          <h5>Create your profile</h5>
+          <p class="mt-4">Aliquam facilisis egestas sapien, nec tempor leo tristique at.</p>
+        </div>
+      </div>
+      <%= image_tag "steps-to-apply/Arrows-02.svg", alt:"arrow-02", class:"arrow-02"%>
+    </div>
+    <div class="col-md-3 mb-3" style="position: relative;">
+      <div class="box p-3 text-center">
+        <div>
+          <%= image_tag "steps-to-apply/upload-step.svg", alt: "search-icon", class:"step-icon" %>
+          <%# <i class="fa-solid fa-file-arrow-up fa-3x mb-3"></i> %>
+          <h5>Upload your CV</h5>
+          <p class="mt-4">Curabitur sit amet maximus ligula. Nam a nulla ante. Nam sodales</p>
+        </div>
+      </div>
+      <%= image_tag "steps-to-apply/Arrows-01.svg", alt:"arrow-03", class:"arrow-03"%>
     </div>
     <div class="col-md-3 mb-3">
       <div class="box p-3 text-center">
         <div>
-          <i class="fa-solid fa-user-plus fa-3x mb-3"></i>
-          <p>Create your profile</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 mb-3">
-      <div class="box p-3 text-center">
-        <div>
-          <i class="fa-solid fa-file-arrow-up fa-3x mb-3"></i>
-          <p>Upload your CV</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 mb-3">
-      <div class="box p-3 text-center">
-        <div>
-          <i class="fa-solid fa-check-double fa-3x mb-3"></i>
-          <p>Apply to many jobs at once!</p>
+          <%= image_tag "steps-to-apply/apply-step.svg", alt: "search-icon", class:"step-icon" %>
+          <%# <i class="fa-solid fa-check-double fa-3x mb-3"></i> %>
+          <h5>Apply to jobs at once!</h5>
+          <p class="mt-4">Curabitur sit amet maximus ligula. Nam a nulla ante, Nam sodales purus.</p>
         </div>
       </div>
     </div>

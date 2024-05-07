@@ -8,22 +8,15 @@ class CompanyDomainService
     request = Net::HTTP::Get.new(uri)
     request['Accept'] = 'application/json'
 
-    response= Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+    response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
       http.request(request)
     end
 
-    if response.is_a?(Net::HTTPSuccess)
-      results = JSON.parse(response.body)
-      match = results.find { |company| company['name'].downcase == name.downcase }
-      if match
-        match
-      else
-        nil
-      end
-    else
-      nil
-    end
+    return unless response.is_a?(Net::HTTPSuccess)
+
+    results = JSON.parse(response.body)
+    results.find { |company| company['name'].downcase == name.downcase }
   rescue => e
-    Rails.logger.error("Error fetching company info from Marcom Robot: #{e.message}")
+    puts "Error fetching company info from Clearbit: #{e.message}"
   end
 end

@@ -1,15 +1,17 @@
 <details class="application-form mb-3" open>
 
   <summary class="pb-1" style="display: block">
-    <h2><%= index + 1 %>. <%= job.first.title %> - <%= job.first.company.name %></h2>
+    <h2><%= index + 1 %>. <%= job_application.job.title %> - <%= job_application.job.company.name %></h2>
   </summary>
 
   <div class="text-sm mb-2"><span class="required-asterisk">*</span> Required fields</div>
 
-  <%= simple_form_for job, html: { class: 'needs-validation', 'data-all-application-forms-target': "form", 'data-action': 'submit->all-application-forms#submitForm'} do |f| %>
+  <%= simple_form_for job_application, html: { class: 'needs-validation', 'data-all-application-forms-target': "form"} do |f| %>
+  <%= hidden_field_tag :job_id, job_application.job.id %>
+
 
     <%# Dynamically creates form elements based on application_criteria - converts to fields ready for application responses. %>
-    <% job.last.application_responses.each_with_index do |response, response_index| %>
+    <% job_application.application_responses.each_with_index do |response, response_index| %>
 
       <% if response_index == 0 %>
         <details class="core-app-details" closed>
@@ -26,7 +28,7 @@
 
             <label class="col-form-label text-sm fw-medium
               <%= "d-none" if response.field_name == 'location_click' %>">
-              <%= response.field_name.humanize %>
+              <%= response.field_name.html_safe %>
               <span class="required-asterisk"><%= "*" if response.required %></span>
             </label>
 
@@ -62,8 +64,8 @@
 
                   <%= ff.input :field_value, as: :select, required: response.required, collection: templates, label: false, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input", action: "change->template-select#select"} }, wrapper_html: { class: 'wrapper-mb-0' } %>
 
-                  <textarea id=<%= "coverLetterEditor-#{job[0].id}" %> class = "d-none" data-template-select-target="editor" data-all-application-forms-target="editor"></textarea>
-                  <%= ff.hidden_field :cover_letter_content, id: "hiddenCoverLetterField-#{job[0].id}", data: { all_application_forms_target: "content" } %>
+                  <textarea id=<%= "coverLetterEditor-#{job_application.job.id}" %> class = "d-none" data-template-select-target="editor" data-all-application-forms-target="editor"></textarea>
+                  <%= ff.hidden_field :cover_letter_content, id: "hiddenCoverLetterField-#{job_application.job.id}", data: { all_application_forms_target: "content" } %>
                 </div>
               <% end %>
 
@@ -117,7 +119,7 @@
                 <%# TODO: Update schema so that field_options is an array rather than string to prevent current need for JSON.parse %>
               </div>
             <% end %>
-            <% if response.field_name == "last_name" %>
+            <% if response.field_name == "last_name" || response.field_name == "Name" %><%# This is very dodgy code %>
               </div>
             <% end %>
           </div>
@@ -131,7 +133,7 @@
           <summary class="mb-2 bolded fs-5 section-title">Additional requirements</summary> <%# Close the additional details tag %>
       <% end %>
 
-      <% if response_index + 1 == job.last.application_responses.length %>
+      <% if response_index + 1 == job_application.application_responses.length %>
         </details>
       <% end %>
     <% end %>

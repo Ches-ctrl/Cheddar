@@ -1,0 +1,129 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://jobs.ashbyhq.com/api/non-user-graphql?op=ApiOrganizationFromHostedJobsPageName
+    body:
+      encoding: UTF-8
+      string: '{"query":"query ApiOrganizationFromHostedJobsPageName($organizationHostedJobsPageName:
+        String!) {  organization: organizationFromHostedJobsPageName(    organizationHostedJobsPageName:
+        $organizationHostedJobsPageName  ) {    ...OrganizationParts    __typename  }}fragment
+        OrganizationParts on Organization {  name  publicWebsite  customJobsPageUrl  hostedJobsPageSlug  allowJobPostIndexing  theme
+        {    colors    showJobFilters    showTeams    showAutofillApplicationsBox    logoWordmarkImageUrl    logoSquareImageUrl    applicationSubmittedSuccessMessage    jobBoardTopDescriptionHtml    jobBoardBottomDescriptionHtml    __typename  }  appConfirmationTrackingPixelHtml  recruitingPrivacyPolicyUrl  activeFeatureFlags  timezone  __typename
+        }","variables":{"organizationHostedJobsPageName":"lightdash"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 01 May 2024 14:14:37 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Ashby-Request-Id:
+      - 01HWT83Q4R8V89DQVKC1NS3KMV
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      Referrer-Policy:
+      - same-origin
+      Cache-Control:
+      - no-store
+      Access-Control-Allow-Origin:
+      - "*"
+      Cf-Cache-Status:
+      - DYNAMIC
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 87d061008f6e9437-LHR
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"organization":{"name":"Lightdash","publicWebsite":"https://www.lightdash.com/","customJobsPageUrl":null,"hostedJobsPageSlug":"Lightdash","allowJobPostIndexing":true,"theme":{"colors":{"version":"1","colorPrimary600":"#7262FF","colorPrimary900":"#7262FF"},"showJobFilters":false,"showTeams":false,"showAutofillApplicationsBox":true,"logoWordmarkImageUrl":"https://app.ashbyhq.com/api/images/org-theme-wordmark/118a5d75-b907-4616-ade7-b67eaa6b5c16/314e7c4e-d0d9-494f-b7cd-7d008d80f41e.png","logoSquareImageUrl":"https://app.ashbyhq.com/api/images/org-theme-logo/118a5d75-b907-4616-ade7-b67eaa6b5c16/0e2997f7-6255-4c9e-9ea4-0199b51c80ef.png","applicationSubmittedSuccessMessage":null,"jobBoardTopDescriptionHtml":null,"jobBoardBottomDescriptionHtml":null,"__typename":"Theme"},"appConfirmationTrackingPixelHtml":null,"recruitingPrivacyPolicyUrl":null,"activeFeatureFlags":["AnonymousCandidateExperience","JobPostingApplicationDeadlines","SchedulingNewAvailabileTimesCalculation","ThirdPartyJobBoardListingControl","UnsubscribeLinks","VirusScanFiles","VirusScanShowResults"],"timezone":"Europe/London","__typename":"Organization"}}}
+
+        '
+  recorded_at: Wed, 01 May 2024 14:14:36 GMT
+- request:
+    method: get
+    uri: https://api.crunchbase.com/api/v4/autocompletes?query=Lightdash&user_key=9eebe4bdec6f10ec631cbb8573cb8de2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.crunchbase.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, private
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 01 May 2024 14:14:37 GMT
+      Etag:
+      - W/"1714572877672"
+      Server:
+      - openresty
+      X-Cb-Engine:
+      - autocomplete:algolia
+      X-Cb-Engine-Cached:
+      - 'false'
+      X-Cb-Engine-Took:
+      - '20'
+      X-Cb-Request-Took:
+      - '50'
+      Content-Length:
+      - '4038'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"count":70,"entities":[{"facet_ids":["contact","aberdeen","semrush","company","rank","builtwith"],"identifier":{"uuid":"301bce04-1610-4369-a9db-29de9623e65f","value":"Lightdash","image_id":"citkfzfr7esouu3essw6","permalink":"hubble-e65f","entity_def_id":"organization"},"short_description":"Lightdash
+        turns a dbt project into a full-stack BI platform."},{"facet_ids":["company","rank"],"identifier":{"uuid":"f61375ff-0cfb-46ab-967f-40dcb6b759bc","value":"LightCash","permalink":"lightcash","entity_def_id":"organization"},"short_description":"LightCash
+        is a global blockchain-integrated payment platform."},{"facet_ids":["contact","ipqwery","aberdeen","apptopia","semrush","company","rank","builtwith","bombora"],"identifier":{"uuid":"47e286e5-0c19-486c-ab4d-2a6cecbb9025","value":"Lightcast","image_id":"jyzipe3ttp6huxouovp3","permalink":"lightcast","entity_def_id":"organization"},"short_description":"Premium
+        Media Delivery & Marketing Solutions"},{"facet_ids":["contact","siftery","ipqwery","aberdeen","semrush","company","rank","bombora","ai_insight"],"identifier":{"uuid":"fab97672-a33d-46aa-8c11-fc122c78ce92","value":"Lightcast","image_id":"xxggp83fb2vslwjob6pi","permalink":"light-cast","entity_def_id":"organization"},"short_description":"Lightcast
+        is an IT company that offers software, APIs, and consulting services for communities,
+        businesses, and educational institutions."},{"facet_ids":["contact","siftery","aberdeen","semrush","company","rank","builtwith","bombora","ai_insight"],"identifier":{"uuid":"be15c62b-1c05-aeab-4c08-b6980f9b43a8","value":"Lightpath","image_id":"p7yghld26upuyqggwexw","permalink":"cablevision-lightpath","entity_def_id":"organization"},"short_description":"Lightpath
+        is revolutionizing how organizations connect to their digital destinations."},{"facet_ids":["contact","siftery","ipqwery","aberdeen","semrush","company","rank","builtwith","bombora","ai_insight"],"identifier":{"uuid":"19698cf2-59d1-6eaa-54a0-fc96de7089ac","value":"LightPath
+        Technologies","image_id":"v1397195311/12cff6ec01fee3513aad8d25a04f9d5d.jpg","permalink":"lightpath-technologies","entity_def_id":"organization"},"short_description":"Committed
+        to delivering the highest quality, most reliable optical components and assemblies
+        to its customers."},{"facet_ids":["contact","aberdeen","apptopia","semrush","company","rank","job_posting","builtwith","bombora"],"identifier":{"uuid":"7d938fde-d39c-4f63-b792-0752e4aad138","value":"Lightship","image_id":"b2lztgqrjyfeh77sn3zy","permalink":"lightship","entity_def_id":"organization"},"short_description":"Lightship
+        is making clinical trials more accessible for patients and providers to accelerate
+        development of better therapies for all."},{"facet_ids":["contact","siftery","aberdeen","apptopia","semrush","company","rank","builtwith","ai_insight"],"identifier":{"uuid":"a26e072b-4cc3-b179-4c5d-25634d199c3a","value":"Lightship
+        Works","image_id":"v1453913057/kil4ffhvwrpyexbdwn1f.png","permalink":"lightship-works","entity_def_id":"organization"},"short_description":"Lightship
+        is an application that connects everything on your worksite: your employee
+        mobile devices, sensors, and safety systems."},{"facet_ids":["contact","siftery","apptopia","semrush","company","rank","builtwith","bombora"],"identifier":{"uuid":"ddfd8f3d-9332-4423-a4f9-e9805488080b","value":"LightCastle
+        Partners Ltd.","image_id":"rdcdbsztao43egqohofo","permalink":"lightcastle-partners-ltd","entity_def_id":"organization"},"short_description":"LightCastle
+        Partners is a management consulting firm that envisions a knowledge-driven
+        economy that inspires businesses and changes lives."},{"facet_ids":["contact","siftery","apptopia","semrush","company","rank","bombora"],"identifier":{"uuid":"df1edc03-4105-41d5-9f4e-ea3f68115d80","value":"Lightshade","image_id":"z5q8qmmyrx8th2i8cr5x","permalink":"lightshade-assets","entity_def_id":"organization"},"short_description":"Lightshade
+        is an online store that sells cannabis, edibles, concentrates, tinctures,
+        topicals, and other cannabis-related products."}]}'
+  recorded_at: Wed, 01 May 2024 14:14:37 GMT
+recorded_with: VCR 6.2.0

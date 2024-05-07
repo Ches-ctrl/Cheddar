@@ -1,4 +1,4 @@
-:concurrency: 1
+:concurrency: 5
 :timeout: 60
 :verbose: true
 :queues:
@@ -27,7 +27,7 @@
     #   cron: '0 1 * * *' # Runs once per day (at 1 am)
     #   class: Scraper::DevItJob
     #   queue: updates
-    workable_xml_importer:
-      cron: '0 4 * * *' # Runs once per day (at 4 am)
-      class: Xml::WorkableJob
-      queue: updates
+    # workable_xml_importer:
+    #   cron: '0 4 * * *' # Runs once per day (at 4 am)
+    #   class: Xml::WorkableJob
+    #   queue: updates

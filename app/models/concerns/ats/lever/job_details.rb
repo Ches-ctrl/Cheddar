@@ -1,38 +1,37 @@
 module Ats
   module Lever
     module JobDetails
-      private
-
       def fetch_title_and_location(job_data)
         title = job_data['text']
         job_location = build_location_string(job_data)
         [title, job_location]
       end
 
-      def fetch_url(job_data)
-        job_data['hostedUrl']
-      end
+      private
 
       def fetch_id(job_data)
         job_data['id']
       end
 
+      def fetch_url(job_data)
+        job_data['hostedUrl']
+      end
+
       def job_url_api(base_url, company_id, job_id)
-        "#{base_url}#{company_id}/#{job_id}?mode=json"
+        "#{base_url}#{company_id}/#{job_id}?customQuestions=true"
       end
 
       def job_details(job, data)
-        # TODO: add logic for office
+        title, location = fetch_title_and_location(data)
         job.assign_attributes(
           posting_url: data['hostedUrl'],
-          title: data['text'],
+          title:,
           description: build_description(data),
-          non_geocoded_location_string: build_location_string(data),
+          non_geocoded_location_string: location,
           remote: data['workplaceType'] == 'remote',
           department: data.dig('categories', 'team'),
           date_posted: convert_from_milliseconds(data['createdAt'])
         )
-        fetch_additional_fields(job)
       end
 
       def build_description(data)
