@@ -4,6 +4,7 @@ class JobsController < ApplicationController
   include ActionView::Helpers::SanitizeHelper
 
   before_action :authenticate_user!, except: %i[index show apply_to_selected_jobs]
+  before_action :job_show_page_status, only: [:show]
 
   def index
     @jobs = Job.filter_and_sort(params).paginate(page: params[:page], per_page: 20)
@@ -25,14 +26,6 @@ class JobsController < ApplicationController
     @company = @job.company
     @saved_job = SavedJob.new
     @description = sanitize @job.description
-  end
-
-  def apply_to_selected_jobs
-    selected_job_ids = params[:job_ids]
-    cookies[:selected_job_ids] = selected_job_ids
-
-    # TODO: Check if user has filled in their core details, if not redirect to edit their information, then redirect to new_job_application_path
-    redirect_to new_job_application_path
   end
 
   def add_job
