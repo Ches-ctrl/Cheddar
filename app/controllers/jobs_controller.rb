@@ -14,12 +14,6 @@ class JobsController < ApplicationController
     @saved_job_ids = @saved_jobs.to_set(&:job_id)
 
     @job_applications = JobApplication.where(user_id: current_user.id) if current_user.present?
-
-    respond_to do |format|
-      format.html
-      # TODO: Implement JSON API
-      # format.json
-    end
   end
 
   def show
