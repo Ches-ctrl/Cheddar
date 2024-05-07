@@ -36,24 +36,38 @@ module Ats
           end
 
           field = data[i]
+          kind = field['kind']
+          interaction, options = fetch_interaction_and_options(field, FIELD_TYPES[kind])
           question = [info, field['body']].reject(&:blank?).join('<br><br>')
           additional_fields.merge!(
             question => {
-              interaction: :input,
+              interaction:,
               locators: [
                 "[open_question_answers_attributes][#{field['position']}][open_question_id]=#{field['id']}",
                 "[open_question_answers_attributes][#{field['position']}]#{CONTENT_CONVERTER[field['kind']]}="
               ],
               required: field['required'],
-              kind: field['kind'],
+              kind:,
               character_length: field.dig('options', 'length'),
-              options: field['open_question_options'].map { |option| option['body'] }
+              options:
             }.reject { |_, v| v.blank? }
           )
 
           i += 1
         end
         additional_fields
+      end
+
+      def fetch_interaction_and_options(field, interaction)
+        options = field['open_question_options']&.map { |option| option['body'] }
+        if interaction == :boolean
+          interaction = :select
+          options ||= ['Yes', 'No']
+        elsif interaction == :agree
+          interaction = :select
+          options ||= ['I Agree', 'I do not agree']
+        end
+        [interaction, options]
       end
 
       CORE_FIELDS = {
@@ -85,11 +99,24 @@ module Ats
         }
       }
 
+      FIELD_TYPES = {
+        'string' => :input,
+        'text' => :input,
+        'single_choice' => :select,
+        'date' => :date,
+        'salary' => :input,
+        'number' => :number,
+        'multi_choice' => :checkbox,
+        'file' => :upload,
+        'boolean' => :boolean,
+        'legal' => :agree
+      }
+
       CONTENT_CONVERTER = {
         'string' => '[content]',
         'text' => '[content]',
         'single_choice' => '[content]',
-        'data' => '[content]',
+        'date' => '[content]',
         'salary' => '[content]',
         'number' => '[content]',
         'multi_choice' => '[multi_content][]',
