@@ -2,8 +2,8 @@ class CompaniesController < ApplicationController
   include ActionView::Helpers::SanitizeHelper
 
   skip_before_action :authenticate_user!
-  before_action :set_company, only: [:show, :filter_jobs]
-  before_action :set_jobs_and_departments, only: [:show, :filter_jobs]
+  before_action :set_company, only: %i[show filter_jobs]
+  before_action :set_jobs_and_departments, only: %i[show filter_jobs]
 
   def show
     @company_description = sanitize @company.description
