@@ -1,9 +1,11 @@
 class Company < ApplicationRecord
+  include Relevant
+
   belongs_to :applicant_tracking_system, optional: true
   has_many :jobs, dependent: :destroy
 
-  validates :name, presence: true, uniqueness: true
-  # validates :url_website, uniqueness: true
+  validates :name, presence: true
+  validates :ats_identifier, presence: true, uniqueness: true
 
   before_save :set_website_url, :fetch_description
 
@@ -11,21 +13,27 @@ class Company < ApplicationRecord
 
   # multisearchable against: [:name]
 
-  COMPANY_NAME_FILTER = [
-    /\blimited\b/i,
-    /\bltd\b/i,
-    /\(.+\)/
-  ]
+  def create_all_relevant_jobs
+    jobs_created = 0
+    ats = applicant_tracking_system
+    all_jobs = ats.fetch_company_jobs(ats_identifier)
+    all_jobs.each do |job_data|
+      details = ats.fetch_title_and_location(job_data)
+      next unless relevant?(*details)
+
+      # create jobs with data from ATS company endpoint unless individual job endpoint exists:
+      if ats.individual_job_endpoint_exists?
+        job_id = ats.fetch_id(job_data)
+        job = ats.find_or_create_job(self, job_id)
+      else
+        job = ats.find_or_create_job_by_data(self, job_data)
+      end
+      jobs_created += 1 if job&.persisted?
+    end
+    puts "Created #{jobs_created} new jobs with #{name}."
+  end
 
   private
-
-  # TODO: Fix this as may break with new naming setup @Dan
-  # TODO: Do we call this? If not then remove
-
-  def standardize_name
-    name.strip!
-    self.name = name.split.reject { |word| COMPANY_NAME_FILTER.any? { |filter| word.match?(filter) } }.join(' ')
-  end
 
   def set_website_url
     return if url_website.present?

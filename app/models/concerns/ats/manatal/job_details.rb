@@ -1,26 +1,25 @@
 module Ats
   module Manatal
     module JobDetails
+      def fetch_title_and_location(job_data)
+        title = job_data['position_name']
+        job_location = job_data['location_display']
+        [title, job_location]
+      end
+
+      def fetch_id(job_data)
+        job_data['hash']
+      end
+
       private
 
       def fetch_job_data(job)
-        page = 1
-        loop do
-          url = "#{job.api_url}?page=#{page}"
-          p "Fetching job data - #{url}"
+        jobs = fetch_company_jobs(job.company.ats_identifier)
+        job_data = jobs.find { |data| data["hash"] == job.ats_job_id }
+        return mark_job_expired(job) unless job_data
 
-          all_jobs_data = get_json_data(url)
-          return mark_job_expired(job) unless (jobs = all_jobs_data["results"]) && all_jobs_data["next"]
-
-          data = jobs.find { |job_data| job_data["hash"] == job.ats_job_id }
-
-          if data
-            job.api_url = "#{job.api_url}#{data['id']}"
-            return data
-          end
-
-          page += 1
-        end
+        job.api_url = "#{job.api_url}#{job_data['id']}"
+        return job_data
       end
 
       def mark_job_expired(job)
@@ -34,21 +33,22 @@ module Ats
       end
 
       def job_details(job, data)
+        title, location = fetch_title_and_location(data)
         job.assign_attributes(
-          title: data['position_name'],
+          title:,
           description: data['description'],
           department: data['departmentLabel'],
           employment_type: data['contract_details'],
-          non_geocoded_location_string: build_location_string(data),
+          non_geocoded_location_string: location,
           posting_url: "#{url_base}#{job.company.ats_identifier}/job/#{job.ats_job_id}/apply"
         )
       end
 
-      def build_location_string(data)
-        locality = data['location_display']
-        country = data['country']
-        [locality, country].reject(&:blank?).join(', ')
-      end
+      # def build_location_string(data)
+      #   locality = data['location_display']
+      #   country = data['country']
+      #   [locality, country].reject(&:blank?).join(', ')
+      # end
     end
   end
 end

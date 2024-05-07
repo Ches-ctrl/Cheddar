@@ -1,0 +1,267 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://autocomplete.clearbit.com/v1/companies/suggest?query=
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - autocomplete.clearbit.com
+  response:
+    status:
+      code: 412
+      message: Precondition Failed
+    headers:
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - public, must-revalidate, max-age=2629746
+      Content-Type:
+      - text/html;charset=utf-8
+      X-Envoy-Response-Flags:
+      - "-"
+      Server:
+      - Clearbit
+      Accept-Ranges:
+      - bytes
+      Via:
+      - 1.1 varnish, 1.1 varnish
+      Access-Control-Allow-Origin:
+      - "*"
+      Date:
+      - Tue, 30 Apr 2024 14:53:11 GMT
+      X-Served-By:
+      - cache-sjc10040-SJC, cache-lcy-eglc8600084-LCY
+      X-Cache:
+      - MISS, MISS
+      X-Cache-Hits:
+      - 0, 0
+      X-Timer:
+      - S1714488791.344926,VS0,VE174
+      Vary:
+      - Accept-Encoding
+      Content-Security-Policy-Report-Only:
+      - default-src 'self';
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31557600
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "message": "Invalid params. Check out the docs at https://clearbit.com/docs for usage examples."
+        }
+  recorded_at: Tue, 30 Apr 2024 14:53:11 GMT
+- request:
+    method: get
+    uri: https://api.crunchbase.com/api/v4/autocompletes?query=&user_key=9eebe4bdec6f10ec631cbb8573cb8de2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.crunchbase.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, private
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 30 Apr 2024 14:53:12 GMT
+      Etag:
+      - W/"1714488792257"
+      Server:
+      - openresty
+      X-Cb-Engine:
+      - autocomplete:algolia
+      X-Cb-Engine-Cached:
+      - 'false'
+      X-Cb-Engine-Took:
+      - '1'
+      X-Cb-Request-Took:
+      - '31'
+      Content-Length:
+      - '4555'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"count":3416858,"entities":[{"facet_ids":["contact","siftery","investor","ipqwery","apptopia","semrush","company","rank","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"fd80725f-53fc-7009-9878-aeecf1e9ffbb","value":"Microsoft","image_id":"v1501613147/ypg7mliwmzomf9fdrkvz.png","permalink":"microsoft","entity_def_id":"organization"},"short_description":"Microsoft
+        is a software corporation that develops, manufactures, licenses, supports,
+        and sells a range of software products and services."},{"facet_ids":["contact","siftery","investor","ipqwery","apptopia","semrush","company","rank","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"df14597c-3e51-8d58-9c15-fb3de3a34a54","value":"Samsung
+        Electronics","image_id":"vndrwlr9hbpcc4lse15u","permalink":"samsung-electronics","entity_def_id":"organization"},"short_description":"Samsung
+        Electronics is an electronics company that engages in consumer electronics,
+        IT and mobile communications, and device solutions."},{"facet_ids":["contact","siftery","investor","ipqwery","semrush","company","rank","job_posting","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"7063d087-96b8-2cc1-ee88-c221288acc2a","value":"Apple","image_id":"s1cihnpc1cnekihotv0e","permalink":"apple","entity_def_id":"organization"},"short_description":"Apple
+        is a corporation that designs, manufactures, and markets consumer electronics,
+        personal computers, and software."},{"facet_ids":["contact","siftery","investor","ipqwery","aberdeen","apptopia","semrush","company","rank","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"6acfa7da-1dbd-936e-d985-cf07a1b27711","value":"Google","image_id":"fa8nmvofinznny6rkwvf","permalink":"google","entity_def_id":"organization"},"short_description":"Google
+        is a multinational corporation that specializes in Internet-related services
+        and products."},{"facet_ids":["contact","siftery","investor","ipqwery","aberdeen","apptopia","semrush","company","rank","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"fc5fbe7a-562d-d577-b05e-46797caa134c","value":"IBM","image_id":"d4c2niwf9htmk2sp1vli","permalink":"ibm","entity_def_id":"organization"},"short_description":"IBM
+        is an IT technology and consulting firm providing computer hardware, software,
+        infrastructure, and hosting services."},{"facet_ids":["contact","siftery","investor","ipqwery","apptopia","semrush","company","rank","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"09cce08a-c9fc-0e79-e825-249b00642c79","value":"Huawei
+        Technologies","image_id":"v1476199059/hm7wr33ggfznguarjr00.jpg","permalink":"huawei","entity_def_id":"organization"},"short_description":"Huawei
+        Technologies provides infrastructure application software and devices with
+        wireline, wireless, and IP technologies."},{"facet_ids":["contact","investor","ipqwery","company","rank","builtwith","ai_insight"],"identifier":{"uuid":"dad3c44d-a2d6-4b9b-813e-ae7203592e1a","value":"LG
+        Group","image_id":"hpth8nnfz8cfmmvn8gz4","permalink":"lg-group","entity_def_id":"organization"},"short_description":"LG
+        Group is a multinational conglomerate company that makes electronics, chemicals,
+        and telecom products."},{"facet_ids":["contact","siftery","investor","ipqwery","semrush","company","rank","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"bf313e68-63a0-8281-a809-bc824b4c51f2","value":"Sony","image_id":"v1411511656/uiuethkebhfjlu3rbfds.png","permalink":"sony","entity_def_id":"organization"},"short_description":"Sony
+        develops and manufactures audio, video, communications, and information technology
+        products for the consumer and professional markets."},{"facet_ids":["contact","siftery","investor","ipqwery","apptopia","semrush","company","rank","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"05554f65-6aa9-4dd1-6271-8ce2d60f10c4","value":"Amazon","image_id":"mwsza2s38epb8olssp3j","permalink":"amazon","entity_def_id":"organization"},"short_description":"Amazon
+        is a global tech firm with a focus on e-commerce, cloud computing, digital
+        streaming, and artificial intelligence."},{"facet_ids":["contact","siftery","investor","ipqwery","semrush","company","rank","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"df662812-7f97-0b43-9d3e-12f64f504fbb","value":"Meta","image_id":"whm4ed1rrc8skbdi3biv","permalink":"facebook","entity_def_id":"organization"},"short_description":"Meta
+        is a social technology company that enables people to connect, find communities,
+        and grow businesses."}]}'
+  recorded_at: Tue, 30 Apr 2024 14:53:12 GMT
+- request:
+    method: get
+    uri: https://autocomplete.clearbit.com/v1/companies/suggest?query=
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - autocomplete.clearbit.com
+  response:
+    status:
+      code: 412
+      message: Precondition Failed
+    headers:
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - public, must-revalidate, max-age=2629746
+      Content-Type:
+      - text/html;charset=utf-8
+      X-Envoy-Response-Flags:
+      - "-"
+      Server:
+      - Clearbit
+      Accept-Ranges:
+      - bytes
+      Via:
+      - 1.1 varnish, 1.1 varnish
+      Access-Control-Allow-Origin:
+      - "*"
+      Date:
+      - Tue, 30 Apr 2024 14:53:12 GMT
+      X-Served-By:
+      - cache-sjc10040-SJC, cache-lcy-eglc8600062-LCY
+      X-Cache:
+      - MISS, MISS
+      X-Cache-Hits:
+      - 0, 0
+      X-Timer:
+      - S1714488792.433688,VS0,VE182
+      Vary:
+      - Accept-Encoding
+      Content-Security-Policy-Report-Only:
+      - default-src 'self';
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31557600
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "message": "Invalid params. Check out the docs at https://clearbit.com/docs for usage examples."
+        }
+  recorded_at: Tue, 30 Apr 2024 14:53:12 GMT
+- request:
+    method: get
+    uri: https://api.crunchbase.com/api/v4/autocompletes?query=&user_key=9eebe4bdec6f10ec631cbb8573cb8de2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.crunchbase.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, private
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 30 Apr 2024 14:53:13 GMT
+      Etag:
+      - W/"1714488793292"
+      Server:
+      - openresty
+      X-Cb-Engine:
+      - autocomplete:algolia
+      X-Cb-Engine-Cached:
+      - 'false'
+      X-Cb-Engine-Took:
+      - '1'
+      X-Cb-Request-Took:
+      - '31'
+      Content-Length:
+      - '4555'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"count":3416858,"entities":[{"facet_ids":["contact","siftery","investor","ipqwery","apptopia","semrush","company","rank","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"fd80725f-53fc-7009-9878-aeecf1e9ffbb","value":"Microsoft","image_id":"v1501613147/ypg7mliwmzomf9fdrkvz.png","permalink":"microsoft","entity_def_id":"organization"},"short_description":"Microsoft
+        is a software corporation that develops, manufactures, licenses, supports,
+        and sells a range of software products and services."},{"facet_ids":["contact","siftery","investor","ipqwery","apptopia","semrush","company","rank","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"df14597c-3e51-8d58-9c15-fb3de3a34a54","value":"Samsung
+        Electronics","image_id":"vndrwlr9hbpcc4lse15u","permalink":"samsung-electronics","entity_def_id":"organization"},"short_description":"Samsung
+        Electronics is an electronics company that engages in consumer electronics,
+        IT and mobile communications, and device solutions."},{"facet_ids":["contact","siftery","investor","ipqwery","semrush","company","rank","job_posting","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"7063d087-96b8-2cc1-ee88-c221288acc2a","value":"Apple","image_id":"s1cihnpc1cnekihotv0e","permalink":"apple","entity_def_id":"organization"},"short_description":"Apple
+        is a corporation that designs, manufactures, and markets consumer electronics,
+        personal computers, and software."},{"facet_ids":["contact","siftery","investor","ipqwery","aberdeen","apptopia","semrush","company","rank","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"6acfa7da-1dbd-936e-d985-cf07a1b27711","value":"Google","image_id":"fa8nmvofinznny6rkwvf","permalink":"google","entity_def_id":"organization"},"short_description":"Google
+        is a multinational corporation that specializes in Internet-related services
+        and products."},{"facet_ids":["contact","siftery","investor","ipqwery","aberdeen","apptopia","semrush","company","rank","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"fc5fbe7a-562d-d577-b05e-46797caa134c","value":"IBM","image_id":"d4c2niwf9htmk2sp1vli","permalink":"ibm","entity_def_id":"organization"},"short_description":"IBM
+        is an IT technology and consulting firm providing computer hardware, software,
+        infrastructure, and hosting services."},{"facet_ids":["contact","siftery","investor","ipqwery","apptopia","semrush","company","rank","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"09cce08a-c9fc-0e79-e825-249b00642c79","value":"Huawei
+        Technologies","image_id":"v1476199059/hm7wr33ggfznguarjr00.jpg","permalink":"huawei","entity_def_id":"organization"},"short_description":"Huawei
+        Technologies provides infrastructure application software and devices with
+        wireline, wireless, and IP technologies."},{"facet_ids":["contact","investor","ipqwery","company","rank","builtwith","ai_insight"],"identifier":{"uuid":"dad3c44d-a2d6-4b9b-813e-ae7203592e1a","value":"LG
+        Group","image_id":"hpth8nnfz8cfmmvn8gz4","permalink":"lg-group","entity_def_id":"organization"},"short_description":"LG
+        Group is a multinational conglomerate company that makes electronics, chemicals,
+        and telecom products."},{"facet_ids":["contact","siftery","investor","ipqwery","semrush","company","rank","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"bf313e68-63a0-8281-a809-bc824b4c51f2","value":"Sony","image_id":"v1411511656/uiuethkebhfjlu3rbfds.png","permalink":"sony","entity_def_id":"organization"},"short_description":"Sony
+        develops and manufactures audio, video, communications, and information technology
+        products for the consumer and professional markets."},{"facet_ids":["contact","siftery","investor","ipqwery","apptopia","semrush","company","rank","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"05554f65-6aa9-4dd1-6271-8ce2d60f10c4","value":"Amazon","image_id":"mwsza2s38epb8olssp3j","permalink":"amazon","entity_def_id":"organization"},"short_description":"Amazon
+        is a global tech firm with a focus on e-commerce, cloud computing, digital
+        streaming, and artificial intelligence."},{"facet_ids":["contact","siftery","investor","ipqwery","semrush","company","rank","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"df662812-7f97-0b43-9d3e-12f64f504fbb","value":"Meta","image_id":"whm4ed1rrc8skbdi3biv","permalink":"facebook","entity_def_id":"organization"},"short_description":"Meta
+        is a social technology company that enables people to connect, find communities,
+        and grow businesses."}]}'
+  recorded_at: Tue, 30 Apr 2024 14:53:13 GMT
+recorded_with: VCR 6.2.0

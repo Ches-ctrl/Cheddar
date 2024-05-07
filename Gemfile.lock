@@ -133,6 +133,9 @@ GEM
       faraday-multipart (~> 1.0, >= 1.0.4)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
+    crack (1.0.0)
+      bigdecimal
+      rexml
     crass (1.0.6)
     csv (3.3.0)
     date (3.3.4)
@@ -183,6 +186,7 @@ GEM
     geocoder (1.8.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    hashdiff (1.1.0)
     high_voltage (3.1.2)
     htmltoword (1.1.1)
       actionpack
@@ -429,6 +433,7 @@ GEM
     unicode-display_width (2.5.0)
     uniform_notifier (1.16.0)
     uri (0.13.0)
+    vcr (6.2.0)
     view_component (3.12.0)
       activesupport (>= 5.2.0, < 8.0)
       concurrent-ruby (~> 1.0)
@@ -443,6 +448,10 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    webmock (3.23.0)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
     webrick (1.8.1)
     websocket (1.2.10)
     websocket-driver (0.7.6)
@@ -511,8 +520,10 @@ DEPENDENCIES
   tinymce-rails
   turbo-rails
   tzinfo-data
+  vcr
   watir
   web-console
+  webmock
   will_paginate (~> 4.0)
   yomu
 
