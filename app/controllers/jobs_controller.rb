@@ -1,9 +1,9 @@
-require 'cgi'
-
 class JobsController < ApplicationController
+  require 'cgi'
+
   include ActionView::Helpers::SanitizeHelper
 
-  before_action :authenticate_user!, except: %i[index show apply_to_selected_jobs]
+  before_action :authenticate_user!, except: %i[index show]
   before_action :job_show_page_status, only: [:show]
 
   def index
@@ -17,7 +17,8 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json
+      # TODO: Implement JSON API
+      # format.json
     end
   end
 
@@ -34,7 +35,9 @@ class JobsController < ApplicationController
 
   private
 
-  # TODO: Remove #create and #job_params?
+  def job_show_page_status
+    redirect_to jobs_path, notice: 'Job show page coming soon!' unless Flipper.enabled?(:job_show_page)
+  end
 
   def job_params
     params.require(:job).permit(:title, :description, :salary, :posting_url, :deadline, :date_posted, :company_id, :applicant_tracking_system_id, :ats_job_id, :non_geocoded_location_string, :department, :office, :live)
