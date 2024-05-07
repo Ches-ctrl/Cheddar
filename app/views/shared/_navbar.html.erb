@@ -13,8 +13,6 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <%# TODO: Fix spacing on elements when hovered %>
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto d-flex flex-row align-items-center">
 
@@ -33,7 +31,7 @@
       </div>
     </div>
 
-    <% if user_signed_in? %>
+    <% if user_signed_in? && Flipper.disabled?() %>
       <ul class="mb-2 d-flex align-items-center">
         <%= link_to saved_jobs_path, class: "nav-link d-flex flex-column align-items-center pt-1 pb-0" do %>
           <i class="fa-regular fa-bell d-none"></i>
@@ -52,18 +50,20 @@
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="z-index: 1100;">
             <%= link_to "My Profile", profile_path(current_user), class: "dropdown-item" %>
             <%= link_to "My Apps", job_applications_path, class: "dropdown-item" %>
-            <%= link_to "Job Prefs", profile_path(current_user), class: "dropdown-item" %>
             <%= link_to "Settings", profile_path(current_user), class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
           </div>
         </li>
       </ul>
-    <% else %>
-      <%# TODO: Fix alignment of log in / sign up button %>
+    <% elsif Flipper.enabled?(:log_in_buttons) %>
       <div class='d-flex lgin-sgup-btn'>
         <%= link_to "Log in", new_user_session_path, class:"login-btn" %>
         <%= link_to "Sign up", new_user_registration_path, class:"signup-btn" %>
       </div>
+    <% else %>
+      <%= link_to "Give feedback on Cheddar's alpha",
+      "mailto:charles.cheesman1@gmail.com?subject=Feedback%20on%20Cheddar%20Alpha%20Testing&body=Hello%20Cheddar%20Team,%0A%0AHere's%20my%20feedback%20on%20Cheddar's%20alpha%20testing:%0A%0A",
+      class: "btn btn-light rounded-pill", style: "color: black" %>
     <% end %>
   </div>
 </div>
