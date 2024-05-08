@@ -147,4 +147,10 @@ module Constants
     'gbp' => ['£', ' GBP'],
     'eur' => ['€', ' EUR']
   }
+
+  HIRING_MODES = [
+    'Milkround',
+    'Structured',
+    'Ad-hoc'
+  ]
 end
