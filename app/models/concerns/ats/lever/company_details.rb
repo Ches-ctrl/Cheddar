@@ -10,11 +10,17 @@ module Ats
         data = get_json_data(url_ats_api)
         {
           name:,
-          description: data.dig(0, 'additionalPlain'),
+          description: build_company_description(data),
           url_ats_api:,
           url_ats_main:,
           url_website:
         }
+      end
+
+      def build_company_description(data)
+        base = data.dig(0, 'description')
+        additional = data.dig(0, 'additional')
+        [base, additional].reject(&:blank?).join('<br>')
       end
 
       def scrape_company_page(ats_identifier, url_ats_main)

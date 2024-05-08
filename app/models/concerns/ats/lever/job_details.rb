@@ -35,7 +35,7 @@ module Ats
       end
 
       def build_description(data)
-        data['descriptionBodyPlain'] + data['lists'].inject('') do |string, field|
+        data['descriptionBody'] + data['lists'].inject('') do |string, field|
                                          string + field['text'] + field['content']
                                        end
       end

@@ -6,8 +6,8 @@ class JobsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show apply_to_selected_jobs]
 
   def index
-    @jobs = Job.filter_and_sort(params).paginate(page: params[:page], per_page: 20)
-    @resources = CategorySidebar.build_with(@jobs, params)
+    @jobs = Job.includes(:requirement).filter_and_sort(params).paginate(page: params[:page], per_page: 20)
+    @resources = CategorySidebar.build_with(params)
 
     @saved_jobs = SavedJob.all
     @saved_job_ids = @saved_jobs.to_set(&:job_id)

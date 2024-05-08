@@ -17,10 +17,9 @@ class CategorySidebar
     'Any time' => 99_999
   }
 
-  def self.build_with(jobs, params)
-    @jobs = jobs
+  def self.build_with(params)
     @params = params
-    Rails.cache.fetch('category_sidebar', expires_in: 2.hours, race_condition_ttl: 10.seconds) do
+    Rails.cache.fetch("category_sidebar #{@params.except(:page, :controller, :action)}", expires_in: 2.hours, race_condition_ttl: 10.seconds) do
       fetch_sidebar_data
     end
   end
@@ -30,7 +29,7 @@ class CategorySidebar
   private_class_method def self.fetch_sidebar_data
     initialize_category_hashes
 
-    jobs = Job.includes(:company, :roles, :locations, :countries).all
+    jobs = Job.includes(:roles).joins(:company).select("jobs.id, jobs.company_id, jobs.date_posted, jobs.seniority, jobs.remote, jobs.employment_type, companies.name AS company_name").references(:companies)
     jobs.each do |job|
       @job = job
       update_category_hashes
@@ -50,21 +49,21 @@ class CategorySidebar
     }
     @date_cutoffs = CONVERT_TO_DAYS.transform_values { |v| v.days.ago.beginning_of_day }
     # TODO: look for ways to improve efficiency below. Converting to_set makes lookup faster.
-    @jobs_with_any_posted = Job.including_any(@params, :posted).to_set
-    @jobs_with_any_seniority = Job.including_any(@params, :seniority).to_set
-    @jobs_with_any_location = Job.including_any(@params, :location).to_set
-    @jobs_with_any_role = Job.including_any(@params, :role).to_set
-    @jobs_with_any_type = Job.including_any(@params, :type).to_set
-    @jobs_with_any_company = Job.including_any(@params, :company).to_set
+    @jobs_with_any_posted = Job.including_any(@params, :posted).to_set(&:id)
+    @jobs_with_any_seniority = Job.including_any(@params, :seniority).to_set(&:id)
+    @jobs_with_any_location = Job.including_any(@params, :location).to_set(&:id)
+    @jobs_with_any_role = Job.including_any(@params, :role).to_set(&:id)
+    @jobs_with_any_type = Job.including_any(@params, :type).to_set(&:id)
+    @jobs_with_any_company = Job.including_any(@params, :company).to_set(&:id)
   end
 
   private_class_method def self.update_category_hashes
-    update_when_posted if @jobs_with_any_posted.include?(@job)
-    update_seniorities if @jobs_with_any_seniority.include?(@job)
-    update_locations if @jobs_with_any_location.include?(@job)
-    update_roles if @jobs_with_any_role.include?(@job)
-    update_types if @jobs_with_any_type.include?(@job)
-    update_companies if @jobs_with_any_company.include?(@job)
+    update_when_posted if @jobs_with_any_posted.include?(@job.id)
+    update_seniorities if @jobs_with_any_seniority.include?(@job.id)
+    update_locations if @jobs_with_any_location.include?(@job.id)
+    update_roles if @jobs_with_any_role.include?(@job.id)
+    update_types if @jobs_with_any_type.include?(@job.id)
+    update_companies if @jobs_with_any_company.include?(@job.id)
   end
 
   private_class_method def self.build_resources_hash
@@ -115,7 +114,7 @@ class CategorySidebar
   end
 
   private_class_method def self.update_companies
-    company = @job.company
+    company = [@job.company_name, @job.company_id]
     @count[:companies][company] += 1
   end
 
@@ -190,8 +189,8 @@ class CategorySidebar
     @resources['company'] = @count[:companies].take(15).map do |company, count|
       [
         'checkbox',
-        company.name,
-        company.id,
+        company.first,
+        company.second,
         count,
         @params[:company]&.include?(company.id.to_s)
       ]
