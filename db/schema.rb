@@ -129,6 +129,28 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_165219) do
     t.index ["user_id"], name: "index_educations_on_user_id"
   end
 
+  create_table "flipper_features", force: :cascade do |t|
+    t.string "key", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["key"], name: "index_flipper_features_on_key", unique: true
+  end
+
+  create_table "flipper_gates", force: :cascade do |t|
+    t.string "feature_key", null: false
+    t.string "key", null: false
+    t.text "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feature_key", "key", "value"], name: "index_flipper_gates_on_feature_key_and_key_and_value", unique: true
+  end
+
+  create_table "industries", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "job_applications", force: :cascade do |t|
     t.string "status"
     t.bigint "user_id", null: false
@@ -296,6 +318,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_165219) do
     t.index ["user_id"], name: "index_saved_jobs_on_user_id"
   end
 
+  create_table "sub_industries", force: :cascade do |t|
+    t.string "name"
+    t.bigint "industry_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["industry_id"], name: "index_sub_industries_on_industry_id"
+  end
+
   create_table "technologies", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -354,4 +384,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_165219) do
   add_foreign_key "requirements", "jobs"
   add_foreign_key "saved_jobs", "jobs"
   add_foreign_key "saved_jobs", "users"
+  add_foreign_key "sub_industries", "industries"
 end
