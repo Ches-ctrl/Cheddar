@@ -1,9 +1,10 @@
-require 'cgi'
-
 class JobsController < ApplicationController
+  require 'cgi'
+
   include ActionView::Helpers::SanitizeHelper
 
-  before_action :authenticate_user!, except: %i[index show apply_to_selected_jobs]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :job_show_page_status, only: [:show]
 
   def index
     @jobs = Job.filter_and_sort(params).paginate(page: params[:page], per_page: 20)
@@ -13,11 +14,6 @@ class JobsController < ApplicationController
     @saved_job_ids = @saved_jobs.to_set(&:job_id)
 
     @job_applications = JobApplication.where(user_id: current_user.id) if current_user.present?
-
-    respond_to do |format|
-      format.html
-      format.json
-    end
   end
 
   def show
@@ -27,21 +23,15 @@ class JobsController < ApplicationController
     @description = sanitize @job.description
   end
 
-  def apply_to_selected_jobs
-    selected_job_ids = params[:job_ids]
-    cookies[:selected_job_ids] = selected_job_ids
-
-    # TODO: Check if user has filled in their core details, if not redirect to edit their information, then redirect to new_job_application_path
-    redirect_to new_job_application_path
-  end
-
   def add_job
     @job = Job.new
   end
 
   private
 
-  # TODO: Remove #create and #job_params?
+  def job_show_page_status
+    redirect_to jobs_path, notice: 'Job show page coming soon!' unless Flipper.enabled?(:job_show_page)
+  end
 
   def job_params
     params.require(:job).permit(:title, :description, :salary, :posting_url, :deadline, :date_posted, :company_id, :applicant_tracking_system_id, :ats_job_id, :non_geocoded_location_string, :department, :office, :live)

@@ -63,7 +63,7 @@
         <div class="apply-rating">
           <%# To-do: Create a difficulty column for jobs table and transfer this logic to JobCreator; eventually GetFormFieldsJob will distinguish between input and text fields (for longer responses), which will help with accurate classification %>
           <% if job.requirement.no_of_qs < 8 && !job.requirement.cover_letter %>
-            <% apply_rating = 'easy' %>
+            <% apply_rating = 'no data' %>
           <% elsif job.requirement.no_of_qs > 15 %>
             <% apply_rating = 'hard' %>
           <% else %>
@@ -76,20 +76,26 @@
 
       <%# Add job to basket %>
       <div class="d-flex align-items-center justify-content-center me-3">
-        <% if @saved_job_ids.include?(job.id) %>
-          <%= link_to saved_job_path(job.saved_job_ids), data: {turbo_method: :delete} do %>
-            <i class="fa-solid fa-bookmark"></i>
+        <% if user_signed_in? %>
+          <% if @saved_job_ids.include?(job.id) %>
+            <%= link_to saved_job_path(job.saved_job_ids), data: {turbo_method: :delete} do %>
+              <i class="fa-solid fa-bookmark pe-2"></i>
+            <% end %>
+          <% else %>
+            <%= link_to job_saved_jobs_path(job), data: {turbo_method: :post} do %>
+              <i class="fa-regular fa-bookmark pe-2"></i>
+            <% end %>
           <% end %>
-        <% else %>
-          <%= link_to job_saved_jobs_path(job), data: {turbo_method: :post} do %>
-            <i class="fa-regular fa-bookmark"></i>
+          <% include_checkboxes ||= false %>
+          <% if include_checkboxes %>
+            <div class="ms-3">
+              <%= check_box_tag "job_ids[]", job.id, onclick: "document.getElementById('apply_button').disabled = false" %>
+            </div>
           <% end %>
         <% end %>
-        <% include_checkboxes ||= false %>
-        <% if include_checkboxes %>
-          <div class="ms-3">
-            <%= check_box_tag "job_ids[]", job.id, onclick: "document.getElementById('apply_button').disabled = false" %>
-          </div>
+
+        <%= link_to job.posting_url, target: "_blank" do %>
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
         <% end %>
       </div>
     </div>
