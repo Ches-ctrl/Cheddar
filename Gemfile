@@ -75,13 +75,17 @@ gem "ruby-openai"
 
 # SEO
 gem 'meta-tags'
+# gem 'sitemap_generator' # TODO: install this gem for sitemap generation
+
+# Email
+# gem 'sendgrid-ruby' # TODO: install this gem for sending emails
 
 # Importing, Parsing & APIs
 gem 'csv' # can probably use ruby standard library
 gem "nokogiri"
 gem 'faraday' # TODO: use this gem for API calls (not currently in action)
 gem 'rails-html-sanitizer'
-# gem 'flipper' # TODO: install this gem for feature flags
+gem "flipper-active_record", "~> 1.3"
 
 # Monitoring
 # gem 'newrelic_rpm' # TODO: install this gem for monitoring
@@ -97,9 +101,6 @@ gem 'rails-html-sanitizer'
 
 # Error Tracking
 # gem 'sentry-raven' # TODO: install this gem for error tracking
-
-# Security
-# gem 'brakeman', require: false # TODO: install this gem for security checks
 
 # Front-end
 gem 'will_paginate', '~> 4.0' # TODO: Update to kaminari now index page is fixed (better maintained / looks nicer)
@@ -122,6 +123,9 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+
+  # Email
+  # gem 'letter_opener' # TODO: install this gem for email testing
 end
 
 group :development do
@@ -130,6 +134,9 @@ group :development do
   gem 'bullet'
   gem "better_errors"
   gem "binding_of_caller"
+
+  # Security
+  # gem 'brakeman', require: false # TODO: install this gem for security checks
 
   # Performance
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
