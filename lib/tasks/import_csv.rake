@@ -58,8 +58,8 @@ namespace :import_csv do
   # Companies
   # -----------------------------
 
-  desc "Import CSV - other_company_urls"
-  task other_company_urls: :environment do
+  desc "Import CSV - company_urls"
+  task company_urls: :environment do
     company_list = AtsIdentifiers.load
 
     company_csv = 'storage/new/company_urls.csv'
@@ -94,41 +94,20 @@ namespace :import_csv do
 
   desc "Sort CSV - job_posting_urls"
   task sort_job_postings: :environment do
-    csv = CSV.read('storage/csv/job_posting_urls.csv', headers: true)
+    csv = CSV.read('storage/new/job_posting_urls.csv', headers: true)
     sorted = csv.sort_by { |row| row['posting_url'] }
 
-    CSV.open('storage/csv/job_posting_urls.csv', 'w') do |csv|
+    CSV.open('storage/new/job_posting_urls.csv', 'w') do |csv|
       csv << ['posting_url']
       sorted.each { |row| csv << [row['posting_url']] }
     end
   end
 
-  desc "Import CSV - greenhouse"
+  desc "Import CSV - greenhouse urls"
   task greenhouse: :environment do
     company_list = AtsIdentifiers.load
 
-    jobs_csv = 'storage/csv/greenhouse_urls.csv'
-
-    puts Job.count
-    puts "Creating new jobs..."
-
-    CSV.foreach(jobs_csv, headers: true) do |row|
-      url = row['posting_url']
-      ats, company = Url::CreateJobFromUrl.new(url).create_company_then_job
-      company_list[ats.name] << company.ats_identifier if company&.persisted?
-    end
-
-    AtsIdentifiers.save(company_list)
-    puts Job.count
-  end
-
-  desc "Import CSV - other_ats"
-  task other_ats: :environment do
-    company_list = AtsIdentifiers.load
-
-    jobs_csv = 'storage/csv/other_ats_urls.csv'
-
-    # TODO: fix manatal as the API endpoint isn't yet working
+    jobs_csv = 'storage/new/grnhse_job_posting_urls.csv'
 
     puts Job.count
     puts "Creating new jobs..."
@@ -149,7 +128,7 @@ namespace :import_csv do
   task job_posting_urls: :environment do
     company_list = AtsIdentifiers.load
 
-    jobs_csv = 'storage/csv/job_posting_urls.csv'
+    jobs_csv = 'storage/new/job_posting_urls.csv'
 
     puts Job.count
     puts "Creating new jobs..."
