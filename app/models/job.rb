@@ -86,8 +86,7 @@ class Job < ApplicationRecord
   end
 
   def self.including_any(params, param)
-    exclusive_params = params.reject { |k, _v| k == param.to_s }
-    filter_and_sort(exclusive_params)
+    filter_and_sort params.except(param)
   end
 
   private
