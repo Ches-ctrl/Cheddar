@@ -62,7 +62,7 @@ namespace :import_csv do
   task other_company_urls: :environment do
     company_list = AtsIdentifiers.load
 
-    company_csv = 'storage/csv/other_company_urls.csv'
+    company_csv = 'storage/new/company_urls.csv'
 
     puts Company.count
     puts "Creating new companies..."
@@ -77,12 +77,12 @@ namespace :import_csv do
     puts Company.count
   end
 
-  desc "Sort CSV - company_url_list"
+  desc "Sort CSV - company_urls"
   task sort_company_url_list: :environment do
-    csv = CSV.read('storage/csv/company_url_list.csv', headers: true)
+    csv = CSV.read('storage/new/company_urls.csv', headers: true)
     sorted = csv.sort_by { |row| row['company_url'] }
 
-    CSV.open('storage/csv/company_url_list.csv', 'w') do |csv|
+    CSV.open('storage/new/company_urls.csv', 'w') do |csv|
       csv << ['company_url']
       sorted.each { |row| csv << [row['company_url']] }
     end
