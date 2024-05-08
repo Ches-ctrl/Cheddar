@@ -31,6 +31,9 @@ module NetZero
 
       if response.is_a?(Net::HTTPSuccess)
         data = JSON.parse(response.body)
+        number_of_companies = data.count
+        p "Number of companies: #{number_of_companies}"
+
         companies_data = []
 
         data.first(10).each do |company|
@@ -48,7 +51,7 @@ module NetZero
         end
 
         p "save"
-        save_to_csv(companies_data)
+        # save_to_csv(companies_data)
       else
         puts "Failed to retrieve net zero data. Error: #{response.code} - #{response.message}"
       end
