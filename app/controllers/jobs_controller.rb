@@ -6,7 +6,7 @@ class JobsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show apply_to_selected_jobs]
 
   def index
-    @jobs = Job.includes(:requirement).filter_and_sort(params).paginate(page: params[:page], per_page: 20)
+    @jobs = jobs_and_associated_tables.filter_and_sort(params).paginate(page: params[:page], per_page: 20)
     @resources = CategorySidebar.build_with(params)
 
     @saved_jobs = SavedJob.all
@@ -45,5 +45,10 @@ class JobsController < ApplicationController
 
   def job_params
     params.require(:job).permit(:title, :description, :salary, :posting_url, :deadline, :date_posted, :company_id, :applicant_tracking_system_id, :ats_job_id, :non_geocoded_location_string, :department, :office, :live)
+  end
+
+  def jobs_and_associated_tables
+    associated_tables = params[:location] == 'remote' ? %i[requirement company] : %i[requirement company locations]
+    Job.includes(associated_tables)
   end
 end
