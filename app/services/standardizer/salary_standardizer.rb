@@ -3,6 +3,8 @@ module Standardizer
     include ActiveSupport::NumberHelper
     include Constants
 
+    # TODO: We currently initialise twice I believe (for multiple standardizers), once in the job_standardizer and once in the salary_standardizer
+
     def initialize(job)
       @job = job
     end
