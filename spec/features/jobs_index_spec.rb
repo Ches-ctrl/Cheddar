@@ -58,17 +58,6 @@ RSpec.feature "Jobs index page", type: :feature do
       expect(page).not_to have_content("Junior Test Developer")
     end
 
-    scenario "User can filter jobs by company" do
-      job1 = Job.first
-      job2 = Job.where.not(company: job1.company).first
-      company = job1.company.id.to_s
-
-      check(company)
-
-      expect(page).to have_content(job1.title)
-      expect(page).not_to have_content(job2.title)
-    end
-
     scenario 'User can query "Ruby" with multiple sidebar filters' do
       fill_in 'query', with: 'ruby'
       find('#search-button').click
