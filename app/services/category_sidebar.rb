@@ -144,13 +144,16 @@ class CategorySidebar
 
   private_class_method def self.build_type_array
     @resources['type'] = EMPLOYMENT_TYPES.map do |type|
+      count = @jobs_with_any_type.where(employment_type: type).size
+      next if count.zero?
+
       [
         'checkbox',
         type,
         type.downcase.gsub('-', '_'),
-        @jobs_with_any_type.where(employment_type: type).size,
+        count,
         @params[:type]&.include?(type)
       ]
-    end
+    end.compact
   end
 end
