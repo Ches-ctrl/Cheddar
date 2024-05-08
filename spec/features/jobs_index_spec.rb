@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 # rubocop:disable Metrics/BlockLength
-RSpec.feature "Jobs index page", type: :feature do
+RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
   context "With jobs to display:" do
     before do
       create(:job, :entry_level_mobile, title: "Graduate Software Developer")
