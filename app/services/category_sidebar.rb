@@ -57,7 +57,6 @@ class CategorySidebar
                                   .where.missing(:jobs_locations)
     @jobs_with_any_role = @jobs.including_any(@params, :role)
     @jobs_with_any_type = @jobs.including_any(@params, :type)
-    @jobs_with_any_company = @jobs.including_any(@params, :company)
   end
 
   private_class_method def self.build_resources_hash
@@ -72,7 +71,6 @@ class CategorySidebar
 
   private_class_method def self.build_posted_array
     @resources['posted'] = @date_cutoffs.map do |period, cutoff|
-
       period_id = period.downcase.gsub(/last |within a /, '').gsub(' ', '-')
       [
         'radio',

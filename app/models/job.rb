@@ -76,8 +76,7 @@ class Job < ApplicationRecord
       seniority: filter_by_seniority(params[:seniority]),
       locations: filter_by_location(params[:location]),
       roles: filter_by_role(params[:role]),
-      employment_type: filter_by_employment(params[:type]),
-      company: params[:company]&.split
+      employment_type: filter_by_employment(params[:type])
     }.compact
 
     associations = build_associations(params)
