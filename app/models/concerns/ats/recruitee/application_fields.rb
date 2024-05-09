@@ -20,7 +20,7 @@ module Ats
         attributes['phone'][:required] = data['options_phone'] == 'required'
         attributes['photo'][:required] = data['options_photo'] == 'required'
         attributes['cover_letter'][:required] = data['options_cover_letter'] == 'required'
-        attributes['resume/cv'][:required] = data['options_cv'] == 'required'
+        attributes['resume'][:required] = data['options_cv'] == 'required'
         attributes
       end
 
@@ -105,7 +105,7 @@ module Ats
           locators: ['candidate[cover_letter]'],
           label: 'Cover letter'
         },
-        'resume/cv' => {
+        'resume' => {
           interaction: :upload,
           locators: ['candidate[cv]'],
           label: 'CV or resume'

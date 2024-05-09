@@ -50,7 +50,7 @@ class GetFormFieldsJob < ApplicationJob
       label_text = label_text.split("*")[0]
 
       name = label_text.strip.downcase.gsub(" ", "_")
-      standard_fields = ['first_name', 'last_name', 'email', 'phone', 'resume/cv', 'cover_letter', 'city']
+      standard_fields = ['first_name', 'last_name', 'email', 'phone', 'resume', 'cover_letter', 'city']
       next if !name || name == "" || standard_fields.include?(remove_trailing_underscore(name))
       next if label.parent.name == 'label'
 

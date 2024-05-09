@@ -43,7 +43,7 @@
               </div>
 
             <% when "upload" %>
-              <% if ['resume', 'resume/cv'].include?(response.field_name) %>
+              <% if response.field_name == 'resume' %>
                 <div class="col-sm-12 mr-2">
                   <%= ff.input :field_name, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
                   <%= ff.input :field_locator, as: :hidden, wrapper_html: { class: 'wrapper-mb-0' } %>
