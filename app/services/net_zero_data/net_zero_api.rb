@@ -41,7 +41,7 @@ module NetZeroData
     end
 
     def self.class_name
-      self.name.demodulize
+      self.name.demodulize # rubocop:disable Style/RedundantSelf
     end
 
     def self.date
