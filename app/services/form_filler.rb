@@ -52,7 +52,7 @@ class FormFiller
           FileUtils.rm_f(file_path)
         elsif field[0] == 'cover_letter_'
           file_path = Rails.root.join('tmp',
-          "Cover Letter - #{@job.title} - #{@job.company.name} - #{@user.first_name} #{@user.last_name}.docx")
+                                      "Cover Letter - #{@job.title} - #{@job.company.name} - #{@user.first_name} #{@user.last_name}.docx")
           FileUtils.rm_f(file_path)
         end
       end
