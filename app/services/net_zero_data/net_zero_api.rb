@@ -2,6 +2,8 @@ module NetZeroData
   class NetZeroApi
     require 'net/http'
 
+    # TODO: Build companies based on list given and add to core company DB
+
     # Notes:
     # List of Net Zero Data Sources: Zero Tracker, EU NZDP, SBTi, CDP, manual data (in order of priority)
     # Think we should match companies so that they're unique based on their ISIN (prevents likely duplication across multiple sources)
@@ -42,7 +44,7 @@ module NetZeroData
 
     def self.company_count(companies_data)
       no_of_companies = companies_data.count
-      p "Number of companies: #{no_of_companies}"
+      puts "Number of companies: #{no_of_companies}"
     end
 
     def self.save_to_csv(data)
