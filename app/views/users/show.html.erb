@@ -182,6 +182,8 @@
             <div class="semi-donut" style="--percentage: 50; --fill:#FFC300">Pending</div>
           <% elsif application.status == "Applied" %>
             <div class="semi-donut" style="--percentage: 100; --fill:#6007C6">Applied</div>
+          <% elsif application.status == "Submission failed" %>
+            <%= link_to "Apply Manually", application.job.posting_url, target: "_blank", class: "btn-apply" %>
           <% end %>
 
         </div>

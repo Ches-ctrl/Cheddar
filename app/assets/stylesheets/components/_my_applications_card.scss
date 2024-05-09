@@ -39,6 +39,7 @@
   display: flex;
   position: relative;
   z-index: 10;
+  align-items: center;
 
   .toggle-reveal-application-details {
     all: unset;
