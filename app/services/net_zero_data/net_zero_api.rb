@@ -7,7 +7,9 @@ end
 # Setup models for the Net Zero data providers
 # Setup a main class that calls each scraper module as a sub-class
 # Get all companies from each API to see what data is available
-# Sources: Zero Tracker, EUNZDP, SBTi, manual data
+# Sources: Zero Tracker, EUNZDP, SBTi, CDP, manual data
+# Note: SBTi & CDP do not have public APIs
+# Note: GCAP (UNFCCC) is a wrapper on the CDP dataset
 # Setup a background job that calls the service class
 
 # Later
