@@ -1,5 +1,52 @@
 module NetZeroData
   class NetZeroApi
+    require 'net/http'
+
+    def self.build_all_data(base_url)
+      url = URI(base_url)
+      companies_data = fetch_json_data(url)
+      company_count(companies_data)
+
+      relevant_data = companies_data.first(10).map do |company|
+        company_url = get_company_endpoint(company)
+        company_data = fetch_json_data(company_url)
+        pull_out_relevant_data(company_data)
+      end
+      class_name
+      save_to_csv(relevant_data)
+    end
+
+    def self.fetch_json_data(url)
+      # TODO: write a helper method for fetching json or use Dan's (once reviewed/understood retry behaviour) as we do this alllllll the time
+      response = Net::HTTP.get_response(url)
+      JSON.parse(response.body)
+    rescue StandardError => e
+      puts "Failed to retrieve net zero data from companies endpoint. Error: #{e.message}"
+    end
+
+    def self.company_count(companies_data)
+      no_of_companies = companies_data.count
+      p "Number of companies: #{no_of_companies}"
+    end
+
+    def self.save_to_csv(data)
+      csv_name = "#{date}-#{class_name}"
+      CSV.open("storage/net_zero_data/#{csv_name}.csv", "wb") do |csv|
+        csv << data.first.keys
+        data.each do |company|
+          csv << company.values
+        end
+      end
+      puts "Data saved to #{csv_name}"
+    end
+
+    def self.class_name
+      self.name.demodulize
+    end
+
+    def self.date
+      Time.now.strftime('%Y-%m-%d')
+    end
   end
 end
 
