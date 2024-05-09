@@ -1,0 +1,2 @@
+class AddRemainingJobsJob < ApplicationJob
+end
