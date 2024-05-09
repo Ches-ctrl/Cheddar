@@ -28,7 +28,7 @@
 
             <label class="col-form-label text-sm fw-medium
               <%= "d-none" if response.field_name == 'location_click' %>">
-              <%= response.field_label.sanitize.html_safe %>
+              <%= sanitize(response.field_label).html_safe %>
               <span class="required-asterisk"><%= "*" if response.required %></span>
             </label>
 
