@@ -6,6 +6,10 @@ class CompanyCrawler
   include Constants
   attr_reader :max_urls, :max_depth, :url_identifiers
 
+  # TODO: Remove linkedin from url_identifiers because of ubiquity
+  # TODO: add . to the url_identifiers to prevent partial matches
+  # TODO: Look for apply button on pages (think jobglob does this)
+
   def initialize(max_urls:, max_depth:)
     @max_urls = max_urls
     @max_depth = max_depth
