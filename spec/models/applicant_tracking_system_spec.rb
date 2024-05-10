@@ -11,7 +11,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model do
     it { is_expected.to validate_uniqueness_of(:name) }
   end
 
-  context "with the currently written modules" do
+  context "with the currently written modules", :vcr do
     before do
       allow($stdout).to receive(:write) # suppresses terminal clutter
 

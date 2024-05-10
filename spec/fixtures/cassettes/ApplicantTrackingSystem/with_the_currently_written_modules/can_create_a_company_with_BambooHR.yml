@@ -1,0 +1,243 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://avidbots.bamboohr.com/careers/list
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - avidbots.bamboohr.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 01 May 2024 14:14:39 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=j-t2mYc8lQh9NKX4M%2CXukStnM1mnJtcI; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=I.V6XcX6mvEWd1Dbyu6M.AT317QcP221Ea_iRxt94QY-1714572879175-0.0.1.1-604800000;
+        path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache, private
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self'' data: blob: https://*.bamboohr.com https://*.bamboohr.co.uk
+        *.cloudfront.net d24d2g0g8l15q8.cloudfront.net d3lfqt3qfgn8k7.cloudfront.net
+        dwc7c3b4xwlvf.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://*.browser-intake-datadoghq.com https://*.facebook.com
+        https://*.linkedin.com https://*.segment.io https://*.small-improvements.com
+        https://api.rollbar.com https://app.bamboohr.co.uk https://bam.nr-data.net
+        https://connect.facebook.net *.algolianet.com *.algolia.net embedwistia-a.akamaihd.net
+        app.pendo.io cdn.pendo.io pendo-io-extensions.storage.googleapis.com pendo-static-5734959405072384.storage.googleapis.com
+        https://*.wistia.com https://*.wistia.net https://fonts.googleapis.com https://fonts.gstatic.com
+        https://example.com https://www.google-analytics.com https://payments.subscriptionplatform.com
+        https://s-static.ak.facebook.com themes.googleusercontent.com https://wufoo.com
+        https://*.wufoo.com https://www.google.com https://tagmanager.google.com https://bamboohr.formstack.com
+        https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://portal-2.flatfile.io
+        https://*.zuora.com https://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com
+        https://*.salesforceliveagent.com https://*.force.com https://*.site.com wss://*.pusher.com
+        https://*.checkr.com https://accounts.google.com https://login.microsoftonline.com
+        https://app.cronofy.com maps.googleapis.com ''unsafe-inline'' ''unsafe-eval''
+        ; script-src ''self'' *.bamboohr.com *.bamboohr.co.uk data: blob: about https://*.bamboohr.com
+        https://cdn.api.twitter.com https://connect.facebook.net https://bam.nr-data.net
+        *.cloudfront.net d24d2g0g8l15q8.cloudfront.net dwc7c3b4xwlvf.cloudfront.net
+        d3lfqt3qfgn8k7.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://accounts.google.com https://login.microsoftonline.com
+        *.newrelic.com http://*.newrelic.com https://fast.wistia.net https://fast.wistia.com
+        get.bamboohr.com *.algolianet.com *.algolia.net app.pendo.io pendo-io-static.storage.googleapis.com
+        cdn.pendo.io pendo-static-5734959405072384.storage.googleapis.com https://pi.pardot.com
+        https://www.my1login.com https://app.onelogin.com https://ajax.googleapis.com
+        http://ajax.googleapis.com https://ssl.google-analytics.com https://www.googletagmanager.com
+        https://tagmanager.google.com https://www.google-analytics.com https://www.google.com
+        https://s3.amazonaws.com https://cdnjs.cloudflare.com https://wufoo.com https://*.wufoo.com
+        https://*.linkedin.com https://bat.bing.com/bat.js https://www.googleadservices.com/pagead/conversion_async.js
+        https://s.adroll.com/j/roundtrip.js https://*.segment.com https://*.segment.io
+        https://bamboohr.formstack.com https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://*.zuora.com https://*.pusher.com
+        wss://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com https://*.salesforceliveagent.com
+        https://*.force.com https://*.site.com https://*.checkr.com https://www.google.com/recaptcha/
+        https://www.gstatic.com/recaptcha/ https://www.recaptcha.net/recaptcha/ https://portal-2.flatfile.io
+        https://app.cronofy.com maps.googleapis.com ''unsafe-inline'' ''unsafe-eval''
+        ; img-src * data: blob: ; report-uri /ajax/parse_csp_report.php ; worker-src
+        ''self'' data: blob: ;'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Authorization,User-Agent
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 87d0610bcbe3d17c-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"meta":{"totalCount":6},"result":[{"id":"529","jobOpeningName":"Customer
+        Care Associate, RA Shift Lead","departmentId":"19492","departmentLabel":"Support
+        Operations","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"693","jobOpeningName":"Technical
+        Support Specialist English","departmentId":"19493","departmentLabel":"Technical
+        Support","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"783","jobOpeningName":"IT
+        Specialist","departmentId":"18495","departmentLabel":"IT","employmentStatusLabel":"Full-Time","location":{"city":"Hyderabad
+        ","state":"Telangana"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"789","jobOpeningName":"Sr.
+        Technical Support Specialist","departmentId":"19493","departmentLabel":"Technical
+        Support","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"790","jobOpeningName":"Contracts
+        Management Specialist","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Waterloo"},"isRemote":null,"locationType":"1"},{"id":"791","jobOpeningName":"Customer
+        Care Associate","departmentId":"19492","departmentLabel":"Support Operations","employmentStatusLabel":"Full-Time","location":{"city":"Hyderabad
+        ","state":"Telangana"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"}]}'
+  recorded_at: Wed, 01 May 2024 14:14:39 GMT
+- request:
+    method: get
+    uri: https://autocomplete.clearbit.com/v1/companies/suggest?query=Avidbots
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - autocomplete.clearbit.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '93'
+      Cache-Control:
+      - public, must-revalidate, max-age=2629746
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization, API-Version, Content-Type, Salesforce-App-Id
+      X-Envoy-Response-Flags:
+      - "-"
+      Server:
+      - Clearbit
+      Via:
+      - 1.1 varnish, 1.1 varnish
+      Access-Control-Allow-Origin:
+      - "*"
+      Accept-Ranges:
+      - bytes
+      Age:
+      - '1810744'
+      Date:
+      - Wed, 01 May 2024 14:14:39 GMT
+      X-Served-By:
+      - cache-sjc10065-SJC, cache-lon4253-LON
+      X-Cache:
+      - HIT, HIT
+      X-Cache-Hits:
+      - 2, 0
+      X-Timer:
+      - S1714572880.554272,VS0,VE1
+      Vary:
+      - Accept-Encoding
+      Content-Security-Policy-Report-Only:
+      - default-src 'self';
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31557600
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"name":"Avidbots","domain":"avidbots.com","logo":"https://logo.clearbit.com/avidbots.com"}]'
+  recorded_at: Wed, 01 May 2024 14:14:39 GMT
+- request:
+    method: get
+    uri: https://api.crunchbase.com/api/v4/autocompletes?query=Avidbots&user_key=9eebe4bdec6f10ec631cbb8573cb8de2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.crunchbase.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, private
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 01 May 2024 14:14:40 GMT
+      Etag:
+      - W/"1714572880182"
+      Server:
+      - openresty
+      X-Cb-Engine:
+      - autocomplete:algolia
+      X-Cb-Engine-Cached:
+      - 'false'
+      X-Cb-Engine-Took:
+      - '31'
+      X-Cb-Request-Took:
+      - '60'
+      Content-Length:
+      - '3663'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"count":13,"entities":[{"facet_ids":["contact","siftery","ipqwery","semrush","company","rank","builtwith","bombora","ai_insight"],"identifier":{"uuid":"129b4700-bbe1-b9fc-5149-f15f18d13503","value":"Avidbots
+        Corp.","image_id":"uqzb9yucvrlll0vlfuwp","permalink":"avidbots","entity_def_id":"organization"},"short_description":"Avidbots
+        designs, manufactures, sells and supports autonomous connected robots that
+        expand human potential."},{"facet_ids":["contact","siftery","ipqwery","privco","aberdeen","company","rank","builtwith","bombora"],"identifier":{"uuid":"4a160c99-3dc1-d024-10ba-99ed0ef53f96","value":"AvidBiotics","image_id":"v1397184825/b3109816c91224ff8d84475408d57197.jpg","permalink":"avidbiotics","entity_def_id":"organization"},"short_description":"AvidBiotics
+        is a biotherapeutics company deploying a biotechnology-derived technology
+        platform with multiple apps in life sciences."},{"facet_ids":["contact","aberdeen","semrush","company","rank","builtwith","bombora"],"identifier":{"uuid":"8d3ff404-11aa-472d-85c0-4c0949f501c2","value":"AvidBit","image_id":"i3khc4hw5lmvmgjy8cbp","permalink":"avidbit","entity_def_id":"organization"},"short_description":"AvidBit
+        offers custom programming, networking, managed IT, VoIP, and internet services
+        to help solve complex business challenges."},{"facet_ids":["contact","semrush","company","rank","builtwith"],"identifier":{"uuid":"e96cb30e-c5f5-4c75-9992-1e587828cb42","value":"Asiabots","image_id":"a0uxhohv5rgvs0wtuyj7","permalink":"asiabots","entity_def_id":"organization"},"short_description":"An
+        A.I. company focusing on Natural Language processing (NLP), Natural humanlike
+        voice TTS and chatbot on mobile or phone call ."},{"facet_ids":["rank","semrush","builtwith","company"],"identifier":{"uuid":"61863f62-d67e-4459-b054-0507619a19c5","value":"ApiBots","image_id":"xagn7qa2xq78skomskdd","permalink":"apibots","entity_def_id":"organization"},"short_description":"Marketing
+        Automation tools for SMBs"},{"facet_ids":["rank","builtwith","company"],"identifier":{"uuid":"b6be007a-f900-e277-fd1d-869f2a1b1a10","value":"AidBits","image_id":"v1428916736/sbhs5ka3dwxcgcsedybi.jpg","permalink":"aidbits","entity_def_id":"organization"},"short_description":"An
+        online monitoring and evaluation platform designed to help non-profit organizations
+        harness their data for social good"},{"facet_ids":["company","builtwith","rank"],"identifier":{"uuid":"7b7b3dde-91d8-4551-8fe0-85c4c7944cd4","value":"AiBOTS","image_id":"w0gmbxvwv069er9crif3","permalink":"aibots","entity_def_id":"organization"},"short_description":"AiBOTS
+        is a management consulting firm that specializes in UX design, big data analytics,
+        IoT, and artificial intelligence services."},{"facet_ids":["company","rank","builtwith","siftery"],"identifier":{"uuid":"e97a985c-ddda-4902-b50e-b3f3fd97c7f7","value":"Airbots","image_id":"hrakdea2zpgbspzmmwfj","permalink":"airbots","entity_def_id":"organization"},"short_description":"Airbots
+        is an AI-autonomous strategy execution platform for advertising."},{"facet_ids":["ipqwery","aberdeen","semrush","company","rank","builtwith"],"identifier":{"uuid":"2434bbc2-92d1-592f-3183-71277ca3374c","value":"Addibots","image_id":"v1488871999/jhlkimev8fqviq8cglzq.png","permalink":"addibots","entity_def_id":"organization"},"short_description":"A
+        robotics and 3D printing startup based in the Hudson Valley of New York."},{"facet_ids":["company","rank","semrush","builtwith"],"identifier":{"uuid":"cfbed3c7-5f4d-4407-89f0-973b36e51c73","value":"Avidnote","image_id":"qmksqnrs904xw8jhxljd","permalink":"avidnote","entity_def_id":"organization"},"short_description":"Avidnote
+        is a digital platform for research."}]}'
+  recorded_at: Wed, 01 May 2024 14:14:40 GMT
+recorded_with: VCR 6.2.0

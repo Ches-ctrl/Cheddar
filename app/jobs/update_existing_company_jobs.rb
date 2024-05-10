@@ -48,12 +48,16 @@ class UpdateExistingCompanyJobs < ApplicationJob
   end
 
   def relevant?(job_data)
-    title, job_location = @ats_system.fetch_title_and_location(job_data)
+    # TODO: call the Relevant module method instead
+    title, job_location, remote = @ats_system.fetch_title_and_location(job_data)
 
-    title &&
+    (title &&
+      remote &&
+      JOB_TITLE_KEYWORDS.any? { |keyword| title.downcase.match?(keyword) }) ||
+      (title &&
       job_location &&
       JOB_LOCATION_KEYWORDS.any? { |keyword| job_location.downcase.match?(keyword) } &&
-      JOB_TITLE_KEYWORDS.any? { |keyword| title.downcase.match?(keyword) }
+      JOB_TITLE_KEYWORDS.any? { |keyword| title.downcase.match?(keyword) })
   end
 
   # TODO: Update this so that the jobs are kept but are no longer live on the site
