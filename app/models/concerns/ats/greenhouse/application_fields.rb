@@ -3,7 +3,7 @@ module Ats
     module ApplicationFields
       def get_application_criteria(job, _data)
         job.application_criteria = CORE_FIELDS
-        GetForm.perform
+        # GetForm.perform
       end
 
       CORE_FIELDS = {
@@ -39,7 +39,7 @@ module Ats
           interaction: :input,
           locators: 'job_application[location]',
           required: true,
-          label: 'City',
+          label: 'Location (City)',
           core_field: true
         },
         location_click: {

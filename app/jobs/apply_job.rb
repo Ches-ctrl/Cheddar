@@ -48,6 +48,8 @@ class ApplyJob < ApplicationJob
         application_criteria[key]['value'] = custom_fields[key]
       end
     end
+    puts "Here are the application criteria:"
+    p application_criteria
     return application_criteria
   end
 end

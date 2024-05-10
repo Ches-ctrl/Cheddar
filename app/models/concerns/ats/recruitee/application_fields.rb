@@ -4,6 +4,7 @@ module Ats
       def get_application_criteria(job, data)
         p "Getting Recruitee application criteria"
         job.application_criteria = build_application_criteria_from(data)
+        job.apply_with_cheddar = true
         job.save
         # TODO: update job.requirement
       end
