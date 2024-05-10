@@ -1,3 +1,5 @@
+# require 'htmltoword'
+
 module Ats
   module Greenhouse
     module SubmitApplication

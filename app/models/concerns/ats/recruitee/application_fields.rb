@@ -44,10 +44,7 @@ module Ats
           additional_fields.merge!(
             name => {
               interaction:,
-              locators: [
-                "[open_question_answers_attributes][#{field['position']}][open_question_id]=#{field['id']}",
-                "[open_question_answers_attributes][#{field['position']}]#{CONTENT_CONVERTER[kind]}="
-              ],
+              locators: "#{field['id']}:#{CONTENT_CONVERTER[kind]}",
               required: field['required'],
               label:,
               character_length: field.dig('options', 'length'),
@@ -80,35 +77,41 @@ module Ats
       CORE_FIELDS = {
         'full_name' => {
           interaction: :input,
-          locators: ['candidate[name]'],
+          locators: 'name',
           required: true,
-          label: 'Full name'
+          label: 'Full name',
+          core_field: true
         },
         'email' => {
           interaction: :input,
-          locators: ['candidate[email]'],
+          locators: 'email',
           required: true,
-          label: 'Email address'
+          label: 'Email address',
+          core_field: true
         },
         'phone' => {
           interaction: :input,
-          locators: ['candidate[phone]'],
-          label: 'Phone number'
+          locators: 'phone',
+          label: 'Phone number',
+          core_field: true
         },
         'photo' => {
           interaction: :upload,
-          locators: ['candidate[photo]'],
-          label: 'Photo'
+          locators: 'photo',
+          label: 'Photo',
+          core_field: true
         },
         'cover_letter' => {
           interaction: :upload,
-          locators: ['candidate[cover_letter]'],
-          label: 'Cover letter'
+          locators: 'cover_letter',
+          label: 'Cover letter',
+          core_field: true
         },
         'resume' => {
           interaction: :upload,
-          locators: ['candidate[cv]'],
-          label: 'CV or resume'
+          locators: 'cv',
+          label: 'CV or resume',
+          core_field: true
         }
       }
 
@@ -126,16 +129,16 @@ module Ats
       }
 
       CONTENT_CONVERTER = {
-        'string' => '[content]',
-        'text' => '[content]',
-        'single_choice' => '[content]',
-        'date' => '[content]',
-        'salary' => '[content]',
-        'number' => '[content]',
-        'multi_choice' => '[multi_content][]',
-        'file' => '[file]',
-        'boolean' => '[flag]',
-        'legal' => '[flag]'
+        'string' => 'content',
+        'text' => 'content',
+        'single_choice' => 'content',
+        'date' => 'content',
+        'salary' => 'content',
+        'number' => 'content',
+        'multi_choice' => 'multi_content',
+        'file' => 'file',
+        'boolean' => 'flag',
+        'legal' => 'flag'
       }
 
       STANDARD_QUESTIONS = {}

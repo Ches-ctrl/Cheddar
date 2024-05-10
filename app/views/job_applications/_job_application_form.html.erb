@@ -8,7 +8,7 @@
 
   <%= simple_form_for job_application, html: { class: 'needs-validation', 'data-all-application-forms-target': "form"} do |f| %>
   <%= hidden_field_tag :job_id, job_application.job.id %>
-
+  <% core_field_count = job_application.application_responses.count { |field| field['core_field'] }%>
 
     <%# Dynamically creates form elements based on application_criteria - converts to fields ready for application responses. %>
     <% job_application.application_responses.each_with_index do |response, response_index| %>
@@ -65,7 +65,7 @@
                   <%= ff.input :field_value, as: :select, required: response.required, collection: templates, label: false, input_html: { class: "rounded-4", data: { label: response.field_name, response_input_target: "input", action: "change->template-select#select"} }, wrapper_html: { class: 'wrapper-mb-0' } %>
 
                   <textarea id=<%= "coverLetterEditor-#{job_application.job.id}" %> class = "d-none" data-template-select-target="editor" data-all-application-forms-target="editor"></textarea>
-                  <%= ff.hidden_field :cover_letter_content, id: "hiddenCoverLetterField-#{job_application.job.id}", data: { all_application_forms_target: "content" } %>
+                  <%= ff.hidden_field :field_value, id: "hiddenCoverLetterField-#{job_application.job.id}", data: { all_application_forms_target: "content" } %>
                 </div>
               <% elsif ['photo'].include?(response.field_name) %>
                 <div class="col-sm-12 mr-2">
@@ -134,7 +134,7 @@
         <% end %>
 
 
-      <% if response.field_name == "cover_letter_" %> <%# This is the last CORE APPLICATION FIELD%>
+      <% if response_index == core_field_count - 1 %> <%# This is the last CORE APPLICATION FIELD%>
         </details>
 
         <details class="core-app-details" open> <%# Add a new details tag for additional details %>
