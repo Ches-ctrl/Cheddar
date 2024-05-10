@@ -1100,4 +1100,104 @@ http_interactions:
       string: !binary |-
         eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cHM6XC9cL2Rldi52aXJ0dWFsZWFydGgubmV0XC9CcmFuZGluZ1wvbG9nb19wb3dlcmVkX2J5LnBuZyIsImNvcHlyaWdodCI6IkNvcHlyaWdodCDCqSAyMDI0IE1pY3Jvc29mdCBhbmQgaXRzIHN1cHBsaWVycy4gQWxsIHJpZ2h0cyByZXNlcnZlZC4gVGhpcyBBUEkgY2Fubm90IGJlIGFjY2Vzc2VkIGFuZCB0aGUgY29udGVudCBhbmQgYW55IHJlc3VsdHMgbWF5IG5vdCBiZSB1c2VkLCByZXByb2R1Y2VkIG9yIHRyYW5zbWl0dGVkIGluIGFueSBtYW5uZXIgd2l0aG91dCBleHByZXNzIHdyaXR0ZW4gcGVybWlzc2lvbiBmcm9tIE1pY3Jvc29mdCBDb3Jwb3JhdGlvbi4iLCJyZXNvdXJjZVNldHMiOlt7ImVzdGltYXRlZFRvdGFsIjoxLCJyZXNvdXJjZXMiOlt7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzI1LjE0NjAxMzI1OTg4NzY5NSwtMTI0Ljc5MDc1NjIyNTU4NTk0LDQ5LjM4NDM1NzQ1MjM5MjU3OCwtNjYuOTcwMzk3OTQ5MjE4NzVdLCJuYW1lIjoiVW5pdGVkIFN0YXRlcyIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMzkuNTAzNTcwNTYsLTk5LjAxODM0MTA2XX0sImFkZHJlc3MiOnsiY291bnRyeVJlZ2lvbiI6IlVuaXRlZCBTdGF0ZXMiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiVW5pdGVkIFN0YXRlcyJ9LCJjb25maWRlbmNlIjoiSGlnaCIsImVudGl0eVR5cGUiOiJDb3VudHJ5UmVnaW9uIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlszOS41MDM1NzA1NiwtOTkuMDE4MzQxMDZdLCJjYWxjdWxhdGlvbk1ldGhvZCI6IlJvb2Z0b3AiLCJ1c2FnZVR5cGVzIjpbIkRpc3BsYXkiXX1dLCJtYXRjaENvZGVzIjpbIkdvb2QiXX1dfV0sInN0YXR1c0NvZGUiOjIwMCwic3RhdHVzRGVzY3JpcHRpb24iOiJPSyIsInRyYWNlSWQiOiJmYTRiZTc0N2Y0ZWE4ZDdlYmU4MWU0ZTIxYzFiYjhmNHxEVTAwMDAzMDgzfDAuMC4wLjF8UmVmIEE6IEZCMjFGMzcyODhEMDRBRTg4RjA4Q0QyREE4OEIzRTMwIFJlZiBCOiBEQjNFREdFMzEwNyBSZWYgQzogMjAyNC0wNS0wNFQwMjozOTowNVoifQ==
   recorded_at: Sat, 04 May 2024 02:39:05 GMT
+- request:
+    method: get
+    uri: https://premise.bamboohr.com/careers/company-info/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - premise.bamboohr.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 10 May 2024 14:56:48 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=PHcIdUhCNNPJlI36fGhPkQbOeQ0jumvi; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=K6ozy7OmlvlI1h3zXN_jUWM2FKIZTpn3riCSyoga7y4-1715353008738-0.0.1.1-604800000;
+        path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache, private
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self'' data: blob: https://*.bamboohr.com https://*.bamboohr.co.uk
+        *.cloudfront.net d24d2g0g8l15q8.cloudfront.net d3lfqt3qfgn8k7.cloudfront.net
+        dwc7c3b4xwlvf.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://*.browser-intake-datadoghq.com https://*.facebook.com
+        https://*.linkedin.com https://*.segment.io https://*.small-improvements.com
+        https://api.rollbar.com https://app.bamboohr.co.uk https://bam.nr-data.net
+        https://connect.facebook.net *.algolianet.com *.algolia.net embedwistia-a.akamaihd.net
+        app.pendo.io cdn.pendo.io pendo-io-extensions.storage.googleapis.com pendo-static-5734959405072384.storage.googleapis.com
+        https://*.wistia.com https://*.wistia.net https://fonts.googleapis.com https://fonts.gstatic.com
+        https://example.com https://www.google-analytics.com https://payments.subscriptionplatform.com
+        https://s-static.ak.facebook.com themes.googleusercontent.com https://wufoo.com
+        https://*.wufoo.com https://www.google.com https://tagmanager.google.com https://bamboohr.formstack.com
+        https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://portal-2.flatfile.io
+        https://*.zuora.com https://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com
+        https://*.salesforceliveagent.com https://*.force.com https://*.site.com wss://*.pusher.com
+        https://*.checkr.com https://accounts.google.com https://login.microsoftonline.com
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; script-src ''self'' *.bamboohr.com *.bamboohr.co.uk data:
+        blob: about https://*.bamboohr.com https://cdn.api.twitter.com https://connect.facebook.net
+        https://bam.nr-data.net *.cloudfront.net d24d2g0g8l15q8.cloudfront.net dwc7c3b4xwlvf.cloudfront.net
+        d3lfqt3qfgn8k7.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://accounts.google.com https://login.microsoftonline.com
+        *.newrelic.com http://*.newrelic.com https://fast.wistia.net https://fast.wistia.com
+        get.bamboohr.com *.algolianet.com *.algolia.net app.pendo.io pendo-io-static.storage.googleapis.com
+        cdn.pendo.io pendo-static-5734959405072384.storage.googleapis.com https://pi.pardot.com
+        https://www.my1login.com https://app.onelogin.com https://ajax.googleapis.com
+        http://ajax.googleapis.com https://ssl.google-analytics.com https://www.googletagmanager.com
+        https://tagmanager.google.com https://www.google-analytics.com https://www.google.com
+        https://s3.amazonaws.com https://cdnjs.cloudflare.com https://wufoo.com https://*.wufoo.com
+        https://*.linkedin.com https://bat.bing.com/bat.js https://www.googleadservices.com/pagead/conversion_async.js
+        https://s.adroll.com/j/roundtrip.js https://*.segment.com https://*.segment.io
+        https://bamboohr.formstack.com https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://*.zuora.com https://*.pusher.com
+        wss://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com https://*.salesforceliveagent.com
+        https://*.force.com https://*.site.com https://*.checkr.com https://www.google.com/recaptcha/
+        https://www.gstatic.com/recaptcha/ https://www.recaptcha.net/recaptcha/ https://portal-2.flatfile.io
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; img-src * data: blob: ; report-uri /ajax/parse_csp_report.php
+        ; worker-src ''self'' data: blob: ;'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Authorization,User-Agent
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 881ac72fa9ec6323-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"meta":[],"result":{"name":"Premise","id":"490341","logoUrl":"https:\/\/images4.bamboohr.com\/490341\/logos\/cropped.jpg?v=34","careerShareUrl":"https:\/\/premise.bamboohr.com\/careers","shareImageUrl":"https:\/\/premise.bamboohr.com\/jobs\/share_image\/34","inTrial":false,"appSessId":"815b2778f2a91b178644e892d36a6cbc7be74ed7"}}'
+  recorded_at: Fri, 10 May 2024 14:56:46 GMT
 recorded_with: VCR 6.2.0

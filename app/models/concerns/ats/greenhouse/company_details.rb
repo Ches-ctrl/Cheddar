@@ -4,9 +4,11 @@ module Ats
       private
 
       def company_details(ats_identifier)
-        url_ats_api = "#{url_api}#{ats_identifier}"
-        url_ats_main = "#{url_base}#{ats_identifier}"
+        url_ats_api = "#{url_api}#{ats_identifier}/"
+        url_ats_main = "#{url_base}#{ats_identifier}/"
         data = get_json_data(url_ats_api)
+        return {} unless data
+
         url_careers, url_website = check_for_careers_url_redirect(url_ats_main)
         {
           name: data['name'],
@@ -14,7 +16,8 @@ module Ats
           url_ats_api:,
           url_ats_main:,
           url_careers:,
-          url_website:
+          url_website:,
+          total_live: fetch_total_live(ats_identifier)
         }
       end
 

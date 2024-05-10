@@ -13,7 +13,8 @@ module Ats
           description: build_company_description(data),
           url_ats_api:,
           url_ats_main:,
-          url_website:
+          url_website:,
+          total_live: data.size
         }
       end
 

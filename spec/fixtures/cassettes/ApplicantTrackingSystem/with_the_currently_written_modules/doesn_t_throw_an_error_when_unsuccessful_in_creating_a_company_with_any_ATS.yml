@@ -1,0 +1,240 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.ashbyhq.com/posting-api/job-board/zzzzz?includeCompensation=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.ashbyhq.com
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Fri, 10 May 2024 14:58:37 GMT
+      Content-Type:
+      - text/plain; charset=utf-8
+      Content-Length:
+      - '9'
+      Connection:
+      - keep-alive
+      X-Ashby-Request-Id:
+      - 01HXHG6RWGC2CMG1F5KQXWRJKS
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      Referrer-Policy:
+      - same-origin
+      Access-Control-Allow-Origin:
+      - "*"
+      Cf-Cache-Status:
+      - DYNAMIC
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 881ac9d879ebdc35-LHR
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: UTF-8
+      string: Not Found
+  recorded_at: Fri, 10 May 2024 14:58:35 GMT
+- request:
+    method: post
+    uri: https://jobs.ashbyhq.com/api/non-user-graphql?op=ApiOrganizationFromHostedJobsPageName
+    body:
+      encoding: UTF-8
+      string: '{"query":"query ApiOrganizationFromHostedJobsPageName($organizationHostedJobsPageName:
+        String!) {  organization: organizationFromHostedJobsPageName(    organizationHostedJobsPageName:
+        $organizationHostedJobsPageName  ) {    ...OrganizationParts    __typename  }}fragment
+        OrganizationParts on Organization {  name  publicWebsite  customJobsPageUrl  hostedJobsPageSlug  allowJobPostIndexing  theme
+        {    colors    showJobFilters    showTeams    showAutofillApplicationsBox    logoWordmarkImageUrl    logoSquareImageUrl    applicationSubmittedSuccessMessage    jobBoardTopDescriptionHtml    jobBoardBottomDescriptionHtml    __typename  }  appConfirmationTrackingPixelHtml  recruitingPrivacyPolicyUrl  activeFeatureFlags  timezone  __typename
+        }","variables":{"organizationHostedJobsPageName":"zzzzz"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 10 May 2024 14:58:37 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '31'
+      Connection:
+      - keep-alive
+      X-Ashby-Request-Id:
+      - 01HXHG6S2RW82QHF1K4RCSXXHE
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      Referrer-Policy:
+      - same-origin
+      Cache-Control:
+      - no-store
+      Access-Control-Allow-Origin:
+      - "*"
+      Cf-Cache-Status:
+      - DYNAMIC
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 881ac9d9becb9539-LHR
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: UTF-8
+      string: '{"data":{"organization":null}}
+
+        '
+  recorded_at: Fri, 10 May 2024 14:58:35 GMT
+- request:
+    method: get
+    uri: https://autocomplete.clearbit.com/v1/companies/suggest?query=Zzzzz
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - autocomplete.clearbit.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '450'
+      Cache-Control:
+      - public, must-revalidate, max-age=2629746
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization, API-Version, Content-Type, Salesforce-App-Id
+      X-Envoy-Response-Flags:
+      - "-"
+      Server:
+      - Clearbit
+      Via:
+      - 1.1 varnish, 1.1 varnish
+      Access-Control-Allow-Origin:
+      - "*"
+      Accept-Ranges:
+      - bytes
+      Age:
+      - '444172'
+      Date:
+      - Fri, 10 May 2024 14:58:38 GMT
+      X-Served-By:
+      - cache-sjc1000095-SJC, cache-lhr7321-LHR
+      X-Cache:
+      - HIT, MISS
+      X-Cache-Hits:
+      - 1, 0
+      X-Timer:
+      - S1715353118.967194,VS0,VE141
+      Vary:
+      - Accept-Encoding
+      Content-Security-Policy-Report-Only:
+      - default-src 'self';
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31557600
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"name":"zzzzz","domain":"greenbilt.in","logo":"https://logo.clearbit.com/greenbilt.in"},{"name":"Dan.com","domain":"zzzzz.xyz","logo":"https://logo.clearbit.com/zzzzz.xyz"},{"name":"Tumblr","domain":"zzzzzest.com","logo":"https://logo.clearbit.com/zzzzzest.com"},{"name":"zzzzzsh","domain":"zzzzzsh.com","logo":"https://logo.clearbit.com/zzzzzsh.com"},{"name":"ZZZzzz
+        Soundsystem","domain":"zzzzzz.fr","logo":"https://logo.clearbit.com/zzzzzz.fr"}]'
+  recorded_at: Fri, 10 May 2024 14:58:35 GMT
+- request:
+    method: get
+    uri: https://api.crunchbase.com/api/v4/autocompletes?query=Zzzzz&user_key=9eebe4bdec6f10ec631cbb8573cb8de2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.crunchbase.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, private
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 10 May 2024 14:58:38 GMT
+      Etag:
+      - W/"1715353118827"
+      Server:
+      - openresty
+      X-Cb-Engine:
+      - autocomplete:algolia
+      X-Cb-Engine-Cached:
+      - 'false'
+      X-Cb-Engine-Took:
+      - '7'
+      X-Cb-Request-Took:
+      - '35'
+      Content-Length:
+      - '2088'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"count":6,"entities":[{"facet_ids":["rank","builtwith","company"],"identifier":{"uuid":"1a4cefa9-7903-48e9-a0e0-9602f8070f52","value":"Zzzzz
+        Mattress","image_id":"5d882647109e89b7e4e1","permalink":"zzzzz-mattress","entity_def_id":"organization"},"short_description":"Zzzzz
+        Mattress manufactures and markets mattresses."},{"facet_ids":["company","rank","builtwith"],"identifier":{"uuid":"a866317b-143f-407a-9a34-be381cbf13af","value":"ZZZZZZZZZZZZZZZZZZZZZZZZZZZ","image_id":"omjyjlnpt5wipl0y0zkw","permalink":"spotless-mattress-cleaning","entity_def_id":"organization"},"short_description":"Australia
+        | Square images work best | Crop your image before you upload | Image ubestuare
+        images work best |"},{"facet_ids":["rank","builtwith","company","siftery"],"identifier":{"uuid":"a33d2fe9-2744-8384-3c1e-898d1187bfbb","value":"Zzzzapp
+        Wireless ltd.","image_id":"v1412369166/xs782pvetiap63pi6pqa.jpg","permalink":"zzzzapp-com","entity_def_id":"organization"},"short_description":"Zzzzapp!
+        is a WI-Fi software platform that enables businesses and brands to target,
+        engage and monetize on-site customers."},{"facet_ids":["ipqwery","aberdeen","semrush","company","rank","builtwith"],"identifier":{"uuid":"c6d81b36-a687-428b-86f9-267a1e802fc3","value":"Zizzz","image_id":"mpith8mu4ki2j8ougvrf","permalink":"zizzz","entity_def_id":"organization"},"short_description":"Zizzz
+        is an e-commerce company that provides sleeping products."},{"facet_ids":["contact","aberdeen","company","rank","builtwith","bombora"],"identifier":{"uuid":"3446f0bc-cb9a-4c41-bf80-04e0f5e87802","value":"Zzazz
+        Productions","image_id":"uajkqqzndhxdscvxpvyn","permalink":"zzazz-productions","entity_def_id":"organization"},"short_description":"Zzazz
+        Productions provides choreography and fashion production services."},{"facet_ids":["company","rank","builtwith"],"identifier":{"uuid":"9e075716-a893-4941-8ab8-7ce4f83976a6","value":"Zzzzip","image_id":"qu46p2jtqg4zpfntwah7","permalink":"zzzzip","entity_def_id":"organization"},"short_description":"Zzzzip
+        provides accounting, HR outsourcing, and mail handling services."}]}'
+  recorded_at: Fri, 10 May 2024 14:58:36 GMT
+recorded_with: VCR 6.2.0
