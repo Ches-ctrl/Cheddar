@@ -147,4 +147,21 @@ module Constants
     'gbp' => ['£', ' GBP'],
     'eur' => ['€', ' EUR']
   }
+
+  CAREERS_STUBS = [
+    "jobs",
+    "careers",
+    "get-involved",
+    "positions",
+    "job-openings",
+    "current-job-openings",
+    "careers-list",
+    "open-careers",
+    "open-positions",
+    "opportunities",
+    "open-roles",
+    "current-openings",
+    "hiring",
+    "apply"
+  ]
 end
