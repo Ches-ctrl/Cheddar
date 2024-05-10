@@ -16,14 +16,16 @@ class CompanyCrawler
     @queue = Queue.new
     @lock = Mutex.new
     @terminate_flag = false   # Flag to signal termination
-    @url_identifiers = ApplicantTrackingSystem.pluck(:url_identifier)
+    @url_identifiers = ApplicantTrackingSystem.pluck(:url_identifier).flat_map { |identifiers| identifiers.split('|') }.sort
   end
 
   def crawl(url)
+    p @url_identifiers
+
     @queue << [url, 0]
 
     threads = []
-    max_threads = 1 # Define the maximum number of threads
+    max_threads = 3 # Define the maximum number of threads
     max_threads.times do
       threads << Thread.new do
         until @terminate_flag || @queue.empty? || @visited_urls.size >= max_urls
@@ -49,7 +51,6 @@ class CompanyCrawler
 
   def parse_and_enqueue(base_url, url, depth)
     uri = URI.parse(url)
-    p "Parsing #{url} at depth #{depth}"
     uri = URI.join(base_url, uri) if uri.relative?
     p "URI: #{uri}"
     # uri = URI.parse("https://#{url}") if uri.is_a?(URI::Generic) && !uri.scheme
@@ -68,7 +69,19 @@ class CompanyCrawler
   end
 
   def enqueue_urls(urls, depth)
-    urls.each { |url| @queue << [url, depth] }
+    priority_urls = []
+    regular_urls = []
+
+    urls.each do |url|
+      if contains_priority_stub?(url)
+        priority_urls << [url, depth]
+      else
+        regular_urls << [url, depth]
+      end
+    end
+
+    priority_urls.each { |url| @queue << url }
+    regular_urls.each { |url| @queue << url }
   end
 
   def classify_links(links)
