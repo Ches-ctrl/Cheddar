@@ -4,9 +4,6 @@ module Ats
       private
 
       def submit_application
-        puts "here's the completed form:"
-        puts form_data
-
         submit_form(form_data)
       end
 
@@ -76,7 +73,7 @@ module Ats
           'cover_letter' => '.docx'
         }
         file_path = Rails.root.join('tmp', "#{filetype} - #{@user.first_name} #{@user.last_name} - #{@job.title} - #{@job.company.name}#{convert[filetype]}")
-        File.binwrite(file_path, URI.open(file.url).read)
+        File.binwrite(file_path, URI.parse(file.url).open.read)
         File.open(file_path)
       end
     end
