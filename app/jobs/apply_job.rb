@@ -42,12 +42,10 @@ class ApplyJob < ApplicationJob
     end
 
     application_criteria.each_key do |key|
-      if user.respond_to?(key) && user.send(key).present?
+      if custom_fields[key].nil? && user.respond_to?(key) && user.send(key).present?
         application_criteria[key]['value'] = user.send(key)
       else
         application_criteria[key]['value'] = custom_fields[key]
-        # p "Warning: defaults does not have a method or attribute '#{key}'. Using NIL value instead"
-        # application_criteria[key]['value'] = nil
       end
     end
     return application_criteria

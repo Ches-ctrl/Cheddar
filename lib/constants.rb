@@ -63,7 +63,7 @@ module Constants
     /development engineer/,
     /product (?:engineer|designer)/,
     /deployed.{1,28}engineer/,
-    /data engineer/,
+    /data.?engineer/,
     /research engineer/,
     /prompt engineer/,
     /mobile (?:engineer|developer)/,
