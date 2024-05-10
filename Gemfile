@@ -54,6 +54,9 @@ gem "font-awesome-sass", "~> 6.5.1"
 gem "simple_form"
 gem 'psych', "~> 4.0" # Extra gem as per Le Wagon setup for Linux laptops
 
+# Middleware
+gem 'rack-cors'
+
 # Testing
 gem "capybara"
 gem "selenium-webdriver", "~> 4.18.1"
