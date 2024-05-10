@@ -3,6 +3,9 @@
     "name": "Cheddar Jobs",
     "version": "1.0.0",
     "description": "Cheddar Jobs Chrome Extension",
+    "permissions": [
+        "tabs"
+      ],
     "action": {
         "default_popup": "popup.html"
       },
