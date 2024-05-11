@@ -42,7 +42,7 @@ module Ats
       def job_details(job, data)
         job.assign_attributes(
           title: data['title'],
-          description: build_description(data),
+          description: Flipper.enabled?(:job_description) ? build_description(data) : 'Not added yet',
           salary: fetch_salary(data),
           employment_type: data['employment_type'].gsub('_', '-').capitalize,
           non_geocoded_location_string: build_location_string(data),

@@ -30,7 +30,7 @@ module Ats
         job.assign_attributes(
           posting_url: data['absolute_url'],
           title:,
-          description: data['content'],
+          description: Flipper.enabled?(:job_description) ? data['description'] : 'Not added yet',
           non_geocoded_location_string: location,
           department: data.dig('departments', 0, 'name'),
           office: data.dig('offices', 0, 'name'),

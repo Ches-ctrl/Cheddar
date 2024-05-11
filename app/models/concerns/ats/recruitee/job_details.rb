@@ -39,7 +39,7 @@ module Ats
         job.assign_attributes(
           title:,
           requirements: data['requirements'],
-          description: [data['description'], data['requirements']].reject(&:blank?).join,
+          description: Flipper.enabled?(:job_description) ? [data['description'], data['requirements']].reject(&:blank?).join : 'Not added yet',
           salary: fetch_salary(data),
           department: data['department'],
           employment_type: fetch_employment_type(data),

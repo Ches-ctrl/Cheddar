@@ -49,7 +49,7 @@ module Ats
         data = JSON.parse(script_element)
 
         job.assign_attributes(
-          description: data['description'],
+          description: Flipper.enabled?(:job_description) ? data['description'] : 'Not added yet',
           date_posted: Date.parse(data['datePosted']),
           deadline: Date.parse(data['validThrough'])
         )

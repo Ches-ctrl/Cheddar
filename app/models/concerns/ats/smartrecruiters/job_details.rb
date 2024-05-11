@@ -21,7 +21,7 @@ module Ats
         title, location = fetch_title_and_location(data)
         job.assign_attributes(
           title:,
-          description: build_description(data.dig('jobAd', 'sections')),
+          description: Flipper.enabled?(:job_description) ? build_description(data.dig('jobAd', 'sections')) : 'Not added yet',
           posting_url: data['applyUrl'],
           remote: remote?(data),
           non_geocoded_location_string: location,
