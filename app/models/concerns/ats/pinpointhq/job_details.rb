@@ -13,8 +13,8 @@ module Ats
 
       def fetch_id(job_data)
         # TODO: fetch the individual api endpoint from job_id
-        path = job_data['careers_url']
-        result = path&.match(%r{recruitee.com/o/([a-z\-0-9]+)})
+        path = job_data['path']
+        result = path&.match(%r{postings/([a-z\-0-9]+)})
         result[1] if result
       end
 

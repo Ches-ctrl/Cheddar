@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_27_094318) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_10_091443) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,8 +67,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_094318) do
     t.datetime "updated_at", null: false
     t.string "interaction"
     t.string "field_options"
-    t.text "cover_letter_content"
     t.boolean "required"
+    t.string "field_label"
+    t.boolean "core_field"
     t.index ["job_application_id"], name: "index_application_responses_on_job_application_id"
   end
 
@@ -142,12 +143,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_094318) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["feature_key", "key", "value"], name: "index_flipper_gates_on_feature_key_and_key_and_value", unique: true
-  end
-
-  create_table "industries", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "job_applications", force: :cascade do |t|
@@ -317,14 +312,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_094318) do
     t.index ["user_id"], name: "index_saved_jobs_on_user_id"
   end
 
-  create_table "sub_industries", force: :cascade do |t|
-    t.string "name"
-    t.bigint "industry_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["industry_id"], name: "index_sub_industries_on_industry_id"
-  end
-
   create_table "technologies", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -383,5 +370,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_094318) do
   add_foreign_key "requirements", "jobs"
   add_foreign_key "saved_jobs", "jobs"
   add_foreign_key "saved_jobs", "users"
-  add_foreign_key "sub_industries", "industries"
 end

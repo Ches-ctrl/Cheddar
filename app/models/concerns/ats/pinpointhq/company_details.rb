@@ -11,12 +11,18 @@ module Ats
           url_ats_api:,
           url_ats_main:,
           url_website:,
-          url_linkedin:
+          url_linkedin:,
+          total_live: fetch_total_live(ats_identifier)
         }
       end
 
       def scrape_company_page(url_ats_main)
-        html = URI.parse(url_ats_main).open
+        begin
+          html = URI.parse(url_ats_main).open
+        rescue OpenURI::HTTPError
+          puts "Couldn't load url: #{url_ats_main}"
+          return []
+        end
         doc = Nokogiri::HTML.parse(html)
         name = doc.at_xpath("//div[contains(@class, 'hide-sm-block')][1]//img/@alt")
         name = name&.text&.sub(' - Home', '')

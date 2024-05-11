@@ -240,4 +240,204 @@ http_interactions:
         robotics and 3D printing startup based in the Hudson Valley of New York."},{"facet_ids":["company","rank","semrush","builtwith"],"identifier":{"uuid":"cfbed3c7-5f4d-4407-89f0-973b36e51c73","value":"Avidnote","image_id":"qmksqnrs904xw8jhxljd","permalink":"avidnote","entity_def_id":"organization"},"short_description":"Avidnote
         is a digital platform for research."}]}'
   recorded_at: Wed, 01 May 2024 14:14:40 GMT
+- request:
+    method: get
+    uri: https://avidbots.bamboohr.com/careers/company-info
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - avidbots.bamboohr.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 04 May 2024 02:38:56 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=8FmvrXvgIOxgOk0dDJWz5yZ75yxr-zrZ; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=WrCu5lfJCyNj.K_EmoVWagOLWuYV8Dw_J9AqoW8wAB0-1714790336015-0.0.1.1-604800000;
+        path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache, private
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self'' data: blob: https://*.bamboohr.com https://*.bamboohr.co.uk
+        *.cloudfront.net d24d2g0g8l15q8.cloudfront.net d3lfqt3qfgn8k7.cloudfront.net
+        dwc7c3b4xwlvf.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://*.browser-intake-datadoghq.com https://*.facebook.com
+        https://*.linkedin.com https://*.segment.io https://*.small-improvements.com
+        https://api.rollbar.com https://app.bamboohr.co.uk https://bam.nr-data.net
+        https://connect.facebook.net *.algolianet.com *.algolia.net embedwistia-a.akamaihd.net
+        app.pendo.io cdn.pendo.io pendo-io-extensions.storage.googleapis.com pendo-static-5734959405072384.storage.googleapis.com
+        https://*.wistia.com https://*.wistia.net https://fonts.googleapis.com https://fonts.gstatic.com
+        https://example.com https://www.google-analytics.com https://payments.subscriptionplatform.com
+        https://s-static.ak.facebook.com themes.googleusercontent.com https://wufoo.com
+        https://*.wufoo.com https://www.google.com https://tagmanager.google.com https://bamboohr.formstack.com
+        https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://portal-2.flatfile.io
+        https://*.zuora.com https://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com
+        https://*.salesforceliveagent.com https://*.force.com https://*.site.com wss://*.pusher.com
+        https://*.checkr.com https://accounts.google.com https://login.microsoftonline.com
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; script-src ''self'' *.bamboohr.com *.bamboohr.co.uk data:
+        blob: about https://*.bamboohr.com https://cdn.api.twitter.com https://connect.facebook.net
+        https://bam.nr-data.net *.cloudfront.net d24d2g0g8l15q8.cloudfront.net dwc7c3b4xwlvf.cloudfront.net
+        d3lfqt3qfgn8k7.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://accounts.google.com https://login.microsoftonline.com
+        *.newrelic.com http://*.newrelic.com https://fast.wistia.net https://fast.wistia.com
+        get.bamboohr.com *.algolianet.com *.algolia.net app.pendo.io pendo-io-static.storage.googleapis.com
+        cdn.pendo.io pendo-static-5734959405072384.storage.googleapis.com https://pi.pardot.com
+        https://www.my1login.com https://app.onelogin.com https://ajax.googleapis.com
+        http://ajax.googleapis.com https://ssl.google-analytics.com https://www.googletagmanager.com
+        https://tagmanager.google.com https://www.google-analytics.com https://www.google.com
+        https://s3.amazonaws.com https://cdnjs.cloudflare.com https://wufoo.com https://*.wufoo.com
+        https://*.linkedin.com https://bat.bing.com/bat.js https://www.googleadservices.com/pagead/conversion_async.js
+        https://s.adroll.com/j/roundtrip.js https://*.segment.com https://*.segment.io
+        https://bamboohr.formstack.com https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://*.zuora.com https://*.pusher.com
+        wss://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com https://*.salesforceliveagent.com
+        https://*.force.com https://*.site.com https://*.checkr.com https://www.google.com/recaptcha/
+        https://www.gstatic.com/recaptcha/ https://www.recaptcha.net/recaptcha/ https://portal-2.flatfile.io
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; img-src * data: blob: ; report-uri /ajax/parse_csp_report.php
+        ; worker-src ''self'' data: blob: ;'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Authorization,User-Agent
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 87e51e0d3acc94ff-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"meta":[],"result":{"name":"Avidbots","id":"72799","logoUrl":"https:\/\/images3.bamboohr.com\/72799\/logos\/cropped.jpg?v=32","careerShareUrl":"https:\/\/avidbots.bamboohr.com\/careers","shareImageUrl":"https:\/\/avidbots.bamboohr.com\/jobs\/share_image\/32","inTrial":false,"appSessId":"9583664051a1ce3d064b005b0d9aa9ef4f08f56e"}}'
+  recorded_at: Sat, 04 May 2024 02:38:56 GMT
+- request:
+    method: get
+    uri: https://avidbots.bamboohr.com/careers/company-info/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - avidbots.bamboohr.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 10 May 2024 14:56:37 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=NaFh6nMQzc14IGBsh6zA87b8O0F5YQKQ; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=0nvWwCmclZynevhoHP9hO3EWM.TVUrpD5Ehl8hpEzDs-1715352997765-0.0.1.1-604800000;
+        path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache, private
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self'' data: blob: https://*.bamboohr.com https://*.bamboohr.co.uk
+        *.cloudfront.net d24d2g0g8l15q8.cloudfront.net d3lfqt3qfgn8k7.cloudfront.net
+        dwc7c3b4xwlvf.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://*.browser-intake-datadoghq.com https://*.facebook.com
+        https://*.linkedin.com https://*.segment.io https://*.small-improvements.com
+        https://api.rollbar.com https://app.bamboohr.co.uk https://bam.nr-data.net
+        https://connect.facebook.net *.algolianet.com *.algolia.net embedwistia-a.akamaihd.net
+        app.pendo.io cdn.pendo.io pendo-io-extensions.storage.googleapis.com pendo-static-5734959405072384.storage.googleapis.com
+        https://*.wistia.com https://*.wistia.net https://fonts.googleapis.com https://fonts.gstatic.com
+        https://example.com https://www.google-analytics.com https://payments.subscriptionplatform.com
+        https://s-static.ak.facebook.com themes.googleusercontent.com https://wufoo.com
+        https://*.wufoo.com https://www.google.com https://tagmanager.google.com https://bamboohr.formstack.com
+        https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://portal-2.flatfile.io
+        https://*.zuora.com https://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com
+        https://*.salesforceliveagent.com https://*.force.com https://*.site.com wss://*.pusher.com
+        https://*.checkr.com https://accounts.google.com https://login.microsoftonline.com
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; script-src ''self'' *.bamboohr.com *.bamboohr.co.uk data:
+        blob: about https://*.bamboohr.com https://cdn.api.twitter.com https://connect.facebook.net
+        https://bam.nr-data.net *.cloudfront.net d24d2g0g8l15q8.cloudfront.net dwc7c3b4xwlvf.cloudfront.net
+        d3lfqt3qfgn8k7.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://accounts.google.com https://login.microsoftonline.com
+        *.newrelic.com http://*.newrelic.com https://fast.wistia.net https://fast.wistia.com
+        get.bamboohr.com *.algolianet.com *.algolia.net app.pendo.io pendo-io-static.storage.googleapis.com
+        cdn.pendo.io pendo-static-5734959405072384.storage.googleapis.com https://pi.pardot.com
+        https://www.my1login.com https://app.onelogin.com https://ajax.googleapis.com
+        http://ajax.googleapis.com https://ssl.google-analytics.com https://www.googletagmanager.com
+        https://tagmanager.google.com https://www.google-analytics.com https://www.google.com
+        https://s3.amazonaws.com https://cdnjs.cloudflare.com https://wufoo.com https://*.wufoo.com
+        https://*.linkedin.com https://bat.bing.com/bat.js https://www.googleadservices.com/pagead/conversion_async.js
+        https://s.adroll.com/j/roundtrip.js https://*.segment.com https://*.segment.io
+        https://bamboohr.formstack.com https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://*.zuora.com https://*.pusher.com
+        wss://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com https://*.salesforceliveagent.com
+        https://*.force.com https://*.site.com https://*.checkr.com https://www.google.com/recaptcha/
+        https://www.gstatic.com/recaptcha/ https://www.recaptcha.net/recaptcha/ https://portal-2.flatfile.io
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; img-src * data: blob: ; report-uri /ajax/parse_csp_report.php
+        ; worker-src ''self'' data: blob: ;'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Authorization,User-Agent
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 881ac6e90ee17200-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"meta":[],"result":{"name":"Avidbots","id":"72799","logoUrl":"https:\/\/images3.bamboohr.com\/72799\/logos\/cropped.jpg?v=32","careerShareUrl":"https:\/\/avidbots.bamboohr.com\/careers","shareImageUrl":"https:\/\/avidbots.bamboohr.com\/jobs\/share_image\/32","inTrial":false,"appSessId":"c479430fe61275f364d0da7ad91ec6683dd860da"}}'
+  recorded_at: Fri, 10 May 2024 14:56:35 GMT
 recorded_with: VCR 6.2.0

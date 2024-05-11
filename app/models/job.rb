@@ -80,8 +80,7 @@ class Job < ApplicationRecord
       seniority: filter_by_seniority(params[:seniority]),
       locations: filter_by_location(params[:location]),
       roles: filter_by_role(params[:role]),
-      employment_type: filter_by_employment(params[:type]),
-      company: params[:company]&.split
+      employment_type: filter_by_employment(params[:type])
     }.compact
 
     associations = build_associations(params)
@@ -90,8 +89,7 @@ class Job < ApplicationRecord
   end
 
   def self.including_any(params, param)
-    exclusive_params = params.reject { |k, _v| k == param.to_s }
-    filter_and_sort(exclusive_params)
+    filter_and_sort params.except(param)
   end
 
   private

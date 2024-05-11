@@ -35,9 +35,9 @@ module Ats
       end
 
       def build_description(data)
-        data['descriptionBodyPlain'] + data['lists'].inject('') do |string, field|
-                                         string + field['text'] + field['content']
-                                       end
+        data['descriptionBody'] + data['lists'].inject('') do |string, field|
+                                    string + field['text'] + field['content']
+                                  end
       end
 
       def build_location_string(data)

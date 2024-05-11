@@ -131,6 +131,10 @@ class ApplicantTrackingSystem < ApplicationRecord
     return data.dig(0, 'name') unless data.blank?
   end
 
+  def fetch_total_live(ats_identifier)
+    fetch_company_jobs(ats_identifier)&.count
+  end
+
   def replace_ats_identifier(ats_identifier)
     api_url = url_api.gsub("XXX", ats_identifier)
     main_url = url_base.gsub("XXX", ats_identifier)
