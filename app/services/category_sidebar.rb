@@ -1,5 +1,6 @@
 class CategorySidebar
   SENIORITIES = [
+    'Spring Week',
     'Internship',
     'Entry-Level',
     'Junior',
@@ -9,6 +10,7 @@ class CategorySidebar
     'VP',
     'SVP / Partner'
   ]
+
   ROLES = {
     'front_end' => 'Front End',
     'back_end' => 'Back End',
@@ -18,12 +20,14 @@ class CategorySidebar
     'mobile' => 'Mobile',
     'data_engineer' => 'Data Engineer'
   }
+
   EMPLOYMENT_TYPES = [
     'Full-time',
     'Permanent',
     'Contract',
     'Part-time'
   ]
+
   CONVERT_TO_DAYS = {
     'Any time' => 99_999,
     'Within a month' => 30,
@@ -31,6 +35,40 @@ class CategorySidebar
     'Last 3 days' => 3,
     'Today' => 0
   }
+
+  # TODO: Decide on what business type/size cuts we want
+  BUSINESS_TYPES = [
+    'Startup',
+    'Scale-up',
+    'Boutique',
+    'SME',
+    'Corporate',
+    'Non-profit',
+    'Charity',
+    'Public Sector',
+    'NGO',
+    'FTSE100',
+    'FTSE250',
+    'Fortune 500',
+    'Unicorn',
+    'Decacorn',
+    'Family Business',
+    'Academic'
+  ]
+
+  # TODO: Decide if we want to include this
+  HORIZONTALS = [
+    'Sustainability',
+    'Finance',
+    'HR',
+    'Legal',
+    'Marketing',
+    'Operations',
+    'Product',
+    'Sales',
+    'Tech',
+    'Other'
+  ]
 
   def self.build_with(params)
     @params = params
