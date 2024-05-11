@@ -517,4 +517,69 @@ http_interactions:
         Illinois"},"metadata":null,"id":4344937007,"updated_at":"2024-04-09T17:37:41-04:00","requisition_id":"50","title":"Thrive
         Scholar Summer Academy Web Tech Fellow [Part Time, Summer Contract]"}],"meta":{"total":18}}'
   recorded_at: Fri, 10 May 2024 14:59:17 GMT
+- request:
+    method: get
+    uri: https://api.crunchbase.com/api/v4/autocompletes?query=CodePath&user_key=1a809e14a0c7e29e964a5923f1b17bdd
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.crunchbase.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, private
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 11 May 2024 19:09:11 GMT
+      Etag:
+      - W/"1715454551748"
+      Server:
+      - openresty
+      X-Cb-Engine:
+      - autocomplete:algolia
+      X-Cb-Engine-Cached:
+      - 'false'
+      X-Cb-Engine-Took:
+      - '32'
+      X-Cb-Request-Took:
+      - '62'
+      Content-Length:
+      - '3819'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"count":103,"entities":[{"facet_ids":["contact","siftery","aberdeen","semrush","company","rank","builtwith","bombora","ai_insight"],"identifier":{"uuid":"651f026c-ca1b-4b84-ca75-610c61c3db95","value":"CodePath","image_id":"wfsonfv0p92plryzwijf","permalink":"codepath","entity_def_id":"organization"},"short_description":"CodePath
+        is a nonprofit increasing diversity in tech by transforming CS college education."},{"facet_ids":["contact","aberdeen","semrush","company","rank","builtwith","bombora"],"identifier":{"uuid":"763373bb-36f2-4b74-803c-b61852bdaafa","value":"CorePath
+        Laboratories","image_id":"k5fl2wue5oss1tgx3gil","permalink":"corepath-laboratories","entity_def_id":"organization"},"short_description":"CorePath
+        Laboratories is a pathology laboratory that offers art diagnostic services."},{"facet_ids":["company","rank","builtwith","semrush"],"identifier":{"uuid":"10d6d9f8-3664-42a6-a86c-dbc9190f7671","value":"Codepater
+        Pvt. Ltd. | Digital Marketing Company Pune, India","image_id":"xickumifzm6xmiahpidf","permalink":"code-pater","entity_def_id":"organization"},"short_description":"One
+        of the pioneering web development & digital marketing company in Pune, India."},{"facet_ids":["contact","aberdeen","company","rank","builtwith"],"identifier":{"uuid":"9e0844d8-68dc-42d9-a74b-616b54289a22","value":"CorePath
+        Wealth Partners","image_id":"osb9gw44badry0u1qiy0","permalink":"corepath-wealth-partners","entity_def_id":"organization"},"short_description":"CorePath
+        Wealth Partners provides wealth management, investment management, accounting,
+        and financial planning solutions."},{"facet_ids":["company","rank","builtwith"],"identifier":{"uuid":"09167cb5-c04a-4e51-9aab-e8fc9a70ef87","value":"CodeMath","image_id":"befug0u7g0omp4inhwet","permalink":"codemath","entity_def_id":"organization"},"short_description":"CodeMath
+        is a digital platform that teaches coding as a basic literacy and uses code
+        to teach math concepts."},{"facet_ids":["company","rank","builtwith"],"identifier":{"uuid":"25b5353f-59eb-d43f-3ee3-8999ac4dfd83","value":"CorePath
+        Robotics","image_id":"v1489029665/iapjc0vhr41dnncxud40.png","permalink":"corepath-robotics","entity_def_id":"organization"},"short_description":"CorePath
+        Robotics is an emerging robot software company, currently based in Odense
+        Robotics StartUp Hub."},{"facet_ids":["contact","semrush","company","rank","builtwith","bombora"],"identifier":{"uuid":"d95168c2-346a-40d5-9169-4cf8da335297","value":"CarepathRx","image_id":"xjh1cefgcz3kzhmf4o0c","permalink":"carepathrx","entity_def_id":"organization"},"short_description":"CarepathRx
+        is transforming pharmacy care delivery for health systems and hospitals."},{"facet_ids":["contact","siftery","aberdeen","apptopia","semrush","company","rank","builtwith","bombora"],"identifier":{"uuid":"2cde1221-0657-f27c-937d-ed2443a488d6","value":"Codemate
+        Ltd","image_id":"du8qsj61k46ervwsxjsv","permalink":"codemate-ltd","entity_def_id":"organization"},"short_description":"Codemate
+        Ltd is a company that provides specialized web systems and mobile applications."},{"facet_ids":["contact","siftery","aberdeen","semrush","company","rank","builtwith"],"identifier":{"uuid":"ccaeaaba-ad32-0446-63e3-7e3ed95fadc5","value":"Codethink","image_id":"v1444393276/liy4l0nas6ygpdphh8zh.png","permalink":"codethink","entity_def_id":"organization"},"short_description":"An
+        ethical, independent, and versatile software services company."},{"facet_ids":["aberdeen","semrush","company","rank","builtwith","bombora"],"identifier":{"uuid":"1d15d44f-5803-480f-96b7-f9ac95faed1f","value":"Codevative","image_id":"a7oviveknytdulj8wc0s","permalink":"codevative","entity_def_id":"organization"},"short_description":"Codevative
+        offers mobile app development, website development, web design, digital transformation,
+        and digital marketing services."}]}'
+  recorded_at: Sat, 11 May 2024 19:09:11 GMT
 recorded_with: VCR 6.2.0

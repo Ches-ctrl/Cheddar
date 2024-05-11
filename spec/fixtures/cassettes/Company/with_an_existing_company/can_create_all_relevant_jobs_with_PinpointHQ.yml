@@ -8193,4 +8193,53 @@ http_interactions:
       string: !binary |-
         eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cHM6XC9cL2Rldi52aXJ0dWFsZWFydGgubmV0XC9CcmFuZGluZ1wvbG9nb19wb3dlcmVkX2J5LnBuZyIsImNvcHlyaWdodCI6IkNvcHlyaWdodCDCqSAyMDI0IE1pY3Jvc29mdCBhbmQgaXRzIHN1cHBsaWVycy4gQWxsIHJpZ2h0cyByZXNlcnZlZC4gVGhpcyBBUEkgY2Fubm90IGJlIGFjY2Vzc2VkIGFuZCB0aGUgY29udGVudCBhbmQgYW55IHJlc3VsdHMgbWF5IG5vdCBiZSB1c2VkLCByZXByb2R1Y2VkIG9yIHRyYW5zbWl0dGVkIGluIGFueSBtYW5uZXIgd2l0aG91dCBleHByZXNzIHdyaXR0ZW4gcGVybWlzc2lvbiBmcm9tIE1pY3Jvc29mdCBDb3Jwb3JhdGlvbi4iLCJyZXNvdXJjZVNldHMiOlt7ImVzdGltYXRlZFRvdGFsIjozLCJyZXNvdXJjZXMiOlt7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzUyLjE2OTc0NjM5ODkyNTc4MSwxMi40NjM1NTI0NzQ5NzU1ODYsNTIuODYyNTEwNjgxMTUyMzQ0LDE0LjMwNTQ4NjY3OTA3NzE0OF0sIm5hbWUiOiJCZXJsaW4sIEJFLCBHZXJtYW55IiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOls1Mi41MjM0Mjk4NywxMy40MTE0MzYwOF19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJCRSIsImFkbWluRGlzdHJpY3QyIjoiU3RhZHQgQmVybGluIiwiY291bnRyeVJlZ2lvbiI6Ikdlcm1hbnkiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiQmVybGluLCBCRSwgR2VybWFueSIsImxvY2FsaXR5IjoiQmVybGluIn0sImNvbmZpZGVuY2UiOiJIaWdoIiwiZW50aXR5VHlwZSI6IlBvcHVsYXRlZFBsYWNlIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOls1Mi41MjM0Mjk4NywxMy40MTE0MzYwOF0sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzUyLjI4ODkzMjgwMDI5Mjk2OSwxMy4wNDE1MDI5NTI1NzU2ODQsNTIuNzI4NjYwNTgzNDk2MDk0LDEzLjgxMDkyMjYyMjY4MDY2NF0sIm5hbWUiOiJCZXJsaW4iLCJwb2ludCI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzUyLjUwMTQ3MjQ3LDEzLjQwMjMxNzA1XX0sImFkZHJlc3MiOnsiYWRtaW5EaXN0cmljdCI6IkJFIiwiY291bnRyeVJlZ2lvbiI6Ikdlcm1hbnkiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiQmVybGluIn0sImNvbmZpZGVuY2UiOiJIaWdoIiwiZW50aXR5VHlwZSI6IkFkbWluRGl2aXNpb24xIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOls1Mi41MDE0NzI0NywxMy40MDIzMTcwNV0sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzUyLjMzODA2OTkxNTc3MTQ4NCwxMy4wODgyOTQwMjkyMzU4NCw1Mi42NzUzMzExMTU3MjI2NTYsMTMuNzYwOTE4NjE3MjQ4NTM1XSwibmFtZSI6IlN0YWR0IEJlcmxpbiIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbNTIuNTAxNDcyNDcsMTMuNDAyMzE3MDVdfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiQkUiLCJhZG1pbkRpc3RyaWN0MiI6IlN0YWR0IEJlcmxpbiIsImNvdW50cnlSZWdpb24iOiJHZXJtYW55IiwiZm9ybWF0dGVkQWRkcmVzcyI6IlN0YWR0IEJlcmxpbiJ9LCJjb25maWRlbmNlIjoiTG93IiwiZW50aXR5VHlwZSI6IkFkbWluRGl2aXNpb24yIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOls1Mi41MDE0NzI0NywxMy40MDIzMTcwNV0sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfV19XSwic3RhdHVzQ29kZSI6MjAwLCJzdGF0dXNEZXNjcmlwdGlvbiI6Ik9LIiwidHJhY2VJZCI6ImEwZDM4ODU3OGVkNzU2MzEyYzRjMTdhNjlkNWZjNjFmfERVMDAwMDMwNUN8MC4wLjAuMXxSZWYgQTogQTBEQjU3QjRBMkI2NDdCQjlEN0YxNTYyQkE3QjFFMEMgUmVmIEI6IERCM0VER0UzMTA4IFJlZiBDOiAyMDI0LTA1LTEwVDE0OjU5OjI3WiJ9
   recorded_at: Fri, 10 May 2024 14:59:25 GMT
+- request:
+    method: get
+    uri: https://api.crunchbase.com/api/v4/autocompletes?query=Aurora%20Energy%20Research&user_key=1a809e14a0c7e29e964a5923f1b17bdd
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.crunchbase.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, private
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 11 May 2024 19:09:15 GMT
+      Etag:
+      - W/"1715454555993"
+      Server:
+      - openresty
+      X-Cb-Engine:
+      - autocomplete:algolia
+      X-Cb-Engine-Cached:
+      - 'false'
+      X-Cb-Engine-Took:
+      - '37'
+      X-Cb-Request-Took:
+      - '64'
+      Content-Length:
+      - '489'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"count":1,"entities":[{"facet_ids":["contact","ipqwery","apptopia","semrush","company","rank","builtwith","bombora","ai_insight"],"identifier":{"uuid":"b306af1e-0246-4ef3-a6e8-dfeca7cb7e33","value":"Aurora
+        Energy Research","image_id":"3086336928b54d99a003","permalink":"aurora-energy-research","entity_def_id":"organization"},"short_description":"Aurora
+        Energy Research is a power market analytics company that offers subscription
+        analytics, software solutions, and advisory services."}]}'
+  recorded_at: Sat, 11 May 2024 19:09:15 GMT
 recorded_with: VCR 6.2.0

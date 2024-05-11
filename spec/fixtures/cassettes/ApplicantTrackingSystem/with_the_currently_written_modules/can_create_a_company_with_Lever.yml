@@ -158,4 +158,40 @@ http_interactions:
         Luxury Buffet is the flagship brand of the Vikings Group and the go-to buffet
         restaurant. Learn more by clicking the link below."}]}'
   recorded_at: Wed, 01 May 2024 14:14:47 GMT
+- request:
+    method: get
+    uri: https://api.crunchbase.com/api/v4/autocompletes?query=GoTo%20Group&user_key=1a809e14a0c7e29e964a5923f1b17bdd
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.crunchbase.com
+  response:
+    status:
+      code: 429
+      message: Too Many Requests
+    headers:
+      Content-Type:
+      - text/plain; charset=us-ascii
+      Date:
+      - Sat, 11 May 2024 19:08:45 GMT
+      Retry-After:
+      - '15'
+      Server:
+      - openresty
+      Content-Length:
+      - '20'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: Usage limit exceeded
+  recorded_at: Sat, 11 May 2024 19:08:45 GMT
 recorded_with: VCR 6.2.0
