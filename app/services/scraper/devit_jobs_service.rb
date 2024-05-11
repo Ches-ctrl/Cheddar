@@ -3,8 +3,10 @@ module Scraper
     include Capybara::DSL
     include CheckUrlIsValid
 
+    # TODO: Move this into a separate API folder as no longer scraping
+
     def scrape_page
-      return p "Unable to scrape DevIT: first create ATS" unless (@ats = ApplicantTrackingSystem.find_by(name: 'DevITJobs'))
+      return p "Unable to scrape DevITJobs: first create ATS" unless (@ats = ApplicantTrackingSystem.find_by(name: 'DevITJobs'))
 
       @redirect_urls = []
 
@@ -13,7 +15,7 @@ module Scraper
 
         company = @ats.find_or_create_company_by_data(job_data)
         job = @ats.find_or_create_job_by_data(company, job_data)
-        p "Created DevIT job: #{job.title}"
+        p "Created DevITJobs job - #{job.title}"
       end
 
       p "grabbing jobs with DevIT redirects..."
