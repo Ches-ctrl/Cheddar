@@ -675,4 +675,529 @@ http_interactions:
         Maarten (Dutch part)"},{"id":"253","text":"Zimbabwe"},{"id":"254","text":"Kosovo"},{"id":"255","text":"Kurdistan"},{"id":"256","text":"Saint
         Martin (French part)"}]},"linkedinUrl":{"isRequired":false,"value":""},"dateAvailable":{"isRequired":false,"value":""},"desiredPay":{"isRequired":false,"value":""},"websiteUrl":{"isRequired":false,"value":""},"resumeFileId":{"isRequired":true,"value":""},"customQuestions":[],"genderId":[],"ethnicityId":[],"veteranStatusId":[],"disabilityId":[]}}}'
   recorded_at: Wed, 01 May 2024 14:15:05 GMT
+- request:
+    method: get
+    uri: https://premise.bamboohr.com/careers/company-info
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - premise.bamboohr.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 04 May 2024 02:39:04 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=3JcNSzSNHDswBKk2yP59JKCaMvDmFm1C; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=EqBJazVaE63s8Z0J8g91aBA4RLe4.nNXDokzZOhaFoQ-1714790344587-0.0.1.1-604800000;
+        path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache, private
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self'' data: blob: https://*.bamboohr.com https://*.bamboohr.co.uk
+        *.cloudfront.net d24d2g0g8l15q8.cloudfront.net d3lfqt3qfgn8k7.cloudfront.net
+        dwc7c3b4xwlvf.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://*.browser-intake-datadoghq.com https://*.facebook.com
+        https://*.linkedin.com https://*.segment.io https://*.small-improvements.com
+        https://api.rollbar.com https://app.bamboohr.co.uk https://bam.nr-data.net
+        https://connect.facebook.net *.algolianet.com *.algolia.net embedwistia-a.akamaihd.net
+        app.pendo.io cdn.pendo.io pendo-io-extensions.storage.googleapis.com pendo-static-5734959405072384.storage.googleapis.com
+        https://*.wistia.com https://*.wistia.net https://fonts.googleapis.com https://fonts.gstatic.com
+        https://example.com https://www.google-analytics.com https://payments.subscriptionplatform.com
+        https://s-static.ak.facebook.com themes.googleusercontent.com https://wufoo.com
+        https://*.wufoo.com https://www.google.com https://tagmanager.google.com https://bamboohr.formstack.com
+        https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://portal-2.flatfile.io
+        https://*.zuora.com https://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com
+        https://*.salesforceliveagent.com https://*.force.com https://*.site.com wss://*.pusher.com
+        https://*.checkr.com https://accounts.google.com https://login.microsoftonline.com
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; script-src ''self'' *.bamboohr.com *.bamboohr.co.uk data:
+        blob: about https://*.bamboohr.com https://cdn.api.twitter.com https://connect.facebook.net
+        https://bam.nr-data.net *.cloudfront.net d24d2g0g8l15q8.cloudfront.net dwc7c3b4xwlvf.cloudfront.net
+        d3lfqt3qfgn8k7.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://accounts.google.com https://login.microsoftonline.com
+        *.newrelic.com http://*.newrelic.com https://fast.wistia.net https://fast.wistia.com
+        get.bamboohr.com *.algolianet.com *.algolia.net app.pendo.io pendo-io-static.storage.googleapis.com
+        cdn.pendo.io pendo-static-5734959405072384.storage.googleapis.com https://pi.pardot.com
+        https://www.my1login.com https://app.onelogin.com https://ajax.googleapis.com
+        http://ajax.googleapis.com https://ssl.google-analytics.com https://www.googletagmanager.com
+        https://tagmanager.google.com https://www.google-analytics.com https://www.google.com
+        https://s3.amazonaws.com https://cdnjs.cloudflare.com https://wufoo.com https://*.wufoo.com
+        https://*.linkedin.com https://bat.bing.com/bat.js https://www.googleadservices.com/pagead/conversion_async.js
+        https://s.adroll.com/j/roundtrip.js https://*.segment.com https://*.segment.io
+        https://bamboohr.formstack.com https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://*.zuora.com https://*.pusher.com
+        wss://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com https://*.salesforceliveagent.com
+        https://*.force.com https://*.site.com https://*.checkr.com https://www.google.com/recaptcha/
+        https://www.gstatic.com/recaptcha/ https://www.recaptcha.net/recaptcha/ https://portal-2.flatfile.io
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; img-src * data: blob: ; report-uri /ajax/parse_csp_report.php
+        ; worker-src ''self'' data: blob: ;'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Authorization,User-Agent
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 87e51e44d96cdcdf-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"meta":[],"result":{"name":"Premise","id":"490341","logoUrl":"https:\/\/images4.bamboohr.com\/490341\/logos\/cropped.jpg?v=34","careerShareUrl":"https:\/\/premise.bamboohr.com\/careers","shareImageUrl":"https:\/\/premise.bamboohr.com\/jobs\/share_image\/34","inTrial":false,"appSessId":"d70ee772014ccbe87e4eda1580f18b70bb69cf59"}}'
+  recorded_at: Sat, 04 May 2024 02:39:04 GMT
+- request:
+    method: get
+    uri: http://dev.virtualearth.net/REST/v1/Locations/Washington,%20District%20of%20Columbia%2020037%20United%20States?key=AmhBY6imsSQC_f1o8tlcEXoO6WxekJR2plXfZQr7g_Y6I35Yh18bR1khIX9jc9vI
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - dev.virtualearth.net
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 04 May 2024 02:39:04 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Headers:
+      - Content-Type,X-FD-Features,X-FD-FLIGHT,PreferAnonymous
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cache-Control:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      X-Bm-Traceid:
+      - 8371ecf3fdcb1e0d3559d129fdb7273c
+      X-Bm-Be-Elapsed:
+      - '76'
+      X-Msedge-Ref:
+      - 'Ref A: 58B57013B46C40E6906E7CAB63ABA081 Ref B: DB3EDGE2220 Ref C: 2024-05-04T02:39:04Z'
+      X-Bm-Fe-Elapsed:
+      - '87'
+      X-Bm-Srv:
+      - mapsplatform-frontend-6cdf86c749-qqstj, DU00003040
+      X-Ms-Bm-Ws-Info:
+      - '0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      X-Azure-Ref:
+      - 20240504T023904Z-r16c786d999l7n693g8z3qu16800000001kg00000000g0sm
+      X-Cache:
+      - CONFIG_NOCACHE
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cHM6XC9cL2Rldi52aXJ0dWFsZWFydGgubmV0XC9CcmFuZGluZ1wvbG9nb19wb3dlcmVkX2J5LnBuZyIsImNvcHlyaWdodCI6IkNvcHlyaWdodCDCqSAyMDI0IE1pY3Jvc29mdCBhbmQgaXRzIHN1cHBsaWVycy4gQWxsIHJpZ2h0cyByZXNlcnZlZC4gVGhpcyBBUEkgY2Fubm90IGJlIGFjY2Vzc2VkIGFuZCB0aGUgY29udGVudCBhbmQgYW55IHJlc3VsdHMgbWF5IG5vdCBiZSB1c2VkLCByZXByb2R1Y2VkIG9yIHRyYW5zbWl0dGVkIGluIGFueSBtYW5uZXIgd2l0aG91dCBleHByZXNzIHdyaXR0ZW4gcGVybWlzc2lvbiBmcm9tIE1pY3Jvc29mdCBDb3Jwb3JhdGlvbi4iLCJyZXNvdXJjZVNldHMiOlt7ImVzdGltYXRlZFRvdGFsIjoxLCJyZXNvdXJjZXMiOlt7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzM4Ljg4NjI1MzM1NjkzMzU5NCwtNzcuMDY4NjAzNTE1NjI1LDM4LjkxMTE1MTg4NTk4NjMyOCwtNzcuMDM5NDU5MjI4NTE1NjI1XSwibmFtZSI6IjIwMDM3LCBEQyIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMzguOTAyOTAwNywtNzcuMDUwNzgxMjVdfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiREMiLCJhZG1pbkRpc3RyaWN0MiI6IkNpdHkgb2YgV2FzaGluZ3RvbiIsImNvdW50cnlSZWdpb24iOiJVbml0ZWQgU3RhdGVzIiwiZm9ybWF0dGVkQWRkcmVzcyI6IjIwMDM3LCBEQyIsImxvY2FsaXR5IjoiV2FzaGluZ3RvbiIsInBvc3RhbENvZGUiOiIyMDAzNyJ9LCJjb25maWRlbmNlIjoiSGlnaCIsImVudGl0eVR5cGUiOiJQb3N0Y29kZTEiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzM4LjkwMjkwMDcsLTc3LjA1MDc4MTI1XSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19XX1dLCJzdGF0dXNDb2RlIjoyMDAsInN0YXR1c0Rlc2NyaXB0aW9uIjoiT0siLCJ0cmFjZUlkIjoiODM3MWVjZjNmZGNiMWUwZDM1NTlkMTI5ZmRiNzI3M2N8RFUwMDAwMzA0MHwwLjAuMC4xfFJlZiBBOiA1OEI1NzAxM0I0NkM0MEU2OTA2RTdDQUI2M0FCQTA4MSBSZWYgQjogREIzRURHRTIyMjAgUmVmIEM6IDIwMjQtMDUtMDRUMDI6Mzk6MDRaIn0=
+  recorded_at: Sat, 04 May 2024 02:39:04 GMT
+- request:
+    method: get
+    uri: http://dev.virtualearth.net/REST/v1/Locations/Washington?key=AmhBY6imsSQC_f1o8tlcEXoO6WxekJR2plXfZQr7g_Y6I35Yh18bR1khIX9jc9vI
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - dev.virtualearth.net
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 04 May 2024 02:39:05 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Headers:
+      - Content-Type,X-FD-Features,X-FD-FLIGHT,PreferAnonymous
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cache-Control:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      X-Bm-Traceid:
+      - 6b8783c9fc22dadf87bc69dff103f154
+      X-Bm-Be-Elapsed:
+      - '70'
+      X-Msedge-Ref:
+      - 'Ref A: 0EC29A07133F424A90B8F0145E5609A6 Ref B: DB3EDGE2621 Ref C: 2024-05-04T02:39:04Z'
+      X-Bm-Fe-Elapsed:
+      - '76'
+      X-Bm-Srv:
+      - mapsplatform-frontend-6cdf86c749-44qnh, DU0000305A
+      X-Ms-Bm-Ws-Info:
+      - '0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      X-Azure-Ref:
+      - 20240504T023904Z-15cfcd47bb5wbl9qgpbtwyz78w00000000a0000000001471
+      X-Cache:
+      - CONFIG_NOCACHE
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cHM6XC9cL2Rldi52aXJ0dWFsZWFydGgubmV0XC9CcmFuZGluZ1wvbG9nb19wb3dlcmVkX2J5LnBuZyIsImNvcHlyaWdodCI6IkNvcHlyaWdodCDCqSAyMDI0IE1pY3Jvc29mdCBhbmQgaXRzIHN1cHBsaWVycy4gQWxsIHJpZ2h0cyByZXNlcnZlZC4gVGhpcyBBUEkgY2Fubm90IGJlIGFjY2Vzc2VkIGFuZCB0aGUgY29udGVudCBhbmQgYW55IHJlc3VsdHMgbWF5IG5vdCBiZSB1c2VkLCByZXByb2R1Y2VkIG9yIHRyYW5zbWl0dGVkIGluIGFueSBtYW5uZXIgd2l0aG91dCBleHByZXNzIHdyaXR0ZW4gcGVybWlzc2lvbiBmcm9tIE1pY3Jvc29mdCBDb3Jwb3JhdGlvbi4iLCJyZXNvdXJjZVNldHMiOlt7ImVzdGltYXRlZFRvdGFsIjo1LCJyZXNvdXJjZXMiOlt7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzQ1LjU0NTEyNDA1Mzk1NTA3OCwtMTI0LjczNjM0MzM4Mzc4OTA2LDQ5LjAwMjUwMjQ0MTQwNjI1LC0xMTYuOTEzNTU4OTU5OTYwOTRdLCJuYW1lIjoiV2FzaGluZ3RvbiIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbNDcuNDExMzU3ODgsLTEyMC41NTY0ODA0MV19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJXQSIsImNvdW50cnlSZWdpb24iOiJVbml0ZWQgU3RhdGVzIiwiZm9ybWF0dGVkQWRkcmVzcyI6Ildhc2hpbmd0b24ifSwiY29uZmlkZW5jZSI6IkhpZ2giLCJlbnRpdHlUeXBlIjoiQWRtaW5EaXZpc2lvbjEiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzQ3LjQxMTM1Nzg4LC0xMjAuNTU2NDgwNDFdLCJjYWxjdWxhdGlvbk1ldGhvZCI6IlJvb2Z0b3AiLCJ1c2FnZVR5cGVzIjpbIkRpc3BsYXkiXX1dLCJtYXRjaENvZGVzIjpbIkdvb2QiXX0seyJfX3R5cGUiOiJMb2NhdGlvbjpodHRwOlwvXC9zY2hlbWFzLm1pY3Jvc29mdC5jb21cL3NlYXJjaFwvbG9jYWxcL3dzXC9yZXN0XC92MSIsImJib3giOlszOC43NTMxMjA0MjIzNjMyODEsLTc3LjE2OTE1MTMwNjE1MjM0NCwzOS4wNDU1NTUxMTQ3NDYwOTQsLTc2Ljg1OTM5Nzg4ODE4MzZdLCJuYW1lIjoiV2FzaGluZ3RvbiwgREMiLCJwb2ludCI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzM4Ljg5MjA2MzE0LC03Ny4wMTk5MTI3Ml19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJEQyIsImFkbWluRGlzdHJpY3QyIjoiQ2l0eSBvZiBXYXNoaW5ndG9uIiwiY291bnRyeVJlZ2lvbiI6IlVuaXRlZCBTdGF0ZXMiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiV2FzaGluZ3RvbiwgREMiLCJsb2NhbGl0eSI6Ildhc2hpbmd0b24ifSwiY29uZmlkZW5jZSI6IkxvdyIsImVudGl0eVR5cGUiOiJQb3B1bGF0ZWRQbGFjZSIsImdlb2NvZGVQb2ludHMiOlt7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMzguODkyMDYzMTQsLTc3LjAxOTkxMjcyXSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19LHsiX190eXBlIjoiTG9jYXRpb246aHR0cDpcL1wvc2NoZW1hcy5taWNyb3NvZnQuY29tXC9zZWFyY2hcL2xvY2FsXC93c1wvcmVzdFwvdjEiLCJiYm94IjpbMzguODA5MzE0NzI3NzgzMiwtNzcuMTE3OTEyMjkyNDgwNDY5LDM4Ljk5NTAxMDM3NTk3NjU2MywtNzYuOTA5NjkwODU2OTMzNl0sIm5hbWUiOiJEaXN0cmljdCBvZiBDb2x1bWJpYSIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMzguOTA0NzgxMzQsLTc3LjAxNjI5NjM5XX0sImFkZHJlc3MiOnsiYWRtaW5EaXN0cmljdCI6IkRDIiwiY291bnRyeVJlZ2lvbiI6IlVuaXRlZCBTdGF0ZXMiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiRGlzdHJpY3Qgb2YgQ29sdW1iaWEifSwiY29uZmlkZW5jZSI6IkxvdyIsImVudGl0eVR5cGUiOiJBZG1pbkRpdmlzaW9uMSIsImdlb2NvZGVQb2ludHMiOlt7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMzguOTA0NzgxMzQsLTc3LjAxNjI5NjM5XSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19LHsiX190eXBlIjoiTG9jYXRpb246aHR0cDpcL1wvc2NoZW1hcy5taWNyb3NvZnQuY29tXC9zZWFyY2hcL2xvY2FsXC93c1wvcmVzdFwvdjEiLCJiYm94IjpbNTQuODcxMDEzNjQxMzU3NDIyLC0xLjU2ODg4OTI2MDI5MjA1MzIsNTQuOTMzMjczMzE1NDI5Njg3LC0xLjQ1ODIyMTU1NDc1NjE2NDZdLCJuYW1lIjoiV2FzaGluZ3RvbiwgVHluZSBBbmQgV2VhciwgVW5pdGVkIEtpbmdkb20iLCJwb2ludCI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzU0Ljg5ODkwMjg5LC0xLjUzNTQ1MDddfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiRW5nbGFuZCIsImFkbWluRGlzdHJpY3QyIjoiVHluZSBBbmQgV2VhciIsImNvdW50cnlSZWdpb24iOiJVbml0ZWQgS2luZ2RvbSIsImZvcm1hdHRlZEFkZHJlc3MiOiJXYXNoaW5ndG9uLCBUeW5lIEFuZCBXZWFyLCBVbml0ZWQgS2luZ2RvbSIsImxvY2FsaXR5IjoiV2FzaGluZ3RvbiJ9LCJjb25maWRlbmNlIjoiTG93IiwiZW50aXR5VHlwZSI6IlBvcHVsYXRlZFBsYWNlIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOls1NC44OTg5MDI4OSwtMS41MzU0NTA3XSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19LHsiX190eXBlIjoiTG9jYXRpb246aHR0cDpcL1wvc2NoZW1hcy5taWNyb3NvZnQuY29tXC9zZWFyY2hcL2xvY2FsXC93c1wvcmVzdFwvdjEiLCJiYm94IjpbNDAuNjc1MTA5ODYzMjgxMjUsLTg5LjQ4MzcwMzYxMzI4MTI1LDQwLjczNDc0ODg0MDMzMjAzMSwtODkuMzc3OTUyNTc1NjgzNl0sIm5hbWUiOiJXYXNoaW5ndG9uLCBJTCIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbNDAuNzAzNDYwNjksLTg5LjQwMzcxNzA0XX0sImFkZHJlc3MiOnsiYWRtaW5EaXN0cmljdCI6IklMIiwiYWRtaW5EaXN0cmljdDIiOiJUYXpld2VsbCBDb3VudHkiLCJjb3VudHJ5UmVnaW9uIjoiVW5pdGVkIFN0YXRlcyIsImZvcm1hdHRlZEFkZHJlc3MiOiJXYXNoaW5ndG9uLCBJTCIsImxvY2FsaXR5IjoiV2FzaGluZ3RvbiJ9LCJjb25maWRlbmNlIjoiTG93IiwiZW50aXR5VHlwZSI6IlBvcHVsYXRlZFBsYWNlIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOls0MC43MDM0NjA2OSwtODkuNDAzNzE3MDRdLCJjYWxjdWxhdGlvbk1ldGhvZCI6IlJvb2Z0b3AiLCJ1c2FnZVR5cGVzIjpbIkRpc3BsYXkiXX1dLCJtYXRjaENvZGVzIjpbIkdvb2QiXX1dfV0sInN0YXR1c0NvZGUiOjIwMCwic3RhdHVzRGVzY3JpcHRpb24iOiJPSyIsInRyYWNlSWQiOiI2Yjg3ODNjOWZjMjJkYWRmODdiYzY5ZGZmMTAzZjE1NHxEVTAwMDAzMDVBfDAuMC4wLjF8UmVmIEE6IDBFQzI5QTA3MTMzRjQyNEE5MEI4RjAxNDVFNTYwOUE2IFJlZiBCOiBEQjNFREdFMjYyMSBSZWYgQzogMjAyNC0wNS0wNFQwMjozOTowNFoifQ==
+  recorded_at: Sat, 04 May 2024 02:39:05 GMT
+- request:
+    method: get
+    uri: http://dev.virtualearth.net/REST/v1/Locations/District%20of%20Columbia?key=AmhBY6imsSQC_f1o8tlcEXoO6WxekJR2plXfZQr7g_Y6I35Yh18bR1khIX9jc9vI
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - dev.virtualearth.net
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 04 May 2024 02:39:05 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Headers:
+      - Content-Type,X-FD-Features,X-FD-FLIGHT,PreferAnonymous
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cache-Control:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      X-Bm-Traceid:
+      - a9a9c19489438639bc18a80a9bcc6c06
+      X-Bm-Be-Elapsed:
+      - '71'
+      X-Msedge-Ref:
+      - 'Ref A: 5F5A552E097F467098FBD8F7E379DCE9 Ref B: DB3EDGE2819 Ref C: 2024-05-04T02:39:05Z'
+      X-Bm-Fe-Elapsed:
+      - '84'
+      X-Bm-Srv:
+      - mapsplatform-frontend-6cdf86c749-qqstj, DU0000307B
+      X-Ms-Bm-Ws-Info:
+      - '0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      X-Azure-Ref:
+      - 20240504T023905Z-er1bd8974cfp9hw6h5hbh9de2000000000e000000000d2rg
+      X-Cache:
+      - CONFIG_NOCACHE
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cHM6XC9cL2Rldi52aXJ0dWFsZWFydGgubmV0XC9CcmFuZGluZ1wvbG9nb19wb3dlcmVkX2J5LnBuZyIsImNvcHlyaWdodCI6IkNvcHlyaWdodCDCqSAyMDI0IE1pY3Jvc29mdCBhbmQgaXRzIHN1cHBsaWVycy4gQWxsIHJpZ2h0cyByZXNlcnZlZC4gVGhpcyBBUEkgY2Fubm90IGJlIGFjY2Vzc2VkIGFuZCB0aGUgY29udGVudCBhbmQgYW55IHJlc3VsdHMgbWF5IG5vdCBiZSB1c2VkLCByZXByb2R1Y2VkIG9yIHRyYW5zbWl0dGVkIGluIGFueSBtYW5uZXIgd2l0aG91dCBleHByZXNzIHdyaXR0ZW4gcGVybWlzc2lvbiBmcm9tIE1pY3Jvc29mdCBDb3Jwb3JhdGlvbi4iLCJyZXNvdXJjZVNldHMiOlt7ImVzdGltYXRlZFRvdGFsIjoxLCJyZXNvdXJjZXMiOlt7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzM4LjgwOTMxNDcyNzc4MzIsLTc3LjExNzkxMjI5MjQ4MDQ2OSwzOC45OTUwMTAzNzU5NzY1NjMsLTc2LjkwOTY5MDg1NjkzMzZdLCJuYW1lIjoiRGlzdHJpY3Qgb2YgQ29sdW1iaWEiLCJwb2ludCI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzM4LjkwNDc4MTM0LC03Ny4wMTYyOTYzOV19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJEQyIsImNvdW50cnlSZWdpb24iOiJVbml0ZWQgU3RhdGVzIiwiZm9ybWF0dGVkQWRkcmVzcyI6IkRpc3RyaWN0IG9mIENvbHVtYmlhIn0sImNvbmZpZGVuY2UiOiJIaWdoIiwiZW50aXR5VHlwZSI6IkFkbWluRGl2aXNpb24xIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlszOC45MDQ3ODEzNCwtNzcuMDE2Mjk2MzldLCJjYWxjdWxhdGlvbk1ldGhvZCI6IlJvb2Z0b3AiLCJ1c2FnZVR5cGVzIjpbIkRpc3BsYXkiXX1dLCJtYXRjaENvZGVzIjpbIkdvb2QiXX1dfV0sInN0YXR1c0NvZGUiOjIwMCwic3RhdHVzRGVzY3JpcHRpb24iOiJPSyIsInRyYWNlSWQiOiJhOWE5YzE5NDg5NDM4NjM5YmMxOGE4MGE5YmNjNmMwNnxEVTAwMDAzMDdCfDAuMC4wLjF8UmVmIEE6IDVGNUE1NTJFMDk3RjQ2NzA5OEZCRDhGN0UzNzlEQ0U5IFJlZiBCOiBEQjNFREdFMjgxOSBSZWYgQzogMjAyNC0wNS0wNFQwMjozOTowNVoifQ==
+  recorded_at: Sat, 04 May 2024 02:39:05 GMT
+- request:
+    method: get
+    uri: http://dev.virtualearth.net/REST/v1/Locations/20037?key=AmhBY6imsSQC_f1o8tlcEXoO6WxekJR2plXfZQr7g_Y6I35Yh18bR1khIX9jc9vI
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - dev.virtualearth.net
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 04 May 2024 02:39:05 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Headers:
+      - Content-Type,X-FD-Features,X-FD-FLIGHT,PreferAnonymous
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cache-Control:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      X-Bm-Traceid:
+      - 1da92412b9409771038ef1b8b1f4edbb
+      X-Bm-Be-Elapsed:
+      - '62'
+      X-Msedge-Ref:
+      - 'Ref A: 8A67AFC62ADA44E1943F39774F11F7C7 Ref B: DB3EDGE3111 Ref C: 2024-05-04T02:39:05Z'
+      X-Bm-Fe-Elapsed:
+      - '71'
+      X-Bm-Srv:
+      - mapsplatform-frontend-6cdf86c749-qqstj, DU00003058
+      X-Ms-Bm-Ws-Info:
+      - '0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      X-Azure-Ref:
+      - 20240504T023905Z-er1bd8974cf7z5vwbf5nnfyr6c00000009xg000000000u3x
+      X-Cache:
+      - CONFIG_NOCACHE
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cHM6XC9cL2Rldi52aXJ0dWFsZWFydGgubmV0XC9CcmFuZGluZ1wvbG9nb19wb3dlcmVkX2J5LnBuZyIsImNvcHlyaWdodCI6IkNvcHlyaWdodCDCqSAyMDI0IE1pY3Jvc29mdCBhbmQgaXRzIHN1cHBsaWVycy4gQWxsIHJpZ2h0cyByZXNlcnZlZC4gVGhpcyBBUEkgY2Fubm90IGJlIGFjY2Vzc2VkIGFuZCB0aGUgY29udGVudCBhbmQgYW55IHJlc3VsdHMgbWF5IG5vdCBiZSB1c2VkLCByZXByb2R1Y2VkIG9yIHRyYW5zbWl0dGVkIGluIGFueSBtYW5uZXIgd2l0aG91dCBleHByZXNzIHdyaXR0ZW4gcGVybWlzc2lvbiBmcm9tIE1pY3Jvc29mdCBDb3Jwb3JhdGlvbi4iLCJyZXNvdXJjZVNldHMiOlt7ImVzdGltYXRlZFRvdGFsIjoxLCJyZXNvdXJjZXMiOlt7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzM4Ljg4NjI1MzM1NjkzMzU5NCwtNzcuMDY4NjAzNTE1NjI1LDM4LjkxMTE1MTg4NTk4NjMyOCwtNzcuMDM5NDU5MjI4NTE1NjI1XSwibmFtZSI6IjIwMDM3LCBEQyIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMzguOTAyOTAwNywtNzcuMDUwNzgxMjVdfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiREMiLCJhZG1pbkRpc3RyaWN0MiI6IkNpdHkgb2YgV2FzaGluZ3RvbiIsImNvdW50cnlSZWdpb24iOiJVbml0ZWQgU3RhdGVzIiwiZm9ybWF0dGVkQWRkcmVzcyI6IjIwMDM3LCBEQyIsImxvY2FsaXR5IjoiV2FzaGluZ3RvbiIsInBvc3RhbENvZGUiOiIyMDAzNyJ9LCJjb25maWRlbmNlIjoiSGlnaCIsImVudGl0eVR5cGUiOiJQb3N0Y29kZTEiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzM4LjkwMjkwMDcsLTc3LjA1MDc4MTI1XSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19XX1dLCJzdGF0dXNDb2RlIjoyMDAsInN0YXR1c0Rlc2NyaXB0aW9uIjoiT0siLCJ0cmFjZUlkIjoiMWRhOTI0MTJiOTQwOTc3MTAzOGVmMWI4YjFmNGVkYmJ8RFUwMDAwMzA1OHwwLjAuMC4xfFJlZiBBOiA4QTY3QUZDNjJBREE0NEUxOTQzRjM5Nzc0RjExRjdDNyBSZWYgQjogREIzRURHRTMxMTEgUmVmIEM6IDIwMjQtMDUtMDRUMDI6Mzk6MDVaIn0=
+  recorded_at: Sat, 04 May 2024 02:39:05 GMT
+- request:
+    method: get
+    uri: http://dev.virtualearth.net/REST/v1/Locations/United%20States?key=AmhBY6imsSQC_f1o8tlcEXoO6WxekJR2plXfZQr7g_Y6I35Yh18bR1khIX9jc9vI
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - dev.virtualearth.net
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 04 May 2024 02:39:05 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Headers:
+      - Content-Type,X-FD-Features,X-FD-FLIGHT,PreferAnonymous
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cache-Control:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      X-Bm-Traceid:
+      - fa4be747f4ea8d7ebe81e4e21c1bb8f4
+      X-Bm-Be-Elapsed:
+      - '67'
+      X-Msedge-Ref:
+      - 'Ref A: FB21F37288D04AE88F08CD2DA88B3E30 Ref B: DB3EDGE3107 Ref C: 2024-05-04T02:39:05Z'
+      X-Bm-Fe-Elapsed:
+      - '77'
+      X-Bm-Srv:
+      - mapsplatform-frontend-6cdf86c749-8cf67, DU00003083
+      X-Ms-Bm-Ws-Info:
+      - '0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      X-Azure-Ref:
+      - 20240504T023905Z-er1bd8974cfcrvkxznuv8pcfw40000000pqg00000000d2ps
+      X-Cache:
+      - CONFIG_NOCACHE
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cHM6XC9cL2Rldi52aXJ0dWFsZWFydGgubmV0XC9CcmFuZGluZ1wvbG9nb19wb3dlcmVkX2J5LnBuZyIsImNvcHlyaWdodCI6IkNvcHlyaWdodCDCqSAyMDI0IE1pY3Jvc29mdCBhbmQgaXRzIHN1cHBsaWVycy4gQWxsIHJpZ2h0cyByZXNlcnZlZC4gVGhpcyBBUEkgY2Fubm90IGJlIGFjY2Vzc2VkIGFuZCB0aGUgY29udGVudCBhbmQgYW55IHJlc3VsdHMgbWF5IG5vdCBiZSB1c2VkLCByZXByb2R1Y2VkIG9yIHRyYW5zbWl0dGVkIGluIGFueSBtYW5uZXIgd2l0aG91dCBleHByZXNzIHdyaXR0ZW4gcGVybWlzc2lvbiBmcm9tIE1pY3Jvc29mdCBDb3Jwb3JhdGlvbi4iLCJyZXNvdXJjZVNldHMiOlt7ImVzdGltYXRlZFRvdGFsIjoxLCJyZXNvdXJjZXMiOlt7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzI1LjE0NjAxMzI1OTg4NzY5NSwtMTI0Ljc5MDc1NjIyNTU4NTk0LDQ5LjM4NDM1NzQ1MjM5MjU3OCwtNjYuOTcwMzk3OTQ5MjE4NzVdLCJuYW1lIjoiVW5pdGVkIFN0YXRlcyIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMzkuNTAzNTcwNTYsLTk5LjAxODM0MTA2XX0sImFkZHJlc3MiOnsiY291bnRyeVJlZ2lvbiI6IlVuaXRlZCBTdGF0ZXMiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiVW5pdGVkIFN0YXRlcyJ9LCJjb25maWRlbmNlIjoiSGlnaCIsImVudGl0eVR5cGUiOiJDb3VudHJ5UmVnaW9uIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlszOS41MDM1NzA1NiwtOTkuMDE4MzQxMDZdLCJjYWxjdWxhdGlvbk1ldGhvZCI6IlJvb2Z0b3AiLCJ1c2FnZVR5cGVzIjpbIkRpc3BsYXkiXX1dLCJtYXRjaENvZGVzIjpbIkdvb2QiXX1dfV0sInN0YXR1c0NvZGUiOjIwMCwic3RhdHVzRGVzY3JpcHRpb24iOiJPSyIsInRyYWNlSWQiOiJmYTRiZTc0N2Y0ZWE4ZDdlYmU4MWU0ZTIxYzFiYjhmNHxEVTAwMDAzMDgzfDAuMC4wLjF8UmVmIEE6IEZCMjFGMzcyODhEMDRBRTg4RjA4Q0QyREE4OEIzRTMwIFJlZiBCOiBEQjNFREdFMzEwNyBSZWYgQzogMjAyNC0wNS0wNFQwMjozOTowNVoifQ==
+  recorded_at: Sat, 04 May 2024 02:39:05 GMT
+- request:
+    method: get
+    uri: https://premise.bamboohr.com/careers/company-info/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - premise.bamboohr.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 10 May 2024 14:56:48 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=PHcIdUhCNNPJlI36fGhPkQbOeQ0jumvi; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=K6ozy7OmlvlI1h3zXN_jUWM2FKIZTpn3riCSyoga7y4-1715353008738-0.0.1.1-604800000;
+        path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache, private
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self'' data: blob: https://*.bamboohr.com https://*.bamboohr.co.uk
+        *.cloudfront.net d24d2g0g8l15q8.cloudfront.net d3lfqt3qfgn8k7.cloudfront.net
+        dwc7c3b4xwlvf.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://*.browser-intake-datadoghq.com https://*.facebook.com
+        https://*.linkedin.com https://*.segment.io https://*.small-improvements.com
+        https://api.rollbar.com https://app.bamboohr.co.uk https://bam.nr-data.net
+        https://connect.facebook.net *.algolianet.com *.algolia.net embedwistia-a.akamaihd.net
+        app.pendo.io cdn.pendo.io pendo-io-extensions.storage.googleapis.com pendo-static-5734959405072384.storage.googleapis.com
+        https://*.wistia.com https://*.wistia.net https://fonts.googleapis.com https://fonts.gstatic.com
+        https://example.com https://www.google-analytics.com https://payments.subscriptionplatform.com
+        https://s-static.ak.facebook.com themes.googleusercontent.com https://wufoo.com
+        https://*.wufoo.com https://www.google.com https://tagmanager.google.com https://bamboohr.formstack.com
+        https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://portal-2.flatfile.io
+        https://*.zuora.com https://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com
+        https://*.salesforceliveagent.com https://*.force.com https://*.site.com wss://*.pusher.com
+        https://*.checkr.com https://accounts.google.com https://login.microsoftonline.com
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; script-src ''self'' *.bamboohr.com *.bamboohr.co.uk data:
+        blob: about https://*.bamboohr.com https://cdn.api.twitter.com https://connect.facebook.net
+        https://bam.nr-data.net *.cloudfront.net d24d2g0g8l15q8.cloudfront.net dwc7c3b4xwlvf.cloudfront.net
+        d3lfqt3qfgn8k7.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://accounts.google.com https://login.microsoftonline.com
+        *.newrelic.com http://*.newrelic.com https://fast.wistia.net https://fast.wistia.com
+        get.bamboohr.com *.algolianet.com *.algolia.net app.pendo.io pendo-io-static.storage.googleapis.com
+        cdn.pendo.io pendo-static-5734959405072384.storage.googleapis.com https://pi.pardot.com
+        https://www.my1login.com https://app.onelogin.com https://ajax.googleapis.com
+        http://ajax.googleapis.com https://ssl.google-analytics.com https://www.googletagmanager.com
+        https://tagmanager.google.com https://www.google-analytics.com https://www.google.com
+        https://s3.amazonaws.com https://cdnjs.cloudflare.com https://wufoo.com https://*.wufoo.com
+        https://*.linkedin.com https://bat.bing.com/bat.js https://www.googleadservices.com/pagead/conversion_async.js
+        https://s.adroll.com/j/roundtrip.js https://*.segment.com https://*.segment.io
+        https://bamboohr.formstack.com https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://*.zuora.com https://*.pusher.com
+        wss://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com https://*.salesforceliveagent.com
+        https://*.force.com https://*.site.com https://*.checkr.com https://www.google.com/recaptcha/
+        https://www.gstatic.com/recaptcha/ https://www.recaptcha.net/recaptcha/ https://portal-2.flatfile.io
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; img-src * data: blob: ; report-uri /ajax/parse_csp_report.php
+        ; worker-src ''self'' data: blob: ;'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Authorization,User-Agent
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 881ac72fa9ec6323-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"meta":[],"result":{"name":"Premise","id":"490341","logoUrl":"https:\/\/images4.bamboohr.com\/490341\/logos\/cropped.jpg?v=34","careerShareUrl":"https:\/\/premise.bamboohr.com\/careers","shareImageUrl":"https:\/\/premise.bamboohr.com\/jobs\/share_image\/34","inTrial":false,"appSessId":"815b2778f2a91b178644e892d36a6cbc7be74ed7"}}'
+  recorded_at: Fri, 10 May 2024 14:56:46 GMT
 recorded_with: VCR 6.2.0

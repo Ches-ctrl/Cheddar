@@ -10,7 +10,8 @@ module Ats
       def company_details(ats_identifier)
         {
           url_ats_api: "https://devitjobs.uk/api/companyPages/#{ats_identifier}",
-          url_ats_main: "https://devitjobs.uk/companies/#{ats_identifier}"
+          url_ats_main: "https://devitjobs.uk/companies/#{ats_identifier}",
+          total_live: fetch_total_live(ats_identifier)
         }
       end
 

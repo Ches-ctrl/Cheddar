@@ -11,9 +11,7 @@ module Ats
       end
 
       def fetch_id(job_data)
-        path = job_data['path']
-        result = path&.match(%r{postings/([a-z\-0-9]+)})
-        result[1] if result
+        job_data['slug']
       end
 
       private
@@ -84,6 +82,7 @@ module Ats
         SENIORITY_TITLES.each do |keyword, level|
           return level if string.match?(keyword)
         end
+        return nil
       end
 
       def fetch_salary(data)
