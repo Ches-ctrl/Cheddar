@@ -20,7 +20,7 @@ class CategorySidebar
     'mobile' => 'Mobile',
     'data_engineer' => 'Data Engineer'
   }
-  
+
   EMPLOYMENT_TYPES = [
     'Full-time',
     'Permanent',
