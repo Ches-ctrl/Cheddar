@@ -89,7 +89,7 @@ puts "Preparing to re-seed database with #{response} Greenhouse jobs...\n"
 
 puts "Creating new jobs via Greenhouse API..."
 
-# defunct_urls = []
+defunct_urls = []
 
 puts "\nBuilding a list of job urls from the following companies:"
 puts "This may take a little while, worry not young padawan..."
