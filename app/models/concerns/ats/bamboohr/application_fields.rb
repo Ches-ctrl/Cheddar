@@ -16,6 +16,8 @@ module Ats
         fields.each do |locator, details|
           field = details.instance_of?(Array) ? build_additional_field(details) : build_core_field(locator, details)
           attributes.merge!(field)
+        rescue StandardError => e
+          {}
         end
 
         return attributes
