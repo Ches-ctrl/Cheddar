@@ -38,6 +38,8 @@ class UpdateExistingCompanyJobs < ApplicationJob
 
         company_jobs = @ats.fetch_company_jobs(ats_identifier)
 
+        next unless company_jobs
+
         # Create new jobs using AtsSystem method
         company_jobs.each do |job_data|
           @ats.find_or_create_job_by_data(company, job_data) if relevant?(job_data)
