@@ -16,19 +16,31 @@ until response do
   end
 end
 
-puts "Deleting previous (1) users, (2) jobs, (3)companies, (4) ATS Formats, (5) Applicant Tracking Systems, (6) Locations, (7) Countries, (8) Roles..."
+puts "-------------------------------------"
+
+puts "First deleting previous (1) users, (2) jobs, (3)companies, (4) ATS Formats, (5) Applicant Tracking Systems, (6) Locations, (7) Countries, (8) Roles..."
+puts "Are you sure you want to delete all data? (Y/N)"
+
+confirmation = gets.chomp.downcase
+if confirmation == 'y'
+  JobApplication.destroy_all
+  User.destroy_all
+  Job.destroy_all
+  Company.destroy_all
+  ApplicantTrackingSystem.destroy_all
+  Location.destroy_all
+  Country.destroy_all
+  Role.destroy_all
+  puts "Data deleted successfully!"
+else
+  puts "Deletion cancelled."
+end
+
+puts "Do you want to continue seeding the database? (Y/N)"
+confirmation = gets.chomp.downcase
+exit if confirmation == 'n'
 
 puts "-------------------------------------"
-puts "This may take a little while, worry not young padawan..."
-
-JobApplication.destroy_all
-User.destroy_all
-Job.destroy_all
-Company.destroy_all
-ApplicantTrackingSystem.destroy_all
-Location.destroy_all
-Country.destroy_all
-Role.destroy_all
 
 puts "Creating new Applicant Tracking Systems..."
 
@@ -64,30 +76,10 @@ greenhouse_companies = [
   "opendoor"
 ]
 
-# TODO: Create company data to be able to seed from fixed CSV
-# Leaving this in for now but the below is defunct at the moment
-
-# puts "Creating new companies..."
-
-# companies_data = []
-
-# companies_data.each do |company_data|
-#   Company.create(
-#     name: company_data[:name],
-#     industry: company_data[:category],
-#     url_website: company_data[:url_website]
-#   )
-#   puts "Created company - #{Company.last.name}"
-# end
-
-# puts "Created #{Company.count} companies"
-
-# puts "-------------------------------------"
-
 puts "Creating new roles..."
 
 roles = %w(front_end back_end full_stack dev_ops qa_test_engineer mobile data_engineer)
-roles.each { | role| Role.create(name: role) }
+roles.each { |role| Role.create(name: role) }
 
 puts "Created #{Role.count} roles"
 
@@ -100,6 +92,7 @@ puts "Creating new jobs via Greenhouse API..."
 # defunct_urls = []
 
 puts "\nBuilding a list of job urls from the following companies:"
+puts "This may take a little while, worry not young padawan..."
 
 relevant_job_urls = GetRelevantJobUrls.new(greenhouse_companies).fetch_jobs
 jobs_to_seed = relevant_job_urls.shuffle.take(response)
@@ -173,7 +166,7 @@ puts "-------------------------------------"
 
 puts "Done!\n"
 
-# puts "The following urls refer to jobs that are no longer live and should be deleted from the seedfile:" unless defunct_urls.empty?
-# defunct_urls.each do |url|
-#   puts url
-# end
+puts "The following urls refer to jobs that are no longer live and should be deleted from the seedfile:" unless defunct_urls.empty?
+defunct_urls.each do |url|
+  puts url
+end
