@@ -3,9 +3,7 @@ module Build
     queue_as :updates
 
     def perform
-      Company.all.each(&:create_all_relevant_jobs)
-    rescue StandardError => e
-      puts "Error: #{e}"
+      Build::AllJobs.new.perform
     end
   end
 end
