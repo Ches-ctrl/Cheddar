@@ -11,6 +11,11 @@ class CompanyBuilder
       ats_identifier = row["ats_identifier"]
       ats = ApplicantTrackingSystem.find_by(name: ats_name)
 
+      unless ats
+        puts "Error: Applicant Tracking System '#{ats_name}' not found."
+        next
+      end
+
       company = ats.find_or_create_company(ats_identifier)
 
       if company
@@ -18,6 +23,8 @@ class CompanyBuilder
       else
         p "Error creating Company - #{ats_identifier}"
       end
+    rescue StandardError => e
+      puts "Error: #{e}"
     end
   end
 end
