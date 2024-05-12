@@ -10,7 +10,7 @@ module Ats
         data = get_json_data(url_ats_api)
         {
           name:,
-          description: build_company_description(data),
+          description: Flipper.enabled?(:company_description) ? build_company_description(data) : 'Not added yet',
           url_ats_api:,
           url_ats_main:,
           url_website:,

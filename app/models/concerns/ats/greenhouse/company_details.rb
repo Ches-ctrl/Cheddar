@@ -12,7 +12,7 @@ module Ats
         url_careers, url_website = check_for_careers_url_redirect(url_ats_main)
         {
           name: data['name'],
-          description: data['content'],
+          description: Flipper.enabled?(:company_description) ? data['content'] : 'Not added yet',
           url_ats_api:,
           url_ats_main:,
           url_careers:,

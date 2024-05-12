@@ -7,7 +7,7 @@ module Ats
         data = fetch_company_api_data(url_ats_api)
         {
           name: data.dig(0, 'company_name') || name, # company not created unless name available from api or website
-          description:,
+          description: Flipper.enabled?(:company_description) ? description : 'Not added yet',
           url_website:,
           url_linkedin:,
           url_ats_api:,

@@ -19,7 +19,7 @@ module Ats
 
         {
           name: company_data['name'],
-          description: fetch_description(company_data),
+          description: Flipper.enabled?(:company_description) ? fetch_description(company_data) : 'Not added yet',
           url_website: company_data['publicWebsite'],
           url_careers: company_data['customJobsPageUrl'],
           location: company_data['timezone']
