@@ -1,8 +1,8 @@
 namespace :admin do
   desc "Build all relevant companies and jobs"
-  task build_companies_and_jobs: :environment do
-    Build::AllCompanies.perform_later.then do
-      Build::AllJobs.perform_later
+  task build_all_companies_and_jobs: :environment do
+    Build::AllCompaniesJob.perform_later.then do
+      Build::AllJobsJob.perform_later
     end
   end
 
