@@ -1,4 +1,11 @@
 namespace :admin do
+  desc "Build all relevant companies and jobs"
+  task build_companies_and_jobs: :environment do
+    Build::AllCompanies.perform_later.then do
+      Build::AllJobs.perform_later
+    end
+  end
+
   desc "Update existing company jobs"
   task update_existing_company_jobs: :environment do
     UpdateExistingCompanyJobs.new.perform
