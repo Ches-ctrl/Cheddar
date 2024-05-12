@@ -1,6 +1,6 @@
 module Build
   class AllJobs
-    def perform
+    def build
       Company.all.each(&:create_all_relevant_jobs)
     rescue StandardError => e
       puts "Error: #{e}"
