@@ -49,7 +49,7 @@ class UpdateExistingCompanyJobs < ApplicationJob
 
   def relevant?(job_data)
     # TODO: call the Relevant module method instead
-    title, job_location, remote = @ats_system.fetch_title_and_location(job_data)
+    title, job_location, remote = @ats.fetch_title_and_location(job_data)
 
     (title &&
       remote &&
