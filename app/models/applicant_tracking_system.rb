@@ -208,7 +208,8 @@ class ApplicantTrackingSystem < ApplicationRecord
     get_application_criteria(job, data)
     p "job fields getting"
     job.save! # must save before passing to Sidekiq job
-    GetFormFieldsJob.perform_later(job) # TODO: create separate module methods for this
+    # TODO: create separate module methods for this
+    GetFormFieldsJob.perform_later(job) if Flipper.enabled?(:get_form_fields)
   end
 
   # -----------------------
