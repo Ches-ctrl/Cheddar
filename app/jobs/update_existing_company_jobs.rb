@@ -42,6 +42,8 @@ class UpdateExistingCompanyJobs < ApplicationJob
         company_jobs.each do |job_data|
           @ats.find_or_create_job_by_data(company, job_data) if relevant?(job_data)
           @job_urls.delete(@ats.fetch_url(job_data))
+        rescue StandardError => e
+          puts "Error: #{e}"
         end
       end
     end
