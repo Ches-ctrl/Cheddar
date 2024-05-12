@@ -3,6 +3,8 @@ namespace :import_csv do
   # Applicant Tracking Systems
   # -----------------------------
 
+  # TODO: Add a way to update existing ATSs (e.g. if they change their url format or url_identifiers etc.)
+
   desc "Import CSV - Applicant Tracking Systems"
   task applicant_tracking_systems: :environment do
     ats_csv = 'storage/csv/ats_systems.csv'
