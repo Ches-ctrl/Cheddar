@@ -146,6 +146,7 @@ namespace :import_csv do
   desc "Check number of jobs by ATS"
   task number_of_jobs: :environment do
     # TODO: Very basic implementation at the moment - needs to handle jobs boards, company sites, non-valid urls etc.
+    # TODO: Add other csv files to the list
 
     ats_jobs_count = Hash.new(0)
 
