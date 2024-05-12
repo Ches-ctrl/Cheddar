@@ -10,11 +10,11 @@ module Ats
         [title, job_location, remote]
       end
 
-      private
-
       def fetch_url(job_data)
         url_base + job_data['jobUrl']
       end
+
+      private
 
       def fetch_id(job_data)
         job_data['jobUrl']

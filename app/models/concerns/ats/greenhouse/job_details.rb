@@ -15,11 +15,11 @@ module Ats
         job_data['id']
       end
 
-      private
-
       def fetch_url(job_data)
         job_data['absolute_url']
       end
+
+      private
 
       def job_url_api(base_url, company_id, job_id)
         "#{base_url}#{company_id}/jobs/#{job_id}?pay_transparency=true" # &questions=true
