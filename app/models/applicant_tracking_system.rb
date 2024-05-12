@@ -24,7 +24,8 @@ class ApplicantTrackingSystem < ApplicationRecord
       "Ats::#{module_name}::CompanyDetails",
       "Ats::#{module_name}::FetchCompanyJobs",
       "Ats::#{module_name}::JobDetails",
-      "Ats::#{module_name}::ApplicationFields"
+      "Ats::#{module_name}::ApplicationFields",
+      "Ats::#{module_name}::SubmitApplication"
     ]
 
     modules.each do |module_name|
