@@ -1,8 +1,10 @@
 class CompanyBuilder
   attr_reader :ats_identifiers_csv
 
-  def initialize(ats_identifiers_csv)
-    @ats_identifiers_csv = ats_identifiers_csv
+  COMPANY_FILE_PATH = "storage/csv/ats_identifiers.csv"
+
+  def initialize
+    @ats_identifiers_csv = COMPANY_FILE_PATH
   end
 
   def build
