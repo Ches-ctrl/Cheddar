@@ -1,0 +1,2 @@
+# Ignore yml files on Heroku
+spec/fixtures/cassettes/ApplicantTrackingSystem/*.yml

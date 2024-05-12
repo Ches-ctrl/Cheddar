@@ -46,7 +46,7 @@
             <% if current_user.photo.key %>
               <%= cl_image_tag current_user.photo.key, class: "avatar" %>
             <% else %>
-              <%= image_tag "ai_cartoon_smiley.png", class: "avatar", alt: "dropdown menu" %>
+              <%= image_tag "avatar_default.png", class: "avatar", alt: "dropdown menu" %>
             <% end %>
           </a>
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="z-index: 1100;">
