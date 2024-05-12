@@ -4,6 +4,10 @@ namespace :admin do
     Build::AllCompaniesJob.perform_later.then do
       Build::AllJobsJob.perform_later
     end
+
+    # NB. The below are left here in case you want to call the jobs directly instead of as background jobs
+    # CompanyBuilder.new.build
+    # Build::AllJobs.new.build
   end
 
   desc "Update existing company jobs"
