@@ -10,6 +10,8 @@ class UpdateExistingCompanyJobs < ApplicationJob
   # TODO: (1) for all the existing jobs on the site, we check whether those are still live (and delete if not)
   # TODO: (2) for all the existing companies on the site, we check whether they have new jobs (and add if so)
 
+  # TODO: Update this so that it pulls the list of companies from the DB rather than the CSV
+
   def perform
     puts "Beginning jobs updater for companies already seeded to the DB..."
 
