@@ -400,4 +400,53 @@ http_interactions:
       string: !binary |-
         eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cHM6XC9cL2Rldi52aXJ0dWFsZWFydGgubmV0XC9CcmFuZGluZ1wvbG9nb19wb3dlcmVkX2J5LnBuZyIsImNvcHlyaWdodCI6IkNvcHlyaWdodCDCqSAyMDI0IE1pY3Jvc29mdCBhbmQgaXRzIHN1cHBsaWVycy4gQWxsIHJpZ2h0cyByZXNlcnZlZC4gVGhpcyBBUEkgY2Fubm90IGJlIGFjY2Vzc2VkIGFuZCB0aGUgY29udGVudCBhbmQgYW55IHJlc3VsdHMgbWF5IG5vdCBiZSB1c2VkLCByZXByb2R1Y2VkIG9yIHRyYW5zbWl0dGVkIGluIGFueSBtYW5uZXIgd2l0aG91dCBleHByZXNzIHdyaXR0ZW4gcGVybWlzc2lvbiBmcm9tIE1pY3Jvc29mdCBDb3Jwb3JhdGlvbi4iLCJyZXNvdXJjZVNldHMiOlt7ImVzdGltYXRlZFRvdGFsIjoyLCJyZXNvdXJjZXMiOlt7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzUxLjM3ODkzNDUyMzY0MDI2MSwtMi4zOTc5OTk3OTgwNjE5NjM2LDUxLjM4NjY1OTk1ODc4MTYxNCwtMi4zODE0OTY4NzE3MDczMjM1XSwibmFtZSI6IkxvY2tzYnJvb2ssIEJhdGgsIEJhdGggQW5kIE5vcnRoIEVhc3QgU29tZXJzZXQsIFVuaXRlZCBLaW5nZG9tIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOls1MS4zODI3OTcyNCwtMi4zODk3NDgzM119LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJFbmdsYW5kIiwiYWRtaW5EaXN0cmljdDIiOiJCYXRoIEFuZCBOb3J0aCBFYXN0IFNvbWVyc2V0IiwiY291bnRyeVJlZ2lvbiI6IlVuaXRlZCBLaW5nZG9tIiwiZm9ybWF0dGVkQWRkcmVzcyI6IkxvY2tzYnJvb2ssIEJhdGgsIEJhdGggQW5kIE5vcnRoIEVhc3QgU29tZXJzZXQsIFVuaXRlZCBLaW5nZG9tIiwibG9jYWxpdHkiOiJCYXRoIn0sImNvbmZpZGVuY2UiOiJMb3ciLCJlbnRpdHlUeXBlIjoiTmVpZ2hib3Job29kIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOls1MS4zODI3OTcyNCwtMi4zODk3NDgzM10sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzQxLjQ5MDMwNjg1NDI0ODA0NywtODEuNjg0MjE5MzYwMzUxNTYyLDQxLjUxNDYwNjQ3NTgzMDA3OCwtODEuNjY2MzA1NTQxOTkyMTg4XSwibmFtZSI6IkNhbXB1cyBEaXN0cmljdCwgVW5pdGVkIFN0YXRlcyIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbNDEuNDk3Nzc5ODUsLTgxLjY2OTk5ODE3XX0sImFkZHJlc3MiOnsiY291bnRyeVJlZ2lvbiI6IlVuaXRlZCBTdGF0ZXMiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiQ2FtcHVzIERpc3RyaWN0LCBVbml0ZWQgU3RhdGVzIn0sImNvbmZpZGVuY2UiOiJMb3ciLCJlbnRpdHlUeXBlIjoiTmVpZ2hib3Job29kIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOls0MS40OTc3Nzk4NSwtODEuNjY5OTk4MTddLCJjYWxjdWxhdGlvbk1ldGhvZCI6IlJvb2Z0b3AiLCJ1c2FnZVR5cGVzIjpbIkRpc3BsYXkiXX1dLCJtYXRjaENvZGVzIjpbIkdvb2QiXX1dfV0sInN0YXR1c0NvZGUiOjIwMCwic3RhdHVzRGVzY3JpcHRpb24iOiJPSyIsInRyYWNlSWQiOiIyZTliNGM1NmQ5ZTIyNzk5YWJjOTE3MTY3ZGQ2MmFkNnxEVTAwMDAzMDVCfDAuMC4wLjF8UmVmIEE6IDc3QkNCRjQwMTEwMTQ1OUY4MjkwQkVCQTZDQ0Q1QjBDIFJlZiBCOiBEQjNFREdFMTgxNiBSZWYgQzogMjAyNC0wNS0xMFQxNDo1ODo1MFoifQ==
   recorded_at: Fri, 10 May 2024 14:58:48 GMT
+- request:
+    method: get
+    uri: https://api.crunchbase.com/api/v4/autocompletes?query=Bath%20Spa%20University&user_key=1a809e14a0c7e29e964a5923f1b17bdd
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.crunchbase.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, private
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 11 May 2024 19:09:00 GMT
+      Etag:
+      - W/"1715454540571"
+      Server:
+      - openresty
+      X-Cb-Engine:
+      - autocomplete:algolia
+      X-Cb-Engine-Cached:
+      - 'false'
+      X-Cb-Engine-Took:
+      - '33'
+      X-Cb-Request-Took:
+      - '62'
+      Content-Length:
+      - '482'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"count":1,"entities":[{"facet_ids":["contact","aberdeen","apptopia","semrush","rank","builtwith","bombora","school"],"identifier":{"uuid":"f221c78f-54eb-1f68-967d-87d6046d43e5","value":"Bath
+        Spa University","image_id":"v1488530438/cej4b9ng1amolmbwoqp0.png","permalink":"bath-spa-university-2","entity_def_id":"organization"},"short_description":"Bath
+        Spa offers undergraduate and postgraduate study and research opportunities
+        with a focus on creativity, culture and enterprise."}]}'
+  recorded_at: Sat, 11 May 2024 19:09:00 GMT
 recorded_with: VCR 6.2.0

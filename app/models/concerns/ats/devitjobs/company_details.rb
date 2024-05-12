@@ -21,7 +21,7 @@ module Ats
           url_website: data['companyWebsiteLink'],
           industry: data['companyType'],
           location: [data['address'], data['actualCity'], data['postalCode']].reject(&:blank?).join(', '),
-          description: data['content']
+          description: Flipper.enabled?(:company_description) ? data['content'] : 'Not added yet'
           # img_url: data['logoImg'].include?('https://') ? data['logoImg'] : "https://static.devitjobs.uk/logo-images/#{data['logoImg']}"
         }
       end

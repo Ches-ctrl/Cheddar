@@ -36,7 +36,7 @@ module Ats
         title, location = fetch_title_and_location(data)
         job.assign_attributes(
           title:,
-          description: data['description'],
+          description: Flipper.enabled?(:job_description) ? data['description'] : 'Not added yet',
           department: data['departmentLabel'],
           employment_type: data['contract_details'],
           non_geocoded_location_string: location,

@@ -9,7 +9,7 @@ module Ats
         name, industry = fetch_name_and_industry(data)
         {
           name:,
-          description: fetch_description(data),
+          description: Flipper.enabled?(:company_description) ? fetch_description(data) : 'Not added yet',
           industry:,
           url_ats_api:,
           url_ats_main: "#{url_base}#{ats_identifier}",

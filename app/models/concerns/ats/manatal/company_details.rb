@@ -12,7 +12,7 @@ module Ats
           name: data['name'],
           url_ats_api:,
           url_ats_main: "#{url_base}#{ats_identifier}",
-          description: data['description'],
+          description: Flipper.enabled?(:company_description) ? data['description'] : 'Not added yet',
           url_website: data['website'],
           total_live: fetch_total_live(ats_identifier)
           # facebook: data['facebook_url'],

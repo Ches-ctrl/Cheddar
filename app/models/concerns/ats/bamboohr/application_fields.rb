@@ -6,7 +6,6 @@ module Ats
 
         job.application_criteria = build_application_criteria_from(data['formFields'])
         job.save
-        # GetFormFieldsJob.perform_later(job.posting_url)
       end
 
       private

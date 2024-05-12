@@ -24,7 +24,7 @@ module Ats
         data = data['jobOpening']
         job.assign_attributes(
           title: data['jobOpeningName'],
-          description: data['description'],
+          description: Flipper.enabled?(:job_description) ? data['description'] : 'Not added yet',
           salary: data['compensation'],
           date_posted: (Date.parse(data['datePosted']) if data['datePosted']),
           seniority: data['minimumExperience'], # seniority_standardizer will need to fix this!

@@ -7,8 +7,6 @@ module Ats
         [title, job_location]
       end
 
-      private
-
       def fetch_id(job_data)
         job_data['id']
       end
@@ -16,6 +14,8 @@ module Ats
       def fetch_url(job_data)
         job_data['hostedUrl']
       end
+
+      private
 
       def job_url_api(base_url, company_id, job_id)
         "#{base_url}#{company_id}/#{job_id}?customQuestions=true"
@@ -26,7 +26,7 @@ module Ats
         job.assign_attributes(
           posting_url: data['hostedUrl'],
           title:,
-          description: build_description(data),
+          description: Flipper.enabled?(:job_description) ? build_description(data) : 'Not added yet',
           non_geocoded_location_string: location,
           remote: data['workplaceType'] == 'remote',
           department: data.dig('categories', 'team'),

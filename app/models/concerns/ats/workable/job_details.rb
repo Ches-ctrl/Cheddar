@@ -26,7 +26,7 @@ module Ats
       def job_details(job, data)
         job.assign_attributes(
           title: data['title'],
-          description: build_description(data),
+          description: Flipper.enabled?(:job_description) ? build_description(data) : 'Not added yet',
           non_geocoded_location_string: build_location_string(data),
           posting_url: "#{url_base}#{job.company.ats_identifier}/j/#{data['shortcode']}",
           department: data['department']&.first,

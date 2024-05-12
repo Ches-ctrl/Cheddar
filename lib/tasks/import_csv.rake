@@ -1,57 +1,15 @@
-# rubocop:disable Metrics/BlockLength
-LIST_FILEPATH = Rails.root.join('storage', 'csv', 'ats_identifiers.csv')
-
-# TODO: Move this into a collective CsvService that houses all logic
-
-class AtsIdentifiers
-  def self.load
-    company_list = Hash.new { |hash, key| hash[key] = Set.new }
-
-    CSV.foreach(LIST_FILEPATH) do |ats_name, ats_identifier|
-      company_list[ats_name] << ats_identifier
-    end
-    company_list
-  end
-
-  def self.save(fulllist)
-    CSV.open(LIST_FILEPATH, 'wb') do |csv|
-      fulllist.each do |ats_name, ats_list|
-        ats_list.each do |ats_id|
-          csv << [ats_name, ats_id]
-        end
-      end
-    end
-  end
-end
-
 namespace :import_csv do
-  # Run this file using rake import_csv:command e.g. bright_network
-
   # -----------------------------
   # Applicant Tracking Systems
   # -----------------------------
+
+  # TODO: Add a way to update existing ATSs (e.g. if they change their url format or url_identifiers etc.)
 
   desc "Import CSV - Applicant Tracking Systems"
   task applicant_tracking_systems: :environment do
     ats_csv = 'storage/csv/ats_systems.csv'
     AtsBuilder.new(ats_csv).build
     puts ApplicantTrackingSystem.count
-  end
-
-  desc "Sort CSV - ats_identifiers"
-  task sort_ats_identifiers: :environment do
-    csv_data = CSV.read('storage/csv/ats_identifiers.csv', headers: true)
-    p csv_data.length
-
-    rows_as_strings = csv_data.map(&:to_s)
-    rows_as_strings.map! { |row| row.gsub("\n", "") }
-    sorted_data = rows_as_strings.sort
-
-    CSV.open('storage/csv/ats_identifiers.csv', 'w', write_headers: true, headers: ['ats', 'ats_identifier']) do |csv|
-      sorted_data.each { |row| csv << row.split(',') }
-    end
-
-    puts "CSV file sorted successfully."
   end
 
   # -----------------------------
@@ -77,31 +35,9 @@ namespace :import_csv do
     puts Company.count
   end
 
-  desc "Sort CSV - company_urls"
-  task sort_company_url_list: :environment do
-    csv = CSV.read('storage/new/company_urls.csv', headers: true)
-    sorted = csv.sort_by { |row| row['company_url'] }
-
-    CSV.open('storage/new/company_urls.csv', 'w') do |csv|
-      csv << ['company_url']
-      sorted.each { |row| csv << [row['company_url']] }
-    end
-  end
-
   # -----------------------------
   # Jobs
   # -----------------------------
-
-  desc "Sort CSV - job_posting_urls"
-  task sort_job_postings: :environment do
-    csv = CSV.read('storage/new/job_posting_urls.csv', headers: true)
-    sorted = csv.sort_by { |row| row['posting_url'] }
-
-    CSV.open('storage/new/job_posting_urls.csv', 'w') do |csv|
-      csv << ['posting_url']
-      sorted.each { |row| csv << [row['posting_url']] }
-    end
-  end
 
   desc "Import CSV - greenhouse urls"
   task greenhouse: :environment do
@@ -143,53 +79,6 @@ namespace :import_csv do
     puts Job.count
   end
 
-  desc "Check number of jobs by ATS"
-  task number_of_jobs: :environment do
-    # TODO: Very basic implementation at the moment - needs to handle jobs boards, company sites, non-valid urls etc.
-
-    ats_jobs_count = Hash.new(0)
-
-    files = [
-      '80k_job_posting_urls.csv',
-      'BN_job_posting_urls.csv',
-      'CO_job_posting_urls.csv',
-      'GH_job_posting_urls.csv',
-      'LU_job_posting_urls.csv',
-      'PA1_job_posting_urls.csv',
-      'PA2_job_posting_urls.csv',
-      'UM_job_posting_urls.csv'
-    ]
-
-    counter = 0
-
-    files.each do |file|
-      CSV.foreach("storage/new/#{file}", headers: true) do |row|
-        counter += 1
-        begin
-          url = row['posting_url']
-          p url
-          ats = ApplicantTrackingSystem.determine_ats(url).name if url
-          ats_jobs_count[ats] += 1 if ats
-        rescue StandardError => e
-          puts "Error occurred: #{e.message}"
-          next
-        end
-      end
-    end
-
-    sorted_ats_jobs_count = ats_jobs_count.sort_by { |_ats, count| -count }
-
-    CSV.open('storage/analysis/no_of_jobs_by_ats.csv', 'w') do |csv|
-      csv << ['ATS', 'Number of Jobs']
-      csv << ['Total', counter]
-      sorted_ats_jobs_count.each do |ats, count|
-        csv << [ats, count]
-      end
-    end
-
-    puts "Total number of jobs: #{ats_jobs_count.values.sum}"
-  end
-
   # -----------------------------
   # Users
   # -----------------------------
@@ -201,4 +90,3 @@ namespace :import_csv do
     puts User.count
   end
 end
-# rubocop:enable Metrics/BlockLength
