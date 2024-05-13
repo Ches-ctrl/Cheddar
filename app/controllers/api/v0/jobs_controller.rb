@@ -40,7 +40,7 @@ module Api
       end
 
       def valid_origin?(origin)
-        origin == 'chrome-extension://hofjpmhpciiodhklobchgedbbglhjboa'
+        origin == ENV['CHROME_EXTENSION_ORIGIN']
       end
     end
   end
