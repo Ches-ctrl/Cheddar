@@ -3,6 +3,7 @@
     "name": "Cheddar Jobs",
     "version": "1.0.0",
     "description": "Cheddar Jobs Chrome Extension",
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApmObX4KVdKqB46AUyoT66dsBSYPt9RZ1GpVcBLSPKs8t8tnVXqKxaZ2tyvZCPeN0HNaN7hKrTzyqzs6Kuw9guN8Z3rLHjXRQZm5Z1o2ML5PjCXAvb+NxrhZg4+h4J0J04k/gAf8FOcLNDCI9EE1CacHEbUNBxxvJv2ojm9xjO0NfJisCQMhVHKaiMrRx2zrU/96iKjPooqkAIwFXaM/esojRdxAFJ7aUF+uvwPDcjKEg0RIcf/e9Lrw3ik1cM5mM86azra63yyNYF/yC3pdBcGT6MH0sNCxMMeE5B9NLUkQc+vU3picxkXLgFqP/nxvkfOnBIvXFX0gCaY94ftQOcwIDAQAB",
     "permissions": [
         "tabs"
       ],
