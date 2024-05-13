@@ -8,7 +8,6 @@ module Api
 
       def add_job
         posting_url = params[:posting_url]
-        p "posting_url: #{posting_url}"
 
         if posting_url
           render json: { message: 'Posting URL sent successfully' }, status: :ok
