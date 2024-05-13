@@ -17,6 +17,7 @@ module Ats
           field = details.instance_of?(Array) ? build_additional_field(details) : build_core_field(locator, details)
           attributes.merge!(field)
         rescue StandardError => e
+          p "Error building application criteria: #{e.message}"
           {}
         end
 
