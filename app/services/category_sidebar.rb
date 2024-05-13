@@ -143,13 +143,15 @@ class CategorySidebar
       location_id = city.downcase.gsub(' ', '_')
       count = @jobs_with_any_location.where("locations.city = ?", city)
                                      .size
+      next if count.zero?
+
       [
         'checkbox',
         [city, country].join(', '),
         location_id,
         count,
         @params[:location]&.include?(location_id)
-      ]
+      ].compact
     end
     locations << [
       'checkbox',
