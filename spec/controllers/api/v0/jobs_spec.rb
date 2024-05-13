@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::V0::JobsController, type: :controller do
+RSpec.describe Api::V0::JobsController, type: :controller, api: true do
   describe 'POST #add_job' do
     context 'with valid API key and origin' do
       before do
