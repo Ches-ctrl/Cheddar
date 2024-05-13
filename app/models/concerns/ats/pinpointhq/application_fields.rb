@@ -5,7 +5,6 @@ module Ats
         p "Getting PinpointHQ application criteria"
         job.application_criteria = CORE_FIELDS.merge(PROFILE_FIELDS).merge(QUESTION_FIELDS).merge(DIVERSITY_FIELDS)
         job.save
-        # GetFormFieldsJob.perform_later(job.posting_url)
       end
 
       CORE_FIELDS = {

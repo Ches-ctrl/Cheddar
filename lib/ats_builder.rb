@@ -27,7 +27,7 @@ class AtsBuilder
       if ats
         puts "Created ATS - #{ats.name}"
       else
-        p "Error creating ATS: #{ats_name}"
+        p "Error creating ATS - #{ats_name}"
       end
     end
   end

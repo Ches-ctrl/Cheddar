@@ -9,7 +9,6 @@ module Ats
         job.application_criteria = build_application_criteria_from(job_data)
         job.update(deadline: job_data['applicationDeadline']) # not sure what format
         job.save
-        # GetFormFieldsJob.perform_later(job.posting_url)
       end
 
       private

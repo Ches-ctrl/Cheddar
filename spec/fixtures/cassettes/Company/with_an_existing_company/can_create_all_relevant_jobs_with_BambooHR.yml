@@ -307,4 +307,361 @@ http_interactions:
         ","state":"Telangana"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"790","jobOpeningName":"Contracts
         Management Specialist","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Waterloo"},"isRemote":null,"locationType":"1"}]}'
   recorded_at: Sat, 04 May 2024 02:30:24 GMT
+- request:
+    method: get
+    uri: https://autocomplete.clearbit.com/v1/companies/suggest?query=Avidbots
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - autocomplete.clearbit.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '93'
+      Cache-Control:
+      - public, must-revalidate, max-age=2629746
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization, API-Version, Content-Type, Salesforce-App-Id
+      X-Envoy-Response-Flags:
+      - "-"
+      Server:
+      - Clearbit
+      Via:
+      - 1.1 varnish, 1.1 varnish
+      Access-Control-Allow-Origin:
+      - "*"
+      Accept-Ranges:
+      - bytes
+      Age:
+      - '2028145'
+      Date:
+      - Sat, 04 May 2024 02:38:00 GMT
+      X-Served-By:
+      - cache-sjc10065-SJC, cache-lcy-eglc8600043-LCY
+      X-Cache:
+      - HIT, HIT
+      X-Cache-Hits:
+      - 6, 0
+      X-Timer:
+      - S1714790281.616536,VS0,VE1
+      Vary:
+      - Accept-Encoding
+      Content-Security-Policy-Report-Only:
+      - default-src 'self';
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=31557600
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"name":"Avidbots","domain":"avidbots.com","logo":"https://logo.clearbit.com/avidbots.com"}]'
+  recorded_at: Sat, 04 May 2024 02:38:00 GMT
+- request:
+    method: get
+    uri: https://api.crunchbase.com/api/v4/autocompletes?query=Avidbots&user_key=9eebe4bdec6f10ec631cbb8573cb8de2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.crunchbase.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, private
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 04 May 2024 02:38:01 GMT
+      Etag:
+      - W/"1714790281308"
+      Server:
+      - openresty
+      X-Cb-Engine:
+      - autocomplete:algolia
+      X-Cb-Engine-Cached:
+      - 'false'
+      X-Cb-Engine-Took:
+      - '36'
+      X-Cb-Request-Took:
+      - '64'
+      Content-Length:
+      - '3663'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"count":17,"entities":[{"facet_ids":["contact","siftery","ipqwery","semrush","company","rank","builtwith","bombora","ai_insight"],"identifier":{"uuid":"129b4700-bbe1-b9fc-5149-f15f18d13503","value":"Avidbots
+        Corp.","image_id":"uqzb9yucvrlll0vlfuwp","permalink":"avidbots","entity_def_id":"organization"},"short_description":"Avidbots
+        designs, manufactures, sells and supports autonomous connected robots that
+        expand human potential."},{"facet_ids":["contact","siftery","ipqwery","privco","aberdeen","company","rank","builtwith","bombora"],"identifier":{"uuid":"4a160c99-3dc1-d024-10ba-99ed0ef53f96","value":"AvidBiotics","image_id":"v1397184825/b3109816c91224ff8d84475408d57197.jpg","permalink":"avidbiotics","entity_def_id":"organization"},"short_description":"AvidBiotics
+        is a biotherapeutics company deploying a biotechnology-derived technology
+        platform with multiple apps in life sciences."},{"facet_ids":["contact","aberdeen","semrush","company","rank","builtwith","bombora"],"identifier":{"uuid":"8d3ff404-11aa-472d-85c0-4c0949f501c2","value":"AvidBit","image_id":"i3khc4hw5lmvmgjy8cbp","permalink":"avidbit","entity_def_id":"organization"},"short_description":"AvidBit
+        offers custom programming, networking, managed IT, VoIP, and internet services
+        to help solve complex business challenges."},{"facet_ids":["contact","semrush","company","rank","builtwith"],"identifier":{"uuid":"e96cb30e-c5f5-4c75-9992-1e587828cb42","value":"Asiabots","image_id":"a0uxhohv5rgvs0wtuyj7","permalink":"asiabots","entity_def_id":"organization"},"short_description":"An
+        A.I. company focusing on Natural Language processing (NLP), Natural humanlike
+        voice TTS and chatbot on mobile or phone call ."},{"facet_ids":["rank","semrush","builtwith","company"],"identifier":{"uuid":"61863f62-d67e-4459-b054-0507619a19c5","value":"ApiBots","image_id":"xagn7qa2xq78skomskdd","permalink":"apibots","entity_def_id":"organization"},"short_description":"Marketing
+        Automation tools for SMBs"},{"facet_ids":["rank","builtwith","company"],"identifier":{"uuid":"b6be007a-f900-e277-fd1d-869f2a1b1a10","value":"AidBits","image_id":"v1428916736/sbhs5ka3dwxcgcsedybi.jpg","permalink":"aidbits","entity_def_id":"organization"},"short_description":"An
+        online monitoring and evaluation platform designed to help non-profit organizations
+        harness their data for social good"},{"facet_ids":["company","builtwith","rank"],"identifier":{"uuid":"7b7b3dde-91d8-4551-8fe0-85c4c7944cd4","value":"AiBOTS","image_id":"w0gmbxvwv069er9crif3","permalink":"aibots","entity_def_id":"organization"},"short_description":"AiBOTS
+        is a management consulting firm that specializes in UX design, big data analytics,
+        IoT, and artificial intelligence services."},{"facet_ids":["company","rank","builtwith","siftery"],"identifier":{"uuid":"e97a985c-ddda-4902-b50e-b3f3fd97c7f7","value":"Airbots","image_id":"hrakdea2zpgbspzmmwfj","permalink":"airbots","entity_def_id":"organization"},"short_description":"Airbots
+        is an AI-autonomous strategy execution platform for advertising."},{"facet_ids":["ipqwery","aberdeen","semrush","company","rank","builtwith"],"identifier":{"uuid":"2434bbc2-92d1-592f-3183-71277ca3374c","value":"Addibots","image_id":"v1488871999/jhlkimev8fqviq8cglzq.png","permalink":"addibots","entity_def_id":"organization"},"short_description":"A
+        robotics and 3D printing startup based in the Hudson Valley of New York."},{"facet_ids":["company","rank","semrush","builtwith"],"identifier":{"uuid":"cfbed3c7-5f4d-4407-89f0-973b36e51c73","value":"Avidnote","image_id":"qmksqnrs904xw8jhxljd","permalink":"avidnote","entity_def_id":"organization"},"short_description":"Avidnote
+        is a digital platform for research."}]}'
+  recorded_at: Sat, 04 May 2024 02:38:01 GMT
+- request:
+    method: get
+    uri: http://dev.virtualearth.net/REST/v1/Locations/Hyderabad,%20Telangana?key=AmhBY6imsSQC_f1o8tlcEXoO6WxekJR2plXfZQr7g_Y6I35Yh18bR1khIX9jc9vI
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - dev.virtualearth.net
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 04 May 2024 02:38:01 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Headers:
+      - Content-Type,X-FD-Features,X-FD-FLIGHT,PreferAnonymous
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cache-Control:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      X-Bm-Traceid:
+      - 467fc10e48b78bc83584512af939d68a
+      X-Bm-Be-Elapsed:
+      - '68'
+      X-Msedge-Ref:
+      - 'Ref A: 4F83DBC8E1A7458AA908C48FBE4889D9 Ref B: DB3EDGE2815 Ref C: 2024-05-04T02:38:01Z'
+      X-Bm-Fe-Elapsed:
+      - '76'
+      X-Bm-Srv:
+      - mapsplatform-frontend-6cdf86c749-k45mf, DU00003051
+      X-Ms-Bm-Ws-Info:
+      - '0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      X-Azure-Ref:
+      - 20240504T023801Z-15cfcd47bb5cmprpbheuv4zr2w00000000b000000000g4pq
+      X-Cache:
+      - CONFIG_NOCACHE
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cHM6XC9cL2Rldi52aXJ0dWFsZWFydGgubmV0XC9CcmFuZGluZ1wvbG9nb19wb3dlcmVkX2J5LnBuZyIsImNvcHlyaWdodCI6IkNvcHlyaWdodCDCqSAyMDI0IE1pY3Jvc29mdCBhbmQgaXRzIHN1cHBsaWVycy4gQWxsIHJpZ2h0cyByZXNlcnZlZC4gVGhpcyBBUEkgY2Fubm90IGJlIGFjY2Vzc2VkIGFuZCB0aGUgY29udGVudCBhbmQgYW55IHJlc3VsdHMgbWF5IG5vdCBiZSB1c2VkLCByZXByb2R1Y2VkIG9yIHRyYW5zbWl0dGVkIGluIGFueSBtYW5uZXIgd2l0aG91dCBleHByZXNzIHdyaXR0ZW4gcGVybWlzc2lvbiBmcm9tIE1pY3Jvc29mdCBDb3Jwb3JhdGlvbi4iLCJyZXNvdXJjZVNldHMiOlt7ImVzdGltYXRlZFRvdGFsIjo1LCJyZXNvdXJjZXMiOlt7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzE3LjIxMjUzOTY3Mjg1MTU2Miw3OC4xMTc3MDYyOTg4MjgxMjUsMTcuODA1MTI2MTkwMTg1NTQ3LDc4Ljc1MTQ0OTU4NDk2MDkzOF0sIm5hbWUiOiJIeWRlcmFiYWQsIEluZGlhIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlsxNy4zNjU5OTkyMiw3OC40NzU5OTc5Ml19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJURyIsImNvdW50cnlSZWdpb24iOiJJbmRpYSIsImZvcm1hdHRlZEFkZHJlc3MiOiJIeWRlcmFiYWQsIEluZGlhIiwibG9jYWxpdHkiOiJIeWRlcmFiYWQifSwiY29uZmlkZW5jZSI6IkhpZ2giLCJlbnRpdHlUeXBlIjoiUG9wdWxhdGVkUGxhY2UiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzE3LjM2NTk5OTIyLDc4LjQ3NTk5NzkyXSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19LHsiX190eXBlIjoiTG9jYXRpb246aHR0cDpcL1wvc2NoZW1hcy5taWNyb3NvZnQuY29tXC9zZWFyY2hcL2xvY2FsXC93c1wvcmVzdFwvdjEiLCJiYm94IjpbMTcuMjgwNDQ4OTEzNTc0MjE5LDc4LjM2NjAzNTQ2MTQyNTc4MSwxNy40OTE5ODUzMjEwNDQ5MjIsNzguNTU0NTczMDU5MDgyMDMxXSwibmFtZSI6Ikh5ZGVyYWJhZCIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMTcuMzYxNzE5MTMsNzguNDc1MTY2MzJdfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiVEciLCJhZG1pbkRpc3RyaWN0MiI6Ikh5ZGVyYWJhZCIsImNvdW50cnlSZWdpb24iOiJJbmRpYSIsImZvcm1hdHRlZEFkZHJlc3MiOiJIeWRlcmFiYWQifSwiY29uZmlkZW5jZSI6Ik1lZGl1bSIsImVudGl0eVR5cGUiOiJBZG1pbkRpdmlzaW9uMiIsImdlb2NvZGVQb2ludHMiOlt7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMTcuMzYxNzE5MTMsNzguNDc1MTY2MzJdLCJjYWxjdWxhdGlvbk1ldGhvZCI6IlJvb2Z0b3AiLCJ1c2FnZVR5cGVzIjpbIkRpc3BsYXkiXX1dLCJtYXRjaENvZGVzIjpbIkdvb2QiXX0seyJfX3R5cGUiOiJMb2NhdGlvbjpodHRwOlwvXC9zY2hlbWFzLm1pY3Jvc29mdC5jb21cL3NlYXJjaFwvbG9jYWxcL3dzXC9yZXN0XC92MSIsImJib3giOlsxNy4wMzUzMjc1NzQ3ODc3MjIsNzkuMjQ3NTY1OTQzMzM2NTI1LDE3LjA0MzA1MzAwOTkyOTA3NSw3OS4yNTgzMzkyMDgwMzA2NjJdLCJuYW1lIjoiSHlkZXJhYmFkLCBJbmRpYSIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMTcuMDM5MTkwMjksNzkuMjUyOTUyNThdfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiVEciLCJjb3VudHJ5UmVnaW9uIjoiSW5kaWEiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiSHlkZXJhYmFkLCBJbmRpYSIsImxvY2FsaXR5IjoiSHlkZXJhYmFkIn0sImNvbmZpZGVuY2UiOiJMb3ciLCJlbnRpdHlUeXBlIjoiTmVpZ2hib3Job29kIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlsxNy4wMzkxOTAyOSw3OS4yNTI5NTI1OF0sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzE3LjcxNTI5OTI2OTczNDAxMSw3OS4xNTUyNjA3NDYzMjE3NzMsMTcuNzIzMDI0NzA0ODc1MzY0LDc5LjE2NjA3NDA5MjU0NTQxNV0sIm5hbWUiOiJIeWRlcmFiYWQsIEluZGlhIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlsxNy43MTkxNjE5OSw3OS4xNjA2Njc0Ml19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJURyIsImNvdW50cnlSZWdpb24iOiJJbmRpYSIsImZvcm1hdHRlZEFkZHJlc3MiOiJIeWRlcmFiYWQsIEluZGlhIiwibG9jYWxpdHkiOiJIeWRlcmFiYWQifSwiY29uZmlkZW5jZSI6IkxvdyIsImVudGl0eVR5cGUiOiJOZWlnaGJvcmhvb2QiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzE3LjcxOTE2MTk5LDc5LjE2MDY2NzQyXSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19LHsiX190eXBlIjoiTG9jYXRpb246aHR0cDpcL1wvc2NoZW1hcy5taWNyb3NvZnQuY29tXC9zZWFyY2hcL2xvY2FsXC93c1wvcmVzdFwvdjEiLCJiYm94IjpbMTYuOTQ2MzgwMjc4NjQ1MTQ0LDc4LjE3ODQyMzI5NTI1NjYwNywxNi45NTQxMDU3MTM3ODY0OTcsNzguMTg5MTkxNDUwODM3MTQzXSwibmFtZSI6Ikh5ZGVyYWJhZCwgSW5kaWEiLCJwb2ludCI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzE2Ljk1MDI0Myw3OC4xODM4MDczN119LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJURyIsImNvdW50cnlSZWdpb24iOiJJbmRpYSIsImZvcm1hdHRlZEFkZHJlc3MiOiJIeWRlcmFiYWQsIEluZGlhIiwibG9jYWxpdHkiOiJIeWRlcmFiYWQifSwiY29uZmlkZW5jZSI6IkxvdyIsImVudGl0eVR5cGUiOiJOZWlnaGJvcmhvb2QiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzE2Ljk1MDI0Myw3OC4xODM4MDczN10sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfV19XSwic3RhdHVzQ29kZSI6MjAwLCJzdGF0dXNEZXNjcmlwdGlvbiI6Ik9LIiwidHJhY2VJZCI6IjQ2N2ZjMTBlNDhiNzhiYzgzNTg0NTEyYWY5MzlkNjhhfERVMDAwMDMwNTF8MC4wLjAuMXxSZWYgQTogNEY4M0RCQzhFMUE3NDU4QUE5MDhDNDhGQkU0ODg5RDkgUmVmIEI6IERCM0VER0UyODE1IFJlZiBDOiAyMDI0LTA1LTA0VDAyOjM4OjAxWiJ9
+  recorded_at: Sat, 04 May 2024 02:38:01 GMT
+- request:
+    method: get
+    uri: https://avidbots.bamboohr.com/careers/company-info/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - avidbots.bamboohr.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 10 May 2024 14:59:15 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=EnpWfRHhqt8%2CLZGDoEjVOpAUHWqIoMDm; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=ERVBlWCwNyHOPcxYTKfa6VyhWe4tlijclP5YbcL1Ke0-1715353155787-0.0.1.1-604800000;
+        path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache, private
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self'' data: blob: https://*.bamboohr.com https://*.bamboohr.co.uk
+        *.cloudfront.net d24d2g0g8l15q8.cloudfront.net d3lfqt3qfgn8k7.cloudfront.net
+        dwc7c3b4xwlvf.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://*.browser-intake-datadoghq.com https://*.facebook.com
+        https://*.linkedin.com https://*.segment.io https://*.small-improvements.com
+        https://api.rollbar.com https://app.bamboohr.co.uk https://bam.nr-data.net
+        https://connect.facebook.net *.algolianet.com *.algolia.net embedwistia-a.akamaihd.net
+        app.pendo.io cdn.pendo.io pendo-io-extensions.storage.googleapis.com pendo-static-5734959405072384.storage.googleapis.com
+        https://*.wistia.com https://*.wistia.net https://fonts.googleapis.com https://fonts.gstatic.com
+        https://example.com https://www.google-analytics.com https://payments.subscriptionplatform.com
+        https://s-static.ak.facebook.com themes.googleusercontent.com https://wufoo.com
+        https://*.wufoo.com https://www.google.com https://tagmanager.google.com https://bamboohr.formstack.com
+        https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://portal-2.flatfile.io
+        https://*.zuora.com https://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com
+        https://*.salesforceliveagent.com https://*.force.com https://*.site.com wss://*.pusher.com
+        https://*.checkr.com https://accounts.google.com https://login.microsoftonline.com
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; script-src ''self'' *.bamboohr.com *.bamboohr.co.uk data:
+        blob: about https://*.bamboohr.com https://cdn.api.twitter.com https://connect.facebook.net
+        https://bam.nr-data.net *.cloudfront.net d24d2g0g8l15q8.cloudfront.net dwc7c3b4xwlvf.cloudfront.net
+        d3lfqt3qfgn8k7.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://accounts.google.com https://login.microsoftonline.com
+        *.newrelic.com http://*.newrelic.com https://fast.wistia.net https://fast.wistia.com
+        get.bamboohr.com *.algolianet.com *.algolia.net app.pendo.io pendo-io-static.storage.googleapis.com
+        cdn.pendo.io pendo-static-5734959405072384.storage.googleapis.com https://pi.pardot.com
+        https://www.my1login.com https://app.onelogin.com https://ajax.googleapis.com
+        http://ajax.googleapis.com https://ssl.google-analytics.com https://www.googletagmanager.com
+        https://tagmanager.google.com https://www.google-analytics.com https://www.google.com
+        https://s3.amazonaws.com https://cdnjs.cloudflare.com https://wufoo.com https://*.wufoo.com
+        https://*.linkedin.com https://bat.bing.com/bat.js https://www.googleadservices.com/pagead/conversion_async.js
+        https://s.adroll.com/j/roundtrip.js https://*.segment.com https://*.segment.io
+        https://bamboohr.formstack.com https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://*.zuora.com https://*.pusher.com
+        wss://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com https://*.salesforceliveagent.com
+        https://*.force.com https://*.site.com https://*.checkr.com https://www.google.com/recaptcha/
+        https://www.gstatic.com/recaptcha/ https://www.recaptcha.net/recaptcha/ https://portal-2.flatfile.io
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; img-src * data: blob: ; report-uri /ajax/parse_csp_report.php
+        ; worker-src ''self'' data: blob: ;'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Authorization,User-Agent
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 881acac4ad0860ef-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"meta":[],"result":{"name":"Avidbots","id":"72799","logoUrl":"https:\/\/images3.bamboohr.com\/72799\/logos\/cropped.jpg?v=32","careerShareUrl":"https:\/\/avidbots.bamboohr.com\/careers","shareImageUrl":"https:\/\/avidbots.bamboohr.com\/jobs\/share_image\/32","inTrial":false,"appSessId":"a880b12aa85f13c33a7de411b079780ab5ea0a45"}}'
+  recorded_at: Fri, 10 May 2024 14:59:13 GMT
+- request:
+    method: get
+    uri: https://api.crunchbase.com/api/v4/autocompletes?query=Avidbots&user_key=1a809e14a0c7e29e964a5923f1b17bdd
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.crunchbase.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, private
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 11 May 2024 19:09:08 GMT
+      Etag:
+      - W/"1715454548746"
+      Server:
+      - openresty
+      X-Cb-Engine:
+      - autocomplete:algolia
+      X-Cb-Engine-Cached:
+      - 'false'
+      X-Cb-Engine-Took:
+      - '67'
+      X-Cb-Request-Took:
+      - '96'
+      Content-Length:
+      - '3663'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"count":17,"entities":[{"facet_ids":["contact","siftery","ipqwery","semrush","company","rank","builtwith","bombora","ai_insight"],"identifier":{"uuid":"129b4700-bbe1-b9fc-5149-f15f18d13503","value":"Avidbots
+        Corp.","image_id":"uqzb9yucvrlll0vlfuwp","permalink":"avidbots","entity_def_id":"organization"},"short_description":"Avidbots
+        designs, manufactures, sells and supports autonomous connected robots that
+        expand human potential."},{"facet_ids":["contact","siftery","ipqwery","privco","aberdeen","company","rank","builtwith","bombora"],"identifier":{"uuid":"4a160c99-3dc1-d024-10ba-99ed0ef53f96","value":"AvidBiotics","image_id":"v1397184825/b3109816c91224ff8d84475408d57197.jpg","permalink":"avidbiotics","entity_def_id":"organization"},"short_description":"AvidBiotics
+        is a biotherapeutics company deploying a biotechnology-derived technology
+        platform with multiple apps in life sciences."},{"facet_ids":["contact","aberdeen","semrush","company","rank","builtwith","bombora"],"identifier":{"uuid":"8d3ff404-11aa-472d-85c0-4c0949f501c2","value":"AvidBit","image_id":"i3khc4hw5lmvmgjy8cbp","permalink":"avidbit","entity_def_id":"organization"},"short_description":"AvidBit
+        offers custom programming, networking, managed IT, VoIP, and internet services
+        to help solve complex business challenges."},{"facet_ids":["contact","semrush","company","rank","builtwith"],"identifier":{"uuid":"e96cb30e-c5f5-4c75-9992-1e587828cb42","value":"Asiabots","image_id":"a0uxhohv5rgvs0wtuyj7","permalink":"asiabots","entity_def_id":"organization"},"short_description":"An
+        A.I. company focusing on Natural Language processing (NLP), Natural humanlike
+        voice TTS and chatbot on mobile or phone call ."},{"facet_ids":["rank","semrush","builtwith","company"],"identifier":{"uuid":"61863f62-d67e-4459-b054-0507619a19c5","value":"ApiBots","image_id":"xagn7qa2xq78skomskdd","permalink":"apibots","entity_def_id":"organization"},"short_description":"Marketing
+        Automation tools for SMBs"},{"facet_ids":["rank","builtwith","company"],"identifier":{"uuid":"b6be007a-f900-e277-fd1d-869f2a1b1a10","value":"AidBits","image_id":"v1428916736/sbhs5ka3dwxcgcsedybi.jpg","permalink":"aidbits","entity_def_id":"organization"},"short_description":"An
+        online monitoring and evaluation platform designed to help non-profit organizations
+        harness their data for social good"},{"facet_ids":["company","builtwith","rank"],"identifier":{"uuid":"7b7b3dde-91d8-4551-8fe0-85c4c7944cd4","value":"AiBOTS","image_id":"w0gmbxvwv069er9crif3","permalink":"aibots","entity_def_id":"organization"},"short_description":"AiBOTS
+        is a management consulting firm that specializes in UX design, big data analytics,
+        IoT, and artificial intelligence services."},{"facet_ids":["company","rank","builtwith","siftery"],"identifier":{"uuid":"e97a985c-ddda-4902-b50e-b3f3fd97c7f7","value":"Airbots","image_id":"hrakdea2zpgbspzmmwfj","permalink":"airbots","entity_def_id":"organization"},"short_description":"Airbots
+        is an AI-autonomous strategy execution platform for advertising."},{"facet_ids":["ipqwery","aberdeen","semrush","company","rank","builtwith"],"identifier":{"uuid":"2434bbc2-92d1-592f-3183-71277ca3374c","value":"Addibots","image_id":"v1488871999/jhlkimev8fqviq8cglzq.png","permalink":"addibots","entity_def_id":"organization"},"short_description":"A
+        robotics and 3D printing startup based in the Hudson Valley of New York."},{"facet_ids":["company","rank","semrush","builtwith"],"identifier":{"uuid":"cfbed3c7-5f4d-4407-89f0-973b36e51c73","value":"Avidnote","image_id":"qmksqnrs904xw8jhxljd","permalink":"avidnote","entity_def_id":"organization"},"short_description":"Avidnote
+        is a digital platform for research."}]}'
+  recorded_at: Sat, 11 May 2024 19:09:08 GMT
 recorded_with: VCR 6.2.0

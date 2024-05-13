@@ -24,7 +24,8 @@ class ApplicantTrackingSystem < ApplicationRecord
       "Ats::#{module_name}::CompanyDetails",
       "Ats::#{module_name}::FetchCompanyJobs",
       "Ats::#{module_name}::JobDetails",
-      "Ats::#{module_name}::ApplicationFields"
+      "Ats::#{module_name}::ApplicationFields",
+      "Ats::#{module_name}::SubmitApplication"
     ]
 
     modules.each do |module_name|
@@ -131,6 +132,10 @@ class ApplicantTrackingSystem < ApplicationRecord
     return data.dig(0, 'name') unless data.blank?
   end
 
+  def fetch_total_live(ats_identifier)
+    fetch_company_jobs(ats_identifier)&.count
+  end
+
   def replace_ats_identifier(ats_identifier)
     api_url = url_api.gsub("XXX", ats_identifier)
     main_url = url_base.gsub("XXX", ats_identifier)
@@ -201,9 +206,10 @@ class ApplicantTrackingSystem < ApplicationRecord
 
   def fetch_additional_fields(job, data)
     get_application_criteria(job, data)
-    p "job fields getting"
+    p "Getting form fields for #{job.title}..."
     job.save! # must save before passing to Sidekiq job
-    GetFormFieldsJob.perform_later(job) # TODO: create separate module methods for this
+    # TODO: create separate module methods for this
+    GetFormFieldsJob.perform_later(job) if Flipper.enabled?(:get_form_fields)
   end
 
   # -----------------------

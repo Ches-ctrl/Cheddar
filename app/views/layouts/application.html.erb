@@ -19,19 +19,23 @@
         <%= yield %>
       </div>
     </div>
-    <div data-controller="chatbot">
-      <div>
-        <%= render partial: "messages/cheddargpt_modal" unless on_landing_page? %>
-        <% unless on_landing_page? %>
-          <div class="CheddarGPTmodal d-flex justify-content-center align-items-center" data-action="click->chatbot#open" >
-            <div class="yellow-circle d-none"></div>
-            <%= image_tag("cheddar_logo_new_3.svg", alt: "Cheddar Logo", style: "max-height: 50px; max-width: 50px;", class: "ms-1") %>
-            <%# <p class="mb-0">CheddarGPT</p> %>
-          </div>
-        <% end %>
+    <% if Flipper.enabled?(:cheddargpt) %>
+      <div data-controller="chatbot">
+        <div>
+          <%= render partial: "messages/cheddargpt_modal" unless on_landing_page? %>
+          <% unless on_landing_page? %>
+            <div class="CheddarGPTmodal d-flex justify-content-center align-items-center" data-action="click->chatbot#open" >
+              <div class="yellow-circle d-none"></div>
+              <%= image_tag("cheddar_logo_new_3.svg", alt: "Cheddar Logo", style: "max-height: 50px; max-width: 50px;", class: "ms-1") %>
+              <%# <p class="mb-0">CheddarGPT</p> %>
+            </div>
+          <% end %>
+        </div>
       </div>
-    </div>
-    <%= render "pages/footer" unless on_landing_page? %>
+    <% end %>
+    <% if Flipper.enabled?(:footer) %>
+      <%= render "pages/footer" unless on_landing_page? %>
+    <% end %>
     <%# <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script> %>
   </body>
 </html>
