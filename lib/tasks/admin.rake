@@ -1,13 +1,7 @@
 namespace :admin do
   desc "Build all relevant companies and jobs"
   task build_all_companies_and_jobs: :environment do
-    # TODO: fix this as won't work as it doesn't return a promise object
-
     Build::AllCompaniesJob.perform_companies_and_jobs
-
-    # NB. The below are left here in case you want to call the jobs directly instead of as background jobs
-    # CompanyBuilder.new.build
-    # Build::AllJobs.new.build
   end
 
   desc "Update existing company jobs"
