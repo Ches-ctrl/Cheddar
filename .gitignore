@@ -33,6 +33,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
 # Ignore .env file containing credentials.
 .env*
 
@@ -41,7 +42,7 @@
 .DS_Store
 # .csv*
 
-# Steven jetbrains files
+# Ignore Jetbrains files
 .idea/Cheddar.iml
 .idea/misc.xml
 .idea/modules.xml
