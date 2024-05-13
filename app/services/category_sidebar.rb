@@ -151,8 +151,8 @@ class CategorySidebar
         location_id,
         count,
         @params[:location]&.include?(location_id)
-      ].compact
-    end
+      ]
+    end.compact
     locations << [
       'checkbox',
       'Remote',
