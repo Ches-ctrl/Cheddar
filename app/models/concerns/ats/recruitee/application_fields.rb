@@ -125,6 +125,7 @@ module Ats
         'number' => :number,
         'multi_choice' => :checkbox,
         'file' => :upload,
+        'video' => :upload,
         'boolean' => :boolean,
         'legal' => :agree
       }
@@ -138,6 +139,7 @@ module Ats
         'number' => 'content',
         'multi_choice' => 'multi_content',
         'file' => 'file',
+        'video' => 'file',
         'boolean' => 'flag',
         'legal' => 'flag'
       }

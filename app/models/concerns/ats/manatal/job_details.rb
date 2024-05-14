@@ -18,7 +18,7 @@ module Ats
         job_data = jobs.find { |data| data["hash"] == job.ats_job_id }
         return mark_job_expired(job) unless job_data
 
-        job.api_url = "#{job.api_url}#{job_data['id']}"
+        job.api_url = "#{job.api_url}#{job_data['id']}/"
         return job_data
       end
 

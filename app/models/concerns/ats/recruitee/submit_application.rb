@@ -15,14 +15,15 @@ module Ats
           field_id, field_type = field['locators'].split(':')
           multi_index = field_type == 'multi_content' ? "[]" : ""
           if field['core_field']
-            # TODO: fix not currently creating tmp_files for cover letters, since they're passed as strings
-            form_data << ["candidate[#{field_id}]", field_value.instance_of?(String) ? field_value : create_tmp_file(field_id, field_value)]
+            form_data << ["candidate[#{field_id}]", field['interaction'] == 'upload' ? build_and_attach_tempfile(field_id, field_value) : field_value]
           else
             form_data << ["candidate[open_question_answers_attributes][#{index}][open_question_id]", field_id]
             form_data << ["candidate[open_question_answers_attributes][#{index}][#{field_type}]#{multi_index}", field_value]
             index += 1
           end
         end
+        puts "submitting the following form_data:"
+        p form_data
         form_data
       end
 
@@ -43,7 +44,7 @@ module Ats
       def build_url
         base_url = @job.company.url_ats_api
         offer_slug = @job.ats_job_id
-        posting = "#{base_url}#{offer_slug}/candidates"
+        posting = "#{base_url}#{offer_slug}/candidates?async=true"
         URI(posting)
       end
 
@@ -65,26 +66,26 @@ module Ats
         end
       end
 
-      def create_tmp_file(filetype, file)
+      def build_and_attach_tempfile(filetype, file)
         puts "THE FILETYPE IS #{filetype}"
         convert = {
           'photo' => '.jpg',
           'cv' => '.pdf',
           'cover_letter' => '.docx'
         }
-        file_path = Rails.root.join('tmp', "#{filetype} - #{@user.first_name} #{@user.last_name} - #{@job.title} - #{@job.company.name}#{convert[filetype]}")
-        File.binwrite(file_path, URI.parse(file.url).open.read)
-        File.open(file_path)
+        if file.instance_of?(String)
+          # There doesn't seem to be a way to upload a cover_letter file using this API
+          convert_html_to_string(file)
+        else
+          file_path = Rails.root.join('tmp', "#{filetype} - #{@user.first_name} #{@user.last_name} - #{@job.title} - #{@job.company.name}#{convert[filetype]}")
+          File.binwrite(file_path, URI.parse(file.url).open.read)
+          File.open(file_path)
+        end
+      end
+
+      def convert_html_to_string(html_string)
+        Nokogiri::HTML(html_string).text
       end
     end
   end
 end
-# if file.instance_of?(String)
-#   docx = Htmltoword::Document.create(file)
-#   file_path = Rails.root.join('tmp',
-#                               "Cover Letter - #{@job.title} - #{@job.company.name} - #{@user.first_name} #{@user.last_name}.docx")
-#   File.binwrite(file_path, docx)
-# else
-#   file_path = Rails.root.join('tmp', "Resume - #{@user.first_name} #{@user.last_name} - #{@job.title} - #{@job.company.name}.pdf")
-#   File.binwrite(file_path, URI.open(file.url).read)
-# end

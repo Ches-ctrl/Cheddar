@@ -3,60 +3,108 @@ module Ats
     module ApplicationFields
       def get_application_criteria(job, _data)
         p "Getting Manatal application criteria"
-        job.application_criteria = CORE_FIELDS
+        data = fetch_application_fields(job)
+
+        job.application_criteria = build_application_criteria_from(data)
+        job.apply_with_cheddar = true
         job.save
+        # TODO: update job.requirement
       end
 
+      def fetch_application_fields(job)
+        endpoint = "#{job.api_url}application-form/"
+        get_json_data(endpoint)
+      end
+
+      def build_application_criteria_from(data)
+        data.to_h do |field|
+          p field
+          label = field['label']
+          if CORE_FIELDS.include?(label)
+            attributes = CORE_FIELDS[label]
+            name = attributes[:id]
+            interaction = attributes[:interaction]
+            options = nil
+            core_field = true
+          else
+            name = field['slug']
+            interaction, options = fetch_interaction_and_options(name, field['type'])
+            core_field = false
+          end
+          [
+            name, {
+              interaction:,
+              locators: field['slug'].blank? ? label.downcase : field['slug'],
+              required: field['is_required'],
+              label:,
+              options:,
+              core_field:
+            }.compact
+          ]
+        end
+      end
+
+      def fetch_nationalities
+        endpoint = "#{API_BASE_URL}nationalities/"
+        data = get_json_data(endpoint)
+
+        data.map do |nationality|
+          "#{nationality['demonym']} (#{nationality['common_name']})"
+        end
+      end
+
+      def fetch_languages
+        endpoint = "#{API_BASE_URL}languages/"
+        data = get_json_data(endpoint)
+
+        data.map do |language|
+          language['name']
+        end
+      end
+
+      def fetch_interaction_and_options(id, field_type)
+        if field_type == 'boolean'
+          interaction = :select
+          options = ['Yes', 'No']
+        elsif id == 'nationalities'
+          interaction = :checkbox
+          options = fetch_nationalities
+        elsif id == 'languages'
+          interaction = :checkbox
+          options = fetch_languages
+        end
+        interaction ||= FIELD_TYPES[field_type]
+        options ||= nil
+        [interaction, options]
+      end
+
+      API_BASE_URL = 'https://core.api.manatal.com/open/v3/'
+      FIELD_TYPES = {
+        'char' => :input,
+        'longtext' => :input,
+        'boolean' => :boolean,
+        'integer' => :number
+      }
       CORE_FIELDS = {
-        resume: {
+        'Full Name' => {
+          interaction: :input,
+          id: 'full_name'
+        },
+        'Email' => {
+          interaction: :input,
+          id: 'email'
+        },
+        'Phone' => {
+          interaction: :input,
+          id: 'phone'
+        },
+        'Linkedin' => {
+          interaction: :input,
+          id: 'linkedin_url'
+        },
+        'Resume' => {
           interaction: :upload,
-          locators: 'candidate[cv]',
-          required: true
-        },
-        full_name: {
-          interaction: :input,
-          locators: 'candidate[name]',
-          required: true
-        },
-        email: {
-          interaction: :input,
-          locators: 'candidate[email]',
-          required: true
-        },
-        phone: {
-          interaction: :input,
-          locators: 'PhoneInputInput',
-          required: true
-        },
-        profile_photo: {
-          interaction: :input,
-          locators: 'candidate[photo]',
-          required: false
-        },
-        cover_letter: {
-          interaction: :upload,
-          locators: 'candidate[coverLetterFile]',
-          required: true
-        },
-        where_home: {
-          interaction: :input,
-          locators: 'candidate[openQuestionAnswers][0][content]',
-          required: true
-        },
-        when_start: {
-          interaction: :input,
-          locators: 'candidate[openQuestionAnswers][1][content]',
-          required: true
-        },
-        visa_sponsorship: {
-          interaction: :select,
-          locators: 'candidate[openQuestionAnswers][2][flag]',
-          required: true
-        },
-        hear_about_company: {
-          interaction: :checkbox,
-          locators: 'candidate[openQuestionAnswers][3][multiContent][]',
-          required: false
+          id: 'resume'
         }
       }
     end
