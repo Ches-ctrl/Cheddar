@@ -4,7 +4,7 @@ module Api
       skip_before_action :verify_authenticity_token, only: :add_job
       before_action :authenticate_with_api_key
       before_action :verify_request_origin
-      before_action :authenticate_user!, only: :add_job
+      before_action :authenticate_user!
 
       def add_job
         posting_url = params[:posting_url]
@@ -12,7 +12,7 @@ module Api
         if posting_url
           render json: { message: 'Posting URL sent successfully' }, status: :ok
         else
-          render json: { message: 'Post API connected but no posting_url' }, status: :ok
+          render json: { message: 'Post API connected but no posting_url' }, status: :bad_request
         end
 
         # if CreateJobFromUrl.call(posting_url)
