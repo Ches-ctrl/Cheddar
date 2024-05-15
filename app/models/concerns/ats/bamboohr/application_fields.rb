@@ -23,7 +23,6 @@ module Ats
 
       def build_core_field(locator, data)
         name, details = CORE_FIELDS.find { |_, attributes| attributes[:locators] == locator }
-        puts [locator, name]
         {
           name => details.merge(
             required: data['isRequired'],
