@@ -4,13 +4,12 @@ module Ats
       def fetch_title_and_location(job_data)
         title = job_data['title']
         location = build_location_string(job_data)
-        [title, location]
+        remote_only = job_data['telecommuting']
+        [title, location, remote_only]
       end
 
       def fetch_id(job_data)
-        apply_url = job_data['applyUrl']
-        result = apply_url&.match(%r{https://apply.workable.com/j/(\w+)/apply})
-        result[1] if result
+        job_data['shortcode']
       end
 
       private
@@ -26,16 +25,18 @@ module Ats
       end
 
       def job_details(job, data)
+        title, non_geocoded_location_string, remote = fetch_title_and_location(data)
         job.assign_attributes(
-          title: data['title'],
+          title:,
           description: Flipper.enabled?(:job_description) ? data['description'] : 'Not added yet',
-          non_geocoded_location_string: build_location_string(data),
-          posting_url: "#{url_base}#{job.company.ats_identifier}/j/#{data['shortcode']}",
+          non_geocoded_location_string:,
+          posting_url: data['url'],
+          apply_url: data['application_url'],
           department: data['department'],
           seniority: data['experience'], # TODO: standardize this
           industry: data['industry'],
           date_posted: (Date.parse(data['published_on']) if data['published_on']),
-          remote: data['telecommuting'],
+          remote:,
           employment_type: data['employment_type']
         )
       end

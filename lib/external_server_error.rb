@@ -1,0 +1,2 @@
+class ExternalServerError < StandardError
+end

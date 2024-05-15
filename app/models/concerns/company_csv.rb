@@ -3,17 +3,14 @@ module CompanyCsv
   include Constants
 
   def ats_list
-    list = Hash.new { |hash, key| hash[key] = Set.new }
-
-    CSV.foreach(db_filepath) do |ats_name, ats_identifier|
-      list[ats_name] << ats_identifier
-    end
-    list
+    load_from_csv('ats_identifiers')
   end
 
-  def save_ats_list
-    CSV.open(db_filepath, 'wb') do |csv|
-      @companies.each do |ats_name, list|
+  def save_ats_list(ats_list, filename = 'ats_identifiers')
+    filepath = list_filepath(filename)
+    headers = fetch_headers(filepath)
+    CSV.open(filepath, 'wb', write_headers: true, headers:) do |csv|
+      ats_list.each do |ats_name, list|
         list.each do |ats_id|
           csv << [ats_name, ats_id]
         end
@@ -22,13 +19,18 @@ module CompanyCsv
   end
 
   def load_from_csv(file_name, filepath = nil)
-    company_list = Set.new
+    company_list = ats_hash
     filepath ||= list_filepath(file_name)
 
-    CSV.foreach(filepath) do |row|
-      company_list << row[0]
+    CSV.foreach(filepath, headers: :first_row, header_converters: :symbol) do |row|
+      ats_name, ats_identifier = row.values_at(:ats_name, :ats_identifier)
+      company_list[ats_name].add(ats_identifier)
     end
     company_list
+  end
+
+  def ats_hash
+    Hash.new { |hash, key| hash[key] = Set.new }
   end
 
   # def write_to_csv(ats_name, list, filepath = nil)
@@ -55,5 +57,14 @@ module CompanyCsv
     directory = Rails.root.join('storage', 'csv')
     FileUtils.mkdir_p(directory) unless File.directory?(directory)
     directory
+  end
+
+  def fetch_headers(filepath)
+    existing_headers = []
+    CSV.foreach(filepath, headers: :first_row, header_converters: :symbol) do |row|
+      existing_headers = row.headers
+      break
+    end
+    existing_headers
   end
 end
