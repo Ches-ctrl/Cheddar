@@ -72,11 +72,13 @@ module CheckUrlIsValid
 
   def get_json_data(api_url, use_proxy: false)
     retries_left = 1
-    response = get(api_url)
+    options = { headers: { 'Accept' => 'application/json' } }
+
+    response = HTTParty.get(api_url, options)
     return {} if response == "Not Found" # Workable 404 response
 
     begin
-      JSON.parse(response)
+      JSON.parse(response.body)
     rescue JSON::ParserError => e
       if use_proxy && retries_left.positive?
         retries_left -= 1
