@@ -96,7 +96,7 @@ module Ats
         },
         'Phone' => {
           interaction: :input,
-          id: 'phone'
+          id: 'phone_number'
         },
         'Linkedin' => {
           interaction: :input,

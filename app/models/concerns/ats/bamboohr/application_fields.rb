@@ -66,118 +66,130 @@ module Ats
       }
 
       CORE_FIELDS = {
-        'first_name' => {
+        first_name: {
           interaction: :input,
           locators: 'firstName',
           label: 'First Name',
           core_field: true
         },
-        'last_name' => {
+        last_name: {
           interaction: :input,
           locators: 'lastName',
           label: 'Last Name',
           core_field: true
         },
-        'email' => {
+        email: {
           interaction: :input,
           locators: 'email',
           label: 'Email',
           core_field: true
         },
-        'phone' => {
+        phone_number: {
           interaction: :input,
           locators: 'phone',
           label: 'Phone',
           core_field: true
         },
-        'address' => {
+        address: {
           interaction: :input,
           locators: 'streetAddress',
           label: 'Address',
           core_field: true
         },
-        'city' => {
+        city: {
           interaction: :input,
           locators: 'city',
           label: 'City',
           core_field: true
         },
-        'state' => {
+        state: {
           interaction: :select,
           locators: 'state',
           label: 'State',
           core_field: true
         },
-        'postal_code' => {
+        post_code: {
           interaction: :input,
           locators: 'zip',
           label: 'ZIP',
           core_field: true
         },
-        'country' => {
+        country: {
           interaction: :input,
           locators: 'countryId',
           label: 'Country',
           core_field: true
         },
-        'website_url' => {
+        website_url: {
           interaction: :input,
           locators: 'websiteUrl',
           label: 'Website, Blog, or Portfolio',
           core_field: true
         },
-        'linkedin_url' => {
+        linkedin_url: {
           interaction: :input,
           locators: 'linkedinUrl',
           label: 'LinkedIn Profile URL',
           core_field: true
         },
-        'cover_letter' => {
+        cover_letter: {
           interaction: :upload,
           locators: 'coverLetterFileId',
           label: 'Cover Letter',
           core_field: true
         },
-        'resume' => {
+        resume: {
           interaction: :upload,
           locators: 'resumeFileId',
           label: 'Resume',
           core_field: true
         },
-        'date_available' => {
+        education_level: {
+          interaction: :select,
+          locators: 'educationLevelId',
+          label: 'Highest Education Obtained',
+          core_field: true
+        },
+        education_school: {
+          interaction: :input,
+          locators: 'educationInstitutionName',
+          label: 'College/University',
+          core_field: true
+        },
+        date_available: {
           interaction: :date,
           locators: 'dateAvailable',
           label: 'Date Available',
           core_field: true
         },
-        'desired_pay' => {
+        desired_pay: {
           interaction: :input,
           locators: 'desiredPay',
           label: 'Desired Pay',
           core_field: true
         },
-        'referred_by' => {
+        referred_by: {
           interaction: :input,
           locators: 'referredBy',
           label: 'Who referred you for this position?',
           core_field: true
         },
-        'gender' => {
+        gender: {
           interaction: :select,
           locators: 'genderId',
           label: 'Gender'
         },
-        'ethnicity' => {
+        ethnicity: {
           interaction: :select,
           locators: 'ethnicityId',
           label: 'Ethnicity'
         },
-        'disability' => {
+        disability: {
           interaction: :select,
           locators: 'disabilityId',
           label: 'Disability'
         },
-        'veteran_status' => {
+        veteran_status: {
           interaction: :select,
           locators: 'veteranStatusId',
           label: 'Veteran Status'

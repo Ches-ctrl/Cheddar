@@ -22,6 +22,8 @@ class UpdateExistingCompanyJobs < ApplicationJob
     fetch_jobs_and_companies
     mark_defunct_jobs
     update_lists
+
+    puts "Completed jobs updater."
   end
 
   private
@@ -71,8 +73,10 @@ class UpdateExistingCompanyJobs < ApplicationJob
   end
 
   def remove_invalid_ids_from_company_ids
-    @invalid_company_ids.each do |ats_name, company_id|
-      @company_ids[ats_name].delete(company_id)
+    @invalid_company_ids.each do |ats_name, list|
+      list.each do |company_id|
+        @company_ids[ats_name].delete(company_id)
+      end
     end
   end
 

@@ -24,11 +24,17 @@ puts "Are you sure you want to delete all data? (Y/N)"
 confirmation = gets.chomp.downcase
 if confirmation == 'y'
   JobApplication.destroy_all
+  puts "Deleted all job applications."
   User.destroy_all
+  puts "Deleted all users."
   Job.destroy_all
+  puts "Deleted all jobs."
   Company.destroy_all
+  puts "Deleted all companies."
   ApplicantTrackingSystem.destroy_all
+  puts "Deleted all applicant tracking systems."
   Location.destroy_all
+  puts "Deleted all locations."
   Country.destroy_all
   Role.destroy_all
   puts "Data deleted successfully!"

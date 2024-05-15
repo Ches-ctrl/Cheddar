@@ -90,7 +90,7 @@ module Ats
           label: 'Email address',
           core_field: true
         },
-        'phone' => {
+        'phone_number' => {
           interaction: :input,
           locators: 'phone',
           label: 'Phone number',
