@@ -19,6 +19,7 @@ class Company < ApplicationRecord
     all_jobs = ats.fetch_company_jobs(ats_identifier)
     all_jobs.each do |job_data|
       details = ats.fetch_title_and_location(job_data)
+      p details
       next unless relevant?(*details)
 
       # create jobs with data from ATS company endpoint unless individual job endpoint exists:

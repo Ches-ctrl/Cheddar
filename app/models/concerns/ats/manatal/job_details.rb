@@ -22,12 +22,6 @@ module Ats
         return job_data
       end
 
-      def mark_job_expired(job)
-        p "Job with ID #{job.ats_job_id} is expired."
-        job.live = false
-        return nil
-      end
-
       def job_url_api(base_url, company_id, _job_id)
         "#{base_url}#{company_id}/jobs/"
       end
