@@ -9,11 +9,12 @@ module Ats
         name, industry = fetch_name_and_industry(data)
         {
           name:,
-          description: fetch_description(data),
+          description: Flipper.enabled?(:company_description) ? fetch_description(data) : 'Not added yet',
           industry:,
           url_ats_api:,
           url_ats_main: "#{url_base}#{ats_identifier}",
-          total_live: fetch_total_live(ats_identifier)
+          total_live: data['totalFound']
+          # TODO: scrape url_website from url_ats_main
         }
       end
 
@@ -35,12 +36,6 @@ module Ats
         name = data.dig('content', 0, 'company', 'name')
         industry = data.dig('content', 0, 'industry', 'label')
         [name, industry]
-      end
-
-      def fetch_total_live(ats_identifier)
-        company_api_url = "#{url_api}#{ats_identifier}/postings"
-        data = get_json_data(company_api_url)
-        data['totalFound']
       end
     end
   end

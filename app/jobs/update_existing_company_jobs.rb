@@ -10,6 +10,8 @@ class UpdateExistingCompanyJobs < ApplicationJob
   # TODO: (1) for all the existing jobs on the site, we check whether those are still live (and delete if not)
   # TODO: (2) for all the existing companies on the site, we check whether they have new jobs (and add if so)
 
+  # TODO: Update this so that it pulls the list of companies from the DB rather than the CSV
+
   def perform
     puts "Beginning jobs updater for companies already seeded to the DB..."
 
@@ -38,22 +40,30 @@ class UpdateExistingCompanyJobs < ApplicationJob
 
         company_jobs = @ats.fetch_company_jobs(ats_identifier)
 
+        next unless company_jobs
+
         # Create new jobs using AtsSystem method
         company_jobs.each do |job_data|
           @ats.find_or_create_job_by_data(company, job_data) if relevant?(job_data)
           @job_urls.delete(@ats.fetch_url(job_data))
+        rescue StandardError => e
+          puts "Error: #{e}"
         end
       end
     end
   end
 
   def relevant?(job_data)
-    title, job_location = @ats_system.fetch_title_and_location(job_data)
+    # TODO: call the Relevant module method instead
+    title, job_location, remote = @ats.fetch_title_and_location(job_data)
 
-    title &&
+    (title &&
+      remote &&
+      JOB_TITLE_KEYWORDS.any? { |keyword| title.downcase.match?(keyword) }) ||
+      (title &&
       job_location &&
       JOB_LOCATION_KEYWORDS.any? { |keyword| job_location.downcase.match?(keyword) } &&
-      JOB_TITLE_KEYWORDS.any? { |keyword| title.downcase.match?(keyword) }
+      JOB_TITLE_KEYWORDS.any? { |keyword| title.downcase.match?(keyword) })
   end
 
   # TODO: Update this so that the jobs are kept but are no longer live on the site

@@ -24,7 +24,8 @@ class ApplicantTrackingSystem < ApplicationRecord
       "Ats::#{module_name}::CompanyDetails",
       "Ats::#{module_name}::FetchCompanyJobs",
       "Ats::#{module_name}::JobDetails",
-      "Ats::#{module_name}::ApplicationFields"
+      "Ats::#{module_name}::ApplicationFields",
+      "Ats::#{module_name}::SubmitApplication"
     ]
 
     modules.each do |module_name|
@@ -111,11 +112,11 @@ class ApplicantTrackingSystem < ApplicationRecord
   # Company Details
   # -----------------------
 
-  private
-
   def company_details(ats_identifier, data = nil)
     refer_to_module(defined?(super) ? super : nil, __method__)
   end
+
+  private
 
   def company_details_from_data(data)
     refer_to_module(defined?(super) ? super : nil, __method__)
@@ -131,12 +132,14 @@ class ApplicantTrackingSystem < ApplicationRecord
     return data.dig(0, 'name') unless data.blank?
   end
 
-  def replace_ats_identifier(ats_identifier)
-    api_url = url_api
-    main_url = url_base
+  def fetch_total_live(ats_identifier)
+    fetch_company_jobs(ats_identifier)&.count
+  end
 
-    api_url.gsub!("XXX", ats_identifier)
-    main_url.gsub!("XXX", ats_identifier)
+  def replace_ats_identifier(ats_identifier)
+    api_url = url_api.gsub("XXX", ats_identifier)
+    main_url = url_base.gsub("XXX", ats_identifier)
+
     [api_url, main_url]
   end
 
@@ -157,10 +160,9 @@ class ApplicantTrackingSystem < ApplicationRecord
       return if data.blank? || data['error'].present? || data.values.include?(404)
 
       job_details(new_job, data)
-      fetch_additional_fields(new_job)
+      fetch_additional_fields(new_job, data)
+      puts "Created new job - #{new_job.title} with #{company.name}"
     end
-
-    puts "Created new job - #{job.title} with #{company.name}"
 
     return job
   end
@@ -168,6 +170,24 @@ class ApplicantTrackingSystem < ApplicationRecord
   def find_or_create_job_by_data(company, data)
     ats_job_id = fetch_id(data)
     find_or_create_job(company, ats_job_id, data)
+  end
+
+  def individual_job_endpoint_exists?
+    # This checks whether job_data is fetched from a job-specific endpoint.
+    # Return false with Lever because its job-specific endpoint gives no additional data on top of
+    # what the company endpoint gives.
+    return false if name == 'Lever'
+
+    parameters = method(:job_url_api).parameters
+    parameters.any? { |param| param[1] == :job_id }
+  end
+
+  def fetch_company_jobs(ats_identifier)
+    refer_to_module(defined?(super) ? super : nil, __method__)
+  end
+
+  def fetch_title_and_location(data)
+    refer_to_module(defined?(super) ? super : nil, __method__)
   end
 
   private
@@ -184,11 +204,12 @@ class ApplicantTrackingSystem < ApplicationRecord
     get_json_data(job.api_url)
   end
 
-  def fetch_additional_fields(job)
-    get_application_criteria(job)
-    p "job fields getting"
+  def fetch_additional_fields(job, data)
+    get_application_criteria(job, data)
+    p "Getting form fields for #{job.title}..."
     job.save! # must save before passing to Sidekiq job
-    GetFormFieldsJob.perform_later(job) # TODO: create separate module methods for this
+    # TODO: create separate module methods for this
+    GetFormFieldsJob.perform_later(job) if Flipper.enabled?(:get_form_fields)
   end
 
   # -----------------------

@@ -1,6 +1,16 @@
 module Ats
   module Smartrecruiters
     module JobDetails
+      def fetch_title_and_location(job_data)
+        title = job_data['name']
+        location = fetch_location(job_data)
+        [title, location]
+      end
+
+      def fetch_id(job_data)
+        job_data['id']
+      end
+
       private
 
       def job_url_api(base_url, ats_identifier, job_id)
@@ -8,30 +18,35 @@ module Ats
       end
 
       def job_details(job, data)
+        title, location = fetch_title_and_location(data)
         job.assign_attributes(
-          title: data['name'],
-          description: build_description(data.dig('jobAd', 'sections')),
+          title:,
+          description: Flipper.enabled?(:job_description) ? build_description(data.dig('jobAd', 'sections')) : 'Not added yet',
           posting_url: data['applyUrl'],
-          non_geocoded_location_string: fetch_location(job, data),
+          remote: remote?(data),
+          non_geocoded_location_string: location,
           seniority: fetch_seniority(data),
           department: data.dig('department', 'label'),
           requirements: data.dig('jobAd', 'sections', 'qualifications', 'text'),
           date_posted: (Date.parse(data['releasedDate']) if data['releasedDate']),
           industry: data.dig('industry', 'label'),
-          employment_type: data.dig('typeOfEmployment', 'label'),
-          remote: data.dig('location', 'remote')
+          employment_type: data.dig('typeOfEmployment', 'label')
         )
       end
 
-      def fetch_location(job, data)
+      def fetch_location(data)
         country_custom_field = data['customField']&.find { |field| field['fieldId'] == "COUNTRY" }
         country_string = country_custom_field&.dig('valueLabel')
 
-        if job.remote
+        if remote?(data)
           country_string
         else
           [data.dig('location', 'city'), country_string].reject(&:blank?).join(', ')
         end
+      end
+
+      def remote?(data)
+        data.dig('location', 'remote')
       end
 
       def fetch_seniority(data)

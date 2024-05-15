@@ -4,16 +4,10 @@ module Ats
       include ActionView::Helpers::NumberHelper
       include Constants
 
-      private
-
       def fetch_title_and_location(job_data)
         title = job_data['title']
         job_location = job_data.dig('location', 'name')
         [title, job_location]
-      end
-
-      def fetch_url(job_data)
-        job_data['absolute_url']
       end
 
       def fetch_id(job_data)
@@ -21,16 +15,23 @@ module Ats
         job_data['id']
       end
 
+      def fetch_url(job_data)
+        job_data['absolute_url']
+      end
+
+      private
+
       def job_url_api(base_url, company_id, job_id)
-        "#{base_url}#{company_id}/jobs/#{job_id}?questions=true&pay_transparency=true"
+        "#{base_url}#{company_id}/jobs/#{job_id}?pay_transparency=true" # &questions=true
       end
 
       def job_details(job, data)
+        title, location = fetch_title_and_location(data)
         job.assign_attributes(
           posting_url: data['absolute_url'],
-          title: data['title'],
-          description: data['content'],
-          non_geocoded_location_string: data.dig('location', 'name'),
+          title:,
+          description: Flipper.enabled?(:job_description) ? data['description'] : 'Not added yet',
+          non_geocoded_location_string: location,
           department: data.dig('departments', 0, 'name'),
           office: data.dig('offices', 0, 'name'),
           date_posted: convert_from_iso8601(data['updated_at']),

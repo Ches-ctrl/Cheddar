@@ -10,7 +10,8 @@ module Ats
       def company_details(ats_identifier)
         {
           url_ats_api: "https://devitjobs.uk/api/companyPages/#{ats_identifier}",
-          url_ats_main: "https://devitjobs.uk/companies/#{ats_identifier}"
+          url_ats_main: "https://devitjobs.uk/companies/#{ats_identifier}",
+          total_live: fetch_total_live(ats_identifier)
         }
       end
 
@@ -20,7 +21,7 @@ module Ats
           url_website: data['companyWebsiteLink'],
           industry: data['companyType'],
           location: [data['address'], data['actualCity'], data['postalCode']].reject(&:blank?).join(', '),
-          description: data['content']
+          description: Flipper.enabled?(:company_description) ? data['content'] : 'Not added yet'
           # img_url: data['logoImg'].include?('https://') ? data['logoImg'] : "https://static.devitjobs.uk/logo-images/#{data['logoImg']}"
         }
       end

@@ -1,6 +1,18 @@
 module Ats
   module Workable
     module JobDetails
+      def fetch_title_and_location(job_data)
+        title = job_data['title']
+        location = fetch_simple_location(job_data)
+        [title, location]
+      end
+
+      def fetch_id(job_data)
+        apply_url = job_data['applyUrl']
+        result = apply_url&.match(%r{https://apply.workable.com/j/(\w+)/apply})
+        result[1] if result
+      end
+
       private
 
       def job_url_api(base_url, ats_identifier, job_id)
@@ -14,9 +26,8 @@ module Ats
       def job_details(job, data)
         job.assign_attributes(
           title: data['title'],
-          description: build_description(data),
-          # location: "#{data['location']['city']}, #{data['location']['country']}",
-          # country: data['location']['country'],
+          description: Flipper.enabled?(:job_description) ? build_description(data) : 'Not added yet',
+          non_geocoded_location_string: build_location_string(data),
           posting_url: "#{url_base}#{job.company.ats_identifier}/j/#{data['shortcode']}",
           department: data['department']&.first,
           requirements: data['requirements'],
@@ -35,6 +46,23 @@ module Ats
           ("<h2>Benefits</h2>" if data['benefits']),
           data['benefits']
         ].reject(&:blank?).join
+      end
+
+      def fetch_simple_location(data)
+        locations = data['locations']
+        return 'United Kingdom' if locations&.any? { |location| location.include?('United Kingdom') }
+
+        locations.first
+      end
+
+      def build_location_string(data)
+        locations = data['locations']&.map do |location|
+          city = location['city']
+          region = location['region']
+          country = location['country']
+          [city, region, country].reject(&:blank?).join(', ')
+        end
+        locations.reject(&:blank?).join(' && ')
       end
     end
   end

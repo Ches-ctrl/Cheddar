@@ -1,11 +1,10 @@
 module Ats
   module Manatal
     module ApplicationFields
-      def get_application_criteria(job)
+      def get_application_criteria(job, _data)
         p "Getting Manatal application criteria"
         job.application_criteria = CORE_FIELDS
         job.save
-        # GetFormFieldsJob.perform_later(job.posting_url)
       end
 
       CORE_FIELDS = {

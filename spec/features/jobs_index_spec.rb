@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 # rubocop:disable Metrics/BlockLength
-RSpec.feature "Jobs index page", type: :feature do
+RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
   context "With jobs to display:" do
     before do
       create(:job, :entry_level_mobile, title: "Graduate Software Developer")
@@ -56,17 +56,6 @@ RSpec.feature "Jobs index page", type: :feature do
       expect(page).to have_content("Data Analyst")
 
       expect(page).not_to have_content("Junior Test Developer")
-    end
-
-    scenario "User can filter jobs by company" do
-      job1 = Job.first
-      job2 = Job.where.not(company: job1.company).first
-      company = job1.company.id.to_s
-
-      check(company)
-
-      expect(page).to have_content(job1.title)
-      expect(page).not_to have_content(job2.title)
     end
 
     scenario 'User can query "Ruby" with multiple sidebar filters' do

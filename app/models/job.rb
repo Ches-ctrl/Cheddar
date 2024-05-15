@@ -13,12 +13,16 @@ class Job < ApplicationRecord
 
   has_many :job_applications, dependent: :destroy
   has_many :saved_jobs, dependent: :destroy
+
   has_many :playlist_jobs
   has_many :job_playlists, through: :playlist_jobs
+
   has_many :jobs_locations, dependent: :destroy
   has_many :locations, through: :jobs_locations
+
   has_many :jobs_countries, dependent: :destroy
   has_many :countries, through: :jobs_countries
+
   has_many :jobs_roles, dependent: :destroy
   has_many :roles, through: :jobs_roles
 
@@ -76,8 +80,7 @@ class Job < ApplicationRecord
       seniority: filter_by_seniority(params[:seniority]),
       locations: filter_by_location(params[:location]),
       roles: filter_by_role(params[:role]),
-      employment_type: filter_by_employment(params[:type]),
-      company: params[:company]&.split
+      employment_type: filter_by_employment(params[:type])
     }.compact
 
     associations = build_associations(params)
@@ -86,8 +89,7 @@ class Job < ApplicationRecord
   end
 
   def self.including_any(params, param)
-    exclusive_params = params.reject { |k, _v| k == param.to_s }
-    filter_and_sort(exclusive_params)
+    filter_and_sort params.except(param)
   end
 
   private

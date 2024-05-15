@@ -12,22 +12,23 @@
   - active_storage_purge
 :scheduler:
   :schedule:
-    # hello_world:
-    #   cron: '0 0 * * *'   # Runs once per day(at midnight)
-    #   class: Scraper::MonsterJob
     jobs_updater:
-      cron: '0 3 * * *' # Runs once per day (at 3 am)
+      cron: '0 1 * * *' # Runs once per day (at 1 am)
       class: UpdateExistingCompanyJobs
       queue: updates
-    # true_up_scraper:
+    devitjobs_api_pull:
+      cron: '0 2 * * *' # Runs once per day (at 2 am)
+      class: Scraper::DevItJob
+      queue: updates
+    # true_up_scraper: # off for now as we have already pulled all the ATS identifiers
     #   cron: '0 2 * * *' # Runs once per day (at 2 am)
     #   class: ScrapeTrueUpJob
     #   queue: updates
-    # devit_scraper:
-    #   cron: '0 1 * * *' # Runs once per day (at 1 am)
-    #   class: Scraper::DevItJob
+    # workable_xml_importer: # off for now as not currently working
+    #   cron: '0 4 * * *' # Runs once per day (at 4 am)
+    #   class: Xml::WorkableJob
     #   queue: updates
-    workable_xml_importer:
-      cron: '0 4 * * *' # Runs once per day (at 4 am)
-      class: Xml::WorkableJob
-      queue: updates
+    # monster_scraper: # off for now as don't need this functionality
+    #   cron: '0 5 * * *'   # Runs once per day(at midnight)
+    #   class: Scraper::MonsterJob
+    #   queue: updates

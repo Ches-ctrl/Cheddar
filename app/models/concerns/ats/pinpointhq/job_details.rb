@@ -4,14 +4,26 @@ module Ats
       include ActionView::Helpers::NumberHelper
       include Constants
 
+      def fetch_title_and_location(job_data)
+        title = job_data['title']
+        location_string = build_location_string(job_data)
+        location = Standardizer::LocationStandardizer.new('').simple_standardize(location_string)
+        [title, location]
+      end
+
+      def fetch_id(job_data)
+        # TODO: fetch the individual api endpoint from job_id
+        path = job_data['path']
+        result = path&.match(%r{postings/([a-z\-0-9]+)})
+        result[1] if result
+      end
+
       private
 
       def fetch_job_data(job)
-        # Move to main ATS model
         job_id = job.ats_job_id
-
-        all_jobs_data = get_json_data(job.api_url)
-        data = all_jobs_data["data"]&.find { |job| job["path"] == "/en/postings/#{job_id}" }
+        jobs = fetch_company_jobs(job.company.ats_identifier)
+        data = jobs.find { |job_data| job_data['path'] == "/en/postings/#{job_id}" }
 
         return data if data
 
@@ -30,7 +42,7 @@ module Ats
       def job_details(job, data)
         job.assign_attributes(
           title: data['title'],
-          description: build_description(data),
+          description: Flipper.enabled?(:job_description) ? build_description(data) : 'Not added yet',
           salary: fetch_salary(data),
           employment_type: data['employment_type'].gsub('_', '-').capitalize,
           non_geocoded_location_string: build_location_string(data),
@@ -59,6 +71,7 @@ module Ats
 
       def build_location_string(data)
         [
+          data.dig('location', 'name'),
           data.dig('location', 'city'),
           data.dig('location', 'province')
         ].reject(&:blank?).join(', ')

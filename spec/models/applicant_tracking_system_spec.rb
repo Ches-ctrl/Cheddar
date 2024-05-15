@@ -1,3 +1,4 @@
+require Rails.root.join('spec', 'support', 'spec_constants.rb')
 include CheckUrlIsValid
 
 RSpec.describe ApplicantTrackingSystem, type: :model do
@@ -11,7 +12,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model do
     it { is_expected.to validate_uniqueness_of(:name) }
   end
 
-  context "with the currently written modules" do
+  context "with the currently written modules", :vcr do
     before do
       allow($stdout).to receive(:write) # suppresses terminal clutter
 
@@ -61,6 +62,15 @@ RSpec.describe ApplicantTrackingSystem, type: :model do
 
       workable_url = 'https://apply.workable.com/kroo/j/13AE03BA88/'
       expect(@workable.parse_url(workable_url)).to eq(['kroo', '13AE03BA88'])
+    end
+
+    it "neither throws an error when given a bad ats_identifier nor persists non-existent companies" do
+      COMPANIES.each_key do |ats_name|
+        puts "Trying #{ats_name}"
+        ats = ApplicantTrackingSystem.find_by(name: ats_name)
+        company = ats.find_or_create_company('zzzzz')
+        expect(company.persisted?).to be_falsey
+      end
     end
 
     it 'can create a company with AshbyHQ' do

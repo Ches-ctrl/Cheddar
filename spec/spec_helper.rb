@@ -15,11 +15,22 @@
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'rails_helper'
 require 'capybara/rspec'
+require 'webmock/rspec'
 
 Capybara.configure do |config|
   config.run_server = true
   config.raise_server_errors = true
   config.server = :default
+end
+
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/fixtures/cassettes"
+  config.default_cassette_options = { :record => :new_episodes }
+  config.hook_into :webmock
+  config.configure_rspec_metadata!
+  config.allow_http_connections_when_no_cassette = true
+  config.ignore_localhost = true
+  # config.ignore_hosts 'dev.virtualearth.net'
 end
 
 RSpec.configure do |config|
@@ -40,6 +51,17 @@ RSpec.configure do |config|
     # ...rather than:
     #     # => "be bigger than 2"
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+  end
+
+  WebMock.allow_net_connect!
+  config.around do |example|
+    if example.metadata.key?(:vcr)
+      WebMock.enable!
+      example.run
+      WebMock.disable!
+    else
+      VCR.turned_off { example.run }
+    end
   end
 
   # rspec-mocks config goes here. You can use an alternate test double
