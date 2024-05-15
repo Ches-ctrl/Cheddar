@@ -2,43 +2,18 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  async submit(event) {
-    event.preventDefault();
-    
-    const form = event.target.closest('form');
-    if (!form) {
-      console.error("Cannot find parent form element");
-      return;
+    connect() {
+      this.element.dataset.action = "change->company-jobs-filter#submit";
     }
 
-    try {
-      const formData = new FormData(form);
-      const method = form.method.toUpperCase();
-      const url = new URL(form.action);
+  async submit() {
+    const value = this.element.value;
+    const url = this.element.dataset.url;
+    const turboType = this.element.dataset.turboType;
+    this.url = (`${url}?department=${value}`)
 
-      if (method === 'GET') {
-        formData.forEach((value, key) => {
-          if (!value) formData.delete(key);
-        });
-        url.search = new URLSearchParams(formData).toString();
-      }
-
-      const response = await fetch(url, {
-        method,
-        headers: {
-          'Accept': 'text/vnd.turbo-stream.html, text/html, application/xhtml+xml'
-        },
-        body: method !== 'GET' ? formData : undefined
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const turboStreamHTML = await response.text();
-      document.getElementById('jobs').innerHTML = turboStreamHTML;
-    } catch (error) {
-      console.error('Error:', error);
-    }
+    let frame = document.querySelector(`turbo-frame#${turboType}`)
+    frame.src = this.url
+    frame.reload();
   }
 }

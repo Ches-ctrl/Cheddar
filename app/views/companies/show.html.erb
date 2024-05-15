@@ -45,22 +45,14 @@
           <div class="row">
             <h5>Current Job Openings</h5>
             <div class="filter-form mb-2 text-muted">
-              <%= form_with(url: filter_jobs_company_path(@company), method: :get, class: "mt-0 row", data: {controller: "company-jobs-filter"}) do %>
-                <div class="d-flex flex-column col-3 text-start border-0">
-                  <%= label_tag :department, "Department", class: "small" %>
-                  <%= select_tag :department, options_for_select([["All Departments", ""]].concat(@departments),
-                    selected: params[:department]), include_blank: false,
-                    class: "form-select bg-white text-muted",
-                    data: {action: "change->company-jobs-filter#submit"} %>
-                </div>
-                <div class="d-flex flex-column col-3 text-start border-0">
-                  <%= label_tag :office, "Office", class: "small" %>
-                  <%= select_tag :office, options_for_select([["All Offices", ""]],
-                    selected: params[:office]), include_blank: false,
-                    class: "form-select bg-white text-muted",
-                    data: {action: "change->company-jobs-filter#submit"} %>
-                </div>
-              <% end %>
+              <div class="d-flex flex-column col-3 text-start border-0">
+                <%= label_tag :department, "Department", class: "small" %>
+                <%= select_tag :department, options_for_select([["All Departments", ""]].concat(@departments),
+                  selected: params[:department]), include_blank: false,
+                  class: "form-select bg-white text-muted",
+                  data: { controller: 'company-jobs-filter',
+                    'turbo-type': 'jobs', url: company_path(@company) } %>
+              </div>
             </div>
             <%= turbo_frame_tag "jobs" do %>
               <%= render 'job_listing', jobs: @jobs %>
