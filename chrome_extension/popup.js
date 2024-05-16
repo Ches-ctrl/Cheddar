@@ -18,6 +18,7 @@ async function saveJob() {
         .catch(error => {
             console.error('Error:', error); // Handle any errors
         });
+
 }
 
 /**
@@ -46,7 +47,7 @@ function jobAPIcall(csrfToken, job_url, api_url) {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': csrfToken // Include the CSRF token here
+            'x-api-key': 'b1e30ea0862236d562de386d5fb9184292956c',
         },
         body: JSON.stringify({
             posting_url: job_url
