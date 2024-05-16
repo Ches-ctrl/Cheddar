@@ -7,6 +7,7 @@ async function saveJob() {
     // get current job url
 
     var currentTabUrl = await getCurrentTab();
+    console.log("currentTabUrl:", currentTabUrl);
 
     // make api call
     jobAPIcall("", currentTabUrl, "http://127.0.0.1:3000/api/v0/add_job")
@@ -26,9 +27,10 @@ async function saveJob() {
  */
 async function getCurrentTab() {
     let queryOptions = { active: true, lastFocusedWindow: true };
-    let tab = await chrome.tabs.query(queryOptions);
+    // `tab` will either be a `tabs.Tab` instance or `undefined`.
+    let [tab] = await chrome.tabs.query(queryOptions);
     return tab.url;
-}
+  }
 
 
 /**
