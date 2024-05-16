@@ -34,8 +34,6 @@ class CompaniesController < ApplicationController
     params.permit(:department)
   end
 
-  private
-
   def company_show_page_status
     redirect_to jobs_path, notice: "Company show page coming soon!" unless Flipper.enabled?(:company_show_page)
   end
