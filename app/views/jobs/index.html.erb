@@ -3,12 +3,18 @@
 
 <div class="container" data-controller="select-by-job-type">
 
-  <div class="d-flex justify-content-center align-items-center pb-4">
-    <%= render 'search' %>
+  <div class="row d-flex justify-content-center align-items-center pb-4">
+    <div class="col-12 col-md-8">
+      <%= render 'search' %>
+    </div>
   </div>
 
   <div class="row">
-    <%= render 'category_sidebar' %>
-    <%= render 'job_cards_container' %>
+    <div class="col-12 col-md-9 order-md-2">
+      <%= render 'job_cards_container' %>
+    </div>
+    <div class="col-12 col-md-3 order-md-1 mb-4 mb-md-0">
+      <%= render 'category_sidebar' %>
+    </div>
   </div>
 </div>

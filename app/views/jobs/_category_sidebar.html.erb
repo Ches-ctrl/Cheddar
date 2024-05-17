@@ -1,4 +1,4 @@
-<div class="col-sm-3" data-job-index-toggle-target="leftSection">
+<div data-job-index-toggle-target="leftSection">
 
   <div class = "d-flex">
     <p class="pb-0"><%= @jobs.count %> jobs • <%= link_to 'Clear filters', jobs_path %></p>
@@ -20,5 +20,4 @@
   <% @resources.each_with_index do |(resource, data), index| %>
     <%= render partial: 'category_sidebar_section', locals: {title: section_titles[index], resource: resource, resources: data, icon: icons[index]} %>
   <% end %>
-
 </div>
