@@ -88,7 +88,7 @@ gem 'rails-html-sanitizer'
 gem "flipper-active_record", "~> 1.3"
 
 # Monitoring
-# gem 'newrelic_rpm' # TODO: install this gem for monitoring
+gem 'newrelic_rpm'
 
 # Analytics
 # gem 'analytics-ruby', '~> 2.4.0', :require => 'segment/analytics' # TODO: install this gem for analytics
