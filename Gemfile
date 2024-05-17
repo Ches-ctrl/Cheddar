@@ -136,7 +136,7 @@ group :development do
   gem "binding_of_caller"
 
   # Security
-  # gem 'brakeman', require: false # TODO: install this gem for security checks
+  gem 'brakeman', require: false
 
   # Performance
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
