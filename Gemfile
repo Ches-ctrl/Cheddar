@@ -77,7 +77,8 @@ gem "ruby-openai"
 gem 'meta-tags'
 # gem 'sitemap_generator' # TODO: install this gem for sitemap generation
 
-# Email
+# Email & CRM
+gem 'hubspot-api-client'
 # gem 'sendgrid-ruby' # TODO: install this gem for sending emails
 
 # Importing, Parsing & APIs
