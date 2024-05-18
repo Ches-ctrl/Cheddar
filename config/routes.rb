@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  mount ActionCable.server => "/cable"
+  mount ActionCable.server => "/cable" # TODO: fix as not found at the moment
   mount Avo::Engine, at: '/avo'
 
   devise_for :users, except: [:fetch_template]
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'privacy', to: 'pages#privacy', as: 'privacy'
   get 'ts&cs', to: 'pages#ts_and_cs', as: 'ts_and_cs'
   get 'landing', to: 'pages#landing', as: 'landing'
+  get 'faqs', to: 'pages#faqs', as: 'faqs'
 
   # Users
   get 'profile', to: 'users#show', as: 'profile'
@@ -52,5 +53,4 @@ Rails.application.routes.draw do
 
   resources :saved_jobs, only: [:index, :show, :destroy]
   resources :educations, only: [:new, :create]
-
 end
