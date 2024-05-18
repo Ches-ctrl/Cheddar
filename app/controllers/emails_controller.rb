@@ -4,9 +4,7 @@ class EmailsController < ApplicationController
 
   def create
     email = params[:email]
-
     send_confirmation_email(email)
-
     redirect_to root_path, notice: 'Subscription successful. Please check your email for confirmation.'
   end
 
