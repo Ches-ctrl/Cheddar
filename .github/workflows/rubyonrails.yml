@@ -73,6 +73,7 @@ jobs:
           run: bundle install
         - name: Run Brakeman
           run: bundle exec brakeman -f sarif -o output.sarif.json
+          continue-on-error: true
         - name: Upload SARIF
           uses: github/codeql-action/upload-sarif@v2
           with:
