@@ -124,6 +124,9 @@ group :development, :test do
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
 
+  # Security
+  gem 'brakeman', require: false
+
   # Email
   # gem 'letter_opener' # TODO: install this gem for email testing
 end
@@ -134,9 +137,6 @@ group :development do
   gem 'bullet'
   gem "better_errors"
   gem "binding_of_caller"
-
-  # Security
-  gem 'brakeman', require: false
 
   # Performance
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
