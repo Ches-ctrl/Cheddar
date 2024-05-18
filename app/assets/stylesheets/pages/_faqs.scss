@@ -1,114 +1,70 @@
-.faq-section {
-  background: #fdfdfd;
-  min-height: 100vh;
-  padding: 10vh 0 0;
-}
-.faq-title h2 {
+/*===========================
+  about-06 css
+===========================*/
+.about-six {
+  padding-top: 90px;
+  padding-bottom: 120px;
   position: relative;
-  margin-bottom: 45px;
-  display: inline-block;
-  font-weight: 600;
-  line-height: 1;
 }
-.faq-title h2::before {
-  content: "";
+.about-six .faq-title .sub-title {
+  color: var(--primary);
+  text-transform: uppercase;
+}
+.about-six .faq-title .title {
+  padding-top: 10px;
+}
+.about-six .faq-accordion {
+  margin-top: 45px;
+}
+.about-six .faq-accordion .accordion .card {
+  border: 0;
+  background: none;
+}
+.about-six .faq-accordion .accordion .card .card-header {
+  padding: 0;
+  border: 0;
+  background: none;
+  margin-top: 40px;
+}
+.about-six .faq-accordion .accordion .card .card-header a {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--black);
+  display: block;
+  position: relative;
+  padding-right: 20px;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .about-six .faq-accordion .accordion .card .card-header a {
+    font-size: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .about-six .faq-accordion .accordion .card .card-header a {
+    font-size: 16px;
+  }
+}
+.about-six .faq-accordion .accordion .card .card-header a::before {
+  content: "\eb30";
+  font-family: "LineIcons";
   position: absolute;
-  left: 50%;
-  width: 60px;
-  height: 2px;
-  background-color: #6007C6;
-  bottom: -25px;
-  margin-left: -30px;
+  top: 50%;
+  right: 0;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
-.faq-title p {
-  padding: 0 190px;
-  margin-bottom: 10px;
+.about-six .faq-accordion .accordion .card .card-header .collapsed::before {
+  content: "\eb5c";
 }
-
-.faq {
-  background: #fdfdfd;
-  box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.06);
-  border-radius: 4px;
+.about-six .faq-accordion .accordion .card .card-body {
+  padding: 20px 20px 0;
 }
-
-.faq .card {
-  border: none;
-  background: none;
-  border-bottom: 1px dashed #CEE1F8;
+.about-six .faq-image {
+  margin-top: 50px;
 }
-
-.faq .card .card-header {
-  padding: 0px;
-  border: none;
-  background: none;
-  -webkit-transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
-}
-
-.faq .card .card-header:hover {
-  background: rgba(136, 66, 216, 0.8);
-  padding-left: 10px;
-}
-.faq .card .card-header .faq-title {
+.about-six .faq-image img {
   width: 100%;
-  text-align: left;
-  padding: 0px;
-  padding-left: 30px;
-  padding-right: 30px;
-  font-weight: 400;
-  font-size: 15px;
-  letter-spacing: 1px;
-  color: #3B566E;
-  text-decoration: none !important;
-  -webkit-transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
-  cursor: pointer;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.faq .card .card-header .faq-title .badge {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  line-height: 14px;
-  float: left;
-  -webkit-border-radius: 100px;
-  -moz-border-radius: 100px;
-  border-radius: 100px;
-  text-align: center;
-  background: #FFEC00;
-  color: #fff;
-  font-size: 12px;
-  margin-right: 20px;
-}
-
-.faq .card .card-body {
-  padding: 30px;
-  padding-left: 35px;
-  padding-bottom: 16px;
-  font-weight: 400;
-  font-size: 16px;
-  color: #6F8BA4;
-  line-height: 28px;
-  letter-spacing: 1px;
-  border-top: 1px solid #F3F8FF;
-}
-
-.faq .card .card-body p {
-  margin-bottom: 14px;
-}
-
-@media (max-width: 991px) {
-  .faq {
-    margin-bottom: 30px;
-  }
-  .faq .card .card-header .faq-title {
-    line-height: 26px;
-    margin-top: 10px;
-  }
 }
