@@ -15,6 +15,7 @@
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'rails_helper'
 require 'capybara/rspec'
+require 'vcr'
 require 'webmock/rspec'
 
 Capybara.configure do |config|
