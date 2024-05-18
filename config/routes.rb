@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :emails, only: [:create]
   resources :saved_jobs, only: [:index, :show, :destroy]
   resources :educations, only: [:new, :create]
 end
