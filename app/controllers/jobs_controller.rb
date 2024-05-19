@@ -43,7 +43,7 @@ class JobsController < ApplicationController
       'jobs.created_at DESC'
     when 'created_at_asc'
       'jobs.created_at ASC'
-    else
+    else # rubocop:disable Lint/DuplicateBranch
       'jobs.created_at DESC'
     end
   end
