@@ -1,5 +1,5 @@
-<div class="col-11">
-  <ul class="category-select">
+<div class="col-2 col-lg-11">
+  <ul class="category-select d-none d-md-block mb-0">
     <h5 class="mt-3 mb-3 category-label"><i class="<%= icon %>"></i> <%= title || resource.titleize %></h5>
     <div>
       <% resources.each do |type, resource_name, resource_id, count, checked| %>
@@ -13,4 +13,19 @@
       <% end %>
     </div>
   </ul>
+
+  <div class="dropdown d-md-none">
+    <button class="btn btn-sm bg-main dropdown-toggle rounded-4" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="<%= icon %>"></i> <%= title || resource.titleize %>
+    </button>
+
+    <ul class="dropdown-menu">
+      <% resources.each do |type, resource_name, resource_id, count, checked| %>
+        <label for="<%= resource_name %>" class="category-select-item-label d-flex align-items-center">
+          <input class="category-select-item-<%= type %>" type="<%= type %>" name="<%= type == 'radio' ? resource : resource_name %>" id="<%= resource_id %>" <%= "checked " if checked %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="<%= resource.split('-').map.with_index { |word, index| index > 0 ? word.capitalize : word }.join('') %>">
+          <%= resource_name.titleize %>
+        </label>
+      <% end %>
+    </ul>
+  </div>
 </div>
