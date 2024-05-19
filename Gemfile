@@ -52,7 +52,7 @@ gem "autoprefixer-rails"
 gem "sassc-rails"
 gem "font-awesome-sass", "~> 6.5.1"
 gem "simple_form"
-gem 'psych', "~> 4.0" # Extra gem as per Le Wagon setup for Linux laptops
+gem 'psych', "~> 5.1.2" # Extra gem as per Le Wagon setup for Linux laptops
 
 # Testing
 gem "capybara"
