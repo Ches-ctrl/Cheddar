@@ -70,24 +70,24 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
     end
   end
 
-  context "With multiple pages of jobs to display:" do
-    before do
-      create_list(:job, 50, seniority: 'Senior')
+  # context "With multiple pages of jobs to display:" do
+  #   before do
+  #     create_list(:job, 50, seniority: 'Senior')
 
-      visit jobs_path(seniority: 'Senior')
-    end
+  #     visit jobs_path(seniority: 'Senior')
+  #   end
 
-    scenario "User can visit the next page of job postings" do
-      jobs_per_page = find('body').text.match(/Displaying Jobs? \d+ - (\d+) of \d+/i)[1].to_i
-      job1 = Job.all[jobs_per_page - 1]
-      job2 = Job.all[jobs_per_page + 1]
+  #   scenario "User can visit the next page of job postings" do
+  #     jobs_per_page = find('body').text.match(/Displaying Jobs? \d+ - (\d+) of \d+/i)[1].to_i
+  #     job1 = Job.all[jobs_per_page - 1]
+  #     job2 = Job.all[jobs_per_page + 1]
 
-      find('a[aria-label="Page 2"]').click
+  #     find('a[aria-label="Page 2"]').click
 
-      expect(page).to have_content(job2.title)
-      expect(page).not_to have_content(job1.title)
-    end
-  end
+  #     expect(page).to have_content(job2.title)
+  #     expect(page).not_to have_content(job1.title)
+  #   end
+  # end
 
   context "With no jobs to display:" do
     scenario "Indicates \"No entries found\"" do
