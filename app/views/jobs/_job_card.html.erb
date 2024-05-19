@@ -1,17 +1,21 @@
 <div class="card job-card mb-2" data-select-by-job-type-target="jobRow">
   <div class="row card-body">
     <%# Logo & Info %>
-    <div class="col-12 col-sm-12 col-md-5 col-lg-5 d-flex flex-row align-items-center mb-2 mb-md-0">
+    <div class="col-12 col-sm-12 col-md-5 col-lg-5 d-flex flex-row align-items-center mb-3 mb-md-0">
       <%= render partial: 'jobs/logo', locals: { job: job } %>
       <%= render partial: 'jobs/job_info', locals: { job: job } %>
     </div>
 
     <%# Job Details %>
-    <div class="col-12 col-sm-12 col-md-7 col-lg-7 d-flex flex-row justify-content-between align-items-center">
-      <%= render partial: 'jobs/basic_info', locals: { job: job } %>
-      <%= render partial: 'jobs/climate_rating', locals: { job: job } %>
-      <%= render partial: 'jobs/difficulty_rating', locals: { job: job } %>
-      <%= render partial: 'jobs/add_job_to_basket', locals: { job: job, saved_job_ids: @saved_job_ids } %>
+    <div class="col-12 col-lg-7 d-flex flex-column flex-md-row justify-content-between align-items-center">
+      <div class="pb-3 pb-md-0 pe-md-5">
+        <%= render partial: 'jobs/basic_info', locals: { job: job } %>
+      </div>
+      <div class="d-flex flex-row justify-content-between align-items-center w-100">
+        <%= render partial: 'jobs/climate_rating', locals: { job: job } %>
+        <%= render partial: 'jobs/difficulty_rating', locals: { job: job } %>
+        <%= render partial: 'jobs/add_job_to_basket', locals: { job: job, saved_job_ids: @saved_job_ids } %>
+      </div>
     </div>
   </div>
 </div>
