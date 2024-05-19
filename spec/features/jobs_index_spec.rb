@@ -87,7 +87,7 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
   #     expect(page).to have_content(job2.title)
   #     expect(page).not_to have_content(job1.title)
   #   end
-  # end
+  end
 
   # context "With no jobs to display:" do
   #   scenario "Indicates \"No entries found\"" do
