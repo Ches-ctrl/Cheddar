@@ -15,9 +15,12 @@
     <%= javascript_importmap_tags %>
 
     <!-- Analytics -->
-    <%= render "shared/google_analytics" %>
-    <%= render "shared/hotjar" %>
-    <%= render "shared/hubspot" %>
+    <%# TODO: Only run analytics when in production %>
+    <% unless Rails.env.test? %>
+      <%= render "shared/google_analytics" %>
+      <%= render "shared/hotjar" %>
+      <%= render "shared/hubspot" %>
+    <% end %>
   </head>
 
   <body id="page-container">
