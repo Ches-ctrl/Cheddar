@@ -55,15 +55,6 @@ class Job < ApplicationRecord
     read_attribute(:application_criteria).with_indifferent_access
   end
 
-  # def update_application_criteria
-  #   if posting_url.include?('greenhouse')
-  #     extra_fields = GetFormFieldsJob.perform_later(posting_url)
-  #     # p extra_fields
-  #   else
-  #     p "No additional fields to add"
-  #   end
-  # end
-
   CONVERT_TO_DAYS = {
     'today' => 0,
     '3-days' => 3,

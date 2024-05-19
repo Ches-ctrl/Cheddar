@@ -1,4 +1,5 @@
 <div id="jobs-search-bar">
+  <%# TODO: Fix search - currently slow and not using the pg_search gem properly (check with @Dan) %>
   <%= form_tag jobs_path, method: :get, class: 'd-flex', data: { action: "submit->select-by-job-type#combinedSearch" } do %>
     <%= text_field_tag :query,
         params[:query],
