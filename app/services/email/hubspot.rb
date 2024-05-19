@@ -1,4 +1,5 @@
 module Email
+  # rubocop:disable Lint/EmptyClass
   class Hubspot
     # require 'hubspot-api-client'
 
@@ -25,4 +26,5 @@ module Email
     #   end
     # end
   end
+  # rubocop:enable Lint/EmptyClass
 end
