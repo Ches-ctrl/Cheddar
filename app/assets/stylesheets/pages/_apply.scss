@@ -1,4 +1,10 @@
 // Application Summary
+
+.sticky-top {
+  top: 0;
+  z-index: 1020;
+}
+
 .company-apply-summary {
   width: 600px;
   border-radius: 8px;
