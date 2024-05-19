@@ -13,13 +13,14 @@
         </div>
       </div>
     <% end %>
+
+    <% section_titles = ['Job Posted', 'Seniority', 'Location', 'Job Roles', 'Employment Type'] %>
+    <% icons = ["fa-solid fa-calendar-days", "fa-solid fa-stairs", "fa-solid fa-earth-americas", "fa-solid fa-person-chalkboard", "fa-solid fa-id-card"] %>
+
+    <div class="d-flex flex-wrap d-lg-block">
+      <% @resources.each_with_index do |(resource, data), index| %>
+        <%= render partial: 'category_sidebar_section', locals: {title: section_titles[index], resource: resource, resources: data, icon: icons[index]} %>
+      <% end %>
+    </div>
   </div>
-
-  <% section_titles = ['Job Posted', 'Seniority', 'Location', 'Job Roles', 'Employment Type'] %>
-  <% icons = ["fa-solid fa-calendar-days", "fa-solid fa-stairs", "fa-solid fa-earth-americas", "fa-solid fa-person-chalkboard", "fa-solid fa-id-card"] %>
-
-  <% @resources.each_with_index do |(resource, data), index| %>
-    <%= render partial: 'category_sidebar_section', locals: {title: section_titles[index], resource: resource, resources: data, icon: icons[index]} %>
-  <% end %>
-
 </div>
