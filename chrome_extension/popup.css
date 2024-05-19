@@ -24,6 +24,10 @@
     cursor: pointer;
 }
 
+.btn-chrome:hover {
+    background-image: linear-gradient(144deg, #0f659f, #001d4aff 98%); /* Change gradient direction on hover */
+}
+
 .navbar {
     text-decoration: none;
     padding: 0;
@@ -32,5 +36,12 @@
 
 .logo {
     height: 25px;
+}
+
+#message {
+    display: none;
+    color: green;
+    font-weight: bold;
+    text-align: center;
 }
 
