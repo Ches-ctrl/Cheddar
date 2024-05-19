@@ -15,18 +15,3 @@
     </div>
   </ul>
 </div>
-
-<div class="dropdown d-lg-none me-2 mb-2">
-  <button class="btn btn-sm bg-main dropdown-toggle rounded-4 text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <i class="<%= icon %>"></i> <%= title || resource.titleize %>
-  </button>
-
-  <ul class="dropdown-menu p-0">
-    <% resources.each do |type, resource_name, resource_id, count, checked| %>
-      <label for="<%= resource_name %>" class="category-select-item-label d-flex align-items-center bg-white p-1">
-        <input class="category-select-item-<%= type %>" type="<%= type %>" name="<%= type == 'radio' ? resource : resource_name %>" id="<%= resource_id %>" <%= "checked " if checked %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="<%= resource.split('-').map.with_index { |word, index| index > 0 ? word.capitalize : word }.join('') %>">
-        <%= resource_name.titleize %>
-      </label>
-    <% end %>
-  </ul>
-</div>
