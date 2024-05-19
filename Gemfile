@@ -78,7 +78,7 @@ gem 'meta-tags'
 # gem 'sitemap_generator' # TODO: install this gem for sitemap generation
 
 # Email & CRM
-gem 'hubspot-api-client'
+# gem 'hubspot-api-client'
 gem 'sendgrid-ruby'
 
 # Importing, Parsing & APIs
