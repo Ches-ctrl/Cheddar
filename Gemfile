@@ -104,8 +104,8 @@ gem 'newrelic_rpm'
 # gem 'sentry-raven' # TODO: install this gem for error tracking
 
 # Front-end
-gem 'will_paginate', '~> 4.0' # TODO: Update to kaminari now index page is fixed (better maintained / looks nicer)
-# gem 'kaminari'
+# gem 'will_paginate', '~> 4.0' # TODO: Update to kaminari now index page is fixed (better maintained / looks nicer)
+gem 'kaminari'
 gem "high_voltage", "~> 3.1"
 gem 'tinymce-rails' # TODO: now have trix and action text (check whether we need to replace)
 

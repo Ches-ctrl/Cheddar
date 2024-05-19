@@ -7,7 +7,7 @@ class JobsController < ApplicationController
   before_action :job_show_page_status, only: [:show]
 
   def index
-    @jobs = jobs_and_associated_tables.filter_and_sort(params).paginate(page: params[:page], per_page: 20)
+    @jobs = jobs_and_associated_tables.filter_and_sort(params).page(params[:page]).per(20)
     @resources = CategorySidebar.build_with(params)
 
     @saved_jobs = SavedJob.all
