@@ -22,7 +22,7 @@ class EmailsController < ApplicationController
     data = {
       contacts: [
         {
-          email: email
+          email:
         }
       ]
     }
