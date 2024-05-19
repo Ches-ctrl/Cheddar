@@ -5,6 +5,7 @@ export default class extends Controller {
   static targets = [ 'jobRow', 'search', 'cheddar', 'posted', 'role', 'company', 'location', 'seniority', 'employment' ]
 
   connect() {
+    this.searchTarget.addEventListener('input', this.checkEmptySearch.bind(this));
   }
 
   combinedSearch(event) {
@@ -39,6 +40,12 @@ export default class extends Controller {
 
     const filterQueryString = this.buildQueryString(searchTerms);
     window.location.href = `/jobs${filterQueryString}`;
+  }
+
+  checkEmptySearch() {
+    if (this.searchTarget.value.trim() === '') {
+      window.location.href = `/jobs`;
+    }
   }
 
   buildQueryString(searchTerms) {
