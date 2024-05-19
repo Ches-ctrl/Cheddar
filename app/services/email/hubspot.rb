@@ -3,7 +3,7 @@ module Email
     require 'hubspot-api-client'
 
     def initialize
-      @client = Hubspot::Client.new(api_key: ENV.fetch('HUBSPOT_API_KEY'))
+      @client = Hubspot::Client.new(access_token: ENV.fetch('HUBSPOT_API_KEY'))
     end
 
     def add_contact(email)
