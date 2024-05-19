@@ -1,8 +1,9 @@
-<div id="jobs-search-bar" class="search-bar-background">
+<div id="jobs-search-bar">
   <%= form_tag jobs_path, method: :get, class: 'd-flex', data: { action: "submit->select-by-job-type#combinedSearch" } do %>
     <%= text_field_tag :query,
         params[:query],
-        class: 'form-control',
+        class: 'form-control bg-white fst-italic',
+        style: 'box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);',
         placeholder: 'Search for any job, company or role... ', id: 'search-jobs',
         data: { 'select-by-job-type-target': 'search' } %>
 
