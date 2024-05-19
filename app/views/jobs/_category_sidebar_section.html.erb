@@ -1,14 +1,16 @@
-<ul class="col-11 category-select mb-0">
-  <h5 class="mt-3 mb-3 category-label"><i class="<%= icon %>"></i> <%= title || resource.titleize %></h5>
-  <div>
-    <% resources.each do |type, resource_name, resource_id, count, checked| %>
-      <div class="category-select-item d-flex flex-row justify-content-between">
-        <label for="<%= resource_name %>" class="category-select-item-label d-flex align-items-center">
-          <input class="category-select-item-<%= type %>" type="<%= type %>" name="<%= type == 'radio' ? resource : resource_name %>" id="<%= resource_id %>" <%= "checked " if checked %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="<%= resource.split('-').map.with_index { |word, index| index > 0 ? word.capitalize : word }.join('') %>">
-          <%= resource_name.titleize %>
-        </label>
-        <div class="ms-2 text-sm"><%= count %></div>
-      </div>
-    <% end %>
-  </div>
-</ul>
+<div class="col-11">
+  <ul class="category-select">
+    <h5 class="mt-3 mb-3 category-label"><i class="<%= icon %>"></i> <%= title || resource.titleize %></h5>
+    <div>
+      <% resources.each do |type, resource_name, resource_id, count, checked| %>
+        <div class="category-select-item d-flex flex-row justify-content-between">
+          <label for="<%= resource_name %>" class="category-select-item-label d-flex align-items-center">
+            <input class="category-select-item-<%= type %>" type="<%= type %>" name="<%= type == 'radio' ? resource : resource_name %>" id="<%= resource_id %>" <%= "checked " if checked %> data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="<%= resource.split('-').map.with_index { |word, index| index > 0 ? word.capitalize : word }.join('') %>">
+            <%= resource_name.titleize %>
+          </label>
+          <div class="ms-2 text-sm"><%= count %></div>
+        </div>
+      <% end %>
+    </div>
+  </ul>
+</div>
