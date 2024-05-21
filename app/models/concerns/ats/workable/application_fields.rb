@@ -6,7 +6,8 @@ module Ats
       # TODO: Handle labels from form fields
 
       def get_application_criteria(job, _data)
-        p "Getting greenhouse application criteria"
+        # TODO: get application_criteria from API
+        p "Getting Workable application criteria"
         job.application_criteria = PERSONAL_FIELDS.merge(PROFILE_FIELDS).merge(DETAILS_FIELDS).merge(ADDITIONAL_FIELDS)
         job.save
       end

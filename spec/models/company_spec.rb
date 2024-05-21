@@ -35,7 +35,7 @@ RSpec.describe Company do
 
         $stdout = STDOUT
 
-        expect(output.string).to match(/Created \d+ new jobs with .+\./)
+        expect(output.string).to match(/Found or created \d+ new jobs with .+\./)
       end
     end
   end

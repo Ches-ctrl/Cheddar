@@ -48,3 +48,6 @@
 .idea/modules.xml
 .idea/vcs.xml
 .idea/.gitignore
+
+# ignore .jar files
+*.jar

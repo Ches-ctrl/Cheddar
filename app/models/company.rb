@@ -14,9 +14,11 @@ class Company < ApplicationRecord
   # multisearchable against: [:name]
 
   def create_all_relevant_jobs
-    jobs_created = 0
+    jobs_found_or_created = []
     ats = applicant_tracking_system
     all_jobs = ats.fetch_company_jobs(ats_identifier)
+    raise NoDataReturnedError, "The API returned no jobs data for #{name}" unless all_jobs
+
     all_jobs.each do |job_data|
       details = ats.fetch_title_and_location(job_data)
       next unless relevant?(*details)
@@ -28,9 +30,10 @@ class Company < ApplicationRecord
       else
         job = ats.find_or_create_job_by_data(self, job_data)
       end
-      jobs_created += 1 if job&.persisted?
+      jobs_found_or_created << job if job&.persisted?
     end
-    puts "Created #{jobs_created} new jobs with #{name}."
+    puts "Found or created #{jobs_found_or_created.size} new jobs with #{name}."
+    jobs_found_or_created
   end
 
   private

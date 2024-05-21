@@ -6,7 +6,10 @@ COMPANIES = {
     'Lever' => 'GoToGroup',
     'Manatal' => 'ptc-group',
     'PinpointHQ' => 'auroraer',
-    'Recruitee' => 'midas',
+    'Recruitee' => 'manual',
     'SmartRecruiters' => 'Gousto1',
     'Workable' => 'kroo'
   }.freeze
+
+RECRUITEE_COMPANY = ['manual', 'Manual']
+WORKABLE_COMPANY = ['southern-national', 'Southern National Roofing']

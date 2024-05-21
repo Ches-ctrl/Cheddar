@@ -1,0 +1,2 @@
+class NoDataReturnedError < StandardError
+end

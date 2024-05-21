@@ -18,14 +18,8 @@ module Ats
         job_data = jobs.find { |data| data["hash"] == job.ats_job_id }
         return mark_job_expired(job) unless job_data
 
-        job.api_url = "#{job.api_url}#{job_data['id']}"
+        job.api_url = "#{job.api_url}#{job_data['id']}/"
         return job_data
-      end
-
-      def mark_job_expired(job)
-        p "Job with ID #{job.ats_job_id} is expired."
-        job.live = false
-        return nil
       end
 
       def job_url_api(base_url, company_id, _job_id)

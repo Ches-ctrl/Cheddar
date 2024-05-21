@@ -129,6 +129,6 @@ class ScrapeTrueUpJob < ApplicationJob
   def store_to_database
     puts "\nFound #{@companies_added} new company ats identifiers."
     puts "\nStoring the information in CSV format..."
-    save_ats_list
+    save_ats_list(@companies)
   end
 end

@@ -40,6 +40,7 @@ module Ats
           question_set.merge!(
             name => {
               interaction:,
+              label: field['question'],
               locators: field['id'],
               required: field['isRequired'],
               options:
@@ -49,7 +50,7 @@ module Ats
       end
 
       def fetch_field_attributes(field)
-        name = field['question']
+        name = field['question'].downcase.gsub(' ', '_').gsub(/[^a-z0-9_-]/, '')
         options = field['options']&.map { |option| option['text'] } unless field['options'].blank?
         interaction = FIELD_TYPES[field['type']]
         if interaction == :boolean
@@ -67,66 +68,133 @@ module Ats
       }
 
       CORE_FIELDS = {
-        'First Name' => {
+        first_name: {
           interaction: :input,
-          locators: 'firstName'
+          locators: 'firstName',
+          label: 'First Name',
+          core_field: true
         },
-        'Last Name' => {
+        last_name: {
           interaction: :input,
-          locators: 'lastName'
+          locators: 'lastName',
+          label: 'Last Name',
+          core_field: true
         },
-        'Email' => {
+        email: {
           interaction: :input,
-          locators: 'email'
+          locators: 'email',
+          label: 'Email',
+          core_field: true
         },
-        'Phone' => {
+        phone_number: {
           interaction: :input,
-          locators: 'phone'
+          locators: 'phone',
+          label: 'Phone',
+          core_field: true
         },
-        'Address' => {
+        address: {
           interaction: :input,
-          locators: 'streetAddress'
+          locators: 'streetAddress',
+          label: 'Address',
+          core_field: true
         },
-        'City' => {
+        city: {
           interaction: :input,
-          locators: 'city'
+          locators: 'city',
+          label: 'City',
+          core_field: true
         },
-        'State' => {
+        state: {
           interaction: :select,
-          locators: 'state'
-          # locators: 'fab-SelectToggle__placeholder'
+          locators: 'state',
+          label: 'State',
+          core_field: true
         },
-        'ZIP' => {
+        post_code: {
           interaction: :input,
-          locators: 'zip'
+          locators: 'zip',
+          label: 'ZIP',
+          core_field: true
         },
-        'Country' => {
+        country: {
           interaction: :input,
-          locators: 'countryId'
+          locators: 'countryId',
+          label: 'Country',
+          core_field: true
         },
-        'Website, Blog, or Portfolio' => {
+        website_url: {
           interaction: :input,
-          locators: 'websiteUrl'
+          locators: 'websiteUrl',
+          label: 'Website, Blog, or Portfolio',
+          core_field: true
         },
-        'LinkedIn Profile URL' => {
+        linkedin_url: {
           interaction: :input,
-          locators: 'linkedinUrl'
+          locators: 'linkedinUrl',
+          label: 'LinkedIn Profile URL',
+          core_field: true
         },
-        'Cover Letter' => {
+        cover_letter: {
           interaction: :upload,
-          locators: 'coverLetterFileId'
+          locators: 'coverLetterFileId',
+          label: 'Cover Letter',
+          core_field: true
         },
-        'Resume' => {
+        resume: {
           interaction: :upload,
-          locators: 'resumeFileId'
+          locators: 'resumeFileId',
+          label: 'Resume',
+          core_field: true
         },
-        'Date Available' => {
+        education_level: {
+          interaction: :select,
+          locators: 'educationLevelId',
+          label: 'Highest Education Obtained',
+          core_field: true
+        },
+        education_school: {
+          interaction: :input,
+          locators: 'educationInstitutionName',
+          label: 'College/University',
+          core_field: true
+        },
+        date_available: {
           interaction: :date,
-          locators: 'dateAvailable'
+          locators: 'dateAvailable',
+          label: 'Date Available',
+          core_field: true
         },
-        'Desired Pay' => {
+        desired_pay: {
           interaction: :input,
-          locators: 'desiredPay'
+          locators: 'desiredPay',
+          label: 'Desired Pay',
+          core_field: true
+        },
+        referred_by: {
+          interaction: :input,
+          locators: 'referredBy',
+          label: 'Who referred you for this position?',
+          core_field: true
+        },
+        gender: {
+          interaction: :select,
+          locators: 'genderId',
+          label: 'Gender'
+        },
+        ethnicity: {
+          interaction: :select,
+          locators: 'ethnicityId',
+          label: 'Ethnicity'
+        },
+        disability: {
+          interaction: :select,
+          locators: 'disabilityId',
+          label: 'Disability'
+        },
+        veteran_status: {
+          interaction: :select,
+          locators: 'veteranStatusId',
+          label: 'Veteran Status'
         }
       }
     end

@@ -16,7 +16,7 @@ module Standardizer
       hybrid = location.downcase.include?('hybrid') || @job.description&.downcase&.include?('hybrid')
 
       JOB_LOCATION_FILTER_WORDS.each { |filter| location.gsub!(filter, '') }
-      location_elements = location.split(/[•;]|&&|or/)
+      location_elements = location.split(%r{[•;]|&&|/|or})
                                   .map do |element|
                                     element.gsub(%r{[.\-;(/]}, '')
                                            .strip
@@ -33,7 +33,9 @@ module Standardizer
 
         next unless city_string
 
-        location = Location.find_or_create_by(city: city_string, country:, latitude:, longitude:)
+        location = Location.find_or_create_by(city: city_string) do |new_location|
+          new_location.assign_attributes(country:, latitude:, longitude:)
+        end
         @job.locations << location unless @job.locations.include?(location)
 
         check_for_multiple_locations(element)
@@ -62,7 +64,7 @@ module Standardizer
         if element_is_a_new_city?(element, city_string)
           country = Country.find_or_create_by(name: country_string)
           location = Location.find_or_create_by(city: city_string, country:, latitude:, longitude:)
-          @job.locations << location
+          @job.locations << location unless @job.locations.include?(location)
           @job.countries << country unless @job.countries.include?(country)
         elsif element_is_a_new_country?(element, country_string)
           country = Country.find_or_create_by(name: country_string)

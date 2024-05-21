@@ -1,6 +1,8 @@
 require Rails.root.join('spec', 'support', 'spec_constants.rb')
 include CheckUrlIsValid
 
+RECRUITEE_COMPANY = ['radishlab', 'Radish Lab']
+
 RSpec.describe ApplicantTrackingSystem, type: :model do
   describe 'Associations' do
     it { is_expected.to have_many(:companies) }
@@ -104,8 +106,8 @@ RSpec.describe ApplicantTrackingSystem, type: :model do
     end
 
     it 'can create a company with Recruitee' do
-      @recruitee.find_or_create_company('midas')
-      expect(Company.last.name).to eq('Midas')
+      @recruitee.find_or_create_company(RECRUITEE_COMPANY.first)
+      expect(Company.last.name).to eq(RECRUITEE_COMPANY.second)
     end
 
     it 'can create a company with SmartRecruiters' do
@@ -180,11 +182,11 @@ RSpec.describe ApplicantTrackingSystem, type: :model do
     end
 
     it 'can create a job with Recruitee' do
-      url = "https://midas.recruitee.com/api/offers/"
+      url = "https://#{RECRUITEE_COMPANY.first}.recruitee.com/api/offers/"
       feed = get_json_data(url)
       title = feed.dig('offers', 0, 'title')
       job_id = feed.dig('offers', 0, 'slug')
-      company = @recruitee.find_or_create_company('midas')
+      company = @recruitee.find_or_create_company(RECRUITEE_COMPANY.first)
       job = @recruitee.find_or_create_job(company, job_id)
       expect(job.title).to eq(title)
     end
@@ -200,12 +202,14 @@ RSpec.describe ApplicantTrackingSystem, type: :model do
     end
 
     it 'can create a job with Workable' do
-      url = "https://jobs.workable.com/api/v1/companies/b7243622-5cc9-4572-9d52-e76cd62d85d8"
+      url = "https://apply.workable.com/api/v1/widget/accounts/#{WORKABLE_COMPANY.first}?details=true"
       feed = get_json_data(url)
       title = feed.dig('jobs', 0, 'title')
-      job_id = feed.dig('jobs', 0, 'applyUrl').match(%r{https://apply\.workable\.com/j/(\w+)/apply})[1]
+      job_id = feed.dig('jobs', 0, 'application_url').match(%r{https://apply\.workable\.com/j/(\w+)/apply})[1]
       company = @workable.find_or_create_company('southern-national')
       job = @workable.find_or_create_job(company, job_id)
+      p company
+      p job
       expect(job.title).to eq(title)
     end
   end

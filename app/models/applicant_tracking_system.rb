@@ -190,6 +190,12 @@ class ApplicantTrackingSystem < ApplicationRecord
     refer_to_module(defined?(super) ? super : nil, __method__)
   end
 
+  def mark_job_expired(job)
+    p "Job with ID #{job.ats_job_id} is expired."
+    job.live = false
+    return nil
+  end
+
   private
 
   def job_details(new_job, data)
@@ -205,6 +211,7 @@ class ApplicantTrackingSystem < ApplicationRecord
   end
 
   def fetch_additional_fields(job, data)
+    p job
     get_application_criteria(job, data)
     p "Getting form fields for #{job.title}..."
     job.save! # must save before passing to Sidekiq job
