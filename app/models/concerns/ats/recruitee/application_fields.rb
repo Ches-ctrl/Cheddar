@@ -18,7 +18,7 @@ module Ats
 
       def build_core_fields(data)
         attributes = CORE_FIELDS
-        attributes['phone'][:required] = data['options_phone'] == 'required'
+        attributes['phone_number'][:required] = data['options_phone'] == 'required'
         attributes['photo'][:required] = data['options_photo'] == 'required'
         attributes['cover_letter'][:required] = data['options_cover_letter'] == 'required'
         attributes['resume'][:required] = data['options_cv'] == 'required'
