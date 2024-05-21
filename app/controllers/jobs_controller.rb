@@ -20,7 +20,7 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @company = @job.company
     @saved_job = SavedJob.new
-    @description = sanitize @job.description
+    @description = sanitize(@job.description).html_safe
   end
 
   def add_job
