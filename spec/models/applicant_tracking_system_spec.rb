@@ -202,12 +202,14 @@ RSpec.describe ApplicantTrackingSystem, type: :model do
     end
 
     it 'can create a job with Workable' do
-      url = "https://jobs.workable.com/api/v1/companies/b7243622-5cc9-4572-9d52-e76cd62d85d8"
+      url = "https://apply.workable.com/api/v1/widget/accounts/#{WORKABLE_COMPANY.first}?details=true"
       feed = get_json_data(url)
       title = feed.dig('jobs', 0, 'title')
-      job_id = feed.dig('jobs', 0, 'applyUrl').match(%r{https://apply\.workable\.com/j/(\w+)/apply})[1]
+      job_id = feed.dig('jobs', 0, 'application_url').match(%r{https://apply\.workable\.com/j/(\w+)/apply})[1]
       company = @workable.find_or_create_company('southern-national')
       job = @workable.find_or_create_job(company, job_id)
+      p company
+      p job
       expect(job.title).to eq(title)
     end
   end

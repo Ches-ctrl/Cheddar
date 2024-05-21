@@ -21,7 +21,7 @@ module Ats
       def fetch_job_data(job)
         jobs = fetch_company_jobs(job.company.ats_identifier)
         job_data = jobs.find { |data| data['shortcode'] == job.ats_job_id }
-        return mark_job_expired(job) unless job_data
+        job_data ? job_data : mark_job_expired(job)
       end
 
       def job_details(job, data)
