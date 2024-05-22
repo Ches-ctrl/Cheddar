@@ -2,9 +2,9 @@ module Api
   module V0
     class JobsController < ApplicationController
       skip_before_action :verify_authenticity_token, only: :add_job
+      before_action :authenticate_user!
       before_action :authenticate_with_api_key
       before_action :verify_request_origin
-      before_action :authenticate_user!
 
       def add_job
         posting_url = params[:posting_url]
