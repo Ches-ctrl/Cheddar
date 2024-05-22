@@ -1,0 +1,6 @@
+<% jobs_with_department.group_by(&:department).each do |department, jobs_in_department| %>
+  <h6 class="fw-bold my-3"><%= department %></h6>
+  <% jobs_in_department.each do |job| %>
+    <%= render partial: 'job_card', locals: { job: job } %>
+  <% end %>
+<% end %>
