@@ -4,10 +4,11 @@ module Ats
       private
 
       def company_details(ats_identifier)
+        url_ats_api = "#{url_api}#{ats_identifier}?includeCompensation=true"
         {
-          name: ats_identifier.humanize,
-          url_ats_api: "#{url_api}#{ats_identifier}?includeCompensation=true",
-          url_ats_main: "#{url_base}#{ats_identifier}"
+          url_ats_api:,
+          url_ats_main: "#{url_base}#{ats_identifier}",
+          total_live: fetch_total_live(ats_identifier)
         }.merge supplementary_data(ats_identifier)
       end
 
@@ -18,7 +19,7 @@ module Ats
 
         {
           name: company_data['name'],
-          description: fetch_description(company_data),
+          description: Flipper.enabled?(:company_description) ? fetch_description(company_data) : 'Not added yet',
           url_website: company_data['publicWebsite'],
           url_careers: company_data['customJobsPageUrl'],
           location: company_data['timezone']

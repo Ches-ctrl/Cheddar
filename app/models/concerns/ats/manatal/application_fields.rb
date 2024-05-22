@@ -5,7 +5,6 @@ module Ats
         p "Getting Manatal application criteria"
         job.application_criteria = CORE_FIELDS
         job.save
-        # GetFormFieldsJob.perform_later(job.posting_url)
       end
 
       CORE_FIELDS = {

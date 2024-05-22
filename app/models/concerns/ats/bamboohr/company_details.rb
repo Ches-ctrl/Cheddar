@@ -6,23 +6,18 @@ module Ats
       def company_details(ats_identifier)
         url_ats_api, url_ats_main = replace_ats_identifier(ats_identifier)
         data = fetch_company_api_data(url_ats_main)
+        return {} unless data
+
         {
           name: data['name'],
           url_ats_api:,
           url_ats_main:,
-          total_live: fetch_total_live(url_ats_api)
+          total_live: fetch_total_live(ats_identifier)
         }
       end
 
-      def fetch_total_live(url_ats_api)
-        p "Company API URL - #{url_ats_api}"
-
-        data = get_json_data(url_ats_api)
-        data.dig('meta', 'totalCount')
-      end
-
       def fetch_company_api_data(url_ats_main)
-        endpoint = "#{url_ats_main}company-info"
+        endpoint = "#{url_ats_main}company-info/"
         data = get_json_data(endpoint)
         data&.dig('result')
       end

@@ -1,0 +1,5 @@
+<% jobs_with_department, jobs_without_department = partition_jobs(@jobs) %>
+
+<%= render partial: 'jobs_with_department', locals: { jobs_with_department: jobs_with_department } unless jobs_with_department.empty? %>
+
+<%= render partial: 'jobs_without_department', locals: { jobs_without_department: jobs_without_department } unless jobs_without_department.empty? %>

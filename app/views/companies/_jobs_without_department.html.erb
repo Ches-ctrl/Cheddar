@@ -1,0 +1,8 @@
+<h6 class="fw-bold my-3">Other</h6>
+<% jobs_without_department.each do |job| %>
+  <div class="company-page-job-card mb-4">
+    <div>
+      <%= render partial: 'job_card', locals: { job: job } %>
+    </div>
+  </div>
+<% end %>

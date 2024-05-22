@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_27_094318) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_10_091443) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,8 +67,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_094318) do
     t.datetime "updated_at", null: false
     t.string "interaction"
     t.string "field_options"
-    t.text "cover_letter_content"
     t.boolean "required"
+    t.string "field_label"
+    t.boolean "core_field"
     t.index ["job_application_id"], name: "index_application_responses_on_job_application_id"
   end
 
