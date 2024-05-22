@@ -37,14 +37,15 @@ module Api
       end
 
       def process_job_posting(posting_url)
-        p "Processing job posting: #{posting_url}"
-        render json: { message: 'Job added successfully' }, status: :ok
+        render json: { message: 'Received but not a GH job' }, status: :ok and return unless posting_url.include?('greenhouse')
 
-        # if CreateJobFromUrl.perform_later(posting_url)
-        #   render json: { message: 'Job creation queued successfully' }, status: :ok
-        # else
-        #   render json: { error: 'Failed to queue job creation' }, status: :unprocessable_entity
-        # end
+        Rails.logger.info("Processing job posting: #{posting_url}")
+
+        if CreateJobFromUrl.perform_later(posting_url)
+          render json: { message: 'Job creation queued successfully' }, status: :ok
+        else
+          render json: { error: 'Failed to queue job creation' }, status: :unprocessable_entity
+        end
       end
     end
   end
