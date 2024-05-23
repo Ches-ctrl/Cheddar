@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 23 May 2024 17:45:42 GMT
+      - Thu, 23 May 2024 18:22:02 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -29,8 +29,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=Ho2hwWn4ITg7Mort6kSsk1oS6OGlYKzg; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=_Vrs57f_YWI2Hjj8avzl6FYJ0WumAxRI7pisp0WVimo-1716486342153-0.0.1.1-604800000;
+      - PHPSESSID=YLmBZlZNL6Pb7dH1oI8QeXdLaq8PX4Oa; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=4PrbK_JWXXSlzOIqNi59obM5lOvaG8oKdm_1qgSUors-1716488522650-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -95,11 +95,11 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 8886dc736aa893e4-LHR
+      - 888711af495c76ff-LHR
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":[],"result":{"name":"Avidbots","id":"72799","logoUrl":"https:\/\/images3.bamboohr.com\/72799\/logos\/cropped.jpg?v=32","careerShareUrl":"https:\/\/avidbots.bamboohr.com\/careers","shareImageUrl":"https:\/\/avidbots.bamboohr.com\/jobs\/share_image\/32","inTrial":false,"appSessId":"1c1177745ca238c66df40b7e227681616fec334e"}}'
-  recorded_at: Thu, 23 May 2024 17:45:41 GMT
+      string: '{"meta":[],"result":{"name":"Avidbots","id":"72799","logoUrl":"https:\/\/images3.bamboohr.com\/72799\/logos\/cropped.jpg?v=32","careerShareUrl":"https:\/\/avidbots.bamboohr.com\/careers","shareImageUrl":"https:\/\/avidbots.bamboohr.com\/jobs\/share_image\/32","inTrial":false,"appSessId":"782ab75b1b033c0e66f4c9e3b90660c6afc79b85"}}'
+  recorded_at: Thu, 23 May 2024 18:22:02 GMT
 - request:
     method: get
     uri: https://avidbots.bamboohr.com/careers/list
@@ -121,7 +121,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 23 May 2024 17:45:42 GMT
+      - Thu, 23 May 2024 18:22:03 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -129,8 +129,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=G0hf-ADZV-Kz6PLOxSAzEQZqPlp5%2CuZF; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=ePfJ7jkhl8dtEtT0OVBPhqnZCjgUBfVEYcor0bqJGGk-1716486342775-0.0.1.1-604800000;
+      - PHPSESSID=q10kzJ8cTiVhWKdYBQOMXCKh7YuuxBgq; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=ZWtm2BZryTwCwVbTwSH1sKC0bbzDS99MxYLhLHYo9NA-1716488523184-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -195,7 +195,7 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 8886dc774b6e718c-LHR
+      - 888711b2efff9404-LHR
     body:
       encoding: ASCII-8BIT
       string: '{"meta":{"totalCount":4},"result":[{"id":"693","jobOpeningName":"Technical
@@ -206,7 +206,7 @@ http_interactions:
         Specialist","departmentId":"18495","departmentLabel":"IT","employmentStatusLabel":"Full-Time","location":{"city":"Hyderabad
         ","state":"Telangana"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"790","jobOpeningName":"Contracts
         Management Specialist","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Waterloo"},"isRemote":null,"locationType":"1"}]}'
-  recorded_at: Thu, 23 May 2024 17:45:42 GMT
+  recorded_at: Thu, 23 May 2024 18:22:02 GMT
 - request:
     method: get
     uri: https://autocomplete.clearbit.com/v1/companies/suggest?query=Avidbots
@@ -248,19 +248,21 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Cache:
-      - Miss from cloudfront
+      - Hit from cloudfront
       Via:
-      - 1.1 bf8b5b2c3ca89509ca41446ce65cfb98.cloudfront.net (CloudFront)
+      - 1.1 688a9b5db284546ed87785b84177fb70.cloudfront.net (CloudFront)
       X-Amz-Cf-Pop:
       - LHR61-P1
       X-Amz-Cf-Id:
-      - C1MgiJGw0JZ6rBa3nFaC5tajLPGb0hUDlclkp3fDT2ts-dvoNMCuZw==
+      - r7zmfWuuKTX5EmETGwMFWLefWChxYt6X41Www31iwpQId0KWHIV1Pg==
+      Age:
+      - '2180'
       Content-Security-Policy-Report-Only:
       - default-src 'self';
     body:
       encoding: ASCII-8BIT
       string: '[{"name":"Avidbots","domain":"avidbots.com","logo":"https://logo.clearbit.com/avidbots.com"}]'
-  recorded_at: Thu, 23 May 2024 17:45:42 GMT
+  recorded_at: Thu, 23 May 2024 18:22:02 GMT
 - request:
     method: get
     uri: https://api.crunchbase.com/api/v4/autocompletes?query=Avidbots&user_key=1a809e14a0c7e29e964a5923f1b17bdd
@@ -286,9 +288,9 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 23 May 2024 17:45:44 GMT
+      - Thu, 23 May 2024 18:22:04 GMT
       Etag:
-      - W/"1716486344011"
+      - W/"1716488524032"
       Server:
       - openresty
       X-Cb-Engine:
@@ -296,16 +298,16 @@ http_interactions:
       X-Cb-Engine-Cached:
       - 'false'
       X-Cb-Engine-Took:
-      - '32'
+      - '45'
       X-Cb-Request-Took:
-      - '59'
+      - '72'
       Content-Length:
       - '3663'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"count":17,"entities":[{"facet_ids":["contact","siftery","ipqwery","semrush","company","rank","builtwith","bombora","ai_insight"],"identifier":{"uuid":"129b4700-bbe1-b9fc-5149-f15f18d13503","value":"Avidbots
+      string: '{"count":15,"entities":[{"facet_ids":["contact","siftery","ipqwery","semrush","company","rank","builtwith","bombora","ai_insight"],"identifier":{"uuid":"129b4700-bbe1-b9fc-5149-f15f18d13503","value":"Avidbots
         Corp.","image_id":"uqzb9yucvrlll0vlfuwp","permalink":"avidbots","entity_def_id":"organization"},"short_description":"Avidbots
         designs, manufactures, sells and supports autonomous connected robots that
         expand human potential."},{"facet_ids":["contact","siftery","ipqwery","privco","aberdeen","company","rank","builtwith","bombora"],"identifier":{"uuid":"4a160c99-3dc1-d024-10ba-99ed0ef53f96","value":"AvidBiotics","image_id":"v1397184825/b3109816c91224ff8d84475408d57197.jpg","permalink":"avidbiotics","entity_def_id":"organization"},"short_description":"AvidBiotics
@@ -323,5 +325,5 @@ http_interactions:
         is an AI-autonomous strategy execution platform for advertising."},{"facet_ids":["ipqwery","aberdeen","semrush","company","rank","builtwith"],"identifier":{"uuid":"2434bbc2-92d1-592f-3183-71277ca3374c","value":"Addibots","image_id":"v1488871999/jhlkimev8fqviq8cglzq.png","permalink":"addibots","entity_def_id":"organization"},"short_description":"A
         robotics and 3D printing startup based in the Hudson Valley of New York."},{"facet_ids":["company","rank","semrush","builtwith"],"identifier":{"uuid":"cfbed3c7-5f4d-4407-89f0-973b36e51c73","value":"Avidnote","image_id":"qmksqnrs904xw8jhxljd","permalink":"avidnote","entity_def_id":"organization"},"short_description":"Avidnote
         is a digital platform for research."}]}'
-  recorded_at: Thu, 23 May 2024 17:45:43 GMT
+  recorded_at: Thu, 23 May 2024 18:22:03 GMT
 recorded_with: VCR 6.2.0

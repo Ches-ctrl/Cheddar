@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 23 May 2024 17:46:10 GMT
+      - Thu, 23 May 2024 18:22:32 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -29,123 +29,9 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=0pu02vI7rZF3HTIgRkRiLinyh9-tSz8m; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=HgQ.09XKBUUzdRAHtbWRFupO1khLaOZPGVbyCU5HTYQ-1716486370118-0.0.1.1-604800000;
-        path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
-      Expires:
-      - Thu, 19 Nov 1981 08:52:00 GMT
-      Cache-Control:
-      - no-cache, private
-      - no-store, no-cache, must-revalidate
-      Pragma:
-      - no-cache
-      Content-Security-Policy:
-      - 'default-src ''self'' data: blob: https://*.bamboohr.com https://*.bamboohr.co.uk
-        *.cloudfront.net d24d2g0g8l15q8.cloudfront.net d3lfqt3qfgn8k7.cloudfront.net
-        dwc7c3b4xwlvf.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
-        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
-        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
-        staticfe.bamboohr.net https://*.browser-intake-datadoghq.com https://*.facebook.com
-        https://*.linkedin.com https://*.segment.io https://*.small-improvements.com
-        https://api.rollbar.com https://app.bamboohr.co.uk https://bam.nr-data.net
-        https://connect.facebook.net *.algolianet.com *.algolia.net embedwistia-a.akamaihd.net
-        app.pendo.io cdn.pendo.io pendo-io-extensions.storage.googleapis.com pendo-static-5734959405072384.storage.googleapis.com
-        https://*.wistia.com https://*.wistia.net https://fonts.googleapis.com https://fonts.gstatic.com
-        https://example.com https://www.google-analytics.com https://payments.subscriptionplatform.com
-        https://s-static.ak.facebook.com themes.googleusercontent.com https://wufoo.com
-        https://*.wufoo.com https://www.google.com https://tagmanager.google.com https://bamboohr.formstack.com
-        https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
-        https://www.snapengage.com https://cdn.plaid.com https://portal-2.flatfile.io
-        https://*.zuora.com https://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com
-        https://*.salesforceliveagent.com https://*.force.com https://*.site.com wss://*.pusher.com
-        https://*.checkr.com https://accounts.google.com https://login.microsoftonline.com
-        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
-        ''unsafe-eval'' ; script-src ''self'' *.bamboohr.com *.bamboohr.co.uk data:
-        blob: about https://*.bamboohr.com https://cdn.api.twitter.com https://connect.facebook.net
-        https://bam.nr-data.net *.cloudfront.net d24d2g0g8l15q8.cloudfront.net dwc7c3b4xwlvf.cloudfront.net
-        d3lfqt3qfgn8k7.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
-        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
-        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
-        staticfe.bamboohr.net https://accounts.google.com https://login.microsoftonline.com
-        *.newrelic.com http://*.newrelic.com https://fast.wistia.net https://fast.wistia.com
-        get.bamboohr.com *.algolianet.com *.algolia.net app.pendo.io pendo-io-static.storage.googleapis.com
-        cdn.pendo.io pendo-static-5734959405072384.storage.googleapis.com https://pi.pardot.com
-        https://www.my1login.com https://app.onelogin.com https://ajax.googleapis.com
-        http://ajax.googleapis.com https://ssl.google-analytics.com https://www.googletagmanager.com
-        https://tagmanager.google.com https://www.google-analytics.com https://www.google.com
-        https://s3.amazonaws.com https://cdnjs.cloudflare.com https://wufoo.com https://*.wufoo.com
-        https://*.linkedin.com https://bat.bing.com/bat.js https://www.googleadservices.com/pagead/conversion_async.js
-        https://s.adroll.com/j/roundtrip.js https://*.segment.com https://*.segment.io
-        https://bamboohr.formstack.com https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
-        https://www.snapengage.com https://cdn.plaid.com https://*.zuora.com https://*.pusher.com
-        wss://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com https://*.salesforceliveagent.com
-        https://*.force.com https://*.site.com https://*.checkr.com https://www.google.com/recaptcha/
-        https://www.gstatic.com/recaptcha/ https://www.recaptcha.net/recaptcha/ https://portal-2.flatfile.io
-        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
-        ''unsafe-eval'' ; img-src * data: blob: ; report-uri /ajax/parse_csp_report.php
-        ; worker-src ''self'' data: blob: ;'
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Vary:
-      - Authorization,User-Agent
-      X-Content-Type-Options:
-      - nosniff
-      Cf-Cache-Status:
-      - DYNAMIC
-      Server:
-      - cloudflare
-      Cf-Ray:
-      - 8886dd242b3863d2-LHR
-    body:
-      encoding: ASCII-8BIT
-      string: '{"meta":{"totalCount":5},"result":[{"id":"45","jobOpeningName":"Lead
-        Product Manager,  CPG & Retail Execution","departmentId":"19029","departmentLabel":"30-000
-        - Product","employmentStatusLabel":"Full-Time","location":{"city":"Ciudad
-        de M\u00e9xico","state":"CDMX"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"59","jobOpeningName":"Field
-        Trainer (Bolivia)","departmentId":"19024","departmentLabel":"70-000 - Global
-        Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"La
-        Paz"},"isRemote":null,"locationType":"1"},{"id":"60","jobOpeningName":"Lider
-        de Operaciones (Bolivia)","departmentId":"19024","departmentLabel":"70-000
-        - Global Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
-        Cruz de la Sierra"},"isRemote":null,"locationType":"1"},{"id":"61","jobOpeningName":"Account
-        Executive (Bolivia)","departmentId":"19024","departmentLabel":"70-000 - Global
-        Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
-        Cruz de la Sierra"},"isRemote":null,"locationType":"1"},{"id":"62","jobOpeningName":"Client
-        Service Executive (Bolivia)","departmentId":"19024","departmentLabel":"70-000
-        - Global Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
-        Cruz de la Sierra"},"isRemote":null,"locationType":"1"}]}'
-  recorded_at: Thu, 23 May 2024 17:46:09 GMT
-- request:
-    method: get
-    uri: https://premise.bamboohr.com/careers/company-info/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Host:
-      - premise.bamboohr.com
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 23 May 2024 17:46:10 GMT
-      Content-Type:
-      - application/json
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      Set-Cookie:
-      - PHPSESSID=P1U5p9M3soYt5zPGqDjnEjwKewt3U9M4; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=21.sA5AbO4VHJzFG0uxCamVN_oQ2SCRHRosJrC.Ab00-1716486370315-0.0.1.1-604800000;
+      - PHPSESSID=H99LiN%2CgDHh2fjYqYFigYc-%2CSzXLoVhP; path=/; secure; HttpOnly;
+        SameSite=None
+      - _cfuvid=bXpQRp8kpJqFaxaAFg2cbYqgc2DO5gOe8ZTEj.k0YTk-1716488552199-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -208,21 +94,36 @@ http_interactions:
       Cf-Cache-Status:
       - DYNAMIC
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/csp-reporting.cloudflare.com\/cdn-cgi\/script_monitor\/report?m=aduzIzmmGjr56s2ZrqlipAoujiWJe39Ld88bYznQZJ8-1716486370-1.0.1.1-NJuhbzCZgChYpfrtN6QNEPtqW7ofABbTQe1YR491hGTW3PMwa5TvF41pxuGB7xnYU.2VrL4_4bGOPgXdD9yCC53vHFdURtb1qZQtsP3I8Ve_Xh6ZylFcPmf3pkggfMoE373eAukyyW7T6Z2GSVjS7cA4ZdufD.VnjhuYuKXQcHg"}],"group":"cf-csp-endpoint","max_age":86400}'
+      - '{"endpoints":[{"url":"https:\/\/csp-reporting.cloudflare.com\/cdn-cgi\/script_monitor\/report?m=_o4bK1ykx9MnAkf.UzhVtoG94u7k_OOlyDj9Sfz9LxQ-1716488552-1.0.1.1-8R_D0Zlejzb6FGkpJpEVLtiue4aeHpHH9TtuDQq2sw_J_3tBS6gmFlX2LJ36ffQP3oSr7wJablhUBtWd.3_8Lo30yV862X7HMHn2VZQfOoqhWLoZoGpPmhhNL8CF6yNFgkBJyoHXzHR8dHvjUhQ1_4OJBRMh2yPEIsnsOooJT0o"}],"group":"cf-csp-endpoint","max_age":86400}'
       Content-Security-Policy-Report-Only:
-      - script-src 'none'; report-uri https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report?m=aduzIzmmGjr56s2ZrqlipAoujiWJe39Ld88bYznQZJ8-1716486370-1.0.1.1-NJuhbzCZgChYpfrtN6QNEPtqW7ofABbTQe1YR491hGTW3PMwa5TvF41pxuGB7xnYU.2VrL4_4bGOPgXdD9yCC53vHFdURtb1qZQtsP3I8Ve_Xh6ZylFcPmf3pkggfMoE373eAukyyW7T6Z2GSVjS7cA4ZdufD.VnjhuYuKXQcHg;
+      - script-src 'none'; connect-src 'none'; report-uri https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report?m=_o4bK1ykx9MnAkf.UzhVtoG94u7k_OOlyDj9Sfz9LxQ-1716488552-1.0.1.1-8R_D0Zlejzb6FGkpJpEVLtiue4aeHpHH9TtuDQq2sw_J_3tBS6gmFlX2LJ36ffQP3oSr7wJablhUBtWd.3_8Lo30yV862X7HMHn2VZQfOoqhWLoZoGpPmhhNL8CF6yNFgkBJyoHXzHR8dHvjUhQ1_4OJBRMh2yPEIsnsOooJT0o;
         report-to cf-csp-endpoint
       Server:
       - cloudflare
       Cf-Ray:
-      - 8886dd259d6e4887-LHR
+      - 8887126a3a7f419a-LHR
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":[],"result":{"name":"Premise","id":"490341","logoUrl":"https:\/\/images4.bamboohr.com\/490341\/logos\/cropped.jpg?v=34","careerShareUrl":"https:\/\/premise.bamboohr.com\/careers","shareImageUrl":"https:\/\/premise.bamboohr.com\/jobs\/share_image\/34","inTrial":false,"appSessId":"bcf6827eb629ce4122bf68bbefaf98e4a25eace1"}}'
-  recorded_at: Thu, 23 May 2024 17:46:09 GMT
+      string: '{"meta":{"totalCount":5},"result":[{"id":"45","jobOpeningName":"Lead
+        Product Manager,  CPG & Retail Execution","departmentId":"19029","departmentLabel":"30-000
+        - Product","employmentStatusLabel":"Full-Time","location":{"city":"Ciudad
+        de M\u00e9xico","state":"CDMX"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"59","jobOpeningName":"Field
+        Trainer (Bolivia)","departmentId":"19024","departmentLabel":"70-000 - Global
+        Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"La
+        Paz"},"isRemote":null,"locationType":"1"},{"id":"60","jobOpeningName":"Lider
+        de Operaciones (Bolivia)","departmentId":"19024","departmentLabel":"70-000
+        - Global Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
+        Cruz de la Sierra"},"isRemote":null,"locationType":"1"},{"id":"61","jobOpeningName":"Account
+        Executive (Bolivia)","departmentId":"19024","departmentLabel":"70-000 - Global
+        Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
+        Cruz de la Sierra"},"isRemote":null,"locationType":"1"},{"id":"62","jobOpeningName":"Client
+        Service Executive (Bolivia)","departmentId":"19024","departmentLabel":"70-000
+        - Global Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
+        Cruz de la Sierra"},"isRemote":null,"locationType":"1"}]}'
+  recorded_at: Thu, 23 May 2024 18:22:31 GMT
 - request:
     method: get
-    uri: https://premise.bamboohr.com/careers/list
+    uri: https://premise.bamboohr.com/careers/company-info/
     body:
       encoding: US-ASCII
       string: ''
@@ -241,7 +142,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 23 May 2024 17:46:10 GMT
+      - Thu, 23 May 2024 18:22:32 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -249,8 +150,9 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=lnLCLF1CpCa1Dng1DwNPJw7%2CACvbPqDt; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=rvi3pEe2MMiJyNJxbyyJae3hSsFHAL9YWGJVZSilgZY-1716486370508-0.0.1.1-604800000;
+      - PHPSESSID=j3XH%2CKy8z4TaFjE9yfzhLwC%2C-OECjf20; path=/; secure; HttpOnly;
+        SameSite=None
+      - _cfuvid=JrryPTYo91xhV03TeEUUK5Eo.YDtL3A12Rv1db5cJ0g-1716488552414-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -315,7 +217,107 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 8886dd26cf4f635e-LHR
+      - 8887126b98eb6323-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"meta":[],"result":{"name":"Premise","id":"490341","logoUrl":"https:\/\/images4.bamboohr.com\/490341\/logos\/cropped.jpg?v=34","careerShareUrl":"https:\/\/premise.bamboohr.com\/careers","shareImageUrl":"https:\/\/premise.bamboohr.com\/jobs\/share_image\/34","inTrial":false,"appSessId":"2fdabe87500c20f1b17565ca2294923cf6843c3a"}}'
+  recorded_at: Thu, 23 May 2024 18:22:31 GMT
+- request:
+    method: get
+    uri: https://premise.bamboohr.com/careers/list
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - premise.bamboohr.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 23 May 2024 18:22:32 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=8sge8-NWd%2CLC--5iyqxQupSsPs3t5q2o; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=VKAKCjT1527HpfGjFjxjwxAkRHNW7opbTj_5CXaLdlw-1716488552602-0.0.1.1-604800000;
+        path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache, private
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self'' data: blob: https://*.bamboohr.com https://*.bamboohr.co.uk
+        *.cloudfront.net d24d2g0g8l15q8.cloudfront.net d3lfqt3qfgn8k7.cloudfront.net
+        dwc7c3b4xwlvf.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://*.browser-intake-datadoghq.com https://*.facebook.com
+        https://*.linkedin.com https://*.segment.io https://*.small-improvements.com
+        https://api.rollbar.com https://app.bamboohr.co.uk https://bam.nr-data.net
+        https://connect.facebook.net *.algolianet.com *.algolia.net embedwistia-a.akamaihd.net
+        app.pendo.io cdn.pendo.io pendo-io-extensions.storage.googleapis.com pendo-static-5734959405072384.storage.googleapis.com
+        https://*.wistia.com https://*.wistia.net https://fonts.googleapis.com https://fonts.gstatic.com
+        https://example.com https://www.google-analytics.com https://payments.subscriptionplatform.com
+        https://s-static.ak.facebook.com themes.googleusercontent.com https://wufoo.com
+        https://*.wufoo.com https://www.google.com https://tagmanager.google.com https://bamboohr.formstack.com
+        https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://portal-2.flatfile.io
+        https://*.zuora.com https://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com
+        https://*.salesforceliveagent.com https://*.force.com https://*.site.com wss://*.pusher.com
+        https://*.checkr.com https://accounts.google.com https://login.microsoftonline.com
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; script-src ''self'' *.bamboohr.com *.bamboohr.co.uk data:
+        blob: about https://*.bamboohr.com https://cdn.api.twitter.com https://connect.facebook.net
+        https://bam.nr-data.net *.cloudfront.net d24d2g0g8l15q8.cloudfront.net dwc7c3b4xwlvf.cloudfront.net
+        d3lfqt3qfgn8k7.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://accounts.google.com https://login.microsoftonline.com
+        *.newrelic.com http://*.newrelic.com https://fast.wistia.net https://fast.wistia.com
+        get.bamboohr.com *.algolianet.com *.algolia.net app.pendo.io pendo-io-static.storage.googleapis.com
+        cdn.pendo.io pendo-static-5734959405072384.storage.googleapis.com https://pi.pardot.com
+        https://www.my1login.com https://app.onelogin.com https://ajax.googleapis.com
+        http://ajax.googleapis.com https://ssl.google-analytics.com https://www.googletagmanager.com
+        https://tagmanager.google.com https://www.google-analytics.com https://www.google.com
+        https://s3.amazonaws.com https://cdnjs.cloudflare.com https://wufoo.com https://*.wufoo.com
+        https://*.linkedin.com https://bat.bing.com/bat.js https://www.googleadservices.com/pagead/conversion_async.js
+        https://s.adroll.com/j/roundtrip.js https://*.segment.com https://*.segment.io
+        https://bamboohr.formstack.com https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://*.zuora.com https://*.pusher.com
+        wss://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com https://*.salesforceliveagent.com
+        https://*.force.com https://*.site.com https://*.checkr.com https://www.google.com/recaptcha/
+        https://www.gstatic.com/recaptcha/ https://www.recaptcha.net/recaptcha/ https://portal-2.flatfile.io
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; img-src * data: blob: ; report-uri /ajax/parse_csp_report.php
+        ; worker-src ''self'' data: blob: ;'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Authorization,User-Agent
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8887126ced2694ac-LHR
     body:
       encoding: ASCII-8BIT
       string: '{"meta":{"totalCount":5},"result":[{"id":"45","jobOpeningName":"Lead
@@ -334,7 +336,7 @@ http_interactions:
         Service Executive (Bolivia)","departmentId":"19024","departmentLabel":"70-000
         - Global Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
         Cruz de la Sierra"},"isRemote":null,"locationType":"1"}]}'
-  recorded_at: Thu, 23 May 2024 17:46:10 GMT
+  recorded_at: Thu, 23 May 2024 18:22:32 GMT
 - request:
     method: get
     uri: https://autocomplete.clearbit.com/v1/companies/suggest?query=Premise
@@ -376,19 +378,21 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Cache:
-      - Miss from cloudfront
+      - Hit from cloudfront
       Via:
-      - 1.1 e9e4350b1ded67c8df30434cb8337934.cloudfront.net (CloudFront)
+      - 1.1 65465b26d806dce678b2cef9e0066d06.cloudfront.net (CloudFront)
       X-Amz-Cf-Pop:
       - LHR61-P1
       X-Amz-Cf-Id:
-      - EuIM6IBYMMRBDwaYx55AzaiXEtff1rGPDWGzvYbENRCU8ZPrVacolg==
+      - y-RLLRMaiCZvtY9hVTt2fhBhqxQHxF8Kj3d1JLrm1OL3vmbyD7bc8g==
+      Age:
+      - '2182'
       Content-Security-Policy-Report-Only:
       - default-src 'self';
     body:
       encoding: ASCII-8BIT
       string: '[{"name":"Premise Health","domain":"premisehealth.com","logo":"https://logo.clearbit.com/premisehealth.com"},{"name":"Premise","domain":"premise.com","logo":"https://logo.clearbit.com/premise.com"},{"name":"Premise","domain":"premiseco.com","logo":"https://logo.clearbit.com/premiseco.com"},{"name":"PREMISE","domain":"premise.tv","logo":"https://logo.clearbit.com/premise.tv"},{"name":"PremiSec","domain":"premisec.se","logo":"https://logo.clearbit.com/premisec.se"}]'
-  recorded_at: Thu, 23 May 2024 17:46:10 GMT
+  recorded_at: Thu, 23 May 2024 18:22:32 GMT
 - request:
     method: get
     uri: https://api.crunchbase.com/api/v4/autocompletes?query=Premise&user_key=1a809e14a0c7e29e964a5923f1b17bdd
@@ -414,9 +418,9 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 23 May 2024 17:46:11 GMT
+      - Thu, 23 May 2024 18:22:33 GMT
       Etag:
-      - W/"1716486371528"
+      - W/"1716488553362"
       Server:
       - openresty
       X-Cb-Engine:
@@ -424,16 +428,16 @@ http_interactions:
       X-Cb-Engine-Cached:
       - 'false'
       X-Cb-Engine-Took:
-      - '41'
+      - '45'
       X-Cb-Request-Took:
-      - '163'
+      - '77'
       Content-Length:
       - '4003'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"count":22133,"entities":[{"facet_ids":["contact","siftery","ipqwery","privco","apptopia","semrush","company","rank","builtwith","bombora","ai_insight"],"identifier":{"uuid":"4f680a26-074b-b8fa-7fa4-e5cfb5f0c30d","value":"Premise
+      string: '{"count":22193,"entities":[{"facet_ids":["contact","siftery","ipqwery","privco","apptopia","semrush","company","rank","builtwith","bombora","ai_insight"],"identifier":{"uuid":"4f680a26-074b-b8fa-7fa4-e5cfb5f0c30d","value":"Premise
         Data","image_id":"jwzjzghwlokbkqugqjgs","permalink":"premise","entity_def_id":"organization"},"short_description":"Premise
         is a data and analytics platform powered by a global network of on-the-ground
         contributors, data science, and machine learning. "},{"facet_ids":["contact","siftery","aberdeen","company","rank","builtwith","bombora"],"identifier":{"uuid":"0dc67892-3bf4-458b-88bd-6fa0ed027fa7","value":"Premise","image_id":"nqukjb1x3ficnuvq3ltx","permalink":"premise-7fa7","entity_def_id":"organization"},"short_description":"Premise
@@ -457,7 +461,7 @@ http_interactions:
         Systems","image_id":"uclhq3qdgrkfkr23sovv","permalink":"premises-systems","entity_def_id":"organization"},"short_description":"Premises
         Systems designs, implements and maintains single and multi-site IP-based communication
         networks and wireless technology."}]}'
-  recorded_at: Thu, 23 May 2024 17:46:11 GMT
+  recorded_at: Thu, 23 May 2024 18:22:32 GMT
 - request:
     method: get
     uri: https://premise.bamboohr.com/careers/45/detail
@@ -479,7 +483,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 23 May 2024 17:46:11 GMT
+      - Thu, 23 May 2024 18:22:33 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -487,8 +491,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=64pJEHTF6iuXmEOB6bu2cY-ctMbaD21s; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=GFMIausgHvgHS0ZkYyWKSyJhon0NiM1pdmmxeeAyj18-1716486371819-0.0.1.1-604800000;
+      - PHPSESSID=LpgZFvlLMybCiWQvvFE0%2CHVUjpI8VIkn; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=Z6mHdh36xDiFF_EJdduwOQD5JqQpG1RChjgpMAp_cmE-1716488553712-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -553,7 +557,7 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 8886dd2eebff6525-LHR
+      - 88871273bcfe71a5-LHR
     body:
       encoding: ASCII-8BIT
       string: '{"meta":{},"result":{"jobOpening":{"jobOpeningShareUrl":"https:\/\/premise.bamboohr.com\/careers\/45","jobOpeningName":"Lead
@@ -698,7 +702,7 @@ http_interactions:
         you have experience with experience with Gig economy platforms or two-sided
         marketplaces?","type":"short","value":"","isValueOther":false,"hasOther":"no","options":[]},{"id":"97","isRequired":false,"question":"Do
         you have experience working with CPGs and Retail Execution fields?","type":"short","value":"","isValueOther":false,"hasOther":"no","options":[]}],"genderId":[],"ethnicityId":[],"veteranStatusId":[],"disabilityId":[]}}}'
-  recorded_at: Thu, 23 May 2024 17:46:11 GMT
+  recorded_at: Thu, 23 May 2024 18:22:33 GMT
 - request:
     method: get
     uri: http://dev.virtualearth.net/REST/v1/Locations/Ciudad%20de%20M%C3%A9xico,%20CDMX%2006600%20Mexico?key=AmhBY6imsSQC_f1o8tlcEXoO6WxekJR2plXfZQr7g_Y6I35Yh18bR1khIX9jc9vI
@@ -720,7 +724,7 @@ http_interactions:
       message: Forbidden
     headers:
       Date:
-      - Thu, 23 May 2024 17:46:11 GMT
+      - Thu, 23 May 2024 18:22:33 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
@@ -738,12 +742,12 @@ http_interactions:
       Cache-Control:
       - no-cache
       X-Azure-Ref:
-      - 20240523T174611Z-15948fd4d4c49pj2nndkfxbz4000000002d000000001drvs
+      - 20240523T182233Z-15948fd4d4c7vmgjhah5v722p800000005z000000001bwav
       X-Cache:
       - CONFIG_NOCACHE
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJEZW5pZWRDcmVkZW50aWFscyIsImJyYW5kTG9nb1VyaSI6Imh0dHA6Ly9kZXYudmlydHVhbGVhcnRoLm5ldC9CcmFuZGluZy9sb2dvX3Bvd2VyZWRfYnkucG5nIiwiY29weXJpZ2h0IjoiQ29weXJpZ2h0IMKpIDIwMjQgTWljcm9zb2Z0IGFuZCBpdHMgc3VwcGxpZXJzLiBBbGwgcmlnaHRzIHJlc2VydmVkLiBUaGlzIEFQSSBjYW5ub3QgYmUgYWNjZXNzZWQgYW5kIHRoZSBjb250ZW50IGFuZCBhbnkgcmVzdWx0cyBtYXkgbm90IGJlIHVzZWQsIHJlcHJvZHVjZWQgb3IgdHJhbnNtaXR0ZWQgaW4gYW55IG1hbm5lciB3aXRob3V0IGV4cHJlc3Mgd3JpdHRlbiBwZXJtaXNzaW9uIGZyb20gTWljcm9zb2Z0IENvcnBvcmF0aW9uLiIsImVycm9yRGV0YWlscyI6WyJUaGUgcmVxdWVzdCB3YXMgZm9yYmlkZGVuLiAgWW91ciBjcmVkZW50aWFscyBtYXkgYmUgZGVuaWVkIG9yIHN1c3BlbmRlZC4iXSwicmVzb3VyY2VTZXRzIjpbXSwic3RhdHVzQ29kZSI6NDAzLCJzdGF0dXNEZXNjcmlwdGlvbiI6IkZvcmJpZGRlbiIsInRyYWNlSWQiOiJiZmI3NjdkYTk1NTc0NzUwZjg1NGFjMDc4NWE3Njg0YyJ9
-  recorded_at: Thu, 23 May 2024 17:46:11 GMT
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJEZW5pZWRDcmVkZW50aWFscyIsImJyYW5kTG9nb1VyaSI6Imh0dHA6Ly9kZXYudmlydHVhbGVhcnRoLm5ldC9CcmFuZGluZy9sb2dvX3Bvd2VyZWRfYnkucG5nIiwiY29weXJpZ2h0IjoiQ29weXJpZ2h0IMKpIDIwMjQgTWljcm9zb2Z0IGFuZCBpdHMgc3VwcGxpZXJzLiBBbGwgcmlnaHRzIHJlc2VydmVkLiBUaGlzIEFQSSBjYW5ub3QgYmUgYWNjZXNzZWQgYW5kIHRoZSBjb250ZW50IGFuZCBhbnkgcmVzdWx0cyBtYXkgbm90IGJlIHVzZWQsIHJlcHJvZHVjZWQgb3IgdHJhbnNtaXR0ZWQgaW4gYW55IG1hbm5lciB3aXRob3V0IGV4cHJlc3Mgd3JpdHRlbiBwZXJtaXNzaW9uIGZyb20gTWljcm9zb2Z0IENvcnBvcmF0aW9uLiIsImVycm9yRGV0YWlscyI6WyJUaGUgcmVxdWVzdCB3YXMgZm9yYmlkZGVuLiAgWW91ciBjcmVkZW50aWFscyBtYXkgYmUgZGVuaWVkIG9yIHN1c3BlbmRlZC4iXSwicmVzb3VyY2VTZXRzIjpbXSwic3RhdHVzQ29kZSI6NDAzLCJzdGF0dXNEZXNjcmlwdGlvbiI6IkZvcmJpZGRlbiIsInRyYWNlSWQiOiI1MWU5MzgyNDVkNzQ5MWE2YTE0ODgxNGQzM2MzZmVlNyJ9
+  recorded_at: Thu, 23 May 2024 18:22:33 GMT
 recorded_with: VCR 6.2.0
