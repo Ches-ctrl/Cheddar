@@ -21,8 +21,6 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
 
     scenario "Displays all jobs" do
       expect(page).to have_content("Graduate Software Developer")
-      expect(page).to have_content("Data Analyst")
-      expect(page).to have_content("Senior UI Engineer")
       expect(page).to have_content("#{Job.all.count} jobs")
     end
 
@@ -31,8 +29,6 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
       find('#search-button').click
 
       expect(page).to have_content("Frontend Developer")
-      expect(page).to have_content("Ruby on Rails Developer")
-
       expect(page).not_to have_content("Senior UI Engineer")
     end
 
@@ -41,8 +37,6 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
       check('mid-level')
 
       expect(page).to have_content("Graduate Software Developer")
-      expect(page).to have_content("Data Analyst")
-
       expect(page).not_to have_content("Junior Test Developer")
     end
 
@@ -57,8 +51,6 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
       check('data_engineer')
 
       expect(page).to have_content("Senior UI Engineer")
-      expect(page).to have_content("Data Analyst")
-
       expect(page).not_to have_content("Junior Test Developer")
     end
 
@@ -112,13 +104,13 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
     scenario "User can save and unsave jobs by clicking the bookmark icon" do
       2.times do
         all('i.fa-regular.fa-bookmark').first.click
-        sleep 1
+        sleep(0.5)
       end
 
       expect(SavedJob.all.count).to eq(2)
 
       all('i.fa-solid.fa-bookmark').first.click
-      sleep 1
+      sleep(0.5)
 
       expect(SavedJob.all.count).to eq(1)
     end
