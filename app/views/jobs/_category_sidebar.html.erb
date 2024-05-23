@@ -1,24 +1,26 @@
-<div class="col-sm-3" data-job-index-toggle-target="leftSection">
+<div data-job-index-toggle-target="leftSection">
 
-  <div class = "d-flex">
-    <p class="pb-0"><%= @jobs.count %> jobs • <%= link_to 'Clear filters', jobs_path %></p>
-  </div>
+  <div class="row">
+    <div class = "col-11 d-flex justify-content-between align-items-center mb-1">
+      <p class="py-2 mb-0"><%= @jobs.count %> jobs • <%= link_to 'Clear filters', jobs_path %></p>
+      <%= render 'sort_by' %>
+    </div>
 
-  <% if Flipper.enabled?(:apply_with_cheddar) %>
-    <div class="row">
-      <div class="col-10">
+    <% if Flipper.enabled?(:apply_with_cheddar) %>
+      <div class="col-11">
         <div class="category-select">
           <div class="form-check form-switch"><input type="checkbox" class="form-check-input" role="switch" id="cheddar-jobs-switch" data-action="change->select-by-job-type#combinedSearch" data-select-by-job-type-target="cheddar"><label class="form-check-label" for="cheddar-jobs-switch">Only show Cheddar jobs</label></div>
         </div>
       </div>
+    <% end %>
+
+    <% section_titles = ['Job Posted', 'Seniority', 'Location', 'Job Roles', 'Employment Type'] %>
+    <% icons = ["fa-solid fa-calendar-days", "fa-solid fa-stairs", "fa-solid fa-earth-americas", "fa-solid fa-person-chalkboard", "fa-solid fa-id-card"] %>
+
+    <div class="d-flex flex-wrap d-lg-block">
+      <% @resources.each_with_index do |(resource, data), index| %>
+        <%= render partial: 'category_sidebar_section', locals: {title: section_titles[index], resource: resource, resources: data, icon: icons[index]} %>
+      <% end %>
     </div>
-  <% end %>
-
-  <% section_titles = ['Job Posted', 'Seniority', 'Location', 'Job Roles', 'Employment Type'] %>
-  <% icons = ["fa-solid fa-calendar-days", "fa-solid fa-stairs", "fa-solid fa-earth-americas", "fa-solid fa-person-chalkboard", "fa-solid fa-id-card"] %>
-
-  <% @resources.each_with_index do |(resource, data), index| %>
-    <%= render partial: 'category_sidebar_section', locals: {title: section_titles[index], resource: resource, resources: data, icon: icons[index]} %>
-  <% end %>
-
+  </div>
 </div>

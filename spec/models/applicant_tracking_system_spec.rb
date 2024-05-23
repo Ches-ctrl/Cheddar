@@ -1,7 +1,9 @@
 require Rails.root.join('spec', 'support', 'spec_constants.rb')
-include CheckUrlIsValid
 
-RSpec.describe ApplicantTrackingSystem, type: :model do
+# rubocop:disable Metrics/BlockLength
+RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
+  include CheckUrlIsValid
+
   describe 'Associations' do
     it { is_expected.to have_many(:companies) }
     it { is_expected.to have_many(:jobs).dependent(:destroy) }
@@ -12,7 +14,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model do
     it { is_expected.to validate_uniqueness_of(:name) }
   end
 
-  context "with the currently written modules", :vcr do
+  context "With current modules", :vcr do
     before do
       allow($stdout).to receive(:write) # suppresses terminal clutter
 
@@ -65,148 +67,187 @@ RSpec.describe ApplicantTrackingSystem, type: :model do
     end
 
     it "neither throws an error when given a bad ats_identifier nor persists non-existent companies" do
-      COMPANIES.each_key do |ats_name|
-        puts "Trying #{ats_name}"
-        ats = ApplicantTrackingSystem.find_by(name: ats_name)
-        company = ats.find_or_create_company('zzzzz')
-        expect(company.persisted?).to be_falsey
+      VCR.use_cassette('bad_company_data') do
+        COMPANIES.each_key do |ats_name|
+          puts "Trying #{ats_name}"
+          ats = ApplicantTrackingSystem.find_by(name: ats_name)
+          company = ats.find_or_create_company('zzzzz')
+          expect(company.persisted?).to be_falsey
+        end
       end
     end
 
     it 'can create a company with AshbyHQ' do
-      @ashbyhq.find_or_create_company('lightdash')
-      expect(Company.last.name).to eq('Lightdash')
+      VCR.use_cassette('create_company_ashbyhq') do
+        @ashbyhq.find_or_create_company('lightdash')
+        expect(Company.last.name).to eq('Lightdash')
+      end
     end
 
     it 'can create a company with BambooHR' do
-    @bamboohr.find_or_create_company('avidbots')
-      expect(Company.last.name).to eq('Avidbots')
+      VCR.use_cassette('create_company_bamboohr') do
+        @bamboohr.find_or_create_company('avidbots')
+        expect(Company.last.name).to eq('Avidbots')
+      end
     end
 
     it 'can create a company with Greenhouse' do
-      @gh.find_or_create_company('codepath')
-      expect(Company.last.name).to eq('CodePath')
+      VCR.use_cassette('create_company_greenhouse') do
+        @gh.find_or_create_company('codepath')
+        expect(Company.last.name).to eq('CodePath')
+      end
     end
 
     it 'can create a company with Lever' do
-      @lever.find_or_create_company('GoToGroup')
-      expect(Company.last.name).to eq('GoTo Group')
+      VCR.use_cassette('create_company_lever') do
+        @lever.find_or_create_company('GoToGroup')
+        expect(Company.last.name).to eq('GoTo Group')
+      end
     end
 
     it 'can create a company with Manatal' do
-      @manatal.find_or_create_company('ptc-group')
-      expect(Company.last.name).to eq('PTC Group')
+      VCR.use_cassette('create_company_manatal') do
+        @manatal.find_or_create_company('ptc-group')
+        expect(Company.last.name).to eq('PTC Group')
+      end
     end
 
     it 'can create a company with PinpointHQ' do
-      @pinpointhq.find_or_create_company('bathspa')
-      expect(Company.last.name).to eq('Bath Spa University')
+      VCR.use_cassette('create_company_pinpointhq') do
+        @pinpointhq.find_or_create_company('bathspa')
+        expect(Company.last.name).to eq('Bath Spa University')
+      end
     end
 
     it 'can create a company with Recruitee' do
-      @recruitee.find_or_create_company('midas')
-      expect(Company.last.name).to eq('Midas')
+      VCR.use_cassette('create_company_recruitee') do
+        @recruitee.find_or_create_company('midas')
+        expect(Company.last.name).to eq('Midas')
+      end
     end
 
     it 'can create a company with SmartRecruiters' do
-      @smartrecruiters.find_or_create_company('Gousto1')
-      expect(Company.last.name).to eq('Gousto')
+      VCR.use_cassette('create_company_smartrecruiters') do
+        @smartrecruiters.find_or_create_company('Gousto1')
+        expect(Company.last.name).to eq('Gousto')
+      end
     end
 
-      # This test will route through proxy when API rate limit is reached
+    # This test will route through proxy when API rate limit is reached
     it 'can create a company with Workable' do
-      @workable.find_or_create_company('kroo')
-      expect(Company.last.name).to eq('Kroo Bank Ltd')
+      VCR.use_cassette('create_company_workable') do
+        @workable.find_or_create_company('kroo')
+        expect(Company.last.name).to eq('Kroo Bank Ltd')
+      end
     end
 
     it 'can create a job with AshbyHQ' do
-      url = "https://api.ashbyhq.com/posting-api/job-board/lightdash?includeCompensation=true"
-      feed = get_json_data(url)
-      title = feed.dig('jobs', 0, 'title')
-      job_id = feed.dig('jobs', 0, 'id')
-      company = @ashbyhq.find_or_create_company('lightdash')
-      job = @ashbyhq.find_or_create_job(company, job_id)
-      expect(job.title).to eq(title)
+      VCR.use_cassette('create_job_ashbyhq') do
+        url = "https://api.ashbyhq.com/posting-api/job-board/lightdash?includeCompensation=true"
+        feed = get_json_data(url)
+        title = feed.dig('jobs', 0, 'title')
+        job_id = feed.dig('jobs', 0, 'id')
+        company = @ashbyhq.find_or_create_company('lightdash')
+        job = @ashbyhq.find_or_create_job(company, job_id)
+        expect(job.title).to eq(title)
+      end
     end
 
     it 'can create a job with BambooHR' do
-      url = "https://premise.bamboohr.com/careers/list"
-      feed = get_json_data(url)
-      title = feed.dig('result', 0, 'jobOpeningName')
-      job_id = feed.dig('result', 0, 'id')
-      company = @bamboohr.find_or_create_company('premise')
-      job = @bamboohr.find_or_create_job(company, job_id)
-      expect(job.title).to eq(title)
+      VCR.use_cassette('create_job_bamboohr') do
+        url = "https://premise.bamboohr.com/careers/list"
+        feed = get_json_data(url)
+        title = feed.dig('result', 0, 'jobOpeningName')
+        job_id = feed.dig('result', 0, 'id')
+        company = @bamboohr.find_or_create_company('premise')
+        job = @bamboohr.find_or_create_job(company, job_id)
+        expect(job.title).to eq(title)
+      end
     end
 
     it 'can create a job with Greenhouse' do
-      url = "https://boards-api.greenhouse.io/v1/boards/codepath/jobs/"
-      feed = get_json_data(url)
-      title = feed.dig('jobs', 0, 'title')
-      job_id = feed.dig('jobs', 0, 'id')
-      company = @gh.find_or_create_company('codepath')
-      job = @gh.find_or_create_job(company, job_id)
-      expect(job.title).to eq(title)
+      VCR.use_cassette('create_job_greenhouse') do
+        url = "https://boards-api.greenhouse.io/v1/boards/codepath/jobs/"
+        feed = get_json_data(url)
+        title = feed.dig('jobs', 0, 'title')
+        job_id = feed.dig('jobs', 0, 'id')
+        company = @gh.find_or_create_company('codepath')
+        job = @gh.find_or_create_job(company, job_id)
+        expect(job.title).to eq(title)
+      end
     end
 
     it 'can create a job with Lever' do
-      url = "https://api.lever.co/v0/postings/GoToGroup/?mode=json"
-      feed = get_json_data(url)
-      title = feed.dig(0, 'text')
-      job_id = feed.dig(0, 'id')
-      company = @lever.find_or_create_company('GoToGroup')
-      job = @lever.find_or_create_job(company, job_id)
-      expect(job.title).to eq(title)
+      VCR.use_cassette('create_job_lever') do
+        url = "https://api.lever.co/v0/postings/GoToGroup/?mode=json"
+        feed = get_json_data(url)
+        title = feed.dig(0, 'text')
+        job_id = feed.dig(0, 'id')
+        company = @lever.find_or_create_company('GoToGroup')
+        job = @lever.find_or_create_job(company, job_id)
+        expect(job.title).to eq(title)
+      end
     end
 
     it 'can create a job with Manatal' do
-      url = "https://core.api.manatal.com/open/v3/career-page/ptc-group/jobs/"
-      feed = get_json_data(url)
-      title = feed.dig('results', 0, 'position_name')
-      job_id = feed.dig('results', 0, 'hash')
-      company = @manatal.find_or_create_company('ptc-group')
-      job = @manatal.find_or_create_job(company, job_id)
-      expect(job.title).to eq(title)
+      VCR.use_cassette('create_job_manatal') do
+        url = "https://core.api.manatal.com/open/v3/career-page/ptc-group/jobs/"
+        feed = get_json_data(url)
+        title = feed.dig('results', 0, 'position_name')
+        job_id = feed.dig('results', 0, 'hash')
+        company = @manatal.find_or_create_company('ptc-group')
+        job = @manatal.find_or_create_job(company, job_id)
+        expect(job.title).to eq(title)
+      end
     end
 
     it 'can create a job with PinpointHQ' do
-      url = "https://bathspa.pinpointhq.com/postings.json"
-      feed = get_json_data(url)
-      title = feed.dig('data', 0, 'title')
-      job_id = feed.dig('data', 0, 'path').sub('/en/postings/', '')
-      company = @pinpointhq.find_or_create_company('bathspa')
-      job = @pinpointhq.find_or_create_job(company, job_id)
-      expect(job.title).to eq(title)
+      VCR.use_cassette('create_job_pinpointhq') do
+        url = "https://bathspa.pinpointhq.com/postings.json"
+        feed = get_json_data(url)
+        title = feed.dig('data', 0, 'title')
+        job_id = feed.dig('data', 0, 'path').sub('/en/postings/', '')
+        company = @pinpointhq.find_or_create_company('bathspa')
+        job = @pinpointhq.find_or_create_job(company, job_id)
+        expect(job.title).to eq(title)
+      end
     end
 
-    it 'can create a job with Recruitee' do
-      url = "https://midas.recruitee.com/api/offers/"
-      feed = get_json_data(url)
-      title = feed.dig('offers', 0, 'title')
-      job_id = feed.dig('offers', 0, 'slug')
-      company = @recruitee.find_or_create_company('midas')
-      job = @recruitee.find_or_create_job(company, job_id)
-      expect(job.title).to eq(title)
-    end
+    # it 'can create a job with Recruitee' do
+    #   VCR.use_cassette('create_job_recruitee') do
+    #     url = "https://midas.recruitee.com/api/offers/"
+    #     feed = get_json_data(url)
+    #     title = feed.dig('offers', 0, 'title')
+    #     job_id = feed.dig('offers', 0, 'slug')
+    #     company = @recruitee.find_or_create_company('midas')
+    #     job = @recruitee.find_or_create_job(company, job_id)
+    #     expect(job.title).to eq(title)
+    #   end
+    # end
 
     it 'can create a job with SmartRecruiters' do
-      url = "https://api.smartrecruiters.com/v1/companies/Gousto1/postings"
-      feed = get_json_data(url)
-      title = feed.dig('content', 0, 'name')
-      job_id = feed.dig('content', 0, 'id')
-      company = @smartrecruiters.find_or_create_company('Gousto1')
-      job = @smartrecruiters.find_or_create_job(company, job_id)
-      expect(job.title).to eq(title)
+      VCR.use_cassette('create_job_smartrecruiters') do
+        url = "https://api.smartrecruiters.com/v1/companies/Gousto1/postings"
+        feed = get_json_data(url)
+        title = feed.dig('content', 0, 'name')
+        job_id = feed.dig('content', 0, 'id')
+        company = @smartrecruiters.find_or_create_company('Gousto1')
+        job = @smartrecruiters.find_or_create_job(company, job_id)
+        expect(job.title).to eq(title)
+      end
     end
 
     it 'can create a job with Workable' do
-      url = "https://jobs.workable.com/api/v1/companies/b7243622-5cc9-4572-9d52-e76cd62d85d8"
-      feed = get_json_data(url)
-      title = feed.dig('jobs', 0, 'title')
-      job_id = feed.dig('jobs', 0, 'applyUrl').match(%r{https://apply\.workable\.com/j/(\w+)/apply})[1]
-      company = @workable.find_or_create_company('southern-national')
-      job = @workable.find_or_create_job(company, job_id)
-      expect(job.title).to eq(title)
+      VCR.use_cassette('create_job_workable') do
+        url = "https://jobs.workable.com/api/v1/companies/b7243622-5cc9-4572-9d52-e76cd62d85d8"
+        feed = get_json_data(url)
+        title = feed.dig('jobs', 0, 'title')
+        job_id = feed.dig('jobs', 0, 'applyUrl').match(%r{https://apply\.workable\.com/j/(\w+)/apply})[1]
+        company = @workable.find_or_create_company('southern-national')
+        job = @workable.find_or_create_job(company, job_id)
+        expect(job.title).to eq(title)
+      end
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

@@ -1,16 +1,19 @@
-<%# The title meta tag here seems to be affecting the filter_category_sidebar. Not sure how to fix because I don't want to break anything but uncomment the title "All Jobs" below to see what I mean %>
-
-<%# <% title "All Jobs" %>
-<% description "Discover thousands of jobs on our platform. With Cheddar's innovative one-click applciation process, you can select multiple positions that interest you and apply to all of them at once without having to leave our site." %>
+<% title "Find Jobs" %>
+<% description "Discover and apply to thousands of jobs with Cheddar's one-click application process." %>
 
 <div class="container" data-controller="select-by-job-type">
+  <div class="row d-flex justify-content-center align-items-center pb-4">
+    <div class="col-12 col-md-8">
+      <%= render 'search' %>
+    </div>
+  </div>
 
-  <div class="d-flex justify-content-center align-items-center pb-4">
-    <%= render 'search' %>
-  </div>
-  
-  <div class="row">
-    <%= render 'category_sidebar' %>
-    <%= render 'job_cards_container' %>
-  </div>
+  <turbo-frame id="job-results" class="row">
+    <div class="col-12 col-lg-3 mb-4 mb-md-0">
+      <%= render 'category_sidebar' %>
+    </div>
+    <div class="col-12 col-lg-9">
+      <%= render 'job_cards_container' %>
+    </div>
+  </turbo-frame>
 </div>
