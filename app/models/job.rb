@@ -109,7 +109,7 @@ class Job < ApplicationRecord
   def self.filter_by_when_posted(param)
     return unless param.present?
 
-    number = Constants::Date::CONVERT_TO_DAYS[param] || 99_999
+    number = Constants::DateConversion::CONVERT_TO_DAYS[param] || 99_999
     number.days.ago..Date.today
   end
 
