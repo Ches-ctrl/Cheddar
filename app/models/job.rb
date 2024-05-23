@@ -1,8 +1,6 @@
 class Job < ApplicationRecord
   include PgSearch::Model
-
-  # TODO: Number of questions in job form
-  # TODO: Estimated time to complate job application based on form length/type
+  include Constants::Date
 
   serialize :application_criteria, coder: JSON
 
@@ -30,11 +28,8 @@ class Job < ApplicationRecord
 
   validates :posting_url, uniqueness: true, presence: true
   validates :title, presence: true
+
   validate :safe_posting_url
-
-  # after_create :update_application_criteria
-
-  # TODO: Update validate uniqueness as same job can have both a normal url and api url
 
   pg_search_scope :search_job,
                   against: %i[title salary description],
@@ -47,26 +42,39 @@ class Job < ApplicationRecord
                     tsearch: { prefix: true } # allow partial search
                   }
 
-  # TODO: Question - set application_criteria = {} as default?
-
-  # Enables access to application_criteria via strings or symbols
   def application_criteria
     return [] if read_attribute(:application_criteria).nil?
 
     read_attribute(:application_criteria).with_indifferent_access
   end
 
-  # TODO: Move this
+  private
 
-  CONVERT_TO_DAYS = {
-    'today' => 0,
-    '3-days' => 3,
-    'week' => 7,
-    'month' => 30,
-    'any-time' => 99_999
-  }
+  def set_date_created
+    self.date_posted ||= Date.today
+  end
 
-  # TODO: Handle remote jobs
+  def update_requirements
+    requirement = Requirement.create(job: self)
+    requirement.no_of_qs = application_criteria.size
+  end
+
+  def standardize_attributes
+    Standardizer::JobStandardizer.new(self).standardize
+  end
+
+  def safe_posting_url
+    uri = URI.parse(posting_url)
+    errors.add(:posting_url, "is not a valid HTTP/HTTPS URL") unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
+  rescue URI::InvalidURIError
+    errors.add(:posting_url, "is invalid")
+  end
+
+  public
+
+  # ---------------------
+  # Class Methods
+  # ---------------------
 
   def self.filter_and_sort(params)
     filters = {
@@ -86,40 +94,6 @@ class Job < ApplicationRecord
     filter_and_sort params.except(param)
   end
 
-  private
-
-  def set_date_created
-    self.date_posted ||= Date.today
-  end
-
-  def update_requirements
-    # All jobs need requirements so we should always create these on job creation
-    requirement = Requirement.create(job: self)
-    requirement.no_of_qs = application_criteria.size
-
-    # TODO: Add overall assessment of difficulty based on number of questions, type of questions, etc.
-    # TODO: Update this to match new structure with requirements not on job
-
-    # update_requirement('resume', 'resume')
-    # update_requirement('cover_letter', 'cover_letter')
-    # update_requirement('work_eligibility', 'work_eligibility')
-  end
-
-  # def update_requirement(criterion_key, attribute_name)
-  #   send("#{attribute_name}=", application_criteria.dig(criterion_key, 'required') || false)
-  # end
-
-  def standardize_attributes
-    Standardizer::JobStandardizer.new(self).standardize
-  end
-
-  def safe_posting_url
-    uri = URI.parse(posting_url)
-    errors.add(:posting_url, "is not a valid HTTP/HTTPS URL") unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
-  rescue URI::InvalidURIError
-    errors.add(:posting_url, "is invalid")
-  end
-
   # ---------------------
   # Private Class Methods
   # ---------------------
@@ -135,7 +109,7 @@ class Job < ApplicationRecord
   def self.filter_by_when_posted(param)
     return unless param.present?
 
-    number = CONVERT_TO_DAYS[param] || 99_999
+    number = Constants::Date::CONVERT_TO_DAYS[param] || 99_999
     number.days.ago..Date.today
   end
 
@@ -164,6 +138,3 @@ class Job < ApplicationRecord
 
   private_class_method :build_associations, :filter_by_when_posted, :filter_by_location, :filter_by_role, :filter_by_seniority, :filter_by_employment
 end
-
-# TODO: add description_html and other html fields?
-# TODO: fully reconcile job fields by back-engineering ATS APIs - requires data build prior to this
