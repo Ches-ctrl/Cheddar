@@ -1,0 +1,315 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.smartrecruiters.com/v1/companies/Gousto1/postings
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.smartrecruiters.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 23 May 2024 17:46:02 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - AWSALB=XZe7l54wGzwbcIHHKB5fgP/RKt90eQZ9yIL7VU0T0ZeTmbTnIVDYHnX4zIjxEVwuFJlPjHQu/WGT5kv0vyckFAqfG9TG0ZTTOoVNtpL324sbKg2ZDX1wd7KZQeAf;
+        Expires=Thu, 30 May 2024 17:46:02 GMT; Path=/
+      - AWSALBCORS=XZe7l54wGzwbcIHHKB5fgP/RKt90eQZ9yIL7VU0T0ZeTmbTnIVDYHnX4zIjxEVwuFJlPjHQu/WGT5kv0vyckFAqfG9TG0ZTTOoVNtpL324sbKg2ZDX1wd7KZQeAf;
+        Expires=Thu, 30 May 2024 17:46:02 GMT; Path=/; SameSite=None; Secure
+      Dcr-Decision-By:
+      - public-posting-api
+      Dcr-Processing-Time-Ms:
+      - '1'
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Etag:
+      - W/"6f53-6rs9yUb6DYQrtjbbTL68DonO6ww"
+      Datacenter:
+      - fran
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains; preload
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8886dcf2bb08773b-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"offset":0,"limit":100,"totalFound":10,"content":[{"id":"743999989624802","name":"People
+        Partner","uuid":"c6a4769e-30aa-4afc-8547-8b3e6f13aa8e","jobAdId":"fc661672-818c-46a2-b541-46201c57173e","defaultJobAd":false,"refNumber":"000000000431","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-05-23T13:27:15.268Z","location":{"city":"London","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
+        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
+        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
+        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"947222f5-0d6e-44fa-8f3d-463b22fa918c","valueLabel":"HR"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal
+        entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
+        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"88d8ccdd-8459-4264-b8a2-5c8e7edb2197","valueLabel":"Foundations"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"bc3b4b69-4858-4ccd-88a3-d99ddafc17e9","valueLabel":"Default"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"1996013d-84a5-4d50-a83d-942548cb0fb3","valueLabel":"People"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost
+        centre","valueId":"be5cbbb1-51d2-4153-8593-17d7196c1539","valueLabel":"C3200"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
+        Type","valueId":"FTE","valueLabel":"FTE - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
+        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
+        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"5a7e8125-914f-4c69-875e-544e2592cadf","valueLabel":"Default"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career
+        track","valueId":"6087cc0d-9d78-40a0-b5ba-94fa2e397c0b","valueLabel":"Default"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
+        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
+        Annual Salary","valueLabel":"0"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
+        Hiring Manager","valueLabel":"Rebecca Church"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/743999989624802","language":{"code":"en-GB","label":"English
+        (UK)","labelNative":"English (UK)"}},{"id":"743999989401715","name":"Growth
+        Acquisition Manager - 9 month initial Fixed Term Contract","uuid":"0a5f2384-6d78-4187-9ec4-8af9c99333ef","jobAdId":"2170253b-badd-42bc-8c38-aea098dac7c7","defaultJobAd":true,"refNumber":"000000000455","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-05-22T14:57:57.829Z","location":{"city":"London","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
+        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
+        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
+        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"1520c772-c2db-4295-97f5-cd489facac05","valueLabel":"No
+        Grade"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
+        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"d7da8bb0-a7a6-4695-9090-ccd265bfe159","valueLabel":"Default"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"bc3b4b69-4858-4ccd-88a3-d99ddafc17e9","valueLabel":"Default"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"dc3a5475-cd1f-42b4-aabf-c067f711633e","valueLabel":"Acquisition
+        & Retention"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"d7730865-fd28-43f7-9e7e-6481381dc82a","valueLabel":"C4000"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
+        Type","valueId":"FTC","valueLabel":"FTC - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
+        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
+        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"5a7e8125-914f-4c69-875e-544e2592cadf","valueLabel":"Default"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career
+        track","valueId":"6087cc0d-9d78-40a0-b5ba-94fa2e397c0b","valueLabel":"Default"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
+        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
+        Annual Salary","valueLabel":"75000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
+        Hiring Manager","valueLabel":"Adam Harris"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/743999989401715","language":{"code":"en","label":"English","labelNative":"English
+        (US)"}},{"id":"743999989047359","name":"QA Manager","uuid":"96490bcd-847a-472b-a61b-e03c10ad6277","jobAdId":"ba8b4881-333c-4966-a5be-c71a5fd0b9b1","defaultJobAd":false,"refNumber":"000000000449","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-05-21T09:51:47.653Z","location":{"city":"Warrington","region":"England","country":"gb","remote":false,"latitude":"53.39203999999999","longitude":"-2.6023453"},"industry":{"id":"food_and_beverages","label":"Food
+        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
+        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
+        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"1520c772-c2db-4295-97f5-cd489facac05","valueLabel":"No
+        Grade"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
+        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"88d8ccdd-8459-4264-b8a2-5c8e7edb2197","valueLabel":"Foundations"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"bc3b4b69-4858-4ccd-88a3-d99ddafc17e9","valueLabel":"Default"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"f1225bfe-265b-422d-8408-a8d3500d2fac","valueLabel":"Food
+        Technical"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"453d3290-2ab5-455e-814a-47fac3037fb7","valueLabel":"C5400"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
+        Type","valueId":"FTE","valueLabel":"FTE - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
+        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
+        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"5a7e8125-914f-4c69-875e-544e2592cadf","valueLabel":"Default"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career
+        track","valueId":"6087cc0d-9d78-40a0-b5ba-94fa2e397c0b","valueLabel":"Default"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
+        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
+        Annual Salary","valueLabel":"31500 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
+        Hiring Manager","valueLabel":"Joanna Frankowska"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/743999989047359","language":{"code":"en","label":"English","labelNative":"English
+        (US)"}},{"id":"743999989048543","name":"Production Manager","uuid":"c1d8dbee-b876-428e-a4f6-4fd102694d21","jobAdId":"cf4be668-2ce3-4d2a-9abe-9335b661b6b0","defaultJobAd":false,"refNumber":"000000000408","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-05-21T09:48:36.213Z","location":{"city":"Spalding","region":"England","country":"gb","remote":false,"latitude":"52.79010160000001","longitude":"-0.1537024"},"industry":{"id":"food_and_beverages","label":"Food
+        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
+        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
+        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"1520c772-c2db-4295-97f5-cd489facac05","valueLabel":"No
+        Grade"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
+        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"89bfcfbf-70a5-4b90-b359-0386e3a795b3","valueLabel":"Unbox"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"bc3b4b69-4858-4ccd-88a3-d99ddafc17e9","valueLabel":"Default"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"f7c15500-dc0f-4ce6-84aa-34f7682262ec","valueLabel":"Operations
+        Fulfilment"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"ceaf9ff8-3d53-47a1-b3dc-fb41178686f3","valueLabel":"C6000"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
+        Type","valueId":"FTE","valueLabel":"FTE - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
+        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
+        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"5a7e8125-914f-4c69-875e-544e2592cadf","valueLabel":"Default"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career
+        track","valueId":"6087cc0d-9d78-40a0-b5ba-94fa2e397c0b","valueLabel":"Default"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
+        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
+        Annual Salary","valueLabel":"52000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
+        Hiring Manager","valueLabel":"Jaime Tointon"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/743999989048543","language":{"code":"en","label":"English","labelNative":"English
+        (US)"}},{"id":"743999987988553","name":"Senior CRM Manager, 6 to 12 months
+        Fixed Term Contract","uuid":"e17aea9d-64f8-4621-b4b2-4ce3c2fe540c","jobAdId":"56f91a17-2b6e-4ef9-8f72-268979cd49fc","defaultJobAd":true,"refNumber":"000000000454","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-05-16T14:56:26.340Z","location":{"city":"London","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
+        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
+        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
+        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"1520c772-c2db-4295-97f5-cd489facac05","valueLabel":"No
+        Grade"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
+        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"d7da8bb0-a7a6-4695-9090-ccd265bfe159","valueLabel":"Default"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"bc3b4b69-4858-4ccd-88a3-d99ddafc17e9","valueLabel":"Default"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"dc3a5475-cd1f-42b4-aabf-c067f711633e","valueLabel":"Acquisition
+        & Retention"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"a9042445-29a1-454b-a3e5-94ec2db57324","valueLabel":"C4010"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
+        Type","valueId":"FTC","valueLabel":"FTC - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
+        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
+        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"5a7e8125-914f-4c69-875e-544e2592cadf","valueLabel":"Default"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career
+        track","valueId":"6087cc0d-9d78-40a0-b5ba-94fa2e397c0b","valueLabel":"Default"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
+        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
+        Annual Salary","valueLabel":"70000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
+        Hiring Manager","valueLabel":"Adam Harris"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/743999987988553","language":{"code":"en","label":"English","labelNative":"English
+        (US)"}},{"id":"743999987949993","name":"Warehouse Shift Manager","uuid":"fa705124-0d22-4995-adee-5ff7bc0858b4","jobAdId":"de3a7993-5de4-4a45-9b7f-0a70a63a13a5","defaultJobAd":true,"refNumber":"000000000448","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-05-16T12:52:34.918Z","location":{"city":"Warrington","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
+        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
+        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
+        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"1520c772-c2db-4295-97f5-cd489facac05","valueLabel":"No
+        Grade"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
+        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"d7da8bb0-a7a6-4695-9090-ccd265bfe159","valueLabel":"Default"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"bc3b4b69-4858-4ccd-88a3-d99ddafc17e9","valueLabel":"Default"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"f7c15500-dc0f-4ce6-84aa-34f7682262ec","valueLabel":"Operations
+        Fulfilment"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"82a3f971-6181-452c-b850-13c23194809d","valueLabel":"C6240"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
+        Type","valueId":"FTE","valueLabel":"FTE - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
+        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
+        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"5a7e8125-914f-4c69-875e-544e2592cadf","valueLabel":"Default"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career
+        track","valueId":"6087cc0d-9d78-40a0-b5ba-94fa2e397c0b","valueLabel":"Default"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
+        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
+        Annual Salary","valueLabel":"44520 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
+        Hiring Manager","valueLabel":"Edward Halstead"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/743999987949993","language":{"code":"en","label":"English","labelNative":"English
+        (US)"}},{"id":"743999986317133","name":"Senior Food Development Manager","uuid":"8a4ce046-a2b2-4a76-b52a-68591b636288","jobAdId":"adb4ee99-5cd9-4f3c-b050-a6b4fe27d0ec","defaultJobAd":true,"refNumber":"000000000445","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-05-09T10:09:00.698Z","location":{"city":"London","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
+        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
+        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
+        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"1520c772-c2db-4295-97f5-cd489facac05","valueLabel":"No
+        Grade"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
+        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"0e447d0a-2ee5-4f18-8154-07908e50a8d3","valueLabel":"Choice"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"bc3b4b69-4858-4ccd-88a3-d99ddafc17e9","valueLabel":"Default"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"76725f63-3be4-490a-a8fd-dab375d860de","valueLabel":"Food
+        Proposition"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"6a752f8f-6d59-4a32-a5d2-87856cdf950c","valueLabel":"C5210"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
+        Type","valueId":"FTE","valueLabel":"FTE - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
+        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
+        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"5a7e8125-914f-4c69-875e-544e2592cadf","valueLabel":"Default"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career
+        track","valueId":"6087cc0d-9d78-40a0-b5ba-94fa2e397c0b","valueLabel":"Default"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
+        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
+        Annual Salary","valueLabel":"60000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
+        Hiring Manager","valueLabel":"Kate Driver"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/743999986317133","language":{"code":"en","label":"English","labelNative":"English
+        (US)"}},{"id":"743999986299288","name":"Paid Social Manager","uuid":"0629ae60-ca06-4930-9ba2-a0196f87e539","jobAdId":"2d827a19-9b54-451b-a9e8-92123f37ab64","defaultJobAd":true,"refNumber":"000000000444","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-05-09T08:23:05.271Z","location":{"city":"London","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
+        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
+        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
+        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"1520c772-c2db-4295-97f5-cd489facac05","valueLabel":"No
+        Grade"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
+        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"0e447d0a-2ee5-4f18-8154-07908e50a8d3","valueLabel":"Choice"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"bc3b4b69-4858-4ccd-88a3-d99ddafc17e9","valueLabel":"Default"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"dc3a5475-cd1f-42b4-aabf-c067f711633e","valueLabel":"Acquisition
+        & Retention"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"d7730865-fd28-43f7-9e7e-6481381dc82a","valueLabel":"C4000"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
+        Type","valueId":"FTE","valueLabel":"FTE - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
+        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
+        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"d79486e1-ffef-4254-a114-3ff5f5e4331b","valueLabel":"Beetroots"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career
+        track","valueId":"6087cc0d-9d78-40a0-b5ba-94fa2e397c0b","valueLabel":"Default"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
+        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
+        Annual Salary","valueLabel":"63750 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
+        Hiring Manager","valueLabel":"Sarah Martin"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/743999986299288","language":{"code":"en-GB","label":"English
+        (UK)","labelNative":"English (UK)"}},{"id":"743999985888334","name":"Senior
+        Machine Learning Engineer","uuid":"afa0c0a6-cb14-4eef-be09-5b133f190cd1","jobAdId":"0cb8ad6e-983a-4cb8-b042-24a91cb126d3","defaultJobAd":true,"refNumber":"000000000438","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-05-07T16:08:24.870Z","location":{"city":"London","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
+        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
+        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
+        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"016eba4b-03ae-4e8a-b42e-eddcc3b0d082","valueLabel":"Tech
+        Level 3"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
+        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"5671cc19-500d-4095-bfae-dbcc0dc67d95","valueLabel":"Other
+        - Bento"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"456393e9-7921-436b-a14b-c704f05f1f90","valueLabel":"Data
+        - Principal"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"30a7ea38-ed51-4774-ad28-f05f25987efc","valueLabel":"Bento"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost
+        centre","valueId":"e709b1a3-f632-40fc-84eb-9ee2e85f0642","valueLabel":"C8000"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
+        Type","valueId":"FTC","valueLabel":"FTC - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
+        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
+        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"4ff382d2-b2ef-4b8b-a844-7fffebdf28ff","valueLabel":"Bento"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career
+        track","valueId":"ea97cd56-bc6b-4be9-a8f9-7b0597d2ea03","valueLabel":"Data
+        - Data Engineering"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
+        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
+        Annual Salary","valueLabel":"75000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
+        Hiring Manager","valueLabel":"Mitch Beard"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/743999985888334","language":{"code":"en","label":"English","labelNative":"English
+        (US)"}},{"id":"743999984911760","name":"Senior Software Engineer","uuid":"9ae0b422-ace5-4662-8f50-f8ce144ec262","jobAdId":"5409dd72-c1e5-4767-9141-54293d842026","defaultJobAd":true,"refNumber":"000000000415","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-05-03T14:35:09.989Z","location":{"city":"London","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
+        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
+        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
+        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"1520c772-c2db-4295-97f5-cd489facac05","valueLabel":"No
+        Grade"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
+        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"50a4066c-9845-4a3b-aea0-e709354acd43","valueLabel":"Activate"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"9518cb38-8496-4900-978a-7895876f389e","valueLabel":"Software
+        Engineering - Python"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"5155817f-eff5-400d-b0ff-e89372a9a9ff","valueLabel":"Software
+        Engineering"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"227456be-bb49-4239-bb9a-68842b0471ed","valueLabel":"C7000"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
+        Type","valueId":"FTE","valueLabel":"FTE - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
+        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
+        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"3e414554-9de4-4c26-b916-6aa44f5a449d","valueLabel":"Rockets"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career
+        track","valueId":"7360b5dc-b973-44d7-9b80-152fbe5a4960","valueLabel":"Software
+        Engineering - Software Engineer"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
+        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
+        Annual Salary","valueLabel":"85000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
+        Hiring Manager","valueLabel":"Todd Runham"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/743999984911760","language":{"code":"en","label":"English","labelNative":"English
+        (US)"}}]}'
+  recorded_at: Thu, 23 May 2024 17:46:01 GMT
+- request:
+    method: get
+    uri: https://autocomplete.clearbit.com/v1/companies/suggest?query=Gousto
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - autocomplete.clearbit.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - public, must-revalidate, max-age=2629746
+      Access-Control-Allow-Origin:
+      - "*"
+      Date:
+      - Thu, 23 May 2024 17:46:02 GMT
+      Server:
+      - Clearbit
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 87911f7f4ec2932c1f9ed5a36cc017ae.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LHR61-P1
+      X-Amz-Cf-Id:
+      - wdRGAcYD5mhVX6x394CRAnxMsWuVq6ZwSDqstwEDur1kuKiCyToPnw==
+      Content-Security-Policy-Report-Only:
+      - default-src 'self';
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sibmFtZSI6IkdvdXN0byIsImRvbWFpbiI6ImdvdXN0by5jby51ayIsImxvZ28iOiJodHRwczovL2xvZ28uY2xlYXJiaXQuY29tL2dvdXN0by5jby51ayJ9LHsibmFtZSI6IkdvdXN0byBHbWJIIGluIEdyw7xuZHVuZyIsImRvbWFpbiI6ImdvdXN0by5kZSIsImxvZ28iOiJodHRwczovL2xvZ28uY2xlYXJiaXQuY29tL2dvdXN0by5kZSJ9LHsibmFtZSI6IlJlc3RhdXJhbnQgSXRhbGllbiBMb25ndWV1aWwgLSBHb3VzdG8gQmlzdHJvIiwiZG9tYWluIjoiZ291c3RvYmlzdHJvLmNvbSIsImxvZ28iOiJodHRwczovL2xvZ28uY2xlYXJiaXQuY29tL2dvdXN0b2Jpc3Ryby5jb20ifV0=
+  recorded_at: Thu, 23 May 2024 17:46:02 GMT
+- request:
+    method: get
+    uri: https://api.crunchbase.com/api/v4/autocompletes?query=Gousto&user_key=1a809e14a0c7e29e964a5923f1b17bdd
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.crunchbase.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, private
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 23 May 2024 17:46:03 GMT
+      Etag:
+      - W/"1716486363213"
+      Server:
+      - openresty
+      X-Cb-Engine:
+      - autocomplete:algolia
+      X-Cb-Engine-Cached:
+      - 'false'
+      X-Cb-Engine-Took:
+      - '3'
+      X-Cb-Request-Took:
+      - '32'
+      Content-Length:
+      - '4138'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJjb3VudCI6MjE3MiwiZW50aXRpZXMiOlt7ImZhY2V0X2lkcyI6WyJjb250YWN0Iiwic2lmdGVyeSIsImFiZXJkZWVuIiwiYXBwdG9waWEiLCJzZW1ydXNoIiwiY29tcGFueSIsInJhbmsiLCJidWlsdHdpdGgiLCJhaV9pbnNpZ2h0Iiwia2V5X2V2ZW50Il0sImlkZW50aWZpZXIiOnsidXVpZCI6ImFkNDcwZjc1LTk3MjktNzQyZC0zOTQ0LTc4NzJjNDRjZWQ2ZCIsInZhbHVlIjoiR291c3RvIiwiaW1hZ2VfaWQiOiJyOXhzdGJlamMzd3BiNXpjZG51dyIsInBlcm1hbGluayI6ImdvdXN0byIsImVudGl0eV9kZWZfaWQiOiJvcmdhbml6YXRpb24ifSwic2hvcnRfZGVzY3JpcHRpb24iOiJHb3VzdG8gaXMgYW4gb25saW5lIG1lYWwta2l0IG1hbnVmYWN0dXJlciBhbmQgcmV0YWlsZXIsIHVzaW5nIEFJIGFuZCBhdXRvbWF0aW9uIHRvIHByb3ZpZGUgZXh0ZW5zaXZlIGNob2ljZSBhbmQgcGVyc29uYWxpc2F0aW9uLiJ9LHsiZmFjZXRfaWRzIjpbImNvbnRhY3QiLCJzaWZ0ZXJ5IiwiaW52ZXN0b3IiLCJpcHF3ZXJ5IiwicHJpdmNvIiwiYWJlcmRlZW4iLCJhcHB0b3BpYSIsInNlbXJ1c2giLCJjb21wYW55IiwicmFuayIsImJ1aWx0d2l0aCIsImJvbWJvcmEiLCJhaV9pbnNpZ2h0Iiwia2V5X2V2ZW50Il0sImlkZW50aWZpZXIiOnsidXVpZCI6IjA5NWU1YmE5LTFiYzYtMmY4NC02NjEwLTI5YWY4Njg4NTlkMiIsInZhbHVlIjoiR3VzdG8iLCJpbWFnZV9pZCI6ImRueWdycndqNjNkbGxjbnBqdnJwIiwicGVybWFsaW5rIjoiZ3VzdG8iLCJlbnRpdHlfZGVmX2lkIjoib3JnYW5pemF0aW9uIn0sInNob3J0X2Rlc2NyaXB0aW9uIjoiR3VzdG8gcHJvdmlkZXMgYSBjbG91ZC1iYXNlZCBwYXlyb2xsLCBiZW5lZml0cywgYW5kIGh1bWFuIHJlc291cmNlIG1hbmFnZW1lbnQgc29sdXRpb24gZm9yIGJ1c2luZXNzZXMuIn0seyJmYWNldF9pZHMiOlsiY29udGFjdCIsInNpZnRlcnkiLCJpcHF3ZXJ5IiwiYWJlcmRlZW4iLCJzZW1ydXNoIiwiY29tcGFueSIsInJhbmsiLCJidWlsdHdpdGgiLCJib21ib3JhIiwia2V5X2V2ZW50Il0sImlkZW50aWZpZXIiOnsidXVpZCI6ImFlZTY0NmNjLWI5YzAtZTk2MC03Yzc2LWRlOWMzYzk0NzY2YyIsInZhbHVlIjoiR291bHN0b24gJiBTdG9ycnMiLCJpbWFnZV9pZCI6ImlpdmlvYngxajBmOXZyYWJobnN2IiwicGVybWFsaW5rIjoiZ291bHN0b24tc3RvcnJzIiwiZW50aXR5X2RlZl9pZCI6Im9yZ2FuaXphdGlvbiJ9LCJzaG9ydF9kZXNjcmlwdGlvbiI6IkdvdWxzdG9uICYgU3RvcnJzIn0seyJmYWNldF9pZHMiOlsiY29udGFjdCIsInNpZnRlcnkiLCJhcHB0b3BpYSIsInNlbXJ1c2giLCJjb21wYW55IiwicmFuayIsImJ1aWx0d2l0aCIsImFpX2luc2lnaHQiXSwiaWRlbnRpZmllciI6eyJ1dWlkIjoiODZhNWIyZWQtMzU2YS0wYmI5LWRiYjUtOWU2ZTg2ZDdiZDA1IiwidmFsdWUiOiJnb1N0b3BzIiwiaW1hZ2VfaWQiOiJia216bm11NGtvOGZhb2R2ZnpzZyIsInBlcm1hbGluayI6InN0b3BzLWhvc3RlbHMiLCJlbnRpdHlfZGVmX2lkIjoib3JnYW5pemF0aW9uIn0sInNob3J0X2Rlc2NyaXB0aW9uIjoiV2XigJlyZSBhIGNoYWluIG9mIHRyYXZlbGVycycgaG9zdGVscyB0aGF0IGZvY3VzZXMgb24gdGhlIGlkZWEgb2YgbGl2aW5nIHNvY2lhbGx5IGFuZCBleHBlcmllbmNpbmcgbW9yZSBhdCBldmVyeSBzdGVwIG9mIHlvdXIgam91cm5leS4ifSx7ImZhY2V0X2lkcyI6WyJjb250YWN0Iiwic2lmdGVyeSIsImlwcXdlcnkiLCJhYmVyZGVlbiIsInNlbXJ1c2giLCJjb21wYW55IiwicmFuayIsImJ1aWx0d2l0aCIsImJvbWJvcmEiXSwiaWRlbnRpZmllciI6eyJ1dWlkIjoiNzhiMWNlOTgtZjhkYS00ZmYwLThlMWMtYjc2OWVlYWExZDRjIiwidmFsdWUiOiJHb3Vsc3RvbiIsImltYWdlX2lkIjoidjE1MDk3Mzg0MjEvdHNjcTNvMm9kdndwaHFrZnRhdmkucG5nIiwicGVybWFsaW5rIjoiZ291bHN0b24iLCJlbnRpdHlfZGVmX2lkIjoib3JnYW5pemF0aW9uIn0sInNob3J0X2Rlc2NyaXB0aW9uIjoiR291bHN0b24gaXMgYSBjaGVtaWNhbCBjb21wYW55IHByb3ZpZGluZyBzdXJmYWNlIG1vZGlmaWNhdGlvbiB0ZWNobm9sb2dpZXMuIn0seyJmYWNldF9pZHMiOlsiY29udGFjdCIsInNpZnRlcnkiLCJhcHB0b3BpYSIsInNlbXJ1c2giLCJjb21wYW55IiwicmFuayIsImJ1aWx0d2l0aCIsImJvbWJvcmEiLCJhaV9pbnNpZ2h0Il0sImlkZW50aWZpZXIiOnsidXVpZCI6ImFjZmI4ODA0LTU5YWQtZTIzOS1iY2FjLTVhYzU1ZWYwNDY2OSIsInZhbHVlIjoiR3V1c3RvIiwiaW1hZ2VfaWQiOiJ3dXAzMnhwdHE0M2V5czBoNWdzaCIsInBlcm1hbGluayI6Imd1dXN0byIsImVudGl0eV9kZWZfaWQiOiJvcmdhbml6YXRpb24ifSwic2hvcnRfZGVzY3JpcHRpb24iOiJHdXVzdG8gaGVscHMgSFIgTGVhZGVycyB0byByZWNvZ25pemUgZ3JlYXQgd29yayBhbmQgc2hhcGUgYW1hemluZyBjdWx0dXJlIHRocm91Z2ggbW9kZXJuIHNlcnZpY2UgYXdhcmRzIGFuZCByZWFsLXRpbWUgcmVjb2duaXRpb24gcHJvZ3JhbXMuIn0seyJmYWNldF9pZHMiOlsiY29udGFjdCIsImlwcXdlcnkiLCJhYmVyZGVlbiIsImNvbXBhbnkiLCJyYW5rIiwiYnVpbHR3aXRoIiwiYm9tYm9yYSIsImFpX2luc2lnaHQiXSwiaWRlbnRpZmllciI6eyJ1dWlkIjoiNDI2OTVkZjctZmJiMi00NDI1LWFiNTAtN2M5YTY0MTdjM2U5IiwidmFsdWUiOiJHdXN0b01TQyIsImltYWdlX2lkIjoidms4c2RpZmI2b3Jsamp3aHdmZ2siLCJwZXJtYWxpbmsiOiJndXN0b21zYyIsImVudGl0eV9kZWZfaWQiOiJvcmdhbml6YXRpb24ifSwic2hvcnRfZGVzY3JpcHRpb24iOiJHdXN0b01TQyAgZGVzaWducyBhbmQgZW5naW5lZXJzIHNvbHV0aW9ucyBmb3IgbW9iaWxlIG9mZnNob3JlIHVuaXRzLiJ9LHsiZmFjZXRfaWRzIjpbImNvbnRhY3QiLCJpbnZlc3RvciIsImlwcXdlcnkiLCJhYmVyZGVlbiIsInNlbXJ1c2giLCJyYW5rIiwiYnVpbHR3aXRoIiwiYm9tYm9yYSJdLCJpZGVudGlmaWVyIjp7InV1aWQiOiI5YzM3YWI0NS02NmZmLTczNDktMDhlOS02YWQ4NzAyM2E4NDciLCJ2YWx1ZSI6Ikdsb3VzdG9uIENhcGl0YWwgUGFydG5lcnMiLCJpbWFnZV9pZCI6InYxNDc5Nzg4MTU3L3M0azllYmhzNzVybnZpbm4xcDBkLnBuZyIsInBlcm1hbGluayI6InBlcm1hbC1jYXBpdGFsLW1hbmFnZW1lbnQiLCJlbnRpdHlfZGVmX2lkIjoib3JnYW5pemF0aW9uIn0sInNob3J0X2Rlc2NyaXB0aW9uIjoiR2xvdXN0b24gQ2FwaXRhbCBQYXJ0bmVycyBpcyBhIHByaXZhdGUgZXF1aXR5IGludmVzdG1lbnQgc3BlY2lhbGlzdCB3aXRoIG92ZXIgMjAgeWVhcnMgb2YgZGVkaWNhdGVkIGV4cGVyaWVuY2UuIn0seyJmYWNldF9pZHMiOlsiY29udGFjdCIsInNpZnRlcnkiLCJzZW1ydXNoIiwiY29tcGFueSIsInJhbmsiLCJidWlsdHdpdGgiXSwiaWRlbnRpZmllciI6eyJ1dWlkIjoiZWU5ZGYxMDgtMWM5My0yNWI4LTIzMzAtZTQ4MGY1OGZkNzkyIiwidmFsdWUiOiJHb0N1c3RvbWl6ZWQiLCJpbWFnZV9pZCI6InYxNDI4NTgyMDQzL2x0a2k5Z3BqemVydjJiZWl1aWRxLmpwZyIsInBlcm1hbGluayI6ImdvY3VzdG9taXplZCIsImVudGl0eV9kZWZfaWQiOiJvcmdhbml6YXRpb24ifSwic2hvcnRfZGVzY3JpcHRpb24iOiJFLWNvbW1lcmNlIHN0YXJ0LXVwLiBXZSBmb2N1cyBvbiB0aGUgZ2FkZ2V0IGFjY2Vzc29yaWVzIG1hcmtldCB3aXRoIG91ciB1bmlxdWUgcGVyc29uYWxpc2VkIHByb2R1Y3RzLiBBY3Rpdml0aWVzIGluIDYgRVUgY291bnRyaWVzLiJ9LHsiZmFjZXRfaWRzIjpbImNvbnRhY3QiLCJzaWZ0ZXJ5IiwiYXBwdG9waWEiLCJjb21wYW55IiwicmFuayIsImJ1aWx0d2l0aCJdLCJpZGVudGlmaWVyIjp7InV1aWQiOiI0ZTZiNzRmMy05YTMwLTFkNDUtOGU2ZS04ODY0MThkZjY1NjYiLCJ2YWx1ZSI6IkdpdXN0byIsImltYWdlX2lkIjoidjE0MjE3OTIxNDUvbXdqNXF5cnBxcXN3ZzlqeGV6a2oucG5nIiwicGVybWFsaW5rIjoiZ2l1c3RvIiwiZW50aXR5X2RlZl9pZCI6Im9yZ2FuaXphdGlvbiJ9LCJzaG9ydF9kZXNjcmlwdGlvbiI6IkdpdXN0byBpcyB0aGUgYXBwIHRoYXQgZW5kcyB0aGUgZ3Vlc3NpbmcgZ2FtZSBvZiB3aG8gZWF0cyB3aGF0LiBXZSBwcm92aWRlIGNhdGVyZXJzIGJldHRlciBidXNpbmVzcyBpbnRlbGxpZ2VuY2UgJiBhbmFseXRpY3MuIn1dfQ==
+  recorded_at: Thu, 23 May 2024 17:46:02 GMT
+recorded_with: VCR 6.2.0
