@@ -17,31 +17,19 @@ class ApplyJob < ApplicationJob
     form_filler = FormFiller.new
     result = form_filler.fill_out_form(job.posting_url, fields_to_fill, job_application_id)
     user_channel_name = "job_applications_#{user.id}"
-    if result[:success]
-      ActionCable.server.broadcast(
-        user_channel_name,
-        {
-          event: "job-application-submitted",
-          job_application_id: application.id,
-          user_id: application.user_id,
-          job_id: job.id,
-          status: "Applied"
-          # Include any additional data you want to send to the frontend
-        }
-      )
-    else
-      ActionCable.server.broadcast(
-        user_channel_name,
-        {
-          event: "job-application-submitted",
-          job_application_id: application.id,
-          user_id: application.user_id,
-          job_id: job.id,
-          status: "Submission failed"
-          # Include any additional data you want to send to the frontend
-        }
-      )
-    end
+
+    status = result[:success] ? "Applied" : "Submission Failed"
+
+    ActionCable.server.broadcast(
+      user_channel_name,
+      {
+        event: "job_application_submitted",
+        job_application_id: application.id,
+        user_id: application.user.id,
+        job_id: job.id,
+        status:
+      }
+    )
   end
 
   private
