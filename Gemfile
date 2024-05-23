@@ -123,6 +123,7 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  # gem 'parallel_tests' # TODO: install this gem for parallel testing
 
   # Security
   gem 'brakeman', require: false
