@@ -1,6 +1,6 @@
 class Job < ApplicationRecord
   include PgSearch::Model
-  include Constants::Date
+  include Constants::DateConversion
 
   serialize :application_criteria, coder: JSON
 

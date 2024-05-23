@@ -1,7 +1,7 @@
 module Constants
   # TODO: refactor all these constants into sub-modules?
 
-  module Date
+  module DateConversion
     CONVERT_TO_DAYS = {
       'today' => 0,
       '3-days' => 3,
