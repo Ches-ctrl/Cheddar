@@ -16,6 +16,13 @@ Rails.application.routes.draw do
 
   get "up" => "rails/health#show", as: :rails_health_check
 
+  # API
+  namespace :api do
+    namespace :v0 do
+      post 'add_job', to: 'jobs#add_job'
+    end
+  end
+
   # Pages
   root to: "pages#home"
   get 'landing', to: 'pages#landing', as: 'landing'
@@ -52,5 +59,4 @@ Rails.application.routes.draw do
 
   resources :saved_jobs, only: [:index, :show, :destroy]
   resources :educations, only: [:new, :create]
-
 end
