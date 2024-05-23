@@ -7,8 +7,8 @@ RSpec.describe Api::V0::JobsController, type: :controller, api: true do
     context 'with valid API key, origin, and user session' do
       before do
         sign_in user # Sign in the user to create a session
-        request.headers['X-Api-Key'] = ENV['CHROME_EXTENSION_API_KEY'] # Set valid API key header
-        request.headers['Origin'] = ENV['CHROME_EXTENSION_ORIGIN'] # Set valid origin header
+        request.headers['X-Api-Key'] = ENV.fetch('CHROME_EXTENSION_API_KEY')
+        request.headers['Origin'] = ENV.fetch('CHROME_EXTENSION_ORIGIN')
         post :add_job, params: { posting_url: 'https://example.com/job' }
       end
 
@@ -24,8 +24,8 @@ RSpec.describe Api::V0::JobsController, type: :controller, api: true do
 
     context 'without user session' do
       before do
-        request.headers['X-Api-Key'] = ENV['CHROME_EXTENSION_API_KEY'] # Set valid API key header
-        request.headers['Origin'] = ENV['CHROME_EXTENSION_ORIGIN'] # Set valid origin header
+        request.headers['X-Api-Key'] = ENV.fetch('CHROME_EXTENSION_API_KEY')
+        request.headers['Origin'] = ENV.fetch('CHROME_EXTENSION_ORIGIN')
         post :add_job, params: { posting_url: 'https://example.com/job' }
       end
 
@@ -38,7 +38,7 @@ RSpec.describe Api::V0::JobsController, type: :controller, api: true do
     context 'with invalid API key' do
       before do
         request.headers['X-Api-Key'] = 'invalid_api_key'
-        request.headers['Origin'] = ENV['CHROME_EXTENSION_ORIGIN']
+        request.headers['Origin'] = ENV.fetch('CHROME_EXTENSION_ORIGIN')
       end
 
       it 'returns an unauthorized response' do
@@ -55,7 +55,7 @@ RSpec.describe Api::V0::JobsController, type: :controller, api: true do
 
     context 'with invalid origin' do
       before do
-        request.headers['X-Api-Key'] = ENV['CHROME_EXTENSION_API_KEY']
+        request.headers['X-Api-Key'] = ENV.fetch('CHROME_EXTENSION_API_KEY')
         request.headers['Origin'] = 'invalid_origin'
       end
 
