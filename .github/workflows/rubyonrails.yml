@@ -28,6 +28,8 @@ jobs:
           POSTGRES_PASSWORD: password
     env:
       SCRAPEUP_API_KEY: ${{ secrets.SCRAPEUP_API_KEY }}
+      CHROME_EXTENSION_API_KEY: ${{ secrets.CHROME_EXTENSION_API_KEY }}
+      CHOME_EXTENSION_ORIGIN: ${{ secrets.CHROME_EXTENSION_ORIGIN }}
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
     steps:
