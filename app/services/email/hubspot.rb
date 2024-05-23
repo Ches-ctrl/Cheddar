@@ -1,30 +1,29 @@
 module Email
-  # rubocop:disable Lint/EmptyClass
   class Hubspot
-    # require 'hubspot-api-client'
+    require 'hubspot-api-client'
 
-    # def initialize
-    #   @client = Hubspot::Client.new(access_token: ENV.fetch('HUBSPOT_API_KEY'))
-    # end
+    def add_contact(email)
+      client = ::Hubspot::Client.new(access_token: ENV.fetch('HUBSPOT_API_KEY'))
 
-    # def add_contact(email)
-    #   contact_properties = {
-    #     properties: {
-    #       email:
-    #     }
-    #   }
+      contact_properties = {
+        properties: {
+          email:
+        }
+      }
 
-    #   begin
-    #     response = @client.crm.contacts.basic_api.create(contact_properties)
-    #     p "HubSpot contact created: #{response.to_json}"
-    #     Rails.logger.info("HubSpot contact created: #{response.to_json}")
-    #     true
-    #   rescue Hubspot::ApiError => e
-    #     p "Error creating HubSpot contact: #{e.response_body}"
-    #     Rails.logger.error("Error creating HubSpot contact: #{e.response_body}")
-    #     false
-    #   end
-    # end
+      begin
+        response = client.crm.contacts.basic_api.create(simple_public_object_input_for_create: contact_properties)
+        Rails.logger.info("HubSpot contact created: #{response}")
+        true
+      rescue StandardError => e
+        if e.message.include?("409")
+          Rails.logger.info("HubSpot contact already exists: #{e.response_body}")
+          true
+        else
+          Rails.logger.error("Error creating HubSpot contact: #{e.response_body}")
+          false
+        end
+      end
+    end
   end
-  # rubocop:enable Lint/EmptyClass
 end
