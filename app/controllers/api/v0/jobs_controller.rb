@@ -24,7 +24,7 @@ module Api
       end
 
       def valid_api_key?(api_key)
-        api_key == ENV['CHROME_EXTENSION_API_KEY']
+        api_key == ENV.fetch('CHROME_EXTENSION_API_KEY')
       end
 
       def verify_request_origin
@@ -33,7 +33,7 @@ module Api
       end
 
       def valid_origin?(origin)
-        origin == ENV['CHROME_EXTENSION_ORIGIN']
+        origin == ENV.fetch('CHROME_EXTENSION_ORIGIN')
       end
 
       def process_job_posting(posting_url)
