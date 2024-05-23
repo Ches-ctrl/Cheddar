@@ -13,6 +13,7 @@
 # it.
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+# TODO: Fix this as this is incorrectly requiring 'rails_helper'. All of Capybara, VCR and Webmock should be in 'rails_helper'
 require 'rails_helper'
 require 'capybara/rspec'
 require 'vcr'
@@ -37,6 +38,8 @@ end
 RSpec.configure do |config|
   config.include Warden::Test::Helpers
   # Use the headless browser for feature testing:
+  config.profile_examples = 10
+
   config.before(:each, type: :feature) do
     Capybara.current_driver = :selenium_chrome_headless
   end
