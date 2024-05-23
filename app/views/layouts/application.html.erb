@@ -15,7 +15,6 @@
     <%= javascript_importmap_tags %>
 
     <!-- Analytics -->
-    <%# TODO: Only run analytics when in production %>
     <% unless Rails.env.test? %>
       <%= render "shared/google_analytics" %>
       <%= render "shared/hotjar" %>
