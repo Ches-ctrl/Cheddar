@@ -30,6 +30,7 @@ class Job < ApplicationRecord
 
   validates :posting_url, uniqueness: true, presence: true
   validates :title, presence: true
+  validate :safe_posting_url
 
   # after_create :update_application_criteria
 
@@ -54,6 +55,8 @@ class Job < ApplicationRecord
 
     read_attribute(:application_criteria).with_indifferent_access
   end
+
+  # TODO: Move this
 
   CONVERT_TO_DAYS = {
     'today' => 0,
@@ -110,7 +113,18 @@ class Job < ApplicationRecord
     Standardizer::JobStandardizer.new(self).standardize
   end
 
-  private_class_method def self.build_associations(params)
+  def safe_posting_url
+    uri = URI.parse(posting_url)
+    errors.add(:posting_url, "is not a valid HTTP/HTTPS URL") unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
+  rescue URI::InvalidURIError
+    errors.add(:posting_url, "is invalid")
+  end
+
+  # ---------------------
+  # Private Class Methods
+  # ---------------------
+
+  def self.build_associations(params)
     associations = []
     associations << :company if params.include?(:company)
     associations << :locations if params.include?(:location)
@@ -118,35 +132,37 @@ class Job < ApplicationRecord
     return associations
   end
 
-  private_class_method def self.filter_by_when_posted(param)
+  def self.filter_by_when_posted(param)
     return unless param.present?
 
     number = CONVERT_TO_DAYS[param] || 99_999
     number.days.ago..Date.today
   end
 
-  private_class_method def self.filter_by_location(param)
+  def self.filter_by_location(param)
     return unless param.present?
 
     locations = param.split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') unless location == 'remote' }
     { city: locations }
   end
 
-  private_class_method def self.filter_by_role(param)
+  def self.filter_by_role(param)
     { name: param.split } if param.present?
   end
 
-  private_class_method def self.filter_by_seniority(param)
+  def self.filter_by_seniority(param)
     return unless param.present?
 
     param.split.map { |seniority| seniority.split('-').map(&:capitalize).join('-') }
   end
 
-  private_class_method def self.filter_by_employment(param)
+  def self.filter_by_employment(param)
     return unless param.present?
 
     param.split.map { |employment| employment.gsub('_', '-').capitalize }
   end
+
+  private_class_method :build_associations, :filter_by_when_posted, :filter_by_location, :filter_by_role, :filter_by_seniority, :filter_by_employment
 end
 
 # TODO: add description_html and other html fields?
