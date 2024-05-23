@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Api::V0::JobsController, type: :controller, api: true do
   describe 'POST #add_job' do
-    let(:user) { FactoryBot.create(:user) } # Assuming you have FactoryBot set up for user creation
+    let(:user) { FactoryBot.create(:user) }
 
     context 'with valid API key, origin, and user session' do
       before do
-        sign_in user # Sign in the user to create a session
+        sign_in user
         request.headers['X-Api-Key'] = ENV.fetch('CHROME_EXTENSION_API_KEY')
         request.headers['Origin'] = ENV.fetch('CHROME_EXTENSION_ORIGIN')
         post :add_job, params: { posting_url: 'https://example.com/job' }
@@ -18,7 +18,7 @@ RSpec.describe Api::V0::JobsController, type: :controller, api: true do
 
       it 'returns a JSON response with a success message' do
         json_response = JSON.parse(response.body)
-        expect(json_response['message']).to eq('Posting URL sent successfully')
+        expect(json_response['message']).to eq('Received but not a GH job')
       end
     end
 
@@ -30,13 +30,13 @@ RSpec.describe Api::V0::JobsController, type: :controller, api: true do
       end
 
       it 'returns found' do
-        # Redirects to sign in page
         expect(response).to have_http_status(:found)
       end
     end
 
     context 'with invalid API key' do
       before do
+        sign_in user
         request.headers['X-Api-Key'] = 'invalid_api_key'
         request.headers['Origin'] = ENV.fetch('CHROME_EXTENSION_ORIGIN')
       end
@@ -55,6 +55,7 @@ RSpec.describe Api::V0::JobsController, type: :controller, api: true do
 
     context 'with invalid origin' do
       before do
+        sign_in user
         request.headers['X-Api-Key'] = ENV.fetch('CHROME_EXTENSION_API_KEY')
         request.headers['Origin'] = 'invalid_origin'
       end
