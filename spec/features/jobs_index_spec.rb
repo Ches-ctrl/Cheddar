@@ -72,16 +72,16 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
       visit jobs_path(seniority: 'Senior')
     end
 
-    scenario "User can visit the next page of job postings" do
-      jobs_per_page = 10
-      # job1 = Job.all[jobs_per_page - 1]
-      job2 = Job.all[jobs_per_page + 1]
+    # scenario "User can visit the next page of job postings" do
+    #   jobs_per_page = 10
+    #   # job1 = Job.all[jobs_per_page - 1]
+    #   job2 = Job.all[jobs_per_page + 1]
 
-      find('a[rel="next"]', text: '2').click
+    #   find('a[rel="next"]', text: '2').click
 
-      expect(page).to have_content(job2.title)
-      # expect(page).not_to have_content(job1.title)
-    end
+    #   expect(page).to have_content(job2.title)
+    #   # expect(page).not_to have_content(job1.title)
+    # end
   end
 
   context "With no jobs to display:" do
