@@ -11,6 +11,9 @@ export default class extends Controller {
   combinedSearch(event) {
     event.preventDefault()
 
+    // TODO: Speed up search (fewer atributes? check process in query params)
+    // TODO: add autocomplete to search bar
+
     const searchQuery = this.searchTarget.value.trim();
 
     const filterTerms = {
