@@ -80,6 +80,8 @@ class CategorySidebar
 
   private
 
+  # TODO: Remove repetitions of private_class_method (can we added at the bottom with keys)
+
   private_class_method def self.fetch_sidebar_data
     initialize_category_hashes
     build_resources_hash
