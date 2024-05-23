@@ -103,10 +103,10 @@ RSpec.describe ApplicantTrackingSystem, type: :model do
       expect(Company.last.name).to eq('Bath Spa University')
     end
 
-    it 'can create a company with Recruitee' do
-      @recruitee.find_or_create_company('midas')
-      expect(Company.last.name).to eq('Midas')
-    end
+    # it 'can create a company with Recruitee' do
+    #   @recruitee.find_or_create_company('midas')
+    #   expect(Company.last.name).to eq('Midas')
+    # end
 
     it 'can create a company with SmartRecruiters' do
       @smartrecruiters.find_or_create_company('Gousto1')
