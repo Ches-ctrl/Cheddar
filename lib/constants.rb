@@ -1,4 +1,16 @@
 module Constants
+  # TODO: refactor all these constants into sub-modules?
+
+  module Date
+    CONVERT_TO_DAYS = {
+      'today' => 0,
+      '3-days' => 3,
+      'week' => 7,
+      'month' => 30,
+      'any-time' => 99_999
+    }
+  end
+
   SENIORITY_TITLES = {
     /staff/i => 'Senior',
     /principal/i => 'Senior',
