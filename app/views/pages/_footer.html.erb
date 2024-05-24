@@ -1,39 +1,36 @@
-<div class="footer">
-  <div class="container">
-    <div class="d-flex justify-content-between">
-      <div class="d-flex flex-column align-items-start justify-content-start">
-        <div>
-          A <%= link_to "Net Zero from Day Zero", "/#" %> company
-        </div>
-        <div class="footer-links">
-          <a href="https://github.com/Ches-ctrl/Cheddar"><i class="fab fa-github"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-        </div>
+<div class="footer mt-4">
+  <div class="container py-4">
+    <div class="row d-flex justify-content-between">
+      <div class="col-12 col-lg-5 mb-4 mb-lg-0">
+        <h5 class="mb-2">Subscribe</h5>
+        <p class="text-secondary mw-xs mb-3">Get the latest roles in your inbox</p>
+        <%= render 'shared/email_signup' %>
       </div>
-      <div>
-        <div>For Applicants</div>
-        <%= link_to "How It Works", how_it_works_path %>
-      </div>
-      <div>
-        <div>For Employers</div>
-        <a href="/business">Cheddar For Business</a>
-      </div>
-      <div class="page-links d-flex">
-        <div class="d-flex flex-column me-4">
-          <a href="/about">About</a>
-          <a href="/faqs">FAQs</a>
-          <a href="/d&i">D&I</a>
-          <a href="/careers">Careers</a>
+      <div class="col-12 col-lg-7 d-flex flex-column flex-lg-row justify-content-lg-end">
+        <div class="d-flex flex-column me-lg-4 mb-4 mb-lg-0 pe-4">
+          <%# <h6 class="mb-3">Company</h6> %>
+          <%# <a href="/how_it_works" class="mb-1 text-decoration-none text-secondary">How It Works</a>
+          <a href="/about" class="mb-1 text-decoration-none text-secondary">About</a>
+          <a href="/mission" class="mb-1 text-decoration-none text-secondary">Mission</a>
+          <a href="/climate" class="mb-1 text-decoration-none text-secondary">Climate</a> %>
         </div>
         <div class="d-flex flex-column">
-          <a href="/contact">Contact</a>
-          <a href="/ts&cs">Terms</a>
-          <a href="/privacy">Privacy</a>
+          <%# <h6 class="mb-3">Company</h6> %>
+          <%# <a href="/contact" class="mb-1 text-decoration-none text-secondary">Contact</a>
+          <a href="/terms" class="mb-1 text-decoration-none text-secondary">Terms</a>
+          <a href="/privacy" class="mb-1 text-decoration-none text-secondary">Privacy</a> %>
         </div>
+      </div>
+    </div>
+
+    <div class="row pt-2 mt-4 border-top">
+      <div class="col-12 col-md-6 text-center text-md-start mb-3 mb-md-0">
+        <p class="fs-9 text-secondary mb-0">&copy; 2024 Cheddar. All Rights Reserved</p>
+      </div>
+      <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end">
+        <a href="https://www.linkedin.com/company/cheddarjobs", target="_blank" class="text-secondary me-3"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/Ches-ctrl/Cheddar", target="_blank" class="text-secondary"><i class="fab fa-github"></i></a>
       </div>
     </div>
   </div>
 </div>
-
-<%# TODO: Change this to vertical columns on RHS for better alignnment %>

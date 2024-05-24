@@ -52,7 +52,10 @@ gem "autoprefixer-rails"
 gem "sassc-rails"
 gem "font-awesome-sass", "~> 6.5.1"
 gem "simple_form"
-gem 'psych', "~> 4.0" # Extra gem as per Le Wagon setup for Linux laptops
+gem 'psych', "~> 5.1.2" # Extra gem as per Le Wagon setup for Linux laptops
+
+# Middleware
+gem 'rack-cors'
 
 # Testing
 gem "capybara"
@@ -77,8 +80,9 @@ gem "ruby-openai"
 gem 'meta-tags'
 # gem 'sitemap_generator' # TODO: install this gem for sitemap generation
 
-# Email
-# gem 'sendgrid-ruby' # TODO: install this gem for sending emails
+# Email & CRM
+gem 'hubspot-api-client'
+gem 'sendgrid-ruby'
 
 # Importing, Parsing & APIs
 gem 'csv' # can probably use ruby standard library
@@ -88,7 +92,7 @@ gem 'rails-html-sanitizer'
 gem "flipper-active_record", "~> 1.3"
 
 # Monitoring
-# gem 'newrelic_rpm' # TODO: install this gem for monitoring
+gem 'newrelic_rpm'
 
 # Analytics
 # gem 'analytics-ruby', '~> 2.4.0', :require => 'segment/analytics' # TODO: install this gem for analytics
@@ -103,8 +107,7 @@ gem "flipper-active_record", "~> 1.3"
 # gem 'sentry-raven' # TODO: install this gem for error tracking
 
 # Front-end
-gem 'will_paginate', '~> 4.0' # TODO: Update to kaminari now index page is fixed (better maintained / looks nicer)
-# gem 'kaminari'
+gem 'kaminari'
 gem "high_voltage", "~> 3.1"
 gem 'tinymce-rails' # TODO: now have trix and action text (check whether we need to replace)
 
@@ -123,6 +126,10 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  # gem 'parallel_tests' # TODO: install this gem for parallel testing
+
+  # Security
+  gem 'brakeman', require: false
 
   # Email
   # gem 'letter_opener' # TODO: install this gem for email testing
@@ -134,9 +141,6 @@ group :development do
   gem 'bullet'
   gem "better_errors"
   gem "binding_of_caller"
-
-  # Security
-  # gem 'brakeman', require: false # TODO: install this gem for security checks
 
   # Performance
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]

@@ -7,7 +7,7 @@ class JobsController < ApplicationController
   before_action :job_show_page_status, only: [:show]
 
   def index
-    @jobs = jobs_and_associated_tables.filter_and_sort(params).paginate(page: params[:page], per_page: 20)
+    @jobs = jobs_and_associated_tables.filter_and_sort(params).order(sort_order(params[:sort])).page(params[:page]).per(20)
     @resources = CategorySidebar.build_with(params)
 
     @saved_jobs = SavedJob.all
@@ -28,6 +28,25 @@ class JobsController < ApplicationController
   end
 
   private
+
+  def sort_order(sort_param)
+    case sort_param
+    when 'title'
+      'jobs.title ASC'
+    when 'title_desc'
+      'jobs.title DESC'
+    when 'company'
+      'companies.name ASC'
+    when 'company_desc'
+      'companies.name DESC'
+    when 'created_at'
+      'jobs.created_at DESC'
+    when 'created_at_asc'
+      'jobs.created_at ASC'
+    else # rubocop:disable Lint/DuplicateBranch
+      'jobs.created_at DESC'
+    end
+  end
 
   def job_show_page_status
     redirect_to jobs_path, notice: 'Job show page coming soon!' unless Flipper.enabled?(:job_show_page)

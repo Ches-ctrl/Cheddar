@@ -73,12 +73,12 @@ class CategorySidebar
   def self.build_with(params)
     @params = params
     @jobs = Job.includes(:roles, :locations).select("jobs.id, jobs.date_posted, jobs.seniority, jobs.remote, jobs.employment_type")
-    Rails.cache.fetch("category_sidebar #{@params.except(:page, :controller, :action)}", expires_in: 2.hours, race_condition_ttl: 10.seconds) do
-      fetch_sidebar_data
-    end
+    fetch_sidebar_data
   end
 
   private
+
+  # TODO: Remove repetitions of private_class_method (can we added at the bottom with keys)
 
   private_class_method def self.fetch_sidebar_data
     initialize_category_hashes

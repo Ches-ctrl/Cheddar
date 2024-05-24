@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= display_meta_tags site: "Cheddar" %>
+    <!-- Tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= display_meta_tags site: "Cheddar" %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+
+    <!-- Favicon -->
     <%= favicon_link_tag asset_path("cheddar_logo_new_3.svg") %>
-    <script type="text/javascript" src="/assets/tinymce.js"></script>
+
+    <!-- Importmaps -->
+    <%= javascript_importmap_tags %>
+
+    <!-- Analytics -->
+    <% unless Rails.env.test? %>
+      <%= render "shared/google_analytics" %>
+      <%= render "shared/hotjar" %>
+      <%= render "shared/hubspot" %>
+    <% end %>
   </head>
 
   <body id="page-container">

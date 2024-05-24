@@ -1,14 +1,10 @@
-<div class="col-sm-9">
+<div>
   <turbo-frame id="job-cards-frame">
     <%= render partial: 'job_card', collection: @jobs, as: :job %>
   </turbo-frame>
 
-  <div class="digg_pagination">
-    <div class="page_info">
-      <%= page_entries_info @jobs %>
-    </div>
-
-    <%= will_paginate @jobs, container: false %>
-
+  <div class="pt-2 d-flex flex-column align-items-end">
+    <div><%= page_entries_info @jobs %></div>
+    <div class="pagination pt-1"><%= paginate @jobs %></div>
   </div>
 </div>

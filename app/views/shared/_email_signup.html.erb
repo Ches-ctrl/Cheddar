@@ -1,0 +1,6 @@
+<%= form_with url: emails_path, method: :post, local: true do |form| %>
+  <div class="input-group mw-md mb-3 bg-white">
+    <%= form.text_field :email, class: 'rounded-start-pill form-control bg-white', placeholder: 'Type your email', aria: { label: 'Email' } %>
+    <%= form.submit 'Subscribe', class: 'input-group-text rounded-end-pill bg-main text-white' %>
+  </div>
+<% end %>
