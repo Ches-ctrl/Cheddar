@@ -7,21 +7,19 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
+      Accept:
+      - application/json
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
       User-Agent:
       - Ruby
-      Host:
-      - premise.bamboohr.com
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Thu, 23 May 2024 18:22:32 GMT
+      - Fri, 24 May 2024 11:10:16 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -29,9 +27,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=H99LiN%2CgDHh2fjYqYFigYc-%2CSzXLoVhP; path=/; secure; HttpOnly;
-        SameSite=None
-      - _cfuvid=bXpQRp8kpJqFaxaAFg2cbYqgc2DO5gOe8ZTEj.k0YTk-1716488552199-0.0.1.1-604800000;
+      - PHPSESSID=0fRpCxHRRoM-VUOPqUO1qmmXN7c6TMA%2C; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=fArW8ecOuMrWFqT04heveIj2fua9RJvB4xOc9KLVlBo-1716549016672-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -93,15 +90,10 @@ http_interactions:
       - nosniff
       Cf-Cache-Status:
       - DYNAMIC
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/csp-reporting.cloudflare.com\/cdn-cgi\/script_monitor\/report?m=_o4bK1ykx9MnAkf.UzhVtoG94u7k_OOlyDj9Sfz9LxQ-1716488552-1.0.1.1-8R_D0Zlejzb6FGkpJpEVLtiue4aeHpHH9TtuDQq2sw_J_3tBS6gmFlX2LJ36ffQP3oSr7wJablhUBtWd.3_8Lo30yV862X7HMHn2VZQfOoqhWLoZoGpPmhhNL8CF6yNFgkBJyoHXzHR8dHvjUhQ1_4OJBRMh2yPEIsnsOooJT0o"}],"group":"cf-csp-endpoint","max_age":86400}'
-      Content-Security-Policy-Report-Only:
-      - script-src 'none'; connect-src 'none'; report-uri https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report?m=_o4bK1ykx9MnAkf.UzhVtoG94u7k_OOlyDj9Sfz9LxQ-1716488552-1.0.1.1-8R_D0Zlejzb6FGkpJpEVLtiue4aeHpHH9TtuDQq2sw_J_3tBS6gmFlX2LJ36ffQP3oSr7wJablhUBtWd.3_8Lo30yV862X7HMHn2VZQfOoqhWLoZoGpPmhhNL8CF6yNFgkBJyoHXzHR8dHvjUhQ1_4OJBRMh2yPEIsnsOooJT0o;
-        report-to cf-csp-endpoint
       Server:
       - cloudflare
       Cf-Ray:
-      - 8887126a3a7f419a-LHR
+      - 888cd6993d07942b-LHR
     body:
       encoding: ASCII-8BIT
       string: '{"meta":{"totalCount":5},"result":[{"id":"45","jobOpeningName":"Lead
@@ -120,7 +112,7 @@ http_interactions:
         Service Executive (Bolivia)","departmentId":"19024","departmentLabel":"70-000
         - Global Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
         Cruz de la Sierra"},"isRemote":null,"locationType":"1"}]}'
-  recorded_at: Thu, 23 May 2024 18:22:31 GMT
+  recorded_at: Fri, 24 May 2024 11:10:16 GMT
 - request:
     method: get
     uri: https://premise.bamboohr.com/careers/company-info/
@@ -128,21 +120,19 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
+      Accept:
+      - application/json
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
       User-Agent:
       - Ruby
-      Host:
-      - premise.bamboohr.com
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Thu, 23 May 2024 18:22:32 GMT
+      - Fri, 24 May 2024 11:10:16 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -150,9 +140,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=j3XH%2CKy8z4TaFjE9yfzhLwC%2C-OECjf20; path=/; secure; HttpOnly;
-        SameSite=None
-      - _cfuvid=JrryPTYo91xhV03TeEUUK5Eo.YDtL3A12Rv1db5cJ0g-1716488552414-0.0.1.1-604800000;
+      - PHPSESSID=pjYPuVKqdRv8e67ZX1fKmsecNTLICDeK; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=cSJ.0_yDVkyZp3_xkY8y166YsjVYSTgIbFvohrsK1Lo-1716549016860-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -217,11 +206,11 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 8887126b98eb6323-LHR
+      - 888cd69a799c94a8-LHR
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":[],"result":{"name":"Premise","id":"490341","logoUrl":"https:\/\/images4.bamboohr.com\/490341\/logos\/cropped.jpg?v=34","careerShareUrl":"https:\/\/premise.bamboohr.com\/careers","shareImageUrl":"https:\/\/premise.bamboohr.com\/jobs\/share_image\/34","inTrial":false,"appSessId":"2fdabe87500c20f1b17565ca2294923cf6843c3a"}}'
-  recorded_at: Thu, 23 May 2024 18:22:31 GMT
+      string: '{"meta":[],"result":{"name":"Premise","id":"490341","logoUrl":"https:\/\/images4.bamboohr.com\/490341\/logos\/cropped.jpg?v=34","careerShareUrl":"https:\/\/premise.bamboohr.com\/careers","shareImageUrl":"https:\/\/premise.bamboohr.com\/jobs\/share_image\/34","inTrial":false,"appSessId":"f6856d9d1da9fdf33859468120573d67b350e517"}}'
+  recorded_at: Fri, 24 May 2024 11:10:16 GMT
 - request:
     method: get
     uri: https://premise.bamboohr.com/careers/list
@@ -229,21 +218,19 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
+      Accept:
+      - application/json
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
       User-Agent:
       - Ruby
-      Host:
-      - premise.bamboohr.com
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Thu, 23 May 2024 18:22:32 GMT
+      - Fri, 24 May 2024 11:10:17 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -251,8 +238,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=8sge8-NWd%2CLC--5iyqxQupSsPs3t5q2o; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=VKAKCjT1527HpfGjFjxjwxAkRHNW7opbTj_5CXaLdlw-1716488552602-0.0.1.1-604800000;
+      - PHPSESSID=UinF7gGNEf-7bdIeH4qptpnsalT1Mp%2Cl; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=50nZyAjygrE8yi._AF1HqNOpRIqDKVxN5etQk.4eBKw-1716549017019-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -317,7 +304,7 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 8887126ced2694ac-LHR
+      - 888cd69bab079402-LHR
     body:
       encoding: ASCII-8BIT
       string: '{"meta":{"totalCount":5},"result":[{"id":"45","jobOpeningName":"Lead
@@ -336,7 +323,7 @@ http_interactions:
         Service Executive (Bolivia)","departmentId":"19024","departmentLabel":"70-000
         - Global Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
         Cruz de la Sierra"},"isRemote":null,"locationType":"1"}]}'
-  recorded_at: Thu, 23 May 2024 18:22:32 GMT
+  recorded_at: Fri, 24 May 2024 11:10:16 GMT
 - request:
     method: get
     uri: https://autocomplete.clearbit.com/v1/companies/suggest?query=Premise
@@ -380,19 +367,19 @@ http_interactions:
       X-Cache:
       - Hit from cloudfront
       Via:
-      - 1.1 65465b26d806dce678b2cef9e0066d06.cloudfront.net (CloudFront)
+      - 1.1 7146be3ff59752909814bfd78c2fbf38.cloudfront.net (CloudFront)
       X-Amz-Cf-Pop:
       - LHR61-P1
       X-Amz-Cf-Id:
-      - y-RLLRMaiCZvtY9hVTt2fhBhqxQHxF8Kj3d1JLrm1OL3vmbyD7bc8g==
+      - Mc5hVX_X0G52QI7v6tN8zy_VYCDscSq_WF5XCUrd41hnERQkPCEV5g==
       Age:
-      - '2182'
+      - '62647'
       Content-Security-Policy-Report-Only:
       - default-src 'self';
     body:
       encoding: ASCII-8BIT
       string: '[{"name":"Premise Health","domain":"premisehealth.com","logo":"https://logo.clearbit.com/premisehealth.com"},{"name":"Premise","domain":"premise.com","logo":"https://logo.clearbit.com/premise.com"},{"name":"Premise","domain":"premiseco.com","logo":"https://logo.clearbit.com/premiseco.com"},{"name":"PREMISE","domain":"premise.tv","logo":"https://logo.clearbit.com/premise.tv"},{"name":"PremiSec","domain":"premisec.se","logo":"https://logo.clearbit.com/premisec.se"}]'
-  recorded_at: Thu, 23 May 2024 18:22:32 GMT
+  recorded_at: Fri, 24 May 2024 11:10:17 GMT
 - request:
     method: get
     uri: https://api.crunchbase.com/api/v4/autocompletes?query=Premise&user_key=1a809e14a0c7e29e964a5923f1b17bdd
@@ -418,9 +405,9 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 23 May 2024 18:22:33 GMT
+      - Fri, 24 May 2024 11:10:17 GMT
       Etag:
-      - W/"1716488553362"
+      - W/"1716549017717"
       Server:
       - openresty
       X-Cb-Engine:
@@ -428,16 +415,16 @@ http_interactions:
       X-Cb-Engine-Cached:
       - 'false'
       X-Cb-Engine-Took:
-      - '45'
+      - '15'
       X-Cb-Request-Took:
-      - '77'
+      - '47'
       Content-Length:
-      - '4003'
+      - '4002'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"count":22193,"entities":[{"facet_ids":["contact","siftery","ipqwery","privco","apptopia","semrush","company","rank","builtwith","bombora","ai_insight"],"identifier":{"uuid":"4f680a26-074b-b8fa-7fa4-e5cfb5f0c30d","value":"Premise
+      string: '{"count":1602,"entities":[{"facet_ids":["contact","siftery","ipqwery","privco","apptopia","semrush","company","rank","builtwith","bombora","ai_insight"],"identifier":{"uuid":"4f680a26-074b-b8fa-7fa4-e5cfb5f0c30d","value":"Premise
         Data","image_id":"jwzjzghwlokbkqugqjgs","permalink":"premise","entity_def_id":"organization"},"short_description":"Premise
         is a data and analytics platform powered by a global network of on-the-ground
         contributors, data science, and machine learning. "},{"facet_ids":["contact","siftery","aberdeen","company","rank","builtwith","bombora"],"identifier":{"uuid":"0dc67892-3bf4-458b-88bd-6fa0ed027fa7","value":"Premise","image_id":"nqukjb1x3ficnuvq3ltx","permalink":"premise-7fa7","entity_def_id":"organization"},"short_description":"Premise
@@ -461,7 +448,7 @@ http_interactions:
         Systems","image_id":"uclhq3qdgrkfkr23sovv","permalink":"premises-systems","entity_def_id":"organization"},"short_description":"Premises
         Systems designs, implements and maintains single and multi-site IP-based communication
         networks and wireless technology."}]}'
-  recorded_at: Thu, 23 May 2024 18:22:32 GMT
+  recorded_at: Fri, 24 May 2024 11:10:17 GMT
 - request:
     method: get
     uri: https://premise.bamboohr.com/careers/45/detail
@@ -469,21 +456,19 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
+      Accept:
+      - application/json
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
       User-Agent:
       - Ruby
-      Host:
-      - premise.bamboohr.com
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Thu, 23 May 2024 18:22:33 GMT
+      - Fri, 24 May 2024 11:10:18 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -491,8 +476,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=LpgZFvlLMybCiWQvvFE0%2CHVUjpI8VIkn; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=Z6mHdh36xDiFF_EJdduwOQD5JqQpG1RChjgpMAp_cmE-1716488553712-0.0.1.1-604800000;
+      - PHPSESSID=zqsibaQwhv5G2t1mtaSCTJcc21DnOknM; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=KYNHVY1TvWNoeygafzq6T1PXHaTreMQSOqR.R7Ns8_o-1716549018038-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -557,7 +542,7 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 88871273bcfe71a5-LHR
+      - 888cd6a17c1c7326-LHR
     body:
       encoding: ASCII-8BIT
       string: '{"meta":{},"result":{"jobOpening":{"jobOpeningShareUrl":"https:\/\/premise.bamboohr.com\/careers\/45","jobOpeningName":"Lead
@@ -702,7 +687,7 @@ http_interactions:
         you have experience with experience with Gig economy platforms or two-sided
         marketplaces?","type":"short","value":"","isValueOther":false,"hasOther":"no","options":[]},{"id":"97","isRequired":false,"question":"Do
         you have experience working with CPGs and Retail Execution fields?","type":"short","value":"","isValueOther":false,"hasOther":"no","options":[]}],"genderId":[],"ethnicityId":[],"veteranStatusId":[],"disabilityId":[]}}}'
-  recorded_at: Thu, 23 May 2024 18:22:33 GMT
+  recorded_at: Fri, 24 May 2024 11:10:18 GMT
 - request:
     method: get
     uri: http://dev.virtualearth.net/REST/v1/Locations/Ciudad%20de%20M%C3%A9xico,%20CDMX%2006600%20Mexico?key=AmhBY6imsSQC_f1o8tlcEXoO6WxekJR2plXfZQr7g_Y6I35Yh18bR1khIX9jc9vI
@@ -710,21 +695,19 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
+      Accept:
+      - application/json
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
       User-Agent:
       - Ruby
-      Host:
-      - dev.virtualearth.net
   response:
     status:
       code: 403
       message: Forbidden
     headers:
       Date:
-      - Thu, 23 May 2024 18:22:33 GMT
+      - Fri, 24 May 2024 11:10:18 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
@@ -742,12 +725,12 @@ http_interactions:
       Cache-Control:
       - no-cache
       X-Azure-Ref:
-      - 20240523T182233Z-15948fd4d4c7vmgjhah5v722p800000005z000000001bwav
+      - 20240524T111018Z-166dd96f474fcrqjhrk51esq4000000008u0000000006b5u
       X-Cache:
       - CONFIG_NOCACHE
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJEZW5pZWRDcmVkZW50aWFscyIsImJyYW5kTG9nb1VyaSI6Imh0dHA6Ly9kZXYudmlydHVhbGVhcnRoLm5ldC9CcmFuZGluZy9sb2dvX3Bvd2VyZWRfYnkucG5nIiwiY29weXJpZ2h0IjoiQ29weXJpZ2h0IMKpIDIwMjQgTWljcm9zb2Z0IGFuZCBpdHMgc3VwcGxpZXJzLiBBbGwgcmlnaHRzIHJlc2VydmVkLiBUaGlzIEFQSSBjYW5ub3QgYmUgYWNjZXNzZWQgYW5kIHRoZSBjb250ZW50IGFuZCBhbnkgcmVzdWx0cyBtYXkgbm90IGJlIHVzZWQsIHJlcHJvZHVjZWQgb3IgdHJhbnNtaXR0ZWQgaW4gYW55IG1hbm5lciB3aXRob3V0IGV4cHJlc3Mgd3JpdHRlbiBwZXJtaXNzaW9uIGZyb20gTWljcm9zb2Z0IENvcnBvcmF0aW9uLiIsImVycm9yRGV0YWlscyI6WyJUaGUgcmVxdWVzdCB3YXMgZm9yYmlkZGVuLiAgWW91ciBjcmVkZW50aWFscyBtYXkgYmUgZGVuaWVkIG9yIHN1c3BlbmRlZC4iXSwicmVzb3VyY2VTZXRzIjpbXSwic3RhdHVzQ29kZSI6NDAzLCJzdGF0dXNEZXNjcmlwdGlvbiI6IkZvcmJpZGRlbiIsInRyYWNlSWQiOiI1MWU5MzgyNDVkNzQ5MWE2YTE0ODgxNGQzM2MzZmVlNyJ9
-  recorded_at: Thu, 23 May 2024 18:22:33 GMT
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJEZW5pZWRDcmVkZW50aWFscyIsImJyYW5kTG9nb1VyaSI6Imh0dHA6Ly9kZXYudmlydHVhbGVhcnRoLm5ldC9CcmFuZGluZy9sb2dvX3Bvd2VyZWRfYnkucG5nIiwiY29weXJpZ2h0IjoiQ29weXJpZ2h0IMKpIDIwMjQgTWljcm9zb2Z0IGFuZCBpdHMgc3VwcGxpZXJzLiBBbGwgcmlnaHRzIHJlc2VydmVkLiBUaGlzIEFQSSBjYW5ub3QgYmUgYWNjZXNzZWQgYW5kIHRoZSBjb250ZW50IGFuZCBhbnkgcmVzdWx0cyBtYXkgbm90IGJlIHVzZWQsIHJlcHJvZHVjZWQgb3IgdHJhbnNtaXR0ZWQgaW4gYW55IG1hbm5lciB3aXRob3V0IGV4cHJlc3Mgd3JpdHRlbiBwZXJtaXNzaW9uIGZyb20gTWljcm9zb2Z0IENvcnBvcmF0aW9uLiIsImVycm9yRGV0YWlscyI6WyJUaGUgcmVxdWVzdCB3YXMgZm9yYmlkZGVuLiAgWW91ciBjcmVkZW50aWFscyBtYXkgYmUgZGVuaWVkIG9yIHN1c3BlbmRlZC4iXSwicmVzb3VyY2VTZXRzIjpbXSwic3RhdHVzQ29kZSI6NDAzLCJzdGF0dXNEZXNjcmlwdGlvbiI6IkZvcmJpZGRlbiIsInRyYWNlSWQiOiI2OWI0MDg1MjkzOGFiZDYzNDU5ZGQ5YjMwMTExNDAwMiJ9
+  recorded_at: Fri, 24 May 2024 11:10:18 GMT
 recorded_with: VCR 6.2.0
