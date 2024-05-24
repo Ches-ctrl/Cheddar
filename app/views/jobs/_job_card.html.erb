@@ -1,96 +1,20 @@
 <div class="card job-card mb-2" data-select-by-job-type-target="jobRow">
   <div class="row card-body">
-    <%# TODO: Store company logo, use clearbit when we don't have one %>
-
-    <%# Logo %>
-    <div class="col-5 d-flex flex-row align-items-center">
-      <div class="d-flex justify-content-center align-items-center mx-2">
-        <%= link_to company_path(job.company), target: "_blank" do %>
-          <%= image_tag("https://logo.clearbit.com/#{job.company.url_website}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", style: "width: 60px; height: 60px; padding-right: 0.5rem;") %>
-        <% end %>
-      </div>
-
-      <%# Job Title, Company, Location %>
-      <div class="d-flex flex-column justify-content-center align-items-start" data-role="<%= job.title %>">
-        <%= link_to job_path(job), target: "_blank" do %>
-          <strong><%= job.title.truncate(35) %></strong>
-        <% end %>
-
-        <%= link_to company_path(job.company), target: "_blank" do %>
-          <strong class="text-sm"><%= job.company.name %></strong>
-        <% end %>
-
-        <div class="text-sm">
-          <% if job.remote || job.locations.empty? %>
-            Remote
-          <% else %>
-            <%= job.locations.map(&:city).join(' | ') %>
-          <% end %>
-          <% if job.countries.loaded? || job.countries.count == 1 %>
-            <%= " | #{job.countries.first.name}" if job.countries.count == 1 %>
-          <% else %>
-            <%= " | #{job.countries.first.name}" if job.countries.size == 1 %>
-          <% end %>
-        </div>
-      </div>
+    <%# Logo & Info %>
+    <div class="col-12 col-sm-12 col-md-5 col-lg-5 d-flex flex-row align-items-center mb-3 mb-md-0">
+      <%= render partial: 'jobs/logo', locals: { job: job } %>
+      <%= render partial: 'jobs/job_info', locals: { job: job } %>
     </div>
 
     <%# Job Details %>
-    <div class="col-7 d-flex flex-row justify-content-between align-items-center">
-
-      <%# Salary etc. %>
-      <div class="basic-info d-flex flex-column align-items-end justify-space-between text-sm">
-        <div class="salaryBudget"><%= job.salary.present? ? job.salary : "<br>".html_safe %></div>
-        <div class="my-1"><%= job.employment_type %> •
-          <% if job.remote %>
-            <%= "Remote"%>
-          <% elsif job.hybrid %>
-            <%= "Hybrid" %>
-          <% else %>
-            <%= "In-office" %>
-          <% end %>
-        </div>
-        <div><%= job.date_posted.strftime("%d/%m") %> <span class="meter"><hr class="line-horizontal"><div class="triangle-inverted-blue" style="left:<%= (job.deadline.nil? || job.deadline < Date.today) ? 50 : (Date.today - job.date_posted).to_i.fdiv((job.deadline - job.date_posted).to_i) * 100 %>%;"></div></span> <%= (job.deadline.nil? || job.deadline < Date.today) ? "Rolling" : job.deadline.strftime("%d/%m") %></div>
+    <div class="col-12 col-lg-7 d-flex flex-column flex-md-row justify-content-between align-items-center">
+      <div class="pb-3 pb-md-0 pe-md-5">
+        <%= render partial: 'jobs/basic_info', locals: { job: job } %>
       </div>
-
-      <%# Net Zero Rating %>
-      <div class="d-flex flex-column align-items-center justify-content-center text-sm">
-        <div class="climate-rating"><%# job.company.carbon_pledge || 'no data' %>no data</div>
-      </div>
-
-      <%# Ease of Applying %>
-      <div class="d-flex flex-column align-items-center justify-content-center text-sm">
-        <div class="apply-rating">
-          <%# To-do: Create a difficulty column for jobs table and transfer this logic to JobCreator; eventually GetFormFieldsJob will distinguish between input and text fields (for longer responses), which will help with accurate classification %>
-          <% if job.requirement.no_of_qs < 8 && !job.requirement.cover_letter %>
-            <% apply_rating = 'easy' %>
-          <% elsif job.requirement.no_of_qs > 15 %>
-            <% apply_rating = 'hard' %>
-          <% else %>
-            <% apply_rating = 'medium' %>
-          <% end %>
-          <%= apply_rating %>
-        </div>
-      </div>
-
-
-      <%# Add job to basket %>
-      <div class="d-flex align-items-center justify-content-center me-3">
-        <% if @saved_job_ids.include?(job.id) %>
-          <%= link_to saved_job_path(job.saved_job_ids), data: {turbo_method: :delete} do %>
-            <i class="fa-solid fa-bookmark"></i>
-          <% end %>
-        <% else %>
-          <%= link_to job_saved_jobs_path(job), data: {turbo_method: :post} do %>
-            <i class="fa-regular fa-bookmark"></i>
-          <% end %>
-        <% end %>
-        <% include_checkboxes ||= false %>
-        <% if include_checkboxes %>
-          <div class="ms-3">
-            <%= check_box_tag "job_ids[]", job.id, onclick: "document.getElementById('apply_button').disabled = false" %>
-          </div>
-        <% end %>
+      <div class="d-flex flex-row justify-content-between align-items-center w-100">
+        <%= render partial: 'jobs/climate_rating', locals: { job: job } %>
+        <%= render partial: 'jobs/difficulty_rating', locals: { job: job } %>
+        <%= render partial: 'jobs/add_job_to_basket', locals: { job: job, saved_job_ids: @saved_job_ids } %>
       </div>
     </div>
   </div>

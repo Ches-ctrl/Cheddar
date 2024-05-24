@@ -13,32 +13,11 @@
 # it.
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require 'rails_helper'
-require 'capybara/rspec'
-require 'webmock/rspec'
-
-Capybara.configure do |config|
-  config.run_server = true
-  config.raise_server_errors = true
-  config.server = :default
-end
-
-VCR.configure do |config|
-  config.cassette_library_dir = "spec/fixtures/cassettes"
-  config.default_cassette_options = { :record => :new_episodes }
-  config.hook_into :webmock
-  config.configure_rspec_metadata!
-  config.allow_http_connections_when_no_cassette = true
-  config.ignore_localhost = true
-  # config.ignore_hosts 'dev.virtualearth.net'
-end
 
 RSpec.configure do |config|
-  config.include Warden::Test::Helpers
   # Use the headless browser for feature testing:
-  config.before(:each, type: :feature) do
-    Capybara.current_driver = :selenium_chrome_headless
-  end
+  config.profile_examples = 10
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
@@ -51,17 +30,6 @@ RSpec.configure do |config|
     # ...rather than:
     #     # => "be bigger than 2"
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
-  end
-
-  WebMock.allow_net_connect!
-  config.around do |example|
-    if example.metadata.key?(:vcr)
-      WebMock.enable!
-      example.run
-      WebMock.disable!
-    else
-      VCR.turned_off { example.run }
-    end
   end
 
   # rspec-mocks config goes here. You can use an alternate test double

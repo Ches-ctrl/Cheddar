@@ -1,21 +1,33 @@
 module Constants
+  # TODO: refactor all these constants into sub-modules?
+
+  module DateConversion
+    CONVERT_TO_DAYS = {
+      'today' => 0,
+      '3-days' => 3,
+      'week' => 7,
+      'month' => 30,
+      'any-time' => 99_999
+    }
+  end
+
   SENIORITY_TITLES = {
-    /staff/ => 'Senior',
-    /principal/ => 'Senior',
-    /\blead\b/ => 'Senior',
-    /senior/ => 'Senior',
-    /\biii\b/ => 'Mid-Level',
-    /\bii\b/ => 'Mid-Level',
-    /mid-?level/ => 'Mid-Level',
-    /mid-?weight/ => 'Mid-Level',
-    /\bmid\b/ => 'Mid-Level',
-    /junior/ => 'Junior',
-    /early.?career/ => 'Junior',
-    /\bi\b/ => 'Junior',
-    /associate/ => 'Junior',
-    /[gG]raduate/ => 'Entry-Level',
-    /[gG]rad/ => 'Entry-Level',
-    /[iI]ntern/ => 'Internship'
+    /staff/i => 'Senior',
+    /principal/i => 'Senior',
+    /\blead\b/i => 'Senior',
+    /senior/i => 'Senior',
+    /\biii\b/i => 'Mid-Level',
+    /\bii\b/i => 'Mid-Level',
+    /mid-?level/i => 'Mid-Level',
+    /mid-?weight/i => 'Mid-Level',
+    /\bmid[\b_-]/i => 'Mid-Level',
+    /junior/i => 'Junior',
+    /early.?career/i => 'Junior',
+    /\bi\b/i => 'Junior',
+    /associate/i => 'Junior',
+    /[gG]raduate/i => 'Entry-Level',
+    /[gG]rad/i => 'Entry-Level',
+    /[iI]ntern/i => 'Internship'
   }
 
   SENIORITY_DESCRIPTORS = {
@@ -63,7 +75,7 @@ module Constants
     /development engineer/,
     /product (?:engineer|designer)/,
     /deployed.{1,28}engineer/,
-    /data engineer/,
+    /data.?engineer/,
     /research engineer/,
     /prompt engineer/,
     /mobile (?:engineer|developer)/,
@@ -147,4 +159,10 @@ module Constants
     'gbp' => ['£', ' GBP'],
     'eur' => ['€', ' EUR']
   }
+
+  HIRING_MODES = [
+    'Milkround',
+    'Structured',
+    'Ad-hoc'
+  ]
 end

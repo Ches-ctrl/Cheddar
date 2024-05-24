@@ -14,8 +14,9 @@ class ApplyJob < ApplicationJob
     application_criteria = assign_values_to_form(application, user)
     fields_to_fill = application_criteria
 
-    form_filler = FormFiller.new
-    result = form_filler.fill_out_form(job.posting_url, fields_to_fill, job_application_id)
+    form_filler = FormFiller.new(job.posting_url, fields_to_fill, job_application_id)
+    form_filler.fill_out_form
+
     user_channel_name = "job_applications_#{user.id}"
 
     status = result[:success] ? "Applied" : "Submission Failed"
@@ -42,14 +43,14 @@ class ApplyJob < ApplicationJob
     end
 
     application_criteria.each_key do |key|
-      if user.respond_to?(key) && user.send(key).present?
+      if custom_fields[key].nil? && user.respond_to?(key) && user.send(key).present?
         application_criteria[key]['value'] = user.send(key)
       else
         application_criteria[key]['value'] = custom_fields[key]
-        # p "Warning: defaults does not have a method or attribute '#{key}'. Using NIL value instead"
-        # application_criteria[key]['value'] = nil
       end
     end
+    puts "Here are the application criteria:"
+    p application_criteria
     return application_criteria
   end
 end

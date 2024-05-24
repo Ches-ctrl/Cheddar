@@ -23,23 +23,6 @@
   text-decoration: none;
 }
 
-#search-button {
-  background-color: $main-color;
-  color: white;
-  // font-weight: 500;
-  text-decoration: none;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  // margin-right: 6px;
-  margin-left: 6px;
-}
-
-#search-button:hover {
-  opacity: 85%;
-  color: white;
-}
-
 .btn-add-info, #btn-add-job {
   background-color: $main-color;
   opacity: 0.7;

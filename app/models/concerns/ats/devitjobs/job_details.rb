@@ -10,11 +10,11 @@ module Ats
         [title, job_location, remote]
       end
 
-      private
-
       def fetch_url(job_data)
         url_base + job_data['jobUrl']
       end
+
+      private
 
       def fetch_id(job_data)
         job_data['jobUrl']
@@ -49,7 +49,7 @@ module Ats
         data = JSON.parse(script_element)
 
         job.assign_attributes(
-          description: data['description'],
+          description: Flipper.enabled?(:job_description) ? data['description'] : 'Not added yet',
           date_posted: Date.parse(data['datePosted']),
           deadline: Date.parse(data['validThrough'])
         )

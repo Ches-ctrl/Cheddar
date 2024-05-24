@@ -11,9 +11,7 @@ module Ats
       end
 
       def fetch_id(job_data)
-        path = job_data['path']
-        result = path&.match(%r{postings/([a-z\-0-9]+)})
-        result[1] if result
+        job_data['slug']
       end
 
       private
@@ -41,7 +39,7 @@ module Ats
         job.assign_attributes(
           title:,
           requirements: data['requirements'],
-          description: [data['description'], data['requirements']].reject(&:blank?).join,
+          description: Flipper.enabled?(:job_description) ? [data['description'], data['requirements']].reject(&:blank?).join : 'Not added yet',
           salary: fetch_salary(data),
           department: data['department'],
           employment_type: fetch_employment_type(data),
@@ -84,6 +82,7 @@ module Ats
         SENIORITY_TITLES.each do |keyword, level|
           return level if string.match?(keyword)
         end
+        return nil
       end
 
       def fetch_salary(data)

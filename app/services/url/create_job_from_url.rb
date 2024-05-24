@@ -3,6 +3,8 @@ module Url
     include CheckUrlIsValid
     include AtsSystemParser
 
+    # TODO: Create a wrapper on the service to run this as a background job
+
     def initialize(url)
       @url = url
     end

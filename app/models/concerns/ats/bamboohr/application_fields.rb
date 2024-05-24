@@ -6,7 +6,6 @@ module Ats
 
         job.application_criteria = build_application_criteria_from(data['formFields'])
         job.save
-        # GetFormFieldsJob.perform_later(job.posting_url)
       end
 
       private
@@ -17,6 +16,9 @@ module Ats
         fields.each do |locator, details|
           field = details.instance_of?(Array) ? build_additional_field(details) : build_core_field(locator, details)
           attributes.merge!(field)
+        rescue StandardError => e
+          p "Error building application criteria: #{e.message}"
+          {}
         end
 
         return attributes

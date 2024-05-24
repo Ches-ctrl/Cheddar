@@ -1,6 +1,6 @@
-require 'open-uri'
-
 module Scraper
+  require 'open-uri'
+
   class MonsterService < ApplicationService
     def scrape_page
       url = 'https://www.monster.com/jobs/q-it-jobs'

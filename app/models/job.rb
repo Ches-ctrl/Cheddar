@@ -1,8 +1,6 @@
 class Job < ApplicationRecord
   include PgSearch::Model
-
-  # TODO: Number of questions in job form
-  # TODO: Estimated time to complate job application based on form length/type
+  include Constants::DateConversion
 
   serialize :application_criteria, coder: JSON
 
@@ -13,12 +11,16 @@ class Job < ApplicationRecord
 
   has_many :job_applications, dependent: :destroy
   has_many :saved_jobs, dependent: :destroy
+
   has_many :playlist_jobs
   has_many :job_playlists, through: :playlist_jobs
+
   has_many :jobs_locations, dependent: :destroy
   has_many :locations, through: :jobs_locations
+
   has_many :jobs_countries, dependent: :destroy
   has_many :countries, through: :jobs_countries
+
   has_many :jobs_roles, dependent: :destroy
   has_many :roles, through: :jobs_roles
 
@@ -27,9 +29,7 @@ class Job < ApplicationRecord
   validates :posting_url, uniqueness: true, presence: true
   validates :title, presence: true
 
-  # after_create :update_application_criteria
-
-  # TODO: Update validate uniqueness as same job can have both a normal url and api url
+  validate :safe_posting_url
 
   pg_search_scope :search_job,
                   against: %i[title salary description],
@@ -42,52 +42,10 @@ class Job < ApplicationRecord
                     tsearch: { prefix: true } # allow partial search
                   }
 
-  # TODO: Question - set application_criteria = {} as default?
-
-  # Enables access to application_criteria via strings or symbols
   def application_criteria
     return [] if read_attribute(:application_criteria).nil?
 
     read_attribute(:application_criteria).with_indifferent_access
-  end
-
-  # def update_application_criteria
-  #   if posting_url.include?('greenhouse')
-  #     extra_fields = GetFormFieldsJob.perform_later(posting_url)
-  #     # p extra_fields
-  #   else
-  #     p "No additional fields to add"
-  #   end
-  # end
-
-  CONVERT_TO_DAYS = {
-    'today' => 0,
-    '3-days' => 3,
-    'week' => 7,
-    'month' => 30,
-    'any-time' => 99_999
-  }
-
-  # TODO: Handle remote jobs
-
-  def self.filter_and_sort(params)
-    filters = {
-      date_posted: filter_by_when_posted(params[:posted]),
-      seniority: filter_by_seniority(params[:seniority]),
-      locations: filter_by_location(params[:location]),
-      roles: filter_by_role(params[:role]),
-      employment_type: filter_by_employment(params[:type]),
-      company: params[:company]&.split
-    }.compact
-
-    associations = build_associations(params)
-    jobs = left_joins(associations).where(filters)
-    params[:query].present? ? jobs.search_job(params[:query]) : jobs
-  end
-
-  def self.including_any(params, param)
-    exclusive_params = params.reject { |k, _v| k == param.to_s }
-    filter_and_sort(exclusive_params)
   end
 
   private
@@ -97,27 +55,50 @@ class Job < ApplicationRecord
   end
 
   def update_requirements
-    # All jobs need requirements so we should always create these on job creation
     requirement = Requirement.create(job: self)
     requirement.no_of_qs = application_criteria.size
-
-    # TODO: Add overall assessment of difficulty based on number of questions, type of questions, etc.
-    # TODO: Update this to match new structure with requirements not on job
-
-    # update_requirement('resume', 'resume')
-    # update_requirement('cover_letter', 'cover_letter')
-    # update_requirement('work_eligibility', 'work_eligibility')
   end
-
-  # def update_requirement(criterion_key, attribute_name)
-  #   send("#{attribute_name}=", application_criteria.dig(criterion_key, 'required') || false)
-  # end
 
   def standardize_attributes
     Standardizer::JobStandardizer.new(self).standardize
   end
 
-  private_class_method def self.build_associations(params)
+  def safe_posting_url
+    uri = URI.parse(posting_url)
+    errors.add(:posting_url, "is not a valid HTTP/HTTPS URL") unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
+  rescue URI::InvalidURIError
+    errors.add(:posting_url, "is invalid")
+  end
+
+  public
+
+  # ---------------------
+  # Class Methods
+  # ---------------------
+
+  def self.filter_and_sort(params)
+    filters = {
+      date_posted: filter_by_when_posted(params[:posted]),
+      seniority: filter_by_seniority(params[:seniority]),
+      locations: filter_by_location(params[:location]),
+      roles: filter_by_role(params[:role]),
+      employment_type: filter_by_employment(params[:type])
+    }.compact
+
+    associations = build_associations(params)
+    jobs = left_joins(associations).where(filters)
+    params[:query].present? ? jobs.search_job(params[:query]) : jobs
+  end
+
+  def self.including_any(params, param)
+    filter_and_sort params.except(param)
+  end
+
+  # ---------------------
+  # Private Class Methods
+  # ---------------------
+
+  def self.build_associations(params)
     associations = []
     associations << :company if params.include?(:company)
     associations << :locations if params.include?(:location)
@@ -125,36 +106,35 @@ class Job < ApplicationRecord
     return associations
   end
 
-  private_class_method def self.filter_by_when_posted(param)
+  def self.filter_by_when_posted(param)
     return unless param.present?
 
-    number = CONVERT_TO_DAYS[param] || 99_999
+    number = Constants::DateConversion::CONVERT_TO_DAYS[param] || 99_999
     number.days.ago..Date.today
   end
 
-  private_class_method def self.filter_by_location(param)
+  def self.filter_by_location(param)
     return unless param.present?
 
     locations = param.split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') unless location == 'remote' }
     { city: locations }
   end
 
-  private_class_method def self.filter_by_role(param)
+  def self.filter_by_role(param)
     { name: param.split } if param.present?
   end
 
-  private_class_method def self.filter_by_seniority(param)
+  def self.filter_by_seniority(param)
     return unless param.present?
 
     param.split.map { |seniority| seniority.split('-').map(&:capitalize).join('-') }
   end
 
-  private_class_method def self.filter_by_employment(param)
+  def self.filter_by_employment(param)
     return unless param.present?
 
     param.split.map { |employment| employment.gsub('_', '-').capitalize }
   end
-end
 
-# TODO: add description_html and other html fields?
-# TODO: fully reconcile job fields by back-engineering ATS APIs - requires data build prior to this
+  private_class_method :build_associations, :filter_by_when_posted, :filter_by_location, :filter_by_role, :filter_by_seniority, :filter_by_employment
+end

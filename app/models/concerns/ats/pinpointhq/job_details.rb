@@ -13,8 +13,8 @@ module Ats
 
       def fetch_id(job_data)
         # TODO: fetch the individual api endpoint from job_id
-        path = job_data['careers_url']
-        result = path&.match(%r{recruitee.com/o/([a-z\-0-9]+)})
+        path = job_data['path']
+        result = path&.match(%r{postings/([a-z\-0-9]+)})
         result[1] if result
       end
 
@@ -42,7 +42,7 @@ module Ats
       def job_details(job, data)
         job.assign_attributes(
           title: data['title'],
-          description: build_description(data),
+          description: Flipper.enabled?(:job_description) ? build_description(data) : 'Not added yet',
           salary: fetch_salary(data),
           employment_type: data['employment_type'].gsub('_', '-').capitalize,
           non_geocoded_location_string: build_location_string(data),

@@ -15,11 +15,11 @@ module Ats
         job_data['id']
       end
 
-      private
-
       def fetch_url(job_data)
         job_data['absolute_url']
       end
+
+      private
 
       def job_url_api(base_url, company_id, job_id)
         "#{base_url}#{company_id}/jobs/#{job_id}?pay_transparency=true" # &questions=true
@@ -30,7 +30,7 @@ module Ats
         job.assign_attributes(
           posting_url: data['absolute_url'],
           title:,
-          description: data['content'],
+          description: Flipper.enabled?(:job_description) ? data['description'] : 'Not added yet',
           non_geocoded_location_string: location,
           department: data.dig('departments', 0, 'name'),
           office: data.dig('offices', 0, 'name'),

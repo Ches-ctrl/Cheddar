@@ -1,0 +1,13 @@
+<div class="basic-info d-flex flex-column align-items-end justify-space-between text-sm">
+  <div class="salaryBudget"><%= job.salary.present? ? job.salary : "<br>".html_safe %></div>
+  <div class="my-1"><%= job.employment_type %> •
+    <% if job.remote %>
+      <%= "Remote"%>
+    <% elsif job.hybrid %>
+      <%= "Hybrid" %>
+    <% else %>
+      <%= "In-office" %>
+    <% end %>
+  </div>
+  <div><%= job.date_posted.strftime("%d/%m") %> <span class="meter"><hr class="line-horizontal"><div class="triangle-inverted-blue" style="left:<%= (job.deadline.nil? || job.deadline < Date.today) ? 50 : (Date.today - job.date_posted).to_i.fdiv((job.deadline - job.date_posted).to_i) * 100 %>%;"></div></span> <%= (job.deadline.nil? || job.deadline < Date.today) ? "Rolling" : job.deadline.strftime("%d/%m") %></div>
+</div>

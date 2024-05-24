@@ -26,12 +26,14 @@ class JobApplicationsController < ApplicationController
         job.application_criteria.each do |field, details|
           job_application.application_responses.build(
             field_name: field,
+            field_label: details["label"],
             field_locator: details["locators"],
             interaction: details["interaction"],
             field_option: details["option"],
             field_options: details["options"].to_json,
             required: details["required"],
-            field_value: current_user.try(field) || ""
+            field_value: current_user.try(field) || "",
+            core_field: details["core_field"]
           )
         end
         job_application
@@ -104,7 +106,7 @@ class JobApplicationsController < ApplicationController
   def job_application_params
     params.require(:job_application).permit(
       :job_id,
-      application_responses_attributes: [:field_name, { field_value: [] }, :field_value, :field_locator, :interaction, :field_option, :field_options, :cover_letter_content, :required]
+      application_responses_attributes: [:field_name, { field_value: [] }, :field_label, :field_value, :field_locator, :interaction, :field_option, :field_options, :required, :core_field]
     )
   end
 end

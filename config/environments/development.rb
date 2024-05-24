@@ -10,6 +10,17 @@ Rails.application.configure do
     Bullet.add_footer    = true
   end
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    user_name: 'apikey',
+    password: ENV.fetch('SENDGRID_API_KEY'),
+    domain: 'localhost',
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+
   config.action_mailer.default_url_options = { host: "http://localhost:3000" }
   # Settings specified here will take precedence over those in config/application.rb.
 
