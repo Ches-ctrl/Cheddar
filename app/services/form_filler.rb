@@ -28,8 +28,6 @@ class FormFiller
 
   def fill_out_form
     submit_application
-
-    return { success:, url: }
   end
 
   private

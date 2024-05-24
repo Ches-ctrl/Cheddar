@@ -10,27 +10,43 @@ module Ats
           session.visit(@url)
           p "Successfully reached #{@url}"
           find_apply_button(session).click
+
           @fields.each do |field|
             field = field[1]
             handle_field_interaction(session, field)
           end
-          take_screenshot_and_store(session)
+
+          find_submit_button(session).click
+
+          if session.current_url.include?('confirmation')
+            success = true
+            @job_application.update(status: 'Applied')
+            p "Form submitted successfully"
+          else
+            success = false
+            @job_application.update(status: 'Submission failed')
+            p "Form submission failed"
+          end
+
           @fields.each do |field|
             field[1]
             if field[0] == 'resume'
               file_path = Rails.root.join('tmp', "Resume - #{@user.first_name} #{@user.last_name} - - #{@job.title} - #{@job.company.name}.pdf")
               FileUtils.rm_f(file_path)
             elsif field[0] == 'cover_letter_'
-              file_path = Rails.root.join('tmp',
-                                          "Cover Letter - #{@job.title} - #{@job.company.name} - #{@user.first_name} #{@user.last_name}.docx")
+              file_path = Rails.root.join('tmp', "Cover Letter - #{@job.title} - #{@job.company.name} - #{@user.first_name} #{@user.last_name}.docx")
               FileUtils.rm_f(file_path)
             end
           end
-        rescue StandardError
-          nil
+        rescue StandardError => e
+          p "Error: #{e}"
+          success = false
+          @job_application.update(status: 'Submission failed')
         ensure
+          take_screenshot_and_store(session, job_application_id)
           session.driver.quit
         end
+        success
       end
 
       def handle_field_interaction(session, field)
@@ -113,7 +129,7 @@ module Ats
         session.within "##{listbox_locator}" do
           session.find(option_locator, text: option_text).click
         end
-      rescue Selenium::WebDriver::Error::ElementNotInteractableError
+      rescue Selenium::WebDriver::Error::ElementNotInteractableError, Selenium::WebDriver::Error::JavascriptError
         new_locator = session.find("label ##{listbox_locator}")
         new_locator.ancestor("label").find("a").click
         session.find("li", text: option_text).click
