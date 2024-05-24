@@ -21,21 +21,23 @@ RSpec.describe Company do
 
     COMPANIES.each do |ats_name, ats_id|
       it "can create all relevant jobs with #{ats_name}", :vcr do
-        ats = ApplicantTrackingSystem.find_by(name: ats_name)
-        company = ats.find_or_create_company(ats_id)
-        unless company.persisted?
-          data = ats.fetch_company_jobs(ats_id)&.first
-          company = ats.find_or_create_company_by_data(data)
+        VCR.use_cassette("create_all_relevant_jobs_#{ats_name}") do
+          ats = ApplicantTrackingSystem.find_by(name: ats_name)
+          company = ats.find_or_create_company(ats_id)
+          unless company.persisted?
+            data = ats.fetch_company_jobs(ats_id)&.first
+            company = ats.find_or_create_company_by_data(data)
+          end
+
+          output = StringIO.new
+          $stdout = output
+
+          company.create_all_relevant_jobs
+
+          $stdout = STDOUT
+
+          expect(output.string).to match(/Found or created \d+ new jobs with .+\./)
         end
-
-        output = StringIO.new
-        $stdout = output
-
-        company.create_all_relevant_jobs
-
-        $stdout = STDOUT
-
-        expect(output.string).to match(/Found or created \d+ new jobs with .+\./)
       end
     end
   end
