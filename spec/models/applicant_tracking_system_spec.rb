@@ -1,5 +1,6 @@
 require Rails.root.join('spec', 'support', 'spec_constants.rb')
 
+# @Dan Why do we have a recruitee company defined here and in spec constants?
 RECRUITEE_COMPANY = ['radishlab', 'Radish Lab']
 
 # rubocop:disable Metrics/BlockLength

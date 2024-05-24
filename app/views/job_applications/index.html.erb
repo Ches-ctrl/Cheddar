@@ -1,4 +1,33 @@
 <div class="container">
+  <% if current_user.job_applications.where(status: "Submission failed") %>
+    <h3>Manual Submission required</h3>
+    <% @failed_applications.each do |failed_application| %>
+      <div class='application-wrapper' data-controller="reveal-myapplication-details">
+        <div class="application-main-info">
+          <button class="toggle-reveal-application-details" data-reveal-myapplication-details-target="toggleReveal" data-action="click->reveal-myapplication-details#revealApplicationDetails">
+            <i class="fa-solid fa-caret-right"></i>
+          </button>
+          <h5 class="m-0"><%= failed_application.job.title %> @
+          <%= failed_application.job.company.name %> </h5>  -
+          <%= failed_application.status %> -
+          <%= link_to "Apply Manually", failed_application.job.posting_url, target: "_blank", class: "btn-apply" %>
+        </div>
+
+        <div id="<%= failed_application.id %>" class="application-secondary-info" data-reveal-myapplication-details-target="applicationDetails">
+
+          <div class="application-secondary-info-left">
+            <p><%= failed_application.job.description %></p>
+            <div>
+              <span class="meta-info">Applications Close: <%= failed_application.job.deadline.strftime('%d %B %Y') if failed_application.job.deadline %> - </span>
+              <span class="meta-info">Date Applied: <%= failed_application.updated_at.strftime('%d %B %Y') %></span>
+            </div>
+            <hr class="d-none">
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
   <h3 class="my-applications">My Applications</h3>
   <% @job_applications.each do |application| %>
     <div class='application-wrapper' data-controller="reveal-myapplication-details">

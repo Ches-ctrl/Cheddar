@@ -74,6 +74,8 @@ module CheckUrlIsValid
     retries = 0
     options = { headers: { 'Accept' => 'application/json' } }
 
+    sanitize_url(api_url)
+
     begin
       response = HTTParty.get(api_url, options)
       raise ExternalServerError, 'External server error' if response.code.to_s.starts_with?('5')
@@ -106,6 +108,13 @@ module CheckUrlIsValid
         return {}
       end
     end
+  end
+
+  def sanitize_url(url)
+    uri = URI.parse(url)
+    raise ArgumentError, "Invalid URL scheme: #{uri.scheme}" unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
+
+    uri
   end
 
   def url_valid?(url)

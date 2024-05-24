@@ -5,6 +5,8 @@ class ApplyJob < ApplicationJob
   queue_as :default
   sidekiq_options retry: false
 
+  # TODO: Tidy up (1) ApplyJob (2) FormFiller and (3) SubmitApplication so that the correct functionality sits in each class/module
+
   def perform(job_application_id, user_id)
     p "Hello from the job application job!"
     application = JobApplication.find(job_application_id)
@@ -15,19 +17,20 @@ class ApplyJob < ApplicationJob
     fields_to_fill = application_criteria
 
     form_filler = FormFiller.new(job.posting_url, fields_to_fill, job_application_id)
-    form_filler.fill_out_form
+    result = form_filler.fill_out_form
 
     user_channel_name = "job_applications_#{user.id}"
+
+    status = result ? "Applied" : "Submission Failed"
 
     ActionCable.server.broadcast(
       user_channel_name,
       {
-        event: "job-application-submitted",
+        event: "job_application_submitted",
         job_application_id: application.id,
-        user_id: application.user_id,
+        user_id: application.user.id,
         job_id: job.id,
-        status: "Applied"
-        # Include any additional data you want to send to the frontend
+        status:
       }
     )
   end

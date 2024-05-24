@@ -12,6 +12,7 @@ export default class extends Controller {
     this.consumer = createConsumer();
     this.jobsCount = parseInt(this.data.get("jobsCount"), 10);
     this.appliedJobCount = 0;
+    this.failedCount = 0;
     this.createWebSocketChannel(this.userValue);
   }
 
@@ -30,6 +31,12 @@ export default class extends Controller {
 
   async submitAllForms(event) {
     event.preventDefault();
+    const isValid = this.validateForms();
+
+    if ( !isValid ) {
+      return;
+    }
+
     this.buttonTarget.disabled = true;
     this.overlayTarget.classList.remove("d-none");
 
@@ -40,8 +47,46 @@ export default class extends Controller {
       return fetch(form.action, {
         method: 'POST',
         body: formData
-      });
+      }).then(response => response.json())
+        .then(data => {
+          if ( !response.ok) {
+            this.handleServerSideErrors(form, data.errors);
+          }
+        })
     });
+  }
+
+  validateForms() {
+    let firstInvalidField = null;
+
+    this.formTargets.forEach((form) => {
+      if ( !form.checkValidity()) {
+        const invalidFields = form.querySelectorAll(":invalid");
+        invalidFields.forEach(field => {
+          field.classList.add("is-invalid");
+          if ( !firstInvalidField) {
+            firstInvalidField = field;
+          }
+        });
+      }
+    });
+
+    if (firstInvalidField) {
+      firstInvalidField.focus();
+      firstInvalidField.scrollIntoView({ behavior: "smooth", block: "center" });
+      return false
+    }
+
+    return true;
+  }
+
+  handleServerSideErrors(form, errors) {
+    for (const [field, messages] of Object.entries(errors)) {
+      const input = form.querySelector(`[name="${field}"]`);
+      const errorElement = input.nextElementSibling;
+      errorElement.textContent = messages.join(", ");
+      input.classList.add("is-invalid");
+    }
   }
 
 
@@ -71,20 +116,29 @@ export default class extends Controller {
 
             const spinner = document.querySelector(`[data-all-application-forms-id="${jobId}"]`);
             const checkmark = document.querySelector(`[data-all-application-forms-id="${jobId}-success"]`);
+            const crossmark = document.querySelector(`[data-all-application-forms-id="${jobId}-failed"]`);
 
-            if (spinner && checkmark) {
+            if (spinner && checkmark && crossmark) {
               if (status === "Applied") {
                 spinner.classList.add("d-none");
                 checkmark.classList.remove("d-none");
 
                 this.appliedJobCount++;
 
-                if (this.appliedJobCount === this.jobsCount) {
-                  this.redirectToSuccessPage();
-                  window.location.href = "/job_applications/success"; // this line redundant?
+              } else if (status === "Submission failed") {
+                spinner.classList.add("d-none");
+                crossmark.classList.remove("d-none");
+
+                this.failedCount++;
+              }
+
+              if (this.appliedJobCount + this.failedCount === this.jobsCount) {
+                if (this.failedCount > 0) {
+                  alert("Some applications failed to submit. Please submit them manually.");
+                  this.redirectToApplicationsPage();
+                } else {
+                  this.redirectToSuccessPage();s
                 }
-              } else {
-                // Handle other statuses if needed
               }
             }
           }
@@ -95,6 +149,10 @@ export default class extends Controller {
 
   redirectToSuccessPage() {
     window.location.href = "/job_applications/success";
+  }
+
+  redirectToApplicationsPage() {
+    window.location.href = "/job_applications";
   }
 
   disconnect() {
