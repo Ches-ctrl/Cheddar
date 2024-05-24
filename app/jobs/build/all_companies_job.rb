@@ -6,5 +6,10 @@ module Build
     def perform
       CompanyBuilder.new.build
     end
+
+    def perform_companies_and_jobs
+      CompanyBuilder.new.build
+      Build::AllJobsJob.perform_later
+    end
   end
 end

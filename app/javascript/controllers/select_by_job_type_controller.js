@@ -5,10 +5,14 @@ export default class extends Controller {
   static targets = [ 'jobRow', 'search', 'cheddar', 'posted', 'role', 'company', 'location', 'seniority', 'employment' ]
 
   connect() {
+    this.searchTarget.addEventListener('input', this.checkEmptySearch.bind(this));
   }
 
   combinedSearch(event) {
     event.preventDefault()
+
+    // TODO: Speed up search (fewer atributes? check process in query params)
+    // TODO: add autocomplete to search bar
 
     const searchQuery = this.searchTarget.value.trim();
 
@@ -39,6 +43,12 @@ export default class extends Controller {
 
     const filterQueryString = this.buildQueryString(searchTerms);
     window.location.href = `/jobs${filterQueryString}`;
+  }
+
+  checkEmptySearch() {
+    if (this.searchTarget.value.trim() === '') {
+      window.location.href = `/jobs`;
+    }
   }
 
   buildQueryString(searchTerms) {

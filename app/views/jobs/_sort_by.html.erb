@@ -1,0 +1,13 @@
+<div class="dropdown">
+  <button class="btn btn-sm dropdown-toggle rounded-4" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Sort by
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end bg-white">
+    <li><%= link_to 'Title (A-Z)', jobs_path(request.params.merge(sort: 'title')), class: 'btn tc-main' %></li>
+    <li><%= link_to 'Title (Z-A)', jobs_path(request.params.merge(sort: 'title_desc')), class: 'btn tc-main' %></li>
+    <li><%= link_to 'Company (A-Z)', jobs_path(request.params.merge(sort: 'company')), class: 'btn tc-main' %></li>
+    <li><%= link_to 'Company (Z-A)', jobs_path(request.params.merge(sort: 'company_desc')), class: 'btn tc-main' %></li>
+    <li><%= link_to 'Newest', jobs_path(request.params.merge(sort: 'created_at')), class: 'btn tc-main' %></li>
+    <li><%= link_to 'Oldest', jobs_path(request.params.merge(sort: 'created_at_asc')), class: 'btn tc-main' %></li>
+  </ul>
+</div>
