@@ -72,6 +72,7 @@ gem "cloudinary"
 
 # Admin
 gem 'avo'
+gem "rails_best_practices"
 
 # AI
 gem "ruby-openai"
@@ -144,7 +145,7 @@ group :development do
 
   # Performance
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler" # TODO: install this gem for performance monitoring
+  gem "rack-mini-profiler"
   # gem 'memory_profiler' # Additional gem for memory profiling
   # gem 'stackprof' # Additional gem for call-stack profiling flamegraphs
 
