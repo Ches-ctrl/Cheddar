@@ -139,17 +139,25 @@ module Ats
         end
       end
 
-      # rubocop:disable Security/Open
       def upload_file(session, upload_locator, file)
+        # NB. Changed this from previous URI.open due to security issue - noting in case this breaks functionality (CC)
         if file.instance_of?(String)
           docx = Htmltoword::Document.create(file)
-          file_path = Rails.root.join('tmp',
-                                      "Cover Letter - #{@job.title} - #{@job.company.name} - #{@user.first_name} #{@user.last_name}.docx")
+          file_path = Rails.root.join("tmp", "Cover Letter - #{@job.title} - #{@job.company.name} - #{@user.first_name} #{@user.last_name}.docx")
           File.binwrite(file_path, docx)
         else
-          file_path = Rails.root.join('tmp', "Resume - #{@user.first_name} #{@user.last_name} - #{@job.title} - #{@job.company.name}.pdf")
-          File.binwrite(file_path, URI.open(file.url).read)
+          uri = URI.parse(file.url)
+
+          raise "Invalid URL scheme" unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
+
+          response = Net::HTTP.get_response(uri)
+
+          raise "Failed to download file: #{response.message}" unless response.is_a?(Net::HTTPSuccess)
+
+          file_path = Rails.root.join("tmp", "Resume - #{@user.first_name} #{@user.last_name} - #{@job.title} - #{@job.company.name}.pdf")
+          File.binwrite(file_path, response.body)
         end
+
         begin
           session.find(upload_locator).attach_file(file_path)
         rescue Capybara::ElementNotFound
@@ -158,7 +166,6 @@ module Ats
           end
         end
       end
-      # rubocop:enable Security/Open
     end
   end
 end
