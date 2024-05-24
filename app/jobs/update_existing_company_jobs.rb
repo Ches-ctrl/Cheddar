@@ -1,6 +1,5 @@
 class UpdateExistingCompanyJobs < ApplicationJob
   include CompanyCsv
-  include Relevant
 
   # Why do we get all the job urls?
   # Wouldn't the best approach here be to create a csv with all the company data from the respective APIs
@@ -15,20 +14,22 @@ class UpdateExistingCompanyJobs < ApplicationJob
   def perform
     puts "Beginning jobs updater for companies already seeded to the DB..."
 
-    @job_urls = Job.all.to_set(&:posting_url)
+    # Compile a list of urls (unique ids) of jobs from last update that may no longer be live
+    @job_urls_from_last_update = Job.all.to_set(&:posting_url)
+    @company_ids = ats_list
+    @invalid_company_ids = ats_hash
 
     fetch_jobs_and_companies
-    destroy_defunct_jobs
-    # update_ats_identifiers_list
+    mark_defunct_jobs
+    update_lists
+
+    puts "Completed jobs updater."
   end
 
   private
 
   def fetch_jobs_and_companies
-    ats_list.each do |ats_name, ats_identifiers|
-      # only prepared to handle some ATS systems at the moment
-      next unless ['Greenhouse', 'Lever'].include?(ats_name)
-
+    @company_ids.each do |ats_name, ats_identifiers|
       puts "Scanning #{ats_name} jobs:"
       @ats = ApplicantTrackingSystem.find_by(name: ats_name)
 
@@ -36,43 +37,63 @@ class UpdateExistingCompanyJobs < ApplicationJob
         puts "Looking at jobs with #{ats_identifier}..."
 
         # Find or create the company
-        next puts "Problem with #{ats_identifier}" unless (company = @ats.find_or_create_company(ats_identifier))
-
-        company_jobs = @ats.fetch_company_jobs(ats_identifier)
-
-        next unless company_jobs
-
-        # Create new jobs using AtsSystem method
-        company_jobs.each do |job_data|
-          @ats.find_or_create_job_by_data(company, job_data) if relevant?(job_data)
-          @job_urls.delete(@ats.fetch_url(job_data))
-        rescue StandardError => e
-          puts "Error: #{e}"
+        unless (company = @ats.find_or_create_company(ats_identifier))
+          puts "Problem with #{ats_identifier}"
+          add_to_invalid_ids(ats_name, ats_identifier)
+          next
         end
+
+        begin
+          company_jobs = company.create_all_relevant_jobs
+        rescue NoDataReturnedError => e
+          puts e.message
+          add_to_invalid_ids(ats_name, ats_identifier)
+          next
+        end
+
+        # Cross each live job off the list
+        company_jobs.each { |job| @job_urls_from_last_update.delete(job.posting_url) }
       end
     end
   end
 
-  def relevant?(job_data)
-    # TODO: call the Relevant module method instead
-    title, job_location, remote = @ats.fetch_title_and_location(job_data)
-
-    (title &&
-      remote &&
-      JOB_TITLE_KEYWORDS.any? { |keyword| title.downcase.match?(keyword) }) ||
-      (title &&
-      job_location &&
-      JOB_LOCATION_KEYWORDS.any? { |keyword| job_location.downcase.match?(keyword) } &&
-      JOB_TITLE_KEYWORDS.any? { |keyword| title.downcase.match?(keyword) })
+  def mark_defunct_jobs
+    puts "Marking jobs that are no longer live:"
+    @job_urls_from_last_update.each do |posting_url|
+      job = Job.find_by(posting_url:)
+      job.live = false
+      puts "No longer live: #{job.title}"
+    end
   end
 
-  # TODO: Update this so that the jobs are kept but are no longer live on the site
+  def update_lists
+    remove_invalid_ids_from_company_ids
+    update_company_ids
+    update_invalid_ids
+  end
 
-  def destroy_defunct_jobs
-    puts "Deleting jobs that are no longer live:"
-    @job_urls.each do |posting_url|
-      Job.find_by(posting_url:).destroy
-      puts "Destroyed #{posting_url}"
+  def remove_invalid_ids_from_company_ids
+    @invalid_company_ids.each do |ats_name, list|
+      list.each do |company_id|
+        @company_ids[ats_name].delete(company_id)
+      end
     end
+  end
+
+  def update_company_ids
+    save_ats_list(@company_ids)
+  end
+
+  def add_to_invalid_ids(ats_name, ats_identifier)
+    puts "#{ats_identifier} is an invalid id for #{ats_name}"
+    @invalid_company_ids[ats_name] << ats_identifier
+  end
+
+  def update_invalid_ids
+    invalid_ids_from_last_update = load_from_csv('invalid_ids')
+    @invalid_company_ids.merge!(invalid_ids_from_last_update) do |_k, new_set, old_set|
+      new_set.merge(old_set)
+    end
+    save_ats_list(@invalid_company_ids, 'invalid_ids')
   end
 end

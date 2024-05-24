@@ -36,6 +36,7 @@ class JobApplicationsController < ApplicationController
             core_field: details["core_field"]
           )
         end
+        p job_application.application_responses
         job_application
       end
     else

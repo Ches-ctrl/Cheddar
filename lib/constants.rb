@@ -58,7 +58,8 @@ module Constants
     /hybrid/i,
     /emea/i,
     /location/i,
-    %r{\bn/?a\b}i
+    %r{\bn/?a\b}i,
+    %r{/}
   ]
 
   JOB_TITLE_KEYWORDS = [

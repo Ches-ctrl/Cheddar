@@ -70,16 +70,37 @@ module CheckUrlIsValid
     get(proxy_url)
   end
 
-  def get_json_data(api_url, use_proxy: false)
-    retries_left = 1
-    response = get(api_url)
-    return {} if response == "Not Found" # Workable 404 response
+  def get_json_data(api_url, max_retries = 2, use_proxy: false)
+    retries = 0
+    options = { headers: { 'Accept' => 'application/json' } }
+
+    sanitize_url(api_url)
 
     begin
-      JSON.parse(response)
+      response = HTTParty.get(api_url, options)
+      raise ExternalServerError, 'External server error' if response.code.to_s.starts_with?('5')
+
+      puts "RESPONSE CODE: #{response.code}" unless response.code == 200
+    rescue Net::OpenTimeout, ExternalServerError => e
+      if retries < max_retries
+        retries += 1
+        retry
+      else
+        puts "Connection to #{api_url} failed after #{retries} retries: #{e.message}"
+        return {}
+      end
+    rescue StandardError => e
+      puts "HTTParty threw an error of type #{e.class.name}"
+      puts e.message
+    end
+
+    return {} if response.code == 404 || response.body == "Not Found"
+
+    begin
+      JSON.parse(response.body)
     rescue JSON::ParserError => e
-      if use_proxy && retries_left.positive?
-        retries_left -= 1
+      if response.code == 429 && use_proxy && retries < max_retries
+        retries += 1
         response = get_with_proxy(api_url)
         retry
       else
@@ -87,6 +108,13 @@ module CheckUrlIsValid
         return {}
       end
     end
+  end
+
+  def sanitize_url(url)
+    uri = URI.parse(url)
+    raise ArgumentError, "Invalid URL scheme: #{uri.scheme}" unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
+
+    uri
   end
 
   def url_valid?(url)
