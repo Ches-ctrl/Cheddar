@@ -72,7 +72,6 @@ gem "cloudinary"
 
 # Admin
 gem 'avo'
-gem "rails_best_practices"
 
 # AI
 gem "ruby-openai"
@@ -153,6 +152,8 @@ group :development do
   # gem "spring"
 
   # gem "error_highlight", ">= 0.6.0", platforms: [:ruby]
+
+  gem "rails_best_practices"
 
   # ERD Generation
   gem 'rails-erd'
