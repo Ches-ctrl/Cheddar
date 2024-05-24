@@ -153,6 +153,9 @@ group :development do
   # gem "spring"
 
   # gem "error_highlight", ">= 0.6.0", platforms: [:ruby]
+
+  # ERD Generation
+  gem 'rails-erd'
 end
 
 group :test do
