@@ -4,7 +4,8 @@ class JobApplicationsController < ApplicationController
   # TODO: Fix issue with cookies where they are not removed when the user goes back to job_applications/new
 
   def index
-    @job_applications = JobApplication.all.where(user_id: current_user.id)
+    @job_applications = JobApplication.all.where(user_id: current_user.id, status: "Applied" || "Application pending")
+    @failed_applications = JobApplication.all.where(user_id: current_user.id, status: "Submission failed")
   end
 
   def show
@@ -65,8 +66,8 @@ class JobApplicationsController < ApplicationController
   end
 
   def process_application(job_application)
-    ApplyJob.perform_later(job_application.id, current_user.id)
     job_application.update(status: "Application pending")
+    ApplyJob.perform_later(job_application.id, current_user.id)
     user_saved_jobs = SavedJob.where(user_id: current_user.id)
     user_saved_jobs.find_by(job_id: job_application.job.id).destroy
     ActionCable.server.broadcast("job_applications_#{current_user.id}", {
@@ -92,6 +93,10 @@ class JobApplicationsController < ApplicationController
   # end
 
   def success
+  end
+
+  def manual_submission
+    @url = params[:url]
   end
 
   private

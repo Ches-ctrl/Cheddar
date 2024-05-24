@@ -12,9 +12,10 @@
         <%= render partial: 'jobs/basic_info', locals: { job: job } %>
       </div>
       <div class="d-flex flex-row justify-content-between align-items-center w-100">
+        <% include_checkboxes ||= false %>
         <%= render partial: 'jobs/climate_rating', locals: { job: job } %>
         <%= render partial: 'jobs/difficulty_rating', locals: { job: job } %>
-        <%= render partial: 'jobs/add_job_to_basket', locals: { job: job, saved_job_ids: @saved_job_ids } %>
+        <%= render partial: 'jobs/add_job_to_basket', locals: { job: job, saved_job_ids: @saved_job_ids, include_checkboxes: include_checkboxes } %>
       </div>
     </div>
   </div>
