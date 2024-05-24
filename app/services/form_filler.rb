@@ -7,13 +7,10 @@ class FormFiller
 
   # TODO: Handle job posting becoming closed (redirect or notification on page)
   # TODO: Review code for inefficient loops and potential optimisations
-  # TODO: Add ruby monitoring tools to monitor performance and execution
   # TODO: Implement caching for both user and form inputs. At the moment we request the database every time we want an input
   # TODO: Cache values at beginning of session and then update cache when user changes values
   # TODO: Enable multi-job application support in form_filler and cache before all applications are submitted
   # TODO: Restrict search to certain portions of the page
-
-  # Could we implement caching for form inputs? So once you've done it once it becomes less intensive
 
   def initialize(url, fields, job_application_id)
     @url = url
