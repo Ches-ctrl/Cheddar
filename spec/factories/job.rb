@@ -3,9 +3,9 @@ FactoryBot.define do
     title { Faker::Job.title }
     company { association :company }
     posting_url { Faker::Internet.url }
-    deadline { Date.today + 15.days }
+    # deadline { Date.today + 15.days }
     roles { Array.new(rand(1..3)) { association :role } }
-    application_criteria { {} }
+    # application_criteria { {} }
 
     trait :in_london do
       after(:create) do |job, _evaluator|
