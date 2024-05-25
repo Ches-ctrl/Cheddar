@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :requirement do
     job
-    work_eligibility { Faker::Boolean.boolean }
+    work_eligibility { [true, false].sample }
     # difficulty { %w[easy medium hard].sample }
     # no_of_qs { Faker::Number.between(from: 0, to: 30) }
     # create_account { Faker::Boolean.boolean }
