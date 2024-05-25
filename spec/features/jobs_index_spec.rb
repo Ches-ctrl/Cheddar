@@ -6,8 +6,8 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
   context "With jobs to display:", type: :feature, jobs_display: true do
     before do
       # RubyProf.start
-      # TODO: Mock API calls here so we can use Faker again
-      jobs = [
+      # TODO: This is still taking up a lot of time - refactor this to be more efficient
+      @jobs = [
         { trait: :entry_level_mobile, title: "Graduate Software Developer" },
         { trait: :junior_dev_ops, title: "Junior Test Developer" },
         { trait: :mid_level_data, title: "Data Analyst" },
@@ -16,7 +16,7 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
         { trait: nil, trait2: :in_london, title: "Ruby on Rails Developer" }
       ]
 
-      jobs.each do |job|
+      @jobs.each do |job|
         traits = [job[:trait], job[:trait2]].compact
         create(:job, *traits, title: job[:title])
       end
@@ -31,7 +31,7 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
 
     scenario "Displays all jobs" do
       expect(page).to have_content("Graduate Software Developer")
-      expect(page).to have_content("#{Job.all.count} jobs")
+      expect(page).to have_content("#{@jobs.size} jobs")
     end
 
     scenario 'User can query "Ruby on Rails" jobs' do
