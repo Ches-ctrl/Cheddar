@@ -36,6 +36,7 @@ if confirmation == 'y'
   Location.destroy_all
   puts "Deleted all locations."
   Country.destroy_all
+  puts "Deleted all countries."
   Role.destroy_all
   puts "Data deleted successfully!"
 else
