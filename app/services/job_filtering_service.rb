@@ -1,5 +1,6 @@
-# app/services/job_filtering_service.rb
 class JobFilteringService
+  # TODO: Combine with JobFilter
+
   def initialize(jobs, params)
     @jobs = jobs
     @params = params
