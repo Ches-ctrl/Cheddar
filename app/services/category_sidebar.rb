@@ -1,22 +1,24 @@
 class CategorySidebar
   include Constants::CategorySidebar
 
-  def self.build_with(params)
+  def initialize(jobs, params)
     @params = params
-    @jobs = Job.includes(:roles, :locations).select("jobs.id, jobs.date_posted, jobs.seniority, jobs.remote, jobs.employment_type")
+    @jobs = jobs
+    # @jobs = Job.includes(:roles, :locations).select("jobs.id, jobs.date_posted, jobs.seniority, jobs.remote, jobs.employment_type")
+  end
+
+  def build
     [fetch_sidebar_data, @jobs.size]
   end
 
   private
 
-  # TODO: Remove repetitions of private_class_method (can we added at the bottom with keys)
-
-  private_class_method def self.fetch_sidebar_data
+  def fetch_sidebar_data
     initialize_category_hashes
     build_resources_hash
   end
 
-  private_class_method def self.initialize_category_hashes
+  def initialize_category_hashes
     @date_cutoffs = CONVERT_TO_DAYS.transform_values { |v| v.days.ago.beginning_of_day }
     @jobs_with_any_posted = @jobs.including_any(@params, :posted)
     @jobs_with_any_seniority = @jobs.including_any(@params, :seniority)
@@ -28,7 +30,7 @@ class CategorySidebar
     @jobs_with_any_type = @jobs.including_any(@params, :type)
   end
 
-  private_class_method def self.build_resources_hash
+  def build_resources_hash
     @resources = {}
     build_posted_array
     build_seniority_array
@@ -38,7 +40,7 @@ class CategorySidebar
     @resources
   end
 
-  private_class_method def self.build_posted_array
+  def build_posted_array
     @resources['posted'] = @date_cutoffs.map do |period, cutoff|
       period_id = period.downcase.gsub(/last |within a /, '').gsub(' ', '-')
       [
@@ -51,7 +53,7 @@ class CategorySidebar
     end.compact
   end
 
-  private_class_method def self.build_seniority_array
+  def build_seniority_array
     @resources['seniority'] = SENIORITIES.map do |seniority|
       seniority_id = seniority.downcase.split.first
       count = @jobs_with_any_seniority.where(seniority:).size
@@ -67,7 +69,7 @@ class CategorySidebar
     end.compact
   end
 
-  private_class_method def self.build_location_array
+  def build_location_array
     locations = Location.joins(:country).select("locations.city AS city, locations.country_id, countries.name AS country_name").map do |location|
       city = location.city
       country = location.country_name
@@ -94,7 +96,7 @@ class CategorySidebar
     @resources['location'] = locations.sort_by { |_, _, _, count, _| -count }.take(10)
   end
 
-  private_class_method def self.build_role_array
+  def build_role_array
     @resources['role'] = ROLES.map do |role_id, role|
       count = @jobs_with_any_role.joins(jobs_roles: :role)
                                  .where("roles.name = ?", role_id)
@@ -111,7 +113,7 @@ class CategorySidebar
     end.compact
   end
 
-  private_class_method def self.build_type_array
+  def build_type_array
     @resources['type'] = EMPLOYMENT_TYPES.map do |type|
       count = @jobs_with_any_type.where(employment_type: type).size
       next if count.zero?
