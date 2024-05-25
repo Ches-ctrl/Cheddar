@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :company do
     sequence(:name) { |n| "#{Faker::Company.name} #{n}" }
-    ats_identifier { Faker::Alphanumeric.unique.alphanumeric(number: 10) }
+    ats_identifier { SecureRandom.alphanumeric(10) }
   end
 end
