@@ -38,25 +38,39 @@ class Company < ApplicationRecord
 
   private
 
+  # TODO: Have identified these as the primary drivers of slow test speed due to API calls. Need to decide on next steps.
+  # TODO: This is a very hacky temporary solution to speed up tests. Need to fix this
+
   def set_website_url
     return if url_website.present?
 
-    clearbit_company_info = CompanyDomainService.lookup_domain(name)
-    self.url_website = clearbit_company_info['domain'] if clearbit_company_info && clearbit_company_info['domain'].present?
+    if Rails.env.production?
+      clearbit_company_info = CompanyDomainService.lookup_domain(name)
+      self.url_website = clearbit_company_info['domain'] if clearbit_company_info && clearbit_company_info['domain'].present?
+    else
+      self.url_website = "https://www.example.com"
+    end
   end
 
   def fetch_description
-    inferred_description, @name_keywords = CompanyDescriptionService.lookup_company(name, ats_identifier)
-
-    self.description = inferred_description if description.blank?
+    if Rails.env.production?
+      inferred_description, @name_keywords = CompanyDescriptionService.lookup_company(name, ats_identifier)
+      self.description = inferred_description if description.blank?
+    else
+      self.description = "A financial services company."
+    end
   end
 
   def fetch_industry
     return unless industry == 'n/a'
 
-    industry, subcategory = CompanyIndustryService.lookup_industry(name, @name_keywords)
-
-    self.industry = industry
-    self.sub_industry = subcategory
+    if Rails.env.production?
+      industry, subcategory = CompanyIndustryService.lookup_industry(name, @name_keywords)
+      self.industry = industry
+      self.sub_industry = subcategory
+    else
+      self.industry = "Finance"
+      self.sub_industry = "Banking"
+    end
   end
 end
