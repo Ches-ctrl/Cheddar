@@ -7,13 +7,17 @@ class JobsController < ApplicationController
   before_action :set_saved_jobs, only: [:index]
   before_action :set_job_applications, only: [:index]
 
-  def index
-    @jobs = Job.filter_and_sort(params)
-               .includes(associated_tables)
-               .order(sort_order(params[:sort]))
-               .page(params[:page]).per(20)
+  # TODO: Sort in filter
 
-    @resources, @total_jobs = CategorySidebar.new(params).build
+  def index
+    filtered_jobs = JobFilter.new(params).filter_and_sort
+
+    @jobs = filtered_jobs.includes(associated_tables)
+                         .order(sort_order(params[:sort]))
+                         .page(params[:page])
+                         .per(20)
+
+    @resources, @total_jobs = CategorySidebar.new(filtered_jobs, params).build
   end
 
   def show

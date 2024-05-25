@@ -51,64 +51,9 @@ class Job < ApplicationRecord
   after_create :set_date_created, :update_requirements, :standardize_attributes
 
   # == Class Methods ========================================================
-  def self.filter_and_sort(params)
-    filters = {
-      date_posted: filter_by_when_posted(params[:posted]),
-      seniority: filter_by_seniority(params[:seniority]),
-      locations: filter_by_location(params[:location]),
-      roles: filter_by_role(params[:role]),
-      employment_type: filter_by_employment(params[:type])
-    }.compact
-
-    associations = build_associations(params)
-    jobs = left_joins(associations).where(filters)
-    params[:query].present? ? jobs.search_job(params[:query]) : jobs
-  end
-
   def self.including_any(params, param)
-    filter_and_sort params.except(param)
+    JobFilter.new(params.except(param)).filter_and_sort
   end
-
-  # == Class Methods (Private) ==============================================
-  def self.build_associations(params)
-    associations = []
-    associations << :company if params.include?(:company)
-    associations << :locations if params.include?(:location)
-    associations << :roles if params.include?(:role)
-    return associations
-  end
-
-  def self.filter_by_when_posted(param)
-    return unless param.present?
-
-    number = Constants::DateConversion::CONVERT_TO_DAYS[param] || 99_999
-    number.days.ago..Date.today
-  end
-
-  def self.filter_by_location(param)
-    return unless param.present?
-
-    locations = param.split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') unless location == 'remote' }
-    { city: locations }
-  end
-
-  def self.filter_by_role(param)
-    { name: param.split } if param.present?
-  end
-
-  def self.filter_by_seniority(param)
-    return unless param.present?
-
-    param.split.map { |seniority| seniority.split('-').map(&:capitalize).join('-') }
-  end
-
-  def self.filter_by_employment(param)
-    return unless param.present?
-
-    param.split.map { |employment| employment.gsub('_', '-').capitalize }
-  end
-
-  private_class_method :build_associations, :filter_by_when_posted, :filter_by_location, :filter_by_role, :filter_by_seniority, :filter_by_employment
 
   # == Instance Methods =====================================================
   def application_criteria

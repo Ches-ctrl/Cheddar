@@ -1,8 +1,13 @@
 class CategorySidebar
   include Constants::CategorySidebar
 
-  def initialize(params)
+  def initialize(filtered_jobs, params)
     @params = params
+
+    # Leaving this here as presumably we need to pass the sorted jobs to the sidebar?
+    @filtered_jobs = filtered_jobs
+
+    # Why are we doing a new Job.includes query here after the job filtering process?
     @jobs = Job.includes(:roles, :locations).select("jobs.id, jobs.date_posted, jobs.seniority, jobs.remote, jobs.employment_type")
   end
 

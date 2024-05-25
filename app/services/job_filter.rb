@@ -1,12 +1,18 @@
 class JobFilter
-  def initialize(params)
-    p "hello filter"
-    @jobs = Job.all
+  def initialize(params, scope = Job.all)
+    @jobs = scope
     @params = params
   end
 
   def filter_and_sort
-    p "hello filter and sort"
+    jobs = @jobs
+    jobs = apply_filters(jobs)
+    apply_search(jobs)
+  end
+
+  private
+
+  def apply_filters(jobs)
     filters = {
       date_posted: filter_by_when_posted(@params[:posted]),
       seniority: filter_by_seniority(@params[:seniority]),
@@ -16,11 +22,8 @@ class JobFilter
     }.compact
 
     associations = build_associations
-    jobs = @jobs.left_joins(associations).where(filters)
-    @params[:query].present? ? jobs.search_job(@params[:query]) : jobs
+    jobs.left_joins(associations).where(filters)
   end
-
-  private
 
   def build_associations
     associations = []
@@ -28,6 +31,12 @@ class JobFilter
     associations << :locations if @params.include?(:location)
     associations << :roles if @params.include?(:role)
     associations
+  end
+
+  def apply_search(jobs)
+    return jobs unless @params[:query].present?
+
+    jobs.search_job(@params[:query])
   end
 
   def filter_by_when_posted(param)
