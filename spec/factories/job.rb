@@ -8,9 +8,9 @@ FactoryBot.define do
     application_criteria { {} }
 
     trait :in_london do
-      after(:create) do |job, evaluator|
+      after(:create) do |job, _evaluator|
         london = Location.find_by(city: 'London') || create(:location, city: 'London')
-        create(:jobs_location, job: job, location: london)
+        create(:jobs_location, job:, location: london)
       end
     end
 
