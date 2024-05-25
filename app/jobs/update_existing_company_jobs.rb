@@ -1,5 +1,6 @@
 class UpdateExistingCompanyJobs < ApplicationJob
   include CompanyCsv
+  sidekiq_options retry: false
 
   # Why do we get all the job urls?
   # Wouldn't the best approach here be to create a csv with all the company data from the respective APIs
