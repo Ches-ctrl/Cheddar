@@ -1,10 +1,9 @@
 class CategorySidebar
   include Constants::CategorySidebar
 
-  def initialize(jobs, params)
+  def initialize(params)
     @params = params
-    @jobs = jobs
-    # @jobs = Job.includes(:roles, :locations).select("jobs.id, jobs.date_posted, jobs.seniority, jobs.remote, jobs.employment_type")
+    @jobs = Job.includes(:roles, :locations).select("jobs.id, jobs.date_posted, jobs.seniority, jobs.remote, jobs.employment_type")
   end
 
   def build

@@ -13,7 +13,7 @@ class JobsController < ApplicationController
                .order(sort_order(params[:sort]))
                .page(params[:page]).per(20)
 
-    @resources, @total_jobs = CategorySidebar.build_with(params)
+    @resources, @total_jobs = CategorySidebar.new(params).build
   end
 
   def show
