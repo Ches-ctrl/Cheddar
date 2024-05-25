@@ -15,7 +15,7 @@ class ImportCompaniesFromList
 
   def call
     @urls.each do |url|
-      ats, company, job = CreateJobFromUrl.new(url).create_company_then_job
+      ats, company, job = Url::CreateJobFromUrl.new(url).create_company_then_job
       @companies[ats.name] << company.ats_identifier
       puts "Unable to create job with: #{url}" unless company && job
     end
