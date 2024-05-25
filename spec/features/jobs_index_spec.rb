@@ -21,8 +21,13 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
       end
       result = RubyProf.stop
 
-      printer = RubyProf::FlatPrinter.new(result)
-      printer.print($stdout)
+      printer = RubyProf::GraphHtmlPrinter.new(result)
+      File.open("profile.html", "w") do |file|
+        printer.print(file)
+      end
+
+      # printer = RubyProf::FlatPrinter.new(result)
+      # printer.print($stdout)
       visit jobs_path
     end
 
