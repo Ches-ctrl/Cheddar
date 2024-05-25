@@ -3,8 +3,8 @@ FactoryBot.define do
     sequence(:title) { |n| "Title-#{n}" }
     company { association :company }
     sequence(:posting_url) { |n| "https://www.example-#{n}.com/jobs/1" }
-    # deadline { Date.today + 15.days }
     roles { Array.new(rand(1..3)) { association :role } }
+    # deadline { Date.today + 15.days }
     # application_criteria { {} }
 
     trait :in_london do

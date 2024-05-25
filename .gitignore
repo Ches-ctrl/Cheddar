@@ -51,3 +51,6 @@
 
 # ignore .jar files
 *.jar
+
+# Ignore ruby-prof output
+profile.html
