@@ -429,6 +429,7 @@ GEM
       event_stream_parser (>= 0.3.0, < 2.0.0)
       faraday (>= 1)
       faraday-multipart (>= 1)
+    ruby-prof (1.7.0)
     ruby-progressbar (1.13.0)
     ruby_http_client (3.5.5)
     rubyzip (2.3.2)
@@ -577,6 +578,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   ruby-openai
+  ruby-prof
   sassc-rails
   selenium-webdriver (~> 4.18.1)
   sendgrid-ruby
@@ -600,4 +602,4 @@ RUBY VERSION
    ruby 3.1.3p185
 
 BUNDLED WITH
-   2.5.6
+   2.5.10

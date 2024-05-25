@@ -123,9 +123,11 @@ group :development, :test do
   gem "debug", platforms: %i[mri windows]
   gem "faker"
   gem 'rspec-rails', '~> 6.1.0'
+  # gem 'rspec-benchmark' # Additional gem for benchmarking tests
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'ruby-prof'
   # gem 'parallel_tests' # TODO: install this gem for parallel testing
 
   # Security
