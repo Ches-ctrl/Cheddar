@@ -1,9 +1,14 @@
 class Job < ApplicationRecord
+  # == Constants ============================================================
   include PgSearch::Model
   include Constants::DateConversion
 
+  # == Attributes ===========================================================
+
+  # == Extensions ===========================================================
   serialize :application_criteria, coder: JSON
 
+  # == Relationships ========================================================
   belongs_to :company
   belongs_to :applicant_tracking_system, optional: true # TODO: remove optional
 
@@ -24,13 +29,13 @@ class Job < ApplicationRecord
   has_many :jobs_roles, dependent: :destroy
   has_many :roles, through: :jobs_roles
 
-  after_create :set_date_created, :update_requirements, :standardize_attributes
-
+  # == Validations ==========================================================
   validates :posting_url, uniqueness: true, presence: true
   validates :title, presence: true
 
   validate :safe_posting_url
 
+  # == Scopes ===============================================================
   pg_search_scope :search_job,
                   against: %i[title salary description],
                   associated_against: {
@@ -42,40 +47,10 @@ class Job < ApplicationRecord
                     tsearch: { prefix: true } # allow partial search
                   }
 
-  def application_criteria
-    return [] if read_attribute(:application_criteria).nil?
+  # == Callbacks ============================================================
+  after_create :set_date_created, :update_requirements, :standardize_attributes
 
-    read_attribute(:application_criteria).with_indifferent_access
-  end
-
-  private
-
-  def set_date_created
-    self.date_posted ||= Date.today
-  end
-
-  def update_requirements
-    requirement = Requirement.create(job: self)
-    requirement.no_of_qs = application_criteria.size
-  end
-
-  def standardize_attributes
-    Standardizer::JobStandardizer.new(self).standardize
-  end
-
-  def safe_posting_url
-    uri = URI.parse(posting_url)
-    errors.add(:posting_url, "is not a valid HTTP/HTTPS URL") unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
-  rescue URI::InvalidURIError
-    errors.add(:posting_url, "is invalid")
-  end
-
-  public
-
-  # ---------------------
-  # Class Methods
-  # ---------------------
-
+  # == Class Methods ========================================================
   def self.filter_and_sort(params)
     filters = {
       date_posted: filter_by_when_posted(params[:posted]),
@@ -94,10 +69,7 @@ class Job < ApplicationRecord
     filter_and_sort params.except(param)
   end
 
-  # ---------------------
-  # Private Class Methods
-  # ---------------------
-
+  # == Class Methods (Private) ==============================================
   def self.build_associations(params)
     associations = []
     associations << :company if params.include?(:company)
@@ -137,4 +109,33 @@ class Job < ApplicationRecord
   end
 
   private_class_method :build_associations, :filter_by_when_posted, :filter_by_location, :filter_by_role, :filter_by_seniority, :filter_by_employment
+
+  # == Instance Methods =====================================================
+  def application_criteria
+    return [] if read_attribute(:application_criteria).nil?
+
+    read_attribute(:application_criteria).with_indifferent_access
+  end
+
+  private
+
+  def set_date_created
+    self.date_posted ||= Date.today
+  end
+
+  def update_requirements
+    requirement = Requirement.create(job: self)
+    requirement.no_of_qs = application_criteria.size
+  end
+
+  def standardize_attributes
+    Standardizer::JobStandardizer.new(self).standardize
+  end
+
+  def safe_posting_url
+    uri = URI.parse(posting_url)
+    errors.add(:posting_url, "is not a valid HTTP/HTTPS URL") unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
+  rescue URI::InvalidURIError
+    errors.add(:posting_url, "is invalid")
+  end
 end
