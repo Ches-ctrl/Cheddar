@@ -11,6 +11,79 @@ module Constants
     }
   end
 
+  module CategorySidebar
+    SENIORITIES = [
+      'Spring Week',
+      'Internship',
+      'Entry-Level',
+      'Junior',
+      'Mid-Level',
+      'Senior',
+      'Director',
+      'VP',
+      'SVP / Partner'
+    ]
+
+    ROLES = {
+      'front_end' => 'Front End',
+      'back_end' => 'Back End',
+      'full_stack' => 'Full Stack',
+      'dev_ops' => 'Dev Ops',
+      'qa_test_engineer' => 'QA/Test Engineer',
+      'mobile' => 'Mobile',
+      'data_engineer' => 'Data Engineer'
+    }
+
+    EMPLOYMENT_TYPES = [
+      'Full-time',
+      'Permanent',
+      'Contract',
+      'Part-time'
+    ]
+
+    CONVERT_TO_DAYS = {
+      'Any time' => 99_999,
+      'Within a month' => 30,
+      'Within a week' => 7,
+      'Last 3 days' => 3,
+      'Today' => 0
+    }
+
+    # TODO: Decide on what business type/size cuts we want
+    BUSINESS_TYPES = [
+      'Startup',
+      'Scale-up',
+      'Boutique',
+      'SME',
+      'Corporate',
+      'Non-profit',
+      'Charity',
+      'Public Sector',
+      'NGO',
+      'FTSE100',
+      'FTSE250',
+      'Fortune 500',
+      'Unicorn',
+      'Decacorn',
+      'Family Business',
+      'Academic'
+    ]
+
+    # TODO: Decide if we want to include this
+    HORIZONTALS = [
+      'Sustainability',
+      'Finance',
+      'HR',
+      'Legal',
+      'Marketing',
+      'Operations',
+      'Product',
+      'Sales',
+      'Tech',
+      'Other'
+    ]
+  end
+
   SENIORITY_TITLES = {
     /staff/i => 'Senior',
     /principal/i => 'Senior',
