@@ -4,6 +4,7 @@ require 'rails_helper'
 RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
   context "With jobs to display:", type: :feature, jobs_display: true do
     before do
+      # TODO: Is this slow because we call external APIs everytime we're creating jobs?
       jobs = [
         { trait: :entry_level_mobile, title: "Graduate Software Developer" },
         { trait: :junior_dev_ops, title: "Junior Test Developer" },
