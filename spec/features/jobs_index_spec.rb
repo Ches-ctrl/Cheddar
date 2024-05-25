@@ -5,8 +5,8 @@ require 'ruby-prof'
 RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
   context "With jobs to display:", type: :feature, jobs_display: true do
     before do
-      RubyProf.start
-      # TODO: Is this slow because we call external APIs everytime we're creating jobs?
+      # RubyProf.start
+      # TODO: Mock API calls here so we can use Faker again
       jobs = [
         { trait: :entry_level_mobile, title: "Graduate Software Developer" },
         { trait: :junior_dev_ops, title: "Junior Test Developer" },
@@ -15,19 +15,17 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
         { trait: :ruby_front_end, trait2: :in_london, title: "Frontend Developer" },
         { trait: nil, trait2: :in_london, title: "Ruby on Rails Developer" }
       ]
+
       jobs.each do |job|
         traits = [job[:trait], job[:trait2]].compact
         create(:job, *traits, title: job[:title])
       end
-      result = RubyProf.stop
+      # result = RubyProf.stop
 
-      printer = RubyProf::GraphHtmlPrinter.new(result)
-      File.open("profile.html", "w") do |file|
-        printer.print(file)
-      end
-
-      # printer = RubyProf::FlatPrinter.new(result)
-      # printer.print($stdout)
+      # printer = RubyProf::GraphHtmlPrinter.new(result)
+      # File.open("profile.html", "w") do |file|
+      #   printer.print(file)
+      # end
       visit jobs_path
     end
 
