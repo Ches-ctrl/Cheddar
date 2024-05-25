@@ -1,5 +1,5 @@
 module Constants
-  # TODO: refactor all these constants into sub-modules?
+  # TODO: refactor all these constants into sub-modules? Seems like rails convention may be to have this in a yaml file so TBD structure
 
   module DateConversion
     CONVERT_TO_DAYS = {
