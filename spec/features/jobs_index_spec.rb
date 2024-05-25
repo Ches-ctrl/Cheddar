@@ -2,7 +2,7 @@ require 'rails_helper'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
-  context "With jobs to display:" do
+  context "With jobs to display:", type: :feature, jobs_display: true do
     before do
       jobs = [
         { trait: :entry_level_mobile, title: "Graduate Software Developer" },
@@ -92,7 +92,7 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
     end
   end
 
-  context "With a user logged in:" do
+  context "With a user logged in:", type: :feature, logged_in: true do
     before do
       user = create(:user)
       create_list(:job, 5)
@@ -113,6 +113,18 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
       sleep(0.5)
 
       expect(SavedJob.all.count).to eq(1)
+    end
+  end
+
+  context "Without a user logged in:", type: :feature, logged_out: true do
+    before do
+      create_list(:job, 5)
+      visit jobs_path
+    end
+
+    scenario "User cannot save and unsave jobs without logging in" do
+      expect(page).not_to have_selector('i.fa-regular.fa-bookmark')
+      expect(SavedJob.all.count).to eq(0)
     end
   end
 end
