@@ -8,7 +8,7 @@ module Constants
       'week' => 7,
       'month' => 30,
       'any-time' => 99_999
-    }
+    }.freeze
   end
 
   module CategorySidebar
@@ -22,7 +22,7 @@ module Constants
       'Director',
       'VP',
       'SVP / Partner'
-    ]
+    ].freeze
 
     ROLES = {
       'front_end' => 'Front End',
@@ -32,14 +32,14 @@ module Constants
       'qa_test_engineer' => 'QA/Test Engineer',
       'mobile' => 'Mobile',
       'data_engineer' => 'Data Engineer'
-    }
+    }.freeze
 
     EMPLOYMENT_TYPES = [
       'Full-time',
       'Permanent',
       'Contract',
       'Part-time'
-    ]
+    ].freeze
 
     CONVERT_TO_DAYS = {
       'Any time' => 99_999,
@@ -47,7 +47,7 @@ module Constants
       'Within a week' => 7,
       'Last 3 days' => 3,
       'Today' => 0
-    }
+    }.freeze
 
     # TODO: Decide on what business type/size cuts we want
     BUSINESS_TYPES = [
@@ -67,7 +67,7 @@ module Constants
       'Decacorn',
       'Family Business',
       'Academic'
-    ]
+    ].freeze
 
     # TODO: Decide if we want to include this
     HORIZONTALS = [
@@ -81,7 +81,7 @@ module Constants
       'Sales',
       'Tech',
       'Other'
-    ]
+    ].freeze
   end
 
   SENIORITY_TITLES = {
@@ -101,7 +101,7 @@ module Constants
     /[gG]raduate/i => 'Entry-Level',
     /[gG]rad/i => 'Entry-Level',
     /[iI]ntern/i => 'Internship'
-  }
+  }.freeze
 
   SENIORITY_DESCRIPTORS = {
     /track record of/ => 'Junior',
@@ -114,7 +114,7 @@ module Constants
     /extensive experience(?!\s*(?:.{0,40}not\s+(?:essential|required)))/ => 'Senior',
     /(seasoned|senior).{0,28} (developer|engineer)/ => 'Senior',
     /expert\b/ => 'Senior'
-  }
+  }.freeze
 
   JOB_LOCATION_KEYWORDS = [
     /remote/,
@@ -124,7 +124,7 @@ module Constants
     /britain/,
     /\buk\b/,
     /\bemea\b/
-  ]
+  ].freeze
 
   JOB_LOCATION_FILTER_WORDS = [
     /(full.)?remote/i,
@@ -133,7 +133,7 @@ module Constants
     /location/i,
     %r{\bn/?a\b}i,
     %r{/}
-  ]
+  ].freeze
 
   JOB_TITLE_KEYWORDS = [
     /front.?end/,
@@ -219,7 +219,7 @@ module Constants
     /linux/,
     /unix/,
     /\btcp\b/
-  ]
+  ].freeze
 
   CURRENCY_CONVERTER = {
     '$' => ['$', ' USD'],
@@ -232,11 +232,11 @@ module Constants
     'aud' => ['$', ' AUD'],
     'gbp' => ['£', ' GBP'],
     'eur' => ['€', ' EUR']
-  }
+  }.freeze
 
   HIRING_MODES = [
     'Milkround',
     'Structured',
     'Ad-hoc'
-  ]
+  ].freeze
 end
