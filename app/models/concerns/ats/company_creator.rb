@@ -1,6 +1,7 @@
 module Ats
   module CompanyCreator
     extend ActiveSupport::Concern
+    # TODO: Refactor this to simplify down
 
     def find_or_create_company_by_data(data)
       ats_identifier = fetch_company_id(data)

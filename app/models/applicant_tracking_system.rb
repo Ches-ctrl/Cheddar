@@ -33,6 +33,11 @@ class ApplicantTrackingSystem < ApplicationRecord
   end
 
   # == Instance Methods =====================================================
+
+  # -----------------------
+  # Include relevant modules
+  # -----------------------
+
   def include_modules
     return unless name
 
