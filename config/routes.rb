@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   post '/chatbot/chat', to: 'messages#chat'
 
   # Resources
-  resources :jobs, only: [:index, :show, :create] do
+  resources :jobs, only: %i[index show create] do
     resources :saved_jobs, only: [:create]
     collection do
       post :apply_to_selected_jobs, as: :apply
@@ -51,14 +51,14 @@ Rails.application.routes.draw do
     resources :job_applications, only: [:create]
   end
 
-  resources :companies, only: [:index, :show]
-  resources :job_applications, only: [:index, :show, :new, :success, :create] do
+  resources :companies, only: %i[index show]
+  resources :job_applications, only: %i[index show new success create] do
     member do
       get :status
     end
   end
 
   resources :emails, only: [:create]
-  resources :saved_jobs, only: [:index, :show, :destroy]
-  resources :educations, only: [:new, :create]
+  resources :saved_jobs, only: %i[index show destroy]
+  resources :educations, only: %i[new create]
 end
