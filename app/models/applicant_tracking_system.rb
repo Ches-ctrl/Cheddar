@@ -1,14 +1,30 @@
 class ApplicantTrackingSystem < ApplicationRecord
+  # == Constants ============================================================
   include CheckUrlIsValid
   include AtsSystemParser
   include AtsRouter
 
+  # == Attributes ===========================================================
+
+  # == Extensions ===========================================================
+
+  # == Relationships ========================================================
   has_many :companies
   has_many :jobs, dependent: :destroy
 
+  # == Validations ==========================================================
   validates :name, presence: true, uniqueness: true
 
+  # == Scopes ===============================================================
+
+  # == Callbacks ============================================================
   after_initialize :include_modules
+
+  # == Class Methods ========================================================
+
+  # == Instance Methods =====================================================
+
+  # TODO: Refactor this model according to best practice. At the moment it is a bit of a mess.
 
   # -----------------------
   # Modules
