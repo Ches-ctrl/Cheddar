@@ -21,5 +21,12 @@ module Ats
       end
       nil
     end
+
+    def replace_ats_identifier(ats_identifier)
+      api_url = url_api.gsub("XXX", ats_identifier)
+      main_url = url_base.gsub("XXX", ats_identifier)
+
+      [api_url, main_url]
+    end
   end
 end
