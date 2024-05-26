@@ -25,9 +25,8 @@
             <h2 class="mb-0 mt-4"><%= @company.name %></h2>
             <%# Add a tagline/short summary of info under company name? %>
           </div>
-            <ul class="mb-0">
-              <%= render 'company_links', company: @company %>
-            </ul>
+          <ul class="mb-0">
+            <%= render 'company_links', company: @company %>
           </ul>
         </div>
         <%# TODO: Setup Glassdoor & Trustpilot APIs %>
