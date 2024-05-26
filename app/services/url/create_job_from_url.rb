@@ -15,6 +15,7 @@ module Url
       # ---------------
 
       ats, company, job_id = Url::CreateCompanyFromUrl.new(@url).create_company
+
       return handle_unparseable unless ats
       return nil unless job_id
 
