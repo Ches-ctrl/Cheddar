@@ -3,6 +3,7 @@ module Updater
     # NB. Not tested yet
     # Does all jobs at the moment
     # TODO: set up a cron job to run this every day?
+    # TODO: delete this as may be covered by update_existing_company_jobs.rb?
 
     # Pseudocode:
     # 1. For each job in the database, get the posting_url
