@@ -1,12 +1,13 @@
 module Api
+  # This class is responsible for importing jobs from DevITJobs
+  # API Endpoint: https://devitjobs.uk/api/jobsLight
+  # To use this: rake admin:devitjobs
+  #
   class DevitJobs < ApplicationService
     include Capybara::DSL
     include CheckUrlIsValid
 
     # TODO: Move this all into a separate importer folder (with subfolders?) and refactor?
-
-    # API Endpoint: https://devitjobs.uk/api/jobsLight
-    # To use this: rake admin:devitjobs
 
     def import_jobs
       return p "Unable to scrape DevITJobs: first create ATS" unless (@ats = ApplicantTrackingSystem.find_by(name: 'DevITJobs'))
