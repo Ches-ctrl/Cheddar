@@ -1,7 +1,4 @@
 class ApplyJob < ApplicationJob
-  include Defaults::DefaultMale
-  include Defaults::DefaultFemale
-
   queue_as :default
   sidekiq_options retry: false
 
