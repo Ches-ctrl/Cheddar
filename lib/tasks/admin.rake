@@ -10,17 +10,17 @@ namespace :admin do
   end
 
   desc "Pull data from DevItJobs API"
-  task devitjobs_api_pull: :environment do
-    Api::DevitJobsJob.new.perform
+  task devitjobs: :environment do
+    Api::DevitJobs.new.import_jobs
   end
 
   desc "True up scraper"
   task scrape_true_up: :environment do
-    ScrapeTrueUpJob.new.perform
+    ScrapeTrueUp.new.perform
   end
 
   desc "Import XML from Workable"
   task import_workable_xml: :environment do
-    Xml::WorkableJob.new.perform
+    Xml::Workable.new.perform
   end
 end

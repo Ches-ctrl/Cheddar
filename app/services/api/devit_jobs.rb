@@ -3,9 +3,12 @@ module Api
     include Capybara::DSL
     include CheckUrlIsValid
 
-    # TODO: Move this into a separate API folder as no longer scraping
+    # TODO: Move this all into a separate importer folder (with subfolders?) and refactor?
 
-    def scrape_page
+    # API Endpoint: https://devitjobs.uk/api/jobsLight
+    # To use this: rake admin:devitjobs
+
+    def import_jobs
       return p "Unable to scrape DevITJobs: first create ATS" unless (@ats = ApplicantTrackingSystem.find_by(name: 'DevITJobs'))
 
       @redirect_urls = []
