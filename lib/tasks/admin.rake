@@ -21,6 +21,6 @@ namespace :admin do
 
   desc "Import XML from Workable"
   task import_workable_xml: :environment do
-    Xml::Workable.new.perform
+    Importer::Xml::Workable.new.perform
   end
 end
