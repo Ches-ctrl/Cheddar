@@ -11,7 +11,7 @@ module Applier
       application_criteria = assign_values_to_form(application, user)
       fields_to_fill = application_criteria
 
-      form_filler = FormFiller.new(job.posting_url, fields_to_fill, job_application_id)
+      form_filler = Applier::FormFiller.new(job.posting_url, fields_to_fill, job_application_id)
       result = form_filler.fill_out_form
 
       user_channel_name = "job_applications_#{user.id}"
