@@ -4,6 +4,7 @@ class ScrapeTrueUpJob < ApplicationJob
   include CheckUrlIsValid
 
   # TODO: Move into the scraper folder
+  # TODO: Refactor this as can be improved and use standard scraping classes
 
   NUMBER_OF_RESULT_PAGES = 70
 
