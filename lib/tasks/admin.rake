@@ -11,7 +11,7 @@ namespace :admin do
 
   desc "Pull data from DevItJobs API"
   task devitjobs_api_pull: :environment do
-    Scraper::DevItJob.new.perform
+    Scraper::DevitJobsJob.new.perform
   end
 
   desc "True up scraper"

@@ -1,10 +1,10 @@
 module Scraper
-  class DevitJob < ApplicationJob
+  class DevitJobsJob < ApplicationJob
     queue_as :updates
     sidekiq_options retry: false
 
     def perform
-      Scraper::DevitJobsService.new.scrape_page
+      Scraper::DevitJobs.new.scrape_page
     end
   end
 end

@@ -18,7 +18,7 @@
       queue: updates
     devitjobs_api_pull:
       cron: '0 2 * * *' # Runs once per day (at 2 am)
-      class: Scraper::DevitJob
+      class: Scraper::DevitJobsJob
       queue: updates
     # true_up_scraper: # off for now as we have already pulled all the ATS identifiers
     #   cron: '0 2 * * *' # Runs once per day (at 2 am)
