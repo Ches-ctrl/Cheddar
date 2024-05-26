@@ -1,4 +1,4 @@
-RSpec.describe Scraper::DevitJobsService do
+RSpec.describe Scraper::DevitJobs do
   describe "DevItJobs Integration" do
     pending "add some examples (or delete) #{__FILE__}"
   end
