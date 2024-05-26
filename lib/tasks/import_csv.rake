@@ -8,7 +8,7 @@ namespace :import_csv do
   desc "Import CSV - Applicant Tracking Systems"
   task applicant_tracking_systems: :environment do
     ats_csv = 'storage/csv/ats_systems.csv'
-    AtsBuilder.new(ats_csv).build
+    Builders::AtsBuilder.new(ats_csv).build
     puts ApplicantTrackingSystem.count
   end
 
@@ -86,7 +86,7 @@ namespace :import_csv do
   desc "Import CSV - Users"
   task users: :environment do
     user_csv = 'storage/csv/sample_users.csv'
-    UserBuilder.new(user_csv).build
+    Builders::UserBuilder.new(user_csv).build
     puts User.count
   end
 end

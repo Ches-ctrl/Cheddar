@@ -22,7 +22,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
       allow($stdout).to receive(:write) # suppresses terminal clutter
 
       ats_csv = 'storage/csv/ats_systems.csv'
-      AtsBuilder.new(ats_csv).build
+      Builders::AtsBuilder.new(ats_csv).build
       @ashbyhq = ApplicantTrackingSystem.find_by(name: 'AshbyHQ')
       @bamboohr = ApplicantTrackingSystem.find_by(name: 'BambooHR')
       @gh = ApplicantTrackingSystem.find_by(name: 'Greenhouse')

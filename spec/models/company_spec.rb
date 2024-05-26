@@ -16,7 +16,7 @@ RSpec.describe Company do
       allow($stdout).to receive(:write) # suppresses terminal clutter
 
       ats_csv = 'storage/csv/ats_systems.csv'
-      AtsBuilder.new(ats_csv).build
+      Builders::AtsBuilder.new(ats_csv).build
     end
 
     COMPANIES.each do |ats_name, ats_id|
