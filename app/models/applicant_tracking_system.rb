@@ -21,6 +21,14 @@ class ApplicantTrackingSystem < ApplicationRecord
   after_initialize :include_modules
 
   # == Class Methods ========================================================
+  def self.determine_ats(url)
+    name = ATS_SYSTEM_PARSER.find { |regex, ats_name| break ats_name if url.match?(regex) }
+    return ApplicantTrackingSystem.find_by(name:)
+  end
+
+  def self.check_ats
+    # TODO: Check if company is still hosted by an ATS or has moved provider (this actually may want to sit in CheckUrlIsValid)
+  end
 
   # == Instance Methods =====================================================
 
@@ -59,15 +67,6 @@ class ApplicantTrackingSystem < ApplicationRecord
   # -----------------------
   # ATS Router
   # -----------------------
-
-  def self.determine_ats(url)
-    name = ATS_SYSTEM_PARSER.find { |regex, ats_name| break ats_name if url.match?(regex) }
-    return ApplicantTrackingSystem.find_by(name:)
-  end
-
-  def self.check_ats
-    # TODO: Check if company is still hosted by an ATS or has moved provider (this actually may want to sit in CheckUrlIsValid)
-  end
 
   # -----------------------
   # Parse URL
