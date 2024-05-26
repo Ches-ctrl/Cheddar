@@ -1,4 +1,7 @@
 RSpec.describe Scraper::DevitJobsService do
+  describe "DevItJobs Integration" do
+    pending "add some examples (or delete) #{__FILE__}"
+  end
   # let!(:kliq){ create(:company, name: 'Kliq Inc') }
 
   # let(:xml_response) do
