@@ -4,7 +4,7 @@ module Xml
     retry_on StandardError, attempts: 0
 
     def perform
-      Xml::WorkableService.new.import_xml
+      Xml::Workable.new.import_xml
     end
   end
 end

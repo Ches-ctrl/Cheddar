@@ -1,5 +1,7 @@
 module Xml
-  class WorkableService < ApplicationService
+  class Workable < ApplicationService
+    # TODO: Check whether we need these to inherit from ApplicationService or not once testing setup
+
     # Docs: https://help.workable.com/hc/en-us/articles/4420464031767-Utilizing-the-XML-Job-Feed
     # To use this:
     # rake xml:workable
