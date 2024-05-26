@@ -9,8 +9,7 @@ module Build
 
     def perform_companies_and_jobs
       Builders::CompanyBuilder.new.build
-      # TODO: Move all builders into a single folder. This could call the service class and achieve the same thing
-      Build::AllJobsJob.perform_later
+      Builders::JobBuilder.new.build
     end
   end
 end

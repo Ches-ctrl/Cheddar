@@ -4,7 +4,7 @@ module Build
     retry_on StandardError, attempts: 0
 
     def perform
-      Build::AllJobs.new.build
+      Builders::JobBuilder.new.build
     end
   end
 end

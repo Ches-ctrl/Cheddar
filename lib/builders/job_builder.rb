@@ -1,5 +1,5 @@
-module Build
-  class AllJobs
+module Builders
+  class JobBuilder
     def build
       Company.all.each do |company|
         company.create_all_relevant_jobs
