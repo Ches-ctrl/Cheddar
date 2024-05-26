@@ -1,4 +1,4 @@
-<% links = { "Website" => @company.url_website, "LinkedIn" => @company.url_linkedin, "Careers Site" => @company.url_careers, "ATS Site" => @company.url_ats_main } %>
+<% links = { "Website" => company.url_website, "LinkedIn" => company.url_linkedin, "Careers Site" => company.url_careers, "ATS Site" => company.url_ats_main } %>
 <% links.each do |name, url| %>
   <% if url.present? %>
     <%= link_to url do %>
