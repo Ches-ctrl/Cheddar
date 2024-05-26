@@ -4,29 +4,26 @@ FactoryBot.define do
     company { association :company }
     sequence(:posting_url) { |n| "https://www.example-#{n}.com/jobs/1" }
     roles { Array.new(rand(1..3)) { association :role } }
-    # deadline { Date.today + 15.days }
-    # application_criteria { {} }
-
-    trait :in_london do
-      after(:create) do |job, _evaluator|
-        london = Location.find_by(city: 'London') || create(:location, city: 'London')
-        create(:jobs_location, job:, location: london)
-      end
-    end
 
     trait :entry_level_mobile do
       seniority { 'Entry-Level' }
-      roles { [association(:role, name: 'mobile')] }
+      after(:build) do |job|
+        job.roles << Role.find_or_create_by(name: 'mobile')
+      end
     end
 
     trait :junior_dev_ops do
       seniority { 'Junior' }
-      roles { [association(:role, name: 'dev_ops')] }
+      after(:build) do |job|
+        job.roles << Role.find_or_create_by(name: 'mobile')
+      end
     end
 
     trait :mid_level_data do
       seniority { 'Mid-Level' }
-      roles { [association(:role, name: 'data_engineer')] }
+      after(:build) do |job|
+        job.roles << Role.find_or_create_by(name: 'data_engineer')
+      end
     end
 
     trait :senior_front_end do
@@ -40,6 +37,13 @@ FactoryBot.define do
       description { 'Ruby on Rails' }
       after(:build) do |job|
         job.roles << Role.find_or_create_by(name: 'front_end')
+      end
+    end
+
+    trait :in_london do
+      after(:create) do |job, _evaluator|
+        london = Location.find_by(city: 'London') || create(:location, city: 'London')
+        create(:jobs_location, job:, location: london)
       end
     end
   end
