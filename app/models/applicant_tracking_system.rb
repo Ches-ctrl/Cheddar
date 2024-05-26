@@ -65,10 +65,6 @@ class ApplicantTrackingSystem < ApplicationRecord
   end
 
   # -----------------------
-  # ATS Router
-  # -----------------------
-
-  # -----------------------
   # Parse URL
   # -----------------------
 
@@ -164,6 +160,11 @@ class ApplicantTrackingSystem < ApplicationRecord
   # JobCreator
   # -----------------------
 
+  def find_or_create_job_by_data(company, data)
+    ats_job_id = fetch_id(data)
+    find_or_create_job(company, ats_job_id, data)
+  end
+
   def find_or_create_job(company, ats_job_id, data = nil)
     return unless company&.persisted?
 
@@ -182,15 +183,10 @@ class ApplicantTrackingSystem < ApplicationRecord
     return job
   end
 
-  def find_or_create_job_by_data(company, data)
-    ats_job_id = fetch_id(data)
-    find_or_create_job(company, ats_job_id, data)
-  end
-
+  # This checks whether job_data is fetched from a job-specific endpoint.
+  # Return false with Lever because its job-specific endpoint gives no additional data on top of
+  # what the company endpoint gives.
   def individual_job_endpoint_exists?
-    # This checks whether job_data is fetched from a job-specific endpoint.
-    # Return false with Lever because its job-specific endpoint gives no additional data on top of
-    # what the company endpoint gives.
     return false if name == 'Lever'
 
     parameters = method(:job_url_api).parameters
