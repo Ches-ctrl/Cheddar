@@ -1,5 +1,2 @@
-require 'open-uri'
-
-class ApplicationService
-  # Add service methods here
+class ApplicationService # rubocop:disable Lint/EmptyClass
 end
