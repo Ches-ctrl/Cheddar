@@ -38,6 +38,17 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 
+# VCR Config
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/fixtures/cassettes"
+  config.default_cassette_options = { :record => :once }
+  config.hook_into :webmock
+  config.configure_rspec_metadata!
+  config.allow_http_connections_when_no_cassette = true
+  config.ignore_localhost = true
+  # config.ignore_hosts 'dev.virtualearth.net'
+end
+
 RSpec.configure do |config|
   config.include Warden::Test::Helpers
   config.include FactoryBot::Syntax::Methods
@@ -52,28 +63,8 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
-  # VCR Config
-  VCR.configure do |config|
-    config.cassette_library_dir = "spec/fixtures/cassettes"
-    config.default_cassette_options = { :record => :new_episodes }
-    config.hook_into :webmock
-    config.configure_rspec_metadata!
-    config.allow_http_connections_when_no_cassette = true
-    config.ignore_localhost = true
-    # config.ignore_hosts 'dev.virtualearth.net'
-  end
-
   # WebMock Config
   WebMock.allow_net_connect!
-  config.around do |example|
-    if example.metadata.key?(:vcr)
-      WebMock.enable!
-      example.run
-      WebMock.disable!
-    else
-      VCR.turned_off { example.run }
-    end
-  end
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
