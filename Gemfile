@@ -123,9 +123,11 @@ group :development, :test do
   gem "debug", platforms: %i[mri windows]
   gem "faker"
   gem 'rspec-rails', '~> 6.1.0'
+  # gem 'rspec-benchmark' # Additional gem for benchmarking tests
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'ruby-prof'
   # gem 'parallel_tests' # TODO: install this gem for parallel testing
 
   # Security
@@ -144,7 +146,7 @@ group :development do
 
   # Performance
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler" # TODO: install this gem for performance monitoring
+  gem "rack-mini-profiler"
   # gem 'memory_profiler' # Additional gem for memory profiling
   # gem 'stackprof' # Additional gem for call-stack profiling flamegraphs
 
@@ -152,6 +154,11 @@ group :development do
   # gem "spring"
 
   # gem "error_highlight", ">= 0.6.0", platforms: [:ruby]
+
+  gem "rails_best_practices"
+
+  # ERD Generation
+  gem 'rails-erd'
 end
 
 group :test do

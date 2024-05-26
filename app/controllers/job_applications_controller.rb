@@ -19,7 +19,7 @@ class JobApplicationsController < ApplicationController
 
     if current_user.present?
       job_ids = params[:job_ids]
-      @selected_jobs = Job.includes(:company).where(id: job_ids)
+      @selected_jobs = Job.eager_load(:company).where(id: job_ids)
 
       @job_applications = @selected_jobs.map do |job|
         job_application = current_user.job_applications.build(job:, status: "Pre-application")
@@ -68,7 +68,7 @@ class JobApplicationsController < ApplicationController
 
   def process_application(job_application)
     job_application.update(status: "Application pending")
-    ApplyJob.perform_later(job_application.id, current_user.id)
+    Applier::ApplyJob.perform_later(job_application.id, current_user.id)
     user_saved_jobs = SavedJob.where(user_id: current_user.id)
     user_saved_jobs.find_by(job_id: job_application.job.id).destroy
     ActionCable.server.broadcast("job_applications_#{current_user.id}", {
@@ -107,7 +107,18 @@ class JobApplicationsController < ApplicationController
   def job_application_params
     params.require(:job_application).permit(
       :job_id,
-      application_responses_attributes: [:field_name, { field_value: [] }, :field_label, :field_value, :field_locator, :interaction, :field_option, :field_options, :required, :core_field]
+      application_responses_attributes: [
+        :field_name,
+        { field_value: [] },
+        :field_label,
+        :field_value,
+        :field_locator,
+        :interaction,
+        :field_option,
+        :field_options,
+        :required,
+        :core_field
+      ]
     )
   end
 end

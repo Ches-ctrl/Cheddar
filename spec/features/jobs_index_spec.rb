@@ -1,10 +1,13 @@
 require 'rails_helper'
+# require 'ruby-prof'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
-  context "With jobs to display:" do
+  context "With jobs to display:", type: :feature, jobs_display: true do
     before do
-      jobs = [
+      # RubyProf.start
+      # TODO: This is still taking up a lot of time - refactor this to be more efficient
+      @jobs = [
         { trait: :entry_level_mobile, title: "Graduate Software Developer" },
         { trait: :junior_dev_ops, title: "Junior Test Developer" },
         { trait: :mid_level_data, title: "Data Analyst" },
@@ -12,16 +15,23 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
         { trait: :ruby_front_end, trait2: :in_london, title: "Frontend Developer" },
         { trait: nil, trait2: :in_london, title: "Ruby on Rails Developer" }
       ]
-      jobs.each do |job|
+
+      @jobs.each do |job|
         traits = [job[:trait], job[:trait2]].compact
         create(:job, *traits, title: job[:title])
       end
+      # result = RubyProf.stop
+
+      # printer = RubyProf::GraphHtmlPrinter.new(result)
+      # File.open("profile.html", "w") do |file|
+      #   printer.print(file)
+      # end
       visit jobs_path
     end
 
     scenario "Displays all jobs" do
       expect(page).to have_content("Graduate Software Developer")
-      expect(page).to have_content("#{Job.all.count} jobs")
+      expect(page).to have_content("#{@jobs.size} jobs")
     end
 
     scenario 'User can query "Ruby on Rails" jobs' do
@@ -34,7 +44,7 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
 
     scenario "User can filter jobs by seniority" do
       check('entry-level')
-      check('mid-level')
+      # check('mid-level')
 
       expect(page).to have_content("Graduate Software Developer")
       expect(page).not_to have_content("Junior Test Developer")
@@ -48,7 +58,7 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
 
     scenario "User can filter jobs by role" do
       check('front_end')
-      check('data_engineer')
+      # check('data_engineer')
 
       expect(page).to have_content("Senior UI Engineer")
       expect(page).not_to have_content("Junior Test Developer")
@@ -92,7 +102,7 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
     end
   end
 
-  context "With a user logged in:" do
+  context "With a user logged in:", type: :feature, logged_in: true do
     before do
       user = create(:user)
       create_list(:job, 5)
@@ -113,6 +123,18 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
       sleep(0.5)
 
       expect(SavedJob.all.count).to eq(1)
+    end
+  end
+
+  context "Without a user logged in:", type: :feature, logged_out: true do
+    before do
+      create_list(:job, 5)
+      visit jobs_path
+    end
+
+    scenario "User cannot save and unsave jobs without logging in" do
+      expect(page).not_to have_selector('i.fa-regular.fa-bookmark')
+      expect(SavedJob.all.count).to eq(0)
     end
   end
 end

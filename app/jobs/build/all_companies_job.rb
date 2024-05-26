@@ -4,12 +4,12 @@ module Build
     retry_on StandardError, attempts: 0
 
     def perform
-      CompanyBuilder.new.build
+      Builders::CompanyBuilder.new.build
     end
 
     def perform_companies_and_jobs
-      CompanyBuilder.new.build
-      Build::AllJobsJob.perform_later
+      Builders::CompanyBuilder.new.build
+      Builders::JobBuilder.new.build
     end
   end
 end

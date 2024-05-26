@@ -2,23 +2,22 @@ module AtsSystemParser
   def self.build_ats_parser_from_db
     ats_mappings = {}
 
-    unique_url_identifiers_with_names = ApplicantTrackingSystem.distinct.order(:url_identifier).pluck(:url_identifier, :name)
-
-    unique_url_identifiers_with_names.each do |url_identifiers, name|
-      if url_identifiers.include?('|')
-        individual_identifiers = url_identifiers.split('|')
-      else
-        individual_identifiers = [url_identifiers]
-      end
-
-      individual_identifiers.each do |identifier|
+    ats_url_identifiers_with_names.each do |url_identifiers, name|
+      individual_identifiers(url_identifiers).each do |identifier|
         regex_pattern = Regexp.new(identifier, Regexp::IGNORECASE)
-
         ats_mappings[regex_pattern] = name
       end
     end
 
     p ats_mappings
+  end
+
+  def self.ats_url_identifiers_with_names
+    ApplicantTrackingSystem.distinct.order(:url_identifier).pluck(:url_identifier, :name)
+  end
+
+  def self.individual_identifiers(url_identifiers)
+    url_identifiers.include?('|') ? url_identifiers.split('|') : [url_identifiers]
   end
 
   SUPPORTED_ATS_SYSTEMS = [

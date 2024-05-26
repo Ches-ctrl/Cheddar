@@ -15,6 +15,7 @@ module Url
       # ---------------
 
       ats, company, job_id = Url::CreateCompanyFromUrl.new(@url).create_company
+
       return handle_unparseable unless ats
       return nil unless job_id
 
@@ -40,7 +41,7 @@ module Url
 
     def handle_unparseable
       puts "Scraping meta tags for ATS information on #{@url}..."
-      ats, company = ScrapeMetaTags.new(@url).call
+      ats, company = Importer::ScrapeMetaTags.new(@url).call
       return [ats, company] if company&.persisted?
 
       add_url_to_unparseable_list(ats&.name)

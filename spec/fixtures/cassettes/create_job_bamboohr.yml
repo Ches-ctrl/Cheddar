@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 24 May 2024 11:10:16 GMT
+      - Sun, 26 May 2024 06:23:48 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -27,8 +27,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=0fRpCxHRRoM-VUOPqUO1qmmXN7c6TMA%2C; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=fArW8ecOuMrWFqT04heveIj2fua9RJvB4xOc9KLVlBo-1716549016672-0.0.1.1-604800000;
+      - PHPSESSID=UFzPyRSTLleCQeHuUV6snUQ8GMBG8mpC; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=GnYsWwvva7avEC3cRftcoKMd9grUq_IkZhQ8oo76eLQ-1716704628658-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -93,7 +93,7 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 888cd6993d07942b-LHR
+      - 889badb84c4393f4-LHR
     body:
       encoding: ASCII-8BIT
       string: '{"meta":{"totalCount":5},"result":[{"id":"45","jobOpeningName":"Lead
@@ -112,7 +112,7 @@ http_interactions:
         Service Executive (Bolivia)","departmentId":"19024","departmentLabel":"70-000
         - Global Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
         Cruz de la Sierra"},"isRemote":null,"locationType":"1"}]}'
-  recorded_at: Fri, 24 May 2024 11:10:16 GMT
+  recorded_at: Sun, 26 May 2024 06:23:48 GMT
 - request:
     method: get
     uri: https://premise.bamboohr.com/careers/company-info/
@@ -132,7 +132,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 24 May 2024 11:10:16 GMT
+      - Sun, 26 May 2024 06:23:48 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -140,8 +140,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=pjYPuVKqdRv8e67ZX1fKmsecNTLICDeK; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=cSJ.0_yDVkyZp3_xkY8y166YsjVYSTgIbFvohrsK1Lo-1716549016860-0.0.1.1-604800000;
+      - PHPSESSID=w3hcPYJ6KI65ckNYeEJ%2CczsBQjqDwPSv; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=kql_911JHjpf9i04nunIekwRRjmKajuxB4ISuPkSU4o-1716704628853-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -206,11 +206,11 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 888cd69a799c94a8-LHR
+      - 889badb97cc66323-LHR
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":[],"result":{"name":"Premise","id":"490341","logoUrl":"https:\/\/images4.bamboohr.com\/490341\/logos\/cropped.jpg?v=34","careerShareUrl":"https:\/\/premise.bamboohr.com\/careers","shareImageUrl":"https:\/\/premise.bamboohr.com\/jobs\/share_image\/34","inTrial":false,"appSessId":"f6856d9d1da9fdf33859468120573d67b350e517"}}'
-  recorded_at: Fri, 24 May 2024 11:10:16 GMT
+      string: '{"meta":[],"result":{"name":"Premise","id":"490341","logoUrl":"https:\/\/images4.bamboohr.com\/490341\/logos\/cropped.jpg?v=34","careerShareUrl":"https:\/\/premise.bamboohr.com\/careers","shareImageUrl":"https:\/\/premise.bamboohr.com\/jobs\/share_image\/34","inTrial":false,"appSessId":"19d532d225710b5b24b2038e6a5b2d7a33913f4d"}}'
+  recorded_at: Sun, 26 May 2024 06:23:48 GMT
 - request:
     method: get
     uri: https://premise.bamboohr.com/careers/list
@@ -230,7 +230,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 24 May 2024 11:10:17 GMT
+      - Sun, 26 May 2024 06:23:49 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -238,8 +238,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=UinF7gGNEf-7bdIeH4qptpnsalT1Mp%2Cl; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=50nZyAjygrE8yi._AF1HqNOpRIqDKVxN5etQk.4eBKw-1716549017019-0.0.1.1-604800000;
+      - PHPSESSID=PVRp-yRuSnfwoMWGzAVGDkClphi21wkI; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=U0uV3GvO3SH3gnbPr68ObSXdPR95W2x51_sdDIb_PXo-1716704629037-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -304,7 +304,7 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 888cd69bab079402-LHR
+      - 889badbaad336544-LHR
     body:
       encoding: ASCII-8BIT
       string: '{"meta":{"totalCount":5},"result":[{"id":"45","jobOpeningName":"Lead
@@ -323,132 +323,7 @@ http_interactions:
         Service Executive (Bolivia)","departmentId":"19024","departmentLabel":"70-000
         - Global Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
         Cruz de la Sierra"},"isRemote":null,"locationType":"1"}]}'
-  recorded_at: Fri, 24 May 2024 11:10:16 GMT
-- request:
-    method: get
-    uri: https://autocomplete.clearbit.com/v1/companies/suggest?query=Premise
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - application/json
-      User-Agent:
-      - Ruby
-      Host:
-      - autocomplete.clearbit.com
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Content-Type:
-      - application/json
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      Cache-Control:
-      - public, must-revalidate, max-age=2629746
-      Access-Control-Allow-Origin:
-      - "*"
-      Date:
-      - Thu, 23 May 2024 17:46:10 GMT
-      Server:
-      - Clearbit
-      Strict-Transport-Security:
-      - max-age=63072000; includeSubDomains; preload
-      X-Content-Type-Options:
-      - nosniff
-      Vary:
-      - Accept-Encoding
-      X-Cache:
-      - Hit from cloudfront
-      Via:
-      - 1.1 7146be3ff59752909814bfd78c2fbf38.cloudfront.net (CloudFront)
-      X-Amz-Cf-Pop:
-      - LHR61-P1
-      X-Amz-Cf-Id:
-      - Mc5hVX_X0G52QI7v6tN8zy_VYCDscSq_WF5XCUrd41hnERQkPCEV5g==
-      Age:
-      - '62647'
-      Content-Security-Policy-Report-Only:
-      - default-src 'self';
-    body:
-      encoding: ASCII-8BIT
-      string: '[{"name":"Premise Health","domain":"premisehealth.com","logo":"https://logo.clearbit.com/premisehealth.com"},{"name":"Premise","domain":"premise.com","logo":"https://logo.clearbit.com/premise.com"},{"name":"Premise","domain":"premiseco.com","logo":"https://logo.clearbit.com/premiseco.com"},{"name":"PREMISE","domain":"premise.tv","logo":"https://logo.clearbit.com/premise.tv"},{"name":"PremiSec","domain":"premisec.se","logo":"https://logo.clearbit.com/premisec.se"}]'
-  recorded_at: Fri, 24 May 2024 11:10:17 GMT
-- request:
-    method: get
-    uri: https://api.crunchbase.com/api/v4/autocompletes?query=Premise&user_key=1a809e14a0c7e29e964a5923f1b17bdd
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - application/json
-      User-Agent:
-      - Ruby
-      Host:
-      - api.crunchbase.com
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - no-cache, private
-      Content-Type:
-      - application/json
-      Date:
-      - Fri, 24 May 2024 11:10:17 GMT
-      Etag:
-      - W/"1716549017717"
-      Server:
-      - openresty
-      X-Cb-Engine:
-      - autocomplete:algolia
-      X-Cb-Engine-Cached:
-      - 'false'
-      X-Cb-Engine-Took:
-      - '15'
-      X-Cb-Request-Took:
-      - '47'
-      Content-Length:
-      - '4002'
-      Connection:
-      - keep-alive
-    body:
-      encoding: UTF-8
-      string: '{"count":1602,"entities":[{"facet_ids":["contact","siftery","ipqwery","privco","apptopia","semrush","company","rank","builtwith","bombora","ai_insight"],"identifier":{"uuid":"4f680a26-074b-b8fa-7fa4-e5cfb5f0c30d","value":"Premise
-        Data","image_id":"jwzjzghwlokbkqugqjgs","permalink":"premise","entity_def_id":"organization"},"short_description":"Premise
-        is a data and analytics platform powered by a global network of on-the-ground
-        contributors, data science, and machine learning. "},{"facet_ids":["contact","siftery","aberdeen","company","rank","builtwith","bombora"],"identifier":{"uuid":"0dc67892-3bf4-458b-88bd-6fa0ed027fa7","value":"Premise","image_id":"nqukjb1x3ficnuvq3ltx","permalink":"premise-7fa7","entity_def_id":"organization"},"short_description":"Premise
-        offers wireless communication, solar energy, and electrical infrastructures
-        construction and project management."},{"facet_ids":["contact","siftery","company","rank","builtwith","bombora"],"identifier":{"uuid":"50acb0f9-235a-48bc-b63e-8ccb6ecd6e6d","value":"Premise","image_id":"bqghdyngj2mdnowoavpx","permalink":"premise-6e6d","entity_def_id":"organization"},"short_description":"Premise
-        is an advertising agency that offers marketing, branding, logo design, and
-        website design services."},{"facet_ids":["rank","contact","builtwith","company"],"identifier":{"uuid":"150f57d9-f35b-461d-a60c-ce4a8e3f7ee2","value":"Premise","image_id":"nc3wsscpagee2zr9e5r4","permalink":"premise-7ee2","entity_def_id":"organization"},"short_description":"Premise
-        is a consulting company that specializes in engineering, planning, architecture,
-        agricultural science, & environmental science."},{"facet_ids":["company","rank","builtwith","semrush"],"identifier":{"uuid":"564e0109-955b-46dd-ba2d-6ff825419f89","value":"Premise","image_id":"pa180nfvkaaeuepovdzt","permalink":"premise-9f89","entity_def_id":"organization"},"short_description":"Premise
-        offers online conversation-style classes that engages students through literature,
-        non-fiction, and film for students and adults."},{"facet_ids":["contact","siftery","ipqwery","aberdeen","apptopia","semrush","company","rank","builtwith","bombora","ai_insight","key_event"],"identifier":{"uuid":"1f5a1a2e-59cc-a546-1a39-8e4710c288ce","value":"Premise
-        Health","image_id":"v1498216139/cdagnkqmd5lcj6k1fyh1.png","permalink":"premise-health","entity_def_id":"organization"},"short_description":"Premise
-        Health offers online health programs for organizations."},{"facet_ids":["contact","siftery","aberdeen","company","rank","builtwith","bombora"],"identifier":{"uuid":"ec381518-36e5-49be-b7a9-97dbe93205c5","value":"Premise
-        One","image_id":"wpbno23db75ovyxqudjg","permalink":"premise-one","entity_def_id":"organization"},"short_description":"Premise
-        One is a Provider of communications and engineered camera solution for a variety
-        of industries in the U.S."},{"facet_ids":["contact","siftery","aberdeen","company","rank","builtwith","bombora"],"identifier":{"uuid":"e3fa1366-0c68-482e-9fc2-0725a3da5b31","value":"Premise
-        Led","image_id":"rr466s0qx5mv52m5du0o","permalink":"premise-led","entity_def_id":"organization"},"short_description":"Premise
-        Led is an electrical and electronics manufacturing company located in Toronto."},{"facet_ids":["contact","siftery","aberdeen","company","rank","bombora"],"identifier":{"uuid":"dc15f375-f04a-4523-9ad6-bb49c8240675","value":"Premise
-        Solutions","image_id":"cxz93xh5w18laies1ubh","permalink":"premise-solutions","entity_def_id":"organization"},"short_description":"Premise
-        Solutions provides network infrastructure and information technology services."},{"facet_ids":["contact","aberdeen","company","rank","builtwith","bombora"],"identifier":{"uuid":"d547e691-0ab8-4103-918b-5fa3051d0904","value":"Premises
-        Systems","image_id":"uclhq3qdgrkfkr23sovv","permalink":"premises-systems","entity_def_id":"organization"},"short_description":"Premises
-        Systems designs, implements and maintains single and multi-site IP-based communication
-        networks and wireless technology."}]}'
-  recorded_at: Fri, 24 May 2024 11:10:17 GMT
+  recorded_at: Sun, 26 May 2024 06:23:48 GMT
 - request:
     method: get
     uri: https://premise.bamboohr.com/careers/45/detail
@@ -468,7 +343,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 24 May 2024 11:10:18 GMT
+      - Sun, 26 May 2024 06:23:49 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -476,8 +351,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=zqsibaQwhv5G2t1mtaSCTJcc21DnOknM; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=KYNHVY1TvWNoeygafzq6T1PXHaTreMQSOqR.R7Ns8_o-1716549018038-0.0.1.1-604800000;
+      - PHPSESSID=3BskVAM1dne5QjWVR-uKB1helGND7t-Z; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=nYE8U4htfpnc79HFBP0xVYKhe5_xF2xZc3kPtmsLb6o-1716704629254-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -542,7 +417,7 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 888cd6a17c1c7326-LHR
+      - 889badbbdeb58862-LHR
     body:
       encoding: ASCII-8BIT
       string: '{"meta":{},"result":{"jobOpening":{"jobOpeningShareUrl":"https:\/\/premise.bamboohr.com\/careers\/45","jobOpeningName":"Lead
@@ -687,10 +562,10 @@ http_interactions:
         you have experience with experience with Gig economy platforms or two-sided
         marketplaces?","type":"short","value":"","isValueOther":false,"hasOther":"no","options":[]},{"id":"97","isRequired":false,"question":"Do
         you have experience working with CPGs and Retail Execution fields?","type":"short","value":"","isValueOther":false,"hasOther":"no","options":[]}],"genderId":[],"ethnicityId":[],"veteranStatusId":[],"disabilityId":[]}}}'
-  recorded_at: Fri, 24 May 2024 11:10:18 GMT
+  recorded_at: Sun, 26 May 2024 06:23:49 GMT
 - request:
     method: get
-    uri: http://dev.virtualearth.net/REST/v1/Locations/Ciudad%20de%20M%C3%A9xico,%20CDMX%2006600%20Mexico?key=AmhBY6imsSQC_f1o8tlcEXoO6WxekJR2plXfZQr7g_Y6I35Yh18bR1khIX9jc9vI
+    uri: http://dev.virtualearth.net/REST/v1/Locations/Ciudad%20de%20M%C3%A9xico,%20CDMX%2006600%20Mexico?key=
     body:
       encoding: US-ASCII
       string: ''
@@ -703,15 +578,15 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 403
-      message: Forbidden
+      code: 401
+      message: Unauthorized
     headers:
       Date:
-      - Fri, 24 May 2024 11:10:18 GMT
+      - Sun, 26 May 2024 06:23:49 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '588'
+      - '653'
       Connection:
       - keep-alive
       Access-Control-Allow-Headers:
@@ -725,12 +600,12 @@ http_interactions:
       Cache-Control:
       - no-cache
       X-Azure-Ref:
-      - 20240524T111018Z-166dd96f474fcrqjhrk51esq4000000008u0000000006b5u
+      - 20240526T062349Z-1646bd8795fszjpb78dtavd4gn00000006vg000000006gfp
       X-Cache:
       - CONFIG_NOCACHE
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJEZW5pZWRDcmVkZW50aWFscyIsImJyYW5kTG9nb1VyaSI6Imh0dHA6Ly9kZXYudmlydHVhbGVhcnRoLm5ldC9CcmFuZGluZy9sb2dvX3Bvd2VyZWRfYnkucG5nIiwiY29weXJpZ2h0IjoiQ29weXJpZ2h0IMKpIDIwMjQgTWljcm9zb2Z0IGFuZCBpdHMgc3VwcGxpZXJzLiBBbGwgcmlnaHRzIHJlc2VydmVkLiBUaGlzIEFQSSBjYW5ub3QgYmUgYWNjZXNzZWQgYW5kIHRoZSBjb250ZW50IGFuZCBhbnkgcmVzdWx0cyBtYXkgbm90IGJlIHVzZWQsIHJlcHJvZHVjZWQgb3IgdHJhbnNtaXR0ZWQgaW4gYW55IG1hbm5lciB3aXRob3V0IGV4cHJlc3Mgd3JpdHRlbiBwZXJtaXNzaW9uIGZyb20gTWljcm9zb2Z0IENvcnBvcmF0aW9uLiIsImVycm9yRGV0YWlscyI6WyJUaGUgcmVxdWVzdCB3YXMgZm9yYmlkZGVuLiAgWW91ciBjcmVkZW50aWFscyBtYXkgYmUgZGVuaWVkIG9yIHN1c3BlbmRlZC4iXSwicmVzb3VyY2VTZXRzIjpbXSwic3RhdHVzQ29kZSI6NDAzLCJzdGF0dXNEZXNjcmlwdGlvbiI6IkZvcmJpZGRlbiIsInRyYWNlSWQiOiI2OWI0MDg1MjkzOGFiZDYzNDU5ZGQ5YjMwMTExNDAwMiJ9
-  recorded_at: Fri, 24 May 2024 11:10:18 GMT
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJOb0NyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cDovL2Rldi52aXJ0dWFsZWFydGgubmV0L0JyYW5kaW5nL2xvZ29fcG93ZXJlZF9ieS5wbmciLCJjb3B5cmlnaHQiOiJDb3B5cmlnaHQgwqkgMjAyNCBNaWNyb3NvZnQgYW5kIGl0cyBzdXBwbGllcnMuIEFsbCByaWdodHMgcmVzZXJ2ZWQuIFRoaXMgQVBJIGNhbm5vdCBiZSBhY2Nlc3NlZCBhbmQgdGhlIGNvbnRlbnQgYW5kIGFueSByZXN1bHRzIG1heSBub3QgYmUgdXNlZCwgcmVwcm9kdWNlZCBvciB0cmFuc21pdHRlZCBpbiBhbnkgbWFubmVyIHdpdGhvdXQgZXhwcmVzcyB3cml0dGVuIHBlcm1pc3Npb24gZnJvbSBNaWNyb3NvZnQgQ29ycG9yYXRpb24uIiwiZXJyb3JEZXRhaWxzIjpbIkFjY2VzcyB3YXMgZGVuaWVkLiBZb3UgbWF5IGhhdmUgZW50ZXJlZCB5b3VyIGNyZWRlbnRpYWxzIGluY29ycmVjdGx5LCBvciB5b3UgbWlnaHQgbm90IGhhdmUgYWNjZXNzIHRvIHRoZSByZXF1ZXN0ZWQgcmVzb3VyY2Ugb3Igb3BlcmF0aW9uLiJdLCJyZXNvdXJjZVNldHMiOltdLCJzdGF0dXNDb2RlIjo0MDEsInN0YXR1c0Rlc2NyaXB0aW9uIjoiVW5hdXRob3JpemVkIiwidHJhY2VJZCI6ImQxNjEyNzY4MmQ2MjYxNzNiMGFjMTgyNTkxZTViOTFiIn0=
+  recorded_at: Sun, 26 May 2024 06:23:49 GMT
 recorded_with: VCR 6.2.0

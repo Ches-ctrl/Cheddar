@@ -35,8 +35,6 @@ module Avo
         field :applicant_tracking_system, as: :belongs_to
         field :job_applications, as: :has_many
         field :saved_jobs, as: :has_many
-        field :playlist_jobs, as: :has_many
-        field :job_playlists, as: :has_many, through: :playlist_jobs
       end
     end
   end

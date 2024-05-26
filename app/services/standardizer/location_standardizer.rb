@@ -90,6 +90,7 @@ module Standardizer
     end
 
     def standardize_city_and_country(string)
+      # TODO: Evaluate this dependency on Bing API as it is being (1) deprecated and (2) we have a lot of API calls in setup
       string = eliminate_duplicate_names(string)
       ascii_string = convert_to_ascii(string)
       api_url = "http://dev.virtualearth.net/REST/v1/Locations/#{ascii_string}?key=#{ENV.fetch('BING_API_KEY', nil)}"

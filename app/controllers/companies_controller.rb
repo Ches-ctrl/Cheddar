@@ -17,7 +17,7 @@ class CompaniesController < ApplicationController
   end
 
   def filter_jobs
-    @jobs = JobFilteringService.new(@jobs, filter_params).filter_by_department
+    @jobs = JobFilter.new(filter_params, @jobs).filter_by_department
   end
 
   def set_jobs_and_departments
@@ -30,6 +30,12 @@ class CompaniesController < ApplicationController
     @departments = @jobs.pluck(:department).compact.uniq
   end
 
+  # TODO: Implement company_params
+  # def company_params
+  #   params.require(:company).permit(:name, :description)
+  # end
+
+  # TODO: Fix this as at the moment :id isn't a permitted param
   def filter_params
     params.permit(:department)
   end

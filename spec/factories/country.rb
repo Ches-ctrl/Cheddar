@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :country do
-    name { Faker::Address.country }
+    sequence(:name) { |n| "Country-#{n}" }
   end
 end

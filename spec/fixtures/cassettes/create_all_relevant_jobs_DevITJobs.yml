@@ -1,0 +1,138 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://dev.virtualearth.net/REST/v1/Locations/Marconi%20Way,%20Rochester%20ME1%202XQ%20United%20Kingdom?key=
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Sun, 26 May 2024 07:25:02 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '653'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Headers:
+      - Content-Type,X-FD-Features,X-FD-FLIGHT,PreferAnonymous
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cache-Control:
+      - no-cache
+      X-Azure-Ref:
+      - 20240526T072502Z-1646bd8795fk2f4p6dgqx255tn00000002e0000000003q6z
+      X-Cache:
+      - CONFIG_NOCACHE
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJOb0NyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cDovL2Rldi52aXJ0dWFsZWFydGgubmV0L0JyYW5kaW5nL2xvZ29fcG93ZXJlZF9ieS5wbmciLCJjb3B5cmlnaHQiOiJDb3B5cmlnaHQgwqkgMjAyNCBNaWNyb3NvZnQgYW5kIGl0cyBzdXBwbGllcnMuIEFsbCByaWdodHMgcmVzZXJ2ZWQuIFRoaXMgQVBJIGNhbm5vdCBiZSBhY2Nlc3NlZCBhbmQgdGhlIGNvbnRlbnQgYW5kIGFueSByZXN1bHRzIG1heSBub3QgYmUgdXNlZCwgcmVwcm9kdWNlZCBvciB0cmFuc21pdHRlZCBpbiBhbnkgbWFubmVyIHdpdGhvdXQgZXhwcmVzcyB3cml0dGVuIHBlcm1pc3Npb24gZnJvbSBNaWNyb3NvZnQgQ29ycG9yYXRpb24uIiwiZXJyb3JEZXRhaWxzIjpbIkFjY2VzcyB3YXMgZGVuaWVkLiBZb3UgbWF5IGhhdmUgZW50ZXJlZCB5b3VyIGNyZWRlbnRpYWxzIGluY29ycmVjdGx5LCBvciB5b3UgbWlnaHQgbm90IGhhdmUgYWNjZXNzIHRvIHRoZSByZXF1ZXN0ZWQgcmVzb3VyY2Ugb3Igb3BlcmF0aW9uLiJdLCJyZXNvdXJjZVNldHMiOltdLCJzdGF0dXNDb2RlIjo0MDEsInN0YXR1c0Rlc2NyaXB0aW9uIjoiVW5hdXRob3JpemVkIiwidHJhY2VJZCI6IjI4NWRmNjIyZjFjYThkZGNiZjExNTZhMmUyZjBiYzcwIn0=
+  recorded_at: Sun, 26 May 2024 07:25:01 GMT
+- request:
+    method: get
+    uri: http://dev.virtualearth.net/REST/v1/Locations/West%20Way,%20Filton%20BS34%207DU%20United%20Kingdom?key=
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Sun, 26 May 2024 07:25:02 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '653'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Headers:
+      - Content-Type,X-FD-Features,X-FD-FLIGHT,PreferAnonymous
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cache-Control:
+      - no-cache
+      X-Azure-Ref:
+      - 20240526T072502Z-15948fd4d4c49pj2nndkfxbz40000000067g00000000qv4a
+      X-Cache:
+      - CONFIG_NOCACHE
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJOb0NyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cDovL2Rldi52aXJ0dWFsZWFydGgubmV0L0JyYW5kaW5nL2xvZ29fcG93ZXJlZF9ieS5wbmciLCJjb3B5cmlnaHQiOiJDb3B5cmlnaHQgwqkgMjAyNCBNaWNyb3NvZnQgYW5kIGl0cyBzdXBwbGllcnMuIEFsbCByaWdodHMgcmVzZXJ2ZWQuIFRoaXMgQVBJIGNhbm5vdCBiZSBhY2Nlc3NlZCBhbmQgdGhlIGNvbnRlbnQgYW5kIGFueSByZXN1bHRzIG1heSBub3QgYmUgdXNlZCwgcmVwcm9kdWNlZCBvciB0cmFuc21pdHRlZCBpbiBhbnkgbWFubmVyIHdpdGhvdXQgZXhwcmVzcyB3cml0dGVuIHBlcm1pc3Npb24gZnJvbSBNaWNyb3NvZnQgQ29ycG9yYXRpb24uIiwiZXJyb3JEZXRhaWxzIjpbIkFjY2VzcyB3YXMgZGVuaWVkLiBZb3UgbWF5IGhhdmUgZW50ZXJlZCB5b3VyIGNyZWRlbnRpYWxzIGluY29ycmVjdGx5LCBvciB5b3UgbWlnaHQgbm90IGhhdmUgYWNjZXNzIHRvIHRoZSByZXF1ZXN0ZWQgcmVzb3VyY2Ugb3Igb3BlcmF0aW9uLiJdLCJyZXNvdXJjZVNldHMiOltdLCJzdGF0dXNDb2RlIjo0MDEsInN0YXR1c0Rlc2NyaXB0aW9uIjoiVW5hdXRob3JpemVkIiwidHJhY2VJZCI6IjNlNTFhOWNmYTI1MTY4YjhmYmJmZjVkYjI1YTMwZDA0In0=
+  recorded_at: Sun, 26 May 2024 07:25:02 GMT
+- request:
+    method: get
+    uri: http://dev.virtualearth.net/REST/v1/Locations/West%20Way,%20Filton%20BS34%207DU%20United%20Kingdom?key=
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Sun, 26 May 2024 07:25:02 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '653'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Headers:
+      - Content-Type,X-FD-Features,X-FD-FLIGHT,PreferAnonymous
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cache-Control:
+      - no-cache
+      X-Azure-Ref:
+      - 20240526T072502Z-15948fd4d4c8zkwjurb8k44ahw0000000af0000000002hfu
+      X-Cache:
+      - CONFIG_NOCACHE
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJOb0NyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cDovL2Rldi52aXJ0dWFsZWFydGgubmV0L0JyYW5kaW5nL2xvZ29fcG93ZXJlZF9ieS5wbmciLCJjb3B5cmlnaHQiOiJDb3B5cmlnaHQgwqkgMjAyNCBNaWNyb3NvZnQgYW5kIGl0cyBzdXBwbGllcnMuIEFsbCByaWdodHMgcmVzZXJ2ZWQuIFRoaXMgQVBJIGNhbm5vdCBiZSBhY2Nlc3NlZCBhbmQgdGhlIGNvbnRlbnQgYW5kIGFueSByZXN1bHRzIG1heSBub3QgYmUgdXNlZCwgcmVwcm9kdWNlZCBvciB0cmFuc21pdHRlZCBpbiBhbnkgbWFubmVyIHdpdGhvdXQgZXhwcmVzcyB3cml0dGVuIHBlcm1pc3Npb24gZnJvbSBNaWNyb3NvZnQgQ29ycG9yYXRpb24uIiwiZXJyb3JEZXRhaWxzIjpbIkFjY2VzcyB3YXMgZGVuaWVkLiBZb3UgbWF5IGhhdmUgZW50ZXJlZCB5b3VyIGNyZWRlbnRpYWxzIGluY29ycmVjdGx5LCBvciB5b3UgbWlnaHQgbm90IGhhdmUgYWNjZXNzIHRvIHRoZSByZXF1ZXN0ZWQgcmVzb3VyY2Ugb3Igb3BlcmF0aW9uLiJdLCJyZXNvdXJjZVNldHMiOltdLCJzdGF0dXNDb2RlIjo0MDEsInN0YXR1c0Rlc2NyaXB0aW9uIjoiVW5hdXRob3JpemVkIiwidHJhY2VJZCI6IjRiZGY5YTc2NDg1MTMwNWI3N2U4OWY4ZTAxOTQ1ZTU0In0=
+  recorded_at: Sun, 26 May 2024 07:25:02 GMT
+recorded_with: VCR 6.2.0

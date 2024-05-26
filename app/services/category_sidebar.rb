@@ -1,197 +1,95 @@
 class CategorySidebar
-  SENIORITIES = [
-    'Spring Week',
-    'Internship',
-    'Entry-Level',
-    'Junior',
-    'Mid-Level',
-    'Senior',
-    'Director',
-    'VP',
-    'SVP / Partner'
-  ]
+  include Constants::CategorySidebar
 
-  ROLES = {
-    'front_end' => 'Front End',
-    'back_end' => 'Back End',
-    'full_stack' => 'Full Stack',
-    'dev_ops' => 'Dev Ops',
-    'qa_test_engineer' => 'QA/Test Engineer',
-    'mobile' => 'Mobile',
-    'data_engineer' => 'Data Engineer'
-  }
-
-  EMPLOYMENT_TYPES = [
-    'Full-time',
-    'Permanent',
-    'Contract',
-    'Part-time'
-  ]
-
-  CONVERT_TO_DAYS = {
-    'Any time' => 99_999,
-    'Within a month' => 30,
-    'Within a week' => 7,
-    'Last 3 days' => 3,
-    'Today' => 0
-  }
-
-  # TODO: Decide on what business type/size cuts we want
-  BUSINESS_TYPES = [
-    'Startup',
-    'Scale-up',
-    'Boutique',
-    'SME',
-    'Corporate',
-    'Non-profit',
-    'Charity',
-    'Public Sector',
-    'NGO',
-    'FTSE100',
-    'FTSE250',
-    'Fortune 500',
-    'Unicorn',
-    'Decacorn',
-    'Family Business',
-    'Academic'
-  ]
-
-  # TODO: Decide if we want to include this
-  HORIZONTALS = [
-    'Sustainability',
-    'Finance',
-    'HR',
-    'Legal',
-    'Marketing',
-    'Operations',
-    'Product',
-    'Sales',
-    'Tech',
-    'Other'
-  ]
-
-  def self.build_with(params)
+  def initialize(filtered_jobs, params)
     @params = params
-    @jobs = Job.includes(:roles, :locations).select("jobs.id, jobs.date_posted, jobs.seniority, jobs.remote, jobs.employment_type")
-    fetch_sidebar_data
+
+    # Leaving this here as presumably we need to pass the sorted jobs to the sidebar?
+    # @filtered_jobs = filtered_jobs.eager_load(:roles, :locations)
+    @filtered_jobs = Job.where(id: filtered_jobs.pluck(:id)).eager_load(:roles, :locations)
+  end
+
+  def build
+    [fetch_sidebar_data, @filtered_jobs.size]
   end
 
   private
 
-  # TODO: Remove repetitions of private_class_method (can we added at the bottom with keys)
-
-  private_class_method def self.fetch_sidebar_data
-    initialize_category_hashes
+  def fetch_sidebar_data
     build_resources_hash
   end
 
-  private_class_method def self.initialize_category_hashes
-    @date_cutoffs = CONVERT_TO_DAYS.transform_values { |v| v.days.ago.beginning_of_day }
-    @jobs_with_any_posted = @jobs.including_any(@params, :posted)
-    @jobs_with_any_seniority = @jobs.including_any(@params, :seniority)
-    @jobs_with_any_location = @jobs.including_any(@params, :location)
-                                   .joins(jobs_locations: :location)
-    @jobs_with_no_location = @jobs.including_any(@params, :location)
-                                  .where.missing(:jobs_locations)
-    @jobs_with_any_role = @jobs.including_any(@params, :role)
-    @jobs_with_any_type = @jobs.including_any(@params, :type)
-  end
-
-  private_class_method def self.build_resources_hash
+  def build_resources_hash
     @resources = {}
     build_posted_array
     build_seniority_array
     build_location_array
     build_role_array
-    build_type_array
+    build_employment_array
     @resources
   end
 
-  private_class_method def self.build_posted_array
-    @resources['posted'] = @date_cutoffs.map do |period, cutoff|
+  def build_posted_array
+    date_cutoffs = CONVERT_TO_DAYS.transform_values { |v| v.days.ago.beginning_of_day }
+    results = date_cutoffs.map do |period, cutoff|
       period_id = period.downcase.gsub(/last |within a /, '').gsub(' ', '-')
-      [
-        'radio',
-        period,
-        period_id,
-        @jobs_with_any_posted.where(date_posted: cutoff..Date.today).size,
-        @params[:posted] ? @params[:posted].include?(period_id) : period == 'Any time'
-      ]
+      count = @filtered_jobs.where(date_posted: cutoff..Date.today).count
+      params = @params[:posted] ? @params[:posted].include?(period_id) : period == 'Any time'
+
+      ['radio', period, period_id, count, params]
     end.compact
+    @resources['posted'] = results
   end
 
-  private_class_method def self.build_seniority_array
-    @resources['seniority'] = SENIORITIES.map do |seniority|
+  def build_seniority_array
+    results = @filtered_jobs.group(:seniority).count.map do |seniority, count|
+      next unless seniority
+
       seniority_id = seniority.downcase.split.first
-      count = @jobs_with_any_seniority.where(seniority:).size
-      next if count.zero?
+      params = @params[:seniority]&.include?(seniority_id)
 
-      [
-        'checkbox',
-        seniority,
-        seniority_id,
-        count,
-        @params[:seniority]&.include?(seniority_id)
-      ]
+      ['checkbox', seniority, seniority_id, count, params]
     end.compact
+    @resources['seniority'] = sort_by_count_desc(results)
   end
 
-  private_class_method def self.build_location_array
-    locations = Location.joins(:country).select("locations.city AS city, locations.country_id, countries.name AS country_name").map do |location|
-      city = location.city
-      country = location.country_name
-      location_id = city.downcase.gsub(' ', '_')
-      count = @jobs_with_any_location.where("locations.city = ?", city)
-                                     .size
-      next if count.zero?
+  def build_location_array
+    results = @filtered_jobs.group(:'locations.city').count.map do |location, count|
+      location_id = location ? location.downcase.gsub(' ', '_') : 'remote'
+      params = location ? @params[:location]&.include?(location_id) : @params[:location]&.include?('remote')
+      location ||= 'Remote'
 
-      [
-        'checkbox',
-        [city, country].join(', '),
-        location_id,
-        count,
-        @params[:location]&.include?(location_id)
-      ]
+      ['checkbox', location, location_id, count, params]
     end.compact
-    locations << [
-      'checkbox',
-      'Remote',
-      'remote',
-      @jobs_with_no_location.size,
-      @params[:location]&.include?('remote')
-    ]
-    @resources['location'] = locations.sort_by { |_, _, _, count, _| -count }.take(10)
+    @resources['location'] = sort_by_count_desc(results)
   end
 
-  private_class_method def self.build_role_array
-    @resources['role'] = ROLES.map do |role_id, role|
-      count = @jobs_with_any_role.joins(jobs_roles: :role)
-                                 .where("roles.name = ?", role_id)
-                                 .size
-      next if count.zero?
+  def build_role_array
+    results = @filtered_jobs.group(:'roles.name').count.map do |role, count|
+      next unless role
 
-      [
-        'checkbox',
-        role,
-        role_id,
-        count,
-        @params[:role]&.include?(role_id)
-      ]
+      role_id = role
+      params = @params[:role]&.include?(role_id)
+      role = role.titleize
+
+      ['checkbox', role, role_id, count, params]
     end.compact
+    @resources['role'] = sort_by_count_desc(results)
   end
 
-  private_class_method def self.build_type_array
-    @resources['type'] = EMPLOYMENT_TYPES.map do |type|
-      count = @jobs_with_any_type.where(employment_type: type).size
-      next if count.zero?
+  def build_employment_array
+    results = @filtered_jobs.group(:employment_type).count.map do |employment, count|
+      next unless employment
 
-      [
-        'checkbox',
-        type,
-        type.downcase.gsub('-', '_'),
-        count,
-        @params[:type]&.include?(type)
-      ]
+      employment_id = employment.downcase.gsub('-', '_')
+      params = @params[:employment]&.include?(employment_id)
+
+      ['checkbox', employment, employment_id, count, params]
     end.compact
+    @resources['employment'] = sort_by_count_desc(results)
+  end
+
+  def sort_by_count_desc(data)
+    data.sort_by { |item| -item[3] }
   end
 end

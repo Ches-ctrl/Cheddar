@@ -22,8 +22,8 @@ export default class extends Controller {
       seniority: this.seniorityTargets,
       location: this.locationTargets,
       role: this.roleTargets,
-      type: this.employmentTargets,
-      company: this.companyTargets
+      company: this.companyTargets,
+      employment: this.employmentTargets,
     }
 
     const searchTerms = {}

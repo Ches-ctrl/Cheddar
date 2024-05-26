@@ -8,7 +8,6 @@ module Url
     end
 
     def create_company
-      # TODO: This needs to be refactored as it is currently not DRY - both CreateJobFromUrl and CreateCompanyFromUrl have the same logic
       # TODO: Refactor this into a CsvController?
       # TODO: Fix SaveToCsv
 

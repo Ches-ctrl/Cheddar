@@ -6,6 +6,8 @@
   # https://github.com/mperham/sidekiq/wiki/Advanced-Options
   # https://mikerogers.io/2019/06/06/rails-6-sidekiq-queues
   - default
+  - appliers
+  - importers
   - updates
   - mailers
   - active_storage_analysis
@@ -14,21 +16,17 @@
   :schedule:
     jobs_updater:
       cron: '0 1 * * *' # Runs once per day (at 1 am)
-      class: UpdateExistingCompanyJobs
+      class: Updater::ExistingCompanyJobs
       queue: updates
-    devitjobs_api_pull:
+    devitjobs_updater:
       cron: '0 2 * * *' # Runs once per day (at 2 am)
-      class: Scraper::DevItJob
+      class: Importer::Api::DevitJobsJob
       queue: updates
     # true_up_scraper: # off for now as we have already pulled all the ATS identifiers
     #   cron: '0 2 * * *' # Runs once per day (at 2 am)
-    #   class: ScrapeTrueUpJob
+    #   class: Importer::Scraper::TrueUpJob
     #   queue: updates
     # workable_xml_importer: # off for now as not currently working
     #   cron: '0 4 * * *' # Runs once per day (at 4 am)
-    #   class: Xml::WorkableJob
-    #   queue: updates
-    # monster_scraper: # off for now as don't need this functionality
-    #   cron: '0 5 * * *'   # Runs once per day(at midnight)
-    #   class: Scraper::MonsterJob
+    #   class: Importer::Xml::WorkableJob
     #   queue: updates
