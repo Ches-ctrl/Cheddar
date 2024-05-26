@@ -4,7 +4,7 @@ module Api
     sidekiq_options retry: false
 
     def perform
-      Api::DevitJobs.new.scrape_page
+      Import::Api::DevitJobs.new.import_jobs
     end
   end
 end
