@@ -6,6 +6,15 @@ class ApplicantTrackingSystem < ApplicationRecord
   include Ats::CompanyCreator
   include Ats::JobCreator
 
+  ATS_MODULES = %w[
+    ParseUrl
+    CompanyDetails
+    FetchCompanyJobs
+    JobDetails
+    ApplicationFields
+    SubmitApplication
+  ].freeze
+
   # == Attributes ===========================================================
 
   # == Extensions ===========================================================
@@ -43,17 +52,9 @@ class ApplicantTrackingSystem < ApplicationRecord
 
     module_name = name.gsub(/\W/, '').capitalize
 
-    modules = [
-      "Ats::#{module_name}::ParseUrl",
-      "Ats::#{module_name}::CompanyDetails",
-      "Ats::#{module_name}::FetchCompanyJobs",
-      "Ats::#{module_name}::JobDetails",
-      "Ats::#{module_name}::ApplicationFields",
-      "Ats::#{module_name}::SubmitApplication"
-    ]
-
-    modules.each do |module_name|
-      extend Object.const_get(module_name) if Object.const_defined?(module_name)
+    ATS_MODULES.each do |mod|
+      full_module_name = "Ats::#{module_name}::#{mod}"
+      extend Object.const_get(full_module_name) if Object.const_defined?(full_module_name)
     end
   end
 
