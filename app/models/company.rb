@@ -1,17 +1,31 @@
 class Company < ApplicationRecord
+  # == Constants ============================================================
   include Relevant
 
+  # == Attributes ===========================================================
+
+  # == Extensions ===========================================================
+
+  # == Relationships ========================================================
   belongs_to :applicant_tracking_system, optional: true
   has_many :jobs, dependent: :destroy
 
+  # == Validations ==========================================================
   validates :name, presence: true
   validates :ats_identifier, presence: true, uniqueness: true
 
-  before_save :set_website_url, :fetch_description
-
+  # == Scopes ===============================================================
   # include PgSearch::Model
 
   # multisearchable against: [:name]
+
+  # == Callbacks ============================================================
+  # TODO: Decide if we want to keep these callbacks
+  before_save :set_website_url, :fetch_description
+
+  # == Class Methods ========================================================
+
+  # == Instance Methods =====================================================
 
   def create_all_relevant_jobs
     jobs_found_or_created = []
@@ -34,6 +48,10 @@ class Company < ApplicationRecord
     end
     puts "Found or created #{jobs_found_or_created.size} new jobs with #{name}."
     jobs_found_or_created
+  end
+
+  def url_present?(url_type)
+    send(url_type).present?
   end
 
   private
