@@ -107,7 +107,18 @@ class JobApplicationsController < ApplicationController
   def job_application_params
     params.require(:job_application).permit(
       :job_id,
-      application_responses_attributes: [:field_name, { field_value: [] }, :field_label, :field_value, :field_locator, :interaction, :field_option, :field_options, :required, :core_field]
+      application_responses_attributes: [
+        :field_name,
+        { field_value: [] },
+        :field_label,
+        :field_value,
+        :field_locator,
+        :interaction,
+        :field_option,
+        :field_options,
+        :required,
+        :core_field
+      ]
     )
   end
 end
