@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    @job_applications = JobApplication.includes(job: [:company]).where(user_id: @user.id)
+    @job_applications = JobApplication.eager_load(job: [:company]).where(user_id: @user.id)
 
     date_range = current_month_range
     @applications_this_month = applications_this_month(@job_applications, date_range)

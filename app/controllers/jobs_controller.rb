@@ -12,7 +12,7 @@ class JobsController < ApplicationController
   def index
     filtered_jobs = JobFilter.new(params).filter_and_sort
 
-    @jobs = filtered_jobs.includes(associated_tables)
+    @jobs = filtered_jobs.eager_load(associated_tables)
                          .order(sort_order(params[:sort]))
                          .page(params[:page])
                          .per(20)

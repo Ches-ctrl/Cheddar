@@ -1,6 +1,6 @@
 class SavedJobsController < ApplicationController
   def index
-    @saved_jobs = SavedJob.includes(job: :company).where(user_id: current_user.id)
+    @saved_jobs = SavedJob.eager_load(job: :company).where(user_id: current_user.id)
     @saved_job_ids = @saved_jobs.to_set(&:job_id)
   end
 
