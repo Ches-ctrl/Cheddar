@@ -5,9 +5,6 @@ until response do
   puts "Please enter a valid integer between 1 and 500:"
   response = gets.chomp
   if response == 'run updater'
-    # ImportCompaniesFromList.new.call
-    # Xml::WorkableJob.perform_later
-    # ScrapeTrueUpJob.perform_later
     UpdateExistingCompanyJobs.perform_later
     exit
   else
