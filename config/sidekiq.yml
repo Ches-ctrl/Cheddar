@@ -26,5 +26,5 @@
     #   queue: updates
     # workable_xml_importer: # off for now as not currently working
     #   cron: '0 4 * * *' # Runs once per day (at 4 am)
-    #   class: Xml::WorkableJob
+    #   class: Importer::Xml::WorkableJob
     #   queue: updates
