@@ -54,3 +54,6 @@
 
 # Ignore ruby-prof output
 profile.html
+
+# Ignore documentation
+doc/**
