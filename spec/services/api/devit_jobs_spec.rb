@@ -1,4 +1,4 @@
-RSpec.describe Api::DevitJobs do
+RSpec.describe Importer::Api::DevitJobs do
   describe "DevItJobs Integration" do
     pending "add some examples (or delete) #{__FILE__}"
   end
