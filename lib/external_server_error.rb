@@ -1,2 +1,0 @@
-class ExternalServerError < StandardError
-end

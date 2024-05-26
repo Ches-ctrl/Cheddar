@@ -78,10 +78,10 @@ module CheckUrlIsValid
 
     begin
       response = HTTParty.get(api_url, options)
-      raise ExternalServerError, 'External server error' if response.code.to_s.starts_with?('5')
+      raise Errors::ExternalServerError, 'External server error' if response.code.to_s.starts_with?('5')
 
       puts "RESPONSE CODE: #{response.code}" unless response.code == 200
-    rescue Net::OpenTimeout, ExternalServerError => e
+    rescue Net::OpenTimeout, Errors::ExternalServerError => e
       if retries < max_retries
         retries += 1
         retry

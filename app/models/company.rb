@@ -31,7 +31,7 @@ class Company < ApplicationRecord
     jobs_found_or_created = []
     ats = applicant_tracking_system
     all_jobs = ats.fetch_company_jobs(ats_identifier)
-    raise NoDataReturnedError, "The API returned no jobs data for #{name}" unless all_jobs
+    raise Errors::NoDataReturnedError, "The API returned no jobs data for #{name}" unless all_jobs
 
     all_jobs.each do |job_data|
       details = ats.fetch_title_and_location(job_data)
