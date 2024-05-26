@@ -1,7 +1,6 @@
 class MessagesController < ApplicationController
   def initialize
     @client = OpenAI::Client.new
-    # @messages = []
   end
 
   def show
@@ -10,11 +9,9 @@ class MessagesController < ApplicationController
 
   def chat
     @messages = Message.all || []
-    p @messages
     new_message = Message.create(content: params[:content], self: true)
-    p new_message
     content = new_message.content
-    p content
+
     response = @client.chat(
       parameters: {
         model: 'gpt-3.5-turbo', # Choose the desired model
