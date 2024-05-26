@@ -25,6 +25,15 @@ module Scraper
       create_versions_file unless File.exist?(@versions_path)
     end
 
+    # == Class Methods ========================================================
+    def self.randomize_version_number(version)
+      parts = version.split('.').map(&:to_i)
+      parts[0] = rand(parts[0] - 1..parts[0])
+      parts[1..-1] = parts[1..].map { |part| rand(0..part) }
+      parts.join('.')
+    end
+
+    # == Instance Methods =====================================================
     def update_firefox
       url = URI.parse('https://www.mozilla.org/en-US/firefox/releases/')
       response = Net::HTTP.get_response(url)
@@ -133,13 +142,6 @@ module Scraper
       versions.merge!(previous_versions)
 
       File.write(@versions_path, JSON.pretty_generate(versions))
-    end
-
-    def self.randomize_version_number(version)
-      parts = version.split('.').map(&:to_i)
-      parts[0] = rand(parts[0] - 1..parts[0])
-      parts[1..-1] = parts[1..].map { |part| rand(0..part) }
-      parts.join('.')
     end
 
     def create_versions_file
