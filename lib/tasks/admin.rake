@@ -6,7 +6,7 @@ namespace :admin do
 
   desc "Update existing company jobs"
   task update_existing_company_jobs: :environment do
-    UpdateExistingCompanyJobs.new.perform
+    Updater::ExistingCompanyJobs.new.perform
   end
 
   desc "Pull data from DevItJobs API"

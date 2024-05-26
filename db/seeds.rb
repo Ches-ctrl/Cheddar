@@ -5,7 +5,7 @@ until response do
   puts "Please enter a valid integer between 1 and 500:"
   response = gets.chomp
   if response == 'run updater'
-    UpdateExistingCompanyJobs.perform_later
+    Updater::ExistingCompanyJobs.perform_later
     exit
   else
     response = response.to_i
