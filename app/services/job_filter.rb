@@ -10,6 +10,11 @@ class JobFilter
     apply_search(jobs)
   end
 
+  def filter_by_department
+    @jobs = @jobs.where(department: @params[:department]) if @params[:department].present?
+    @jobs
+  end
+
   private
 
   def apply_filters(jobs)

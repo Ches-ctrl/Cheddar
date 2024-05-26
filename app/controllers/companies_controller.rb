@@ -17,7 +17,7 @@ class CompaniesController < ApplicationController
   end
 
   def filter_jobs
-    @jobs = JobFilteringService.new(@jobs, filter_params).filter_by_department
+    @jobs = JobFilter.new(filter_params, @jobs).filter_by_department
   end
 
   def set_jobs_and_departments
