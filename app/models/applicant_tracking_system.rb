@@ -2,7 +2,6 @@ class ApplicantTrackingSystem < ApplicationRecord
   # == Constants ============================================================
   include CheckUrlIsValid
   include AtsSystemParser
-  include AtsRouter
 
   # == Attributes ===========================================================
 
