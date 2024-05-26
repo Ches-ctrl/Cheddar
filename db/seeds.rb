@@ -98,7 +98,7 @@ defunct_urls = []
 puts "\nBuilding a list of job urls from the following companies:"
 puts "This may take a little while, worry not young padawan..."
 
-relevant_job_urls = GetRelevantJobUrls.new(greenhouse_companies).fetch_jobs
+relevant_job_urls = Importer::GetRelevantJobUrls.new(greenhouse_companies).fetch_jobs
 jobs_to_seed = relevant_job_urls.shuffle.take(response)
 
 # jobs_to_seed = [
