@@ -1,5 +1,7 @@
 module Categorizer
   class CompanyDescription
+    # TODO: Refactor to instance methods
+
     def self.lookup_company(name, ats_identifier)
       uri = URI("https://api.crunchbase.com/api/v4/autocompletes?query=#{URI.encode_www_form_component(name)}&user_key=#{ENV.fetch('CRUNCHBASE_API_KEY', nil)}")
       request = Net::HTTP::Get.new(uri)

@@ -4,6 +4,8 @@ require 'json'
 
 module Categorizer
   class CompanyDomain
+    # TODO: Refactor to instance methods
+
     def self.lookup_domain(name)
       uri = URI("https://autocomplete.clearbit.com/v1/companies/suggest?query=#{URI.encode_www_form_component(name)}")
       request = Net::HTTP::Get.new(uri)

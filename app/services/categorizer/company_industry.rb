@@ -1,6 +1,7 @@
 module Categorizer
   class CompanyIndustry
     # TODO: Let's discuss this in a little more detail (CC/DS)
+    # TODO: Refactor to instance methods
 
     def self.lookup_industry(name, keywords)
       results = api_lookup(name)
