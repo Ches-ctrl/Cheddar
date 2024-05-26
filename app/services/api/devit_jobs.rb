@@ -2,6 +2,7 @@ module Api
   # This class is responsible for importing jobs from DevITJobs
   # API Endpoint: https://devitjobs.uk/api/jobsLight
   # To use this: rake admin:devitjobs
+  # This works by: (1) fetching JSON from the API, (2) creating a company then job for each DevITJobs job, and (3) handling redirects.
   #
   class DevitJobs < ApplicationService
     include Capybara::DSL
