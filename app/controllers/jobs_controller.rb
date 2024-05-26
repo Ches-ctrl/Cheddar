@@ -45,7 +45,7 @@ class JobsController < ApplicationController
   end
 
   def associated_tables
-    params[:location] == 'remote' ? %i[requirement company] : %i[requirement company locations]
+    %i[requirement company locations countries]
   end
 
   def sort_order(sort_param)

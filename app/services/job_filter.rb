@@ -23,7 +23,7 @@ class JobFilter
       seniority: filter_by_seniority(@params[:seniority]),
       locations: filter_by_location(@params[:location]),
       roles: filter_by_role(@params[:role]),
-      employment_type: filter_by_employment(@params[:type])
+      employment_type: filter_by_employment(@params[:employment])
     }.compact
 
     associations = build_associations

@@ -13,10 +13,6 @@
     <% else %>
       <%= job.locations.map(&:city).join(' | ') %>
     <% end %>
-    <% if job.countries.loaded? || job.countries.count == 1 %>
-      <%= " | #{job.countries.first.name}" if job.countries.count == 1 %>
-    <% else %>
-      <%= " | #{job.countries.first.name}" if job.countries.size == 1 %>
-    <% end %>
+    <%= " | #{job.countries.first.name}" if job.countries.size == 1 %>
   </div>
 </div>
