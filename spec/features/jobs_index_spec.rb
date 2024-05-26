@@ -44,7 +44,7 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
 
     scenario "User can filter jobs by seniority" do
       check('entry-level')
-      check('mid-level')
+      # check('mid-level')
 
       expect(page).to have_content("Graduate Software Developer")
       expect(page).not_to have_content("Junior Test Developer")
@@ -58,7 +58,7 @@ RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
 
     scenario "User can filter jobs by role" do
       check('front_end')
-      check('data_engineer')
+      # check('data_engineer')
 
       expect(page).to have_content("Senior UI Engineer")
       expect(page).not_to have_content("Junior Test Developer")

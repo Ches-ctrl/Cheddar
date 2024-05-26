@@ -5,7 +5,8 @@ class CategorySidebar
     @params = params
 
     # Leaving this here as presumably we need to pass the sorted jobs to the sidebar?
-    @filtered_jobs = filtered_jobs.eager_load(:roles, :locations)
+    # @filtered_jobs = filtered_jobs.eager_load(:roles, :locations)
+    @filtered_jobs = Job.where(id: filtered_jobs.pluck(:id)).eager_load(:roles, :locations)
   end
 
   def build
@@ -54,7 +55,7 @@ class CategorySidebar
 
   def build_location_array
     results = @filtered_jobs.group(:'locations.city').count.map do |location, count|
-      location_id = location ? city.downcase.gsub(' ', '_') : 'remote'
+      location_id = location ? location.downcase.gsub(' ', '_') : 'remote'
       params = location ? @params[:location]&.include?(location_id) : @params[:location]&.include?('remote')
       location ||= 'Remote'
 
