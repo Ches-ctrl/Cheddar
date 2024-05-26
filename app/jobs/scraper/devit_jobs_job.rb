@@ -4,7 +4,7 @@ module Scraper
     sidekiq_options retry: false
 
     def perform
-      Scraper::DevitJobs.new.scrape_page
+      Api::DevitJobs.new.scrape_page
     end
   end
 end

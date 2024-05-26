@@ -1,4 +1,4 @@
-module Scraper
+module Api
   class DevitJobs < ApplicationService
     include Capybara::DSL
     include CheckUrlIsValid
