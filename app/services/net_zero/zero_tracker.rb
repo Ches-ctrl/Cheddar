@@ -1,5 +1,5 @@
 module NetZero
-  class GetNetZeroData
+  class ZeroTracker
     require 'net/http'
     require 'json'
     require 'csv'
