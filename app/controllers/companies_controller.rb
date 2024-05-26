@@ -35,6 +35,7 @@ class CompaniesController < ApplicationController
   #   params.require(:company).permit(:name, :description)
   # end
 
+  # TODO: Fix this as at the moment :id isn't a permitted param
   def filter_params
     params.permit(:department)
   end
