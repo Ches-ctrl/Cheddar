@@ -4,23 +4,24 @@ module Importer
   class GetFormFields
     include Capybara::DSL
 
-    queue_as :default
-    sidekiq_options retry: false
-
     # TODO: Generalise to all supported ATS systems
     # TODO: Calculate total number of input fields and implied difficulty of application
     # TODO: Potentially change to scraping all fields from the job posting
     # TODO: Add boolean cv required based on this scrape
     # TODO: add test of filling out the form fields before job goes live
 
-    def perform(job)
-      return unless job.api_url&.include?('greenhouse') # Not yet able to handle Lever or DevIT jobs
+    def initialize(job)
+      @job = job
+    end
+
+    def perform
+      return unless @job.api_url&.include?('greenhouse') # Not yet able to handle Lever or DevIT jobs
 
       Capybara.current_driver = :selenium_chrome_headless # session = Capybara::Session.new(:selenium_chrome_headless)
       # all the capybara commands should be session.visit
       # begin, rescue, ensure
 
-      visit(job.posting_url)
+      visit(@job.posting_url)
       return if page.has_selector?('#flash_pending')
 
       begin
@@ -110,16 +111,16 @@ module Importer
 
       extra_fields = attributes
 
-      p "job is #{job}"
+      p "job is #{@job}"
 
-      job.requirement.no_of_qs = attributes.keys.count
+      @job.requirement.no_of_qs = attributes.keys.count
 
       unless extra_fields.nil?
-        job.application_criteria = job.application_criteria.merge(extra_fields)
-        p job.application_criteria
+        @job.application_criteria = @job.application_criteria.merge(extra_fields)
+        p @job.application_criteria
       end
-      job.apply_with_cheddar = true
-      job.save
+      @job.apply_with_cheddar = true
+      @job.save
 
       # TODO: Check that including this here doesn't cause issues
       return attributes
