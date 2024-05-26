@@ -99,6 +99,11 @@ class ApplicantTrackingSystem < ApplicationRecord
   # CompanyCreator
   # -----------------------
 
+  def find_or_create_company_by_data(data)
+    ats_identifier = fetch_company_id(data)
+    find_or_create_company(ats_identifier, data)
+  end
+
   def find_or_create_company(ats_identifier, data = nil)
     return unless ats_identifier
 
@@ -117,11 +122,6 @@ class ApplicantTrackingSystem < ApplicationRecord
     p "Company created - #{company.name}" if company.new_record? && company.save
 
     return company
-  end
-
-  def find_or_create_company_by_data(data)
-    ats_identifier = fetch_company_id(data)
-    find_or_create_company(ats_identifier, data)
   end
 
   # -----------------------
