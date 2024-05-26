@@ -1,4 +1,4 @@
-module Scraper
+module Api
   class DevitJobsJob < ApplicationJob
     queue_as :updates
     sidekiq_options retry: false
