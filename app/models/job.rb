@@ -17,9 +17,6 @@ class Job < ApplicationRecord
   has_many :job_applications, dependent: :destroy
   has_many :saved_jobs, dependent: :destroy
 
-  has_many :playlist_jobs
-  has_many :job_playlists, through: :playlist_jobs
-
   has_many :jobs_locations, dependent: :destroy
   has_many :locations, through: :jobs_locations
 

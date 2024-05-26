@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_10_091443) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_26_072859) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -176,12 +176,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_091443) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "job_playlists", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "jobs", force: :cascade do |t|
     t.string "title"
     t.string "description", default: "n/a"
@@ -273,15 +267,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_091443) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable"
-  end
-
-  create_table "playlist_jobs", force: :cascade do |t|
-    t.bigint "job_id", null: false
-    t.bigint "job_playlist_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["job_id"], name: "index_playlist_jobs_on_job_id"
-    t.index ["job_playlist_id"], name: "index_playlist_jobs_on_job_playlist_id"
   end
 
   create_table "requirements", force: :cascade do |t|
@@ -379,8 +364,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_091443) do
   add_foreign_key "jobs_roles", "jobs"
   add_foreign_key "jobs_roles", "roles"
   add_foreign_key "locations", "countries"
-  add_foreign_key "playlist_jobs", "job_playlists"
-  add_foreign_key "playlist_jobs", "jobs"
   add_foreign_key "requirements", "jobs"
   add_foreign_key "saved_jobs", "jobs"
   add_foreign_key "saved_jobs", "users"
