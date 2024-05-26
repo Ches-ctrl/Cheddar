@@ -4,8 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :first_name, :last_name, presence: true
-
+  # == Relationships ========================================================
   has_many :job_applications, dependent: :destroy
   has_many :jobs, through: :job_applications
   has_many :saved_jobs, dependent: :destroy
@@ -14,4 +13,7 @@ class User < ApplicationRecord
   has_one_attached :photo
   has_one_attached :resume
   has_many_attached :cover_letter_templates
+
+  # == Validations ==========================================================
+  validates :first_name, :last_name, presence: true
 end
