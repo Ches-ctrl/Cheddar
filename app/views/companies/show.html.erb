@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="company-img-row">
+        <%# TODO: Clean this up as a bit of a mess at the moment %>
         <div class="row">
           <div class="col-3"><%= image_tag("https://source.unsplash.com/random/328x240/?nature", class: "company-img") %></div>
           <div class="col-3"><%= image_tag("https://source.unsplash.com/random/328x240/?nature", class: "company-img") %></div>
@@ -14,34 +15,41 @@
             </div>
           </div>
         </div>
+
         <%= image_tag("https://logo.clearbit.com/#{@company.url_website}",
                       onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'",
                       style: "width: 65px; height: 65px; border-radius: 10px;",
                       class: "company-logo-img") %>
       </div>
+
       <div class="company-main-content">
         <div class="d-flex align-items-center justify-content-between pb-4">
           <div>
             <h2 class="mb-0 mt-4"><%= @company.name %></h2>
             <%# Add a tagline/short summary of info under company name? %>
           </div>
+
           <ul class="mb-0">
             <%= render 'company_links', company: @company %>
           </ul>
         </div>
+
         <%# TODO: Setup Glassdoor & Trustpilot APIs %>
         <div class="company-description">
           <%= @company_description %>
         </div>
+
         <div class="row">
           <div class="row company-left-info my-2">
             <h6>Industry</h6>
             <small class="text-muted"><%= @company.industry %>, <%= @company.sub_industry %></small>
           </div>
+
           <div class="row company-left-info my-2">
             <h6>Company size</h6>
             <h3>Specialities</h3>
           </div>
+
           <div class="row">
             <h5>Current Job Openings</h5>
             <div class="filter-form mb-2 text-muted">
@@ -54,12 +62,12 @@
                     'turbo-type': 'jobs', url: company_path(@company) } %>
               </div>
             </div>
+
             <%= turbo_frame_tag "jobs" do %>
               <%= render 'job_listing', jobs: @jobs %>
             <% end %>
           </div>
         </div>
-        <%# TODO: Add gallery of images like Airbnb %>
       </div>
     </div>
   </div>
