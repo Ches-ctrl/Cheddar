@@ -30,6 +30,11 @@ class CompaniesController < ApplicationController
     @departments = @jobs.pluck(:department).compact.uniq
   end
 
+  # TODO: Implement company_params
+  # def company_params
+  #   params.require(:company).permit(:name, :description)
+  # end
+
   def filter_params
     params.permit(:department)
   end
