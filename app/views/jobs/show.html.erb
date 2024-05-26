@@ -14,18 +14,16 @@
           <%= link_to @job.posting_url, target: "_blank" do %>
             <i class="fa-solid fa-external-link-alt"></i>
           <% end %>
-          <% if @company.url_website.present? %>
-            <li><%= link_to "Website", @company.url_website %></li>
+
+          <%# TODO: Fix this as not yet working %>
+          <% url_types = { "Website" => :url_website, "LinkedIn" => :url_linkedin, "Careers Site" => :url_careers, "ATS Site" => :url_ats_main } %>
+
+          <% url_types.each do |name, url_type| %>
+            <% if @company.url_present?(url_type) %>
+              <li><%= link_to name, @company.send(url_type) %></li>
+            <% end %>
           <% end %>
-          <% if @company.url_linkedin.present? %>
-            <li><%= link_to "LinkedIn", @company.url_linkedin %></li>
-          <% end %>
-          <% if @company.url_careers.present? %>
-            <li><%= link_to "Careers Site", @company.url_careers %></li>
-          <% end %>
-          <% if @company.url_ats_api.present? %>
-            <li><%= link_to "ATS Site", @company.url_ats_api %></li>
-          <% end %>
+
           <%= simple_form_for [@job, @saved_job] do |f| %>
             <%= button_tag type: 'submit' do %>
               <i class="fa-regular fa-heart"></i>
