@@ -14,9 +14,9 @@ namespace :admin do
     Api::DevitJobs.new.import_jobs
   end
 
-  desc "True up scraper"
+  desc "Scrape data from TrueUp"
   task scrape_true_up: :environment do
-    ScrapeTrueUp.new.perform
+    Importer::Scraper::TrueUp.new.perform
   end
 
   desc "Import XML from Workable"
