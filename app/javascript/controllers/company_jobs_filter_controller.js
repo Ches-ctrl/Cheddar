@@ -1,4 +1,3 @@
-// company_jobs_filter_controller.js
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
