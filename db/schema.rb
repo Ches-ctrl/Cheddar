@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_26_072859) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_26_094119) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -110,6 +110,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_26_072859) do
     t.string "sub_industry", default: "n/a"
     t.integer "total_live", default: 0
     t.string "carbon_pledge"
+    t.index ["applicant_tracking_system_id"], name: "index_companies_on_applicant_tracking_system_id"
   end
 
   create_table "countries", force: :cascade do |t|
@@ -208,6 +209,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_26_072859) do
     t.boolean "apply_with_cheddar", default: false
     t.integer "applicants_count", default: 0
     t.integer "cheddar_applicants_count", default: 0
+    t.index ["applicant_tracking_system_id"], name: "index_jobs_on_applicant_tracking_system_id"
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
@@ -241,6 +243,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_26_072859) do
   create_table "jobs_technologies", id: false, force: :cascade do |t|
     t.bigint "job_id", null: false
     t.bigint "technology_id", null: false
+    t.index ["job_id"], name: "index_jobs_technologies_on_job_id"
+    t.index ["technology_id"], name: "index_jobs_technologies_on_technology_id"
   end
 
   create_table "locations", force: :cascade do |t|
