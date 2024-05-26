@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'ruby-prof'
+# require 'ruby-prof'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
