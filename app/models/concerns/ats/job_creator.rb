@@ -70,7 +70,7 @@ module Ats
       p "Getting form fields for #{job.title}..."
       job.save! # must save before passing to Sidekiq job
       # TODO: create separate module methods for this
-      GetFormFieldsJob.perform_later(job) if Flipper.enabled?(:get_form_fields)
+      Importer::GetFormFieldsJob.perform_later(job) if Flipper.enabled?(:get_form_fields)
     end
   end
 end
