@@ -63,7 +63,7 @@ class Company < ApplicationRecord
     return if url_website.present?
 
     if Rails.env.production?
-      clearbit_company_info = CompanyDomainService.lookup_domain(name)
+      clearbit_company_info = Categorizer::CompanyDomainService.lookup_domain(name)
       self.url_website = clearbit_company_info['domain'] if clearbit_company_info && clearbit_company_info['domain'].present?
     else
       self.url_website = "https://www.example.com"
@@ -72,7 +72,7 @@ class Company < ApplicationRecord
 
   def fetch_description
     if Rails.env.production?
-      inferred_description, @name_keywords = CompanyDescriptionService.lookup_company(name, ats_identifier)
+      inferred_description, @name_keywords = Categorizer::CompanyDescriptionService.lookup_company(name, ats_identifier)
       self.description = inferred_description if description.blank?
     else
       self.description = "A financial services company."
@@ -83,7 +83,7 @@ class Company < ApplicationRecord
     return unless industry == 'n/a'
 
     if Rails.env.production?
-      industry, subcategory = CompanyIndustryService.lookup_industry(name, @name_keywords)
+      industry, subcategory = Categorizer::CompanyIndustryService.lookup_industry(name, @name_keywords)
       self.industry = industry
       self.sub_industry = subcategory
     else
