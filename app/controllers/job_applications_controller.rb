@@ -19,7 +19,7 @@ class JobApplicationsController < ApplicationController
 
     if current_user.present?
       job_ids = params[:job_ids]
-      @selected_jobs = Job.includes(:company).where(id: job_ids)
+      @selected_jobs = Job.eager_load(:company).where(id: job_ids)
 
       @job_applications = @selected_jobs.map do |job|
         job_application = current_user.job_applications.build(job:, status: "Pre-application")

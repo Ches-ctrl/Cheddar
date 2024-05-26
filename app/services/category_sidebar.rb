@@ -7,8 +7,8 @@ class CategorySidebar
     # Leaving this here as presumably we need to pass the sorted jobs to the sidebar?
     @filtered_jobs = filtered_jobs
 
-    # Why are we doing a new Job.includes query here after the job filtering process?
-    @jobs = Job.includes(:roles, :locations).select("jobs.id, jobs.date_posted, jobs.seniority, jobs.remote, jobs.employment_type")
+    # Why are we doing a new Job.eager_load query here after the job filtering process?
+    @jobs = Job.eager_load(:roles, :locations).select("jobs.id, jobs.date_posted, jobs.seniority, jobs.remote, jobs.employment_type")
   end
 
   def build
