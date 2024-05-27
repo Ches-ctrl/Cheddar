@@ -6,6 +6,7 @@ module Importer
     # This works by: (1) fetching JSON from the API, (2) creating a company then job for each DevITJobs job, and (3) handling redirects.
     # TODO: this can all be parsed out into a standard import class for all API-driven job boards / ATSs as they will all follow the same structure
     # TODO: this will make the code more readable and remove the need for duplicate error handling everywhere
+    # TODO: Question whether that class is generalised to all API handling or just jobs
     class DevitJobs < ApplicationService
       def initialize
         @ats = ApplicantTrackingSystem.find_by(name: 'DevITJobs')
