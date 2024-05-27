@@ -1,6 +1,7 @@
 module CheckUrlIsValid
   extend ActiveSupport::Concern
 
+  # TODO: Reduce this down as think most of this is covered by built-in HTTParty and Faraday capabilities - we just need to rewrite to use these libraries
   # TODO: This doesn't yet work sufficiently well - often you'll have a successfull or redirect HTTP call but an error message on the page so will need parsing by Nokogiri with a regex for the error message
   # Workable: query params - ?not_found=true redirect to main page
   # Lever: Sorry, we couldn't find anything here. The job posting you're looking for might have closed, or it has been removed. (404 error).
