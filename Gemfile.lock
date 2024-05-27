@@ -502,9 +502,6 @@ GEM
       method_source (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
-    watir (7.3.0)
-      regexp_parser (>= 1.2, < 3)
-      selenium-webdriver (~> 4.2)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -550,7 +547,6 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails (= 6.4.3)
   faker
-  faraday
   flipper-active_record (~> 1.3)
   font-awesome-sass (~> 6.5.1)
   geocoder
@@ -593,7 +589,6 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   vcr
-  watir
   web-console
   webmock
   yomu

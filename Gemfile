@@ -60,7 +60,7 @@ gem 'rack-cors'
 # Testing
 gem "capybara"
 gem "selenium-webdriver", "~> 4.18.1"
-gem "watir" # Do we still need this gem? @Ilya
+# gem "watir" # Do we still need this gem? @Ilya
 
 # Background Processing
 gem 'sidekiq', '~> 6.5.5'
@@ -84,12 +84,18 @@ gem 'meta-tags'
 gem 'hubspot-api-client'
 gem 'sendgrid-ruby'
 
-# Importing, Parsing & APIs
-gem 'csv' # can probably use ruby standard library
-gem "nokogiri"
-gem 'faraday' # TODO: use this gem for API calls (not currently in action)
-gem 'rails-html-sanitizer'
+# Feature Flags
 gem "flipper-active_record", "~> 1.3"
+
+# CSV
+# gem 'csv' # Installed as a dependency via Avo
+
+# Web Scraping
+gem 'rails-html-sanitizer'
+gem "nokogiri"
+# gem 'httparty' # Installed as a dependency via Avo
+# gem 'faraday' # Installed as a dependency via Cloudinary
+# gem 'tanakai' # TODO: install this gem for a web scraping framework
 
 # Monitoring
 gem 'newrelic_rpm'
@@ -106,16 +112,24 @@ gem 'newrelic_rpm'
 # Error Tracking
 # gem 'sentry-raven' # TODO: install this gem for error tracking
 
+# Pagination
+# gem 'pagy' # installed via Avo
+gem 'kaminari' # TODO: check whether we can replace with pagy
+
 # Front-end
-gem 'kaminari'
 gem "high_voltage", "~> 3.1"
 gem 'tinymce-rails' # TODO: now have trix and action text (check whether we need to replace)
 
-# Features
+# Search
 gem "pg_search"
+# gem "algoliasearch-rails" # TODO replace pg_search with algolia once schema is stable
+
+# Location
 gem 'geocoder'
-gem 'yomu' # this gem is no longer maintained - used for custom cover letters
-gem 'htmltoword' # TODO: Check if we use this anywhere
+
+# Cover Letters
+gem 'yomu' # this gem is no longer maintained - used for custom cover letters # TODO: remove
+gem 'htmltoword'
 
 group :development, :test do
   gem "dotenv-rails"
