@@ -73,7 +73,11 @@ module Ats
       begin
         Importer::GetFormFieldsJob.perform_later(job) if Flipper.enabled?(:get_form_fields)
       rescue StandardError => e
-        p "Error getting form fields for #{job.title}: #{e.message}"
+        if e.is_a?(Net::HTTPUnauthorized)
+          p "401 Forbidden Error: Form Fields turned off for #{job.title}"
+        else
+          p "Error getting form fields for #{job.title}: #{e.message}"
+        end
       end
     end
   end
