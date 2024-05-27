@@ -46,19 +46,21 @@ module Importer
       end
 
       def create_company(job_data)
+        # TODO: move this logic into the company_creator class to prevent need to rewrite logging and error handling
         @ats.find_or_create_company_by_data(job_data).tap do |company|
-          Rails.logger.info "Created DevITJobs company - #{company.name}"
+          Rails.logger.info "Created #{@ats.name} company - #{company.name}"
         end
       rescue StandardError => e
-        p "Error creating DevITJobs company: #{e.message}"
+        p "Error creating #{@ats.name} company: #{e.message}"
       end
 
       def create_job(company, job_data)
+        # TODO: move this logic into the job_creator class to prevent need to rewrite logging and error handling
         @ats.find_or_create_job_by_data(company, job_data).tap do |job|
-          Rails.logger.info "Created DevITJobs job - #{job.title} at #{company.name}"
+          Rails.logger.info "Created #{@ats.name} job - #{job.title} at #{company.name}"
         end
       rescue StandardError => e
-        p "Error creating DevITJobs job: #{e.message}"
+        p "Error creating #{@ats.name} job: #{e.message}"
       end
 
       def import_redirects
