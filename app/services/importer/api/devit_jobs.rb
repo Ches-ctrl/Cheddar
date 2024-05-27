@@ -20,7 +20,7 @@ module Importer
       def import_redirects
         p @redirect_urls.count
         # @redirect_urls.each do |url|
-        #   # TODO: Add handling for redirected urls
+        #   # TODO: Add handling for redirected urls. Dependencies: parsing url for job board/company details and company_crawler
         #   URL::CreateJobFromUrl.new(url).create_company_then_job
         # end
       end

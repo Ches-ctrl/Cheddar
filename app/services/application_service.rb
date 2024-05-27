@@ -6,6 +6,7 @@ class ApplicationService
 
   private
 
+  # TODO: Add custom user_agent, timeout, proxies, and retries
   def fetch_json(url)
     response = Faraday.get(url)
     JSON.parse(response.body)
