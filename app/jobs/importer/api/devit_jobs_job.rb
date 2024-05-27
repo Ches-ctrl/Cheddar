@@ -5,7 +5,7 @@ module Importer
       sidekiq_options retry: false
 
       def perform
-        Importer::Api::DevitJobs.new.import_jobs
+        Importer::Api::DevitJobs.new.import
       end
     end
   end

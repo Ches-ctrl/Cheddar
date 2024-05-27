@@ -9,9 +9,7 @@ module Importer
       include Capybara::DSL
       include CheckUrlIsValid
 
-      # TODO: Move this all into a separate importer folder (with subfolders?) and refactor?
-
-      def import_jobs
+      def import
         return p "Unable to scrape DevITJobs: first create ATS" unless (@ats = ApplicantTrackingSystem.find_by(name: 'DevITJobs'))
 
         @redirect_urls = []
