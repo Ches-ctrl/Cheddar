@@ -1,16 +1,12 @@
 module Importer
   module Xml
+    # Docs: https://help.workable.com/hc/en-us/articles/4420464031767-Utilizing-the-XML-Job-Feed
+    # To use this: rake xml:workable
+    # NB. the Workable XML feed is sensitive to 403 Forbidden errors (too many requests)
+    # How this works: The feed includes urls of the format: https://apply.workable.com/j/9A5B371BA0 (i.e. without the ats_identifier)
+    # In order to handle this, we create a variable with all the job_posting_urls from the XML feed
+    # We then resolve the redirect to get the final url and build the company / job posting from the API via CreateJobFromUrl, this bypasses rate limiting problems and uses standard functionality
     class Workable < ApplicationService
-      # TODO: Check whether we need these to inherit from ApplicationService or not once testing setup
-
-      # Docs: https://help.workable.com/hc/en-us/articles/4420464031767-Utilizing-the-XML-Job-Feed
-      # To use this:
-      # rake xml:workable
-      # How this works:
-      # NB. the Workable XML feed is sensitive to 403 Forbidden errors (too many requests)
-      # The feed includes urls of the format: https://apply.workable.com/j/9A5B371BA0 (i.e. without the ats_identifier)
-      # In order to handle this, we create a variable with all the job_posting_urls from the XML feed
-      # We then resolve the redirect to get the final url and build the company / job posting from the API via CreateJobFromUrl, this bypasses rate limiting problems and uses standard functionality
 
       # TODO: Fix this as only capturing a portion of the redirect urls at the moment. There is a wait screen page that is sometimes coming up and it may require a proxy to process. Check for the interim response code. Setup a proxy and use a different IP address to check the page.
       # TODO: Add count for number of urls in XML feed and number of urls processed so that we can evaluate success rate
@@ -18,39 +14,38 @@ module Importer
       # TODO: This can be made more efficient in future as lots of the job_posting_urls will already exist in the database after the first run
       # TODO: What we can do is extract the ats_identifiers from the job_posting_urls and then exclude any for which the company already exists in the DB (as this will have a separate process)
 
+      def initialize
+        @ats = ApplicantTrackingSystem.find_by(name: 'Workable')
+        @redirect_urls = []
+      end
+
       def import_xml
-        return "Unable to import Workable XML: first create ATS" unless (ats = ApplicantTrackingSystem.find_by(name: 'Workable'))
+        url = @ats.url_xml
+        xml_data = fetch_xml(url)
+        return unless xml_data
 
-        url = ats.url_xml
+        p "Fetched #{xml_data.count} XML links from #{@ats.name}"
 
-        begin
-          xml_data = Nokogiri::XML(URI.parse(url).open)
-        rescue OpenURI::HTTPError => e
-          if e.message.include?('403')
-            puts "Error: 403 Forbidden while fetching XML data from #{url}"
-          else
-            puts "Error: #{e.message} while fetching XML data from #{url}"
-          end
-          return nil
-        rescue StandardError => e
-          puts "Error: #{e.message}"
-          return nil
-        end
+        # job_urls = process_xml(xml_data)
+        # final_job_urls = resolve_redirects(job_urls)
 
-        # NB. This file is very large and can take a long time to process
+        # p "Final job urls: #{final_job_urls.count}"
+
+        # final_job_urls.each do |url|
+        #   # TODO: This should be a background job
+        #   Url::CreateJobFromUrl.new(url).create_company_then_job
+        # end
+      end
+
+      private
+
+      def process_xml(xml_data)
         job_nodes = xml_data.xpath('//job')
-        job_urls = job_nodes.map { |job_node| job_node.at_xpath('url')&.text&.strip }.compact
+        job_nodes.map { |job_node| job_node.at_xpath('url')&.text&.strip }.compact
+      end
 
-        # The below is for testing the redirect functionality without hitting the XML feed (comment out the above and use this)
-        # job_urls = ["https://apply.workable.com/j/9A5B371BA0", "https://apply.workable.com/j/2595A6EDD0", "https://apply.workable.com/j/2DA044E84E", "https://apply.workable.com/j/5ECBE14794", "https://apply.workable.com/j/F44ED9E40A", "https://apply.workable.com/j/0908074E5D", "https://apply.workable.com/j/0AA38013AC", "https://apply.workable.com/j/8D801CE251", "https://apply.workable.com/j/E91B0F3F46", "https://apply.workable.com/j/802966A156"]
-
-        final_job_urls = job_urls.map { |job_url| resolve_redirect(job_url) }.compact
-
-        p "Final job urls: #{final_job_urls}"
-
-        final_job_urls.each do |url|
-          Url::CreateJobFromUrl.new(url).create_company_then_job
-        end
+      def resolve_redirects(job_urls)
+        job_urls.map { |job_url| resolve_redirect(job_url) }.compact
       end
 
       def resolve_redirect(url)
@@ -76,3 +71,6 @@ module Importer
     end
   end
 end
+
+# The below is for testing the redirect functionality without hitting the XML feed (comment out the above and use this)
+# job_urls = ["https://apply.workable.com/j/9A5B371BA0", "https://apply.workable.com/j/2595A6EDD0", "https://apply.workable.com/j/2DA044E84E", "https://apply.workable.com/j/5ECBE14794", "https://apply.workable.com/j/F44ED9E40A", "https://apply.workable.com/j/0908074E5D", "https://apply.workable.com/j/0AA38013AC", "https://apply.workable.com/j/8D801CE251", "https://apply.workable.com/j/E91B0F3F46", "https://apply.workable.com/j/802966A156"]
