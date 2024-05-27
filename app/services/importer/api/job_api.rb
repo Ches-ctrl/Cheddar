@@ -7,8 +7,8 @@ module Importer
         @redirect_urls = []
       end
 
-      def import_jobs
-        jobs_data = fetch_json(@ats.url_all_jobs)
+      def import_jobs(url)
+        jobs_data = fetch_json(url)
         return unless jobs_data
 
         p "Fetched #{jobs_data.count} jobs from #{@ats.name}"

@@ -9,6 +9,10 @@ module Importer
         super('DevITJobs')
       end
 
+      def import_jobs
+        super(@ats.url_all_jobs)
+      end
+
       private
 
       def redirect?(json_data)
