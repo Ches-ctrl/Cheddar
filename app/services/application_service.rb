@@ -20,4 +20,18 @@ class ApplicationService
     Rails.logger.error "An unexpected error occurred: #{e.message}"
     nil
   end
+
+  def fetch_xml(url)
+    response = Faraday.get(url)
+    Nokogiri::XML(response.body)
+  rescue Faraday::Error => e
+    Rails.logger.error "HTTP request failed: #{e.message}"
+    nil
+  rescue Nokogiri::XML::SyntaxError => e
+    Rails.logger.error "Failed to parse XML: #{e.message}"
+    nil
+  rescue StandardError => e
+    Rails.logger.error "An unexpected error occurred: #{e.message}"
+    nil
+  end
 end
