@@ -6,6 +6,9 @@ module Ats
     def find_or_create_company_by_data(data)
       ats_identifier = fetch_company_id(data)
       find_or_create_company(ats_identifier, data)
+    rescue StandardError => e
+      Rails.logger.error "Error creating company: #{e.message}"
+      nil
     end
 
     def find_or_create_company(ats_identifier, data = nil)
@@ -23,7 +26,7 @@ module Ats
         company.assign_attributes(supplementary_data)
       end
 
-      p "Company created - #{company.name}" if company.new_record? && company.save
+      Rails.logger.info "Company created - #{company.name}" if company.new_record? && company.save
 
       return company
     end
