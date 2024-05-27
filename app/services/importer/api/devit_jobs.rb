@@ -19,7 +19,7 @@ module Importer
 
         process_jobs(jobs_data)
 
-        p @redirect_urls
+        p @redirect_urls.count
         # import_redirects
       end
 
