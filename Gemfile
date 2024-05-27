@@ -135,6 +135,7 @@ gem 'geocoder'
 
 # Cover Letters
 gem 'yomu' # this gem is no longer maintained - used for custom cover letters # TODO: remove
+# gem 'henkei' # alternative maintained gem to yomu for cover letters # TODO: install
 gem 'htmltoword'
 
 group :development, :test do
