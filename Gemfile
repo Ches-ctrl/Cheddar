@@ -90,12 +90,18 @@ gem "flipper-active_record", "~> 1.3"
 # CSV
 # gem 'csv' # Installed as a dependency via Avo
 
-# Web Scraping
-gem 'rails-html-sanitizer'
+# Parsing
 gem "nokogiri"
+gem 'rails-html-sanitizer'
+
+# HTTP Clients
 # gem 'httparty' # Installed as a dependency via Avo
 # gem 'faraday' # Installed as a dependency via Cloudinary
-# gem 'tanakai' # TODO: install this gem for a web scraping framework
+
+# Web Scraping Frameworks
+# gem 'spidr' # TODO: Install for CompanyCrawler and NetZeroChecker
+# gem 'tanakai' # potentially install this gem if spidr proves insufficient, based on capybara
+# gem 'wombat' # backup gem for web scraping based on mechanize
 
 # Monitoring
 gem 'newrelic_rpm'
