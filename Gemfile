@@ -138,6 +138,9 @@ gem 'yomu' # this gem is no longer maintained - used for custom cover letters # 
 # gem 'henkei' # alternative maintained gem to yomu for cover letters # TODO: install
 gem 'htmltoword'
 
+# Production
+# gem "puma_worker_killer" # NB. Doesn't actually solve memory problems!
+
 group :development, :test do
   gem "dotenv-rails"
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -169,7 +172,8 @@ group :development do
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   gem "rack-mini-profiler"
   # gem 'memory_profiler' # Additional gem for memory profiling
-  # gem 'stackprof' # Additional gem for call-stack profiling flamegraphs
+  gem 'derailed_benchmarks'
+  gem 'stackprof'
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
