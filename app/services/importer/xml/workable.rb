@@ -24,10 +24,11 @@ module Importer
 
         p "Fetched #{xml_data.count} XML links from #{@ats.name}"
 
-        job_urls = process_xml(xml_data)
+        return xml_data
 
-        return job_urls
+        # job_urls = process_xml(xml_data)
 
+        # return job_urls
 
         # final_job_urls = resolve_redirects(job_urls)
 
