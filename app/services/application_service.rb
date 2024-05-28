@@ -4,10 +4,6 @@ class ApplicationService
   #   new(*args, &block).call
   # end
 
-  private
-
-  # TODO: Add custom user_agent, timeout, proxies, and retries
-  # TODO: Add block handling for stream_xml
   def fetch_json(url)
     fetch_data(url, :parse_json)
   end
@@ -19,6 +15,11 @@ class ApplicationService
   def stream_xml(url)
     fetch_data(url, :stream_xml_data)
   end
+
+  private
+
+  # TODO: Add custom user_agent, timeout, proxies, and retries
+  # TODO: Add block handling for stream_xml
 
   def fetch_data(url, parse_method)
     response = Faraday.get(url)
