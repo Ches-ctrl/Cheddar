@@ -1,5 +1,6 @@
 class ApplicationService
   # TODO: Implement these core helper classes once we've checked for no unintended consequences
+  # TODO: Probably instead move this into a Faraday module for inclusion as required
   # def self.call(*args, &block)
   #   new(*args, &block).call
   # end
