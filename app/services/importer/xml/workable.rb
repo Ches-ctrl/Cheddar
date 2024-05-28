@@ -16,7 +16,6 @@ module Importer
 
       def initialize
         @ats = ApplicantTrackingSystem.find_by(name: 'Workable')
-        @redirect_urls = []
       end
 
       def import_xml
@@ -25,6 +24,8 @@ module Importer
         return unless xml_data
 
         p "Fetched #{xml_data.count} XML links from #{@ats.name}"
+
+        return xml_data
 
         # job_urls = process_xml(xml_data)
         # final_job_urls = resolve_redirects(job_urls)
