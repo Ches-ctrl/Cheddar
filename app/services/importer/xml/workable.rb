@@ -25,9 +25,11 @@ module Importer
 
         p "Fetched #{xml_data.count} XML links from #{@ats.name}"
 
-        return xml_data
+        job_urls = process_xml(xml_data)
 
-        # job_urls = process_xml(xml_data)
+        return job_urls
+
+
         # final_job_urls = resolve_redirects(job_urls)
 
         # p "Final job urls: #{final_job_urls.count}"
