@@ -1,54 +1,23 @@
-RSpec.describe Importer::Api::DevitJobs do
-  describe "DevItJobs Integration" do
-    pending "add some examples (or delete) #{__FILE__}"
+require 'rails_helper'
+
+RSpec.describe Importer::Api::DevitJobs, type: :service, devitjobs: true do
+  let(:service) { described_class.new }
+
+  before do
+    allow(ApplicantTrackingSystem).to receive(:find_by).with(name: 'DevITJobs').and_return(double('ATS', url_all_jobs: 'https://devitjobs.uk/api/jobsLight'))
   end
-  # let!(:kliq){ create(:company, name: 'Kliq Inc') }
 
-  # let(:xml_response) do
-  #   builder = Nokogiri::XML::Builder.new do |xml|
-  #     xml.jobs {
-  #       xml.job {
-  #         xml.id_ "10"
-  #         xml.title "Front-End Developer"
-  #         xml.apply_url "https://frontend_application_url.com"
-  #         xml.country "Spain"
-  #         xml.salary "$50000"
-  #         xml.company "#{kliq.name}"
-  #         xml.description "Front end developer position"
-  #         xml.pubdate "#{Date.current - 2.days}"
-  #       }
-  #       xml.job {
-  #         xml.id_ "11"
-  #         xml.title "Full-Stack Developer"
-  #         xml.apply_url "https://fullstack_application_url.com"
-  #         xml.country "Canada"
-  #         xml.salary "$90000"
-  #         xml.company "Welp Inc"
-  #         xml.description "Full-Stack developer position"
-  #         xml.pubdate "#{Date.current}"
-  #       }
-  #     }
-  #   end
-  #   Nokogiri::XML(builder.to_xml)
-  # end
+  describe '#import_jobs', :vcr do
+    it 'fetches the JSON data' do
+      VCR.use_cassette('devit_jobs') do
+        jobs_data = service.send(:fetch_json, 'https://devitjobs.uk/api/jobsLight')
+        expect(jobs_data).to be_an(Array)
+        expect(jobs_data).not_to be_empty
+      end
+    end
 
-  # describe '#scrape page' do
-  #   subject { described_class.new }
-  #   it 'only creates companies that does not exist' do
-  #     allow(subject).to receive(:page_doc).with('https://devitjobs.uk/job_feed.xml').and_return(xml_response)
-
-
-  #     expect { subject.scrape_page }.to change(Company, :count).by(1)
-  #   end
-
-  #   context 'create jobs' do
-  #     before { create(:job, posting_url: 'https://frontend_application_url.com') }
-
-  #     it 'only creates job that does not exist' do
-  #       allow(subject).to receive(:page_doc).with('https://devitjobs.uk/job_feed.xml').and_return(xml_response)
-
-  #       expect { subject.scrape_page }.to change(Job, :count).by(1)
-  #     end
-  #   end
-  # end
+    it 'finds at least one redirect URL' do
+      skip 'This test is not yet implemented'
+    end
+  end
 end

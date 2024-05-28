@@ -11,5 +11,5 @@ COMPANIES = {
   'Workable' => 'kroo'
 }.freeze
 
-RECRUITEE_COMPANY = ['manual', 'Manual']
+RECRUITEE_COMPANY = ['radishlab', 'Radish Lab']
 WORKABLE_COMPANY = ['southern-national', 'Southern National Roofing']

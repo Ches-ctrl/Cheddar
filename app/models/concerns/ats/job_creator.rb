@@ -6,6 +6,9 @@ module Ats
     def find_or_create_job_by_data(company, data)
       ats_job_id = fetch_id(data)
       find_or_create_job(company, ats_job_id, data)
+    rescue StandardError => e
+      Rails.logger.error "Error creating job: #{e.message}"
+      nil
     end
 
     def find_or_create_job(company, ats_job_id, data = nil)
@@ -65,12 +68,11 @@ module Ats
     end
 
     def fetch_additional_fields(job, data)
-      p job
       get_application_criteria(job, data)
-      p "Getting form fields for #{job.title}..."
+      p "Getting form fields for #{job.title}"
       job.save! # must save before passing to Sidekiq job
       # TODO: create separate module methods for this
-      Importer::GetFormFieldsJob.perform_later(job) if Flipper.enabled?(:get_form_fields)
+      Flipper.enabled?(:get_form_fields) ? Importer::GetFormFieldsJob.perform_later(job) : "Form Fields turned off"
     end
   end
 end

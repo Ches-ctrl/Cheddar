@@ -1,7 +1,4 @@
-require Rails.root.join('spec', 'support', 'spec_constants.rb')
-
-# @Dan Why do we have a recruitee company defined here and in spec constants?
-RECRUITEE_COMPANY = ['radishlab', 'Radish Lab']
+require 'support/spec_constants'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
@@ -23,6 +20,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
 
       ats_csv = 'storage/csv/ats_systems.csv'
       Builders::AtsBuilder.new(ats_csv).build
+
       @ashbyhq = ApplicantTrackingSystem.find_by(name: 'AshbyHQ')
       @bamboohr = ApplicantTrackingSystem.find_by(name: 'BambooHR')
       @gh = ApplicantTrackingSystem.find_by(name: 'Greenhouse')
@@ -32,6 +30,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
       @recruitee = ApplicantTrackingSystem.find_by(name: 'Recruitee')
       @smartrecruiters = ApplicantTrackingSystem.find_by(name: 'SmartRecruiters')
       @workable = ApplicantTrackingSystem.find_by(name: 'Workable')
+      @devitjobs = ApplicantTrackingSystem.find_by(name: 'DevITJobs')
     end
 
     it 'can parse a url and determine the ATS' do
@@ -67,6 +66,10 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
 
       workable_url = 'https://apply.workable.com/kroo/j/13AE03BA88/'
       expect(@workable.parse_url(workable_url)).to eq(['kroo', '13AE03BA88'])
+
+      # TODO: Implement testing of DevITJobs
+      # devitjobs_url = 'https://devitjobs.uk/jobs/Nesta-Frontend-Mid-Level-Developer'
+      # expect(@devitjobs.parse_url(devitjobs_url)).to eq(['###', 'Nesta-Frontend-Mid-Level-Developer'])
     end
 
     it "neither throws an error when given a bad ats_identifier nor persists non-existent companies" do
@@ -142,6 +145,15 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         @workable.find_or_create_company('kroo')
         expect(Company.last.name).to eq('Kroo Bank Ltd')
       end
+    end
+
+    # TODO: Implement testing of DevITJobs
+    it 'can create a company with DevITJobs' do
+      skip 'DevITJobs is not yet implemented'
+      # VCR.use_cassette('create_company_devitjobs') do
+      #   @devitjobs.find_or_create_company('Nesta')
+      #   expect(Company.last.name).to eq('Frontend Mid Level Developer')
+      # end
     end
 
     it 'can create a job with AshbyHQ' do
@@ -252,6 +264,14 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         p job
         expect(job.title).to eq(title)
       end
+    end
+
+    # TODO: Implement testing of DevITJobs
+    it 'can create a job with DevITJobs' do
+      skip 'DevITJobs is not yet implemented'
+      # VCR.use_cassette('create_job_devitjobs') do
+      #   expect(job.title).to eq(title)
+      # end
     end
   end
 end
