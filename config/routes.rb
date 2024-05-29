@@ -26,11 +26,12 @@ Rails.application.routes.draw do
   # Pages
   root to: "pages#home"
   get 'about', to: 'pages#about', as: 'about'
-  get 'how_it_works', to: 'pages#how_it_works', as: 'how_it_works'
-  get 'privacy', to: 'pages#privacy', as: 'privacy'
-  get 'ts&cs', to: 'pages#ts_and_cs', as: 'ts_and_cs'
-  get 'landing', to: 'pages#landing', as: 'landing'
   get 'faqs', to: 'pages#faqs', as: 'faqs'
+  get 'how_it_works', to: 'pages#how_it_works', as: 'how_it_works'
+  get 'landing', to: 'pages#landing', as: 'landing'
+  get 'privacy', to: 'pages#privacy', as: 'privacy'
+  get 'protocol', to: 'pages#protocol', as: 'protocol'
+  get 'ts&cs', to: 'pages#ts_and_cs', as: 'ts_and_cs'
 
   # Users
   get 'profile', to: 'users#show', as: 'profile'
