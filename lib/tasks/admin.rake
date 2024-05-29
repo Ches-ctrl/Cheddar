@@ -28,4 +28,9 @@ namespace :admin do
   task import_workable_xml: :environment do
     Importer::Xml::Workable.new.perform
   end
+
+  desc "Export CSV version of record type"
+  task export_to_csv: :environment do
+    Csv::ExportToCsv.new.to_csv
+  end
 end
