@@ -2,6 +2,7 @@ module Ats
   module CompanyCreator
     extend ActiveSupport::Concern
     # TODO: Refactor this to simplify down
+    # TODO: Refactor into a service object according to the Single Responsibility Principle
 
     def find_or_create_company_by_data(data)
       ats_identifier = fetch_company_id(data)
