@@ -1,11 +1,5 @@
 namespace :import_csv do
-  # -----------------------------
-  # Applicant Tracking Systems
-  # -----------------------------
-
-  # TODO: Add a way to update existing ATSs (e.g. if they change their url format or url_identifiers etc.)
-
-  desc "Import CSV - Applicant Tracking Systems"
+  desc "Import CSV - ATSs"
   task applicant_tracking_systems: :environment do
     Builders::AtsBuilder.new.build
   end
