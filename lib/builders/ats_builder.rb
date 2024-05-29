@@ -2,8 +2,8 @@ module Builders
   class AtsBuilder
     attr_reader :ats_csv
 
-    def initialize(ats_csv)
-      @ats_csv = ats_csv
+    def initialize
+      @ats_csv = 'storage/csv/ats_systems.csv'
     end
 
     def build
@@ -31,6 +31,7 @@ module Builders
           p "Error creating ATS - #{ats_name}"
         end
       end
+      p "Created #{ApplicantTrackingSystem.count} ATS systems."
     end
   end
 end
