@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function saveJob() {
     // get current job url
-    cheddarUrl = "http://127.0.0.1:3000/";
+    cheddarUrl = "https://www.cheddarjobs.com/";
 
     var currentTabUrl = await getCurrentTab();
     console.log("currentTabUrl:", currentTabUrl);
