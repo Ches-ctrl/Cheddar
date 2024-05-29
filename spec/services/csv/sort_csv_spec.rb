@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Csv::ExportDataToCsv do
-  describe "CSV Setup" do
+RSpec.describe Csv::SortCsv do
+  describe "CSV sorting" do
     pending "add some examples (or delete) #{__FILE__}"
   end
 end
