@@ -4,6 +4,7 @@ module Importer
     include CheckUrlIsValid
 
     # TODO: Figure out where exactly this class should be called
+    # TODO: Simplify this down
 
     def initialize(url)
       @url = url
