@@ -3,6 +3,7 @@ require "cgi"
 require "pathname"
 
 # TODO: Implement queue prioritization for urls containing career page stubs, likely requires subclassing `Spidr`
+# TODO: Add time limit parameter
 # TODO: There's no realtime progress update
 class CompanyCrawler
   attr_reader :ats_hits
@@ -44,7 +45,7 @@ class CompanyCrawler
     puts "Beginning crawl of #{@starting_url}..."
     Spidr.site(@starting_url, strip_fragments: true, strip_query: true, robots: false) do |spider|
       spider.every_page do |page|
-        # The dummy that wrote `spidr` didn't include an explicit 'quit' command
+        # `spidr` doesn't include an explicit 'quit' command
         # So we have to do this to terminate the crawl after finding our ats board
         unless @ats_hits.empty? # TODO: make number of hits to quit variable
           spider.skip_page!
