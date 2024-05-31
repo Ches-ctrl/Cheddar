@@ -1,8 +1,7 @@
-require "spidr"
+require_relative "../priority_spidr/priority_spidr"
 require "cgi"
 require "pathname"
 
-# TODO: Implement queue prioritization for urls containing career page stubs, likely requires subclassing `Spidr`
 # TODO: Add time limit parameter
 # TODO: There's no realtime progress update
 class CompanyCrawler
@@ -13,6 +12,7 @@ class CompanyCrawler
     @starting_url = url
     @url_regex = Regexp.new('https?://(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b(?:[-a-zA-Z0-9@:%_\+.~#?&//=]*)')
     @ats_stubs = (Pathname.new(__FILE__).parent + "ats_stubs.txt").readlines.map(&:chomp) # rubocop:disable Style/StringConcatenation
+    @careers_page_stubs = (Pathname.new(__FILE__).parent + "careers_page_stubs.txt").readlines.map(&:chomp) # rubocop:disable Style/StringConcatenation
     @ats_hits = []
   end
 
@@ -44,13 +44,11 @@ class CompanyCrawler
   def crawl
     puts "Beginning crawl of #{@starting_url}..."
     Spidr.site(@starting_url, strip_fragments: true, strip_query: true, robots: false) do |spider|
+      spider.priority_stubs = @careers_page_stubs
       spider.every_page do |page|
-        # `spidr` doesn't include an explicit 'quit' command
-        # So we have to do this to terminate the crawl after finding our ats board
-        unless @ats_hits.empty? # TODO: make number of hits to quit variable
-          spider.skip_page!
-          spider.skip_link!
-        end
+        # quit crawling if we found the board
+        spider.pause! unless @ats_hits.empty? # TODO: make number of hits to quit variable
+        puts "Scanning `#{page.url}`"
         urls = get_urls_from_source(page.body)
         @ats_hits += get_ats_urls(urls)
       end
