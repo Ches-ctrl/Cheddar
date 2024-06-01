@@ -9,11 +9,6 @@ namespace :admin do
     Builders::NoOfJobs.new.analyse
   end
 
-  desc "Update existing company jobs"
-  task update_existing_company_jobs: :environment do
-    Updater::ExistingCompanyJobs.new.perform
-  end
-
   desc "Pull data from DevItJobs API"
   task devitjobs: :environment do
     Importer::Api::DevitJobs.new.import_jobs
@@ -27,6 +22,11 @@ namespace :admin do
   desc "Import XML from Workable"
   task import_workable_xml: :environment do
     Importer::Xml::Workable.new.perform
+  end
+
+  desc "Update existing company jobs"
+  task update_existing_company_jobs: :environment do
+    Updater::ExistingCompanyJobs.new.perform
   end
 
   desc "Export CSV version of record type"
