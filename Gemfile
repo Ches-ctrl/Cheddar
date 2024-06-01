@@ -69,6 +69,7 @@ gem 'sidekiq-scheduler', '~> 5.0', '>= 5.0.3'
 
 # Storage
 gem "cloudinary"
+gem 'aws-sdk-s3', '~> 1'
 
 # Admin
 gem 'avo'
