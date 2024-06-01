@@ -255,4 +255,21 @@ module Constants
     'Structured',
     'Ad-hoc'
   ].freeze
+
+  CAREERS_STUBS = [
+    "jobs",
+    "careers",
+    "get-involved",
+    "positions",
+    "job-openings",
+    "current-job-openings",
+    "careers-list",
+    "open-careers",
+    "open-positions",
+    "opportunities",
+    "open-roles",
+    "current-openings",
+    "hiring",
+    "apply"
+  ].freeze
 end
