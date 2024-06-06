@@ -1,6 +1,8 @@
 require_relative "../priority_spidr/priority_spidr"
 require "cgi"
 require "pathname"
+require 'csv'
+ROOT = Pathname.new(__FILE__).parent.parent.parent.parent
 
 # TODO: Add time limit parameter
 # TODO: There's no realtime progress update
@@ -12,12 +14,28 @@ class CompanyCrawler
   def initialize(url)
     @starting_url = url
     @url_regex = Regexp.new('https?://(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b(?:[-a-zA-Z0-9@:%_\+.~#?&//=]*)')
-    @ats_stubs = (Pathname.new(__FILE__).parent + "ats_stubs.txt").readlines.map(&:chomp) # rubocop:disable Style/StringConcatenation
+    @ats_stubs = load_ats_stubs
     @careers_page_stubs = (Pathname.new(__FILE__).parent + "careers_page_stubs.txt").readlines.map(&:chomp) # rubocop:disable Style/StringConcatenation
     @ats_hits = []
   end
 
   private
+
+  # Load and return stubs list from `storage/csv/ats_systems.csv`
+  def load_ats_stubs
+    # ! FIX: some of the url_identifiers in the csv are too vague and trigger false positives
+    # ! e.g.: 'sap' for 'SAP SuccessFactors' triggers as a hit for any url containing 'sap'
+    # ! Need to include more of the actual url, like `sap.com` or whatever it happens to be
+    stubs = []
+    ats_csv = CSV.parse(File.read(ROOT + "storage" + "csv" + "ats_systems.csv"), headers: true) # rubocop:disable Style/StringConcatenation
+    ats_csv.each do |row|
+      next unless row['url_identifier'] != 'linkedin'
+
+      ids = row['url_identifier'].split('|')
+      stubs+=ids
+    end
+    return stubs
+  end
 
   # Returns an array of urls from the given `source` string
   def get_urls_from_source(source)
@@ -33,6 +51,7 @@ class CompanyCrawler
         next unless url.include?(stub)
 
         ats_urls.append(url)
+        puts stub
         break
       end
     end
