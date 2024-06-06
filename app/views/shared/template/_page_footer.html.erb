@@ -1,0 +1,21 @@
+<footer class="mx-auto w-full max-w-2xl space-y-10 pb-16 lg:max-w-5xl">
+  <div class="flex">
+    <div class="flex flex-col items-start gap-3">
+      <% if defined?(prev_options)%>
+        <%= link_to prev_options[:link_path], class: button_klasses(theme: :zinc) do %>
+          <%= inline_svg_tag('template/icons/left_arrow.svg') %> Previous
+        <% end %>
+        <%= link_to prev_options[:title], prev_options[:link_path], tab_index: -1, aria_hidden: true, class: 'text-base font-semibold text-zinc-900 transition hover:text-zinc-600 dark:text-white dark:hover:text-zinc-300' %>
+      <% end %>
+    </div>
+    <div class="ml-auto flex flex-col items-end gap-3">
+      <% if defined?(next_options) %>
+        <%= link_to next_options[:link_path], class: button_klasses(theme: :zinc) do %>
+          Next <%= inline_svg_tag('template/icons/right_arrow.svg') %>
+        <% end %>
+        <%= link_to next_options[:title], next_options[:link_path], tab_index: -1, aria_hidden: true, class: 'text-base font-semibold text-zinc-900 transition hover:text-zinc-600 dark:text-white dark:hover:text-zinc-300' %>
+      <% end %>
+    </div>
+  </div>
+  <%= render 'shared/template/small_print' %>
+</footer>

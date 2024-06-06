@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   get 'how_it_works', to: 'pages#how_it_works', as: 'how_it_works'
   get 'landing', to: 'pages#landing', as: 'landing'
   get 'privacy', to: 'pages#privacy', as: 'privacy'
-  get 'protocol', to: 'pages#protocol', as: 'protocol'
+
   get 'ts&cs', to: 'pages#ts_and_cs', as: 'ts_and_cs'
 
   # Users
@@ -62,4 +62,20 @@ Rails.application.routes.draw do
   resources :emails, only: [:create]
   resources :saved_jobs, only: %i[index show destroy]
   resources :educations, only: %i[new create]
+
+  ###
+  ### Taimwind Protocal Template
+  ###
+  get 'protocol', to: 'pages#protocol', as: 'protocol'
+  resources :quick_start, only: %i[index]
+  resources :sdks, only: %i[index]
+  resources :authentication, only: %i[index]
+  resources :pagination, only: %i[index]
+  resources :errors, only: %i[index]
+  resources :webhooks, only: %i[index]
+  resources :contacts, only: %i[index]
+  resources :conversations, only: %i[index]
+  resources :messages, only: %i[index]
+  resources :groups, only: %i[index]
+  resources :attachements, only: %i[index]
 end

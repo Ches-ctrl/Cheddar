@@ -1,0 +1,45 @@
+<% nav_items = [
+  { title: 'API', link_path: '#' },
+  { title: 'Documentation', link_path: '#' },
+  { title: 'Support', link_path: '#' }
+] %>
+<% nav_groups =   [
+  {
+    title: 'Guides',
+    links: [
+      { title: 'Introduction', link_path: root_path },
+      { title: 'Quickstart', link_path: quick_start_index_path },
+      { title: 'SDKs', link_path: sdks_path },
+      { title: 'Authentication', link_path: authentication_index_path },
+      { title: 'Pagination', link_path: pagination_index_path },
+      { title: 'Errors', link_path: errors_path },
+      { title: 'Webhooks', link_path: webhooks_path },
+    ],
+  },
+  {
+    title: 'Resources',
+    links: [
+      { title: 'Contacts', link_path: contacts_path },
+      { title: 'Conversations', link_path: conversations_path },
+      { title: 'Messages', link_path: messages_path },
+      { title: 'Groups', link_path: groups_path },
+      { title: 'Attachments', link_path: attachements_path },
+    ],
+  }] %>
+<nav class="hidden lg:mt-10 lg:block" data-controller="side-nav">
+  <ul role="list">
+    <% nav_items.each do |item| %>
+      <li class="md:hidden">
+        <%= link_to item[:title], item[:link_path], class: 'block py-1 text-sm text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white' %>
+      </li>
+    <% end %>
+    <% nav_groups.each do |group| %>
+      <%= render 'shared/template/layout/navigation_group_item', group:  %>
+    <% end %>
+    <li class="sticky bottom-0 z-10 mt-6 min-[416px]:hidden">
+      <button type="button" href="#"  class="w-full">
+        Sign in
+      </button>
+    </li>
+  </ul>
+</nav>    
