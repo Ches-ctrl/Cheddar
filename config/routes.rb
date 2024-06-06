@@ -78,4 +78,11 @@ Rails.application.routes.draw do
   resources :messages, only: %i[index]
   resources :groups, only: %i[index]
   resources :attachements, only: %i[index]
+
+  ###
+  ### Integration of new template
+  ###
+
+  # get 'opportunities', to: 'opportunities#protocol', as: 'protocol'
+  resources :opportunities, only: %i[index]
 end
