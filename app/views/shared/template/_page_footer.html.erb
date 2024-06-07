@@ -1,21 +1,29 @@
+<% social_links = [
+  {
+    sr_text: 'Follow us on X',
+    icon_name: 'logos/x'
+  },
+  {
+    sr_text: 'Follow us on Github',
+    icon_name: 'logos/github'
+  },
+  {
+    sr_text: 'Join our Discord server',
+    icon_name: 'logos/discord'
+  },
+] %>
 <footer class="mx-auto w-full max-w-2xl space-y-10 pb-16 lg:max-w-5xl">
-  <div class="flex">
-    <div class="flex flex-col items-start gap-3">
-      <% if defined?(prev_options)%>
-        <%= link_to prev_options[:link_path], class: button_klasses(theme: :zinc) do %>
-          <%= inline_svg_tag('template/icons/left_arrow.svg') %> Previous
+  <div class="flex flex-col items-center justify-between gap-5 border-t border-zinc-900/5 pt-8 sm:flex-row dark:border-white/5">
+    <p class="text-xs text-zinc-600 dark:text-zinc-400">
+      &copy; Copyright 2024. All rights reserved.
+    </p>
+    <div class="flex gap-4">
+      <% social_links.each do |link| %>
+        <%= link_to  '#', class: 'group' do %>
+          <span class="sr-only"><%= link[:sr_text] %></span>
+          <%= inline_svg_tag("template/icons/#{link[:icon_name]}.svg") %>
         <% end %>
-        <%= link_to prev_options[:title], prev_options[:link_path], tab_index: -1, aria_hidden: true, class: 'text-base font-semibold text-zinc-900 transition hover:text-zinc-600 dark:text-white dark:hover:text-zinc-300' %>
-      <% end %>
-    </div>
-    <div class="ml-auto flex flex-col items-end gap-3">
-      <% if defined?(next_options) %>
-        <%= link_to next_options[:link_path], class: button_klasses(theme: :zinc) do %>
-          Next <%= inline_svg_tag('template/icons/right_arrow.svg') %>
-        <% end %>
-        <%= link_to next_options[:title], next_options[:link_path], tab_index: -1, aria_hidden: true, class: 'text-base font-semibold text-zinc-900 transition hover:text-zinc-600 dark:text-white dark:hover:text-zinc-300' %>
       <% end %>
     </div>
   </div>
-  <%= render 'shared/template/small_print' %>
 </footer>

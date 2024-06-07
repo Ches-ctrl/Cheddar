@@ -4,34 +4,25 @@ class OpportunitiesController < ApplicationController
 
   def index
     load_opportunities
+    load_facets
   end
 
   private
 
+  def load_facets
+    @facets = OpportunityFacetsBuilder.call(@opportunities, opportunity_params)
+  end
+
   def load_opportunities
-    filtered_jobs = JobFilter.new(params).filter_and_sort
+    @opportunities = OpportunitiesFetcher.call(opportunity_scope, opportunity_params)
 
-    @jobs = filtered_jobs.eager_load(associated_tables)
-                         .order(sort_order(params[:sort]))
-                         .page(params[:page])
-
-    @pagy, @records = pagy(@jobs, items: 20)
+    @pagy, @records = pagy(@opportunities, items: 20)
   end
 
-  def associated_tables
-    %i[requirement company locations countries]
+  def opportunity_params
+    {}
   end
 
-  def sort_order(sort_param)
-    sort_options = {
-      'title' => 'jobs.title ASC',
-      'title_desc' => 'jobs.title DESC',
-      'company' => 'companies.name ASC',
-      'company_desc' => 'companies.name DESC',
-      'created_at' => 'jobs.created_at DESC',
-      'created_at_asc' => 'jobs.created_at ASC'
-    }.freeze
-
-    sort_options.fetch(sort_param, 'jobs.created_at DESC')
-  end
+  # policy_scope(Job)
+  def opportunity_scope = Job.all
 end
