@@ -20,7 +20,7 @@ class OpportunitiesController < ApplicationController
   end
 
   def opportunity_params
-    {}
+    params.permit(:employment, :location, :page, :posted, :role, :seniority)
   end
 
   # policy_scope(Job)

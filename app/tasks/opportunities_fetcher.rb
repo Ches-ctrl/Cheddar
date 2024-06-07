@@ -24,31 +24,47 @@ class OpportunitiesFetcher < ApplicationTask
   end
 
   def plain_query
-    OpportunitiesQuery.call(@opportunities)
+    opportunities = OpportunitiesQuery.call(@opportunities)
+    apply_filters(opportunities)
   end
 
-  # def plain_query
-  #   filtered_jobs = JobFilter.new(@params, @opportunities).filter_and_sort
+  def apply_filters(opportunities)
+    filters = {
+      date_posted: filter_by_when_posted(@params[:posted]),
+      seniority: filter_by_seniority(@params[:seniority]),
+      locations: filter_by_location(@params[:location]),
+      roles: filter_by_role(@params[:role]),
+      employment_type: filter_by_employment(@params[:employment])
+    }.compact
 
-  #   @jobs = filtered_jobs.eager_load(associated_tables)
-  #                        .order(sort_order(params[:sort]))
-  #   #  .page(params[:page])
-  # end
+    opportunities.where(filters)
+  end
 
-  # def associated_tables
-  #   %i[requirement company locations countries]
-  # end
+  def filter_by_when_posted(param)
+    return unless param.present?
 
-  # def sort_order(sort_param)
-  #   sort_options = {
-  #     'title' => 'jobs.title ASC',
-  #     'title_desc' => 'jobs.title DESC',
-  #     'company' => 'companies.name ASC',
-  #     'company_desc' => 'companies.name DESC',
-  #     'created_at' => 'jobs.created_at DESC',
-  #     'created_at_asc' => 'jobs.created_at ASC'
-  #   }.freeze
+    number = Constants::DateConversion::CONVERT_TO_DAYS[param] || 99_999
+    number.days.ago..Date.today
+  end
 
-  #   sort_options.fetch(sort_param, 'jobs.created_at DESC')
-  # end
+  def filter_by_location(param)
+    return unless param.present?
+
+    locations = param.split.map { |location| location.gsub('_', ' ').split.map(&:capitalize).join(' ') unless location == 'remote' }
+    { city: locations }
+  end
+
+  def filter_by_role(param)
+    { name: param.split } if param.present?
+  end
+
+  def filter_by_seniority(param)
+    return unless param.present?
+
+    param.split.map { |seniority| seniority.split('-').map(&:capitalize).join('-') }
+  end
+
+  def filter_by_employment(param)
+    param.split if param.present?
+  end
 end

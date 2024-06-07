@@ -3,7 +3,7 @@
 class OpportunityFacetsBuilder < ApplicationTask
   def initialize(opportunities, params)
     @opportunities = opportunities
-    @params = params.to_h
+    @params = params
   end
 
   def call
@@ -22,77 +22,72 @@ class OpportunityFacetsBuilder < ApplicationTask
     build_facets
   end
 
+  ###
+
   def build_facets
-    @facets = {}
-    build_posted_array
-    build_seniority_array
-    build_location_array
-    build_role_array
-    build_employment_array
-    @facets
+    @facets = posted_facets
+    @facets += seniority_facets
+    @facets += location_facets
+    @facets += role_facets
+    @facets += employment_facets
+    sorted(@facets)
   end
 
-  def build_posted_array
+  def posted_facets
+    attribute = 'posted'
     date_cutoffs = Constants::DateConversion::CONVERT_TO_DAYS.transform_values { |v| v.days.ago.beginning_of_day }
-    results = date_cutoffs.map do |period, cutoff|
-      period_id = period.downcase.gsub(/last |within a /, '').gsub(' ', '-')
+    date_cutoffs.map do |period, cutoff|
+      value = period.downcase.gsub(/last |within a /, '').gsub(' ', '-')
       count = @opportunities.where(date_posted: cutoff..Date.today).count
-      params = @params[:posted] ? @params[:posted].include?(period_id) : period == 'Any time'
-
-      ['radio', period, period_id, count, params]
+      Facet.new(attribute:, value:, position: 0, count:, url_params: @params, type: 'radio')
     end.compact
-    @facets['posted'] = results
   end
 
-  def build_seniority_array
-    results = @opportunities.group(:seniority).count.map do |seniority, count|
+  def seniority_facets
+    attribute = 'seniority'
+    @opportunities.group(:seniority).count.map do |seniority, count|
       next unless seniority
 
-      seniority_id = seniority.downcase.split.first
-      params = @params[:seniority]&.include?(seniority_id)
-
-      ['checkbox', seniority, seniority_id, count, params]
+      value = seniority.downcase.split.first
+      Facet.new(attribute:, value:, position: 0, count:, url_params: @params, type: 'checkbox')
     end.compact
-    @facets['seniority'] = sort_by_count_desc(results)
   end
 
-  def build_location_array
-    results = @opportunities.group(:'locations.city').count.map do |location, count|
-      location_id = location ? location.downcase.gsub(' ', '_') : 'remote'
-      params = location ? @params[:location]&.include?(location_id) : @params[:location]&.include?('remote')
-      location ||= 'Remote'
-
-      ['checkbox', location, location_id, count, params]
+  def location_facets
+    attribute = 'location'
+    @opportunities.group(:'locations.city').count.map do |location, count|
+      value = location ? location.downcase.gsub(' ', '_') : 'remote'
+      Facet.new(attribute:, value:, position: 0, count:, url_params: @params, type: 'checkbox')
     end.compact
-    @facets['location'] = sort_by_count_desc(results)
   end
 
-  def build_role_array
-    results = @opportunities.group(:'roles.name').count.map do |role, count|
+  def role_facets
+    attribute = 'role'
+    @opportunities.group(:'roles.name').count.map do |role, count|
       next unless role
 
-      role_id = role
-      params = @params[:role]&.include?(role_id)
-      role = role.titleize
-
-      ['checkbox', role, role_id, count, params]
+      value = role.downcase.split.first
+      Facet.new(attribute:, value:, position: 0, count:, url_params: @params, type: 'checkbox')
     end.compact
-    @facets['role'] = sort_by_count_desc(results)
   end
 
-  def build_employment_array
-    results = @opportunities.group(:employment_type).count.map do |employment, count|
+  def employment_facets
+    attribute = 'employment'
+    @opportunities.group(:employment_type).count.map do |employment, count|
       next unless employment
 
-      employment_id = employment.downcase.gsub('-', '_')
-      params = @params[:employment]&.include?(employment_id)
-
-      ['checkbox', employment, employment_id, count, params]
+      value = employment
+      Facet.new(attribute:, value:, position: 0, count:, url_params: @params, type: 'checkbox')
     end.compact
-    @facets['employment'] = sort_by_count_desc(results)
   end
 
-  def sort_by_count_desc(data)
-    data.sort_by { |item| -item[3] }
+  def sorted(facets)
+    facet_orders = %w[posted seniority location role employment]
+    sorted_by_count(facets)
+    facets.sort_by! { |facet| facet_orders.index(facet.attribute) }
+  end
+
+  def sorted_by_count(facets)
+    facets.sort_by! { |facet| facet.attribute.eql?('posted') ? 0 : -facet.count }
   end
 end

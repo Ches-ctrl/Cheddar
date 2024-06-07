@@ -1,9 +1,0 @@
-<li class="relative" data-side-nav-target="link">
-  <% option_item_text = option[1] + " (" + option[3].to_s + ")" %>
-  <% option_item_url = request.params.merge({ attribute => option[2] }) %>
-  <%= link_to option_item_url, class: 'flex justify-between gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white ' do %>
-    <span class="truncate"><%= option_item_text %></span>
-  <% end %>
-  <ul role="list" class="hidden">
-  </ul>
-</li>
