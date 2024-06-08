@@ -15,12 +15,11 @@ class OpportunitiesController < ApplicationController
 
   def load_opportunities
     @opportunities = OpportunitiesFetcher.call(opportunity_scope, opportunity_params)
-
     @pagy, @records = pagy(@opportunities, items: 20)
   end
 
   def opportunity_params
-    params.permit(:employment, :location, :page, :posted, :role, :seniority)
+    params.permit(:page, :posted, :sort, { employment: [], location: [], role: [], seniority: [] })
   end
 
   # policy_scope(Job)
