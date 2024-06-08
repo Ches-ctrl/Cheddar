@@ -1,0 +1,9 @@
+<div>
+  <h3 class="text-sm font-semibold text-zinc-900 dark:text-white"><%= guide[:title] %></h3>
+  <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400"><%= guide[:sub_title] %></p>
+  <p class="mt-4">
+    <%= link_to guide[:link_path], class: link_klasses(theme: :mauve) do %>
+      Read more   <%= inline_svg_tag('template/icons/right_arrow.svg') %>
+    <% end %>
+  </p>
+</div>

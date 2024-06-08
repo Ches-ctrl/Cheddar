@@ -1,0 +1,29 @@
+<nav class="hidden lg:mt-10 lg:block" data-controller="side-nav">
+  <ul role="list">
+    <% @facets.group_by(&:attribute).each do |attribute, facets| %>
+      <li class="md:hidden">
+        <span class="block py-1 text-sm text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">
+          <%= facets.first.public_attribute %>
+        </span>
+      </li>
+      <li class='relative mt-6'>
+        <h2 layout="position" class="text-xs font-semibold text-zinc-900 dark:text-white">
+          <%= facets.first.public_attribute %>
+        </h2>
+        <div class="relative mt-3 pl-2">
+          <div layout class="absolute inset-y-0 left-2 bg-zinc-900/10 dark:bg-white/5"></div>
+          <ul role="list" class="border-l border-transparent" >
+            <% facets.each do |facet| %>
+            <%= render "shared/template/layout/navigation_#{ facet.type }_item", facet: %>
+            <% end %>
+          </ul>
+        </div>
+      </li>
+    <% end %>
+    <li class="sticky bottom-0 z-10 mt-6 min-[416px]:hidden">
+      <button type="button" href="#"  class="w-full">
+        Sign in
+      </button>
+    </li>
+  </ul>
+</nav>
