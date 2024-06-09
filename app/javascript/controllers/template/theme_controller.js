@@ -2,7 +2,11 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   toggleTheme() {
-    const doc = document.querySelector("html");
-    doc.classList.toggle("dark");
+    const html = document.querySelector("html");
+    const currentScheme = html.style.colorScheme;
+
+    const newScheme = currentScheme === 'light' ? 'dark' : 'light';
+    html.style.colorScheme = newScheme;
+    html.classList.toggle("dark");
   }
 }
