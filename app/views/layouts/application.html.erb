@@ -25,8 +25,8 @@
             <div class="hidden lg:flex">
                 <!-- <%= inline_svg_tag('template/icons/logo.svg',  height: '24px', class: 'h-6') %> -->
               <%= link_to opportunities_path, class: "flex h-6 w-24 items-center" do %>
-                <%= inline_svg_tag('cheddar_logo_text.svg', class: "hidden", data: { theme_target: "whiteLogo" }) %>
                 <%= inline_svg_tag('cheddar_logo_text_1.svg', class: "", data: { theme_target: "blackLogo" }) %>
+                <%= inline_svg_tag('cheddar_logo_text.svg', class: "", data: { theme_target: "whiteLogo" }) %>
               <% end %>
             </div>
             <%= render 'shared/template/layout/header' %>
