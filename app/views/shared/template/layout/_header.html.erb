@@ -1,8 +1,8 @@
 <%# add options for mobile %>
 <% nav_items = [
-  { title: 'API', link_path: '#' },
-  { title: 'Documentation', link_path: '#' },
-  { title: 'Support', link_path: '#' }
+  # { title: 'API', link_path: '#' },
+  # { title: 'Documentation', link_path: '#' },
+  # { title: 'Support', link_path: '#' }
 ] %>
 <div class="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between gap-12 px-4 transition sm:px-6 lg:left-72 lg:z-30 lg:px-8 xl:left-80 backdrop-blur-sm lg:left-72 xl:left-80 dark:backdrop-blur bg-white/[var(--bg-opacity-light)] dark:bg-zinc-900/[var(--bg-opacity-dark)]" style="--bg-opacity-light: 0.5; --bg-opacity-dark: 0.2;">
   <div class="absolute inset-x-0 top-full h-px transition bg-zinc-900/7.5 dark:bg-white/7.5"></div>
@@ -46,8 +46,10 @@
         <%= inline_svg_tag('template/icons/moon.svg') %>
       </button>
     </div>
-    <div class="hidden min-[416px]:contents">
-      <%= link_to 'Sign in', '#', class: button_klasses(theme: :mauve) %>
-    </div>
+    <% if Flipper.enabled?(:sign_in) %>
+      <div class="hidden min-[416px]:contents">
+        <%= link_to 'Sign in', '#', class: button_klasses(theme: :mauve) %>
+      </div>
+    <% end %>
   </div>
 </div>
