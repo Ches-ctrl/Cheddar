@@ -1,7 +1,7 @@
 <li class="relative" data-side-nav-target="link">
     <div class="flex items-center">
       <%= link_to facet.url(request.params), class: 'flex items-center justify-between gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white ' do %>
-          <input id="<%= facet.value %>" name="<%= facet.attribute %>" type="radio" <%= facet.active?(request.params) %> class="my-1 h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
+          <input id="<%= "#{facet.attribute}-#{facet.value}" %>" type="radio" <%= facet.active?(request.params) %> class="my-1 h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
           <span class="truncate"><%= facet.presentation %></span>
         <ul role="list" class="hidden"></ul>
       <% end %>

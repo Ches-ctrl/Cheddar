@@ -2,10 +2,10 @@
   <div class="fixed inset-0 overflow-y-auto px-4 py-4 sm:px-6 sm:py-20 md:py-32 lg:px-8 lg:py-[15vh]">
     <div class="mx-auto transform-gpu overflow-hidden rounded-lg bg-zinc-50 shadow-xl ring-1 ring-zinc-900/7.5 sm:max-w-xl dark:bg-zinc-900 dark:ring-zinc-800 opacity-100 scale-100">
       <div role="combobox" >
-        <%= form_tag do  %>
+        <%= form_tag(request.path, method: "get") do %>
           <div class="group relative flex h-12">
             <%= inline_svg_tag('template/icons/search.svg', class: 'pointer-events-none absolute left-3 top-0 h-full w-5 stroke-zinc-500') %>
-            <%= search_field_tag "trial",'', class: 'flex-auto appearance-none bg-transparent pl-10 text-zinc-900 outline-none border-none placeholder:text-zinc-500 focus:w-full focus:flex-none sm:text-sm dark:text-white [&amp;::-webkit-search-cancel-button]:hidden [&amp;::-webkit-search-decoration]:hidden [&amp;::-webkit-search-results-button]:hidden [&amp;::-webkit-search-results-decoration]:hidden pr-4', autocomplete: 'off', placeholder: 'Find something...' %>
+            <%= search_field_tag "query",'', class: 'flex-auto appearance-none bg-transparent pl-10 text-zinc-900 outline-none border-none placeholder:text-zinc-500 focus:w-full focus:flex-none sm:text-sm dark:text-white [&amp;::-webkit-search-cancel-button]:hidden [&amp;::-webkit-search-decoration]:hidden [&amp;::-webkit-search-results-button]:hidden [&amp;::-webkit-search-results-decoration]:hidden pr-4', autocomplete: 'off', placeholder: 'Find something...' %>
           </div>
           <div class="border-t border-zinc-200 bg-white empty:hidden dark:border-zinc-100/5 dark:bg-white/2.5"></div>
         <% end %>

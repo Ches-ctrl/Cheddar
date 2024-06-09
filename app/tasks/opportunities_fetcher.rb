@@ -19,13 +19,13 @@ class OpportunitiesFetcher < ApplicationTask
   end
 
   def process
-    # simple_query || full_search_query
-    plain_query
+    opportunities = OpportunitiesQuery.call(wanted_opportunities)
+    apply_filters(opportunities)
   end
 
-  def plain_query
-    opportunities = OpportunitiesQuery.call(@opportunities)
-    apply_filters(opportunities)
+  def wanted_opportunities
+    query = @params[:query]
+    query ? @opportunities.search_job(query) : @opportunities
   end
 
   def apply_filters(opportunities)
