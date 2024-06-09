@@ -40,7 +40,11 @@ class Facet
   ####
 
   def active?(params)
-    'checked' if params[attribute]&.include?(value)
+    if multi_attribute?
+      'checked' if params[attribute]&.include?(value)
+    elsif params[attribute].eql?(value)
+      'checked'
+    end
   end
 
   def current_param = { url_attribute => value }

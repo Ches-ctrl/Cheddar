@@ -19,7 +19,7 @@ class OpportunitiesController < ApplicationController
   end
 
   def opportunity_params
-    params.permit(:page, :posted, :sort, { employment: [], location: [], role: [], seniority: [] })
+    params.permit(:page, :posted, :query, :sort, { employment: [], location: [], role: [], seniority: [] })
   end
 
   # policy_scope(Job)

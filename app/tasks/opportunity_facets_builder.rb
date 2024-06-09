@@ -53,7 +53,7 @@ class OpportunityFacetsBuilder < ApplicationTask
 
   def seniority_facets
     attribute = 'seniority'
-    facet_oppotunities(attribute).group(:seniority).count.map do |seniority, count|
+    facet_oppotunities(attribute).reorder(:seniority).group(:seniority).count.map do |seniority, count|
       next unless seniority
 
       value = seniority.downcase.split.first
@@ -63,7 +63,7 @@ class OpportunityFacetsBuilder < ApplicationTask
 
   def location_facets
     attribute = 'location'
-    facet_oppotunities(attribute).group(:'locations.city').count.map do |location, count|
+    facet_oppotunities(attribute).reorder(:'locations.city').group(:'locations.city').count.map do |location, count|
       value = location ? location.downcase.gsub(' ', '_') : 'remote'
       Facet.new(attribute:, value:, position: 0, count:, url_params: @params, type: 'checkbox')
     end.compact
@@ -71,7 +71,7 @@ class OpportunityFacetsBuilder < ApplicationTask
 
   def role_facets
     attribute = 'role'
-    facet_oppotunities(attribute).group(:'roles.name').count.map do |role, count|
+    facet_oppotunities(attribute).reorder(:'roles.name').group(:'roles.name').count.map do |role, count|
       next unless role
 
       value = role.downcase.split.first
@@ -81,7 +81,7 @@ class OpportunityFacetsBuilder < ApplicationTask
 
   def employment_facets
     attribute = 'employment'
-    facet_oppotunities(attribute).group(:employment_type).count.map do |employment, count|
+    facet_oppotunities(attribute).reorder(:employment_type).group(:employment_type).count.map do |employment, count|
       next unless employment
 
       value = employment
