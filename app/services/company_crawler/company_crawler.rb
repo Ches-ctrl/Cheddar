@@ -110,6 +110,7 @@ class CompanyCrawler
         # quit crawling if limits exceed
         if limits_exceeded?(spider)
           puts "Scan limits exceeded."
+          puts "Scanned #{spider.history.length} pages in #{elapsed_time.round(2)}s."
           spider.pause!
         end
         puts "Scanning `#{page.url}`"
