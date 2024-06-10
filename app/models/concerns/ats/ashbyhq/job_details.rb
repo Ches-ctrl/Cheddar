@@ -1,6 +1,8 @@
 module Ats
   module Ashbyhq
     module JobDetails
+      # AshbyHQ has a single API endpoint per company for all jobs.
+
       def fetch_title_and_location(job_data)
         title = job_data['title']
         job_location = job_data['location']

@@ -3,9 +3,10 @@ FactoryBot.define do
     sequence(:title) { |n| "Title-#{n}" }
     company { association :company }
     sequence(:posting_url) { |n| "https://www.example-#{n}.com/jobs/1" }
-    roles { Array.new(rand(1..3)) { association :role } }
 
-    initialize_with { new(attributes) }
+    after(:create) do |job, evaluator|
+      job.roles += evaluator.roles
+    end
   end
 
   trait :entry_level_mobile do

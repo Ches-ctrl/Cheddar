@@ -27,7 +27,7 @@ class JobFilter
     }.compact
 
     associations = build_associations
-    jobs.left_joins(associations).where(filters)
+    jobs.left_joins(associations).where(filters).distinct
   end
 
   def build_associations
