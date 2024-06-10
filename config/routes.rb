@@ -84,6 +84,11 @@ Rails.application.routes.draw do
   ###
 
   # get 'opportunities', to: 'opportunities#protocol', as: 'protocol'
-  resources :opportunities, only: %i[index]
-  get '/opportunities/opportunity_autocomplete', to: 'opportunity_autocomplete#index'
+  # resources :opportunities, only: %i[index]
+  # get '/opportunities/opportunity_autocomplete', to: 'opportunity_autocomplete#index'
+  resources :opportunities, only: %i[index show] do
+    collection do
+      get 'opportunity_autocomplete', to: 'opportunity_autocomplete#index'
+    end
+  end
 end

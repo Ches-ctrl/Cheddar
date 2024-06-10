@@ -1,16 +1,25 @@
 class OpportunitiesController < ApplicationController
   include Pagy::Backend
-  before_action :authenticate_user!, except: %i[index]
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
     load_opportunities
     load_facets
   end
 
+  def show
+    load_opportunity
+  end
+
   private
 
   def load_facets
     @facets = OpportunityFacetsBuilder.call(@opportunities, opportunity_params)
+  end
+
+  def load_opportunity
+    @opportunity = OpportunitiesFetcher.call(opportunity_scope, opportunity_params)
+                                       .find(params[:id])
   end
 
   def load_opportunities

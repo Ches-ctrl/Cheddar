@@ -30,8 +30,8 @@
               <% end %>
             </div>
             <%= render 'shared/template/layout/header' %>
-            <%= render 'shared/template/layout/navigation' %>
-            <%= render 'shared/template/layout/mobile_navigation' %>
+            <%= render 'shared/template/layout/navigation' if @opportunities %>
+            <%= render 'shared/template/layout/mobile_navigation' if @opportunities %>
           </div>
         </header>
         <div class="relative flex h-full flex-col px-4 pt-14 sm:px-6 lg:px-8">
