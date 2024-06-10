@@ -29,7 +29,7 @@ class CompanyCrawler
     stubs = []
     ats_csv = CSV.parse(File.read(ROOT + "storage" + "csv" + "ats_systems.csv"), headers: true) # rubocop:disable Style/StringConcatenation
     ats_csv.each do |row|
-      next unless row['url_identifier'] != 'linkedin'
+      next unless row['url_identifier'] != 'linkedin' && !row['url_identifier'].nil?
 
       ids = row['url_identifier'].split('|')
       stubs+=ids
@@ -51,7 +51,6 @@ class CompanyCrawler
         next unless url.include?(stub)
 
         ats_urls.append(url)
-        puts stub
         break
       end
     end
@@ -97,9 +96,10 @@ class CompanyCrawler
     @max_time = max_time
     @start_time = current_time
     puts "Beginning crawl of #{@starting_url}..."
-    Spidr.site(@starting_url, strip_fragments: true, strip_query: true, robots: false) do |spider|
+    Spidr.start_at(@starting_url, strip_fragments: true, strip_query: true, robots: false) do |spider|
       spider.priority_stubs = @careers_page_stubs
       spider.every_page do |page|
+        puts page.response.code
         # quit crawling if limits exceed
         spider.pause! if limits_exceeded?(spider)
         puts "Scanning `#{page.url}`"
