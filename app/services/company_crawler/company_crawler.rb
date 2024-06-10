@@ -2,6 +2,7 @@ require_relative "../priority_spidr/priority_spidr"
 require "cgi"
 require "pathname"
 require 'csv'
+require 'uri'
 ROOT = Pathname.new(__FILE__).parent.parent.parent.parent
 
 # TODO: Add time limit parameter
@@ -86,6 +87,12 @@ class CompanyCrawler
     return max_crawl_exceeded?(spider) || max_time_exceeded? || !@ats_hits.empty? # TODO: make number of hits to quit variable
   end
 
+  # Return the domain from a url, stripping `www.` if present.
+  # i.e. https://www.website.com -> website.com
+  def url_to_domain(url)
+    URI(url).host.delete_prefix('www.')
+  end
+
   public
 
   # Start crawling company website for its ats board.
@@ -96,12 +103,15 @@ class CompanyCrawler
     @max_time = max_time
     @start_time = current_time
     puts "Beginning crawl of #{@starting_url}..."
-    Spidr.start_at(@starting_url, strip_fragments: true, strip_query: true, robots: false) do |spider|
+    Spidr.domain(url_to_domain(@starting_url), strip_fragments: true, strip_query: true, robots: false) do |spider|
       spider.priority_stubs = @careers_page_stubs
       spider.every_page do |page|
-        puts page.response.code
+        puts "Response code: #{page.response.code}"
         # quit crawling if limits exceed
-        spider.pause! if limits_exceeded?(spider)
+        if limits_exceeded?(spider)
+          puts "Scan limits exceeded."
+          spider.pause!
+        end
         puts "Scanning `#{page.url}`"
         urls = get_urls_from_source(page.body)
         @ats_hits += get_ats_urls(urls)
