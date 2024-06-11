@@ -1,11 +1,18 @@
+require 'constants'
+
 FactoryBot.define do
   factory :job do
     sequence(:title) { |n| "Title-#{n}" }
     company { association :company }
     sequence(:posting_url) { |n| "https://www.example-#{n}.com/jobs/1" }
+    date_posted { (Date.today - rand(0..30).days) }
+    employment_type { Constants::CategorySidebar::EMPLOYMENT_TYPES.sample }
 
     after(:create) do |job, evaluator|
       job.roles += evaluator.roles
+      locations = create_list(:location, rand(1..3))
+      job.locations += locations
+      # locations.each { |location| job.countries << location.country }
     end
   end
 

@@ -9,26 +9,62 @@ RSpec.describe JobFilter do
 
   it 'initializes with the correct parameters' do
     params = {
-      "posted"=>"any-time",
-      "seniority"=>"senior",
-      "location"=>"remote",
-      "role"=>"mobile"
+      posted: 'week',
+      seniority: 'senior',
+      location: 'remote',
+      role: 'mobile',
+      employment: 'full_time'
     }
-    scope = @jobs
-    job_filter = JobFilter.new(params, scope)
+    job_filter = JobFilter.new(params)
     expect(job_filter.instance_variable_get(:@params)).to eq(params)
     expect(job_filter.instance_variable_get(:@jobs)).to eq(@jobs)
   end
 
   it 'returns all jobs when no filters are applied' do
-    params = {
-      "posted"=>"any-time"
-    }
-    job_filter = JobFilter.new(params, @jobs)
-    expect(job_filter.instance_variable_get(:@jobs)).to eq(@jobs)
+    params = { posted: 'any-time'}
+    job_filter = JobFilter.new(params)
+    expect(job_filter.filter_and_sort).to match_array(@jobs)
   end
 
-  it 'correctly applies filters' do
+  it 'correctly applies filters: posted' do
+    params = {
+      posted: 'week',
+    }
+    included_job = create(:job, date_posted: Date.today - 6.days)
+    excluded_job = create(:job, date_posted: Date.today - 12.days)
+    job_filter = JobFilter.new(params)
+
+    expect(job_filter.filter_and_sort).to include(included_job)
+    expect(job_filter.filter_and_sort).not_to include(excluded_job)
+  end
+
+  it 'correctly applies filters: seniority' do
+    params = {
+      posted: 'any-time',
+      seniority: 'mid-level'
+    }
+    included_job = create(:job, seniority: 'Mid-Level')
+    excluded_job = create(:job, seniority: 'Junior')
+    job_filter = JobFilter.new(params)
+
+    expect(job_filter.filter_and_sort).to include(included_job)
+    expect(job_filter.filter_and_sort).not_to include(excluded_job)
+  end
+
+  it 'correctly applies filters: location' do
+    city_name = Location.first.city
+    params = {
+      posted: "any-time",
+      location: city_name.downcase
+    }
+    job_filter = JobFilter.new(params)
+    expected_jobs = @jobs.left_joins(:locations).where(locations: { city: city_name })
+
+    expect(job_filter.filter_and_sort.count).to eq(expected_jobs.count)
+    expect(job_filter.filter_and_sort).to match_array(expected_jobs)
+  end
+
+  it 'correctly applies filters: role' do
     role = @roles.first.name
     params = {
       posted: "any-time",
@@ -39,6 +75,19 @@ RSpec.describe JobFilter do
 
     expect(job_filter.filter_and_sort.count).to eq(expected_jobs.count)
     expect(job_filter.filter_and_sort).to match_array(expected_jobs)
+  end
+
+  it 'correctly applies filters: employment' do
+    params = {
+      posted: "any-time",
+      employment: 'part_time'
+    }
+    included_job = create(:job, employment_type: 'Part-time')
+    excluded_job = create(:job, employment_type: 'Permanent')
+    job_filter = JobFilter.new(params)
+
+    expect(job_filter.filter_and_sort).to include(included_job)
+    expect(job_filter.filter_and_sort).not_to include(excluded_job)
   end
 
   it 'can handle multiple criteria per category' do
@@ -54,6 +103,19 @@ RSpec.describe JobFilter do
                          .distinct
     expect(job_filter.filter_and_sort.count).to eq(expected_jobs.count)
     expect(job_filter.filter_and_sort).to match_array(expected_jobs)
+  end
+
+  it 'correctly applies multiple filters' do
+    params = {
+      posted: '3-days',
+      employment: 'full_time'
+    }
+    included_job = create(:job, date_posted: Date.today - 2.days, employment_type: 'Full-time')
+    excluded_job = create(:job, date_posted: Date.today - 2.days, employment_type: 'Permanent')
+
+    job_filter = JobFilter.new(params)
+    expect(job_filter.filter_and_sort).to include(included_job)
+    expect(job_filter.filter_and_sort).not_to include(excluded_job)
   end
 end
 
