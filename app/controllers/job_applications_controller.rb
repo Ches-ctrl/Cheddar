@@ -67,6 +67,7 @@ class JobApplicationsController < ApplicationController
   end
 
   def process_application(job_application)
+    Rails.logger.info "process_application - job_application_id: #{job_application.id}, current_user_id: #{current_user.id}"
     job_application.update(status: "Application pending")
     Applier::ApplyJob.perform_later(job_application.id, current_user.id)
     user_saved_jobs = SavedJob.where(user_id: current_user.id)
