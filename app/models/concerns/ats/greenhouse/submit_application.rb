@@ -18,11 +18,22 @@ module Ats
 
           find_submit_button(session).click
 
-          if session.current_url.include?('confirmation')
-            success = true
-            @job_application.update(status: 'Applied')
-            p "Form submitted successfully"
-          else
+          timeout = 10
+          start_time = Time.now
+
+          while Time.now - start_time < timeout
+
+            if session.current_url.include?('confirmation')
+              success = true
+              @job_application.update(status: 'Applied')
+              p "Form submitted successfully"
+              break
+            else
+              sleep(1)
+            end
+          end
+
+          unless success
             success = false
             @job_application.update(status: 'Submission failed')
             p "Form submission failed"
@@ -43,9 +54,10 @@ module Ats
           success = false
           @job_application.update(status: 'Submission failed')
         ensure
-          take_screenshot_and_store(session, job_application_id)
+          take_screenshot_and_store(session, @job_application)
           session.driver.quit
         end
+        p "Success: #{success}"
         success
       end
 
