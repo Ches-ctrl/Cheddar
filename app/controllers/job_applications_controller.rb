@@ -49,6 +49,7 @@ class JobApplicationsController < ApplicationController
   # TODO: only be able to make a job application if you haven't already applied to the job
 
   def create
+    Rails.logger.debug "Received params: #{params.inspect}" # Log the incoming parameters
     p "Starting the create method."
     job_application = current_user.job_applications.build(job_application_params)
     job_application.job = Job.find(params[:job_id])
@@ -66,7 +67,6 @@ class JobApplicationsController < ApplicationController
   end
 
   def process_application(job_application)
-    Rails.logger.info "process_application - job_application_id: #{job_application.id}, current_user_id: #{current_user.id}"
     job_application.update(status: "Application pending")
     Applier::ApplyJob.perform_later(job_application.id, current_user.id)
     user_saved_jobs = SavedJob.where(user_id: current_user.id)
