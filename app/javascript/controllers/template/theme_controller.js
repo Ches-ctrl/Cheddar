@@ -1,10 +1,10 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["whiteLogo", "blackLogo"];
+  // static targets = ["whiteLogo", "blackLogo"];
 
   connect() {
-    this.toggleLogo();
+    // this.toggleLogo();
   }
 
   toggleTheme() {
@@ -14,15 +14,15 @@ export default class extends Controller {
 
     html.style.colorScheme = newScheme;
     html.classList.toggle("dark");
-    this.toggleLogo();
+    // this.toggleLogo();
   }
 
-  toggleLogo() {
-    const html = document.querySelector("html");
-    const currentScheme = html.style.colorScheme;
-    const isDarkMode = currentScheme === 'dark';
+  // toggleLogo() {
+  //   const html = document.querySelector("html");
+  //   const currentScheme = html.style.colorScheme;
+  //   const isDarkMode = currentScheme === 'dark';
 
-    this.whiteLogoTarget.classList.toggle("hidden", !isDarkMode);
-    this.blackLogoTarget.classList.toggle("hidden", isDarkMode);
-  }
+  //   this.whiteLogoTarget.classList.toggle("hidden", !isDarkMode);
+  //   this.blackLogoTarget.classList.toggle("hidden", isDarkMode);
+  // }
 }

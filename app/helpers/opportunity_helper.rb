@@ -20,4 +20,8 @@ module OpportunityHelper
                     end
     "#{employment_type} • #{location_type}"
   end
+
+  def seniority_css(opportunity, seniority)
+    ' text-gray-300 dark:text-gray-700' unless opportunity.seniority.include?(seniority)
+  end
 end
