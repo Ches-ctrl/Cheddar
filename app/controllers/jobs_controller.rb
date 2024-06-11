@@ -18,6 +18,7 @@ class JobsController < ApplicationController
                          .per(20)
 
     @resources, @total_jobs = CategorySidebar.new(filtered_jobs, params).build
+    raise
   end
 
   def show

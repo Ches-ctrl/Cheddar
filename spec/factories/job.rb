@@ -12,7 +12,7 @@ FactoryBot.define do
       job.roles += evaluator.roles
       locations = create_list(:location, rand(1..3))
       job.locations += locations
-      # locations.each { |location| job.countries << location.country }
+      locations.each { |location| job.countries << location.country }
     end
   end
 

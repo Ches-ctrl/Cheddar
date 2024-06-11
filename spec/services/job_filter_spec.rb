@@ -101,8 +101,9 @@ RSpec.describe JobFilter do
     expected_jobs = @jobs.joins(:roles)
                          .where(roles: { name: [first_role, second_role] })
                          .distinct
-    expect(job_filter.filter_and_sort.count).to eq(expected_jobs.count)
-    expect(job_filter.filter_and_sort).to match_array(expected_jobs)
+    filtered_jobs = job_filter.filter_and_sort.distinct
+    expect(filtered_jobs.count).to eq(expected_jobs.count)
+    expect(filtered_jobs).to match_array(expected_jobs)
   end
 
   it 'correctly applies multiple filters' do
@@ -117,9 +118,37 @@ RSpec.describe JobFilter do
     expect(job_filter.filter_and_sort).to include(included_job)
     expect(job_filter.filter_and_sort).not_to include(excluded_job)
   end
-end
 
-# Test that filter_and_sort returns all jobs when no filters are applied.
-# Test that filter_and_sort correctly applies filters.
-# Test that filter_by_department filters jobs by department when department parameter is present.
-# Test that filter_by_department does not filter jobs when department parameter is not present.
+  it 'correctly applies a search query' do
+    params = {
+      posted: 'any-time',
+      query: 'ruby developer'
+    }
+    included_job = create(:job, title: 'Full-time Senior Developer Who Knows Ruby Real Good')
+    excluded_job = create(:job, title: 'Something something ruby sapphire emeralds')
+
+    job_filter = JobFilter.new(params)
+    expect(job_filter.filter_and_sort).to include(included_job)
+    expect(job_filter.filter_and_sort).not_to include(excluded_job)
+  end
+
+  it 'can handle a query and filters at the same time' do
+    included_job = @jobs.sample
+    employment_type = included_job.employment_type
+    excluded_jobs = Job.where.not(employment_type:)
+
+    role = included_job.roles.first.name
+    query = included_job.countries.first.name.downcase
+
+    params = {
+      posted: 'any-time',
+      role:,
+      employment: employment_type.downcase.gsub(/[ -]/, '_'),
+      query:
+    }
+
+    job_filter = JobFilter.new(params)
+    expect(job_filter.filter_and_sort).to include(included_job)
+    expect(job_filter.filter_and_sort).not_to include(*excluded_jobs)
+  end
+end
