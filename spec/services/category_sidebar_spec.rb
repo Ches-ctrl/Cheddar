@@ -23,7 +23,10 @@ RSpec.describe CategorySidebar do
   end
 
   it 'gives the correct count of total jobs' do
-    expected_count = @jobs.joins(:roles).where(roles: @selected_roles).distinct.count
+    expected_count = @jobs.joins(:roles)
+                          .where(roles: @selected_roles)
+                          .distinct
+                          .count
     expect(@total_jobs).to eq(expected_count)
   end
 
