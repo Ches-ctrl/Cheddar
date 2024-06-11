@@ -104,7 +104,6 @@ class Crawler
   #
   # @return [String]
   def url_to_domain(url)
-    puts URI(url).host.delete_prefix('www.')
     return URI(url).host.delete_prefix('www.')
   end
 
