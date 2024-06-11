@@ -91,4 +91,6 @@ Rails.application.routes.draw do
       get 'opportunity_autocomplete', to: 'opportunity_autocomplete#index'
     end
   end
+
+  get '/tothemoon', to: 'uncategorized_pages#tothemoon'
 end

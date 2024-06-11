@@ -1,6 +1,6 @@
 <% if request.fullpath.eql?('/protocol') %>
   <%= yield %>
-<% elsif request.fullpath.include?('/opportunities') %>
+<% elsif request.fullpath.include?('/opportunities') || request.fullpath.include?('/tothemoon') %>
 <!DOCTYPE html>
 <html class="h-full" style="color-scheme: light;">
   <head>
@@ -23,10 +23,9 @@
         <header class="contents lg:pointer-events-none lg:fixed lg:inset-0 lg:z-40 lg:flex" data-controller="theme">
           <div class="contents lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-zinc-900/10 lg:px-6 lg:pb-8 lg:pt-4 xl:w-80 lg:dark:border-white/10" data-controller="mobile-nav">
             <div class="hidden lg:flex">
-                <!-- <%= inline_svg_tag('template/icons/logo.svg',  height: '24px', class: 'h-6') %> -->
               <%= link_to opportunities_path, class: "flex h-6 w-24 items-center" do %>
-                <%= inline_svg_tag('cheddar_logo_text_1.svg', class: "", data: { theme_target: "blackLogo" }) %>
-                <%= inline_svg_tag('cheddar_logo_text.svg', class: "", data: { theme_target: "whiteLogo" }) %>
+                <%= inline_svg_tag('cheddar_logo_text_1.svg', class: "dark:hidden") %>
+                <%= inline_svg_tag('cheddar_logo_text.svg', class: "hidden dark:block") %>
               <% end %>
             </div>
             <%= render 'shared/template/layout/header' %>
