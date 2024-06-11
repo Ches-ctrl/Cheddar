@@ -143,6 +143,7 @@ class Crawler
           agent.pause!
         end
         puts "Scraping `#{page.url}`"
+        puts "Status code: `#{page.response.code}`"
         process_page(page)
       end
     end

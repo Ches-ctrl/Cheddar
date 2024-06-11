@@ -72,7 +72,6 @@ class CompanyCrawler < Crawler
 
   # @param page [Spidr::Page]
   def process_page(page)
-    puts page.response.code
     urls = get_urls_from_source(page.body)
     @hits += get_ats_urls(urls)
   end
