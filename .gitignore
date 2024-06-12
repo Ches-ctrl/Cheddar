@@ -60,3 +60,6 @@ doc/**
 
 # Ignore DB backup
 latest.dump
+
+/app/assets/builds/*
+!/app/assets/builds/.keep

@@ -1,27 +1,21 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[home faqs how_it_works about landing privacy ts_and_cs]
+  skip_before_action :authenticate_user! # , only: %i[home faqs how_it_works about landing privacy ts_and_cs protocol]
 
-  def home
-  end
+  def about; end
 
-  def about
-  end
+  def climate; end
 
-  def faqs
-  end
+  def faqs; end
 
-  def how_it_works
-  end
+  def home; end
 
-  def climate
-  end
+  def how_it_works; end
 
-  def landing
-  end
+  def landing; end
 
-  def privacy
-  end
+  def privacy; end
 
-  def ts_and_cs
-  end
+  def protocol; end
+
+  def ts_and_cs; end
 end

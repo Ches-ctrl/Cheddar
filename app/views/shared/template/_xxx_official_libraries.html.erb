@@ -1,0 +1,56 @@
+<% library_items = [
+ {
+    name: 'PHP',
+    description:
+      'A popular general-purpose scripting language that is especially suited to web development.',
+    link_path: '#',
+    icon_name: 'php',
+  },
+  {
+    name: 'Ruby',
+    description:
+      'A dynamic, open source programming language with a focus on simplicity and productivity.',
+    link_path: '#',
+    icon_name: 'ruby',
+  },
+  {
+    name: 'Node.js',
+    description:
+      'Node.js® is an open-source, cross-platform JavaScript runtime environment.',
+    link_path: '#',
+    icon_name: 'node',
+  },
+  {
+    name: 'Python',
+    description:
+      'Python is a programming language that lets you work quickly and integrate systems more effectively.',
+    link_path: '#',
+    icon_name: 'python',
+  },
+  {
+    name: 'Go',
+    description:
+      'An open-source programming language supported by Google with built-in concurrency.',
+    link_path: '#',
+    icon_name: 'go',
+  },] %>
+<div class="not-prose mt-4 grid grid-cols-1 gap-x-6 gap-y-10 border-t border-zinc-900/5 pt-10 sm:grid-cols-2 xl:max-w-none xl:grid-cols-3 dark:border-white/5">
+  <% library_items.each do |library| %>
+    <div  class="flex flex-row-reverse gap-6">
+      <div class="flex-auto">
+        <h3 class="text-sm font-semibold text-zinc-900 dark:text-white">
+          <%= library[:name] %>
+        </h3>
+        <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+          <%= library[:description] %>
+        </p>
+        <p class="mt-4">
+          <%= link_to library[:link_path],  class: link_klasses(theme: :mauve)  do %>
+            Read more   <%= inline_svg_tag('template/icons/right_arrow.svg') %>
+          <% end %>
+        </p>
+      </div>
+      <%= image_tag "template/icons/logos/libraries/#{library[:icon_name]}.svg", class: 'h-12 w-12' %>
+    </div>
+  <% end %>
+</div>
