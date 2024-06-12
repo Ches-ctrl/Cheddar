@@ -38,7 +38,8 @@ module Constants
       'Full-time',
       'Permanent',
       'Contract',
-      'Part-time'
+      'Part-time',
+      'Internship'
     ].freeze
 
     CONVERT_TO_DAYS = {

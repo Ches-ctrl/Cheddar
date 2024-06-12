@@ -50,7 +50,7 @@ class CategorySidebar
 
       ['checkbox', seniority, seniority_id, count, params]
     end.compact
-    @resources['seniority'] = sort_by_count_desc(results)
+    @resources['seniority'] = results
   end
 
   def build_location_array
