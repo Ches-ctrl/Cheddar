@@ -44,16 +44,13 @@ export default class extends Controller {
       this.updateCoverLetterContent(index);
 
       const formData = new FormData(form);
-      return fetch(form.action, {
+
+      const response = await fetch(form.action, {
         method: 'POST',
         body: formData
-      }).then(response => response.json())
-        .then(data => {
-          if ( !response.ok) {
-            this.handleServerSideErrors(form, data.errors);
-          }
-        })
+      });
     });
+    await Promise.all(submissions);
   }
 
   validateForms() {
@@ -107,44 +104,52 @@ export default class extends Controller {
           console.log("Disconnected from JobApplicationsChannel");
         },
         received: (data) => {
-          console.log("Received data from JobApplicationsChannel");
-          if (data.event === "job-application-submitted") {
-            console.log("Received job-application-created event");
-
-            const jobId = data.job_id;
-            const status = data.status;
-
-            const spinner = document.querySelector(`[data-all-application-forms-id="${jobId}"]`);
-            const checkmark = document.querySelector(`[data-all-application-forms-id="${jobId}-success"]`);
-            const crossmark = document.querySelector(`[data-all-application-forms-id="${jobId}-failed"]`);
-
-            if (spinner && checkmark && crossmark) {
-              if (status === "Applied") {
-                spinner.classList.add("d-none");
-                checkmark.classList.remove("d-none");
-
-                this.appliedJobCount++;
-
-              } else if (status === "Submission failed") {
-                spinner.classList.add("d-none");
-                crossmark.classList.remove("d-none");
-
-                this.failedCount++;
-              }
-
-              if (this.appliedJobCount + this.failedCount === this.jobsCount) {
-                if (this.failedCount > 0) {
-                  alert("Some applications failed to submit. Please submit them manually.");
-                  this.redirectToApplicationsPage();
-                } else {
-                  this.redirectToSuccessPage();s
-                }
-              }
-            }
-          }
+          this.handleReceivedData(data);
         },
       }
     );
+  }
+
+  handleReceivedData(data) {
+    console.log("Received data from JobApplicationsChannel", data);
+    if (data.event === "job_application_submitted") {
+      console.log("Received job_application_submitted event");
+
+      const jobId = data.job_id;
+      const status = data.status;
+
+      const spinner = document.querySelector(`[data-all-application-forms-id="${jobId}"]`);
+      const checkmark = document.querySelector(`[data-all-application-forms-id="${jobId}-success"]`);
+      const crossmark = document.querySelector(`[data-all-application-forms-id="${jobId}-failed"]`);
+
+      console.log("Spinner:", spinner);
+      console.log("Checkmark:", checkmark);
+      console.log("Crossmark:", crossmark);
+
+      if (spinner && checkmark && crossmark) {
+        if (status === "Applied") {
+          spinner.classList.add("d-none");
+          checkmark.classList.remove("d-none");
+
+          this.appliedJobCount++;
+
+        } else if (status === "Submission failed") {
+          spinner.classList.add("d-none");
+          crossmark.classList.remove("d-none");
+
+          this.failedCount++;
+        }
+
+        if (this.appliedJobCount + this.failedCount === this.jobsCount) {
+          if(this.failedCount > 0) {
+            alert("Some applications failed to submit. Please submit them manually.");
+            this.redirectToApplicationsPage();
+          } else {
+            this.redirectToSuccessPage();
+          }
+        }
+      }
+    }
   }
 
   redirectToSuccessPage() {
