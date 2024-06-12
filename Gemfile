@@ -195,3 +195,5 @@ group :test do
   gem 'vcr'
   gem 'webmock'
 end
+
+gem "tailwindcss-rails", "~> 2.6"

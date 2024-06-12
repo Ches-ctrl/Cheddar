@@ -1,0 +1,27 @@
+<nav class="flex items-center justify-between border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-zinc-900 px-4 py-3 sm:px-6" aria-label="Pagination">
+    <div class="invisible md:visible sm:block">
+        <p class="text-sm text-gray-700 dark:text-gray-500">
+        Showing
+        <!-- space -->
+        <span class="font-medium"><%= pagy.from %></span>
+        <!-- space -->
+        to
+        <!-- space -->
+        <span class="font-medium"><%= pagy.to %></span>
+        <!-- space -->
+        of
+        <!-- space -->
+        <span class="font-medium"><%= pagy.count %></span>
+        <!-- space -->
+        results
+        </p>
+    </div>
+    <div class="flex flex-2 justify-between sm:justify-end">
+        <%= link_to pagy_prev(pagy), class: button_klasses(theme: :zinc) do %>
+        <%= inline_svg_tag('template/icons/left_arrow.svg') %> Previous
+        <% end %>
+        <%= link_to pagy_next(pagy), class: button_klasses(theme: :zinc) do %>
+        Next <%= inline_svg_tag('template/icons/right_arrow.svg') %>
+        <% end %>
+    </div>
+</nav>

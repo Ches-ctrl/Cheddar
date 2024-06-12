@@ -1,0 +1,76 @@
+<% choose_client_code_group = {
+    languages: [
+      {display_name: 'bash', display_as: 'bash', content: "# cURL is most likely already installed on your machine\n curl --versions"},
+      {display_name: 'JavaScript', display_as: 'bash', content: "# Install the Protocol JavaScript SDK
+  npm install @example/protocol-api --save" },
+      {display_name: 'Python', display_as: 'bash', content: "# Install the Protocol Python SDK
+  pip install protocol_api"},
+      {display_name: 'PHP', display_as: 'bash', content: "# Install the Protocol PHP SDK
+  composer require protocol/sdk"}
+    ],
+    content: {
+      curl: "# cURL is most likely already installed on your machine\n curl --versions",
+      javascript: "# Install the Protocol JavaScript SDK
+  npm install @example/protocol-api --save",
+      python: "# Install the Protocol Python SDK
+  pip install protocol_api",
+      php: "# Install the Protocol PHP SDK
+  composer require protocol/sdk",
+    }
+  } %>
+  <% first_api_request_code_group = {
+    languages: [
+      {display_name: 'bash', display_as: 'bash', content: "# cURL is most likely already installed on your machine\n curl --versions"},
+      {display_name: 'JavaScript', display_as: 'bash', content: "# Install the Protocol JavaScript SDK
+  npm install @example/protocol-api --save" },
+      {display_name: 'Python', display_as: 'bash', content: "# Install the Protocol Python SDK
+  pip install protocol_api"},
+      {display_name: 'PHP', display_as: 'bash', content: "# Install the Protocol PHP SDK
+  composer require protocol/sdk"}
+    ],
+    content: {
+      curl: "# cURL is most likely already installed on your machine\n curl --versions",
+      javascript: "# Install the Protocol JavaScript SDK
+  npm install @example/protocol-api --save",
+      python: "# Install the Protocol Python SDK
+  pip install protocol_api",
+      php: "# Install the Protocol PHP SDK
+  composer require protocol/sdk",
+    }
+  }%>
+  <h1>Quickstart</h1>
+  <p class="lead">This guide will get you all set up and ready to use the Protocol API. We'll cover how to get started using one of our API clients and how to make your first API request. We'll also look at where to go next to find all the information you need to take full advantage of our powerful REST API.</p>
+  <%= content_for :info_content do %>
+    Before you can make requests to the Protocol API, you will need to grab your
+    API key from your dashboard. You find it under <%= link_to 'Settings » API', '#' %>.
+  <% end %>
+  <%= render 'shared/template/info_section' %>
+  <h2 class="scroll-mt-24" id="choose-your-client">
+    <%= link_to ' Choose your client', '#choose-your-client', class: 'group text-inherit no-underline hover:text-inherit', data: { target: "anchor" } %>
+  </h2>
+  <p>Before making your first API request, you need to pick which API client you will use. In addition to good ol' cURL HTTP requests, Protocol offers clients for JavaScript, Python, and PHP. In the following example, you can see how to install each client.</p>
+  <%= render 'shared/template/code_group', code_group: choose_client_code_group %>
+  <div className="not-prose">
+    <%= link_to  '#', class: link_klasses(theme: :mauve) do %>
+      Check out our list of first-party SDKs
+      <%= inline_svg_tag('template/icons/right_arrow.svg') %>
+    <% end %>
+  </div>
+  <h2 class="scroll-mt-24" id="making-your-first-api-request">
+    <%= link_to ' Making your first API request', '#choose-your-client', class: 'group text-inherit no-underline hover:text-inherit', data: { target: "anchor" } %>
+  </h2>
+  <p>After picking your preferred client, you are ready to make your first call to the Protocol API. Below, you can see how to send a GET request to the Conversations endpoint to get a list of all your conversations. In the cURL example, results are limited to ten conversations, the default page length for each client.</p>
+  <%= render 'shared/template/code_group', code_group: first_api_request_code_group %>
+  <%= link_to  '#', class: link_klasses(theme: :mauve) do %>
+    Read the docs for the Conversations endpoint
+    <%= inline_svg_tag('template/icons/right_arrow.svg') %>
+  <% end %>
+  <h2 class="scroll-mt-24" id="whats-next">
+    <%= link_to "What's next?", '#whats-next', class: 'group text-inherit no-underline hover:text-inherit', data: { target: "anchor" } %>
+  </h2>
+  <p>Great, you're now set up with an API client and have made your first request to the API. Here are a few links that might be handy as you venture further into the Protocol API:</p>
+  <ul>
+    <li><a href="#">Grab your API key from the Protocol dashboard</a></li>
+    <li><a href="/conversations">Check out the Conversations endpoint</a></li>
+    <li><a href="/errors">Learn about the different error messages in Protocol</a></li>
+  </ul>
