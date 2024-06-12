@@ -1,6 +1,3 @@
-require 'CSV'
-# What needs to be autoloaded so that we don't need to require standard libraries here?
-
 module Builders
   class AtsBuilder
     attr_reader :ats_csv
