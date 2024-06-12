@@ -1,37 +1,27 @@
-<% if false %>
-<div class="hidden w-screen h-screen  fixed top-0 left-0 z-[999] bg-zinc-400/25 backdrop-blur-sm dark:bg-black/40 opacity-100" data-target="search-display">
-  <div class="fixed inset-0 overflow-y-auto px-4 py-4 sm:px-6 sm:py-20 md:py-32 lg:px-8 lg:py-[15vh]">
-    <div class="mx-auto transform-gpu overflow-hidden rounded-lg bg-zinc-50 shadow-xl ring-1 ring-zinc-900/7.5 sm:max-w-xl dark:bg-zinc-900 dark:ring-zinc-800 opacity-100 scale-100">
-      <div role="combobox" >
-        <%= form_tag(request.path, method: "get") do %>
-          <div class="group relative flex h-12">
-            <%= inline_svg_tag('template/icons/search.svg', class: 'pointer-events-none absolute left-3 top-0 h-full w-5 stroke-zinc-500') %>
-            <%= search_field_tag "query",'', class: 'flex-auto appearance-none bg-transparent pl-10 text-zinc-900 outline-none border-none placeholder:text-zinc-500 focus:w-full focus:flex-none sm:text-sm dark:text-white [&amp;::-webkit-search-cancel-button]:hidden [&amp;::-webkit-search-decoration]:hidden [&amp;::-webkit-search-results-button]:hidden [&amp;::-webkit-search-results-decoration]:hidden pr-4', autocomplete: 'off', placeholder: 'Find something...' %>
-          </div>
-          <div class="border-t border-zinc-200 bg-white empty:hidden dark:border-zinc-100/5 dark:bg-white/2.5"></div>
-        <% end %>
-        <form action="" novalidate="" role="search">
-        </form>
+<% unless Flipper.enabled?(:autocomplete_search) %>
+  <div class="hidden w-screen h-screen  fixed top-0 left-0 z-[999] bg-zinc-400/25 backdrop-blur-sm dark:bg-black/40 opacity-100" data-target="search-display">
+    <div class="fixed inset-0 overflow-y-auto px-4 py-4 sm:px-6 sm:py-20 md:py-32 lg:px-8 lg:py-[15vh]">
+      <div class="mx-auto transform-gpu overflow-hidden rounded-lg bg-zinc-50 shadow-xl ring-1 ring-zinc-900/7.5 sm:max-w-xl dark:bg-zinc-900 dark:ring-zinc-800 opacity-100 scale-100">
+        <div role="combobox" >
+          <%= form_tag(request.path, method: "get") do %>
+            <div class="group relative flex h-12">
+              <%= inline_svg_tag('template/icons/search.svg', class: 'pointer-events-none absolute left-3 top-0 h-full w-5 stroke-zinc-500') %>
+              <%= search_field_tag "query",'', class: 'flex-auto appearance-none bg-transparent pl-10 text-zinc-900 outline-none border-none placeholder:text-zinc-500 focus:w-full focus:flex-none sm:text-sm dark:text-white [&amp;::-webkit-search-cancel-button]:hidden [&amp;::-webkit-search-decoration]:hidden [&amp;::-webkit-search-results-button]:hidden [&amp;::-webkit-search-results-decoration]:hidden pr-4', autocomplete: 'off', placeholder: 'Find something...' %>
+            </div>
+            <div class="border-t border-zinc-200 bg-white empty:hidden dark:border-zinc-100/5 dark:bg-white/2.5"></div>
+          <% end %>
+          <form action="" novalidate="" role="search">
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% else %>
+  <div class="hidden w-screen h-screen  fixed top-0 left-0 z-[999] bg-zinc-400/25 backdrop-blur-sm dark:bg-black/40 opacity-100" data-target="search-display">
+    <div class="fixed inset-0 overflow-y-auto px-4 py-4 sm:px-6 sm:py-20 md:py-32 lg:px-8 lg:py-[15vh]">
+      <div class="mx-auto transform-gpu overflow-hidden rounded-lg bg-zinc-50 shadow-xl ring-1 ring-zinc-900/7.5 sm:max-w-xl dark:bg-zinc-900 dark:ring-zinc-800 opacity-100 scale-100">
+        <div id="autocomplete"></div>
+      </div>
+    </div>
+  </div>
 <% end %>
-<div class="hidden w-screen h-screen  fixed top-0 left-0 z-[999] bg-zinc-400/25 backdrop-blur-sm dark:bg-black/40 opacity-100" data-target="search-display">
-  <div class="fixed inset-0 overflow-y-auto px-4 py-4 sm:px-6 sm:py-20 md:py-32 lg:px-8 lg:py-[15vh]">
-    <div class="mx-auto transform-gpu overflow-hidden rounded-lg bg-zinc-50 shadow-xl ring-1 ring-zinc-900/7.5 sm:max-w-xl dark:bg-zinc-900 dark:ring-zinc-800 opacity-100 scale-100">
-      <!-- <div id="autocomplete"></div> -->
-      <div role="combobox" >
-        <%= form_tag do %>
-          <div class="group relative flex h-12">
-            <%= inline_svg_tag('template/icons/search.svg', class: 'pointer-events-none absolute left-3 top-0 h-full w-5 stroke-zinc-500') %>
-            <%= search_field_tag "autocomplete",'', class: 'flex-auto appearance-none bg-transparent pl-10 text-zinc-900 outline-none border-none placeholder:text-zinc-500 focus:w-full focus:flex-none sm:text-sm dark:text-white [&amp;::-webkit-search-cancel-button]:hidden [&amp;::-webkit-search-decoration]:hidden [&amp;::-webkit-search-results-button]:hidden [&amp;::-webkit-search-results-decoration]:hidden pr-4', autocomplete: 'off', placeholder: 'Find something...' %>
-          </div>
-          <div class="border-t border-zinc-200 bg-white empty:hidden dark:border-zinc-100/5 dark:bg-white/2.5"></div>
-        <% end %>
-        <form action="" novalidate="" role="search">
-        </form>
-      </div>
-    </div>
-  </div>
-</div>

@@ -1,6 +1,6 @@
 <% if request.fullpath.eql?('/protocol') %>
   <%= yield %>
-<% elsif request.fullpath.include?('/opportunities') || request.fullpath.include?('/tothemoon') %>
+<% elsif request.fullpath.include?('/opportunities') || request.fullpath.include?('/tothemoon') || request.fullpath.end_with?('/template/users/sign_in') %>
 <!DOCTYPE html>
 <html class="h-full" style="color-scheme: light;">
   <head>
