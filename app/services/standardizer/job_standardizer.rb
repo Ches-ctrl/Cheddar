@@ -5,6 +5,7 @@ module Standardizer
     end
 
     def standardize
+      Standardizer::TermStandardizer.new(@job).standardize
       Standardizer::RoleStandardizer.new(@job).standardize
       Standardizer::SeniorityStandardizer.new(@job).standardize
       Standardizer::LocationStandardizer.new(@job).standardize

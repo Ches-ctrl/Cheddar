@@ -1,3 +1,4 @@
+require 'rails_helper'
 require Rails.root.join('spec', 'support', 'spec_constants.rb')
 
 RSpec.describe Company do
