@@ -4,7 +4,6 @@ module Importer
       obj = S3_BUCKET.object(key)
       obj.upload_file(file_path)
       obj.public_url
-      p "Uploaded #{file_path} to #{obj.public_url}"
     end
 
     def self.file_exists?(key)
