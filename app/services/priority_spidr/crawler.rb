@@ -29,7 +29,7 @@ class Crawler
       puts "No priority stub path given."
       @priority_stubs = []
     else
-      @priority_stubs = load_priority_stubs(stubs_path)
+      @priority_stubs = load_stubs(stubs_path)
     end
   end
 
@@ -41,7 +41,7 @@ class Crawler
   # @param path [Pathname]
   #
   # @return [Array<String>]
-  def load_priority_stubs(path)
+  def load_stubs(path)
     return path.readlines.map(&:chomp)
   end
 
