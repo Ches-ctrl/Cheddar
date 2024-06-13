@@ -3,6 +3,7 @@ module Importer
     # Base class for importing jobs from an API
     class JobApi
       include FaradayHelpers
+      # TODO: Add capability to save responses to S3
 
       def initialize(ats_name)
         @ats = ApplicantTrackingSystem.find_by(name: ats_name)
