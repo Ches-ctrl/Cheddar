@@ -2,6 +2,8 @@ module AtsUrlIdentifiers
   extend ActiveSupport::Concern
   include AtsSystemParser
 
+  # TODO: Delete and replace with determine_ats
+
   # Isn't this basically the same as determine_ats in applicant_tracking_system.rb?
   def match_ats(url)
     ats_hash.each do |regex, ats_name|
