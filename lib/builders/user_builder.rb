@@ -2,8 +2,8 @@ module Builders
   class UserBuilder
     attr_reader :user_csv
 
-    def initialize(user_csv)
-      @user_csv = user_csv
+    def initialize
+      @user_csv = 'storage/csv/sample_users.csv'
     end
 
     def build
@@ -32,9 +32,10 @@ module Builders
           attach_resume(user, row["resume"])
           puts "Created User - #{user.first_name}"
         else
-          p "Error creating User - #{row['email']}"
+          puts "Error creating User - #{row['email']}"
         end
       end
+      puts User.count
     end
 
     def process_env_variables(value)
