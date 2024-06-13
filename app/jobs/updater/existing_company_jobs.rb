@@ -4,7 +4,7 @@ module Updater
     sidekiq_options retry: false
 
     def perform
-      Updater::ExistingCompanyJobs.new.perform
+      Updater::ExistingCompanyJobsService.new.call
     end
   end
 end
