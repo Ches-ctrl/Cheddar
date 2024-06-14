@@ -50,6 +50,12 @@ class Company < ApplicationRecord
     jobs_found_or_created
   end
 
+  def short_description
+    return if industry == 'n/a'
+
+    "#{industry} / #{sub_industry}"
+  end
+
   def url_present?(url_type)
     send(url_type).present?
   end

@@ -35,6 +35,8 @@ class OpportunityFacetsBuilder < ApplicationTask
   end
 
   def sort_by_facets
+    return [] if @params[:query]
+
     attribute = 'sort'
     %w[title title_desc company company_desc created_at created_at_asc].map do |value|
       Facet.new(attribute:, value:, position: 0, count: 0, url_params: @params, type: 'radio')

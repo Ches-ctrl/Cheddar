@@ -36,7 +36,7 @@ module ApplicationTemplateHelper
     "#{base_klasses} #{is_link_active?(url:) ? active_klasses : inactive_classes}"
   end
 
-  def is_link_active?(url:)
+  def link_active?(url:)
     (request.path.start_with?(url) && url != "/") || request.path == url
   end
 end

@@ -14,5 +14,6 @@ class OpportunitiesQuery < ApplicationQuery
 
   def associations
     %i[requirement company locations countries roles]
+      .push({ locations: :country })
   end
 end

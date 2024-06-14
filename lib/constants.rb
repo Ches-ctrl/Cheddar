@@ -1,6 +1,22 @@
 module Constants
   # TODO: refactor all these constants into sub-modules? Seems like rails convention may be to have this in a yaml file so TBD structure
 
+  module Files
+    FILES = [
+      'job_posting_urls.csv',
+      'grnse_job_posting_urls.csv',
+      '80k_job_posting_urls.csv',
+      'BN_job_posting_urls.csv',
+      'CO_job_posting_urls.csv',
+      'GH_job_posting_urls.csv',
+      'LU_job_posting_urls.csv',
+      'PA1_job_posting_urls.csv',
+      'PA2_job_posting_urls.csv',
+      'UM_job_posting_urls.csv'
+      # 'company_urls.csv'
+    ].freeze
+  end
+
   module DateConversion
     CONVERT_TO_DAYS = {
       'today' => 0,
@@ -38,7 +54,8 @@ module Constants
       'Full-time',
       'Permanent',
       'Contract',
-      'Part-time'
+      'Part-time',
+      'Internship'
     ].freeze
 
     CONVERT_TO_DAYS = {
@@ -238,5 +255,22 @@ module Constants
     'Milkround',
     'Structured',
     'Ad-hoc'
+  ].freeze
+
+  CAREERS_STUBS = [
+    "jobs",
+    "careers",
+    "get-involved",
+    "positions",
+    "job-openings",
+    "current-job-openings",
+    "careers-list",
+    "open-careers",
+    "open-positions",
+    "opportunities",
+    "open-roles",
+    "current-openings",
+    "hiring",
+    "apply"
   ].freeze
 end

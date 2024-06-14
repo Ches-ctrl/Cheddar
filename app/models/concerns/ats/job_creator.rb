@@ -2,6 +2,7 @@ module Ats
   module JobCreator
     extend ActiveSupport::Concern
     # TODO: Refactor this to simplify down
+    # TODO: Refactor into a service object according to the Single Responsibility Principle
 
     def find_or_create_job_by_data(company, data)
       ats_job_id = fetch_id(data)
