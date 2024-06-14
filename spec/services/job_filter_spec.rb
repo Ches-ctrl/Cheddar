@@ -125,7 +125,7 @@ RSpec.describe JobFilter do
       query: 'ruby developer'
     }
     included_job = create(:job, title: 'Full-time Senior Developer Who Knows Ruby Real Good')
-    excluded_job = create(:job, title: 'Something something ruby sapphire emeralds')
+    excluded_job = create(:job, title: 'Something something ruby diamond sapphire emeralds')
 
     job_filter = JobFilter.new(params)
     expect(job_filter.filter_and_sort).to include(included_job)
