@@ -8,7 +8,7 @@ FactoryBot.define do
     date_posted { (Date.today - rand(0..30).days) }
     employment_type { Constants::CategorySidebar::EMPLOYMENT_TYPES.sample }
 
-    after(:build) do |job, evaluator|
+    after(:create) do |job, evaluator|
       evaluator.roles.each { |role| job.roles << role unless job.roles.include?(role) }
       locations = create_list(:location, rand(1..3))
       job.locations += locations
