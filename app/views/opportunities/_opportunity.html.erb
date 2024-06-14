@@ -1,44 +1,46 @@
-<li class="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6 dark:hover:bg-gray-700/50 lg:px-8">
-  <div class="flex gap-x-4 pr-6 sm:w-1/2 sm:flex-none">
-    <div class="flex items-center">
-      <%= link_to company_path(opportunity.company), target: "_blank" do %>
+<%= link_to opportunity_path(opportunity.id) do %> 
+  <li class="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6 dark:hover:bg-gray-700/50 lg:px-8">
+    <div class="flex gap-x-4 pr-6 sm:w-1/2 sm:flex-none">
+      <div class="flex items-center">
         <%= image_tag("https://logo.clearbit.com/#{opportunity.company.url_website}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", class: "h-12 w-12 flex-none rounded-full bg-gray-50") %>
-      <% end %>
+      </div>
+      <div class="min-w-0 flex-auto">
+        <p class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
+          <span class="absolute inset-x-0 -top-px bottom-0"></span>
+          <%= opportunity.title.truncate(35) %>
+        </p>
+        <p class="mt-1 flex text-xs leading-5 text-gray-500 dark:text-gray-400">
+          <%= opportunity.company.name %>
+        </p>
+        <p class="mt-1 flex text-xs leading-5 text-gray-500 dark:text-gray-400">
+          <%= opportunity_public_location(opportunity) %>
+        </p>
+      </div>
     </div>
-    <div class="min-w-0 flex-auto">
-      <p class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
-        <span class="absolute inset-x-0 -top-px bottom-0"></span>
-        <%= opportunity.title.truncate(35) %>
-      </p>
-      <p class="mt-1 flex text-xs leading-5 text-gray-500 dark:text-gray-400">
-        <%= opportunity.company.name %>
-      </p>
-      <p class="mt-1 flex text-xs leading-5 text-gray-500 dark:text-gray-400">
-        <%= opportunity_public_location(opportunity) %>
-      </p>
+    <div class="flex shrink-0 items-center gap-x-4">
+      <div class="sm:flex sm:flex-col sm:items-end">
+        <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400">£70,000 - £100,000</p>
+        <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400"><%= opportunity_public_employment_type(opportunity) %></p>
+        <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400">12 days left</p>
+      </div>
     </div>
-  </div>
-  <div class="flex shrink-0 items-center gap-x-4">
-    <div class="sm:flex sm:flex-col sm:items-end">
-      <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400">£70,000 - £100,000</p>
-      <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400"><%= opportunity_public_employment_type(opportunity) %></p>
-      <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400">12 days left</p>
+    <div class="hidden md:block flex shrink-0 items-center gap-x-4">
+      <div class="sm:flex sm:flex-row sm:items-center gap-x-4">
+        <div class="sm:flex sm:flex-col sm:items-end gap-y-2">
+          <p class="text-sm leading-6 text-gray-900 dark:text-white">
+            <span class="inline-flex items-center gap-x-1.5 rounded-full px-2 py-1 text-xs font-medium text-gray-900 dark:text-white ring-1 ring-inset ring-gray-200 dark:ring-gray-800">
+              <svg class="h-1.5 w-1.5 fill-green-500 dark:fill-green-400" viewBox="0 0 6 6" aria-hidden="true">
+                <circle cx="3" cy="3" r="3" />
+              </svg>
+              Climate Neutral
+            </span>
+          </p>
+          <span class="inline-flex items-center rounded-md bg-gray-50 dark:bg-gray-400/10 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-400 ring-1 ring-inset ring-gray-500/10 dark:ring-gray-400/20">Easy</span>
+        </div>
+        <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+        </svg>
+      </div>
     </div>
-  </div>
-  <div class="hidden md:hidden flex shrink-0 items-center gap-x-4">
-    <div class="sm:flex sm:flex-col sm:items-end gap-y-2">
-      <p class="text-sm leading-6 text-gray-900 dark:text-white">
-        <span class="inline-flex items-center gap-x-1.5 rounded-full px-2 py-1 text-xs font-medium text-gray-900 dark:text-white ring-1 ring-inset ring-gray-200 dark:ring-gray-800">
-          <svg class="h-1.5 w-1.5 fill-green-500 dark:fill-green-400" viewBox="0 0 6 6" aria-hidden="true">
-            <circle cx="3" cy="3" r="3" />
-          </svg>
-          Climate Neutral
-        </span>
-      </p>
-      <span class="inline-flex items-center rounded-md bg-gray-50 dark:bg-gray-400/10 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-400 ring-1 ring-inset ring-gray-500/10 dark:ring-gray-400/20">Easy</span>
-    </div>
-    <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-      <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-    </svg>
-  </div>
-</li>
+  </li>
+<% end %>

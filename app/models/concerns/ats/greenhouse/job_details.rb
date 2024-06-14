@@ -42,22 +42,10 @@ module Ats
 
       def fetch_employment_type(data)
         default = 'Full-time'
-        keywords = {
-          /intern/i => 'Internship',
-          /\bco-op\b/i => 'Internship',
-          /full[- ]?time/i => 'Full-time',
-          /part[- ]?time/i => 'Part-time',
-          /unlimited contract/i => 'Permanent',
-          /contract/i => 'Contract',
-          /regular/i => 'Full-time',
-          /permanent/i => 'Permanent'
-        }
 
         employment_type_custom_field = data['metadata']&.find { |field| field['name'] == "Employment Type" }
         string = employment_type_custom_field&.dig('value')
-        return default unless string
-
-        keywords.find { |k, v| break v if string.match?(k) } || default
+        return string || default
       end
 
       def fetch_salary(data)

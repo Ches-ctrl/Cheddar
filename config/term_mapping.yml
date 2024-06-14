@@ -1,0 +1,25 @@
+# The expressions in each category are ordered in descending order of priority
+# (e.g., part-time precedes employee so that 'Part-time-employee' maps to 'Part-time')
+regex:
+  employment_type:
+    intern(?!ational): Internship
+    \bco-op\b: Internship
+    fixed[- _]?term: Contract
+    unlimited contract: Permanent
+    contract: Contract
+    consultant: Contract
+    full[- _]?time: Full-time
+    part[- _]?time: Part-time
+    permanent: Permanent
+    regular: Full-time
+    employee: Contract
+  seniority:
+    intern(?!ational): Internship
+    entry[- _]?level: Entry-Level
+    mid[- _]?level: Mid-Level
+    senior: Senior
+    experienced: Senior
+    ([^a-z])lead\b: Senior
+    manager: Senior
+    supervisor: Senior
+    associate: Junior

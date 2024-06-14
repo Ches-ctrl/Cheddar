@@ -6,6 +6,8 @@ module Api
       before_action :authenticate_with_api_key
       before_action :verify_request_origin
 
+      # TODO: Add strong params
+
       def add_job
         posting_url = params[:posting_url]
 

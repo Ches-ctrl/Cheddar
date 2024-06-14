@@ -1,3 +1,4 @@
+require 'rails_helper'
 require Rails.root.join('spec', 'support', 'spec_constants.rb')
 
 RSpec.describe Company do
@@ -15,8 +16,7 @@ RSpec.describe Company do
     before do
       allow($stdout).to receive(:write) # suppresses terminal clutter
 
-      ats_csv = 'storage/csv/ats_systems.csv'
-      Builders::AtsBuilder.new(ats_csv).build
+      Builders::AtsBuilder.new.build
     end
 
     COMPANIES.each do |ats_name, ats_id|

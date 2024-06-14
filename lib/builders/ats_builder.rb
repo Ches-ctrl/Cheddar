@@ -2,8 +2,8 @@ module Builders
   class AtsBuilder
     attr_reader :ats_csv
 
-    def initialize(ats_csv)
-      @ats_csv = ats_csv
+    def initialize
+      @ats_csv = 'storage/csv/ats_systems.csv'
     end
 
     def build
@@ -11,7 +11,7 @@ module Builders
         ats_name = row["ats_name"]
         ats = ApplicantTrackingSystem.find_or_create_by(name: ats_name)
 
-        attributes_to_update = {
+        ats.update(
           url_identifier: row["url_identifier"],
           url_website: row["url_website"],
           url_linkedin: row["url_linkedin"],
@@ -21,9 +21,7 @@ module Builders
           url_xml: row["url_xml"],
           url_rss: row["url_rss"],
           login: row["login"]
-        }
-
-        ats.update(attributes_to_update)
+        )
 
         if ats
           puts "Created ATS - #{ats.name}"
@@ -31,6 +29,7 @@ module Builders
           p "Error creating ATS - #{ats_name}"
         end
       end
+      p "Created #{ApplicantTrackingSystem.count} ATS systems."
     end
   end
 end
