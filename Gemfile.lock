@@ -411,7 +411,7 @@ GEM
       psych (>= 4.0.0)
     redis (4.8.1)
     regexp_parser (2.9.2)
-    reline (0.5.8)
+    reline (0.5.9)
       io-console (~> 0.5)
     require_all (3.0.0)
     responders (3.1.1)
@@ -601,6 +601,7 @@ DEPENDENCIES
   bullet
   capybara
   cloudinary
+  csv
   debug
   derailed_benchmarks
   devise

@@ -89,7 +89,7 @@ gem 'sendgrid-ruby'
 gem "flipper-active_record", "~> 1.3"
 
 # CSV
-# gem 'csv' # Installed as a dependency via Avo
+gem 'csv' # Installed as a dependency via Avo
 
 # Parsing
 gem "nokogiri"
