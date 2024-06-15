@@ -4,12 +4,12 @@
     <h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">
       Ready to get hired?
     </h2>
-    <p class="mt-10 text-center text-sm text-gray-500 dark:text-gray-400">
+    <p class="mt-5 text-center text-sm text-gray-500 dark:text-gray-400">
       Quickly find and apply to thousands of jobs in one-click.
     </p>
   </div>
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
-    <div class="bg-white/5 dark:bg-zinc-900/10 ring-2 ring-indigo-500 rounded-xl px-6 py-12 shadow sm:rounded-lg sm:px-12">
+    <div class="bg-white/5 dark:bg-zinc-900/10 ring-1 ring-indigo-500 rounded-xl px-6 py-12 shadow sm:rounded-lg sm:px-12">
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'space-y-6' }) do |f| %>
         <div>
           <label for="first_name" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">First name</label>
@@ -18,7 +18,7 @@
               required: true,
               autofocus: true,
               label: false,
-              input_html: { autocomplete: "first_name", class: "block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6" }
+              input_html: { autocomplete: "first_name", class: "block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6" }
             %>
           </div>
         </div>
@@ -29,7 +29,7 @@
               required: true,
               autofocus: false,
               label: false,
-              input_html: { autocomplete: "last_name", class: "block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6" }
+              input_html: { autocomplete: "last_name", class: "block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6" }
             %>
           </div>
         </div>
@@ -40,7 +40,7 @@
               required: true,
               autofocus: false,
               label: false,
-              input_html: { autocomplete: "email", class: "block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6" }
+              input_html: { autocomplete: "email", class: "block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6" }
             %>
           </div>
         </div>
@@ -51,7 +51,7 @@
               required: true,
               autofocus: false,
               label: false,
-              input_html: { autocomplete: "new-password", class: "block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6" }
+              input_html: { autocomplete: "new-password", class: "block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6" }
             %>
           </div>
         </div>
@@ -62,7 +62,7 @@
               required: true,
               autofocus: false,
               label: false,
-              input_html: { autocomplete: "new-password", class: "block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6" }
+              input_html: { autocomplete: "new-password", class: "block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6" }
             %>
           </div>
         </div>
