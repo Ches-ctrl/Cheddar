@@ -1,4 +1,4 @@
-module Csv
+module CsvFiles
   class ExportToCsv
     # TODO: Add support for filtering list of jobs by criteria
 

@@ -1,4 +1,4 @@
-module Csv
+module CsvFiles
   class SortCsv
     def sort_ats_identifiers
       csv_data = read_csv('storage/csv/ats_identifiers.csv')

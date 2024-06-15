@@ -1,4 +1,4 @@
-module Csv
+module CsvFiles
   class ImportCsv
     def import_company_urls
       company_list = AtsIdentifiers.load
