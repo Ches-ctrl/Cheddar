@@ -2,7 +2,7 @@
   <div class="relative z-10">
     <%= link_to "Clear Filters", opportunities_path, class: "text-sm font-semibold leading-7 text-indigo-600 float-end" %>
   </div>
-  <ul role="list">
+  <ul role="hidden">
     <% @facets.group_by(&:attribute).each do |attribute, facets| %>
       <li class="md:hidden">
         <span class="block py-1 text-sm text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">
