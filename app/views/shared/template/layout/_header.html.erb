@@ -21,8 +21,9 @@
     <button type="button" class="flex h-6 w-6 items-center justify-center  rounded-md transition hover:bg-zinc-900/5 dark:hover:bg-white/5" aria-label="Toggle navigation" data-action="click->mobile-nav#toggle">
       <%= inline_svg_tag('template/icons/hamburger_menu.svg') %>
     </button>
-    <%= link_to  root_path do %>
-      <%= inline_svg_tag('template/icons/logo.svg', height: '24px', class: 'h-6') %>
+    <%= link_to opportunities_path, class: "flex h-6 w-24 items-center" do %>
+      <%= inline_svg_tag('cheddar_logo_text_1.svg', class: "dark:hidden") %>
+      <%= inline_svg_tag('cheddar_logo_text.svg', class: "hidden dark:block") %>
     <% end %>
   </div>
   <div class="flex items-center gap-5">
