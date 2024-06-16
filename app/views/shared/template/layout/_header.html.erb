@@ -41,12 +41,12 @@
     <% if Flipper.enabled?(:log_in_buttons) %>
       <div class="hidden min-[416px]:contents">
         <% if current_user %>
-          <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "inline-flex gap-0.5 justify-center overflow-hidden text-sm font-medium transition rounded-full py-1 px-3 text-zinc-700 ring-1 ring-inset ring-zinc-900/10 hover:bg-zinc-900/2.5 hover:text-zinc-900 dark:text-zinc-400 dark:ring-white/10 dark:hover:bg-white/5 dark:hover:text-white" %>
+          <%= render 'shared/template/layout/profile_dropdown' %>
         <% else %>
           <%= link_to "Log in", new_template_user_session_path, class: "inline-flex gap-0.5 justify-center overflow-hidden text-sm font-medium transition rounded-full py-1 px-3 text-white dark:text-mauve-400 bg-zinc-900 dark:bg-mauve-400/10 hover:bg-zinc-700 dark:hover:bg-mauve-400/10 dark:ring-1 dark:ring-inset dark:ring-mauve-400/20 dark:hover:text-mauve-300 dark:hover:ring-mauve-300" %>
           <%= link_to "Sign up", new_template_user_registration_path, class: "inline-flex gap-0.5 justify-center overflow-hidden text-sm font-medium transition rounded-full py-1 px-3 text-zinc-700 ring-1 ring-inset ring-zinc-900/10 hover:bg-zinc-900/2.5 hover:text-zinc-900 dark:text-zinc-400 dark:ring-white/10 dark:hover:bg-white/5 dark:hover:text-white" %>
         <% end %>
-        </div>
+      </div>
     <% end %>
   </div>
 </div>
