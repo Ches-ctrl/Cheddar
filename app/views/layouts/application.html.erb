@@ -11,17 +11,14 @@
 <!DOCTYPE html>
 <html class="h-full" style="color-scheme: light;">
   <head>
-    <title>API docs - rails</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= display_meta_tags site: "Cheddar" %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= favicon_link_tag 'favicon.ico' %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" if false %>
     <%= stylesheet_link_tag "layout", "inter-font", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <%= vite_client_tag if false %>
-    <%= vite_javascript_tag 'application' if false %>
   </head>
   <body class="flex min-h-full bg-white antialiased dark:bg-zinc-900">
     <%= render 'shared/template/search_dialog' %>
