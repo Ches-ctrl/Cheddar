@@ -60,7 +60,7 @@ Rails.application.routes.draw do
   end
 
   resources :emails, only: [:create]
-  resources :saved_jobs, only: %i[index show destroy]
+  # resources :saved_jobs, only: %i[index show destroy]
   resources :educations, only: %i[new create]
 
   ###
@@ -86,7 +86,10 @@ Rails.application.routes.draw do
   # get 'opportunities', to: 'opportunities#protocol', as: 'protocol'
   # resources :opportunities, only: %i[index]
   # get '/opportunities/opportunity_autocomplete', to: 'opportunity_autocomplete#index'
+  resources :saved_jobs, only: %i[index]
   resources :opportunities, path: '/jobs', only: %i[index show] do
+    resources :saved_jobs, only: %i[create]
+    delete '/saved_jobs', to: 'saved_jobs#destroy', as: :destroy_saved_jobs
     collection do
       get 'opportunity_autocomplete', to: 'opportunity_autocomplete#index'
     end
