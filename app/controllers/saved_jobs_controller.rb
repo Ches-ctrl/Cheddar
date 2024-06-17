@@ -1,33 +1,65 @@
 class SavedJobsController < ApplicationController
-  def index
-    @saved_jobs = SavedJob.eager_load(job: :company).where(user_id: current_user.id)
-    @saved_job_ids = @saved_jobs.to_set(&:job_id)
-  end
+  include Pagy::Backend
 
-  def new
-    @saved_job = SavedJob.new
-    @job = Job.find(params[:job_id])
+  def index
+    load_saved_jobs
   end
 
   def create
-    @saved_job = SavedJob.new
-    @saved_job.user = current_user
-    @job = Job.find(params[:job_id])
-    @saved_job.job = @job
-    if @saved_job.save
-      # redirect_to jobs_path, notice: 'Job successfully saved!'
-      redirect_to request.referrer, notice: 'Job successfully saved!'
-    else
-      redirect_to job_path(@job), alert: 'Something went wrong, please try again'
-    end
+    build_saved_job
+    persist_saved_job
   end
 
   def destroy
-    @saved_job = SavedJob.find(params[:id])
+    load_saved_job
+    destroy_saved_job
+  end
+
+  private
+
+  def build_saved_job
+    @saved_job = current_user.saved_jobs.new(job_id: saved_job_params[:opportunity_id])
+  end
+
+  def destroy_saved_job
     if @saved_job.destroy
-      redirect_to request.referrer, notice: 'Successfully removed from your saved jobs'
+      success_redirect_to_referrer
     else
-      render saved_jobs_path, status: :unprocessable_entity
+      error_redirect_to_referrer
     end
+  end
+
+  def load_saved_job
+    @saved_job = current_user.saved_jobs.find_by(job_id: saved_job_params[:opportunity_id])
+  end
+
+  def load_saved_jobs
+    @saved_jobs = OpportunitiesFetcher.call(saved_jobs_scope, saved_job_params)
+    @pagy, @records = pagy(@saved_jobs, items: 20)
+  end
+
+  def persist_saved_job
+    if @saved_job.save
+      success_redirect_to_referrer
+    else
+      error_redirect_to_referrer
+    end
+  end
+
+  def saved_jobs_scope
+    Job.where(id: current_user.saved_jobs.pluck(:job_id))
+    # current_user.saved_jobs.map(&:job)
+  end
+
+  def success_redirect_to_referrer
+    redirect_to request.referrer, notice: 'Job successfully saved!'
+  end
+
+  def error_redirect_to_referrer
+    redirect_to request.referrer, alert: 'Something went wrong, please try again'
+  end
+
+  def saved_job_params
+    params.permit(:opportunity_id, :page)
   end
 end
