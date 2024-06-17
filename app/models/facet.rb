@@ -11,8 +11,10 @@ class Facet
   #### constants
   ####
 
-  SENIORITY_POSITIONS = ["internship", "entry-level", "junior", "mid-level", "lead", "senior",
-                         "manager/supervisor", "senior", "lead", nil]
+  SENIORITY_POSITIONS = [nil, "internship", "entry-level", "junior", "mid-level", "lead", "senior",
+                         "manager/supervisor", "senior", "lead"]
+
+  EMPLOYMENT_TYPE_POSITIONS = [nil, "internship", "part-time", "full-time", "contract"]
 
   SORT_PRESENTATIONS = {
     title: 'Title (A-Z)',
@@ -63,7 +65,12 @@ class Facet
   def position
     return 0 if sortable_by_count? || !multi_attribute?
 
-    SENIORITY_POSITIONS.index(value)
+    static_positions.index(value) || 99
+  end
+
+  def static_positions
+    return EMPLOYMENT_TYPE_POSITIONS if attribute.eql?("employment")
+    return SENIORITY_POSITIONS if attribute.eql?("seniority")
   end
 
   def presentation
