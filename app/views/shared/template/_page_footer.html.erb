@@ -1,16 +1,23 @@
 <% social_links = [
   {
     sr_text: 'Follow us on X',
-    icon_name: 'logos/x'
+    icon_name: 'logos/x',
+    link: 'https://x.com'
   },
   {
     sr_text: 'Follow us on Github',
-    icon_name: 'logos/github'
+    icon_name: 'logos/github',
+    link: 'https://www.github.com/Ches-ctrl/Cheddar'
   },
   {
     sr_text: 'Join our Discord server',
     icon_name: 'logos/discord'
   },
+  # {
+  #   sr_text: 'Follow us on LinkedIn',
+  #   icon_name: 'logos/linkedin',
+  #   link: 'https://www.linkedin.com/company/Cheddarjobs'
+  # }
 ] %>
 <footer class="mx-auto w-full max-w-2xl space-y-10 pb-16 lg:max-w-5xl">
   <div class="flex flex-col items-center justify-between gap-5 border-t border-zinc-900/5 pt-8 sm:flex-row dark:border-white/5">
@@ -19,7 +26,7 @@
     </p>
     <div class="flex gap-4">
       <% social_links.each do |link| %>
-        <%= link_to  '#', class: 'group' do %>
+        <%= link_to  link[:link], class: 'group' do %>
           <span class="sr-only"><%= link[:sr_text] %></span>
           <%= inline_svg_tag("template/icons/#{link[:icon_name]}.svg") %>
         <% end %>
