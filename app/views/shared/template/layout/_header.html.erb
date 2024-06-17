@@ -1,7 +1,7 @@
 <div id="autocomplete" class="hidden"></div>
 <div class="fixed inset-x-0 top-0 z-50 lg:z-30 flex h-14 items-center justify-between gap-12 px-4 transition sm:px-6 lg:px-8 backdrop-blur-sm dark:backdrop-blur bg-white/[var(--bg-opacity-light)] dark:bg-zinc-900/[var(--bg-opacity-dark)]" style="--bg-opacity-light: 0.5; --bg-opacity-dark: 0.2;" data-controller="search">
   <div class="hidden lg:flex">
-    <%= link_to opportunities_path, class: "flex h-6 w-24 items-center" do %>
+    <%= link_to root_path, class: "flex h-6 w-24 items-center" do %>
       <%= inline_svg_tag('cheddar_logo_text_1.svg', class: "dark:hidden") %>
       <%= inline_svg_tag('cheddar_logo_text.svg', class: "hidden dark:block") %>
     <% end %>
@@ -21,7 +21,7 @@
     <button type="button" class="flex h-6 w-6 items-center justify-center  rounded-md transition hover:bg-zinc-900/5 dark:hover:bg-white/5" aria-label="Toggle navigation" data-action="click->mobile-nav#toggle">
       <%= inline_svg_tag('template/icons/hamburger_menu.svg') %>
     </button>
-    <%= link_to opportunities_path, class: "flex h-6 w-24 items-center" do %>
+    <%= link_to root_path, class: "flex h-6 w-24 items-center" do %>
       <%= inline_svg_tag('cheddar_logo_text_1.svg', class: "dark:hidden") %>
       <%= inline_svg_tag('cheddar_logo_text.svg', class: "hidden dark:block") %>
     <% end %>
