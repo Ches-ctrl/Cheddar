@@ -5,11 +5,14 @@ class Facet
   #### accessors
   ####
 
-  attr_accessor :attribute, :value, :position, :count, :url_params, :type
+  attr_accessor :attribute, :value, :count, :url_params, :type
 
   ####
   #### constants
   ####
+
+  SENIORITY_POSITIONS = ["internship", "entry-level", "junior", "mid-level", "lead", "senior",
+                         "manager/supervisor", "senior", "lead", nil]
 
   SORT_PRESENTATIONS = {
     title: 'Title (A-Z)',
@@ -55,6 +58,12 @@ class Facet
 
   def multi_attribute?
     type.eql?('checkbox')
+  end
+
+  def position
+    return 0 if sortable_by_count? || !multi_attribute?
+
+    SENIORITY_POSITIONS.index(value)
   end
 
   def presentation
