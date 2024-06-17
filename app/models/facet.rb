@@ -67,6 +67,10 @@ class Facet
     SORT_PRESENTATIONS.fetch(value.to_sym)
   end
 
+  def sortable_by_count?
+    multi_attribute? && !attribute.eql?('seniority')
+  end
+
   def url(params)
     dup_params = params.dup
     remove_filter_url = remove_value_from_hash(dup_params, attribute, value)

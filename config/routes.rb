@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   end
 
   # Pages
-  root to: "pages#home"
+  # root to: "pages#home"
   get 'about', to: 'pages#about', as: 'about'
   get 'faqs', to: 'pages#faqs', as: 'faqs'
   get 'how_it_works', to: 'pages#how_it_works', as: 'how_it_works'
@@ -43,14 +43,14 @@ Rails.application.routes.draw do
   post '/chatbot/chat', to: 'messages#chat'
 
   # Resources
-  resources :jobs, only: %i[index show create] do
-    resources :saved_jobs, only: [:create]
-    collection do
-      post :apply_to_selected_jobs, as: :apply
-    end
-    # TODO: fix app if breaking because you'll now need to specify the job in params
-    resources :job_applications, only: [:create]
-  end
+  # resources :jobs, only: %i[index show create] do
+  #   resources :saved_jobs, only: [:create]
+  #   collection do
+  #     post :apply_to_selected_jobs, as: :apply
+  #   end
+  #   # TODO: fix app if breaking because you'll now need to specify the job in params
+  #   resources :job_applications, only: [:create]
+  # end
 
   resources :companies, only: %i[index show]
   resources :job_applications, only: %i[index show new success create] do
@@ -86,11 +86,19 @@ Rails.application.routes.draw do
   # get 'opportunities', to: 'opportunities#protocol', as: 'protocol'
   # resources :opportunities, only: %i[index]
   # get '/opportunities/opportunity_autocomplete', to: 'opportunity_autocomplete#index'
-  resources :opportunities, only: %i[index show] do
+  resources :opportunities, path: '/jobs', only: %i[index show] do
     collection do
       get 'opportunity_autocomplete', to: 'opportunity_autocomplete#index'
     end
   end
 
-  get '/tothemoon', to: 'uncategorized_pages#tothemoon'
+  root to: 'uncategorized_pages#tothemoon'
+  # get '/tothemoon', to: 'uncategorized_pages#tothemoon'
+  # get '/template/users/sign_in', to: 'devise/sessions#new', as: :new_template_user_session
+  devise_scope :user do
+    get "/template/users/edit", to: "devise/registrations#edit", as: :edit_template_user_registration_path
+    get "/template/users/sign_in", to: "devise/sessions#new", as: :new_template_user_session
+    get "/template/users/password/new", to: "devise/passwords#new", as: :new_template_user_password
+    get "/template/users/sign_up", to: "devise/registrations#new", as: :new_template_user_registration
+  end
 end

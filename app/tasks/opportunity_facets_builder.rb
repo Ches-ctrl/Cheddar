@@ -101,7 +101,7 @@ class OpportunityFacetsBuilder < ApplicationTask
     facets.sort_by! do |facet|
       checked_criteria = facet.active?(@params) ? 0 : 1
       count_criteria = facet.type.eql?('radio') ? 0 : -facet.count
-      facet.multi_attribute? ? [checked_criteria, count_criteria] : [1]
+      facet.sortable_by_count? ? [checked_criteria, count_criteria] : [1]
     end
   end
 
