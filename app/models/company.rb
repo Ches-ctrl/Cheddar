@@ -81,7 +81,7 @@ class Company < ApplicationRecord
       inferred_description, @name_keywords = Categorizer::CompanyDescriptionService.lookup_company(name, ats_identifier)
       self.description = inferred_description if description.blank?
     else
-      self.description = "A financial services company."
+      self.description ||= "A financial services company."
     end
   end
 
