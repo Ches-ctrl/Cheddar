@@ -1,7 +1,7 @@
 <% if 
   request.fullpath.end_with?('/template/users/edit')
 %>
-<main>
+<article class="flex w-3/4 mx-auto h-full flex-col pb-10 pt-16">
   <h1 class="sr-only">Account Settings</h1>
   <header class="border-b border-zinc-900/5 dark:border-white/5">
     <!-- Secondary navigation -->
@@ -243,7 +243,7 @@
             </div>
           </div>
           <div class="col-span-full">
-            <label for="resume" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Resume/label>
+            <label for="resume" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Resume</label>
             <div class="mt-2">
               <%= f.input :resume,
                 required: true,
@@ -329,7 +329,7 @@
       </form>
     </div>
   </div>
-</main>
+</article>
 
 <% else %>
   <div class="container d-flex align-items-center justify-content-center">
