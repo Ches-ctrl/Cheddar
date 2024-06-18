@@ -99,7 +99,7 @@ Rails.application.routes.draw do
   # get '/tothemoon', to: 'uncategorized_pages#tothemoon'
   # get '/template/users/sign_in', to: 'devise/sessions#new', as: :new_template_user_session
   devise_scope :user do
-    get "/template/users/edit", to: "devise/registrations#edit", as: :edit_template_user_registration_path
+    get "/template/users/edit", to: "devise/registrations#edit", as: :edit_template_user_registration
     get "/template/users/sign_in", to: "devise/sessions#new", as: :new_template_user_session
     get "/template/users/password/new", to: "devise/passwords#new", as: :new_template_user_password
     get "/template/users/sign_up", to: "devise/registrations#new", as: :new_template_user_registration
