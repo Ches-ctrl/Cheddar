@@ -21,7 +21,7 @@ class Company < ApplicationRecord
 
   # == Callbacks ============================================================
   # TODO: Decide if we want to keep these callbacks
-  before_save :set_website_url, :fetch_description
+  before_save :fetch_description, :set_website_url
 
   # == Class Methods ========================================================
 
@@ -77,6 +77,15 @@ class Company < ApplicationRecord
   end
 
   def fetch_description
+    # if website_url, get CompanyDetailsFromUrl
+    if url_website.present?
+      company_details = Categorizer::CompanyDetailsFromUrl.new(url_website).call
+      self.name = company_details[:name]
+      self.description = company_details[:description] if description.blank?
+      self.url_linkedin ||= company_details[:url_linkedin]
+      self.url_website = company_details[:url_website]
+    end
+
     if Rails.env.production?
       inferred_description, @name_keywords = Categorizer::CompanyDescriptionService.lookup_company(name, ats_identifier)
       self.description = inferred_description if description.blank?
