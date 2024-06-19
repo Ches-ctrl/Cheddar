@@ -86,7 +86,8 @@ Rails.application.routes.draw do
   # get 'opportunities', to: 'opportunities#protocol', as: 'protocol'
   # resources :opportunities, only: %i[index]
   # get '/opportunities/opportunity_autocomplete', to: 'opportunity_autocomplete#index'
-  resources :saved_jobs, only: %i[index]
+  # resources :saved_jobs, only: %i[index]
+  get 'basket', to: 'saved_jobs#index', as: :saved_jobs
   resources :opportunities, path: '/jobs', only: %i[index show] do
     resources :saved_jobs, only: %i[create]
     delete '/saved_jobs', to: 'saved_jobs#destroy', as: :destroy_saved_jobs

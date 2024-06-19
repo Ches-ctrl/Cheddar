@@ -1,7 +1,7 @@
 <% if request.fullpath.eql?('/protocol') %>
   <%= yield %>
 <% elsif request.fullpath.include?('/jobs') ||
-  request.fullpath.include?('/saved_jobs') ||
+  request.fullpath.include?('/basket') ||
   request.fullpath.include?('/job_applications') ||
   request.fullpath.eql?('/') ||
   request.fullpath.end_with?('/template/users/sign_in') ||
