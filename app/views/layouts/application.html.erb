@@ -1,38 +1,36 @@
 <% if request.fullpath.eql?('/protocol') %>
   <%= yield %>
-<% elsif request.fullpath.include?('/opportunities') || request.fullpath.include?('/tothemoon') %>
+<% elsif request.fullpath.include?('/jobs') ||
+  request.fullpath.include?('/saved_jobs') ||
+  request.fullpath.eql?('/') ||
+  request.fullpath.end_with?('/template/users/sign_in') ||
+  request.fullpath.end_with?('/template/users/password/new') ||
+  request.fullpath.include?('/users/password/edit?') ||
+  request.fullpath.end_with?('/template/users/sign_up') ||
+  request.fullpath.end_with?('/template/users/edit')
+%>
 <!DOCTYPE html>
 <html class="h-full" style="color-scheme: light;">
   <head>
-    <title>API docs - rails</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= display_meta_tags site: "Cheddar" %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= favicon_link_tag 'favicon.ico' %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" if false %>
     <%= stylesheet_link_tag "layout", "inter-font", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <%= vite_client_tag if false %>
-    <%= vite_javascript_tag 'application' if false %>
   </head>
   <body class="flex min-h-full bg-white antialiased dark:bg-zinc-900">
     <%= render 'shared/template/search_dialog' %>
     <div class="w-full">
-      <div class="h-full lg:ml-72 xl:ml-80">
-        <header class="contents lg:pointer-events-none lg:fixed lg:inset-0 lg:z-40 lg:flex" data-controller="theme">
-          <div class="contents lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-zinc-900/10 lg:px-6 lg:pb-8 lg:pt-4 xl:w-80 lg:dark:border-white/10" data-controller="mobile-nav">
-            <div class="hidden lg:flex">
-              <%= link_to opportunities_path, class: "flex h-6 w-24 items-center" do %>
-                <%= inline_svg_tag('cheddar_logo_text_1.svg', class: "dark:hidden") %>
-                <%= inline_svg_tag('cheddar_logo_text.svg', class: "hidden dark:block") %>
-              <% end %>
-            </div>
-            <%= render 'shared/template/layout/header' %>
-            <%= render 'shared/template/layout/navigation' if @opportunities %>
-            <%= render 'shared/template/layout/mobile_navigation' if @opportunities %>
-          </div>
+      <div class="h-full <%= @opportunities ? 'lg:ml-72 xl:ml-80' : '' %>" data-controller="theme mobile-nav">
+        <header>
+          <%= render 'shared/template/layout/header' %>
         </header>
+        <div class="contents lg:fixed lg:inset-0 lg:flex">
+          <%= render 'shared/template/layout/sidebar' if @opportunities %>
+        </div>
         <div class="relative flex h-full flex-col px-4 pt-14 sm:px-6 lg:px-8">
           <main class="flex-auto">
             <%= yield %>

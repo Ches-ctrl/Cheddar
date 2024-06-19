@@ -23,11 +23,6 @@ class OpportunitiesFetcher < ApplicationTask
     apply_filters(opportunities)
   end
 
-  def wanted_opportunities
-    query = @params[:query]
-    query ? @opportunities.search_job(query) : @opportunities
-  end
-
   def apply_filters(opportunities)
     opportunities.where(filters)
                  .order(sort)
@@ -74,5 +69,10 @@ class OpportunitiesFetcher < ApplicationTask
   def sort
     param = @params[:sort]&.to_sym
     Facet::SORT_OPTIONS.fetch(param, 'jobs.created_at DESC')
+  end
+
+  def wanted_opportunities
+    query = @params[:query]
+    query ? @opportunities.search_job(query) : @opportunities
   end
 end

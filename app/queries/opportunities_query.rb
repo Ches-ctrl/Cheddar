@@ -6,8 +6,8 @@ class OpportunitiesQuery < ApplicationQuery
   end
 
   def call
-    @relation.eager_load(*associations)
-    #  .order(desc_order)
+    @relation = @relation.eager_load(*associations)
+    Flipper.enabled?(:london_junior_dev_roles) ? london_junior_dev_roles(@relation) : @relation
   end
 
   private
@@ -15,5 +15,10 @@ class OpportunitiesQuery < ApplicationQuery
   def associations
     %i[requirement company locations countries roles]
       .push({ locations: :country })
+  end
+
+  def london_junior_dev_roles(relation)
+    query = { seniority: ["Entry-Level", "Junior"], locations: { city: ["London"] }, employment_type: ["Full-Time"] }
+    relation.where(query)
   end
 end

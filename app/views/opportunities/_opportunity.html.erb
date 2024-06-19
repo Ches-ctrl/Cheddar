@@ -1,46 +1,56 @@
-<%= link_to opportunity_path(opportunity.id) do %> 
-  <li class="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6 dark:hover:bg-gray-700/50 lg:px-8">
-    <div class="flex gap-x-4 pr-6 sm:w-1/2 sm:flex-none">
-      <div class="flex items-center">
-        <%= image_tag("https://logo.clearbit.com/#{opportunity.company.url_website}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", class: "h-12 w-12 flex-none rounded-full bg-gray-50") %>
-      </div>
-      <div class="min-w-0 flex-auto">
-        <p class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
-          <span class="absolute inset-x-0 -top-px bottom-0"></span>
-          <%= opportunity.title.truncate(35) %>
-        </p>
-        <p class="mt-1 flex text-xs leading-5 text-gray-500 dark:text-gray-400">
-          <%= opportunity.company.name %>
-        </p>
-        <p class="mt-1 flex text-xs leading-5 text-gray-500 dark:text-gray-400">
-          <%= opportunity_public_location(opportunity) %>
-        </p>
-      </div>
+
+<li class="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6 dark:hover:bg-gray-700/50 lg:px-8">
+  <div class="flex gap-x-4 pr-6 sm:w-1/2 sm:flex-none">
+    <div class="flex items-center">
+      <%= image_tag("https://logo.clearbit.com/#{opportunity.company.url_website}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", class: "h-12 w-12 flex-none rounded-full bg-gray-50") %>
     </div>
-    <div class="flex shrink-0 items-center gap-x-4">
-      <div class="sm:flex sm:flex-col sm:items-end">
-        <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400">£70,000 - £100,000</p>
-        <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400"><%= opportunity_public_employment_type(opportunity) %></p>
-        <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400">12 days left</p>
-      </div>
+    <div class="min-w-0 flex-auto">
+      <%= link_to opportunity_path(opportunity.id) do %> 
+      <p class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
+        <span class="absolute inset-x-0 -top-px bottom-0"></span>
+        <%= opportunity.title.truncate(35) %>
+      </p>
+      <p class="mt-1 flex text-xs leading-5 text-gray-500 dark:text-gray-400">
+        <%= opportunity.company.name %>
+      </p>
+      <p class="mt-1 flex text-xs leading-5 text-gray-500 dark:text-gray-400">
+        <%= opportunity_public_location(opportunity) %>
+      </p>
+      <% end %>
     </div>
-    <div class="hidden md:block flex shrink-0 items-center gap-x-4">
-      <div class="sm:flex sm:flex-row sm:items-center gap-x-4">
-        <div class="sm:flex sm:flex-col sm:items-end gap-y-2">
-          <p class="text-sm leading-6 text-gray-900 dark:text-white">
-            <span class="inline-flex items-center gap-x-1.5 rounded-full px-2 py-1 text-xs font-medium text-gray-900 dark:text-white ring-1 ring-inset ring-gray-200 dark:ring-gray-800">
-              <svg class="h-1.5 w-1.5 fill-green-500 dark:fill-green-400" viewBox="0 0 6 6" aria-hidden="true">
-                <circle cx="3" cy="3" r="3" />
-              </svg>
-              Climate Neutral
-            </span>
-          </p>
-          <span class="inline-flex items-center rounded-md bg-gray-50 dark:bg-gray-400/10 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-400 ring-1 ring-inset ring-gray-500/10 dark:ring-gray-400/20">Easy</span>
-        </div>
-        <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-        </svg>
-      </div>
+  </div>
+  <div class="flex shrink-0 items-center gap-x-4">
+    <div class="sm:flex sm:flex-col sm:items-end">
+      <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400"><%= opportunity_salary_presentation(opportunity) %></p>
+      <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400"><%= opportunity_public_employment_type(opportunity) %></p>
+      <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400"><%= opportunity_days_remaining(opportunity) %></p>
     </div>
-  </li>
-<% end %>
+  </div>
+  <div class="flex shrink-0 items-center gap-x-4">
+    <% if current_user %>
+      <div class="relative z-10">
+        <% if job_saved?(opportunity) %>
+          <%= link_to opportunity_destroy_saved_jobs_path(opportunity_id: opportunity.id), data: {turbo_method: :delete}, method: :delete, class:"inline-flex items-center gap-x-1.5 rounded-xl !bg-indigo-50 px-2.5 py-1.5 !text-sm !font-semibold !text-indigo-600 !shadow-sm !hover:bg-indigo-100 !focus-visible:outline !focus-visible:outline-2 !focus-visible:outline-offset-2 !focus-visible:outline-indigo-200" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+              <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+            </svg>
+          <% end %>
+        <% else %>
+          <%= link_to opportunity_saved_jobs_path(opportunity), data: {turbo_method: :post}, class:"inline-flex items-center gap-x-1.5 rounded-xl !bg-indigo-50 px-2.5 py-1.5 !text-sm !font-semibold !text-indigo-600 !shadow-sm !hover:bg-indigo-100 !focus-visible:outline !focus-visible:outline-2 !focus-visible:outline-offset-2 !focus-visible:outline-indigo-200" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+            </svg>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="relative z-10">
+      <%= link_to opportunity.posting_url, class:"inline-flex items-center gap-x-1.5 rounded-xl !bg-indigo-50 px-2.5 py-1.5 !text-sm !font-semibold !text-indigo-600 !shadow-sm !hover:bg-indigo-100 !focus-visible:outline !focus-visible:outline-2 !focus-visible:outline-offset-2 !focus-visible:outline-indigo-200", target: "_blank" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+        </svg>  
+        Apply
+      <% end %>
+    </div>
+  </div>
+</li>

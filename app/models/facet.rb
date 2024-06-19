@@ -5,11 +5,16 @@ class Facet
   #### accessors
   ####
 
-  attr_accessor :attribute, :value, :position, :count, :url_params, :type
+  attr_accessor :attribute, :value, :count, :url_params, :type
 
   ####
   #### constants
   ####
+
+  SENIORITY_POSITIONS = [nil, "internship", "entry-level", "junior", "mid-level", "lead", "senior",
+                         "manager/supervisor", "senior", "lead"]
+
+  EMPLOYMENT_TYPE_POSITIONS = [nil, "internship", "part-time", "full-time", "contract"]
 
   SORT_PRESENTATIONS = {
     title: 'Title (A-Z)',
@@ -57,6 +62,17 @@ class Facet
     type.eql?('checkbox')
   end
 
+  def position
+    return 0 if sortable_by_count? || !multi_attribute?
+
+    static_positions.index(value) || 99
+  end
+
+  def static_positions
+    return EMPLOYMENT_TYPE_POSITIONS if attribute.eql?("employment")
+    return SENIORITY_POSITIONS if attribute.eql?("seniority")
+  end
+
   def presentation
     sort_presentation || "#{public_value.truncate(20)} (#{count})"
   end
@@ -65,6 +81,10 @@ class Facet
     return unless attribute.eql?('sort')
 
     SORT_PRESENTATIONS.fetch(value.to_sym)
+  end
+
+  def sortable_by_count?
+    multi_attribute? && !attribute.eql?('seniority')
   end
 
   def url(params)

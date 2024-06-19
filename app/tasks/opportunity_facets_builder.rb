@@ -39,7 +39,7 @@ class OpportunityFacetsBuilder < ApplicationTask
 
     attribute = 'sort'
     %w[title title_desc company company_desc created_at created_at_asc].map do |value|
-      Facet.new(attribute:, value:, position: 0, count: 0, url_params: @params, type: 'radio')
+      Facet.new(attribute:, value:, count: 0, url_params: @params, type: 'radio')
     end.compact
   end
 
@@ -49,7 +49,7 @@ class OpportunityFacetsBuilder < ApplicationTask
     date_cutoffs.map do |period, cutoff|
       value = period.downcase.gsub(/last |within a /, '').gsub(' ', '-')
       count = facet_oppotunities(attribute).where(date_posted: cutoff..Date.today).count
-      Facet.new(attribute:, value:, position: 0, count:, url_params: @params, type: 'radio')
+      Facet.new(attribute:, value:, count:, url_params: @params, type: 'radio')
     end.compact
   end
 
@@ -59,7 +59,7 @@ class OpportunityFacetsBuilder < ApplicationTask
       next unless seniority
 
       value = seniority.downcase.split.first
-      Facet.new(attribute:, value:, position: 0, count:, url_params: @params, type: 'checkbox')
+      Facet.new(attribute:, value:, count:, url_params: @params, type: 'checkbox')
     end.compact
   end
 
@@ -67,7 +67,7 @@ class OpportunityFacetsBuilder < ApplicationTask
     attribute = 'location'
     facet_oppotunities(attribute).reorder(:'locations.city').group(:'locations.city').count.map do |location, count|
       value = location ? location.downcase.gsub(' ', '_') : 'remote'
-      Facet.new(attribute:, value:, position: 0, count:, url_params: @params, type: 'checkbox')
+      Facet.new(attribute:, value:, count:, url_params: @params, type: 'checkbox')
     end.compact
   end
 
@@ -77,7 +77,7 @@ class OpportunityFacetsBuilder < ApplicationTask
       next unless role
 
       value = role.downcase.split.first
-      Facet.new(attribute:, value:, position: 0, count:, url_params: @params, type: 'checkbox')
+      Facet.new(attribute:, value:, count:, url_params: @params, type: 'checkbox')
     end.compact
   end
 
@@ -87,7 +87,7 @@ class OpportunityFacetsBuilder < ApplicationTask
       next unless employment
 
       value = employment
-      Facet.new(attribute:, value:, position: 0, count:, url_params: @params, type: 'checkbox')
+      Facet.new(attribute:, value:, count:, url_params: @params, type: 'checkbox')
     end.compact
   end
 
@@ -101,7 +101,7 @@ class OpportunityFacetsBuilder < ApplicationTask
     facets.sort_by! do |facet|
       checked_criteria = facet.active?(@params) ? 0 : 1
       count_criteria = facet.type.eql?('radio') ? 0 : -facet.count
-      facet.multi_attribute? ? [checked_criteria, count_criteria] : [1]
+      facet.sortable_by_count? ? [checked_criteria, count_criteria] : [facet.position]
     end
   end
 
