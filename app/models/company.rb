@@ -30,6 +30,12 @@ class Company < ApplicationRecord
   def create_all_relevant_jobs
     jobs_found_or_created = []
     ats = applicant_tracking_system
+
+    if ats.name == 'Workday'
+      subsidiaries = ats.fetch_subsidiaries(self)
+      return subsidiaries.inject([]) { |jobs_array, company| jobs_array + company.create_all_relevant_jobs } if subsidiaries.present?
+    end
+
     all_jobs = ats.fetch_company_jobs(ats_identifier)
     raise Errors::NoDataReturnedError, "The API returned no jobs data for #{name}" unless all_jobs
 

@@ -1,6 +1,20 @@
 module Ats
   module Workday
     module CompanyDetails
+      def fetch_subsidiaries(company)
+        data = fetch_chunk(company.url_ats_api)
+        company_facet = data['facets']&.find { |f| f['facetParameter'] == 'Company' }
+        return unless company_facet
+
+        company_facet['values'].map do |company_data|
+          data = {
+            name: company_data['descriptor'],
+            ats_identifier: "#{company.ats_identifier}/#{company_data['id']}"
+          }
+          find_or_create_company_by_data(data)
+        end
+      end
+
       private
 
       # get name from job
@@ -31,6 +45,10 @@ module Ats
           total_live: fetch_total_live(ats_identifier)
           # can get logo_url from sidebar_data
         }
+      end
+
+      def fetch_company_id(data)
+        data[:ats_identifier]
       end
 
       def check_for_careers_url_redirect(url_ats_main)
@@ -64,9 +82,7 @@ module Ats
       end
 
       def fetch_company_name_and_website_from_job(ats_identifier, job_data)
-        job_id = fetch_id(job_data)
-        endpoint = job_url_api(url_api, ats_identifier, job_id)
-        data = get_json_data(endpoint)
+        data = fetch_detailed_job_data(ats_identifier, job_data)
         return unless data
 
         name = data.dig('hiringOrganization', 'name')

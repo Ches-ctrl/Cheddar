@@ -2,7 +2,7 @@ module Ats
   module Workday
     module JobDetails
       def fetch_title_and_location(job_data)
-        title = job_data['name']
+        title = job_data['title']
         location = fetch_location(job_data)
         [title, location]
       end
@@ -10,6 +10,12 @@ module Ats
       def fetch_id(job_data)
         path = job_data['externalPath']
         path.split('/').last(2).join('/')
+      end
+
+      def fetch_detailed_job_data(ats_identifier, job_data)
+        job_id = fetch_id(job_data)
+        endpoint = job_url_api(url_api, ats_identifier, job_id)
+        get_json_data(endpoint)
       end
 
       private
@@ -23,45 +29,61 @@ module Ats
         title, location = fetch_title_and_location(data)
         job.assign_attributes(
           title:,
-          description: Flipper.enabled?(:job_description) ? build_description(data.dig('jobAd', 'sections')) : 'Not added yet',
-          posting_url: data['applyUrl'],
-          remote: remote?(data),
+          description: Flipper.enabled?(:job_description) ? data['jobDescription'] : 'Not added yet',
+          posting_url: data['externalUrl'],
+          remote: remote?(location),
           non_geocoded_location_string: location,
-          seniority: fetch_seniority(data),
-          department: data.dig('department', 'label'),
-          requirements: data.dig('jobAd', 'sections', 'qualifications', 'text'),
-          date_posted: (Date.parse(data['releasedDate']) if data['releasedDate']),
+          date_posted: convert_date_posted(data['postedOn']),
           industry: data.dig('industry', 'label'),
-          employment_type: data.dig('typeOfEmployment', 'label')
+          employment_type: data['timeType']
         )
       end
 
       def fetch_location(data)
-        country_custom_field = data['customField']&.find { |field| field['fieldId'] == "COUNTRY" }
-        country_string = country_custom_field&.dig('valueLabel')
+        location = data['locationsText']
+        return fetch_quick_location(location) if location # this is not detailed data
 
-        if remote?(data)
+        location = data['location']
+        more_locations = data['additionalLocations']
+        location = fetch_multiple_locations(location, more_locations) if more_locations
+
+        country_string = data.dig('country', 'descriptor')
+        if remote?(location)
           country_string
         else
-          [data.dig('location', 'city'), country_string].reject(&:blank?).join(', ')
+          location
         end
       end
 
-      def remote?(data)
-        data.dig('location', 'remote')
+      def fetch_quick_location(location)
+        # if short version of job_data indicates multiple locations, punt on figuring out location until the job is created
+        multiloc_keywords = %w[locations more]
+        loc_is_multiple = multiloc_keywords.any? { |keyword| location.downcase.include?(keyword) }
+        loc_is_multiple ? 'London' : location # London means job won't be excluded b/c !relevant?
       end
 
-      def fetch_seniority(data)
-        convert = {
-          'entry_level' => 'Entry-Level',
-          'associate' => 'Junior',
-          'internship' => 'Internship',
-          'mid_senior_level' => 'Mid-Level',
-          'director' => 'Director',
-          'executive' => 'VP'
-        }
-        code = data.dig('experienceLevel', 'label')
-        convert[code]
+      def fetch_multiple_locations(location, more_locations)
+        loc_array = [location] + more_locations
+        loc_array.join(' && ')
+      end
+
+      def remote?(location)
+        location.downcase.include?('remote')
+      end
+
+      def convert_date_posted(string)
+        case string
+        when /Today/
+          Date.today
+        when /Yesterday/
+          Date.today - 1.day
+        when /(\d+)\+? Days Ago/
+          days_ago = string.match(/(\d+)/)[1].to_i
+          Date.today - days_ago.days
+        else
+          p "Error: could not identify date_posted for string: #{string}"
+          nil
+        end
       end
 
       def build_description(data)

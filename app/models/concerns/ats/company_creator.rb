@@ -39,7 +39,7 @@ module Ats
     private
 
     def company_details_from_data(data)
-      refer_to_module(defined?(super) ? super : nil, __method__)
+      data
     end
 
     def fetch_company_id(data)
