@@ -4,6 +4,7 @@ export default class extends Controller {
   static targets = ["mainCheckbox", "applyButton", "checkbox"];
 
   connect() {
+    console.log("bjkfklf");
     // Set up event listener for the main checkbox
     this.mainCheckboxTarget.addEventListener("change", (event) => {
         this.handleMainCheckboxChange(event);

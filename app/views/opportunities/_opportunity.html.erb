@@ -3,7 +3,7 @@
   <div class="flex gap-x-4 pr-6 sm:w-1/2 sm:flex-none">
     <% if request.fullpath.include?('/basket') %>
       <div class="flex w-6 z-50 items-center float-start">
-        <input type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" data-saved-jobs-target="checkbox">
+          <%= check_box_tag('job_ids[]', opportunity.id, multiple: true, class: "h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600", data: { basket_target: 'checkbox' } ) %>
       </div>
     <% end %>
     <div class="flex items-center">
