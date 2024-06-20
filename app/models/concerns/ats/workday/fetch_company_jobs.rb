@@ -1,9 +1,7 @@
 module Ats
   module Workday
     module FetchCompanyJobs
-      def fetch_one_job(ats_identifier)
-        fetch_company_jobs(ats_identifier, fetch_one_job_only: true)
-      end
+      include Constants
 
       def fetch_company_jobs(ats_identifier, fetch_one_job_only: false)
         api_base = fetch_base_url(ats_identifier)
@@ -12,23 +10,24 @@ module Ats
         subsidiary_id = ats_identifier.split('/').last if ats_identifier.count('/') > 2
 
         data = fetch_chunk(initial_parameters) # get facets array to build full_parameters
+        location_parameters = find_facet_in_facets(data['facets'], [/location/i, /countr(y|ies)/i], JOB_LOCATION_KEYWORDS.excluding(/remote/))
+        company_parameters = find_facet_in_facets(data['facets'], [/compan(y|ies)/i], [subsidiary_id], 'id') if subsidiary_id
         full_parameters = {
-          subsidiary_id:,
-          country_parameter: find_facet_parameter_in_facets(data['facets'], 'country'),
-          company_parameter: (find_facet_parameter_in_facets(data['facets'], 'company') if subsidiary_id)
+          location_parameters:,
+          company_parameters:
         }.merge(initial_parameters)
 
-        puts 'fetching page 1 of jobs...'
         data = fetch_chunk(full_parameters) # fetch first tranche of jobs
+        return data if fetch_one_job_only
+
         total_live = data['total']
         return unless total_live&.positive?
 
+        puts "Couldn't find a location parameter. Returning all jobs regardless of location." unless location_parameters.present?
         jobs = data['jobPostings']
-        return [jobs.first, total_live] if fetch_one_job_only
 
         page = 1
         while page * limit < total_live
-          puts "fetching page #{page + 1} of jobs..." if page.positive?
           data = fetch_chunk(full_parameters, page) # fetch additional tranches
           jobs += data['jobPostings']
           page += 1
@@ -47,32 +46,29 @@ module Ats
           appliedFacets: {},
           searchText: ""
         }
-        if params[:country_parameter]
-          country_facet = { params[:country_parameter].to_sym => ['29247e57dbaf46fb855b224e03170bc7'] } # returns UK jobs only
-          request_body[:appliedFacets].merge!(country_facet)
-        end
-        if params[:company_parameter]
-          company_facet = { params[:company_parameter].to_sym => [params[:subsidiary_id]] }
-          request_body[:appliedFacets].merge!(company_facet)
-        end
+        request_body[:appliedFacets].merge!(params[:location_parameters]) if params[:location_parameters]
+        request_body[:appliedFacets].merge!(params[:company_parameters]) if params[:company_parameters]
+        p request_body
         json_post_request(params[:endpoint], request_body)
       end
 
-      def find_facet_parameter_in_facets(facets, parameter)
-        queue = [facets]
+      def find_facet_in_facets(facets, parameter_array, descriptor_array, descriptor_field = 'descriptor')
+        queue = [[facets, nil]]
+        parameters = Hash.new { |hash, key| hash[key] = [] }
 
-        until queue.empty?
-          current_level = queue.shift
+        until queue.empty? || parameters.present?
+          current_level, facet_parameter = queue.shift
 
           current_level.each do |facet|
-            break unless facet['values']
-            return facet['facetParameter'] if facet.is_a?(Hash) && (facet['descriptor']&.downcase&.include?(parameter) || facet['facetParameter']&.downcase&.include?(parameter))
-
-            queue << facet['values'] if facet.is_a?(Hash) && facet['values']
+            if facet.is_a?(Hash) && facet['values']
+              queue << [facet['values'], facet['facetParameter'].to_sym] if parameter_array.any? { |parameter| facet['facetParameter']&.match?(parameter) } || parameter_array.any? { |parameter| facet['descriptor']&.match?(parameter) }
+            elsif facet[descriptor_field] && descriptor_array.any? { |descriptor| facet[descriptor_field].match?(descriptor) }
+              parameters[facet_parameter] << facet['id']
+            end
           end
         end
 
-        nil
+        parameters
       end
     end
   end
