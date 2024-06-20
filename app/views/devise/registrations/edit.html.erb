@@ -1,10 +1,6 @@
-<% if 
-  request.fullpath.end_with?('/template/users/edit')
-%>
 <article class="flex w-2/3 mx-auto h-full flex-col pb-10 pt-16">
   <h1 class="sr-only">Account Settings</h1>
   <header class="border-b border-zinc-900/5 dark:border-white/5">
-    <!-- Secondary navigation -->
     <nav class="flex overflow-x-auto py-4">
       <ul role="list" class="flex min-w-full flex-none gap-x-6 px-4 text-sm font-semibold leading-6 text-gray-400 sm:px-6 lg:px-8">
         <li>
@@ -13,19 +9,9 @@
         <li>
           <a href="#" class="text-gray-400 hover:text-indigo-600">Frequent asked fields</a>
         </li>
-        <!-- <li>
-          <a href="#" class="text-gray-400 hover:text-indigo-600">Billing</a>
-        </li>
-        <li>
-          <a href="#" class="text-gray-400 hover:text-indigo-600">Teams</a>
-        </li>
-        <li>
-          <a href="#" class="text-gray-400 hover:text-indigo-600">Integrations</a>
-        </li> -->
       </ul>
     </nav>
   </header>
-  <!-- Settings forms -->
   <div class="divide-y divide-zinc-900/5 dark:divide-white/5">
     <div class="grid max-w-8xl sm:grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
       <div>
@@ -33,6 +19,7 @@
         <p class="mt-1 text-sm leading-6 text-gray-500 dark:text-gray-400">Use a permanent address where you can receive mail.</p>
       </div>
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "md:col-span-2" }) do |f| %>
+        <% @user.errors.to_s %>
         <div class="grid gap-x-6 gap-y-8 sm:max-w-6xl sm:grid-cols-6">
           <div class="sm:col-span-3">
             <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">First name</label>
@@ -45,7 +32,6 @@
               %>
             </div>
           </div>
-
           <div class="sm:col-span-3">
             <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Last name</label>
             <div class="mt-2">
@@ -81,162 +67,17 @@
               %>
             </div>
           </div>
-          <div class="col-span-full">
-            <label for="preferred-pronoun-text" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">If other then please specify:</label>
-            <div class="mt-2">
-              <%= f.input :preferred_pronoun_text,
-                required: false,
-                label: false,
-                autofocus: false,
-                input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
-              %>
-            </div>
-          </div>
-          <div class="col-span-full">
-            <label for="phone_number" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Phone Number</label>
-            <div class="mt-2">
-              <%= f.input :phone_number,
-                required: true,
-                label: false,
-                autofocus: false,
-                input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
-              %>
-            </div>
-          </div>
-          <div class="col-span-full">
-            <label for="address-first" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Address first</label>
-            <div class="mt-2">
-              <%= f.input :address_first,
-                required: true,
-                label: false,
-                autofocus: false,
-                input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
-              %>
-            </div>
-          </div>
-          <div class="col-span-full">
-            <label for="address-second" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Address second</label>
-            <div class="mt-2">
-              <%= f.input :address_second,
-                required: true,
-                label: false,
-                autofocus: false,
-                input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
-              %>
-            </div>
-          </div>
-          <div class="col-span-full">
-            <label for="post-code" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Post code</label>
-            <div class="mt-2">
-              <%= f.input :post_code,
-                required: true,
-                label: false,
-                autofocus: false,
-                input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
-              %>
-            </div>
-          </div>
-          <div class="col-span-full">
-            <label for="city" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">City</label>
-            <div class="mt-2">
-              <%= f.input :city,
-                required: true,
-                label: false,
-                autofocus: false,
-                input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
-              %>
-            </div>
-          </div>
-          <div class="col-span-full">
-            <label for="linkedin-profile" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Linkedin profile</label>
-            <div class="mt-2">
-              <%= f.input :linkedin_profile,
-                required: true,
-                label: false,
-                autofocus: false,
-                input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
-              %>
-            </div>
-          </div>
-          <div class="col-span-full">
-            <label for="github-profile-url" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Github profile url</label>
-            <div class="mt-2">
-              <%= f.input :github_profile_url,
-                required: true,
-                label: false,
-                autofocus: false,
-                input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
-              %>
-            </div>
-          </div>
-          <div class="col-span-full">
-            <label for="website-url" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Website url</label>
-            <div class="mt-2">
-              <%= f.input :website_url,
-                required: true,
-                label: false,
-                autofocus: false,
-                input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
-              %>
-            </div>
-          </div>
-          <div class="col-span-full">
-            <label for="salary-expectation-figure" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">What is you annual salary expectation?</label>
-            <div class="mt-2">
-              <%= f.input :salary_expectation_figure,
-                required: true,
-                label: false,
-                autofocus: false,
-                input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
-              %>
-            </div>
-          </div>
-          <div class="col-span-full">
-            <label for="right-to-work" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Do you have the right to work in the UK without a visa?</label>
-            <div class="mt-2">
-              <%= f.input :right_to_work,
-                required: true,
-                label: false,
-                autofocus: false,
-                input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
-              %>
-            </div>
-          </div>
-          <div class="col-span-full">
-            <label for="notice-period" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">What is your notice period in weeks?</label>
-            <div class="mt-2">
-              <%= f.input :notice_period,
-                required: true,
-                label: false,
-                autofocus: false,
-                input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
-              %>
-            </div>
-          </div>
-          <div class="col-span-full">
-            <label for="resume" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Resume</label>
-            <div class="mt-2">
-              <%= f.input :resume,
-                required: true,
-                label: false,
-                autofocus: false,
-                input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
-              %>
-            </div>
-          </div>
         </div>
         <div class="mt-8 flex">
-          <%= f.button :submit, "Log in", class: "flex w-full justify-center cursor-pointer rounded-md !bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white dark:text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+          <%= f.button :submit, "Save", class: "flex w-full justify-center cursor-pointer rounded-md !bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white dark:text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
         </div>
       <% end %>
     </div>
-
     <div class="grid max-w-7xl gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
       <div>
         <h2 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">Change password</h2>
         <p class="mt-1 text-sm leading-6 text-gray-400">Update your password associated with your account.</p>
       </div>
-
       <form class="md:col-span-2">
         <div class="grid gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
           <div class="col-span-full">
@@ -245,14 +86,12 @@
               <input id="current-password" name="current_password" type="password" autocomplete="current-password" class="block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6">
             </div>
           </div>
-
           <div class="col-span-full">
             <label for="new-password" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">New password</label>
             <div class="mt-2">
               <input id="new-password" name="new_password" type="password" autocomplete="new-password" class="block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6">
             </div>
           </div>
-
           <div class="col-span-full">
             <label for="confirm-password" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Confirm password</label>
             <div class="mt-2">
@@ -260,19 +99,16 @@
             </div>
           </div>
         </div>
-
         <div class="mt-8 flex">
           <%= link_to "Save", Job.first.posting_url, class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white dark:text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", target: "_blank" %>
         </div>
       </form>
     </div>
-
     <div class="grid max-w-7xl gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
       <div>
         <h2 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">Log out other sessions</h2>
         <p class="mt-1 text-sm leading-6 text-gray-400">Please enter your password to confirm you would like to log out of your other sessions across all of your devices.</p>
       </div>
-
       <form class="md:col-span-2">
         <div class="grid gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6">
           <div class="col-span-full">
@@ -282,170 +118,19 @@
             </div>
           </div>
         </div>
-
         <div class="mt-8 flex">
           <a class="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white dark:text-gray-900 shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Log out other sessions</a>
         </div>
       </form>
     </div>
-
     <div class="grid max-w-7xl gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
       <div>
         <h2 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">Delete account</h2>
         <p class="mt-1 text-sm leading-6 text-gray-400">No longer want to use our service? You can delete your account here. This action is not reversible. All information related to this account will be deleted permanently.</p>
       </div>
-
       <form class="flex items-start md:col-span-2">
         <a class="rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white dark:text-gray-900 shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Log out other sessions</a>
       </form>
     </div>
   </div>
 </article>
-
-<% else %>
-  <div class="container d-flex align-items-center justify-content-center">
-    <div class="d-flex justify-content-center align-items-center w-50 border shadow rounded-4 p-2 m-4">
-      <div class="col-md-10 p-0 m-0">
-        <div class="login-box">
-          <h2 class="text-center">Edit Your Information </h2>
-
-          <%# TODO: Add country select gem %>
-
-          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-            <%= f.error_notification %>
-
-            <div class="form-inputs">
-              <div class="d-flex justify-content-between">
-                <%= f.input :first_name,
-                            required: false,
-                            autofocus: true,
-                            label_html: { style: 'font-style: italic; margin-bottom: 0px; margin-bottom: 0px;' },
-                            input_html: { class: 'rounded-4' } %>
-                <%= f.input :last_name,
-                            required: false,
-                            autofocus: true,
-                            label_html: { style: 'font-style: italic; margin-bottom: 0px; margin-bottom: 0px;' },
-                            input_html: { class: 'rounded-4' } %>
-              </div>
-
-              <div class="form-group">
-                <%= f.label :preferred_pronoun_select, "What are your preferred pronouns?", style: 'font-style: italic; margin-bottom: 0px;' %>
-                <%= f.select :preferred_pronoun_select, options_for_select(['He/Him', 'She/Her', 'They/Them', 'Other', 'Prefer not to say']), required: true, autofocus: true %>
-              </div>
-
-              <%= f.input :preferred_pronoun_text,
-                          required: false,
-                          autofocus: true,
-                          label: 'If other then please specify:',
-                          label_html: { style: 'font-style: italic; margin-bottom: 0px;' } %>
-
-              <%= f.input :email,
-                          required: false,
-                          autofocus: true,
-                          label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                          input_html: { class: 'rounded-4' }  %>
-
-              <%= f.input :phone_number,
-                          required: false,
-                          autofocus: true,
-                          label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                          input_html: { class: 'rounded-4' }  %>
-
-              <%= f.input :address_first,
-                          required: false,
-                          autofocus: true,
-                          label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                          input_html: { class: 'rounded-4' }  %>
-
-              <%= f.input :address_second,
-                          required: false,
-                          autofocus: true,
-                          label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                          input_html: { class: 'rounded-4' }  %>
-
-              <%= f.input :post_code,
-                          required: false,
-                          autofocus: true,
-                          label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                          input_html: { class: 'rounded-4' }  %>
-
-              <%= f.input :city,
-                          required: false,
-                          autofocus: true,
-                          label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                          input_html: { class: 'rounded-4' }  %>
-
-              <%= f.input :linkedin_profile,
-                          required: false,
-                          autofocus: true,
-                          label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                          input_html: { class: 'rounded-4' }  %>
-
-              <%= f.input :github_profile_url,
-                          required: false,
-                          autofocus: true,
-                          label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                          input_html: { class: 'rounded-4' }  %>
-
-              <%= f.input :website_url,
-                          required: false,
-                          autofocus: true,
-                          label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                          input_html: { class: 'rounded-4' }  %>
-
-              <%= f.input :salary_expectation_figure,
-                          required: false,
-                          autofocus: true,
-                          label: "What is you annual salary expectation?", label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                          input_html: { class: 'rounded-4' }  %>
-
-              <%= f.input :right_to_work,
-                          required: false,
-                          autofocus: true,
-                          label: "Do you have the right to work in the UK without a visa?", label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                          input_html: { class: 'rounded-4' }   %>
-
-              <%= f.input :notice_period,
-                          required: false,
-                          autofocus: true,
-                          label: "What is your notice period in weeks?", label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                          input_html: { class: 'rounded-4' }   %>
-
-              <%= f.input :resume,
-                          as: :file,
-                          required: true,
-                          label: 'CV (PDF)',
-                          input_html: { accept: 'application/pdf', class: 'rounded-4' },
-                          label_html: { style: 'font-style: italic; margin-bottom: 0px;' } %>
-
-              <% current_user.cover_letter_templates.each do |cover_letter_template| %>
-                <%= f.input :cover_letter_templates, as: :hidden, input_html: { multiple: true, value: cover_letter_template.signed_id } %>
-              <% end %>
-
-              <%= f.input :cover_letter_templates,
-                          as: :file,
-                          required: false,
-                          label: 'Cover Letter Template(s) (DOCX)',
-                          input_html: { accept: 'application/docx', class: 'rounded-4', multiple: true },
-                          label_html: { style: 'font-style: italic; margin-bottom: 0px;' } %>
-
-              <%= f.input :photo,
-                          required: false,
-                          as: :file,
-                          label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                          input_html: { class: 'rounded-4' }  %>
-
-              <%= f.input :current_password,
-                          hint: "we need your current password to confirm your changes",
-                          required: true,
-                          input_html: { autocomplete: "current-password" }, label_html: { style: 'font-style: italic;' } %>
-
-            </div>
-            <%= f.submit "Update", class: 'btn-add-info flex-grow-1' %>
-
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>

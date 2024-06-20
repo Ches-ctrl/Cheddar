@@ -13,7 +13,7 @@
   <div class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-zinc-50 dark:bg-zinc-900 py-1 shadow-lg ring-1 ring-zinc-900/7.5 dark:ring-zinc-800 ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" data-profile-dropdown-target="dropdown">
     <!-- <a href="#" class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-800 dark:hover:text-white" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile #!</a> -->
     <%= link_to "Saved jobs", saved_jobs_path, class: "block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-800 dark:hover:text-white" %>
-    <%= link_to "Edit account", edit_template_user_registration_path, class: "block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-800 dark:hover:text-white" %>
+    <%= link_to "Edit account", edit_user_registration_path, class: "block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-800 dark:hover:text-white" %>
     <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-800 dark:hover:text-white" %>
   </div>
 </div>

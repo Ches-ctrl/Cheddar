@@ -4,11 +4,11 @@
   request.fullpath.include?('/basket') ||
   request.fullpath.include?('/job_applications') ||
   request.fullpath.eql?('/') ||
-  request.fullpath.end_with?('/template/users/sign_in') ||
-  request.fullpath.end_with?('/template/users/password/new') ||
+  request.fullpath.end_with?('/users/sign_in') ||
+  request.fullpath.end_with?('/users/password/new') ||
   request.fullpath.include?('/users/password/edit?') ||
-  request.fullpath.end_with?('/template/users/sign_up') ||
-  request.fullpath.end_with?('/template/users/edit')
+  request.fullpath.end_with?('/users/sign_up') ||
+  request.fullpath.end_with?('/users/edit')
 %>
 <!DOCTYPE html>
 <html class="h-full" style="color-scheme: light;">

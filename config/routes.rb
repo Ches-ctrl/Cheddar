@@ -8,7 +8,14 @@ Rails.application.routes.draw do
   mount ActionCable.server => "/cable" # TODO: fix as not found at the moment
   mount Avo::Engine, at: '/avo'
 
-  devise_for :users, except: [:fetch_template]
+  # devise_for :users, except: [:fetch_template]
+  devise_for :users, except: [:fetch_template], controllers: {
+    # confirmations: 'users/confirmations',
+    # passwords: 'users/passwords',
+    registrations: 'users/registrations',
+    # sessions: 'users/sessions',
+    # unlocks: 'users/unlocks'
+  }
   post '/users/fetch_template', to: 'users#fetch_template', as: :fetch_template
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -99,10 +106,10 @@ Rails.application.routes.draw do
   root to: 'uncategorized_pages#tothemoon'
   # get '/tothemoon', to: 'uncategorized_pages#tothemoon'
   # get '/template/users/sign_in', to: 'devise/sessions#new', as: :new_template_user_session
-  devise_scope :user do
-    get "/template/users/edit", to: "devise/registrations#edit", as: :edit_template_user_registration
-    get "/template/users/sign_in", to: "devise/sessions#new", as: :new_template_user_session
-    get "/template/users/password/new", to: "devise/passwords#new", as: :new_template_user_password
-    get "/template/users/sign_up", to: "devise/registrations#new", as: :new_template_user_registration
-  end
+  # devise_scope :user do
+  #   get "/template/users/edit", to: "devise/registrations#edit", as: :edit_template_user_registration
+  #   get "/template/users/sign_in", to: "devise/sessions#new", as: :new_template_user_session
+  #   get "/template/users/password/new", to: "devise/passwords#new", as: :new_template_user_password
+  #   get "/template/users/sign_up", to: "devise/registrations#new", as: :new_template_user_registration
+  # end
 end
