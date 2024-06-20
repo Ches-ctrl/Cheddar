@@ -3,22 +3,24 @@ module Ats
     module FetchCompanyJobs
       include Constants
 
-      def fetch_company_jobs(ats_identifier, fetch_one_job_only: false)
+      def fetch_company_jobs(ats_identifier, one_job_only: false, facets_only: false)
         api_base = fetch_base_url(ats_identifier)
         limit = 20
         initial_parameters = { endpoint: "#{api_base}jobs", limit: }
         subsidiary_id = ats_identifier.split('/').last if ats_identifier.count('/') > 2
 
         data = fetch_chunk(initial_parameters) # get facets array to build full_parameters
-        location_parameters = find_facet_in_facets(data['facets'], [/location/i, /countr(y|ies)/i], JOB_LOCATION_KEYWORDS.excluding(/remote/))
-        company_parameters = find_facet_in_facets(data['facets'], [/compan(y|ies)/i], [subsidiary_id], 'id') if subsidiary_id
+
+        location_parameters = build_facet(data['facets'], [/location/i, /countr(y|ies)/i], JOB_LOCATION_KEYWORDS.excluding(/remote/))
+        company_parameters = build_facet(data['facets'], [/compan(y|ies)/i], [subsidiary_id], 'id') if subsidiary_id
         full_parameters = {
           location_parameters:,
           company_parameters:
         }.merge(initial_parameters)
 
         data = fetch_chunk(full_parameters) # fetch first tranche of jobs
-        return data if fetch_one_job_only
+        return data if one_job_only
+        return data['facets'] if facets_only
 
         total_live = data['total']
         return unless total_live&.positive?
@@ -52,11 +54,11 @@ module Ats
         json_post_request(params[:endpoint], request_body)
       end
 
-      def find_facet_in_facets(facets, parameter_array, descriptor_array, descriptor_field = 'descriptor')
+      def build_facet(facets, parameter_array, descriptor_array, descriptor_field = 'descriptor')
         queue = [[facets, nil]]
         parameters = Hash.new { |hash, key| hash[key] = [] }
 
-        until queue.empty? || parameters.present?
+        until queue.empty? || parameters.present? # returns once it finds a single valid parameter
           current_level, facet_parameter = queue.shift
 
           current_level.each do |facet|

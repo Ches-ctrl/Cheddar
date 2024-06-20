@@ -29,16 +29,17 @@ module Ats
       end
 
       def job_details(job, data)
-        title, location = fetch_title_and_location(data)
+        job_data = data['jobPostingInfo']
+        title, location = fetch_title_and_location(job_data)
         job.assign_attributes(
           title:,
-          description: Flipper.enabled?(:job_description) ? data['jobDescription'] : 'Not added yet',
-          posting_url: data['externalUrl'],
+          description: Flipper.enabled?(:job_description) ? job_data['jobDescription'] : 'Not added yet',
+          posting_url: job_data['externalUrl'],
           remote: remote?(location),
           non_geocoded_location_string: location,
-          date_posted: convert_date_posted(data['postedOn']),
-          industry: data.dig('industry', 'label'),
-          employment_type: data['timeType']
+          date_posted: job_data['startDate'].to_date,
+          industry: job_data.dig('industry', 'label'), # not sure if this works
+          employment_type: job_data['timeType']
         )
       end
 
@@ -71,22 +72,8 @@ module Ats
       end
 
       def remote?(location)
-        location.downcase.include?('remote')
-      end
-
-      def convert_date_posted(string)
-        case string
-        when /Today/
-          Date.today
-        when /Yesterday/
-          Date.today - 1.day
-        when /(\d+)\+? Days Ago/
-          days_ago = string.match(/(\d+)/)[1].to_i
-          Date.today - days_ago.days
-        else
-          p "Error: could not identify date_posted for string: #{string}"
-          nil
-        end
+        locations = location.split(' && ')
+        locations.all? { |string| string.match?(/remote|offsite/i) }
       end
 
       def build_description(data)

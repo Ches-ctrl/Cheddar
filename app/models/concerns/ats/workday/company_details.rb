@@ -5,8 +5,9 @@ module Ats
         ats_identifier = company.ats_identifier
         return if ats_identifier.count('/') > 2
 
-        data = fetch_company_jobs(ats_identifier, fetch_one_job_only: true)
-        company_facet = data['facets']&.find { |f| f['descriptor']&.match?(/compan(y|ies)/i) }
+        puts "Checking if the company has subsidiaries..."
+        data = fetch_company_jobs(ats_identifier, facets_only: true)
+        company_facet = data&.find { |f| f['descriptor']&.match?(/compan(y|ies)/i) }
         return unless company_facet
 
         company_facet['values'].map do |company_data|
@@ -78,7 +79,7 @@ module Ats
       end
 
       def fetch_details_from_jobs_endpoint(ats_identifier)
-        data = fetch_company_jobs(ats_identifier, fetch_one_job_only: true)
+        data = fetch_company_jobs(ats_identifier, one_job_only: true)
         job_data = data['jobPostings']&.first
         total_live = data['total']
 
