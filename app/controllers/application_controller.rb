@@ -14,13 +14,15 @@ class ApplicationController < ActionController::Base
                                       keys: [:first_name, :last_name, :address_first, :address_second,
                                              :city, :post_code, :phone_number, :github_profile_url,
                                              :website_url, :photo, :resume, :linkedin_profile,
-                                             :preferred_pronoun_select,
-                                             :preferred_pronoun_text, :salary_expectation_figure,
+                                             :preferred_pronoun_select, :preferred_pronoun_text,
+                                             :notice_period, :salary_expectation_figure,
                                              :right_to_work, { cover_letter_templates: [] }])
   end
 
   def user_root_path
-    profile_url
+    return request.referrer if request.referrer.end_with?('/users/edit') || request.referrer.include?('/users/edit?')
+
+    root_path
   end
 
   def on_landing_page?
