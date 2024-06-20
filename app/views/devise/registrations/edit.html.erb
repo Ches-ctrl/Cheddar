@@ -15,6 +15,6 @@
   </header>
   <div class="divide-y divide-zinc-900/5 dark:divide-white/5">
     <%= render 'account_information_form' unless params[:view].eql?('frequent_asked_information') %>
-    <%= render 'frequent_asked_information_form' if params[:view].eql?('frequent_asked_information') %>
+    <%= render 'frequent_asked_information_container' if params[:view].eql?('frequent_asked_information') %>
   </div>
 </article>
