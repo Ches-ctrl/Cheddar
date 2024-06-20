@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.crunchbase.com/api/v4/searches/organizations?user_key=9eebe4bdec6f10ec631cbb8573cb8de2
+    body:
+      encoding: UTF-8
+      string: '{"field_ids":["name","short_description","linkedin","website_url","rank_org"],"order":[{"field_id":"rank_org","sort":"asc"}],"query":[{"type":"predicate","field_id":"website_url","operator_id":"domain_eq","values":["https://kroo.com/"]}],"limit":1}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, private
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 20 Jun 2024 15:10:26 GMT
+      Etag:
+      - W/"1718896226992"
+      Server:
+      - openresty
+      X-Cb-Engine:
+      - search:elastic
+      X-Cb-Engine-Cached:
+      - 'false'
+      X-Cb-Engine-Minimum-Count:
+      - '1'
+      X-Cb-Engine-Page-Count:
+      - '1'
+      X-Cb-Engine-Took:
+      - '4'
+      X-Cb-Engine-Total-Count:
+      - '1'
+      X-Cb-Request-Took:
+      - '13'
+      Content-Length:
+      - '498'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"count":1,"entities":[{"uuid":"f9cc2189-59fa-4e75-bf54-218d727db7b9","properties":{"name":"Kroo","identifier":{"permalink":"b-social","image_id":"gze3oofpsz0ou1qzdjuc","uuid":"f9cc2189-59fa-4e75-bf54-218d727db7b9","entity_def_id":"organization","value":"Kroo"},"linkedin":{"value":"https://www.linkedin.com/company/b-social-ltd/"},"short_description":"Online
+        banking at your fingertips. Apply today for a feature-packed online current
+        account.","rank_org":6986,"website_url":"https://kroo.com"}}]}'
+  recorded_at: Thu, 20 Jun 2024 15:10:26 GMT
+recorded_with: VCR 6.2.0
