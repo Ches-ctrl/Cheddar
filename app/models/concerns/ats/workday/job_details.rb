@@ -8,12 +8,15 @@ module Ats
       end
 
       def fetch_id(job_data)
+        return unless job_data.is_a?(Hash)
+
         path = job_data['externalPath']
         path.split('/').last(2).join('/')
       end
 
-      def fetch_detailed_job_data(ats_identifier, job_data)
-        job_id = fetch_id(job_data)
+      def fetch_detailed_job_data(ats_identifier, job_id)
+        return unless ats_identifier && job_id
+
         endpoint = job_url_api(url_api, ats_identifier, job_id)
         get_json_data(endpoint)
       end

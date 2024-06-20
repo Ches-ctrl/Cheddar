@@ -2,8 +2,10 @@ module Ats
   module Workday
     module CompanyDetails
       def fetch_subsidiaries(company)
-        data = fetch_chunk(company.url_ats_api)
-        company_facet = data['facets']&.find { |f| f['facetParameter'] == 'Company' }
+        return if company.ats_identifier.count('/') > 2
+
+        data = fetch_chunk(endpoint: company.url_ats_api)
+        company_facet = data['facets']&.find { |f| f['descriptor']&.downcase&.include?('company') }
         return unless company_facet
 
         company_facet['values'].map do |company_data|
@@ -31,7 +33,7 @@ module Ats
         return {} unless sidebar_data || approot_data
 
         url_website = approot_data&.dig('header', 'homePageURL')
-        name, website = fetch_name_and_website(ats_identifier)
+        name, website, total_live = fetch_details_from_jobs_endpoint(ats_identifier)
         url_website = website unless url_website.present?
 
         {
@@ -42,7 +44,7 @@ module Ats
           url_careers: check_for_careers_url_redirect(url_ats_main),
           url_website:,
           url_linkedin: fetch_linkedin(approot_data),
-          total_live: fetch_total_live(ats_identifier)
+          total_live:
           # can get logo_url from sidebar_data
         }
       end
@@ -74,15 +76,16 @@ module Ats
         [sidebar_api_url, approot_api_url, url_ats_api]
       end
 
-      def fetch_name_and_website(ats_identifier)
-        job_data = fetch_one_job(ats_identifier)
-        return unless job_data
+      def fetch_details_from_jobs_endpoint(ats_identifier)
+        job_data, total_live = fetch_one_job(ats_identifier)
 
-        fetch_company_name_and_website_from_job(ats_identifier, job_data)
+        name, website = fetch_details_from_job(ats_identifier, job_data)
+        [name, website, total_live]
       end
 
-      def fetch_company_name_and_website_from_job(ats_identifier, job_data)
-        data = fetch_detailed_job_data(ats_identifier, job_data)
+      def fetch_details_from_job(ats_identifier, job_data)
+        job_id = fetch_id(job_data)
+        data = fetch_detailed_job_data(ats_identifier, job_id)
         return unless data
 
         name = data.dig('hiringOrganization', 'name')
