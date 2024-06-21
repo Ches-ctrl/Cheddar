@@ -97,10 +97,9 @@ module CheckUrlIsValid
       end
     rescue StandardError => e
       puts "HTTParty threw an error of type #{e.class.name}"
-      puts e.message
+      return e.message
     end
 
-    return {} unless response
     return {} if response.code == 404 || response.body == "Not Found"
 
     begin
@@ -132,10 +131,9 @@ module CheckUrlIsValid
       end
     rescue StandardError => e
       puts "HTTParty threw an error of type #{e.class.name}"
-      puts e.message
+      return e.message
     end
 
-    return {} unless response
     return {} if response.code == 404 || response.body == "Not Found"
 
     begin
