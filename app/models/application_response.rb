@@ -1,11 +1,11 @@
 class ApplicationResponse < ApplicationRecord
-  belongs_to :job_application
+  # belongs_to :job_application
 
-  def user
-    job_application.user
-  end
+  # def user
+  #   job_application.user
+  # end
 
-  def job
-    job_application.job
-  end
+  # def job
+  #   job_application.job
+  # end
 end
