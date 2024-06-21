@@ -1,10 +1,9 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["mainCheckbox", "applyButton", "checkbox"];
+  static targets = ["form", "mainCheckbox", "applyButton", "checkbox"];
 
   connect() {
-    console.log("bjkfklf");
     // Set up event listener for the main checkbox
     this.mainCheckboxTarget.addEventListener("change", (event) => {
         this.handleMainCheckboxChange(event);
@@ -40,6 +39,11 @@ export default class extends Controller {
 
     // Update apply button state based on checkbox selection
     this.updateApplyButtonState();
+  }
+
+  submit(event) {
+    event.preventDefault();
+    this.formTarget.submit();
   }
 
   updateApplyButtonState() {
