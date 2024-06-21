@@ -100,6 +100,7 @@ module CheckUrlIsValid
       puts e.message
     end
 
+    return {} unless response
     return {} if response.code == 404 || response.body == "Not Found"
 
     begin
@@ -134,6 +135,7 @@ module CheckUrlIsValid
       puts e.message
     end
 
+    return {} unless response
     return {} if response.code == 404 || response.body == "Not Found"
 
     begin
