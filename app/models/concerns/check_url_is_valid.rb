@@ -97,7 +97,7 @@ module CheckUrlIsValid
       end
     rescue StandardError => e
       puts "HTTParty threw an error of type #{e.class.name}"
-      return e.message
+      puts e.message
     end
 
     return {} unless response
