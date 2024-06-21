@@ -13,6 +13,8 @@ module Importer
 
         p "Fetched #{jobs_data.count} jobs from #{@ats.name}"
 
+        p jobs_data.first
+
         process_jobs(jobs_data)
         import_redirects if respond_to?(:import_redirects)
       end
@@ -23,7 +25,10 @@ module Importer
         jobs_data.each do |job_data|
           next if redirect?(job_data)
 
+          p "Creating company for #{job_data['company']}"
           company = @ats.find_or_create_company_by_data(job_data)
+
+          p "Creating job for #{company.name}"
           @ats.find_or_create_job_by_data(company, job_data)
         end
       end
