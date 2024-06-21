@@ -28,6 +28,8 @@ module Ats
 
       def company_details(ats_identifier)
         api_base, url_ats_main, tenant = parse_identifier(ats_identifier)
+        return {} unless api_base && url_ats_main && tenant
+
         sidebar_api_url, approot_api_url, url_ats_api = build_endpoints(api_base)
 
         sidebar_data = get_json_data(sidebar_api_url)
@@ -65,6 +67,8 @@ module Ats
 
       def parse_identifier(ats_identifier)
         tenant, site_id, version = ats_identifier.split('/')
+        return unless tenant && site_id
+
         version ||= 1
         base_url = url_api.gsub('XXX', tenant).sub('YYY', site_id).sub('ZZZ', version)
         url_ats_main = url_base.sub('XXX', tenant).sub('YYY', site_id).sub('ZZZ', version)
