@@ -11,16 +11,23 @@ module Importer
         @date = Date.today.strftime('%Y-%m-%d')
         @local_storage_path = Rails.root.join('public', 'data', @ats.name, @date)
         FileUtils.mkdir_p(@local_storage_path)
+        @initial_count = Job.count
       end
 
       def import_jobs(url)
+        p @initial_count
+
         jobs_data = fetch_local_data || fetch_and_save_remote_data(url)
         return unless jobs_data
 
         p "Fetched #{jobs_data.count} jobs from #{@ats.name}"
 
+        p jobs_data.first
+
         process_jobs(jobs_data)
         import_redirects if respond_to?(:import_redirects)
+
+        p "Imported #{Job.count - @initial_count} jobs from #{@ats.name}"
       end
 
       private
@@ -53,7 +60,9 @@ module Importer
 
           # TODO: Refactor to call CompanyCreator and JobCreator as service classes
           company = @ats.find_or_create_company_by_data(job_data)
-          @ats.find_or_create_job_by_data(company, job_data)
+          p "Company: #{company.name}"
+          job = @ats.find_or_create_job_by_data(company, job_data)
+          p "Job: #{job.title}"
         end
       end
 
