@@ -1,3 +1,4 @@
+require 'rails_helper'
 require 'support/spec_constants'
 
 # rubocop:disable Metrics/BlockLength
@@ -29,6 +30,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
       @recruitee = ApplicantTrackingSystem.find_by(name: 'Recruitee')
       @smartrecruiters = ApplicantTrackingSystem.find_by(name: 'SmartRecruiters')
       @workable = ApplicantTrackingSystem.find_by(name: 'Workable')
+      @workday = ApplicantTrackingSystem.find_by(name: 'Workday')
       @devitjobs = ApplicantTrackingSystem.find_by(name: 'DevITJobs')
     end
 
@@ -65,6 +67,17 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
 
       workable_url = 'https://apply.workable.com/kroo/j/13AE03BA88/'
       expect(@workable.parse_url(workable_url)).to eq(['kroo', '13AE03BA88'])
+
+      workday_urls = %w[
+        https://motorolasolutions.wd5.myworkdayjobs.com/en-US/Careers/details/UI-Designer_R45335
+        https://motorolasolutions.wd5.myworkdayjobs.com/en-US/Careers/details/UI-Designer_R45335?locationCountry=29247e57dbaf46fb855b224e03170bc7
+        https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Glasgow-UK-ZUK118/UI-Designer_R45335
+        https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/UI-Designer_R45335
+        https://motorolasolutions.wd5.myworkdaysite.com/Careers/job/UI-Designer_R45335
+      ]
+      workday_urls.each do |workday_url|
+        expect(@workday.parse_url(workday_url)).to eq(['motorolasolutions/Careers/5', 'UI-Designer_R45335'])
+      end
 
       # TODO: Implement testing of DevITJobs
       # devitjobs_url = 'https://devitjobs.uk/jobs/Nesta-Frontend-Mid-Level-Developer'
