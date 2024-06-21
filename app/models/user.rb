@@ -13,7 +13,7 @@ class User < ApplicationRecord
   # == Relationships ========================================================
   has_many :application_processes, dependent: :destroy
   has_many :educations, dependent: :destroy
-  has_many :job_applications, through: :application_process
+  has_many :job_applications, through: :application_processes
   has_many :saved_jobs, dependent: :destroy
   has_many_attached :cover_letter_templates
   has_one_attached :photo

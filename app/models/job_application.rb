@@ -6,15 +6,14 @@ class JobApplication < ApplicationRecord
   # == Class Methods ========================================================
   # == Constants ============================================================
   # == Extensions ===========================================================
-  serialize :additional_info, coder: HashSerializer
+  # serialize :additional_info, coder: HashSerializer
   # store_accessor :attr1, :attr2, :attr3, :attr4, :attr5
   # == Instance Methods =====================================================
   # == Relationships ========================================================
   belongs_to :application_process
-  belongs_to :job, optional: true
+  belongs_to :job
   # == Scopes ===============================================================
   # == Validations ==========================================================
-  validates :additional_info, presence: true
   validates :status, presence: true
 
   # Define custom methods (optional)

@@ -41,11 +41,11 @@ Rails.application.routes.draw do
   # Resources
 
   resources :companies, only: %i[index show]
-  resources :job_applications, only: %i[index show new success create] do
-    member do
-      get :status
-    end
-  end
+  # resources :job_applications, only: %i[index show new success create] do
+  #   member do
+  #     get :status
+  #   end
+  # end
 
   resources :emails, only: [:create]
   resources :educations, only: %i[new create]
@@ -60,6 +60,11 @@ Rails.application.routes.draw do
   ###
 
   get 'basket', to: 'saved_jobs#index', as: :saved_jobs
+  get 'in_progress', to: 'in_progress_jobs#index', as: :in_progress_jobs
+
+  resources :application_processes, only: %i[create]
+  resources :job_applications, only: %i[new]
+
   resources :opportunities, path: '/jobs', only: %i[index show] do
     resources :saved_jobs, only: %i[create]
     delete '/saved_jobs', to: 'saved_jobs#destroy', as: :destroy_saved_jobs

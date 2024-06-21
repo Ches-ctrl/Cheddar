@@ -1,11 +1,5 @@
 <%= provide(:title, 'New job applications') %>
-<!-- <article class="flex w-4/5 mx-auto h-full flex-col grid max-w-7xl sm:grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8"> -->
 <article class="flex w-2/3 mx-auto h-full flex-col pb-5 pt-8">
-  <% if false %>
-  <div class="xl:sticky xl:top-[4.75rem] xl:-mr-6 xl:block xl:h-[calc(100vh-4.75rem)] xl:flex-none xl:overflow-y-auto xl:py-0 xl:pr-6">
-    
-  </div>
-  <% end %>
   <div class="grid max-w-8xl sm:grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
     <%= render 'step_indicators' %>
     <%= render '/devise/registrations/frequent_asked_information_form', resource: current_user, resource_name: :user %>

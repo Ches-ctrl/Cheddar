@@ -5,7 +5,7 @@ class CreateNewJobApplications < ActiveRecord::Migration[7.1]
     create_table :job_applications do |t|
       t.references :application_process, null: false, foreign_key: true
       t.references :job, null: false, foreign_key: true
-      t.jsonb :additional_info, null: false, default: {}
+      t.jsonb :additional_info, default: {}, null: false
       t.string :status, null: false, default: "new"
       t.timestamps
     end

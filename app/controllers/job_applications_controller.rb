@@ -14,7 +14,11 @@ class JobApplicationsController < ApplicationController
     params.permit(job_ids: [])
   end
 
-  def job_scope = Job.all
+  def job_scope
+    JobApplication.find_by(id: params[:format])
+                  .application_process
+                  .jobs
+  end
 end
 
 # # before_action :authenticate_user!, except: [:new]
