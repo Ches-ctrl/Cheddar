@@ -10,11 +10,6 @@ async function saveJob() {
     var currentTabUrl = await getCurrentTab();
     console.log("currentTabUrl:", currentTabUrl);
 
-    // make api call
-    console.log(
-        chrome.cookies.get({ url: cheddarUrl, name: "_cheddar_session" })
-    );
-
     const myHeaders = new Headers();
     myHeaders.append("x-api-key", "b1e30ea0862236d562de386d5fb9184292956c");
 
@@ -30,8 +25,6 @@ async function saveJob() {
         requestOptions
     )
         .then((response) => {
-            console.log("response: ", response);
-            console.log("response text: ", response.text());
             if (!response.ok) {
                 throw new Error(
                     "Unexpected response status: " + response.status
