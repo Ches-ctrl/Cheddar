@@ -25,9 +25,9 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Jun 2024 15:10:10 GMT
+      - Fri, 21 Jun 2024 14:43:40 GMT
       Etag:
-      - W/"1718896210562"
+      - W/"1718981020536"
       Server:
       - openresty
       X-Cb-Engine:
@@ -51,6 +51,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"count":1,"entities":[{"uuid":"301bce04-1610-4369-a9db-29de9623e65f","properties":{"name":"Lightdash","identifier":{"permalink":"hubble-e65f","image_id":"citkfzfr7esouu3essw6","uuid":"301bce04-1610-4369-a9db-29de9623e65f","entity_def_id":"organization","value":"Lightdash"},"linkedin":{"value":"https://www.linkedin.com/company/lightdash"},"short_description":"Lightdash
-        turns a dbt project into a full-stack BI platform.","rank_org":83807,"website_url":"https://www.lightdash.com"}}]}'
-  recorded_at: Thu, 20 Jun 2024 15:10:10 GMT
+        turns a dbt project into a full-stack BI platform.","rank_org":84628,"website_url":"https://www.lightdash.com"}}]}'
+  recorded_at: Fri, 21 Jun 2024 14:43:40 GMT
 recorded_with: VCR 6.2.0

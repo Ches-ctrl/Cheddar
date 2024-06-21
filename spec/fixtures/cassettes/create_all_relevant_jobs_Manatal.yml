@@ -25,9 +25,9 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Jun 2024 15:10:21 GMT
+      - Fri, 21 Jun 2024 14:44:02 GMT
       Etag:
-      - W/"1718896221922"
+      - W/"1718981042192"
       Server:
       - openresty
       X-Cb-Engine:
@@ -39,11 +39,11 @@ http_interactions:
       X-Cb-Engine-Page-Count:
       - '1'
       X-Cb-Engine-Took:
-      - '3'
+      - '5'
       X-Cb-Engine-Total-Count:
       - '1'
       X-Cb-Request-Took:
-      - '10'
+      - '14'
       Content-Length:
       - '538'
       Connection:
@@ -54,6 +54,6 @@ http_interactions:
         Group","identifier":{"permalink":"ptc-group-9de5","image_id":"szydmwyma8qxx3umkpqw","uuid":"b334425c-0d5a-4a43-8fde-11360ea69de5","entity_def_id":"organization","value":"PTC
         Group"},"linkedin":{"value":"https://www.linkedin.com/company/ptcgroup/"},"short_description":"PTC
         Group is an IT company that provides engineering, design, training, recruitment,
-        and consulting services.","rank_org":556961,"website_url":"https://ptcgroup.global/"}}]}'
-  recorded_at: Thu, 20 Jun 2024 15:10:21 GMT
+        and consulting services.","rank_org":569869,"website_url":"https://ptcgroup.global/"}}]}'
+  recorded_at: Fri, 21 Jun 2024 14:44:02 GMT
 recorded_with: VCR 6.2.0

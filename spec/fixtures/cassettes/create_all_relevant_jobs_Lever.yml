@@ -25,9 +25,9 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Jun 2024 15:10:20 GMT
+      - Fri, 21 Jun 2024 14:43:59 GMT
       Etag:
-      - W/"1718896220043"
+      - W/"1718981039581"
       Server:
       - openresty
       X-Cb-Engine:
@@ -43,7 +43,7 @@ http_interactions:
       X-Cb-Engine-Total-Count:
       - '1'
       X-Cb-Request-Took:
-      - '17'
+      - '13'
       Content-Length:
       - '525'
       Connection:
@@ -54,6 +54,6 @@ http_interactions:
         Group","identifier":{"permalink":"goto-group","image_id":"pioqotgm6efdzbjvkirg","uuid":"0f2e5ecc-d44c-49c0-9e36-7a117fb1eedc","entity_def_id":"organization","value":"GoTo
         Group"},"linkedin":{"value":"https://www.linkedin.com/company/gotogroup"},"short_description":"GoTo
         Group offers a digital ecosystem for on-demand services, e-commerce, fintech,
-        and logistics.","rank_org":3288,"website_url":"https://www.gotocompany.com"}}]}'
-  recorded_at: Thu, 20 Jun 2024 15:10:20 GMT
+        and logistics.","rank_org":3279,"website_url":"https://www.gotocompany.com"}}]}'
+  recorded_at: Fri, 21 Jun 2024 14:43:59 GMT
 recorded_with: VCR 6.2.0

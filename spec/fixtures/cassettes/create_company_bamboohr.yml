@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 24 May 2024 11:09:55 GMT
+      - Fri, 21 Jun 2024 14:36:34 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -27,8 +27,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=V8O8azNqx16IGO1P2ysXnKA3GvbsFeax; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=JamYykP1I94V6K7LIRaSmtwucgTCIbYDb8YH5kmtRc4-1716548995644-0.0.1.1-604800000;
+      - PHPSESSID=FC0GfkIbU23PJTB9fo3%2CPlJfJdCT4hLM; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=UJaPZrIoU250T4ukZyDI4.6pHdFqEuJbRiGxpcnq_Dw-1718980594730-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -93,11 +93,11 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 888cd613fabb63ea-LHR
+      - 8974bb4a2c9294f9-LHR
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":[],"result":{"name":"Avidbots","id":"72799","logoUrl":"https:\/\/images3.bamboohr.com\/72799\/logos\/cropped.jpg?v=32","careerShareUrl":"https:\/\/avidbots.bamboohr.com\/careers","shareImageUrl":"https:\/\/avidbots.bamboohr.com\/jobs\/share_image\/32","inTrial":false,"appSessId":"554f7dec4aba49594fb94dfef025b052078afb27"}}'
-  recorded_at: Fri, 24 May 2024 11:09:55 GMT
+      string: '{"meta":[],"result":{"name":"Avidbots","id":"72799","logoUrl":"https:\/\/images3.bamboohr.com\/72799\/logos\/cropped.jpg?v=32","careerShareUrl":"https:\/\/avidbots.bamboohr.com\/careers","shareImageUrl":"https:\/\/avidbots.bamboohr.com\/jobs\/share_image\/32","inTrial":false,"appSessId":"928eb27cb8518adcc63cba9e042f7e32e6f002e2"}}'
+  recorded_at: Fri, 21 Jun 2024 14:36:34 GMT
 - request:
     method: get
     uri: https://avidbots.bamboohr.com/careers/list
@@ -117,7 +117,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 24 May 2024 11:09:56 GMT
+      - Fri, 21 Jun 2024 14:36:35 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -125,8 +125,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=9ISGEf3uInqzwCc2oQsymMsZiY3o6uU1; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=aytaG1.N9FlhXw3WEI.c2lq_lgPOHvtT0eFRja7XsIg-1716548996152-0.0.1.1-604800000;
+      - PHPSESSID=AE9YeHtMLuNplusOnHI%2Cj69DTwdJgqMN; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=85vMI5v_SYdZ5w07xFTjlBa7mIBj0FAgWc1tYfN0Wm4-1718980595319-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -191,138 +191,23 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 888cd6170db148af-LHR
+      - 8974bb4dac3d6401-LHR
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":{"totalCount":6},"result":[{"id":"693","jobOpeningName":"Technical
+      string: '{"meta":{"totalCount":8},"result":[{"id":"693","jobOpeningName":"Technical
         Support Specialist English","departmentId":"19493","departmentLabel":"Technical
-        Support","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"771","jobOpeningName":"Customer
-        Care Associate, RA (Remote Assistant)","departmentId":"19492","departmentLabel":"Support
-        Operations","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"783","jobOpeningName":"IT
+        Support","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"783","jobOpeningName":"IT
         Specialist","departmentId":"18495","departmentLabel":"IT","employmentStatusLabel":"Full-Time","location":{"city":"Hyderabad
         ","state":"Telangana"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"790","jobOpeningName":"Contracts
         Management Specialist","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Waterloo"},"isRemote":null,"locationType":"1"},{"id":"792","jobOpeningName":"Director
         of Financial Planning & Analysis","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Waterloo"},"isRemote":null,"locationType":"1"},{"id":"793","jobOpeningName":"Director
         of Financial Planning & Analysis","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
-        States","state":"Illinois","province":null,"city":"Chicago"},"isRemote":null,"locationType":"1"}]}'
-  recorded_at: Fri, 24 May 2024 11:09:56 GMT
-- request:
-    method: get
-    uri: https://autocomplete.clearbit.com/v1/companies/suggest?query=Avidbots
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - application/json
-      User-Agent:
-      - Ruby
-      Host:
-      - autocomplete.clearbit.com
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Content-Type:
-      - application/json
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      Cache-Control:
-      - public, must-revalidate, max-age=2629746
-      Access-Control-Allow-Origin:
-      - "*"
-      Date:
-      - Thu, 23 May 2024 17:45:42 GMT
-      Server:
-      - Clearbit
-      Strict-Transport-Security:
-      - max-age=63072000; includeSubDomains; preload
-      X-Content-Type-Options:
-      - nosniff
-      Vary:
-      - Accept-Encoding
-      X-Cache:
-      - Hit from cloudfront
-      Via:
-      - 1.1 255fdeccb3b4cfc8b4786df303af4858.cloudfront.net (CloudFront)
-      X-Amz-Cf-Pop:
-      - LHR61-P1
-      X-Amz-Cf-Id:
-      - gSBqf09C96ueO5SyakouQxE0mi6p4k_k5vcy8O_i7J9p289ztillsA==
-      Age:
-      - '62653'
-      Content-Security-Policy-Report-Only:
-      - default-src 'self';
-    body:
-      encoding: ASCII-8BIT
-      string: '[{"name":"Avidbots","domain":"avidbots.com","logo":"https://logo.clearbit.com/avidbots.com"}]'
-  recorded_at: Fri, 24 May 2024 11:09:56 GMT
-- request:
-    method: get
-    uri: https://api.crunchbase.com/api/v4/autocompletes?query=Avidbots&user_key=1a809e14a0c7e29e964a5923f1b17bdd
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - application/json
-      User-Agent:
-      - Ruby
-      Host:
-      - api.crunchbase.com
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Cache-Control:
-      - no-cache, private
-      Content-Type:
-      - application/json
-      Date:
-      - Fri, 24 May 2024 11:09:56 GMT
-      Etag:
-      - W/"1716548996866"
-      Server:
-      - openresty
-      X-Cb-Engine:
-      - autocomplete:algolia
-      X-Cb-Engine-Cached:
-      - 'false'
-      X-Cb-Engine-Took:
-      - '27'
-      X-Cb-Request-Took:
-      - '54'
-      Content-Length:
-      - '3674'
-      Connection:
-      - keep-alive
-    body:
-      encoding: UTF-8
-      string: '{"count":17,"entities":[{"facet_ids":["contact","siftery","ipqwery","aberdeen","semrush","company","rank","builtwith","bombora","ai_insight"],"identifier":{"uuid":"129b4700-bbe1-b9fc-5149-f15f18d13503","value":"Avidbots
-        Corp.","image_id":"uqzb9yucvrlll0vlfuwp","permalink":"avidbots","entity_def_id":"organization"},"short_description":"Avidbots
-        designs, manufactures, sells and supports autonomous connected robots that
-        expand human potential."},{"facet_ids":["contact","siftery","ipqwery","privco","aberdeen","company","rank","builtwith","bombora"],"identifier":{"uuid":"4a160c99-3dc1-d024-10ba-99ed0ef53f96","value":"AvidBiotics","image_id":"v1397184825/b3109816c91224ff8d84475408d57197.jpg","permalink":"avidbiotics","entity_def_id":"organization"},"short_description":"AvidBiotics
-        is a biotherapeutics company deploying a biotechnology-derived technology
-        platform with multiple apps in life sciences."},{"facet_ids":["contact","aberdeen","semrush","company","rank","builtwith","bombora"],"identifier":{"uuid":"8d3ff404-11aa-472d-85c0-4c0949f501c2","value":"AvidBit","image_id":"i3khc4hw5lmvmgjy8cbp","permalink":"avidbit","entity_def_id":"organization"},"short_description":"AvidBit
-        offers custom programming, networking, managed IT, VoIP, and internet services
-        to help solve complex business challenges."},{"facet_ids":["contact","semrush","company","rank","builtwith"],"identifier":{"uuid":"e96cb30e-c5f5-4c75-9992-1e587828cb42","value":"Asiabots","image_id":"a0uxhohv5rgvs0wtuyj7","permalink":"asiabots","entity_def_id":"organization"},"short_description":"An
-        A.I. company focusing on Natural Language processing (NLP), Natural humanlike
-        voice TTS and chatbot on mobile or phone call ."},{"facet_ids":["rank","semrush","builtwith","company"],"identifier":{"uuid":"61863f62-d67e-4459-b054-0507619a19c5","value":"ApiBots","image_id":"xagn7qa2xq78skomskdd","permalink":"apibots","entity_def_id":"organization"},"short_description":"Marketing
-        Automation tools for SMBs"},{"facet_ids":["rank","builtwith","company"],"identifier":{"uuid":"b6be007a-f900-e277-fd1d-869f2a1b1a10","value":"AidBits","image_id":"v1428916736/sbhs5ka3dwxcgcsedybi.jpg","permalink":"aidbits","entity_def_id":"organization"},"short_description":"An
-        online monitoring and evaluation platform designed to help non-profit organizations
-        harness their data for social good"},{"facet_ids":["company","builtwith","rank"],"identifier":{"uuid":"7b7b3dde-91d8-4551-8fe0-85c4c7944cd4","value":"AiBOTS","image_id":"w0gmbxvwv069er9crif3","permalink":"aibots","entity_def_id":"organization"},"short_description":"AiBOTS
-        is a management consulting firm that specializes in UX design, big data analytics,
-        IoT, and artificial intelligence services."},{"facet_ids":["company","rank","builtwith","siftery"],"identifier":{"uuid":"e97a985c-ddda-4902-b50e-b3f3fd97c7f7","value":"Airbots","image_id":"hrakdea2zpgbspzmmwfj","permalink":"airbots","entity_def_id":"organization"},"short_description":"Airbots
-        is an AI-autonomous strategy execution platform for advertising."},{"facet_ids":["ipqwery","aberdeen","semrush","company","rank","builtwith"],"identifier":{"uuid":"2434bbc2-92d1-592f-3183-71277ca3374c","value":"Addibots","image_id":"v1488871999/jhlkimev8fqviq8cglzq.png","permalink":"addibots","entity_def_id":"organization"},"short_description":"A
-        robotics and 3D printing startup based in the Hudson Valley of New York."},{"facet_ids":["company","rank","semrush","builtwith"],"identifier":{"uuid":"cfbed3c7-5f4d-4407-89f0-973b36e51c73","value":"Avidnote","image_id":"qmksqnrs904xw8jhxljd","permalink":"avidnote","entity_def_id":"organization"},"short_description":"Avidnote
-        is a digital platform for research."}]}'
-  recorded_at: Fri, 24 May 2024 11:09:56 GMT
+        States","state":"Illinois","province":null,"city":"Chicago"},"isRemote":null,"locationType":"1"},{"id":"795","jobOpeningName":"Traveling
+        Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
+        Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Brampton"},"isRemote":null,"locationType":"1"},{"id":"796","jobOpeningName":"Traveling
+        Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
+        Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Mississauga"},"isRemote":null,"locationType":"1"},{"id":"797","jobOpeningName":"Traveling
+        Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
+        Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Scarborough"},"isRemote":null,"locationType":"1"}]}'
+  recorded_at: Fri, 21 Jun 2024 14:36:35 GMT
 recorded_with: VCR 6.2.0

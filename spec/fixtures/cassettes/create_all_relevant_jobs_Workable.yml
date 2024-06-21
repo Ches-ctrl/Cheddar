@@ -25,9 +25,9 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Jun 2024 15:10:26 GMT
+      - Fri, 21 Jun 2024 14:44:51 GMT
       Etag:
-      - W/"1718896226992"
+      - W/"1718981091823"
       Server:
       - openresty
       X-Cb-Engine:
@@ -43,7 +43,7 @@ http_interactions:
       X-Cb-Engine-Total-Count:
       - '1'
       X-Cb-Request-Took:
-      - '13'
+      - '10'
       Content-Length:
       - '498'
       Connection:
@@ -52,6 +52,6 @@ http_interactions:
       encoding: UTF-8
       string: '{"count":1,"entities":[{"uuid":"f9cc2189-59fa-4e75-bf54-218d727db7b9","properties":{"name":"Kroo","identifier":{"permalink":"b-social","image_id":"gze3oofpsz0ou1qzdjuc","uuid":"f9cc2189-59fa-4e75-bf54-218d727db7b9","entity_def_id":"organization","value":"Kroo"},"linkedin":{"value":"https://www.linkedin.com/company/b-social-ltd/"},"short_description":"Online
         banking at your fingertips. Apply today for a feature-packed online current
-        account.","rank_org":6986,"website_url":"https://kroo.com"}}]}'
-  recorded_at: Thu, 20 Jun 2024 15:10:26 GMT
+        account.","rank_org":6971,"website_url":"https://kroo.com"}}]}'
+  recorded_at: Fri, 21 Jun 2024 14:44:51 GMT
 recorded_with: VCR 6.2.0

@@ -25,9 +25,9 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Jun 2024 15:11:57 GMT
+      - Fri, 21 Jun 2024 14:43:35 GMT
       Etag:
-      - W/"1718896317180"
+      - W/"1718981015014"
       Server:
       - openresty
       X-Cb-Engine:
@@ -39,11 +39,11 @@ http_interactions:
       X-Cb-Engine-Page-Count:
       - '1'
       X-Cb-Engine-Took:
-      - '5'
+      - '4'
       X-Cb-Engine-Total-Count:
       - '2'
       X-Cb-Request-Took:
-      - '21'
+      - '13'
       Content-Length:
       - '383'
       Connection:
@@ -51,6 +51,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"count":2,"entities":[{"uuid":"c8c71908-7dbb-45ce-8ecb-d3c4f74e989a","properties":{"name":"E-Quake","identifier":{"permalink":"e-quake","image_id":"i02iuvci4rdvodn4b04c","uuid":"c8c71908-7dbb-45ce-8ecb-d3c4f74e989a","entity_def_id":"organization","value":"E-Quake"},"short_description":"E-Quake
-        is a Technology Start-up","rank_org":463502,"website_url":"https://www.example.com"}}]}'
-  recorded_at: Thu, 20 Jun 2024 15:11:57 GMT
+        is a Technology Start-up","rank_org":473153,"website_url":"https://www.example.com"}}]}'
+  recorded_at: Fri, 21 Jun 2024 14:43:35 GMT
 recorded_with: VCR 6.2.0
