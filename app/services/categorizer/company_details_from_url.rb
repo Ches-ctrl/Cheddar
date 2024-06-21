@@ -36,7 +36,7 @@ module Categorizer
       }
       result = json_post_request(api_url, request_body)
       company_details = result&.dig('entities', 0, 'properties')
-      return unless company_details
+      return {} unless company_details
 
       {
         name: company_details['name'],

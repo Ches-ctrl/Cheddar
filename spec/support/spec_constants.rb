@@ -8,7 +8,8 @@ COMPANIES = {
   'PinpointHQ' => 'auroraer',
   'Recruitee' => 'manual',
   'SmartRecruiters' => 'Gousto1',
-  'Workable' => 'kroo'
+  'Workable' => 'kroo',
+  'Workday' => 'motorolasolutions/Careers/5'
 }.freeze
 
 RECRUITEE_COMPANY = ['radishlab', 'Radish Lab']

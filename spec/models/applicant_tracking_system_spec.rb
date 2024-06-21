@@ -155,7 +155,14 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
     it 'can create a company with Workable' do
       VCR.use_cassette('create_company_workable') do
         @workable.find_or_create_company('kroo')
-        expect(Company.last.name).to eq('Kroo Bank Ltd')
+        expect(Company.last.name).to eq('Kroo')
+      end
+    end
+
+    it 'can create a company with Workday' do
+      VCR.use_cassette('create_company_workday') do
+        @workday.find_or_create_company('motorolasolutions/Careers/5')
+        expect(Company.last.name).to eq('Motorola Solutions')
       end
     end
 
@@ -270,10 +277,21 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         feed = get_json_data(url)
         title = feed.dig('jobs', 0, 'title')
         job_id = feed.dig('jobs', 0, 'application_url').match(%r{https://apply\.workable\.com/j/(\w+)/apply})[1]
-        company = @workable.find_or_create_company('southern-national')
+        company = @workable.find_or_create_company(WORKABLE_COMPANY.first)
         job = @workable.find_or_create_job(company, job_id)
-        p company
-        p job
+        expect(job.title).to eq(title)
+      end
+    end
+
+    it 'can create a job with Workday' do
+      VCR.use_cassette('create_job_workday') do
+        company_id = 'motorolasolutions/Careers/5'
+        data = @workday.fetch_company_jobs(company_id, one_job_only: true)
+        job_data = data['jobPostings']&.first
+        title = job_data['title']
+        job_id = job_data['externalPath'].split('/').last
+        company = @workday.find_or_create_company(company_id)
+        job = @workday.find_or_create_job(company, job_id)
         expect(job.title).to eq(title)
       end
     end

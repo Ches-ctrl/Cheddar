@@ -86,10 +86,10 @@ class Company < ApplicationRecord
     # if website_url, get CompanyDetailsFromUrl
     if url_website.present?
       company_details = Categorizer::CompanyDetailsFromUrl.new(url_website).call
-      self.name = company_details[:name]
+      self.name = company_details[:name] if company_details[:name]
       self.description = company_details[:description] if description.blank?
       self.url_linkedin ||= company_details[:url_linkedin]
-      self.url_website = company_details[:url_website]
+      self.url_website = company_details[:url_website] if company_details[:url_website]
     end
 
     if Rails.env.production?

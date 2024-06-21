@@ -9,7 +9,7 @@ module Ats
         parse_workday_url(url, regex_formats)
       end
 
-  private
+      private
 
       def parse_workday_url(url, regex_formats)
         regex_formats.each do |regex|
