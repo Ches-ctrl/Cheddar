@@ -5,26 +5,31 @@ module Ats
     # TODO: Refactor into a service object according to the Single Responsibility Principle
 
     def find_or_create_job_by_data(company, data)
+      p "Finding or creating job by data"
       ats_job_id = fetch_id(data)
       find_or_create_job(company, ats_job_id, data)
     rescue StandardError => e
+      p "Error creating job: #{e.message}"
       Rails.logger.error "Error creating job: #{e.message}"
       nil
     end
 
     def find_or_create_job(company, ats_job_id, data = nil)
+      p "Finding or creating job with ATS job ID #{ats_job_id} and company #{company.name}"
       return unless company&.persisted?
 
       job = Job.find_or_create_by(ats_job_id:) do |new_job|
+        p "Creating new job by ats_job_id"
         new_job.company = company
         new_job.applicant_tracking_system = self
         new_job.api_url = job_url_api(url_api, company.ats_identifier, ats_job_id)
         data ||= fetch_job_data(new_job)
+
         return if data.blank? || data['error'].present? || data.values.include?(404)
 
         job_details(new_job, data)
         fetch_additional_fields(new_job, data)
-        puts "Created new job - #{new_job.title} with #{company.name}"
+        p "Created new job - #{new_job.title} with #{company.name}"
       end
 
       return job
@@ -34,6 +39,7 @@ module Ats
     # Return false with Lever because its job-specific endpoint gives no additional data on top of
     # what the company endpoint gives.
     def individual_job_endpoint_exists?
+      p "Checking if individual job endpoint exists"
       return false if name == 'Lever'
 
       parameters = method(:job_url_api).parameters
