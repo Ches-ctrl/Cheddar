@@ -15,7 +15,7 @@ module Ats
     end
 
     def find_or_create_job(company, ats_job_id, data = nil)
-      p "Finding or creating job with ATS job ID #{ats_job_id} and company #{company.name}"
+      p "Finding or creating job for #{company.name}"
       return unless company&.persisted?
 
       job = Job.find_or_create_by(ats_job_id:) do |new_job|
