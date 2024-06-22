@@ -4,6 +4,7 @@ module Ats
       include ActionView::Helpers::NumberHelper
 
       def fetch_title_and_location(job_data)
+        p "Fetching title and location"
         title = job_data['name']
         remote = fetch_remote_only(job_data)
         job_location = build_location_string(remote, job_data)
@@ -11,20 +12,24 @@ module Ats
       end
 
       def fetch_url(job_data)
+        p "Fetching URL"
         url_base + job_data['jobUrl']
       end
 
       private
 
       def fetch_id(job_data)
+        p "Fetching ID"
         job_data['jobUrl']
       end
 
       def job_url_api(base_url, _company_id, _job_id)
+        p "Fetching job URL"
         return base_url
       end
 
       def job_details(job, data)
+        p "Fetching job details"
         title, location, remote = fetch_title_and_location(data)
         job.assign_attributes(
           posting_url: fetch_url(data),
@@ -42,6 +47,7 @@ module Ats
       end
 
       def scrape_description_and_posting_date(job)
+        p "Scraping description and posting date"
         url = job.posting_url
         html = URI.parse(url).open
         xml = Nokogiri::HTML.parse(html)
