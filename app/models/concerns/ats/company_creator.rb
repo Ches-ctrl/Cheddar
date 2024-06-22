@@ -5,6 +5,7 @@ module Ats
     # TODO: Refactor into a service object according to the Single Responsibility Principle
 
     def find_or_create_company_by_data(data)
+      p "Finding or creating company by data"
       ats_identifier = fetch_company_id(data)
       find_or_create_company(ats_identifier, data)
     rescue StandardError => e
@@ -13,6 +14,7 @@ module Ats
     end
 
     def find_or_create_company(ats_identifier, data = nil)
+      p "Finding or creating company with ATS identifier #{ats_identifier}"
       return unless ats_identifier
 
       company = Company.find_or_initialize_by(ats_identifier:) do |new_company|
@@ -23,6 +25,7 @@ module Ats
       end
 
       if data
+        p "Supplementary data found"
         supplementary_data = company_details_from_data(data)
         company.assign_attributes(supplementary_data)
       end
@@ -47,6 +50,7 @@ module Ats
     end
 
     def fetch_company_name(ats_identifier)
+      p "Fetching company name from clearbit"
       url = "https://autocomplete.clearbit.com/v1/companies/suggest?query=#{ats_identifier}"
       data = get_json_data(url)
       return data.dig(0, 'name') unless data.blank?
