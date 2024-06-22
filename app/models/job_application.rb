@@ -6,8 +6,8 @@ class JobApplication < ApplicationRecord
   # == Class Methods ========================================================
   # == Constants ============================================================
   # == Extensions ===========================================================
-  # serialize :additional_info, coder: HashSerializer
-  # store_accessor :attr1, :attr2, :attr3, :attr4, :attr5
+  serialize :additional_info, coder: HashSerializer
+  # store_accessor :additional_info, ADDITIONAL_INFO_ATTRIBUTES
   # == Instance Methods =====================================================
   # == Relationships ========================================================
   belongs_to :application_process

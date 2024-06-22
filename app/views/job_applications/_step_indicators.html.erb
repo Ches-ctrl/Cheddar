@@ -29,11 +29,12 @@
         </div>
       </div>
     </li>
-    <% @jobs.each do |job| %>
+    <% @application_process.jobs.each do |job| %>
       <li>
         <div class="relative pb-8">
           <span class="absolute right-4 top-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
-          <div class="relative flex space-x-3">
+          <!-- <div class="relative flex space-x-3"> -->
+          <%= link_to edit_application_process_job_application_path(@application_process, @application_process.find_application_for_job(job)), class: "relative flex space-x-3" do %>
             <div class="flex min-w-0 flex-1 justify-end text-right space-x-4 pt-1.5">
               <div>
                 <p class="text-sm text-gray-500">
@@ -47,7 +48,8 @@
             <div>
               <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 ring-8 ring-white"></span>
             </div>
-          </div>
+          <% end %>
+          <!-- </div> -->
         </div>
       </li>
     <% end %>

@@ -8,6 +8,13 @@ class User < ApplicationRecord
   # == Callbacks ============================================================
   # == Class Methods ========================================================
   # == Constants ============================================================
+  FREQUENT_ASKED_INFO_ATTRIBUTES = %w[
+    first_name last_name email phone_number
+    preferred_pronoun_text preferred_pronoun_select
+    address_first address_second post_code city
+    website_url github_profile_url linkedin_profile
+    current_password resume notice_period right_to_work salary_expectation_figure
+  ]
   # == Extensions ===========================================================
   # == Instance Methods =====================================================
   # == Relationships ========================================================

@@ -62,8 +62,10 @@ Rails.application.routes.draw do
   get 'basket', to: 'saved_jobs#index', as: :saved_jobs
   get 'in_progress', to: 'in_progress_jobs#index', as: :in_progress_jobs
 
-  resources :application_processes, only: %i[create]
-  resources :job_applications, only: %i[new]
+  resources :application_processes, only: %i[create show] do
+    resources :job_applications, only: %i[edit update]
+    get 'overview', to: 'overview_application_processes#show'
+  end
 
   resources :opportunities, path: '/jobs', only: %i[index show] do
     resources :saved_jobs, only: %i[create]

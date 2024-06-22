@@ -5,7 +5,19 @@ class ApplicationProcessesController < ApplicationController
     persist_application_process
   end
 
+  def show
+    load_application_process
+  end
+
   private
+
+  def application_process_params
+    params.permit(:id)
+  end
+
+  def application_process_scope
+    current_user.application_processes
+  end
 
   def build_application_process
     @application_process = current_user.application_processes.new
@@ -15,6 +27,11 @@ class ApplicationProcessesController < ApplicationController
     @job_applications = job_applications_params[:job_ids].map do |job_id|
       @application_process.job_applications.new(job_id:)
     end
+  end
+
+  def load_application_process
+    @application_process = ApplicationProcessesQuery.call(application_process_scope)
+                                                    .find(application_process_params[:id])
   end
 
   def job_applications_params

@@ -1,0 +1,62 @@
+<%= simple_form_for job_application, url: application_process_job_application_path, html: { method: :put, class: "md:col-span-2" } do |f| %>
+  <div class="grid gap-x-6 gap-y-8 sm:max-w-6xl sm:grid-cols-6">
+    <% job_application.job.application_criteria.each do |attribute, criteria_hash| %>
+      <% application_criteria = ApplicationCriteria.new(criteria_hash.merge(attribute:)) %>
+      <% next if User::FREQUENT_ASKED_INFO_ATTRIBUTES.include?(attribute) || application_criteria.interaction.nil? %>
+      <div class="col-span-full">
+        <label for="<%= application_criteria.attribute %>>" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"><%= application_criteria.attribute %></label>
+        <div class="mt-2">
+          <%= f.simple_fields_for :additional_info do |json_field_f| %>
+            <% if application_criteria.valid? && application_criteria.input? %>
+              <%= json_field_f.input application_criteria.locators,
+                required: application_criteria.required,
+                label: false,
+                autofocus: false,
+                input_html: { 
+                  class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6',
+                  value: application_criteria.value(job_application.additional_info)
+                }
+              %>
+            <% elsif application_criteria.valid? && (application_criteria.select? || application_criteria.multi_checkbox?) %>
+              <%= json_field_f.input application_criteria.locators,
+                collection: application_criteria.options,
+                required: application_criteria.required,
+                label: false,
+                autofocus: false,
+                type: :select,
+                selected: application_criteria.value(job_application.additional_info),
+                input_html: { class: "block w-full rounded-md border-0 py-1.5 bg-white/5 dark:hover:bg-zinc-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6" }
+              %>
+            <% elsif application_criteria.valid? && application_criteria.textarea? %>
+              <%= json_field_f.input application_criteria.locators,
+                required: application_criteria.required,
+                label: false,
+                autofocus: false,
+                as: :text,
+                input_html: { rows: 5, class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6',
+                value: application_criteria.value(job_application.additional_info)
+              }
+              %>
+            <% elsif application_criteria.valid? && application_criteria.radiogroup? %>
+              <%= json_field_f.input application_criteria.locators,
+                required: application_criteria.required,
+                label: false,
+                autofocus: false,
+                input_html: { class: 'rounded-4 block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6',
+                value: application_criteria.value(job_application.additional_info)
+              }
+              %>
+            <% elsif application_criteria.upload? %>
+              We don't manage upload yet.
+            <% elsif !application_criteria.valid? %>
+              <%= "Unvalid - Options are not present: #{ application_criteria.to_json.html_safe }" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="mt-8 flex">
+    <%= f.button :submit, "Save", class: "flex w-full justify-center cursor-pointer rounded-md !bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white dark:text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+  </div>
+<% end %>

@@ -1,24 +1,64 @@
 class JobApplicationsController < ApplicationController
-  def new
-    load_jobs
+  def edit
+    load_application_process
+    load_job_application
+  end
+
+  def update
+    load_application_process
+    load_job_application
+    assign_job_application_params
+    persist_job_application
   end
 
   private
 
-  def load_jobs
-    @jobs = OpportunitiesQuery.call(job_scope)
-                              .where(opportunity_params.to_h.transform_keys('job_ids' => :id))
+  def application_process_scope
+    current_user.application_processes
   end
 
-  def opportunity_params
-    params.permit(job_ids: [])
+  def assign_job_application_params
+    @job_application.assign_attributes(job_application_params)
   end
 
-  def job_scope
-    JobApplication.find_by(id: params[:format])
-                  .application_process
-                  .jobs
+  def load_application_process
+    @application_process = ApplicationProcessesQuery.call(application_process_scope)
+                                                    .find(params[:application_process_id])
   end
+
+  def load_job_application
+    @job_application = @application_process.job_applications.find(params[:id])
+  end
+
+  # def load_jobs
+  #   @jobs = OpportunitiesQuery.call(job_scope)
+  #   # .where(opportunity_params.to_h.transform_keys('job_ids' => :id))
+  # end
+
+  def job_application_params
+    params.require(:job_application).permit(:application_process_id, :id, { additional_info: {} })
+  end
+
+  def next_step_path
+    job_application_ids = @application_process.job_application_ids.reverse
+    index = job_application_ids.index(params[:id].to_i)
+
+    if index.to_i < job_application_ids.length - 1
+      edit_application_process_job_application_path(@application_process, job_application_ids[index + 1])
+    else
+      application_process_overview_path(@application_process)
+    end
+  end
+
+  def persist_job_application
+    if save_job_application
+      redirect_to next_step_path, notice: 'Job successfully saved!'
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def save_job_application = @job_application.save
 end
 
 # # before_action :authenticate_user!, except: [:new]

@@ -17,6 +17,10 @@ class ApplicationProcess < ApplicationRecord
   # == Validations ==========================================================
   validates :status, presence: true
 
+  def find_application_for_job(job)
+    job_applications.find_by(job:)
+  end
+
   def submitted?
     submitted_at.present?
   end
