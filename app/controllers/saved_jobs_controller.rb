@@ -23,7 +23,7 @@ class SavedJobsController < ApplicationController
 
   def destroy_saved_job
     if @saved_job.destroy
-      success_redirect_to_referrer
+      success_deleted_job_redirect_to_referrer
     else
       error_redirect_to_referrer
     end
@@ -40,7 +40,7 @@ class SavedJobsController < ApplicationController
 
   def persist_saved_job
     if @saved_job.save
-      success_redirect_to_referrer
+      success_saved_job_redirect_to_referrer
     else
       error_redirect_to_referrer
     end
@@ -48,11 +48,14 @@ class SavedJobsController < ApplicationController
 
   def saved_jobs_scope
     Job.where(id: current_user.saved_jobs.pluck(:job_id))
-    # current_user.saved_jobs.map(&:job)
   end
 
-  def success_redirect_to_referrer
+  def success_saved_job_redirect_to_referrer
     redirect_to request.referrer, notice: 'Job successfully saved!'
+  end
+
+  def success_deleted_job_redirect_to_referrer
+    redirect_to request.referrer, notice: 'Job successfully unsaved!'
   end
 
   def error_redirect_to_referrer
