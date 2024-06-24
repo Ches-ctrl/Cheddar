@@ -95,9 +95,9 @@ module CheckUrlIsValid
         puts "Connection to #{api_url} failed after #{retries} retries: #{e.message}"
         return {}
       end
-    rescue StandardError => e
-      puts "HTTParty threw an error of type #{e.class.name}"
-      puts e.message
+    # rescue StandardError => e
+    #   puts "HTTParty threw an error of type #{e.class.name}"
+    #   puts e.message
     end
 
     return {} if !response || response.code == 404 || response.body == "Not Found"
