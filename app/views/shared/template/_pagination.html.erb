@@ -17,11 +17,15 @@
         </p>
     </div>
     <div class="flex flex-2 justify-between sm:justify-end">
-        <%= link_to pagy_prev(pagy), class: button_klasses(theme: :zinc) do %>
-        <%= inline_svg_tag('template/icons/left_arrow.svg') %> Previous
+        <% if pagy.prev %>
+            <%= link_to pagy_prev(pagy), class: button_klasses(theme: :zinc) do %>
+                <%= inline_svg_tag('template/icons/left_arrow.svg') %> Previous
+            <% end %>
         <% end %>
-        <%= link_to pagy_next(pagy), class: button_klasses(theme: :zinc) do %>
-        Next <%= inline_svg_tag('template/icons/right_arrow.svg') %>
+        <% if pagy.next %>
+            <%= link_to pagy_next(pagy), class: button_klasses(theme: :zinc) do %>
+                Next <%= inline_svg_tag('template/icons/right_arrow.svg') %>
+            <% end %>
         <% end %>
     </div>
 </nav>

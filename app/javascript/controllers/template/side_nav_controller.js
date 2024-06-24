@@ -3,7 +3,6 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["link"];
   connect() {
-    console.log("side nav connected ");
     document.addEventListener("turbo:load", () => {
       this.linkTargets.forEach((linkContainer) => {
         const link = linkContainer.querySelector("a");

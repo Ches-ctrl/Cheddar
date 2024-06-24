@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   require 'open-uri'
   require 'yomu'
 
-  before_action :profile_page_status, only: [:show]
+  before_action :profile_page_status, only: %i[show update]
 
   def show
     @user = current_user

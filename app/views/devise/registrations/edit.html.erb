@@ -1,145 +1,20 @@
-<div class="container d-flex align-items-center justify-content-center">
-  <div class="d-flex justify-content-center align-items-center w-50 border shadow rounded-4 p-2 m-4">
-    <div class="col-md-10 p-0 m-0">
-      <div class="login-box">
-        <h2 class="text-center">Edit Your Information </h2>
-
-        <%# TODO: Add country select gem %>
-
-        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-          <%= f.error_notification %>
-
-          <div class="form-inputs">
-            <div class="d-flex justify-content-between">
-              <%= f.input :first_name,
-                          required: false,
-                          autofocus: true,
-                          label_html: { style: 'font-style: italic; margin-bottom: 0px; margin-bottom: 0px;' },
-                          input_html: { class: 'rounded-4' } %>
-              <%= f.input :last_name,
-                          required: false,
-                          autofocus: true,
-                          label_html: { style: 'font-style: italic; margin-bottom: 0px; margin-bottom: 0px;' },
-                          input_html: { class: 'rounded-4' } %>
-            </div>
-
-            <div class="form-group">
-              <%= f.label :preferred_pronoun_select, "What are your preferred pronouns?", style: 'font-style: italic; margin-bottom: 0px;' %>
-              <%= f.select :preferred_pronoun_select, options_for_select(['He/Him', 'She/Her', 'They/Them', 'Other', 'Prefer not to say']), required: true, autofocus: true %>
-            </div>
-
-            <%= f.input :preferred_pronoun_text,
-                        required: false,
-                        autofocus: true,
-                        label: 'If other then please specify:',
-                        label_html: { style: 'font-style: italic; margin-bottom: 0px;' } %>
-
-            <%= f.input :email,
-                        required: false,
-                        autofocus: true,
-                        label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                        input_html: { class: 'rounded-4' }  %>
-
-            <%= f.input :phone_number,
-                        required: false,
-                        autofocus: true,
-                        label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                        input_html: { class: 'rounded-4' }  %>
-
-            <%= f.input :address_first,
-                        required: false,
-                        autofocus: true,
-                        label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                        input_html: { class: 'rounded-4' }  %>
-
-            <%= f.input :address_second,
-                        required: false,
-                        autofocus: true,
-                        label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                        input_html: { class: 'rounded-4' }  %>
-
-            <%= f.input :post_code,
-                        required: false,
-                        autofocus: true,
-                        label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                        input_html: { class: 'rounded-4' }  %>
-
-            <%= f.input :city,
-                        required: false,
-                        autofocus: true,
-                        label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                        input_html: { class: 'rounded-4' }  %>
-
-            <%= f.input :linkedin_profile,
-                        required: false,
-                        autofocus: true,
-                        label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                        input_html: { class: 'rounded-4' }  %>
-
-            <%= f.input :github_profile_url,
-                        required: false,
-                        autofocus: true,
-                        label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                        input_html: { class: 'rounded-4' }  %>
-
-            <%= f.input :website_url,
-                        required: false,
-                        autofocus: true,
-                        label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                        input_html: { class: 'rounded-4' }  %>
-
-            <%= f.input :salary_expectation_figure,
-                        required: false,
-                        autofocus: true,
-                        label: "What is you annual salary expectation?", label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                        input_html: { class: 'rounded-4' }  %>
-
-            <%= f.input :right_to_work,
-                        required: false,
-                        autofocus: true,
-                        label: "Do you have the right to work in the UK without a visa?", label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                        input_html: { class: 'rounded-4' }   %>
-
-            <%= f.input :notice_period,
-                        required: false,
-                        autofocus: true,
-                        label: "What is your notice period in weeks?", label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                        input_html: { class: 'rounded-4' }   %>
-
-            <%= f.input :resume,
-                        as: :file,
-                        required: true,
-                        label: 'CV (PDF)',
-                        input_html: { accept: 'application/pdf', class: 'rounded-4' },
-                        label_html: { style: 'font-style: italic; margin-bottom: 0px;' } %>
-
-            <% current_user.cover_letter_templates.each do |cover_letter_template| %>
-              <%= f.input :cover_letter_templates, as: :hidden, input_html: { multiple: true, value: cover_letter_template.signed_id } %>
-            <% end %>
-
-            <%= f.input :cover_letter_templates,
-                        as: :file,
-                        required: false,
-                        label: 'Cover Letter Template(s) (DOCX)',
-                        input_html: { accept: 'application/docx', class: 'rounded-4', multiple: true },
-                        label_html: { style: 'font-style: italic; margin-bottom: 0px;' } %>
-
-            <%= f.input :photo,
-                        required: false,
-                        as: :file,
-                        label_html: { style: 'font-style: italic; margin-bottom: 0px;' },
-                        input_html: { class: 'rounded-4' }  %>
-
-            <%= f.input :current_password,
-                        hint: "we need your current password to confirm your changes",
-                        required: true,
-                        input_html: { autocomplete: "current-password" }, label_html: { style: 'font-style: italic;' } %>
-
-          </div>
-          <%= f.submit "Update", class: 'btn-add-info flex-grow-1' %>
-
-        <% end %>
-      </div>
-    </div>
+<article class="flex w-2/3 mx-auto h-full flex-col pb-10 pt-16">
+  <h1 class="sr-only">Account Settings</h1>
+  <header class="border-b border-zinc-900/5 dark:border-white/5">
+    <nav class="flex overflow-x-auto py-4">
+      <ul role="list" class="flex min-w-full flex-none gap-x-6 px-4 text-sm font-semibold leading-6 text-gray-400 sm:px-6 lg:px-8">
+        <li>
+          <!-- <a href="" class="text-indigo-600 dark:text-indigo-400">Account</a> -->
+          <%= link_to "Account", edit_registration_path(resource_name, params: { view: 'account_information' }), class: ( params[:view].eql?('frequent_asked_information') ? "text-gray-400 hover:text-indigo-600" : "text-indigo-600 dark:text-indigo-400") %>
+        </li>
+        <li>
+          <%= link_to "Frequent asked information", edit_registration_path(resource_name, params: { view: 'frequent_asked_information' }), class:  ( params[:view].eql?('frequent_asked_information') ? "text-indigo-600 dark:text-indigo-400" : "text-gray-400 hover:text-indigo-600") %>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <div class="divide-y divide-zinc-900/5 dark:divide-white/5">
+    <%= render 'account_information_form' unless params[:view].eql?('frequent_asked_information') %>
+    <%= render 'frequent_asked_information_container' if params[:view].eql?('frequent_asked_information') %>
   </div>
-</div>
+</article>

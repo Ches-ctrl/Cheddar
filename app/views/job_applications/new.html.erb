@@ -1,54 +1,16 @@
 <%= provide(:title, 'New job applications') %>
-
-<script type="text/javascript" src="/assets/tinymce.js"></script>
-<script>
-  const applicationCarouselElement = document.querySelector('#applicationCarousel')
-
-  const carousel = new bootstrap.Carousel(applicationCarouselElement, {
-    interval: 0,
-    touch: false
-  })
-</script>
-
-<div class="container carousel-container mt-3 col-sm-6" data-controller="all-application-forms" data-all-application-forms-user-value="<%= current_user.id %>" data-all-application-forms-jobs-count="<%= @selected_jobs.size %>">
-  <div class="d-flex justify-content-between align-items-center sticky-top bg-white pt-2 pb-4">
-
-    <%= render 'job_application_summary' %>
-
-    <div class="d-flex justify-content-end align-items-center">
-      <div class="btn btn-apply mt-1 <%= 'disabled' unless current_user.resume.attached? %>"
-           data-all-application-forms-target="button"
-           data-action="click->all-application-forms#submitAllForms">Apply to All
-      </div>
-    </div>
-
+<!-- <article class="flex w-4/5 mx-auto h-full flex-col grid max-w-7xl sm:grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8"> -->
+<article class="flex w-2/3 mx-auto h-full flex-col pb-5 pt-8">
+  <% if false %>
+  <div class="xl:sticky xl:top-[4.75rem] xl:-mr-6 xl:block xl:h-[calc(100vh-4.75rem)] xl:flex-none xl:overflow-y-auto xl:py-0 xl:pr-6">
+    
   </div>
-
-  <%# Iterate over each selected job %>
-  <div id="applicationCarousel" class="carousel slide carousel-fade">
-    <div class="carousel-inner px-5">
-      <% @job_applications.each_with_index do |job_application, index| %>
-        <div class="carousel-item <%= index == 0 ? "active" : "" %>">
-          <%= render partial: 'job_application_form', locals: {job_application: job_application, index: index } %>
-        </div>
-      <% end %>
-    </div>
-    <button class="carousel-control-prev my-auto" type="button" data-bs-target="#applicationCarousel" data-bs-slide="prev" style="width: 7%; height: 90%; border-left: 1px solid #ddd;">
-      <span class="carousel-control-prev-icon" aria-hidden="true" style="fill: black"></span>
-      <i class="fa-solid fa-chevron-left fs-1" style="color: #143459"></i>
-      <span class="visually-hidden" style="color: #143459">Previous</span>
-    </button>
-    <button class="carousel-control-next my-auto" type="button" data-bs-target="#applicationCarousel" data-bs-slide="next" style="width: 7%; height: 90%; border-right: 1px solid #ddd;">
-      <i class="fa-solid fa-chevron-right fs-1" style="color: #143459"></i>
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden" style="color: #143459">Next</span>
-    </button>
+  <% end %>
+  <div class="grid max-w-8xl sm:grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
+    <%= render 'step_indicators' %>
+    <%= render '/devise/registrations/frequent_asked_information_form', resource: current_user, resource_name: :user %>
   </div>
-  <%= render 'loading' %>
-
-</div>
-
-
+</article>
 
 <%# TODO: Add d-none to subsidiary application forms %>
 <%# TODO: Add company name to each job application form %>

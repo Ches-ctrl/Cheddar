@@ -13,7 +13,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     user_name: 'apikey',
-    password: ENV.fetch('SENDGRID_API_KEY'),
+    password: ENV.fetch('SENDGRID_API_KEY', 'DEFAULT_API_KEY_FOR_DEV'),
     domain: 'localhost',
     address: 'smtp.sendgrid.net',
     port: 587,
@@ -55,7 +55,7 @@ Rails.application.configure do
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :cloudinary
+  config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

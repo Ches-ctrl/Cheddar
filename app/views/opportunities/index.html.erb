@@ -1,7 +1,8 @@
+<% title "Find Jobs" %>
+<% description "Discover and apply to thousands of jobs with Cheddar's one-click application process." %>
 <article class="flex h-full flex-col pb-10 pt-16">
   <ul role="list" class="divide-y divide-gray-100 dark:divide-gray-800">
     <!-- #rename later to jobs for jobs/_job.html.erb -->
-    <%= render @records if false %>
     <% @records.each do |opportunity| %>
       <%= render 'opportunities/opportunity', opportunity: %>
     <% end %>

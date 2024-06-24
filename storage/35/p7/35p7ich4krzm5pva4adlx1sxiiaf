@@ -1,0 +1,341 @@
+<svg width="595.28px" height="841.89px" viewBox="0 0 595.28 841.89" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect width="100%" height="100%" fill="white"/>
+<path d="M 0,0 L 595.28,0 C 595.28,0,595.28,0,595.28,0 L 595.28,91.75 C 595.28,91.75,595.28,91.75,595.28,91.75 L 0,91.75 C 0,91.75,0,91.75,0,91.75 L 0,0 C 0,0,0,0,0,0 Z" fill="#303846" />
+<text x="25" y="45.3125" style="font:normal 25px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="white">Kaley </text>
+<text x="94.482421875" y="45.3125" style="font:normal 25px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="white">Pearson</text>
+<text x="187.59765625" y="45.3125" style="font:normal 25px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="white">, </text>
+<text x="201.4892578125" y="45.3125" style="font:normal 25px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="white">RN</text>
+<image x="25" y="61.37500000000001" width="9" height="9" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9IiM5NzliYTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+PHBhdGggZD0iTTUwMi4zIDE5MC44YzMuOS0zLjEgOS43LS4yIDkuNyA0LjdWNDAwYzAgMjYuNS0yMS41IDQ4LTQ4IDQ4SDQ4Yy0yNi41IDAtNDgtMjEuNS00OC00OFYxOTUuNmMwLTUgNS43LTcuOCA5LjctNC43IDIyLjQgMTcuNCA1Mi4xIDM5LjUgMTU0LjEgMTEzLjYgMjEuMSAxNS40IDU2LjcgNDcuOCA5Mi4yIDQ3LjYgMzUuNy4zIDcyLTMyLjggOTIuMy00Ny42IDEwMi03NC4xIDEzMS42LTk2LjMgMTU0LTExMy43ek0yNTYgMzIwYzIzLjIuNCA1Ni42LTI5LjIgNzMuNC00MS40IDEzMi43LTk2LjMgMTQyLjgtMTA0LjcgMTczLjQtMTI4LjcgNS44LTQuNSA5LjItMTEuNSA5LjItMTguOXYtMTljMC0yNi41LTIxLjUtNDgtNDgtNDhINDhDMjEuNSA2NCAwIDg1LjUgMCAxMTJ2MTljMCA3LjQgMy40IDE0LjMgOS4yIDE4LjkgMzAuNiAyMy45IDQwLjcgMzIuNCAxNzMuNCAxMjguNyAxNi44IDEyLjIgNTAuMiA0MS44IDczLjQgNDEuNHoiPjwvcGF0aD48L3N2Zz4=" image-rendering="optimizeSpeed" />
+<text x="39" y="68.48750000000001" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#979ba2">kaley</text>
+<text x="60.01025390625" y="68.48750000000001" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#979ba2">.</text>
+<text x="62.5107421875" y="68.48750000000001" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#979ba2">pearson</text>
+<text x="95.03466796875" y="68.48750000000001" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#979ba2">@</text>
+<text x="104.1708984375" y="68.48750000000001" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#979ba2">gmail</text>
+<text x="125.677734375" y="68.48750000000001" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#979ba2">.</text>
+<text x="128.17822265625" y="68.48750000000001" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#979ba2">com</text>
+<image x="155.1806640625" y="61.37500000000001" width="9" height="9" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9IiM5NzliYTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+PHBhdGggZD0iTTQ5My40IDI0LjZsLTEwNC0yNGMtMTEuMy0yLjYtMjIuOSAzLjMtMjcuNSAxMy45bC00OCAxMTJjLTQuMiA5LjgtMS40IDIxLjMgNi45IDI4bDYwLjYgNDkuNmMtMzYgNzYuNy05OC45IDE0MC41LTE3Ny4yIDE3Ny4ybC00OS42LTYwLjZjLTYuOC04LjMtMTguMi0xMS4xLTI4LTYuOWwtMTEyIDQ4QzMuOSAzNjYuNS0yIDM3OC4xLjYgMzg5LjRsMjQgMTA0QzI3LjEgNTA0LjIgMzYuNyA1MTIgNDggNTEyYzI1Ni4xIDAgNDY0LTIwNy41IDQ2NC00NjQgMC0xMS4yLTcuNy0yMC45LTE4LjYtMjMuNHoiPjwvcGF0aD48L3N2Zz4=" image-rendering="optimizeSpeed" />
+<text x="169.1806640625" y="68.48750000000001" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#979ba2">(</text>
+<text x="172.177734375" y="68.48750000000001" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#979ba2">444</text>
+<text x="187.19384765625" y="68.48750000000001" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#979ba2">) </text>
+<text x="192.69140625" y="68.48750000000001" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#979ba2">345</text>
+<text x="207.70751953125" y="68.48750000000001" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#979ba2">-</text>
+<text x="210.70458984375" y="68.48750000000001" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#979ba2">6789</text>
+<image x="241.85107421875" y="61.37500000000001" width="6.75" height="9" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9IiM5NzliYTIiIHZpZXdCb3g9IjAgMCAzODQgNTEyIiB3aWR0aD0iMzg0IiBoZWlnaHQ9IjUxMiI+PHBhdGggZD0iTTE3Mi4yNjggNTAxLjY3QzI2Ljk3IDI5MS4wMzEgMCAyNjkuNDEzIDAgMTkyIDAgODUuOTYxIDg1Ljk2MSAwIDE5MiAwczE5MiA4NS45NjEgMTkyIDE5MmMwIDc3LjQxMy0yNi45NyA5OS4wMzEtMTcyLjI2OCAzMDkuNjctOS41MzUgMTMuNzc0LTI5LjkzIDEzLjc3My0zOS40NjQgMHpNMTkyIDI3MmM0NC4xODMgMCA4MC0zNS44MTcgODAtODBzLTM1LjgxNy04MC04MC04MC04MCAzNS44MTctODAgODAgMzUuODE3IDgwIDgwIDgweiI+PC9wYXRoPjwvc3ZnPg==" image-rendering="optimizeSpeed" />
+<text x="254.72607421875" y="68.48750000000001" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#979ba2">Seattle</text>
+<text x="282.74560546875" y="68.48750000000001" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#979ba2">, </text>
+<text x="287.74658203125" y="68.48750000000001" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#979ba2">WA</text>
+<text x="25" y="130.1375" style="font:normal 13.5px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#303846">Summary</text>
+<text x="25" y="153.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Passionate </text>
+<text x="72.0302734375" y="153.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">bilingual </text>
+<text x="107.5556640625" y="153.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">registered </text>
+<text x="150.0771484375" y="153.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">nurse </text>
+<text x="175.0908203125" y="153.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">with </text>
+<text x="193.59619140625" y="153.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">4</text>
+<text x="198.6015625" y="153.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">+ </text>
+<text x="206.35791015625" y="153.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">years </text>
+<text x="230.8662109375" y="153.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">of </text>
+<text x="240.87255859375" y="153.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">experience</text>
+<text x="284.9013671875" y="153.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">, </text>
+<text x="289.90234375" y="153.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">committed </text>
+<text x="333.91357421875" y="153.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">to </text>
+<text x="25" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">providing </text>
+<text x="64.0234375" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">evidence</text>
+<text x="100.0498046875" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">-</text>
+<text x="103.046875" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">based </text>
+<text x="130.06884765625" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">care </text>
+<text x="150.0771484375" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">to </text>
+<text x="160.08349609375" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">serve </text>
+<text x="184.591796875" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">patients </text>
+<text x="218.6142578125" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">of </text>
+<text x="228.62060546875" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">all </text>
+<text x="240.12548828125" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">needs</text>
+<text x="264.64697265625" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">. </text>
+<text x="269.64794921875" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Eager </text>
+<text x="296.16455078125" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">to </text>
+<text x="306.1708984375" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">leverage </text>
+<text x="343.19482421875" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">98%</text>
+<text x="361.2080078125" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">+ </text>
+<text x="25" y="178.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">compassion </text>
+<text x="75.52392578125" y="178.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">score </text>
+<text x="100.03222656249999" y="178.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">and </text>
+<text x="117.54882812499999" y="178.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">experience </text>
+<text x="164.078125" y="178.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">in </text>
+<text x="173.58349609375" y="178.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">two </text>
+<text x="190.08935546875" y="178.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">major </text>
+<text x="215.09423828125" y="178.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">hospitals </text>
+<text x="253.11572265625" y="178.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">to </text>
+<text x="263.1220703125" y="178.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">serve </text>
+<text x="287.63037109375" y="178.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">as </text>
+<text x="299.63623046875" y="178.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">an </text>
+<text x="312.1474609375" y="178.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">RN </text>
+<text x="327.64697265625" y="178.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">at </text>
+<text x="337.6533203125" y="178.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Seattle </text>
+<text x="25" y="190.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Presbyterian </text>
+<text x="78.0244140625" y="190.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Hospital</text>
+<text x="110.53955078125" y="190.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">.</text>
+<path d="M 25,206.25 L 370.28,206.25 C 370.28,206.25,370.28,206.25,370.28,206.25 L 370.28,206.75 C 370.28,206.75,370.28,206.75,370.28,206.75 L 25,206.75 C 25,206.75,25,206.75,25,206.75 L 25,206.25 C 25,206.25,25,206.25,25,206.25 Z" fill="#e2e2e2" />
+<text x="25" y="235.1375" style="font:normal 13.5px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#303846">Work </text>
+<text x="60.246337890625" y="235.1375" style="font:normal 13.5px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#303846">Experience</text>
+<text x="25" y="258.8625" style="font:bold 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Registered </text>
+<text x="74.0166015625" y="258.8625" style="font:bold 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Nurse</text>
+<text x="293.2438671875" y="258.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Mar </text>
+<text x="311.2438671875" y="258.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">2019 </text>
+<text x="333.76583984375" y="258.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">- </text>
+<text x="339.2633984375" y="258.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Present</text>
+<text x="25" y="271.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">St</text>
+<text x="33.50341796875" y="271.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">. </text>
+<text x="38.50439453125" y="271.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">Anne's </text>
+<text x="68.2421875" y="271.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">Hospital</text>
+<text x="100.75732421875" y="271.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">, </text>
+<text x="105.75830078125" y="271.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">Seattle</text>
+<text x="133.77783203125" y="271.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">, </text>
+<text x="138.77880859375" y="271.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">WA</text>
+<text x="45" y="283.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Managed </text>
+<text x="85.02978515625" y="283.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">care </text>
+<text x="105.0380859375" y="283.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">and </text>
+<text x="122.5546875" y="283.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">long</text>
+<text x="139.5703125" y="283.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">-</text>
+<text x="142.5673828125" y="283.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">term </text>
+<text x="163.06787109375" y="283.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">health </text>
+<text x="190.08984375" y="283.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">plans </text>
+<text x="214.10595703125" y="283.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">for </text>
+<text x="227.109375" y="283.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">15</text>
+<text x="237.1201171875" y="283.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">+ </text>
+<text x="244.87646484375" y="283.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">patients </text>
+<circle cx="35" cy="281.8125" r="1.8" fill="black"/>
+<text x="45" y="295.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Assisted </text>
+<text x="81.51416015625" y="295.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">patients </text>
+<text x="115.53662109375" y="295.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">with </text>
+<text x="134.0419921875" y="295.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">all </text>
+<text x="145.546875" y="295.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">necessary </text>
+<text x="189.06591796875" y="295.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">movements </text>
+<text x="238.08251953125" y="295.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">and </text>
+<text x="255.59912109375" y="295.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">functions</text>
+<circle cx="35" cy="294.1875" r="1.8" fill="black"/>
+<text x="45" y="308.3625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Maintained </text>
+<text x="91.529296875" y="308.3625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">98%</text>
+<text x="109.54248046875" y="308.3625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">+ </text>
+<text x="117.298828125" y="308.3625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">compassion </text>
+<text x="167.82275390625" y="308.3625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">score</text>
+<circle cx="35" cy="306.5625" r="1.8" fill="black"/>
+<text x="45" y="320.7375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Onboarded </text>
+<text x="92.53564453125" y="320.7375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">and </text>
+<text x="110.05224609375" y="320.7375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">supervised </text>
+<text x="156.076171875" y="320.7375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">12</text>
+<text x="166.0869140625" y="320.7375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">+ </text>
+<text x="173.84326171875" y="320.7375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">new </text>
+<text x="192.85400390625" y="320.7375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">nurses </text>
+<text x="222.36767578125" y="320.7375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">each </text>
+<text x="244.38427734375" y="320.7375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">year</text>
+<circle cx="35" cy="318.9375" r="1.8" fill="black"/>
+<text x="45" y="333.1125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Won </text>
+<text x="66.005859375" y="333.1125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">hospital's </text>
+<text x="105.74560546875" y="333.1125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Nurse </text>
+<text x="132.25341796875" y="333.1125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">of </text>
+<text x="142.259765625" y="333.1125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">the </text>
+<text x="157.271484375" y="333.1125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Month </text>
+<text x="184.78564453125" y="333.1125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">award </text>
+<text x="211.798828125" y="333.1125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">3x</text>
+<circle cx="35" cy="331.3125" r="1.8" fill="black"/>
+<text x="25" y="355.4875" style="font:bold 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Registered </text>
+<text x="74.0166015625" y="355.4875" style="font:bold 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Nurse</text>
+<text x="287.22775390625" y="355.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Jun </text>
+<text x="304.238984375" y="355.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">2017 </text>
+<text x="326.76095703125" y="355.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">- </text>
+<text x="332.258515625" y="355.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Mar </text>
+<text x="350.258515625" y="355.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">2019</text>
+<text x="25" y="367.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">Seattle </text>
+<text x="55.52001953125" y="367.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">General </text>
+<text x="90.0390625" y="367.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">Hospital</text>
+<text x="122.55419921875" y="367.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">, </text>
+<text x="127.55517578125" y="367.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">Seattle</text>
+<text x="155.57470703125" y="367.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">, </text>
+<text x="160.57568359375" y="367.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">WA</text>
+<text x="45" y="380.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Assessed </text>
+<text x="86.51953125" y="380.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">and </text>
+<text x="104.0361328125" y="380.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">created </text>
+<text x="136.5556640625" y="380.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">care </text>
+<text x="156.56396484375" y="380.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">plans </text>
+<text x="180.580078125" y="380.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">for </text>
+<text x="193.58349609375" y="380.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">10</text>
+<text x="203.59423828125" y="380.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">+ </text>
+<text x="211.3505859375" y="380.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">patients </text>
+<text x="245.373046875" y="380.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">at </text>
+<text x="255.37939453125" y="380.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">a </text>
+<text x="262.88525390625" y="380.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">time</text>
+<circle cx="35" cy="378.4375" r="1.8" fill="black"/>
+<text x="45" y="392.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Practiced </text>
+<text x="85.0166015625" y="392.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">evidence</text>
+<text x="121.04296875" y="392.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">-</text>
+<text x="124.0400390625" y="392.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">based </text>
+<text x="151.06201171875" y="392.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">care </text>
+<text x="171.0703125" y="392.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">to </text>
+<text x="181.07666015625" y="392.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">achieve </text>
+<text x="214.59814453125" y="392.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">best </text>
+<text x="234.10986328125" y="392.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">possible </text>
+<text x="269.630859375" y="392.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">health </text>
+<text x="296.65283203125" y="392.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">outcomes </text>
+<text x="338.17236328125" y="392.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">for </text>
+<circle cx="35" cy="390.8125" r="1.8" fill="black"/>
+<text x="45" y="404.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">patients</text>
+<text x="45" y="417.3625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Commended </text>
+<text x="99.0263671875" y="417.3625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">4x </text>
+<text x="111.03222656249999" y="417.3625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">for </text>
+<text x="124.03564453124999" y="417.3625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">excellent </text>
+<text x="162.05712890625" y="417.3625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">patient </text>
+<text x="191.57958984374997" y="417.3625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">care </text>
+<text x="211.58789062499997" y="417.3625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">and </text>
+<text x="229.10449218749997" y="417.3625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">service</text>
+<circle cx="35" cy="415.5625" r="1.8" fill="black"/>
+<path d="M 25,432.625 L 370.28,432.625 C 370.28,432.625,370.28,432.625,370.28,432.625 L 370.28,433.125 C 370.28,433.125,370.28,433.125,370.28,433.125 L 25,433.125 C 25,433.125,25,433.125,25,433.125 L 25,432.625 C 25,432.625,25,432.625,25,432.625 Z" fill="#e2e2e2" />
+<text x="25" y="461.5125" style="font:normal 13.5px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#303846">Education</text>
+<text x="25" y="485.2375" style="font:bold 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Bachelor </text>
+<text x="66.01416015625" y="485.2375" style="font:bold 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">of </text>
+<text x="77.00927734375" y="485.2375" style="font:bold 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Science </text>
+<text x="113.5322265625" y="485.2375" style="font:bold 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">in </text>
+<text x="124.03076171875" y="485.2375" style="font:bold 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Nursing</text>
+<text x="25" y="497.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">University </text>
+<text x="67.00732421875" y="497.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">of </text>
+<text x="77.013671875" y="497.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">Washington</text>
+<text x="124.54052734375" y="497.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">, </text>
+<text x="129.54150390625" y="497.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">Seattle</text>
+<text x="157.56103515625" y="497.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">, </text>
+<text x="162.56201171875" y="497.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">WA</text>
+<text x="45" y="509.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Graduated </text>
+<text x="90.03076171875" y="509.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">magna </text>
+<text x="120.0498046875" y="509.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">cum </text>
+<text x="139.552734375" y="509.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">laude </text>
+<text x="164.07421875" y="509.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">in </text>
+<text x="173.57958984375" y="509.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">2017</text>
+<circle cx="35" cy="508.1875" r="1.8" fill="black"/>
+<path d="M 25,525.25 L 370.28,525.25 C 370.28,525.25,370.28,525.25,370.28,525.25 L 370.28,525.75 C 370.28,525.75,370.28,525.75,370.28,525.75 L 25,525.75 C 25,525.75,25,525.75,25,525.75 L 25,525.25 C 25,525.25,25,525.25,25,525.25 Z" fill="#e2e2e2" />
+<text x="25" y="554.1375" style="font:normal 13.5px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#303846">Nursing </text>
+<text x="75.26904296875" y="554.1375" style="font:normal 13.5px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#303846">Credentials</text>
+<text x="25" y="577.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Registered </text>
+<text x="71.02392578125" y="577.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Nurse</text>
+<text x="95.03125" y="577.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">, </text>
+<text x="100.0322265625" y="577.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Washington</text>
+<text x="147.55908203125" y="577.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">, </text>
+<text x="152.56005859375" y="577.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">License </text>
+<text x="186.08154296875" y="577.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">#12345678</text>
+<text x="25" y="590.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Basic </text>
+<text x="49.50830078125" y="590.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Life </text>
+<text x="66.51953125" y="590.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Support </text>
+<text x="100.5419921875" y="590.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">for </text>
+<text x="113.54541015625" y="590.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Health </text>
+<text x="142.0615234375" y="590.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Care </text>
+<text x="164.0693359375" y="590.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Providers </text>
+<text x="204.58251953125" y="590.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">(</text>
+<text x="207.57958984375" y="590.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">BLS</text>
+<text x="224.5908203125" y="590.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">)</text>
+<text x="25" y="602.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Advanced </text>
+<text x="67.5302734375" y="602.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Cardiac </text>
+<text x="101.04296875" y="602.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Life </text>
+<text x="118.05419921875" y="602.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Support </text>
+<text x="152.07666015625" y="602.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">(</text>
+<text x="155.07373046875" y="602.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">ACLS</text>
+<text x="178.58447265625" y="602.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">)</text>
+<path d="M 25,617.875 L 370.28,617.875 C 370.28,617.875,370.28,617.875,370.28,617.875 L 370.28,618.375 C 370.28,618.375,370.28,618.375,370.28,618.375 L 25,618.375 C 25,618.375,25,618.375,25,618.375 L 25,617.875 C 25,617.875,25,617.875,25,617.875 Z" fill="#e2e2e2" />
+<text x="25" y="646.7625" style="font:normal 13.5px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#303846">Professional </text>
+<text x="103.040283203125" y="646.7625" style="font:normal 13.5px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#303846">Associations</text>
+<text x="25" y="670.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Sigma </text>
+<text x="53.0107421875" y="670.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Theta </text>
+<text x="78.525390625" y="670.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Tau </text>
+<text x="96.5341796875" y="670.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">International </text>
+<text x="148.56982421875" y="670.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Honor </text>
+<text x="175.5830078125" y="670.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Society </text>
+<text x="207.59716796875" y="670.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">of </text>
+<text x="217.603515625" y="670.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Nursing</text>
+<text x="248.61572265625" y="670.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">, </text>
+<text x="253.61669921875" y="670.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">member </text>
+<text x="289.12451171875" y="670.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">2017 </text>
+<text x="311.646484375" y="670.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">- </text>
+<text x="317.14404296875" y="670.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Present</text>
+<text x="25" y="682.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Washington </text>
+<text x="75.02734375" y="682.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Nurses </text>
+<text x="106.03515624999999" y="682.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Association </text>
+<text x="154.55957031249997" y="682.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">(</text>
+<text x="157.55664062499997" y="682.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">WNA</text>
+<text x="178.55371093749997" y="682.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">)</text>
+<text x="181.55078124999997" y="682.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">, </text>
+<text x="186.55175781249997" y="682.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">member </text>
+<text x="222.05957031249997" y="682.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">2018 </text>
+<text x="244.58154296874997" y="682.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">- </text>
+<text x="250.07910156249997" y="682.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Present</text>
+<text x="25" y="695.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">The </text>
+<text x="43.0087890625" y="695.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">American </text>
+<text x="83.52197265625" y="695.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Board </text>
+<text x="110.03857421875" y="695.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">of </text>
+<text x="120.044921875" y="695.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Nursing </text>
+<text x="153.5576171875" y="695.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Specialties </text>
+<text x="199.58154296875" y="695.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">(</text>
+<text x="202.57861328125" y="695.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">ABNS</text>
+<text x="227.0869140625" y="695.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">)</text>
+<text x="230.083984375" y="695.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">, </text>
+<text x="235.0849609375" y="695.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">member </text>
+<text x="270.5927734375" y="695.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">2018 </text>
+<text x="293.11474609375" y="695.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">- </text>
+<text x="298.6123046875" y="695.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Present</text>
+<path d="M 395.28,116.75 L 395.78,116.75 C 395.78,116.75,395.78,116.75,395.78,116.75 L 395.78,816.89 C 395.78,816.89,395.78,816.89,395.78,816.89 L 395.28,816.89 C 395.28,816.89,395.28,816.89,395.28,816.89 L 395.28,116.75 C 395.28,116.75,395.28,116.75,395.28,116.75 Z" fill="#e2e2e2" />
+<text x="420.28" y="130.1375" style="font:normal 13.5px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#303846">Personal </text>
+<text x="477.3122265625" y="130.1375" style="font:normal 13.5px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#303846">details</text>
+<text x="420.28" y="153.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#888888">LinkedIn</text>
+<text x="420.28" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">linkedin</text>
+<text x="450.80001953125" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">.</text>
+<text x="453.3005078125" y="166.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">com/in/kaleypearson</text>
+<path d="M 420.28,181.5 L 570.28,181.5 C 570.28,181.5,570.28,181.5,570.28,181.5 L 570.28,182 C 570.28,182,570.28,182,570.28,182 L 420.28,182 C 420.28,182,420.28,182,420.28,182 L 420.28,181.5 C 420.28,181.5,420.28,181.5,420.28,181.5 Z" fill="#e2e2e2" />
+<text x="420.28" y="210.3875" style="font:normal 13.5px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#303846">Hard </text>
+<text x="453.29171875" y="210.3875" style="font:normal 13.5px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#303846">Skills</text>
+<text x="420.28" y="234.1125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Assessing </text>
+<text x="463.79904296875" y="234.1125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">the </text>
+<text x="478.81076171875" y="234.1125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">respiratory </text>
+<text x="523.8239453125" y="234.1125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">system</text>
+<rect x="420.28" y="241.7625" width="150" height="3.6" fill="#303846"/>
+<text x="420.28" y="268.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Care </text>
+<text x="442.2878125" y="268.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">of </text>
+<text x="452.29416015625" y="268.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">drains </text>
+<text x="479.30734375" y="268.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">and </text>
+<text x="496.8239453125" y="268.8625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">tubes</text>
+<rect x="420.28" y="276.5125" width="150" height="3.6" fill="#303846"/>
+<text x="420.28" y="303.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">IV </text>
+<text x="431.28390625" y="303.6125" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">therapy</text>
+<rect x="420.28" y="311.2625" width="150" height="3.6" fill="#303846"/>
+<text x="420.28" y="338.3625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Performing </text>
+<text x="466.79611328125" y="338.3625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">complex </text>
+<text x="502.809296875" y="338.3625" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">dressing </text>
+<text x="420.28" y="350.7375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">changes</text>
+<rect x="420.28" y="358.3875" width="120" height="3.6" fill="#303846"/>
+<rect x="540.28" y="358.3875" width="29.999999999999993" height="3.6" fill="#eaebec"/>
+<text x="420.28" y="385.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Seizure </text>
+<text x="453.29611328125" y="385.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">precautions</text>
+<rect x="420.28" y="393.1375" width="150" height="3.6" fill="#303846"/>
+<text x="420.28" y="420.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Specimen </text>
+<text x="462.801484375" y="420.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">collections</text>
+<rect x="420.28" y="427.8875" width="120" height="3.6" fill="#303846"/>
+<rect x="540.28" y="427.8875" width="29.999999999999993" height="3.6" fill="#eaebec"/>
+<text x="420.28" y="454.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Fall </text>
+<text x="437.28244140625" y="454.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">prevention</text>
+<rect x="420.28" y="462.6375" width="150" height="3.6" fill="#303846"/>
+<path d="M 420.28,482.625 L 570.28,482.625 C 570.28,482.625,570.28,482.625,570.28,482.625 L 570.28,483.125 C 570.28,483.125,570.28,483.125,570.28,483.125 L 420.28,483.125 C 420.28,483.125,420.28,483.125,420.28,483.125 L 420.28,482.625 C 420.28,482.625,420.28,482.625,420.28,482.625 Z" fill="#e2e2e2" />
+<text x="420.28" y="511.5125" style="font:normal 13.5px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#303846">Soft </text>
+<text x="448.0446484375" y="511.5125" style="font:normal 13.5px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#303846">Skills</text>
+<text x="420.28" y="535.2375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Collaboration</text>
+<rect x="420.28" y="542.8875" width="120" height="3.6" fill="#303846"/>
+<rect x="540.28" y="542.8875" width="29.999999999999993" height="3.6" fill="#eaebec"/>
+<text x="420.28" y="569.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Critical </text>
+<text x="450.28146484375" y="569.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">decision</text>
+<text x="483.30197265625" y="569.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">-</text>
+<text x="486.29904296875" y="569.9875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">making</text>
+<rect x="420.28" y="577.6375" width="150" height="3.6" fill="#303846"/>
+<text x="420.28" y="604.7375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Communication</text>
+<rect x="420.28" y="612.3875" width="150" height="3.6" fill="#303846"/>
+<text x="420.28" y="639.4875" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Compassion</text>
+<rect x="420.28" y="647.1375" width="150" height="3.6" fill="#303846"/>
+<path d="M 420.28,667.125 L 570.28,667.125 C 570.28,667.125,570.28,667.125,570.28,667.125 L 570.28,667.625 C 570.28,667.625,570.28,667.625,570.28,667.625 L 420.28,667.625 C 420.28,667.625,420.28,667.625,420.28,667.625 L 420.28,667.125 C 420.28,667.125,420.28,667.125,420.28,667.125 Z" fill="#e2e2e2" />
+<text x="420.28" y="696.0125" style="font:normal 13.5px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="#303846">Languages</text>
+<text x="420.28" y="719.7375" style="font:normal 9px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black">Spanish</text>
+<rect x="420.28" y="727.3875" width="120" height="3.6" fill="#303846"/>
+<rect x="540.28" y="727.3875" width="29.999999999999993" height="3.6" fill="#eaebec"/>
+<text x="269.49791015625" y="829.89" style="font:normal 10px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black" fill-opacity="25%">©</text>
+<a target="_blank" href="https://www.jobseeker.com"><text x="279.64439453125" y="829.89" style="font:normal 10px LiberationSans,Helvetica,Arial,sans-serif;white-space:pre;letter-spacing:0px" fill="black" fill-opacity="25%">Jobseeker</text></a>
+</svg>
