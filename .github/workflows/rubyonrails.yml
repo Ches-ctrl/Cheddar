@@ -49,8 +49,8 @@ jobs:
       - name: Set up database schema
         run: bin/rails db:schema:load
       # Add or replace test runners here
-      - name: Run tests and generate logs
-        run: mkdir -p log && ls -la log && bundle exec rspec
+      - name: Run tests
+        run: bundle exec rspec
       - name: Upload VCR log
         if: failure()
         uses: actions/upload-artifact@v4
