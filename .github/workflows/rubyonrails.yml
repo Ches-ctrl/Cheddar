@@ -51,8 +51,6 @@ jobs:
       # Add or replace test runners here
       - name: Run tests
         run: bundle exec rspec
-      - name: Create log directory
-        run: mkdir -p log
       - name: Upload VCR log
         if: failure()
         uses: actions/upload-artifact@v2
