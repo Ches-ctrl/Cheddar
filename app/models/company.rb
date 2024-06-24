@@ -27,10 +27,6 @@ class Company < ApplicationRecord
 
   # == Instance Methods =====================================================
 
-  def create_all_relevant_jobs
-    CompanyJobsFetcher.new(self).call
-  end
-
   def short_description
     return if industry == 'n/a'
 

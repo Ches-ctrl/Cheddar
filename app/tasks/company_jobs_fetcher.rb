@@ -57,7 +57,7 @@ class CompanyJobsFetcher
   end
 
   def jobs_from_subsidiaries
-    @subsidiaries.inject([]) { |jobs_array, company| jobs_array + company.create_all_relevant_jobs }
+    @subsidiaries.inject([]) { |jobs_array, company| jobs_array + CompanyJobsFetcher.new(company).call }
   end
 
   def subsidiaries?
