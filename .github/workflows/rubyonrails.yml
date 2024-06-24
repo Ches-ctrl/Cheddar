@@ -49,8 +49,7 @@ jobs:
         run: bin/rails db:schema:load
       # Add or replace test runners here
       - name: Run tests and generate logs
-        run: |
-        mkdir -p log && bundle exec rspec || true
+        run: mkdir -p log && bundle exec rspec
       - name: Upload VCR log
         if: failure()
         uses: actions/upload-artifact@v4
