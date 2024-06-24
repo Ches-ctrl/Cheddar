@@ -7,11 +7,13 @@ class ApplicationProcessesQuery < ApplicationQuery
 
   def call
     @relation = @relation.eager_load(*associations)
+                         .order('job_applications.created_at': :asc)
   end
 
   private
 
   def associations
-    %i[jobs].push({ jobs: :company })
+    %i[job_applications]
+      .push({ job_applications: { job: :company } })
   end
 end

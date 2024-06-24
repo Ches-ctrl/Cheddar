@@ -13,6 +13,7 @@ class JobApplication < ApplicationRecord
   belongs_to :application_process
   belongs_to :job
   # == Scopes ===============================================================
+  default_scope { order id: :asc }
   # == Validations ==========================================================
   validates :status, presence: true
 

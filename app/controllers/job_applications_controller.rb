@@ -40,13 +40,13 @@ class JobApplicationsController < ApplicationController
   end
 
   def next_step_path
-    job_application_ids = @application_process.job_application_ids.reverse
+    job_application_ids = @application_process.job_application_ids
     index = job_application_ids.index(params[:id].to_i)
 
     if index.to_i < job_application_ids.length - 1
       edit_application_process_job_application_path(@application_process, job_application_ids[index + 1])
     else
-      application_process_overview_path(@application_process)
+      application_process_overview_path
     end
   end
 

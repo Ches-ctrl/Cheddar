@@ -11,7 +11,7 @@ class ApplicationProcess < ApplicationRecord
   # == Instance Methods =====================================================
   # == Relationships ========================================================
   belongs_to :user
-  has_many :job_applications, dependent: :destroy # , inverse_of: :application_process
+  has_many :job_applications, dependent: :destroy
   has_many :jobs, through: :job_applications
   # == Scopes ===============================================================
   # == Validations ==========================================================

@@ -11,8 +11,9 @@ class ApplicationProcessesController < ApplicationController
 
   private
 
-  def application_process_params
-    params.permit(:id)
+  def application_process_id
+    params.permit(:id)[:id] ||
+      params.permit(:application_process_id)[:application_process_id]
   end
 
   def application_process_scope
@@ -31,7 +32,7 @@ class ApplicationProcessesController < ApplicationController
 
   def load_application_process
     @application_process = ApplicationProcessesQuery.call(application_process_scope)
-                                                    .find(application_process_params[:id])
+                                                    .find_by(id: application_process_id)
   end
 
   def job_applications_params

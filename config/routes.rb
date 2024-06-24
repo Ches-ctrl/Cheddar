@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   mount ActionCable.server => "/cable" # TODO: fix as not found at the moment
   mount Avo::Engine, at: '/avo'
 
-  devise_for :users, except: [:fetch_template] #, controllers: { registrations: 'users/registrations' }
+  devise_for :users, except: [:fetch_template], controllers: { registrations: 'users/registrations' }
   post '/users/fetch_template', to: 'users#fetch_template', as: :fetch_template
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
@@ -63,8 +63,8 @@ Rails.application.routes.draw do
   get 'in_progress', to: 'in_progress_jobs#index', as: :in_progress_jobs
 
   resources :application_processes, only: %i[create show] do
+    get '/overview', to: 'overview_application_processes#show'
     resources :job_applications, only: %i[edit update]
-    get 'overview', to: 'overview_application_processes#show'
   end
 
   resources :opportunities, path: '/jobs', only: %i[index show] do

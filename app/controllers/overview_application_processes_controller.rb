@@ -1,5 +1,5 @@
 class OverviewApplicationProcessesController < ApplicationProcessesController
-  # def show
-  #   super
-  # end
+  def show
+    super
+  end
 end
