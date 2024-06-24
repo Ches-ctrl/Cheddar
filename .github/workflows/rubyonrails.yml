@@ -51,6 +51,12 @@ jobs:
       # Add or replace test runners here
       - name: Run tests
         run: bundle exec rspec
+      - name: Upload VCR log
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: vcr-log
+          path: log/vcr.log
 
   lint:
     runs-on: ubuntu-latest

@@ -46,6 +46,7 @@ VCR.configure do |config|
   config.configure_rspec_metadata!
   config.allow_http_connections_when_no_cassette = true
   config.ignore_localhost = true
+  config.debug_logger = File.open('log/vcr.log', 'w')
   # config.ignore_hosts 'dev.virtualearth.net'
 end
 
