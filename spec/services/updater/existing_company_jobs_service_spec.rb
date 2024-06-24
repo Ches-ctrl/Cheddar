@@ -1,4 +1,3 @@
-require 'rails_helper'
 require 'faker'
 
 RSpec.describe Updater::ExistingCompanyJobsService do

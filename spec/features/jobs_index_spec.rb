@@ -1,4 +1,3 @@
-require 'rails_helper'
 # require 'ruby-prof'
 
 # rubocop:disable Metrics/BlockLength

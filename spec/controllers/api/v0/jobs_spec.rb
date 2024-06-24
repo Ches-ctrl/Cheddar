@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Api::V0::JobsController, type: :controller, api: true do
   describe 'POST #add_job' do
     let(:user) { FactoryBot.create(:user) }

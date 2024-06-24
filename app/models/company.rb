@@ -79,7 +79,7 @@ class Company < ApplicationRecord
   end
 
   def fetch_description
-    return if self.description.present?
+    return if description.present?
 
     if Rails.env.production?
       inferred_description, @name_keywords = Categorizer::CompanyDescriptionService.lookup_company(name, ats_identifier)

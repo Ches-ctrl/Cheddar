@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe JobFilter do
   before do
     @roles = create_list(:role, 5)

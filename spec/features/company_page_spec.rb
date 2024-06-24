@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.feature "CompanyPage", type: :feature, company_page: true do
   pending "add some examples (or delete) #{__FILE__}"
 
