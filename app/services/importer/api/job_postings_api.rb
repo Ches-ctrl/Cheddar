@@ -17,8 +17,7 @@ module Importer
       def import_jobs(url)
         log_initial_counts
 
-        jobs_data = fetch_data(url)
-        return unless jobs_data
+        return unless (jobs_data = fetch_data(url))
 
         sort_by_hosted(jobs_data)
         log_fetched_jobs_data(jobs_data)
