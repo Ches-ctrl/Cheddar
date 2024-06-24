@@ -1,21 +1,21 @@
 ats_name,url_identifier,url_website,url_linkedin,url_base,url_api,url_all_jobs,url_xml,url_rss,login,
-Greenhouse,boards.greenhouse.io|gh_jid=,https://www.greenhouse.com/,,https://boards.greenhouse.io/XXX,https://boards-api.greenhouse.io/v1/boards/,,,,FALSE
-Workable,apply.workable,https://www.workable.com/,,https://apply.workable.com/XXX,https://apply.workable.com/api/v1/accounts/,https://jobs.workable.com/,https://www.workable.com/boards/workable.xml,,FALSE
-Lever,jobs.lever.co,https://www.lever.co/,,https://jobs.lever.co/XXX,https://api.lever.co/v0/postings/,,,,FALSE
-SmartRecruiters,careers.smartrecruiters,https://www.smartrecruiters.com/,,https://jobs.smartrecruiters.com/XXX,https://api.smartrecruiters.com/v1/companies/,https://jobs.smartrecruiters.com/,,,FALSE
-AshbyHQ,jobs.ashbyhq|?ashby_jid,https://www.ashbyhq.com/,,https://jobs.ashbyhq.com/XXX,https://api.ashbyhq.com/posting-api/job-board/,,,,FALSE
-PinpointHQ,pinpointhq.com,https://www.pinpointhq.com/,,https://XXX.pinpointhq.com/,https://XXX.pinpointhq.com/postings.json,,,,FALSE
-BambooHR,bamboohr.com/careers,https://www.bamboohr.com/,,https://XXX.bamboohr.com/careers/,https://XXX.bamboohr.com/careers/list,,,,FALSE
-Recruitee,recruitee.com,https://recruitee.com/,,https://XXX.recruitee.com/,https://XXX.recruitee.com/api/offers/,,,,FALSE
-Manatal,careers-page.com,https://www.manatal.com/,,https://www.careers-page.com/XXX,https://core.api.manatal.com/open/v3/career-page/,,,,FALSE
+Greenhouse,boards.greenhouse.io|gh_jid=,https://www.greenhouse.com/,,https://boards.greenhouse.io/{$company_id},https://boards-api.greenhouse.io/v1/boards/,,,,FALSE
+Workable,apply.workable,https://www.workable.com/,,https://apply.workable.com/{$company_id},https://apply.workable.com/api/v1/accounts/,https://jobs.workable.com/,https://www.workable.com/boards/workable.xml,,FALSE
+Lever,jobs.lever.co,https://www.lever.co/,,https://jobs.lever.co/{$company_id},https://api.lever.co/v0/postings/,,,,FALSE
+SmartRecruiters,careers.smartrecruiters,https://www.smartrecruiters.com/,,https://jobs.smartrecruiters.com/{$company_id},https://api.smartrecruiters.com/v1/companies/,https://jobs.smartrecruiters.com/,,,FALSE
+AshbyHQ,jobs.ashbyhq|?ashby_jid,https://www.ashbyhq.com/,,https://jobs.ashbyhq.com/{$company_id},https://api.ashbyhq.com/posting-api/job-board/,,,,FALSE
+PinpointHQ,pinpointhq.com,https://www.pinpointhq.com/,,https://{$company_id}.pinpointhq.com/,https://{$company_id}.pinpointhq.com/postings.json,,,,FALSE
+BambooHR,bamboohr.com/careers,https://www.bamboohr.com/,,https://{$company_id}.bamboohr.com/careers/,https://{$company_id}.bamboohr.com/careers/list,,,,FALSE
+Recruitee,recruitee.com,https://recruitee.com/,,https://{$company_id}.recruitee.com/,https://{$company_id}.recruitee.com/api/offers/,,,,FALSE
+Manatal,careers-page.com,https://www.manatal.com/,,https://www.careers-page.com/{$company_id},https://core.api.manatal.com/open/v3/career-page/,,,,FALSE
 Phenom,phenompeople.com,https://www.phenom.com/,,,https://api.phenom.com/,,,,
-Breezy HR,breezy.hr,https://breezy.hr/,,https://XXX.breezy.hr,https://api.breezy.hr/v3/,,,,
-JazzHR,applytojob.,https://www.jazzhr.com/,,https://XXX.applytojob.com,https://applyapi.jazz.co/v2/,,,,
-TeamTailor,teamtailor.com,https://www.teamtailor.com/en/,,https://XXX.teamtailor.com/jobs,https://api.teamtailor.com/v1/,,,,
-Workday,myworkdayjobs.com|myworkdaysite.com,https://www.workday.com/,,https://XXX.wd${ver}.myworkdayjobs.com/careers,https://XXX.wd1.myworkdayjobs.com/en-US/GTI/,,,,
-Jobvite,jobs.jobvite,https://www.jobvite.com/,,https://jobs.jobvite.com/XXX/jobs,https://api.jobvite.com/v1/,,,,
+Breezy HR,breezy.hr,https://breezy.hr/,,https://{$company_id}.breezy.hr,https://api.breezy.hr/v3/,,,,
+JazzHR,applytojob.,https://www.jazzhr.com/,,https://{$company_id}.applytojob.com,https://applyapi.jazz.co/v2/,,,,
+TeamTailor,teamtailor.com,https://www.teamtailor.com/en/,,https://{$company_id}.teamtailor.com/jobs,https://api.teamtailor.com/v1/,,,,
+Workday,myworkdayjobs.com|myworkdaysite.com,https://www.workday.com/,,https://{$company_id}.wd${ver}.myworkdayjobs.com/careers,https://{$company_id}.wd1.myworkdayjobs.com/en-US/GTI/,,,,
+Jobvite,jobs.jobvite,https://www.jobvite.com/,,https://jobs.jobvite.com/{$company_id}/jobs,https://api.jobvite.com/v1/,,,,
 DevITJobs,devitjobs.uk,https://devitjobs.uk/,,https://devitjobs.uk/jobs/,https://devitjobs.uk/api/,https://devitjobs.uk/api/jobsLight,https://devitjobs.uk/job_feed.xml,,
-Tal.net,tal.net,https://tal.net/,,https://XXX.tal.net/candidate/,,,,,
+Tal.net,tal.net,https://tal.net/,,https://{$company_id}.tal.net/candidate/,,,,,
 RecruitCRM,,https://recruitcrm.io/,,,,,,,
 ClayHR,bizmerlin.net,https://www.clayhr.com/,,,,,,,
 Beamery,,https://beamery.com/,,,,,,,
@@ -24,12 +24,12 @@ SelectMinds,referrals.selectminds.com,https://www.oracle.com/cx/marketing/social
 Harbour ATS,harbourats.com,https://harbourats.com/,,,,,,,
 LinkedIn,linkedin.com/company/*/jobs,https://www.linkedin.com/,,,,,,,TRUE
 CSOD,csod.com,https://www.cornerstoneondemand.com/uk/,,,,,,,
-Zoho Recruit,zohorecruit.,https://www.zoho.com/recruit/,,https://XXX.zohorecruit.com,,,,,
+Zoho Recruit,zohorecruit.,https://www.zoho.com/recruit/,,https://{$company_id}.zohorecruit.com,,,,,
 PageUp,,https://www.pageuppeople.com/,,,,,,,
-Freshteam,freshteam.com,https://support.freshteam.com/support/home,,https://XXX.freshteam.com/jobs,,,,,
+Freshteam,freshteam.com,https://support.freshteam.com/support/home,,https://{$company_id}.freshteam.com/jobs,,,,,
 BrassRing,brassring.com,https://www.linkedin.com/company/brassring/,,,,,,,
-iCIMS,icims.com,https://www.icims.com/,,https://XXX.icims.com/jobs,,,,,
-Eightfold,eightfold.ai,https://eightfold.ai/,,https://XXX.eightfold.ai/careers,,,,,
+iCIMS,icims.com,https://www.icims.com/,,https://{$company_id}.icims.com/jobs,,,,,
+Eightfold,eightfold.ai,https://eightfold.ai/,,https://{$company_id}.eightfold.ai/careers,,,,,
 SAP SuccessFactors,.successfactors.com,https://www.sap.com/uk/products/hcm.html,,,,,,,
 Taleo,taleo.net,https://www.oracle.com/uk/human-capital-management/taleo/,,,,,,,
 Otta,,https://otta.com/,,,,,,,TRUE
@@ -51,7 +51,7 @@ Recruitive,recruitive.com,https://www.recruitive.com/,,,,,,,
 Employment Hero,,https://employmenthero.com/,,,,,,,
 Juju,,https://www.juju.com/,,,,,,,
 Authentic Jobs,,https://authenticjobs.com/,,,,,,,
-Rippling,ats.rippling.com,https://www.rippling.com/,,https://ats.rippling.com/XXX/jobs,,,,,
+Rippling,ats.rippling.com,https://www.rippling.com/,,https://ats.rippling.com/{$company_id}/jobs,,,,,
 Bullhorn,bullhorn.com,https://www.bullhorn.com/,,,,,,,
 ADP,adp.com,https://www.adp.com/,,,,,,,
 CATS,catsone,https://catsone.com/,,,,,,,
@@ -105,6 +105,6 @@ Folk,folk.app,https://www.folk.app/,,,,,,,
 Simplyhired,simplyhired.co,https://www.simplyhired.co.uk/,,,,,,,
 TotalJobs,,https://www.totaljobs.com/,,,,,,,
 Amberjack,amberjack.com,https://www.weareamberjack.com/,,,,,,,
-Paycom,paycomonline.net,https://www.paycom.com/,,,,,,,
-EasyApply,easyapply.co,https://easyapply.co,,https://XXX.easyapply.co,,,,,
-Flair HR,flair.hr,https://flair.hr,,https://XXX.careers.flair.hr,,,,,
+Paycom,paycomonline.net,https://www.paycom.com/,,https://recruiting.paylocity.com/recruiting/jobs/All/{$uuid},,,,,
+EasyApply,easyapply.co,https://easyapply.co,,https://{$company_id}.easyapply.co,,,,,
+Flair HR,flair.hr,https://flair.hr,,https://{$company_id}.careers.flair.hr,,,,,
