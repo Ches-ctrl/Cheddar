@@ -28,32 +28,7 @@ class Company < ApplicationRecord
   # == Instance Methods =====================================================
 
   def create_all_relevant_jobs
-    jobs_found_or_created = []
-    ats = applicant_tracking_system
-
-    if ats.name == 'Workday'
-      subsidiaries = ats.fetch_subsidiaries(self)
-      return subsidiaries.inject([]) { |jobs_array, company| jobs_array + company.create_all_relevant_jobs } if subsidiaries.present?
-    end
-
-    all_jobs = ats.fetch_company_jobs(ats_identifier)
-    raise Errors::NoDataReturnedError, "The API returned no jobs data for #{name}" unless all_jobs
-
-    all_jobs.each do |job_data|
-      details = ats.fetch_title_and_location(job_data)
-      next unless relevant?(*details)
-
-      # create jobs with data from ATS company endpoint unless individual job endpoint exists:
-      if ats.individual_job_endpoint_exists?
-        job_id = ats.fetch_id(job_data)
-        job = ats.find_or_create_job(self, job_id)
-      else
-        job = ats.find_or_create_job_by_data(self, job_data)
-      end
-      jobs_found_or_created << job if job&.persisted?
-    end
-    puts "Found or created #{jobs_found_or_created.size} new jobs with #{name}."
-    jobs_found_or_created
+    CompanyJobsFetcher.new(self).call
   end
 
   def short_description
@@ -83,21 +58,7 @@ class Company < ApplicationRecord
   end
 
   def fetch_description
-    # if website_url, get CompanyDetailsFromUrl
-    if url_website.present?
-      company_details = Categorizer::CompanyDetailsFromUrl.new(url_website).call
-      self.name = company_details[:name] if company_details[:name]
-      self.description = company_details[:description] if description.blank?
-      self.url_linkedin ||= company_details[:url_linkedin]
-      self.url_website = company_details[:url_website] if company_details[:url_website]
-    end
-
-    if Rails.env.production?
-      inferred_description, @name_keywords = Categorizer::CompanyDescriptionService.lookup_company(name, ats_identifier)
-      self.description = inferred_description if description.blank?
-    else
-      self.description ||= "A financial services company."
-    end
+    CompanyDescriptionFetcher.new(self).call
   end
 
   def fetch_industry
