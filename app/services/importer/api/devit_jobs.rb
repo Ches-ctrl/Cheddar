@@ -9,7 +9,7 @@ module Importer
         super('DevITJobs')
       end
 
-      def import_jobs
+      def call
         super(@ats.url_all_jobs)
       end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Importer
   module Api
     # Base class for importing jobs from an external API e.g. jobs board, ATS
@@ -14,10 +16,21 @@ module Importer
         set_initial_counts
       end
 
-      def import_jobs(url)
+      def call(url)
+        return false unless processable
+
+        @url = url
+        process
+      end
+
+      def processable
+        @ats.present?
+      end
+
+      def process
         log_initial_counts
 
-        return unless (jobs_data = fetch_jobs_data(url))
+        return unless (jobs_data = fetch_jobs_data)
 
         sort_by_hosted(jobs_data)
         log_fetched_jobs_data(jobs_data)
@@ -33,12 +46,12 @@ module Importer
         @initial_jobs = Job.count
       end
 
-      def fetch_jobs_data(url)
-        @local_storage.fetch_local_data || fetch_and_save_remote_data(url)
+      def fetch_jobs_data
+        @local_storage.fetch_local_data || fetch_and_save_remote_data
       end
 
-      def fetch_and_save_remote_data(url)
-        jobs_data = fetch_json(url)
+      def fetch_and_save_remote_data
+        jobs_data = fetch_json(@url)
         return unless jobs_data
 
         save_jobs_data(jobs_data)
@@ -63,16 +76,23 @@ module Importer
       end
 
       def process_jobs
+        process_hosted_jobs
+        process_redirect_jobs
+      end
+
+      def process_hosted_jobs
         @hosted_jobs.each { |job_data| create_company_and_job(job_data) }
         p @hosted_jobs.count
         p "Hosted jobs processed."
+      end
+
+      def process_redirect_jobs
         @redirect_jobs.each { |job_data| Url::CreateJobFromUrlJob.perform_later(job_data['redirectJobUrl']) }
         p @redirect_jobs.count
         p "Redirected jobs processed."
       end
 
       def create_company_and_job(job_data)
-        return p "pretend I just created a job for #{job_data['jobUrl']}"
         # TODO: Refactor to call CompanyCreator and JobCreator as service classes
         company = @ats.find_or_create_company_by_data(job_data)
         p "Company: #{company.name}"

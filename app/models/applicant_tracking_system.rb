@@ -33,7 +33,7 @@ class ApplicantTrackingSystem < ApplicationRecord
 
   # == Class Methods ========================================================
   def self.determine_ats(url)
-    name = ATS_SYSTEM_PARSER.find { |regex, ats_name| break ats_name if url.match?(regex) }
+    name = fetch_ats_name_from_url(url)
     return ApplicantTrackingSystem.find_by(name:)
   end
 
@@ -75,5 +75,14 @@ class ApplicantTrackingSystem < ApplicationRecord
 
   def convert_from_milliseconds(millisecond_string)
     Time.at(millisecond_string.to_i / 1000) if millisecond_string
+  end
+
+  private_class_method def self.fetch_ats_name_from_url(url)
+    url_path, url_parameters = url.split('?')
+    fetch_name(url_path) || fetch_name(url_parameters)
+  end
+
+  private_class_method def self.fetch_name(string)
+    ATS_SYSTEM_PARSER.find { |regex, ats_name| break ats_name if string.match?(regex) }
   end
 end

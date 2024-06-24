@@ -1,3 +1,4 @@
+require 'rails_helper'
 require 'support/spec_constants'
 
 # rubocop:disable Metrics/BlockLength
@@ -36,6 +37,10 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
       bamboohr_url = 'https://avidbots.bamboohr.com/careers/789'
       ats = ApplicantTrackingSystem.determine_ats(bamboohr_url)
       expect(ats.name).to eq('BambooHR')
+
+      tricky_url = 'https://apply.workable.com/reedsy/j/7205B30B16/?utm_source=DevITjobs&utm_medium=Job Board'
+      ats = ApplicantTrackingSystem.determine_ats(tricky_url)
+      expect(ats.name).to eq('Workable')
     end
 
     it 'can parse a url and return the ATS, company and job_id' do
