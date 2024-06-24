@@ -28,6 +28,7 @@ class CompanyDescriptionFetcher
     @company.description = details[:description] if @company.description.blank?
     @company.url_linkedin ||= details[:url_linkedin]
     @company.url_website = details[:url_website] if details[:url_website]
+    @company.save
   end
 
   def fetch_and_assign_description_from_name

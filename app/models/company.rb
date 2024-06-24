@@ -20,8 +20,6 @@ class Company < ApplicationRecord
   # multisearchable against: [:name]
 
   # == Callbacks ============================================================
-  # TODO: Decide if we want to keep these callbacks
-  before_save :fetch_description, :set_website_url
 
   # == Class Methods ========================================================
 
@@ -37,8 +35,6 @@ class Company < ApplicationRecord
     send(url_type).present?
   end
 
-  private
-
   # TODO: Have identified these as the primary drivers of slow test speed due to API calls. Need to decide on next steps.
   # TODO: This is a very hacky temporary solution to speed up tests. Need to fix this
 
@@ -53,9 +49,7 @@ class Company < ApplicationRecord
     end
   end
 
-  def fetch_description
-    CompanyDescriptionFetcher.new(self).call
-  end
+  private
 
   def fetch_industry
     return unless industry == 'n/a'

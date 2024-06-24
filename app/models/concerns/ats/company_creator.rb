@@ -27,7 +27,11 @@ module Ats
         company.assign_attributes(supplementary_data)
       end
 
-      Rails.logger.info "Company created - #{company.name}" if company.new_record? && company.save
+      if company.new_record? && company.save
+        CompanyDescriptionFetcher.new(company).call
+        company.set_website_url
+        Rails.logger.info "Company created - #{company.name}"
+      end
 
       return company
     end
