@@ -3,7 +3,7 @@ Greenhouse,boards.greenhouse.io|gh_jid=,https://www.greenhouse.com/,,https://boa
 Workable,apply.workable,https://www.workable.com/,,https://apply.workable.com/,https://apply.workable.com/api/v1/accounts/,https://jobs.workable.com/,https://www.workable.com/boards/workable.xml,,FALSE
 Lever,jobs.lever.co,https://www.lever.co/,,https://jobs.lever.co/,https://api.lever.co/v0/postings/,,,,FALSE
 SmartRecruiters,careers.smartrecruiters,https://www.smartrecruiters.com/,,https://jobs.smartrecruiters.com/,https://api.smartrecruiters.com/v1/companies/,https://jobs.smartrecruiters.com/,,,FALSE
-AshbyHQ,jobs.ashbyhq,https://www.ashbyhq.com/,,https://jobs.ashbyhq.com/,https://api.ashbyhq.com/posting-api/job-board/,,,,FALSE
+AshbyHQ,jobs.ashbyhq|?ashby_jid,https://www.ashbyhq.com/,,https://jobs.ashbyhq.com/,https://api.ashbyhq.com/posting-api/job-board/,,,,FALSE
 PinpointHQ,pinpointhq.com,https://www.pinpointhq.com/,,https://XXX.pinpointhq.com/,https://XXX.pinpointhq.com/postings.json,,,,FALSE
 BambooHR,bamboohr.com/careers,https://www.bamboohr.com/,,https://XXX.bamboohr.com/careers/,https://XXX.bamboohr.com/careers/list,,,,FALSE
 Recruitee,recruitee.com,https://recruitee.com/,,https://XXX.recruitee.com/,https://XXX.recruitee.com/api/offers/,,,,FALSE
@@ -14,7 +14,7 @@ JazzHR,applytojob.,https://www.jazzhr.com/,,,https://applyapi.jazz.co/v2/,,,,
 TeamTailor,teamtailor.com,https://www.teamtailor.com/en/,,,https://api.teamtailor.com/v1/,,,,
 Workday,myworkdayjobs.com|myworkdaysite.com,https://www.workday.com/,,,https://XXX.wd1.myworkdayjobs.com/en-US/GTI/,,,,
 Jobvite,jobs.jobvite,https://www.jobvite.com/,,,https://api.jobvite.com/v1/,,,,
-DevITJobs,,https://devitjobs.uk/,,https://devitjobs.uk/jobs/,https://devitjobs.uk/api/,https://devitjobs.uk/api/jobsLight,https://devitjobs.uk/job_feed.xml,,
+DevITJobs,devitjobs.uk,https://devitjobs.uk/,,https://devitjobs.uk/jobs/,https://devitjobs.uk/api/,https://devitjobs.uk/api/jobsLight,https://devitjobs.uk/job_feed.xml,,
 Tal.net,tal.net,https://tal.net/,,https://XXX.tal.net/candidate/,,,,,
 RecruitCRM,,https://recruitcrm.io/,,,,,,,
 ClayHR,bizmerlin.net,https://www.clayhr.com/,,,,,,,
@@ -106,3 +106,5 @@ Simplyhired,simplyhired.co,https://www.simplyhired.co.uk/,,,,,,,
 TotalJobs,,https://www.totaljobs.com/,,,,,,,
 Amberjack,amberjack.com,https://www.weareamberjack.com/,,,,,,,
 Paycom,paycomonline.net,https://www.paycom.com/,,,,,,,
+EasyApply,easyapply.co,https://easyapply.co,,https://XXX.easyapply.co,,,,,
+Flair HR,flair.hr,https://flair.hr,,https://XXX.careers.flair.hr,,,,,
