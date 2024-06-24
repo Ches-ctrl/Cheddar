@@ -47,16 +47,14 @@ jobs:
         run: bundle exec rails db:create
       - name: Set up database schema
         run: bin/rails db:schema:load
+      - name: Create log directory
+        run: mkdir -p log
       # Add or replace test runners here
       - name: Run tests
         run: bundle exec rspec
-      - name: List files in log directory
-        run: ls -la log
-      - name: Create log directory
-        run: mkdir -p log
       - name: Upload VCR log
         if: failure()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: vcr-log
           path: log/vcr.log
