@@ -1,7 +1,7 @@
 <div class="d-flex align-items-center justify-content-center me-3">
   <% if user_signed_in? %>
     <% if @saved_job_ids.include?(job.id) %>
-      <%= link_to saved_job_path(job.saved_job_ids), data: {turbo_method: :delete} do %>
+      <%= link_to saved_jobs_path(job.saved_job_ids), data: {turbo_method: :delete} do %>
         <i class="fa-solid fa-bookmark pe-2"></i>
       <% end %>
     <% else %>
