@@ -16,7 +16,7 @@ module Importer
       private
 
       def redirect?(json_data)
-        return false unless json_data['redirectJobUrl']
+        json_data['redirectJobUrl'].present?
       end
     end
   end

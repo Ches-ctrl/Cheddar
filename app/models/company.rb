@@ -67,27 +67,27 @@ class Company < ApplicationRecord
   # TODO: This is a very hacky temporary solution to speed up tests. Need to fix this
   # TODO: Remove these as depenedencies - we will find another way to do this
 
-  # def set_website_url
-  #   return if url_website.present?
+  def set_website_url
+    return if url_website.present?
 
-  #   if Rails.env.production?
-  #     clearbit_company_info = Categorizer::CompanyDomainService.lookup_domain(name)
-  #     self.url_website = clearbit_company_info['domain'] if clearbit_company_info && clearbit_company_info['domain'].present?
-  #   else
-  #     self.url_website = "https://www.example.com"
-  #   end
-  # end
+    if Rails.env.production?
+      clearbit_company_info = Categorizer::CompanyDomainService.lookup_domain(name)
+      self.url_website = clearbit_company_info['domain'] if clearbit_company_info && clearbit_company_info['domain'].present?
+    else
+      self.url_website = "https://www.example.com"
+    end
+  end
 
-  # def fetch_description
-  #   return if self.description.present?
+  def fetch_description
+    return if self.description.present?
 
-  #   if Rails.env.production?
-  #     inferred_description, @name_keywords = Categorizer::CompanyDescriptionService.lookup_company(name, ats_identifier)
-  #     self.description = inferred_description if description.blank?
-  #   else
-  #     self.description = "A financial services company."
-  #   end
-  # end
+    if Rails.env.production?
+      inferred_description, @name_keywords = Categorizer::CompanyDescriptionService.lookup_company(name, ats_identifier)
+      self.description = inferred_description if description.blank?
+    else
+      self.description = "A financial services company."
+    end
+  end
 
   # def fetch_industry
   #   return unless industry == 'n/a'

@@ -601,6 +601,7 @@ DEPENDENCIES
   bullet
   capybara
   cloudinary
+  csv
   debug
   derailed_benchmarks
   devise

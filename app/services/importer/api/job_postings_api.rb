@@ -17,7 +17,7 @@ module Importer
       def import_jobs(url)
         log_initial_counts
 
-        return unless (jobs_data = fetch_data(url))
+        return unless (jobs_data = fetch_jobs_data(url))
 
         sort_by_hosted(jobs_data)
         log_fetched_jobs_data(jobs_data)
@@ -33,7 +33,7 @@ module Importer
         @initial_jobs = Job.count
       end
 
-      def fetch_data(url)
+      def fetch_jobs_data(url)
         @local_storage.fetch_local_data || fetch_and_save_remote_data(url)
       end
 
@@ -51,9 +51,7 @@ module Importer
       end
 
       def sort_by_hosted(jobs_data)
-        # TODO: Fix JSON parsing error
-        parsed_jobs_data = JSON.parse(jobs_data)
-        @redirect_jobs, @hosted_jobs = parsed_jobs_data.partition { |job_data| redirect?(job_data) }
+        @redirect_jobs, @hosted_jobs = jobs_data.partition { |job_data| redirect?(job_data) }
       end
 
       # def redirect?(_job_data)
@@ -65,15 +63,16 @@ module Importer
       end
 
       def process_jobs
-        @hosted_jobs.each { |job_data| p "testing processing" }
+        @hosted_jobs.each { |job_data| create_company_and_job(job_data) }
         p @hosted_jobs.count
         p "Hosted jobs processed."
-        @redirect_jobs.each { |job_data| p "testing processing" }
+        @redirect_jobs.each { |job_data| Url::CreateJobFromUrlJob.perform_later(job_data['redirectJobUrl']) }
         p @redirect_jobs.count
         p "Redirected jobs processed."
       end
 
       def create_company_and_job(job_data)
+        return p "pretend I just created a job for #{job_data['jobUrl']}"
         # TODO: Refactor to call CompanyCreator and JobCreator as service classes
         company = @ats.find_or_create_company_by_data(job_data)
         p "Company: #{company.name}"
