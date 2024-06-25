@@ -17,6 +17,7 @@
 <div class="hidden lg:flex items-center gap-5">
   <div class="flex items-center lg:ml-8">
     <div class="flex space-x-8">
+      <span class="mx-4 h-6 w-px bg-gray-200 lg:mx-6" aria-hidden="true"></span>
       <div class="hidden lg:flex">
         <span class="sr-only">Dark Mode Switch</span>
         <button type="button" class="flex h-6 w-6 items-center justify-center rounded-md text-gray-400 hover:text-gray-500" aria-label="Switch to light theme" data-action="click->theme#toggleTheme">
@@ -39,7 +40,7 @@
           <% end %>
         </div>
       <% end %>
-      <span class="mx-4 h-6 w-px bg-gray-200 lg:mx-6" aria-hidden="true"></span>
+      <!-- <span class="mx-4 h-6 w-px bg-gray-200 lg:mx-6" aria-hidden="true"></span> -->
       <div class="flex" data-controller="profile-dropdown" data-profile-dropdown-target="dropdownContainer">
         <button type="button" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
           <span class="sr-only">Open user menu</span>
