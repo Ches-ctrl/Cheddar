@@ -17,7 +17,7 @@ module ApplicationProcessesHelper
       comes_before?(step_id, params[:id].to_i)
   end
 
-  def application_step_unstarted?(step_id)
+  def application_step_unstarted?(_step_id)
     true
   end
 

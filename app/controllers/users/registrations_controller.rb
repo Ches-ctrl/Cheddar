@@ -2,9 +2,9 @@
 
 module Users
   class RegistrationsController < Devise::RegistrationsController
-    def update
-      super
-    end
+    # def update
+    #   super
+    # end
 
     protected
 
