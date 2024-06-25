@@ -105,8 +105,8 @@ module Importer
 
         end
     end
-  end
+end
   
-  # The below is for testing the redirect functionality without hitting the XML feed (comment out the above and use this)
-  # job_urls = ["https://apply.workable.com/j/9A5B371BA0", "https://apply.workable.com/j/2595A6EDD0", "https://apply.workable.com/j/2DA044E84E", "https://apply.workable.com/j/5ECBE14794", "https://apply.workable.com/j/F44ED9E40A", "https://apply.workable.com/j/0908074E5D", "https://apply.workable.com/j/0AA38013AC", "https://apply.workable.com/j/8D801CE251", "https://apply.workable.com/j/E91B0F3F46", "https://apply.workable.com/j/802966A156"]
+# The below is for testing the redirect functionality without hitting the XML feed (comment out the above and use this)
+# job_urls = ["https://apply.workable.com/j/9A5B371BA0", "https://apply.workable.com/j/2595A6EDD0", "https://apply.workable.com/j/2DA044E84E", "https://apply.workable.com/j/5ECBE14794", "https://apply.workable.com/j/F44ED9E40A", "https://apply.workable.com/j/0908074E5D", "https://apply.workable.com/j/0AA38013AC", "https://apply.workable.com/j/8D801CE251", "https://apply.workable.com/j/E91B0F3F46", "https://apply.workable.com/j/802966A156"]
   
