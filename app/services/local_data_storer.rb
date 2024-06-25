@@ -2,7 +2,7 @@
 
 # Class responsible for storing API JSON data locally to prevent the need for multiple API calls
 # Works by saving JSON data to a file and fetching it when needed
-class LocalDataStorage
+class LocalDataStorer
   attr_reader :local_storage_path
 
   def initialize(source)

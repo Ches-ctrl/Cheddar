@@ -21,7 +21,7 @@ class DevitJobFetcher
 
   def process_as_devit_job
     ats = ApplicantTrackingSystem.find_by(name: 'DevITJobs')
-    company = CompanyCreator.new(ats:, data: @job_data, apply_with_cheddar: false).call
+    company = CompanyCreator.call(ats:, data: @job_data, apply_with_cheddar: false)
     p "Company: #{company&.name}"
     job = ats.find_or_create_job_by_data(company, @job_data)
     p "Job: #{job&.title}"

@@ -67,7 +67,7 @@ RSpec.describe Updater::ExistingCompanyJobsService do
     it 'marks any company_ids that are invalid' do
       returned_ats_name = nil
       returned_company_id = nil
-      allow_any_instance_of(ApplicantTrackingSystem).to receive(:find_or_create_company).and_return(nil)
+      allow_any_instance_of(CompanyCreator).to receive(:call).and_return(nil)
       allow_any_instance_of(Updater::ExistingCompanyJobsService).to receive(:add_to_invalid_ids) do |_instance, *args|
         returned_ats_name, returned_company_id = args
       end

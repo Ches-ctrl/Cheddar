@@ -4,7 +4,7 @@ module Url
     retry_on StandardError, attempts: 0
 
     def perform(url)
-      Importer::URL::CreateCompanyFromUrl.new(url).create_company
+      Importer::Url::CreateCompanyFromUrl.new(url).create_company
     end
   end
 end

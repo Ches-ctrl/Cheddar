@@ -12,7 +12,7 @@ module Importer
 
       def initialize(ats_name)
         @ats = ApplicantTrackingSystem.find_by(name: ats_name)
-        @local_storage = LocalDataStorage.new(ats_name)
+        @local_storage = LocalDataStorer.new(ats_name)
         set_initial_counts
       end
 
@@ -22,6 +22,8 @@ module Importer
         @url = url
         process
       end
+
+      private
 
       def processable
         @ats.present?
@@ -38,8 +40,6 @@ module Importer
         process_jobs
         log_final_counts
       end
-
-      private
 
       def set_initial_counts
         @initial_companies = Company.count

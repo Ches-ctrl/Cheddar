@@ -17,7 +17,7 @@ module Builders
           next
         end
 
-        company = ats.find_or_create_company(ats_identifier)
+        company = CompanyCreator.call(ats:, ats_identifier:)
 
         if company
           puts "Created Company - #{company.name}"

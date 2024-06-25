@@ -32,7 +32,7 @@ module Updater
           puts "Looking at jobs with #{ats_identifier}..."
 
           # Find or create the company
-          unless (company = @ats.find_or_create_company(ats_identifier))
+          unless (company = CompanyCreator.call(ats: @ats, ats_identifier:))
             puts "Problem with #{ats_identifier}"
             add_to_invalid_ids(ats_name, ats_identifier)
             next
