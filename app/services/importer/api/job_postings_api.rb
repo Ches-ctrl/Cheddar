@@ -87,7 +87,7 @@ module Importer
       end
 
       def process_redirect_jobs
-        @redirect_jobs.each { |job_data| Url::CreateJobFromUrlJob.perform_later(job_data['redirectJobUrl']) }
+        @redirect_jobs.each { |job_data| Url::CreateDevitJobFromUrlJob.perform_later(job_data) }
         p @redirect_jobs.count
         p "Redirected jobs processed."
       end

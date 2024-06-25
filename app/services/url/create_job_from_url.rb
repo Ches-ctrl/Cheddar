@@ -13,7 +13,6 @@ module Url
       # ---------------
       # Create Company From URL
       # ---------------
-
       ats, company, job_id = Url::CreateCompanyFromUrl.new(@url).create_company
 
       return handle_unparseable unless ats
@@ -25,6 +24,7 @@ module Url
         puts "Created job - #{job&.title}"
       else
         p "Job has expired - #{@url}"
+        job = nil
       end
 
       # ---------------
@@ -36,7 +36,7 @@ module Url
       # urls = ats.get_company_jobs(@url)
       # AddRemainingJobsToSite.new(urls, ats, company).add_jobs
 
-      job
+      [ats, company, job]
     end
 
     def handle_unparseable
