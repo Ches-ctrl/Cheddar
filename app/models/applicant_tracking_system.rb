@@ -83,6 +83,8 @@ class ApplicantTrackingSystem < ApplicationRecord
   end
 
   private_class_method def self.fetch_name(string)
+    return if string.empty?
+
     ATS_SYSTEM_PARSER.find { |regex, ats_name| break ats_name if string.match?(regex) }
   end
 end
