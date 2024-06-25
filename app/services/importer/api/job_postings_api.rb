@@ -94,7 +94,7 @@ module Importer
 
       def create_company_and_job(job_data)
         # TODO: Refactor to call CompanyCreator and JobCreator as service classes
-        company = @ats.find_or_create_company_by_data(job_data)
+        company = CompanyCreator.new(ats: @ats, data: job_data).call
         p "Company: #{company&.name}"
         job = @ats.find_or_create_job_by_data(company, job_data)
         p "Job: #{job&.title}"

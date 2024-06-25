@@ -16,12 +16,12 @@ class DevitJobFetcher
   def process
     url = @job_data['redirectJobUrl']
     _ats, _company, job = Url::CreateJobFromUrl.new(url).create_company_then_job
-    process_as_devit_job unless job
+    process_as_devit_job unless job&.persisted?
   end
 
   def process_as_devit_job
     ats = ApplicantTrackingSystem.find_by(name: 'DevITJobs')
-    company = ats.find_or_create_company_by_data(@job_data)
+    company = CompanyCreator.new(ats:, data: @job_data, apply_with_cheddar: false).call
     p "Company: #{company&.name}"
     job = ats.find_or_create_job_by_data(company, @job_data)
     p "Job: #{job&.title}"

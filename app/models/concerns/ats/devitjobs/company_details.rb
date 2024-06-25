@@ -1,8 +1,6 @@
 module Ats
   module Devitjobs
     module CompanyDetails
-      private
-
       def fetch_company_id(data)
         p "Fetching company ID"
         data['company'].gsub(' ', '-').gsub(/[^A-Za-z\-]/, '')

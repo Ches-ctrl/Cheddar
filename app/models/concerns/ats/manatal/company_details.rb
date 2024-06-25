@@ -1,8 +1,6 @@
 module Ats
   module Manatal
     module CompanyDetails
-      private
-
       def company_details(ats_identifier)
         url_ats_api = "#{url_api}#{ats_identifier}/"
         data = get_json_data(url_ats_api)
@@ -19,6 +17,8 @@ module Ats
           # linkedin: data['linkedin_url'],
         }
       end
+
+      private
 
       def fetch_total_live(ats_identifier)
         # This method supersedes the generic one as it's more efficient
