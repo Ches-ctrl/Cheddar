@@ -1,11 +1,12 @@
 # frozen_string_literal: true
-
-class CompanyCreator < ApplicationTask
+# ats.find_or_create_job(company, job_id)
+# ats.find_or_create_job_by_data(company, @job_data)
+class JobCreator < ApplicationTask
   def initialize(params)
     @ats = params[:ats]
+    @company = params[:company]
     @data = params[:data]
-    @ats_identifier = params[:ats_identifier] || @ats.fetch_company_id(@data)
-    @apply_with_cheddar = params[:apply_with_cheddar]
+    @job_id = params[:job_id] || @ats.fetch_id(@data)
   end
 
   def call
@@ -13,31 +14,36 @@ class CompanyCreator < ApplicationTask
 
     process
   rescue StandardError => e
-    Rails.logger.error "Error creating company: #{e.message}"
+    Rails.logger.error "Error creating job: #{e.message}"
   end
 
   private
 
   def processable
-    @ats && @ats_identifier
+    @ats && @company && @job_id
   end
 
   def process
-    create_company
+    create_job
     log_and_save_new_company
     update_apply_with_cheddar
   end
 
   def create_company
-    @company = Company.find_or_initialize_by(ats_identifier: @ats_identifier) do |new_company|
-      new_company.assign_attributes(company_params)
+    @job = Job.find_or_initialize_by(ats_job_id: @job_id) do |new_job|
+      new_job.assign_attributes(job_params)
     end
   end
 
-  def company_params
-    params = @ats.company_details(@ats_identifier)
+  def job_params
+    @data ||= @ats.fetch_job_data(new_job)
+
+    params = @ats.job_details(@ats_identifier)
     params.merge(supplementary_attributes_from_data)
-          .merge(applicant_tracking_system: @ats)
+          .merge(
+            company: @company,
+            applicant_tracking_system: @ats
+          )
   end
 
   def log_and_save_new_company
