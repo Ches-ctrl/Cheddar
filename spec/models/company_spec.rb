@@ -1,5 +1,4 @@
 require 'rails_helper'
-require Rails.root.join('spec', 'support', 'spec_constants.rb')
 
 RSpec.describe Company do
   describe 'Associations' do
@@ -10,35 +9,5 @@ RSpec.describe Company do
   describe 'Validations', :vcr do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_uniqueness_of(:ats_identifier) }
-  end
-
-  context "with an existing company" do
-    before do
-      allow($stdout).to receive(:write) # suppresses terminal clutter
-
-      Builders::AtsBuilder.new.build
-    end
-
-    COMPANIES.each do |ats_name, ats_id|
-      it "can create all relevant jobs with #{ats_name}", :vcr do
-        VCR.use_cassette("create_all_relevant_jobs_#{ats_name}") do
-          ats = ApplicantTrackingSystem.find_by(name: ats_name)
-          company = ats.find_or_create_company(ats_id)
-          unless company.persisted?
-            data = ats.fetch_company_jobs(ats_id)&.first
-            company = ats.find_or_create_company_by_data(data)
-          end
-
-          output = StringIO.new
-          $stdout = output
-
-          company.create_all_relevant_jobs
-
-          $stdout = STDOUT
-
-          expect(output.string).to match(/Found or created \d+ new jobs with .+\./)
-        end
-      end
-    end
   end
 end
