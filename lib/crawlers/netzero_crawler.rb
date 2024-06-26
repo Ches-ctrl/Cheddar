@@ -35,7 +35,7 @@ module Crawlers
     end
 
     # @param page [Spidr::Page]
-    def process_page(page)
+    def scrape_page(page)
       score_page(page)
     end
 

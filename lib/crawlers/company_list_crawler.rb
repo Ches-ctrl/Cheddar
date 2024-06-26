@@ -29,7 +29,8 @@ module Crawlers
       max_hits = 1
       data.each do |row|
         crawler = Crawlers::CompanyCrawler.new(row["Website"])
-        results = crawler.crawl(max_crawl, max_time, max_hits)
+        crawler.set_limits(max_crawl, max_time, max_hits)
+        results = crawler.crawl
         hits = results.join("|")
         puts "Found #{results.length} hits."
         row<<{ "Hits"=>hits }

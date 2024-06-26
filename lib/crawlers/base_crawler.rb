@@ -24,41 +24,41 @@ module Crawlers
     def initialize(url, stubs_path = nil)
       @starting_url = url
       @hits = []
-      if stubs_path.nil?
-        puts "No priority stub path given."
-        @priority_stubs = []
-      else
-        @priority_stubs = load_stubs(stubs_path)
-      end
+      @priority_stubs = load_stubs(stubs_path)
+      # Initialize limts to `nil`
+      set_limits
     end
 
     private
 
     # Load priority stubs to use.
-    # Expects file format to be plain text, one stub per line
+    # Expects file format to be plain text, one stub per line.
+    # If `path` is `nil`, an empty array will be returned.
     #
     # @param path [String]
     #
     # @return [Array<String>]
     def load_stubs(path)
+      return [] if path.nil?
+
       return File.new(path).readlines.map(&:chomp)
     end
 
-    # Get current timestamp
+    # Return current timestamp.
     #
     # @return [Float]
     def current_time
       return Process.clock_gettime(Process::CLOCK_MONOTONIC)
     end
 
-    # Return elapsed time
+    # Return elapsed time.
     #
     # @return [Float]
     def elapsed_time
       return current_time - @start_time
     end
 
-    # Return `true` if max crawl exceeded
+    # Return `true` if max crawl exceeded.
     #
     # @param agent [Spidr::PriorityAgent]
     #
@@ -69,7 +69,7 @@ module Crawlers
       return true
     end
 
-    # Return `true` if max time exceeded
+    # Return `true` if max time exceeded.
     #
     # @return [TrueClass, FalseClass]
     def max_time_exceeded?
@@ -78,7 +78,7 @@ module Crawlers
       return true
     end
 
-    # Return `true` if max hits exceeded
+    # Return `true` if max hits exceeded.
     #
     # @return [TrueClass, FalseClass]
     def max_hits_exceeded?
@@ -87,7 +87,7 @@ module Crawlers
       return true
     end
 
-    # Return `true` if any limit is exceeded
+    # Return `true` if any limit is exceeded.
     #
     # @param agent [Spidr::PriorityAgent]
     #
@@ -96,7 +96,24 @@ module Crawlers
       return max_crawl_exceeded?(agent) || max_time_exceeded? || max_hits_exceeded?
     end
 
-    # Return the domain from a url, stripping `www.` if present
+    # Stop crawl due to crawl limits having been exceeded.
+    #
+    # @param agent [Spidr::PriorityAgent]
+    def limits_exceeded(agent)
+      puts "Scan limits exceeded."
+      puts "Scanned #{agent.history.length} pages in #{elapsed_time.round(2)}s."
+      agent.pause!
+    end
+
+    # Print info about current page being crawled.
+    #
+    # @param page [Spidr::Page]
+    def page_status(page)
+      puts "Scraping `#{page.url}`"
+      puts "Status code: `#{page.response.code}`"
+    end
+
+    # Return the domain from a url, stripping `www.` if present.
     # i.e. https://www.website.com -> website.com
     #
     # @param url [String]
@@ -106,45 +123,65 @@ module Crawlers
       return URI(url).host.delete_prefix('www.')
     end
 
-    # Override to implement per page behavior
+    # Return a list of valid hosts from the given url.
+    #
+    # @param url [String]
+    #
+    # @return [Array<String>]
+    def valid_hosts(url)
+      domain = url_to_domain(url)
+      return [domain, /[a-zA-Z\.]+#{domain}/]
+    end
+
+    # Perform pre-crawl actions and setup.
+    def pre_crawl_chores
+      @start_time = current_time
+      puts "Beginning crawl of `#{@starting_url}`..."
+    end
+
+    # Defines the action loop for each page.
+    #
+    # @param agent [Spidr::Agent]
+    def every_page(agent)
+      agent.priority_stubs = @priority_stubs
+      agent.every_page do |page|
+        limits_exceeded(agent) if limits_exceeded?(agent)
+        page_status(page)
+        scrape_page(page)
+      end
+    end
+
+    # Override to implement per page behavior.
     #
     # @param page [Spidr::Page]
-    def process_page(page)
+    def scrape_page(page)
       raise NotImplementedError
     end
 
     public
 
-    # Start crawling with the specified limits, if any.
-    # Returns the contents of `@hits`.
+    # Set the limit values for the crawler.
+    # Pass a value of `nil` for a limit to be ignored.
     #
     # @param max_crawl [Integer, NilClass]
     #
     # @param max_time [Float, NilClass]
     #
     # @param max_hits [Integer, NilClass]
-    #
-    # @return [Array]
-    def crawl(max_crawl = nil, max_time = nil, max_hits = nil)
+    def set_limits(max_crawl = nil, max_time = nil, max_hits = nil)
       @max_crawl = max_crawl
       @max_time = max_time
       @max_hits = max_hits
-      @start_time = current_time
-      domain = url_to_domain(@starting_url)
-      puts "Beginning crawl of `#{@starting_url}`..."
-      Spidr.start_at(@starting_url, hosts: [domain, /[a-zA-Z\.]+#{domain}/], strip_fragments: true, strip_query: true, robots: false) do |agent|
-        agent.priority_stubs = @priority_stubs
-        agent.every_page do |page|
-          # quit crawling if limits exceeded
-          if limits_exceeded?(agent)
-            puts "Scan limits exceeded."
-            puts "Scanned #{agent.history.length} pages in #{elapsed_time.round(2)}s."
-            agent.pause!
-          end
-          puts "Scraping `#{page.url}`"
-          puts "Status code: `#{page.response.code}`"
-          process_page(page)
-        end
+    end
+
+    # Start crawling with the specified limits, if any.
+    # Returns the contents of `@hits`.
+    #
+    # @return [Array]
+    def crawl
+      pre_crawl_chores
+      Spidr.start_at(@starting_url, hosts: valid_hosts(@starting_url), strip_fragments: true, strip_query: true, robots: false) do |agent|
+        every_page(agent)
       end
       return @hits
     end
