@@ -27,7 +27,11 @@ module Ats
         company.assign_attributes(supplementary_data)
       end
 
-      Rails.logger.info "Company created - #{company.name}" if company.new_record? && company.save
+      if company.new_record? && company.save
+        CompanyDescriptionFetcher.call(company)
+        company.set_website_url
+        Rails.logger.info "Company created - #{company.name}"
+      end
 
       return company
     end
@@ -39,7 +43,7 @@ module Ats
     private
 
     def company_details_from_data(data)
-      refer_to_module(defined?(super) ? super : nil, __method__)
+      data
     end
 
     def fetch_company_id(data)

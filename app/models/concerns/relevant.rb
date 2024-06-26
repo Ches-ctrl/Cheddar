@@ -26,7 +26,7 @@ module Relevant
   def relevant_based_on_title_and_location?(title, job_location)
     title &&
       job_location &&
-      JOB_LOCATION_KEYWORDS.any? { |keyword| job_location.downcase.match?(keyword) } &&
-      JOB_TITLE_KEYWORDS.any? { |keyword| title.downcase.match?(keyword) }
+      JOB_LOCATION_KEYWORDS.any? { |keyword| job_location.match?(keyword) } &&
+      JOB_TITLE_KEYWORDS.any? { |keyword| title.match?(keyword) }
   end
 end
