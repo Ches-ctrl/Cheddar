@@ -1,7 +1,5 @@
-<% if request.fullpath.end_with?('/template/users/sign_in') %>
 <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8 ">
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
-    <!-- <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company"> -->
     <h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">
       Let's get you hired
     </h2>
@@ -9,10 +7,8 @@
       Apply to thousands of jobs in one-click and track your status.
     </p>
   </div>
-
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
     <div class="bg-white/5 dark:bg-zinc-900/10 ring-1 ring-indigo-500 rounded-xl px-6 py-12 shadow sm:rounded-lg sm:px-12">
-      <!-- <form class="space-y-6" action="#" method="POST"> -->
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'space-y-6' }) do |f| %>
         <div>
           <label for="email" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Email address</label>
@@ -23,10 +19,8 @@
               label: false,
               input_html: { autocomplete: "email", class: "block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6" }
             %>
-            <!-- <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6"> -->
           </div>
         </div>
-
         <div>
           <label for="password" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Password</label>
           <div class="mt-2">
@@ -36,10 +30,8 @@
               label: false,
               input_html: { autocomplete: "current-password", class: "block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6" }
             %>
-            <!-- <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6"> -->
           </div>
         </div>
-
         <div class="flex items-center justify-between">
           <div class="flex items-center">
             <%= f.input :remember_me,
@@ -49,22 +41,16 @@
               autofocus: false,
               label: false,
               input_html: { class: "mt-2 h-4 w-4 rounded border-gray-300 dark:text-gray-700 text-indigo-600 focus:ring-indigo-600", checked: true } if devise_mapping.rememberable? %>
-            <!-- <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 rounded border-gray-300 dark:text-gray-700 text-indigo-600 focus:ring-indigo-600"> -->
             <label for="remember-me" class="ml-3 block text-sm leading-6 text-gray-900 dark:text-white">Remember me</label>
           </div>
-
           <div class="text-sm leading-6">
-            <%= link_to "Forgot password?", new_template_user_password_path, class: "font-semibold text-indigo-600 hover:text-indigo-500" %>
-            <!-- <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a> -->
+            <%= link_to "Forgot password?", new_user_password_path, class: "font-semibold text-indigo-600 hover:text-indigo-500" %>
           </div>
         </div>
-
         <div>
-          <%= f.button :submit, "Log in", class: "flex w-full justify-center rounded-md !bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white dark:text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
-          <!-- <button type="submit" class="flex w-full justify-center rounded-md !bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white dark:text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button> -->
+          <%= f.button :submit, "Log in", class: "flex w-full justify-center cursor-pointer rounded-md !bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white dark:text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
         </div>
       <% end %>
-
       <div>
         <div class="relative mt-10">
           <div class="absolute inset-0 flex items-center" aria-hidden="true">
@@ -74,7 +60,6 @@
             <span class="bg-white dark:bg-zinc-900 px-6 text-gray-900 dark:text-white">Or continue with</span>
           </div>
         </div>
-
         <div class="mt-6 grid grid-cols-2 gap-4">
           <a href="#" class="flex w-full items-center justify-center gap-3 rounded-md bg-white dark:bg-white/10 px-3 py-2 text-sm font-semibold text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-white/20 focus-visible:ring-transparent">
             <svg class="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true">
@@ -96,38 +81,3 @@
     </div>
   </div>
 </div>
-<% else %>
-  <div class="container login-div">
-      <h1 class="login-h1">Let's get you hired</h1>
-      <h4 class="login-h4">Apply to thousands of jobs in one-click and track your status.</h4>
-
-      <div class="login-box" >
-        <div class="col-md-10">
-            <h2 class="login-box-h2">Log in</h2>
-
-            <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-              <div class="form-inputs">
-                <%= f.input :email,
-                            required: false,
-                            autofocus: true,
-                            input_html: { autocomplete: "email", class: "rounded-4", placeholder: "Email" } %>
-                <%= f.input :password,
-                            required: false,
-                            input_html: { autocomplete: "current-password", class: "rounded-4", placeholder: "Password" } %>
-                <%= f.input :remember_me, as: :boolean, input_html: { class: 'remember-me', checked: true } if devise_mapping.rememberable? %>
-                <p class="login-forgot-password">
-                  <%= link_to "Forgot your password?", new_password_path(resource_name) %>
-                </p>
-              </div>
-
-              <div class="form-actions text-center pb-3">
-                <%= f.button :submit, "Log in", class: "btn-login"%>
-              </div>
-            <% end %>
-
-            <p class="login-non-account">Don't yet have an account? <%= link_to "Sign Up", new_user_registration_path %></p>
-          </div>
-        </div>
-      </div>
-  </div>
-<% end %>

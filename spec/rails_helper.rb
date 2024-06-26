@@ -40,12 +40,13 @@ end
 
 # VCR Config
 VCR.configure do |config|
-  config.cassette_library_dir = "spec/fixtures/cassettes"
+  config.cassette_library_dir = Rails.root.join('spec', 'fixtures', 'cassettes')
   config.default_cassette_options = { :record => :once }
   config.hook_into :webmock
   config.configure_rspec_metadata!
   config.allow_http_connections_when_no_cassette = true
   config.ignore_localhost = true
+  config.debug_logger = File.open('log/vcr.log', 'w')
   # config.ignore_hosts 'dev.virtualearth.net'
 end
 

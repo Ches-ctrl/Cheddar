@@ -1,12 +1,16 @@
 <% if request.fullpath.eql?('/protocol') %>
   <%= yield %>
 <% elsif request.fullpath.include?('/jobs') ||
+  request.fullpath.include?('/basket') ||
+  request.fullpath.include?('/job_applications') ||
   request.fullpath.eql?('/') ||
-  request.fullpath.end_with?('/template/users/sign_in') ||
-  request.fullpath.end_with?('/template/users/password/new') ||
+  request.fullpath.end_with?('/users/sign_in') ||
+  request.fullpath.end_with?('/users/password/new') ||
   request.fullpath.include?('/users/password/edit?') ||
-  request.fullpath.end_with?('/template/users/sign_up') ||
-  request.fullpath.end_with?('/template/users/edit')
+  request.fullpath.end_with?('/users/sign_up') ||
+  request.fullpath.end_with?('/users/edit') ||
+  request.fullpath.include?('/users/edit?') ||
+  request.fullpath.end_with?('/users')
 %>
 <!DOCTYPE html>
 <html class="h-full" style="color-scheme: light;">
@@ -21,7 +25,6 @@
     <%= javascript_importmap_tags %>
   </head>
   <body class="flex min-h-full bg-white antialiased dark:bg-zinc-900">
-    <%= render 'shared/template/search_dialog' %>
     <div class="w-full">
       <div class="h-full <%= @opportunities ? 'lg:ml-72 xl:ml-80' : '' %>" data-controller="theme mobile-nav">
         <header>
@@ -32,6 +35,7 @@
         </div>
         <div class="relative flex h-full flex-col px-4 pt-14 sm:px-6 lg:px-8">
           <main class="flex-auto">
+            <%= render "shared/template/flashes" %>
             <%= yield %>
           </main>
           <%= render 'shared/template/page_footer', next_options: { title: "Quickstart", link_path: '#' } %>

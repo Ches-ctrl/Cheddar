@@ -1,7 +1,7 @@
 <% if job.present? %>
   <div class="company-page-job-card mb-4">
     <div>
-      <%= link_to job_path(job), target: "_blank" do %>
+      <%= link_to opportunity_path(job), target: "_blank" do %>
         <h6 class="text-primary fw-bold"><%= job.title %></h6>
       <% end %>
       <p class="location"><%= job.non_geocoded_location_string %></p>

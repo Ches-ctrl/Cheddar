@@ -1,3 +1,4 @@
+require 'rails_helper'
 require 'support/spec_constants'
 
 # rubocop:disable Metrics/BlockLength
@@ -29,6 +30,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
       @recruitee = ApplicantTrackingSystem.find_by(name: 'Recruitee')
       @smartrecruiters = ApplicantTrackingSystem.find_by(name: 'SmartRecruiters')
       @workable = ApplicantTrackingSystem.find_by(name: 'Workable')
+      @workday = ApplicantTrackingSystem.find_by(name: 'Workday')
       @devitjobs = ApplicantTrackingSystem.find_by(name: 'DevITJobs')
     end
 
@@ -65,6 +67,17 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
 
       workable_url = 'https://apply.workable.com/kroo/j/13AE03BA88/'
       expect(@workable.parse_url(workable_url)).to eq(['kroo', '13AE03BA88'])
+
+      workday_urls = %w[
+        https://motorolasolutions.wd5.myworkdayjobs.com/en-US/Careers/details/UI-Designer_R45335
+        https://motorolasolutions.wd5.myworkdayjobs.com/en-US/Careers/details/UI-Designer_R45335?locationCountry=29247e57dbaf46fb855b224e03170bc7
+        https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Glasgow-UK-ZUK118/UI-Designer_R45335
+        https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/UI-Designer_R45335
+        https://motorolasolutions.wd5.myworkdaysite.com/Careers/job/UI-Designer_R45335
+      ]
+      workday_urls.each do |workday_url|
+        expect(@workday.parse_url(workday_url)).to eq(['motorolasolutions/Careers/5', 'UI-Designer_R45335'])
+      end
 
       # TODO: Implement testing of DevITJobs
       # devitjobs_url = 'https://devitjobs.uk/jobs/Nesta-Frontend-Mid-Level-Developer'
@@ -142,7 +155,14 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
     it 'can create a company with Workable' do
       VCR.use_cassette('create_company_workable') do
         @workable.find_or_create_company('kroo')
-        expect(Company.last.name).to eq('Kroo Bank Ltd')
+        expect(Company.last.name).to eq('Kroo')
+      end
+    end
+
+    it 'can create a company with Workday' do
+      VCR.use_cassette('create_company_workday') do
+        @workday.find_or_create_company('motorolasolutions/Careers/5')
+        expect(Company.last.name).to eq('Motorola Solutions')
       end
     end
 
@@ -257,10 +277,21 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         feed = get_json_data(url)
         title = feed.dig('jobs', 0, 'title')
         job_id = feed.dig('jobs', 0, 'application_url').match(%r{https://apply\.workable\.com/j/(\w+)/apply})[1]
-        company = @workable.find_or_create_company('southern-national')
+        company = @workable.find_or_create_company(WORKABLE_COMPANY.first)
         job = @workable.find_or_create_job(company, job_id)
-        p company
-        p job
+        expect(job.title).to eq(title)
+      end
+    end
+
+    it 'can create a job with Workday' do
+      VCR.use_cassette('create_job_workday') do
+        company_id = 'motorolasolutions/Careers/5'
+        data = @workday.fetch_company_jobs(company_id, one_job_only: true)
+        job_data = data['jobPostings']&.first
+        title = job_data['title']
+        job_id = job_data['externalPath'].split('/').last
+        company = @workday.find_or_create_company(company_id)
+        job = @workday.find_or_create_job(company, job_id)
         expect(job.title).to eq(title)
       end
     end

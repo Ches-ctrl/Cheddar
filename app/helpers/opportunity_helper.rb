@@ -1,4 +1,9 @@
 module OpportunityHelper
+  def job_saved?(opportunity)
+    @current_saved_job_ids ||= current_user.saved_jobs.pluck(:job_id)
+    @current_saved_job_ids.include?(opportunity.id)
+  end
+
   def opportunity_public_location(opportunity)
     text = if opportunity.remote || opportunity.locations.empty?
              'Remote'
