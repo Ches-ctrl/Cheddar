@@ -4,7 +4,7 @@ require 'csv'
 
 module Crawlers
   class CompanyListCrawler
-    OUTPUT_PATH = File.join(Rails.root, "crawl_list_output.csv")
+    OUTPUT_PATH = File.join(Rails.root, "storage/csv/crawl_list_output_#{Process.clock_gettime(Process::CLOCK_MONOTONIC).to_i}.csv")
     # Allows for appending a row to an existing output file so as not to overwrite
     # This also means that if you recrawl a company, it'll have more than one entry in the output file
     def dump_result(result_row)
