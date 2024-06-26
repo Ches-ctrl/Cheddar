@@ -22,7 +22,7 @@ module Crawlers
     # @param page [Spidr::Page]
     def score_page(page)
       source = page.body.downcase
-      hit = NetzeroHit.new(page.url)
+      hit = NetzeroHit.new(page.url.to_s)
       @netzero_stubs.each do |stub|
         if source.downcase.include?(stub)
           puts stub
