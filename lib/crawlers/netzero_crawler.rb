@@ -1,20 +1,18 @@
-require_relative "../../priority_spidr/priority_spidr"
-require_relative "../base_crawler"
+require_relative "../priority_spidr/priority_spidr"
+require_relative "base_crawler"
 require_relative "netzero_hit"
 require "cgi"
-require "pathname"
 
 module Crawlers
   class NetzeroCrawler < BaseCrawler
-    ROOT = Pathname.new(__FILE__).parent.parent.parent.parent
     # Requires a url string
     #
     # @param url [String]
     #
     # @param stubs_path [Pathname, NilClass]
-    def initialize(url, stubs_path = Pathname.new(__FILE__).parent + "priority_stubs.txt") # rubocop:disable Style/StringConcatenation
+    def initialize(url, stubs_path = File.join(File.dirname(__FILE__), "wordlists/netzero_priority_stubs.txt"))
       super(url, stubs_path)
-      @netzero_stubs = load_stubs(Pathname.new(__FILE__).parent + "key_terms.txt") # rubocop:disable Style/StringConcatenation
+      @netzero_stubs = load_stubs(File.join(File.dirname(__FILE__), "wordlists/netzero_key_terms.txt"))
     end
 
     private

@@ -1,6 +1,5 @@
 require_relative "../priority_spidr/priority_spidr"
 require "cgi"
-require "pathname"
 require "csv"
 
 module Crawlers
@@ -38,11 +37,11 @@ module Crawlers
     # Load priority stubs to use.
     # Expects file format to be plain text, one stub per line
     #
-    # @param path [Pathname]
+    # @param path [String]
     #
     # @return [Array<String>]
     def load_stubs(path)
-      return path.readlines.map(&:chomp)
+      return File.new(path).readlines.map(&:chomp)
     end
 
     # Get current timestamp

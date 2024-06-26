@@ -138,9 +138,6 @@ gem 'yomu' # this gem is no longer maintained - used for custom cover letters # 
 # gem 'henkei' # alternative maintained gem to yomu for cover letters # TODO: install
 gem 'htmltoword'
 
-# File path handling
-gem 'pathname'
-
 # Production
 # gem "puma_worker_killer" # NB. Doesn't actually solve memory problems!
 

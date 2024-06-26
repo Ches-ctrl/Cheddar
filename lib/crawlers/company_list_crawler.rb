@@ -1,12 +1,10 @@
 require_relative 'company_crawler'
-require 'pathname'
 require 'fileutils'
 require 'csv'
 
 module Crawlers
   class CompanyListCrawler
-    ROOT = Pathname.new(__FILE__).parent.parent.parent.parent
-    OUTPUT_PATH = Pathname.new("crawl_list_output.csv")
+    OUTPUT_PATH = File.join(Rails.root, "crawl_list_output.csv")
     # Allows for appending a row to an existing output file so as not to overwrite
     # This also means that if you recrawl a company, it'll have more than one entry in the output file
     def dump_result(result_row)
@@ -22,7 +20,7 @@ module Crawlers
     end
 
     def crawl_list
-      company_list_path = ROOT + "companies.csv" # rubocop:disable Style/StringConcatenation
+      company_list_path = File.join(Rails.root, "companies.csv")
       FileUtils.touch(OUTPUT_PATH)
 
       data = CSV.parse(File.read(company_list_path), headers: true)
