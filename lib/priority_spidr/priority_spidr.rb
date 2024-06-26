@@ -1,8 +1,3 @@
-# frozen_string_literal: true
-
-require 'spidr/settings/proxy'
-require 'spidr/settings/timeouts'
-require 'spidr/settings/user_agent'
 require_relative 'priority_agent'
 
 # Copying the `Spidr` entry point functions and setting them to use `PriorityAgent`
