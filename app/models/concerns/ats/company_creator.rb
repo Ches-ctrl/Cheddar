@@ -28,7 +28,7 @@ module Ats
       end
 
       if company.new_record? && company.save
-        CompanyDescriptionFetcher.new(company).call
+        CompanyDescriptionFetcher.call(company)
         company.set_website_url
         Rails.logger.info "Company created - #{company.name}"
       end

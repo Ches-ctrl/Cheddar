@@ -1,4 +1,6 @@
-class CompanyDescriptionFetcher
+# frozen_string_literal: true
+
+class CompanyDescriptionFetcher < ApplicationTask
   def initialize(company)
     @company = company
   end
