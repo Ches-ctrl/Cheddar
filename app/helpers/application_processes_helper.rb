@@ -8,12 +8,14 @@ module ApplicationProcessesHelper
   def current_application_step?(step_id)
     (current_controller?("application_processes") && step_id.eql?("common_fields")) ||
       (current_controller?("overview_application_processes") && step_id.eql?("overview")) ||
+      (current_controller?("payload_application_processes") && step_id.eql?("payload")) ||
       (current_controller?("job_applications") && request.fullpath.include?("job_applications/#{step_id}"))
   end
 
   def application_step_completed?(step_id)
     (current_controller?("job_applications") && step_id.eql?("common_fields")) ||
-      current_controller?("overview_application_processes") ||
+      (current_controller?("overview_application_processes") && !step_id.eql?("payload")) ||
+      current_controller?("payload_application_processes") ||
       comes_before?(step_id, params[:id].to_i)
   end
 

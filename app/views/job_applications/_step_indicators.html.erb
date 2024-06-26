@@ -68,7 +68,7 @@
     <% end %>
     <li>
       <div class="relative pb-8">
-        <span class="absolute right-4 top-4 -ml-px h-full w-0.5" aria-hidden="true"></span>
+        <span class="absolute right-4 top-4 -ml-px h-full w-0.5 bg-gray-200 dark:bg-gray-600" aria-hidden="true"></span>
         <%= link_to application_process_overview_path(@application_process), class: "relative flex space-x-3" do %>
           <div class="flex min-w-0 flex-1 justify-end text-right space-x-4 pt-1.5">
             <div>
@@ -93,6 +93,39 @@
                 </svg>
               </span>
             <% elsif application_step_unstarted?("overview") %>
+              <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 dark:bg-gray-600 ring-8 ring-transparent"></span>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </li>
+    <li>
+      <div class="relative pb-8">
+        <span class="absolute right-4 top-4 -ml-px h-full w-0.5" aria-hidden="true"></span>
+        <%= link_to application_process_payload_path(@application_process), class: "relative flex space-x-3" do %>
+          <div class="flex min-w-0 flex-1 justify-end text-right space-x-4 pt-1.5">
+            <div>
+              <p class="text-sm text-gray-500 dark:text-gray-400">
+                <span class="font-medium text-gray-900 dark:text-white">
+                  Payload
+                </span>
+              </p>
+            </div>
+          </div>
+          <div>
+            <% if current_application_step?("payload") %>
+              <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-400 ring-8 ring-transparent">
+                <svg class="size-5 text-white dark:text-gray-900 dark:text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clip-rule="evenodd" />
+                </svg>                
+              </span>
+            <% elsif application_step_completed?("payload") %>
+              <span class="flex h-8 w-8 items-center justify-center rounded-full bg-green-500 ring-8 ring-transparent">
+                <svg class="h-5 w-5 text-white dark:text-gray-900 dark:text-white" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+              </span>
+            <% elsif application_step_unstarted?("payload") %>
               <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 dark:bg-gray-600 ring-8 ring-transparent"></span>
             <% end %>
           </div>
