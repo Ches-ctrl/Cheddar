@@ -17,7 +17,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
 
   context "With current modules", :vcr do
     before(:all) do
-      # allow($stdout).to receive(:write) # suppresses terminal clutter
+      allow($stdout).to receive(:write) # suppresses terminal clutter
 
       Builders::AtsBuilder.new.build
 

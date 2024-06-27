@@ -15,7 +15,7 @@ module Ats
             name: company_data['descriptor'],
             ats_identifier: "#{company.ats_identifier}/#{company_data['id']}"
           }
-          find_or_create_company_by_data(data)
+          CompanyCreator.call(ats: self, data:)
         end
       end
 
