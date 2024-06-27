@@ -41,12 +41,6 @@ Rails.application.routes.draw do
   # Resources
 
   resources :companies, only: %i[index show]
-  # resources :job_applications, only: %i[index show new success create] do
-  #   member do
-  #     get :status
-  #   end
-  # end
-
   resources :emails, only: [:create]
   resources :educations, only: %i[new create]
 
@@ -56,7 +50,7 @@ Rails.application.routes.draw do
   get 'protocol', to: 'pages#protocol', as: 'protocol'
 
   ###
-  ### Integration of new template
+  ###
   ###
 
   get 'basket', to: 'saved_jobs#index', as: :saved_jobs
@@ -75,6 +69,8 @@ Rails.application.routes.draw do
       get 'opportunity_autocomplete', to: 'opportunity_autocomplete#index'
     end
   end
+
+  resource :user_details, only: %i[edit update]
 
   root to: 'uncategorized_pages#tothemoon'
 end
