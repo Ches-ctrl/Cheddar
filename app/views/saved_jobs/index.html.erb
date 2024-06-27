@@ -18,7 +18,7 @@
             </div>
           </div>
           <div class="flex flex-grow items-center">
-            <%= link_to "Continue", application_process_path(current_application_process(@records)), class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white dark:text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+            <%= link_to "Continue", edit_application_process_job_application_path(current_application_process(@records), first_job_application(@records)), class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white dark:text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
           </div>
         <% else %>
           <div class="flex gap-x-4 pr-0 sm:flex-none">

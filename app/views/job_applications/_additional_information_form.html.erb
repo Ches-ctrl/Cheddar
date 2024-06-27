@@ -2,7 +2,6 @@
   <div class="grid gap-x-6 gap-y-8 sm:max-w-6xl sm:grid-cols-6">
     <% job_application.job.application_criteria.each do |attribute, criteria_hash| %>
       <% application_criteria = ApplicationCriteria.new(criteria_hash.merge(attribute:)) %>
-      <% next if User::FREQUENT_ASKED_INFO_ATTRIBUTES.include?(attribute) || application_criteria.interaction.nil? %>
       <div class="col-span-full">
         <label for="<%= application_criteria.attribute %>>" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"><%= application_criteria.attribute %></label>
         <div class="mt-2">
