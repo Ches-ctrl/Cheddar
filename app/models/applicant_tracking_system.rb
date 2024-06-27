@@ -77,14 +77,16 @@ class ApplicantTrackingSystem < ApplicationRecord
     Time.at(millisecond_string.to_i / 1000) if millisecond_string
   end
 
-  private_class_method def self.fetch_ats_name_from_url(url)
+  def self.fetch_ats_name_from_url(url)
     url_path, url_parameters = url.split('?')
     fetch_name(url_path) || fetch_name(url_parameters)
   end
 
-  private_class_method def self.fetch_name(string)
+  def self.fetch_name(string)
     return unless string&.present?
 
     ATS_SYSTEM_PARSER.find { |regex, ats_name| break ats_name if string.match?(regex) }
   end
+
+  private_class_method :fetch_ats_name_from_url, :fetch_name
 end

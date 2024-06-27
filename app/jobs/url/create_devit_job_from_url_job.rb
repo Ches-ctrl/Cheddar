@@ -4,7 +4,7 @@ module Url
     retry_on StandardError, attempts: 0
 
     def perform(job_data)
-      DevitJobFetcher.new(job_data).call
+      DevitJobFetcher.call(job_data)
     end
   end
 end

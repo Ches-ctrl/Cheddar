@@ -1,4 +1,6 @@
-class DevitJobFetcher
+# frozen_string_literal: true
+
+class DevitJobFetcher < ApplicationTask
   def initialize(job_data)
     @job_data = job_data
   end
