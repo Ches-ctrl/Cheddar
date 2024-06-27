@@ -17,8 +17,6 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
 
   context "With current modules", :vcr do
     before(:all) do
-      allow($stdout).to receive(:write) # suppresses terminal clutter
-
       Builders::AtsBuilder.new.build
 
       @ashbyhq = ApplicantTrackingSystem.find_by(name: 'AshbyHQ')
@@ -32,6 +30,10 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
       @workable = ApplicantTrackingSystem.find_by(name: 'Workable')
       @workday = ApplicantTrackingSystem.find_by(name: 'Workday')
       @devitjobs = ApplicantTrackingSystem.find_by(name: 'DevITJobs')
+    end
+
+    before(:each) do
+      allow($stdout).to receive(:write) # suppresses terminal clutter
     end
 
     it 'can parse a url and determine the ATS' do
