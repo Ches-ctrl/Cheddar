@@ -16,7 +16,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
 
   context "With current modules", :vcr do
     before do
-      allow($stdout).to receive(:write) # suppresses terminal clutter
+      # allow($stdout).to receive(:write) # suppresses terminal clutter
 
       Builders::AtsBuilder.new.build
 
@@ -166,7 +166,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         title = feed.dig('jobs', 0, 'title')
         job_id = feed.dig('jobs', 0, 'id')
         company = CompanyCreator.call(ats: @ashbyhq, ats_identifier: 'lightdash')
-        job = @ashbyhq.find_or_create_job(company, job_id)
+        job = JobCreator.call(ats: @ashbyhq, company:, job_id:)
         expect(job.title).to eq(title)
       end
     end
@@ -178,7 +178,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         title = feed.dig('result', 0, 'jobOpeningName')
         job_id = feed.dig('result', 0, 'id')
         company = CompanyCreator.call(ats: @bamboohr, ats_identifier: 'premise')
-        job = @bamboohr.find_or_create_job(company, job_id)
+        job = JobCreator.call(ats: @bamboohr, company:, job_id:)
         expect(job.title).to eq(title)
       end
     end
@@ -190,7 +190,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         title = feed.dig('jobs', 0, 'title')
         job_id = feed.dig('jobs', 0, 'id')
         company = CompanyCreator.call(ats: @gh, ats_identifier: 'codepath')
-        job = @gh.find_or_create_job(company, job_id)
+        job = JobCreator.call(ats: @gh, company:, job_id:)
         expect(job.title).to eq(title)
       end
     end
@@ -202,7 +202,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         title = feed.dig(0, 'text')
         job_id = feed.dig(0, 'id')
         company = CompanyCreator.call(ats: @lever, ats_identifier: 'GoToGroup')
-        job = @lever.find_or_create_job(company, job_id)
+        job = JobCreator.call(ats: @lever, company:, job_id:)
         expect(job.title).to eq(title)
       end
     end
@@ -214,7 +214,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         title = feed.dig('results', 0, 'position_name')
         job_id = feed.dig('results', 0, 'hash')
         company = CompanyCreator.call(ats: @manatal, ats_identifier: 'ptc-group')
-        job = @manatal.find_or_create_job(company, job_id)
+        job = JobCreator.call(ats: @manatal, company:, job_id:)
         expect(job.title).to eq(title)
       end
     end
@@ -226,7 +226,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         title = feed.dig('data', 0, 'title')
         job_id = feed.dig('data', 0, 'path').sub('/en/postings/', '')
         company = CompanyCreator.call(ats: @pinpointhq, ats_identifier: 'bathspa')
-        job = @pinpointhq.find_or_create_job(company, job_id)
+        job = JobCreator.call(ats: @pinpointhq, company:, job_id:)
         expect(job.title).to eq(title)
       end
     end
@@ -238,7 +238,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         title = feed.dig('offers', 0, 'title')
         job_id = feed.dig('offers', 0, 'slug')
         company = CompanyCreator.call(ats: @recruitee, ats_identifier: RECRUITEE_COMPANY.first)
-        job = @recruitee.find_or_create_job(company, job_id)
+        job = JobCreator.call(ats: @recruitee, company:, job_id:)
         expect(job.title).to eq(title)
       end
     end
@@ -250,7 +250,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         title = feed.dig('content', 0, 'name')
         job_id = feed.dig('content', 0, 'id')
         company = CompanyCreator.call(ats: @smartrecruiters, ats_identifier: 'Gousto1')
-        job = @smartrecruiters.find_or_create_job(company, job_id)
+        job = JobCreator.call(ats: @smartrecruiters, company:, job_id:)
         expect(job.title).to eq(title)
       end
     end
@@ -262,7 +262,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         title = feed.dig('jobs', 0, 'title')
         job_id = feed.dig('jobs', 0, 'application_url').match(%r{https://apply\.workable\.com/j/(\w+)/apply})[1]
         company = CompanyCreator.call(ats: @workable, ats_identifier: 'southern-national')
-        job = @workable.find_or_create_job(company, job_id)
+        job = JobCreator.call(ats: @workable, company:, job_id:)
         p company
         p job
         expect(job.title).to eq(title)

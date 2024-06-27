@@ -12,11 +12,11 @@ module Ats
       refer_to_module(defined?(super) ? super : nil, __method__)
     end
 
-    private
-
     def fetch_company_id(data)
       refer_to_module(defined?(super) ? super : nil, __method__)
     end
+
+    private
 
     def fetch_company_name(ats_identifier)
       p "Fetching company name from clearbit"

@@ -41,9 +41,9 @@ class Company < ApplicationRecord
       # create jobs with data from ATS company endpoint unless individual job endpoint exists:
       if ats.individual_job_endpoint_exists?
         job_id = ats.fetch_id(job_data)
-        job = ats.find_or_create_job(self, job_id)
+        job = JobCreator.call(ats:, company: self, job_id:)
       else
-        job = ats.find_or_create_job_by_data(self, job_data)
+        job = JobCreator.call(ats:, company: self, data: job_data)
       end
       jobs_found_or_created << job if job&.persisted?
     end

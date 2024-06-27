@@ -23,7 +23,7 @@ class DevitJobFetcher
     ats = ApplicantTrackingSystem.find_by(name: 'DevITJobs')
     company = CompanyCreator.call(ats:, data: @job_data, apply_with_cheddar: false)
     p "Company: #{company&.name}"
-    job = ats.find_or_create_job_by_data(company, @job_data)
+    job = JobCreator.call(ats:, company:, data: @job_data)
     p "Job: #{job&.title}"
   rescue StandardError => e
     Rails.logger.error "Error creating company and job: #{e.message}"
