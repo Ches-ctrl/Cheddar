@@ -2,7 +2,7 @@ module Builders
   class JobBuilder
     def build
       Company.all.each do |company|
-        company.create_all_relevant_jobs
+        CompanyJobsFetcher.new(company).call
       rescue StandardError => e
         puts "Error: #{e}"
       end

@@ -39,7 +39,7 @@ module Updater
           end
 
           begin
-            company_jobs = company.create_all_relevant_jobs
+            company_jobs = CompanyJobsFetcher.new(company).call
           rescue Errors::NoDataReturnedError => e
             puts e.message
             add_to_invalid_ids(ats_name, ats_identifier)

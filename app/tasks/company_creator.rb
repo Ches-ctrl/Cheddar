@@ -14,6 +14,7 @@ class CompanyCreator < ApplicationTask
     process
   rescue StandardError => e
     Rails.logger.error "Error creating company: #{e.message}"
+    nil
   end
 
   private
@@ -41,6 +42,8 @@ class CompanyCreator < ApplicationTask
   end
 
   def log_and_save_new_company
+    p CompanyDescriptionFetcher.call(@company)
+    p @company.set_website_url
     Rails.logger.info "Company created - #{@company.name}" if @company.new_record? && @company.save
   end
 

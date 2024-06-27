@@ -54,7 +54,7 @@ RSpec.describe Updater::ExistingCompanyJobsService do
         ats_identifier: company_id,
         applicant_tracking_system: ats
       )
-      allow_any_instance_of(Company).to receive(:create_all_relevant_jobs).and_return([])
+      allow_any_instance_of(CompanyJobsFetcher).to receive(:call).and_return([])
       allow_any_instance_of(Updater::ExistingCompanyJobsService).to receive(:mark_defunct_jobs).and_return(true)
       allow_any_instance_of(Updater::ExistingCompanyJobsService).to receive(:update_lists).and_return(true)
     end
@@ -79,7 +79,7 @@ RSpec.describe Updater::ExistingCompanyJobsService do
     it "crosses off each job url that's still valid" do
       valid_job = create(:job, posting_url: job_posting_url)
       invalid_job = create(:job, posting_url: 'https://totally.does/not/exist')
-      allow_any_instance_of(Company).to receive(:create_all_relevant_jobs).and_return([valid_job])
+      allow_any_instance_of(CompanyJobsFetcher).to receive(:call).and_return([valid_job])
       instance.call
       expect(instance.instance_variable_get(:@job_urls_from_last_update)).to eq([invalid_job.posting_url].to_set)
     end
@@ -93,7 +93,7 @@ RSpec.describe Updater::ExistingCompanyJobsService do
         applicant_tracking_system: ats
       )
       create(:job, title: existing_job_title)
-      allow_any_instance_of(Company).to receive(:create_all_relevant_jobs).and_return([])
+      allow_any_instance_of(CompanyJobsFetcher).to receive(:call).and_return([])
       allow_any_instance_of(Updater::ExistingCompanyJobsService).to receive(:update_lists).and_return(true)
     end
 

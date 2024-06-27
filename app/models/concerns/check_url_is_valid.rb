@@ -71,6 +71,45 @@ module CheckUrlIsValid
     get(proxy_url)
   end
 
+  def json_post_request(api_url, request_body = {}, max_retries = 2)
+    # TODO: make this code DRY
+    retries = 0
+    options = {
+      headers: {
+        'Content-Type' => 'application/json'
+      },
+      body: request_body.to_json
+    }
+    sanitize_url(api_url)
+
+    begin
+      response = HTTParty.post(api_url, options)
+      raise Errors::ExternalServerError, 'External server error' if response.code.to_s.starts_with?('5')
+
+      puts "RESPONSE CODE: #{response.code}" unless response.code == 200
+    rescue Net::OpenTimeout, Errors::ExternalServerError => e
+      if retries < max_retries
+        retries += 1
+        retry
+      else
+        puts "Connection to #{api_url} failed after #{retries} retries: #{e.message}"
+        return {}
+      end
+    rescue StandardError => e
+      puts "HTTParty threw an error of type #{e.class.name}"
+      puts e.message
+    end
+
+    return {} if !response || response.code == 404 || response.body == "Not Found"
+
+    begin
+      JSON.parse(response.body)
+    rescue JSON::ParserError => e
+      puts "Error fetching JSON data from #{api_url}: #{e.message}"
+      return {}
+    end
+  end
+
   def get_json_data(api_url, max_retries = 2, use_proxy: false)
     retries = 0
     options = { headers: { 'Accept' => 'application/json' } }
@@ -95,7 +134,7 @@ module CheckUrlIsValid
       puts e.message
     end
 
-    return {} if response.code == 404 || response.body == "Not Found"
+    return {} if !response || response.code == 404 || response.body == "Not Found"
 
     begin
       JSON.parse(response.body)

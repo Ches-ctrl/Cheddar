@@ -20,36 +20,10 @@ class Company < ApplicationRecord
   # multisearchable against: [:name]
 
   # == Callbacks ============================================================
-  # TODO: Decide if we want to keep these callbacks
-  before_save :set_website_url, :fetch_description
 
   # == Class Methods ========================================================
 
   # == Instance Methods =====================================================
-
-  # TODO: Refactor this into a service class as shouldn't sit in the model
-  def create_all_relevant_jobs
-    jobs_found_or_created = []
-    ats = applicant_tracking_system
-    all_jobs = ats.fetch_company_jobs(ats_identifier)
-    raise Errors::NoDataReturnedError, "The API returned no jobs data for #{name}" unless all_jobs
-
-    all_jobs.each do |job_data|
-      details = ats.fetch_title_and_location(job_data)
-      next unless relevant?(*details)
-
-      # create jobs with data from ATS company endpoint unless individual job endpoint exists:
-      if ats.individual_job_endpoint_exists?
-        job_id = ats.fetch_id(job_data)
-        job = JobCreator.call(ats:, company: self, job_id:)
-      else
-        job = JobCreator.call(ats:, company: self, data: job_data)
-      end
-      jobs_found_or_created << job if job&.persisted?
-    end
-    puts "Found or created #{jobs_found_or_created.size} new jobs with #{name}."
-    jobs_found_or_created
-  end
 
   def short_description
     return if industry == 'n/a'
@@ -60,8 +34,6 @@ class Company < ApplicationRecord
   def url_present?(url_type)
     send(url_type).present?
   end
-
-  private
 
   # TODO: Have identified these as the primary drivers of slow test speed due to API calls. Need to decide on next steps.
   # TODO: This is a very hacky temporary solution to speed up tests. Need to fix this
@@ -75,17 +47,6 @@ class Company < ApplicationRecord
       self.url_website = clearbit_company_info['domain'] if clearbit_company_info && clearbit_company_info['domain'].present?
     else
       self.url_website = "https://www.example.com"
-    end
-  end
-
-  def fetch_description
-    return if description.present?
-
-    if Rails.env.production?
-      inferred_description, @name_keywords = Categorizer::CompanyDescriptionService.lookup_company(name, ats_identifier)
-      self.description = inferred_description if description.blank?
-    else
-      self.description = "A financial services company."
     end
   end
 
