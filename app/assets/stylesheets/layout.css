@@ -2181,6 +2181,10 @@ video {
     max-width: 66rem;
   }
 
+  .lg\:max-w-7xl {
+    max-width: 80rem;
+  }
+
   .lg\:max-w-md {
     max-width: 28rem;
   }
