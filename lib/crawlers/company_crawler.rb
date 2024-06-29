@@ -1,4 +1,3 @@
-require_relative "../priority_spidr/priority_spidr"
 require_relative "base_crawler"
 require "cgi"
 require "csv"
