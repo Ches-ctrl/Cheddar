@@ -2,8 +2,14 @@
 <% unless transformed_data.ends_with?('not found!') %>
 <code class="language-json">
 <span><span style="color: var(--shiki-color-text)">{</span></span>
-<% JSON(transformed_data).each do |key, value| %>
+<% JSON(transformed_data).each do |key, hash| %>
+<% if false %>
 <%= ('<span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-keyword)">"' + key + '"</span><span style="color: var(--shiki-token-punctuation)">:</span><span style="color: var(--shiki-color-text)"> </span><span style="color: var(--shiki-token-string-expression)">' + value.to_s + '</span><span style="color: var(--shiki-token-punctuation)">,</span></span>').html_safe %>
+<% end %>
+<%= ('<span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-keyword)">"' + key + '"</span><span style="color: var(--shiki-token-punctuation)">:</span><span style="color: var(--shiki-color-text)"> </span><span style="color: var(--shiki-color-text)">{</span>').html_safe %>
+<% hash.each do |key, value| %>
+<%= ('<span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-keyword)">"' + key + '"</span><span style="color: var(--shiki-token-punctuation)">:</span><span style="color: var(--shiki-color-text)"> </span><span style="color: var(--shiki-token-string-expression)">"' + value.to_s + '"</span><span style="color: var(--shiki-token-punctuation)">'+ (last_element?(hash, key) ? '' : ',') +'</span></span>').html_safe %><%= ('<br /><span><span style="color: var(--shiki-color-text)">  },</span></span>').html_safe if last_element?(hash, key) %>
+<% end %>
 <% end %>
 <!-- <span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-keyword)">"id"</span><span style="color: var(--shiki-token-punctuation)">:</span><span style="color: var(--shiki-color-text)"> </span><span style="color: var(--shiki-token-string-expression)">"a056V7R7NmNRjl70"</span><span style="color: var(--shiki-token-punctuation)">,</span></span>
 <span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-keyword)">"type"</span><span style="color: var(--shiki-token-punctuation)">:</span><span style="color: var(--shiki-color-text)"> </span><span style="color: var(--shiki-token-string-expression)">"conversation.updated"</span><span style="color: var(--shiki-token-punctuation)">,</span></span>
