@@ -12,4 +12,8 @@ class UncategorizedPagesController < ApplicationController
   def privacy; end
 
   def terms; end
+
+  def howitworks; end
+
+  def pricing; end
 end
