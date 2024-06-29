@@ -1,4 +1,4 @@
-<pre class="overflow-x-auto p-4 text-xs text-white">
+<pre class="overflow-x-auto px-4 pb-4 text-xs text-white">
 <% unless transformed_data.ends_with?('not found!') %>
 <code class="language-json">
 <span><span style="color: var(--shiki-color-text)">{</span></span>
@@ -11,25 +11,9 @@
 <%= ('<span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-keyword)">"' + key + '"</span><span style="color: var(--shiki-token-punctuation)">:</span><span style="color: var(--shiki-color-text)"> </span><span style="color: var(--shiki-token-string-expression)">"' + value.to_s + '"</span><span style="color: var(--shiki-token-punctuation)">'+ (last_element?(hash, key) ? '' : ',') +'</span></span>').html_safe %><%= ('<br /><span><span style="color: var(--shiki-color-text)">  },</span></span>').html_safe if last_element?(hash, key) %>
 <% end %>
 <% end %>
-<!-- <span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-keyword)">"id"</span><span style="color: var(--shiki-token-punctuation)">:</span><span style="color: var(--shiki-color-text)"> </span><span style="color: var(--shiki-token-string-expression)">"a056V7R7NmNRjl70"</span><span style="color: var(--shiki-token-punctuation)">,</span></span>
-<span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-keyword)">"type"</span><span style="color: var(--shiki-token-punctuation)">:</span><span style="color: var(--shiki-color-text)"> </span><span style="color: var(--shiki-token-string-expression)">"conversation.updated"</span><span style="color: var(--shiki-token-punctuation)">,</span></span>
-<span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-keyword)">"payload"</span><span style="color: var(--shiki-token-punctuation)">:</span><span style="color: var(--shiki-color-text)"> {</span></span>
-<span><span style="color: var(--shiki-color-text)">    </span><span style="color: var(--shiki-token-keyword)">"id"</span><span style="color: var(--shiki-token-punctuation)">:</span><span style="color: var(--shiki-color-text)"> </span><span style="color: var(--shiki-token-string-expression)">"WAz8eIbvDR60rouK"</span></span> -->
-<span><span style="color: var(--shiki-color-text)">    </span><span style="color: var(--shiki-token-comment)">// ...</span></span>
-<!-- <span><span style="color: var(--shiki-color-text)">  }</span></span> -->
-<span><span style="color: var(--shiki-color-text)">}</span></span>
-<span></span>
-</code>
+<span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-comment)">// ...</span></span>
+<span><span style="color: var(--shiki-color-text)">}</span></span><span></span></code>
 <% else %>
     <%= transformed_data %>
 <% end %>
 </pre>
-<!-- <button type="button" class="group/button absolute right-4 top-3.5 overflow-hidden rounded-full py-1 pl-2 pr-3 text-2xs font-medium opacity-0 backdrop-blur transition focus:opacity-100 group-hover:opacity-100 bg-white/2.5 hover:bg-white/5">
-    <span aria-hidden="false" class="pointer-events-none flex items-center gap-0.5 text-zinc-400 transition duration-300">
-        <svg viewBox="0 0 20 20" aria-hidden="true" class="h-5 w-5 fill-zinc-500/20 stroke-zinc-500 transition-colors group-hover/button:stroke-zinc-400">
-            <path stroke-width="0" d="M5.5 13.5v-5a2 2 0 0 1 2-2l.447-.894A2 2 0 0 1 9.737 4.5h.527a2 2 0 0 1 1.789 1.106l.447.894a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2Z"></path>
-            <path fill="none" stroke-linejoin="round" d="M12.5 6.5a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2m5 0-.447-.894a2 2 0 0 0-1.79-1.106h-.527a2 2 0 0 0-1.789 1.106L7.5 6.5m5 0-1 1h-3l-1-1"></path>
-        </svg>Copy
-    </span>
-    <span aria-hidden="true" class="pointer-events-none absolute inset-0 flex items-center justify-center text-emerald-400 transition duration-300 translate-y-1.5 opacity-0">Copied!</span>
-</button> -->
