@@ -15,16 +15,19 @@
   request.fullpath.include?('/about') ||
   request.fullpath.include?('/contact') ||
   request.fullpath.include?('/privacy') ||
-  request.fullpath.include?('/terms')
+  request.fullpath.include?('/terms') ||
+  request.fullpath.include?('/pricing') ||
 %>
 <!DOCTYPE html>
 <html class="h-full" style="color-scheme: light;">
   <head>
     <!-- Tags -->
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= display_meta_tags site: "Cheddar" %>
+    <%= display_meta_tags site: "Cheddar 🧀" %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <!-- Stylesheets -->
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "layout", "inter-font", "data-turbo-track": "reload" %>
 
