@@ -11,7 +11,7 @@ namespace :admin do
 
   desc "Pull data from DevItJobs API"
   task devitjobs: :environment do
-    Importer::Api::DevitJobs.new.import_jobs
+    Importer::Api::DevitJobs.new.call
   end
 
   desc "Scrape data from TrueUp"

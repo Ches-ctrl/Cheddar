@@ -11,15 +11,9 @@ module Ats
         job_data['hash']
       end
 
-      private
-
-      def fetch_job_data(job)
-        jobs = fetch_company_jobs(job.company.ats_identifier)
-        job_data = jobs.find { |data| data["hash"] == job.ats_job_id }
-        return mark_job_expired(job) unless job_data
-
-        job.api_url = "#{job.api_url}#{job_data['id']}/"
-        return job_data
+      def fetch_job_data(job_id, _api_url, ats_identifier)
+        jobs = fetch_company_jobs(ats_identifier)
+        jobs.find { |data| data["hash"] == job_id }
       end
 
       def job_url_api(base_url, company_id, _job_id)
@@ -28,14 +22,15 @@ module Ats
 
       def job_details(job, data)
         title, location = fetch_title_and_location(data)
-        job.assign_attributes(
+        {
           title:,
           description: Flipper.enabled?(:job_description) ? data['description'] : 'Not added yet',
           department: data['departmentLabel'],
           employment_type: data['contract_details'],
           non_geocoded_location_string: location,
+          api_url: "#{job.api_url}#{data['id']}/",
           posting_url: "#{url_base}#{job.company.ats_identifier}/job/#{job.ats_job_id}/apply"
-        )
+        }
       end
 
       # def build_location_string(data)

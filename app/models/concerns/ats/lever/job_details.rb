@@ -15,15 +15,13 @@ module Ats
         job_data['hostedUrl']
       end
 
-      private
-
       def job_url_api(base_url, company_id, job_id)
         "#{base_url}#{company_id}/#{job_id}?customQuestions=true"
       end
 
-      def job_details(job, data)
+      def job_details(_job, data)
         title, location = fetch_title_and_location(data)
-        job.assign_attributes(
+        {
           posting_url: data['hostedUrl'],
           title:,
           description: Flipper.enabled?(:job_description) ? build_description(data) : 'Not added yet',
@@ -31,8 +29,10 @@ module Ats
           remote: data['workplaceType'] == 'remote',
           department: data.dig('categories', 'team'),
           date_posted: convert_from_milliseconds(data['createdAt'])
-        )
+        }
       end
+
+      private
 
       def build_description(data)
         data['descriptionBody'] + data['lists'].inject('') do |string, field|

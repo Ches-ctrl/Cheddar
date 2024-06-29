@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 24 Jun 2024 10:45:12 GMT
+      - Thu, 27 Jun 2024 13:37:08 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -27,8 +27,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=dmcgbuq%2CkyecJqOBBYfUHHhOTRU8bmiC; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=MWMVYsI5FxXzQhHbkjrFk2K37ckwVwYC..2ZpLhGzE0-1719225912505-0.0.1.1-604800000;
+      - PHPSESSID=jCI0oesFh3xz5Ng5pNezqBOxPHI4W6Zd; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=6bC5zOlReUtJOG.ixoFCYEtR5hA0_hXE8wXg_kIyKt8-1719495428191-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -93,11 +93,11 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 898c207e3c1d6546-LHR
+      - 89a5d4774b2293fb-LHR
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":[],"result":{"name":"Avidbots","id":"72799","logoUrl":"https:\/\/images3.bamboohr.com\/72799\/logos\/cropped.jpg?v=32","careerShareUrl":"https:\/\/avidbots.bamboohr.com\/careers","shareImageUrl":"https:\/\/avidbots.bamboohr.com\/jobs\/share_image\/32","inTrial":false,"appSessId":"57852995efab0b71c81b5fa60ced417543d18fd8"}}'
-  recorded_at: Mon, 24 Jun 2024 10:45:12 GMT
+      string: '{"meta":[],"result":{"name":"Avidbots","id":"72799","logoUrl":"https:\/\/images3.bamboohr.com\/72799\/logos\/cropped.jpg?v=32","careerShareUrl":"https:\/\/avidbots.bamboohr.com\/careers","shareImageUrl":"https:\/\/avidbots.bamboohr.com\/jobs\/share_image\/32","inTrial":false,"appSessId":"10849400f1c97860cedbba354dd51727d353865a"}}'
+  recorded_at: Thu, 27 Jun 2024 13:37:08 GMT
 - request:
     method: get
     uri: https://avidbots.bamboohr.com/careers/list
@@ -117,7 +117,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 24 Jun 2024 10:45:13 GMT
+      - Thu, 27 Jun 2024 13:37:08 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -125,9 +125,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=bYNv%2CrLvEhgfi1%2CuPuYULrwIi9GtN2ln; path=/; secure; HttpOnly;
-        SameSite=None
-      - _cfuvid=.pAqrPzZbH3j52ClcDxEqOxQtxmbCXKNl4cj9mQJb4U-1719225913149-0.0.1.1-604800000;
+      - PHPSESSID=YdbgN%2CMFA-3M7EQGP8LZyOkQ3jvnldhd; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=cPuUdo.8v5.YseY_Y7jB5205A75sZPT0H1NR4JqJDzw-1719495428705-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -192,7 +191,7 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 898c20822e8a79b3-LHR
+      - 89a5d47a6b3d7717-LHR
     body:
       encoding: ASCII-8BIT
       string: '{"meta":{"totalCount":8},"result":[{"id":"693","jobOpeningName":"Technical
@@ -210,5 +209,5 @@ http_interactions:
         Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Mississauga"},"isRemote":null,"locationType":"1"},{"id":"797","jobOpeningName":"Traveling
         Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
         Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Scarborough"},"isRemote":null,"locationType":"1"}]}'
-  recorded_at: Mon, 24 Jun 2024 10:45:13 GMT
+  recorded_at: Thu, 27 Jun 2024 13:37:08 GMT
 recorded_with: VCR 6.2.0

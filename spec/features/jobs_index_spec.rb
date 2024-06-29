@@ -1,10 +1,9 @@
-require 'rails_helper'
 # require 'ruby-prof'
 
 # rubocop:disable Metrics/BlockLength
 # RSpec.feature "Jobs index page", type: :feature, jobs_index: true do
 #   context "With jobs to display:", type: :feature, jobs_display: true do
-#     before do
+#     before(:all) do
 #       # RubyProf.start
 #       # TODO: This is still taking up a lot of time - refactor this to be more efficient
 #       @jobs = [

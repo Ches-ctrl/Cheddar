@@ -12,21 +12,18 @@ module Ats
         job_data['shortcode']
       end
 
-      private
-
       def job_url_api(_base_url, ats_identifier, _job_id)
         "#{url_website}api/accounts/#{ats_identifier}?details=true"
       end
 
-      def fetch_job_data(job)
-        jobs = fetch_company_jobs(job.company.ats_identifier)
-        job_data = jobs.find { |data| data['shortcode'] == job.ats_job_id }
-        job_data ? job_data : mark_job_expired(job)
+      def fetch_job_data(job_id, _api_url, ats_identifier)
+        jobs = fetch_company_jobs(ats_identifier)
+        jobs.find { |data| data['shortcode'] == job_id }
       end
 
-      def job_details(job, data)
+      def job_details(_job, data)
         title, non_geocoded_location_string, remote = fetch_title_and_location(data)
-        job.assign_attributes(
+        {
           title:,
           description: Flipper.enabled?(:job_description) ? data['description'] : 'Not added yet',
           non_geocoded_location_string:,
@@ -38,8 +35,10 @@ module Ats
           date_posted: (Date.parse(data['published_on']) if data['published_on']),
           remote:,
           employment_type: data['employment_type']
-        )
+        }
       end
+
+      private
 
       # def build_description(data)
       #   [

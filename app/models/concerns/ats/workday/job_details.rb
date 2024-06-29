@@ -21,17 +21,15 @@ module Ats
         get_json_data(endpoint)
       end
 
-      private
-
       def job_url_api(_base_url, ats_identifier, job_id)
         base = fetch_base_url(ats_identifier)
         "#{base}job/#{job_id}"
       end
 
-      def job_details(job, data)
+      def job_details(_job, data)
         job_data = data['jobPostingInfo']
         title, location = fetch_title_and_location(job_data)
-        job.assign_attributes(
+        {
           title:,
           description: Flipper.enabled?(:job_description) ? job_data['jobDescription'] : 'Not added yet',
           posting_url: job_data['externalUrl'],
@@ -40,8 +38,10 @@ module Ats
           date_posted: job_data['startDate'].to_date,
           industry: job_data.dig('industry', 'label'), # not sure if this works
           employment_type: job_data['timeType']
-        )
+        }
       end
+
+      private
 
       def fetch_location(data)
         location = data['locationsText']

@@ -18,20 +18,9 @@ module Ats
         result[1] if result
       end
 
-      private
-
-      def fetch_job_data(job)
-        job_id = job.ats_job_id
-        jobs = fetch_company_jobs(job.company.ats_identifier)
-        data = jobs.find { |job_data| job_data['path'] == "/en/postings/#{job_id}" }
-
-        return data if data
-
-        # TODO: fix setup for when job posting is no longer live - at the moment will break the import
-
-        p "Job with ID #{job.ats_job_id} is expired."
-        job.live = false
-        return nil
+      def fetch_job_data(job_id, _api_url, ats_identifier)
+        jobs = fetch_company_jobs(ats_identifier)
+        jobs.find { |job_data| job_data['path'] == "/en/postings/#{job_id}" }
       end
 
       def job_url_api(_base_url, ats_identifier, _job_id)
@@ -39,8 +28,8 @@ module Ats
         company.url_ats_api
       end
 
-      def job_details(job, data)
-        job.assign_attributes(
+      def job_details(_job, data)
+        {
           title: data['title'],
           description: Flipper.enabled?(:job_description) ? build_description(data) : 'Not added yet',
           salary: fetch_salary(data),
@@ -54,8 +43,10 @@ module Ats
           deadline: (Date.parse(data['deadline_at']) if data['deadline_at']),
           remote: data['workplace_type'] == 'remote',
           hybrid: data['workplace_type'] == 'hybrid'
-        )
+        }
       end
+
+      private
 
       def build_description(data)
         [

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Company do
   describe 'Associations' do
     it { is_expected.to have_many(:jobs).dependent(:destroy) }

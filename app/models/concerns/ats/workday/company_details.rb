@@ -15,11 +15,9 @@ module Ats
             name: company_data['descriptor'],
             ats_identifier: "#{company.ats_identifier}/#{company_data['id']}"
           }
-          find_or_create_company_by_data(data)
+          CompanyCreator.call(ats: self, data:)
         end
       end
-
-      private
 
       # get name from job
       # get description from sidebar_data
@@ -56,6 +54,8 @@ module Ats
       def fetch_company_id(data)
         data[:ats_identifier]
       end
+
+      private
 
       def check_for_careers_url_redirect(url_ats_main)
         url_ats_main

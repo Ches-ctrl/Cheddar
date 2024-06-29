@@ -1,8 +1,6 @@
 module Ats
   module Pinpointhq
     module CompanyDetails
-      private
-
       def company_details(ats_identifier)
         url_ats_api, url_ats_main = replace_ats_identifier(ats_identifier)
         name, url_website, url_linkedin = scrape_company_page(url_ats_main)
@@ -15,6 +13,8 @@ module Ats
           total_live: fetch_total_live(ats_identifier)
         }
       end
+
+      private
 
       def scrape_company_page(url_ats_main)
         begin

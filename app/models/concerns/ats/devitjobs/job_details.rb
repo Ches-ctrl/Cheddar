@@ -4,6 +4,7 @@ module Ats
       include ActionView::Helpers::NumberHelper
 
       def fetch_title_and_location(job_data)
+        p "Fetching title and location"
         title = job_data['name']
         remote = fetch_remote_only(job_data)
         job_location = build_location_string(remote, job_data)
@@ -11,48 +12,54 @@ module Ats
       end
 
       def fetch_url(job_data)
+        p "Fetching URL"
         url_base + job_data['jobUrl']
       end
 
-      private
-
-      def fetch_id(job_data)
-        job_data['jobUrl']
-      end
-
       def job_url_api(base_url, _company_id, _job_id)
+        p "Fetching job URL"
         return base_url
       end
 
-      def job_details(job, data)
+      def job_details(_job, data)
+        p "Fetching job details"
         title, location, remote = fetch_title_and_location(data)
-        job.assign_attributes(
-          posting_url: fetch_url(data),
+        posting_url = fetch_url(data)
+        description, date_posted, deadline = scrape_description_and_posting_date(posting_url)
+        {
           title:,
+          description:,
+          posting_url:,
+          date_posted:,
+          deadline:,
           salary: fetch_salary(data),
           remote:,
           non_geocoded_location_string: location,
           employment_type: data['jobType'],
           seniority: fetch_seniority(data)
-        )
-
-        scrape_description_and_posting_date(job)
+        }
         # associate_technologies(job, data)
-        puts "Created new job - #{job.title} with #{job.company.name}"
       end
 
-      def scrape_description_and_posting_date(job)
-        url = job.posting_url
-        html = URI.parse(url).open
+      def fetch_id(job_data)
+        p "Fetching ID"
+        job_data['jobUrl']
+      end
+
+      private
+
+      def scrape_description_and_posting_date(posting_url)
+        p "Scraping description and posting date"
+        html = URI.parse(posting_url).open
         xml = Nokogiri::HTML.parse(html)
         script_element = xml.xpath('//script[@type="application/ld+json" and @data-react-helmet="true"]').first.content
         data = JSON.parse(script_element)
 
-        job.assign_attributes(
+        [
           description: Flipper.enabled?(:job_description) ? data['description'] : 'Not added yet',
           date_posted: Date.parse(data['datePosted']),
           deadline: Date.parse(data['validThrough'])
-        )
+        ]
       end
 
       def fetch_seniority(data)

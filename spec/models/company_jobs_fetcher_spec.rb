@@ -1,4 +1,3 @@
-require 'rails_helper'
 require Rails.root.join('spec', 'support', 'spec_constants.rb')
 
 RSpec.describe CompanyJobsFetcher do
@@ -13,10 +12,10 @@ RSpec.describe CompanyJobsFetcher do
       it "can create all relevant jobs with #{ats_name}", :vcr do
         VCR.use_cassette("fetch_company_jobs_#{ats_name}") do
           ats = ApplicantTrackingSystem.find_by(name: ats_name)
-          company = ats.find_or_create_company(ats_id)
+          company = CompanyCreator.call(ats:, ats_identifier: ats_id)
           unless company.persisted?
             data = ats.fetch_company_jobs(ats_id)&.first
-            company = ats.find_or_create_company_by_data(data)
+            company = CompanyCreator.call(ats:, data:)
           end
 
           output = StringIO.new

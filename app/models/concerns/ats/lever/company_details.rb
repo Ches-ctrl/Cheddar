@@ -1,8 +1,6 @@
 module Ats
   module Lever
     module CompanyDetails
-      private
-
       def company_details(ats_identifier)
         url_ats_api = "#{url_api}#{ats_identifier}/?mode=json"
         url_ats_main = "#{url_base}#{ats_identifier}"
@@ -17,6 +15,8 @@ module Ats
           total_live: data.size
         }
       end
+
+      private
 
       def build_company_description(data)
         base = data.dig(0, 'description')

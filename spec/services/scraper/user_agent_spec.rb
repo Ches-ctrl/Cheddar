@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Scraper::UserAgent, type: :service, user_agent: true do
   let(:user_agent_service) { described_class.new }
 
