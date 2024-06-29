@@ -23,14 +23,7 @@ Rails.application.routes.draw do
   end
 
   # Pages
-  # root to: "pages#home"
-  get 'about', to: 'pages#about', as: 'about'
-  get 'faqs', to: 'pages#faqs', as: 'faqs'
-  get 'how_it_works', to: 'pages#how_it_works', as: 'how_it_works'
-  get 'landing', to: 'pages#landing', as: 'landing'
-  get 'privacy', to: 'pages#privacy', as: 'privacy'
-
-  get 'ts&cs', to: 'pages#ts_and_cs', as: 'ts_and_cs'
+  root to: 'uncategorized_pages#tothemoon'
 
   # Jobs
   get '/jobs/add_job', to: 'jobs#add_job'
@@ -39,29 +32,11 @@ Rails.application.routes.draw do
   post '/chatbot/chat', to: 'messages#chat'
 
   # Resources
-
   resources :companies, only: %i[index show]
   resources :emails, only: [:create]
   resources :educations, only: %i[new create]
 
-  ###
-  ### Taimwind Protocal Template
-  ###
-  get 'protocol', to: 'pages#protocol', as: 'protocol'
-
-  ###
-  ###
-  ###
-
-  get 'basket', to: 'saved_jobs#index', as: :saved_jobs
-  get 'in_progress', to: 'in_progress_jobs#index', as: :in_progress_jobs
-
-  resources :application_processes, only: %i[create show] do
-    get '/overview', to: 'overview_application_processes#show'
-    get '/payload', to: 'payload_application_processes#show'
-    resources :job_applications, only: %i[edit update]
-  end
-
+  # Jobs
   resources :opportunities, path: '/jobs', only: %i[index show] do
     resources :saved_jobs, only: %i[create]
     delete '/saved_jobs', to: 'saved_jobs#destroy', as: :destroy_saved_jobs
@@ -70,7 +45,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :user_details, only: %i[edit update]
+  get 'basket', to: 'saved_jobs#index', as: :saved_jobs
+  get 'in_progress', to: 'in_progress_jobs#index', as: :in_progress_jobs
 
-  root to: 'uncategorized_pages#tothemoon'
+  # Application Process
+  resources :application_processes, only: %i[create show] do
+    get '/overview', to: 'overview_application_processes#show'
+    get '/payload', to: 'payload_application_processes#show'
+    resources :job_applications, only: %i[edit update]
+  end
+
+  resource :user_details, only: %i[edit update]
 end
