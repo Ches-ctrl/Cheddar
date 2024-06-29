@@ -141,7 +141,7 @@ module Crawlers
 
     # Defines the action loop for each page.
     #
-    # @param agent [Spidr::Agent]
+    # @param agent [PrioritySpidr::PriorityAgent]
     def every_page(agent)
       agent.priority_stubs = @priority_stubs
       agent.every_page do |page|
@@ -180,7 +180,7 @@ module Crawlers
     # @return [Array]
     def crawl
       pre_crawl_chores
-      Spidr.start_at(@starting_url, hosts: valid_hosts(@starting_url), strip_fragments: true, strip_query: true, robots: false) do |agent|
+      PrioritySpidr.start_at(@starting_url, hosts: valid_hosts(@starting_url), strip_fragments: true, strip_query: true, robots: false) do |agent|
         every_page(agent)
       end
       return @hits

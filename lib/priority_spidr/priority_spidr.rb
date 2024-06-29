@@ -1,10 +1,11 @@
-require_relative 'priority_agent'
+# require_relative 'priority_agent'
+require "spidr"
 
 # Copying the `Spidr` entry point functions and setting them to use `PriorityAgent`
-module Spidr
-  extend Settings::Proxy
-  extend Settings::Timeouts
-  extend Settings::UserAgent
+module PrioritySpidr
+  extend Spidr::Settings::Proxy
+  extend Spidr::Settings::Timeouts
+  extend Spidr::Settings::UserAgent
 
   #
   # Specifies whether `robots.txt` should be honored globally.
@@ -35,14 +36,14 @@ module Spidr
   # @see Agent.start_at
   #
   def self.start_at(url, ...)
-    PrioritySpidr::PriorityAgent.start_at(url, ...)
+    PriorityAgent.start_at(url, ...)
   end
 
   #
   # @see Agent.host
   #
   def self.host(name, ...)
-    PrioritySpidr::PriorityAgent.host(name, ...)
+    PriorityAgent.host(name, ...)
   end
 
   #
@@ -51,14 +52,14 @@ module Spidr
   # @since 0.7.0
   #
   def self.domain(name, ...)
-    PrioritySpidr::PriorityAgent.domain(name, ...)
+    PriorityAgent.domain(name, ...)
   end
 
   #
   # @see Agent.site
   #
   def self.site(url, ...)
-    PrioritySpidr::PriorityAgent.site(url, ...)
+    PriorityAgent.site(url, ...)
   end
 
   #
