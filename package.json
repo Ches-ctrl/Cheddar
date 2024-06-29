@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@algolia/autocomplete-js": "^1.17.2",
+    "algoliasearch": "^4.23.3"
+  }
+}

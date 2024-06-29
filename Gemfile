@@ -69,6 +69,7 @@ gem 'sidekiq-scheduler', '~> 5.0', '>= 5.0.3'
 
 # Storage
 gem "cloudinary"
+gem 'aws-sdk-s3', '~> 1'
 
 # Admin
 gem 'avo'
@@ -88,7 +89,7 @@ gem 'sendgrid-ruby'
 gem "flipper-active_record", "~> 1.3"
 
 # CSV
-# gem 'csv' # Installed as a dependency via Avo
+gem 'csv'
 
 # Parsing
 gem "nokogiri"
@@ -194,3 +195,5 @@ group :test do
   gem 'vcr'
   gem 'webmock'
 end
+
+gem "tailwindcss-rails", "~> 2.6"

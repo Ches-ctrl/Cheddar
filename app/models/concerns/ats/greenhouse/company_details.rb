@@ -1,8 +1,6 @@
 module Ats
   module Greenhouse
     module CompanyDetails
-      private
-
       def company_details(ats_identifier)
         url_ats_api = "#{url_api}#{ats_identifier}/"
         url_ats_main = "#{url_base}#{ats_identifier}/"
@@ -20,6 +18,8 @@ module Ats
           total_live: fetch_total_live(ats_identifier)
         }
       end
+
+      private
 
       def check_for_careers_url_redirect(ats_url)
         url = URI(ats_url)

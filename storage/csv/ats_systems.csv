@@ -12,7 +12,7 @@ Phenom,phenompeople.com,https://www.phenom.com/,,,https://api.phenom.com/,,,,,
 Breezy HR,breezy.hr,https://breezy.hr/,,https://XXX.breezy.hr,https://api.breezy.hr/v3/,,,,,https://${company_id}.breezy.hr
 JazzHR,applytojob.,https://www.jazzhr.com/,,https://XXX.applytojob.com,https://applyapi.jazz.co/v2/,,,,,https://${company_id}.applytojob.com
 TeamTailor,teamtailor.com,https://www.teamtailor.com/en/,,https://XXX.teamtailor.com/jobs,https://api.teamtailor.com/v1/,,,,,https://${company_id}.teamtailor.com/jobs
-Workday,myworkdayjobs.com|myworkdaysite.com,https://www.workday.com/,,https://XXX.wd1.myworkdayjobs.com/careers,https://XXX.wd1.myworkdayjobs.com/en-US/GTI/,,,,,https://${company_id}.wd${version}.myworkdayjobs.com/careers
+Workday,myworkdayjobs.com|myworkdaysite.com,https://www.workday.com/,,https://XXX.wdZZZ.myworkdayjobs.com/YYY,https://XXX.wdZZZ.myworkdayjobs.com/wday/cxs/XXX/YYY/,,,,,https://${company_id}.wd${version}.myworkdayjobs.com/careers
 Jobvite,jobs.jobvite,https://www.jobvite.com/,,https://jobs.jobvite.com/XXX/jobs,https://api.jobvite.com/v1/,,,,,https://jobs.jobvite.com/${company_id}/jobs
 DevITJobs,devitjobs.uk,https://devitjobs.uk/,,https://devitjobs.uk/jobs/,https://devitjobs.uk/api/,https://devitjobs.uk/api/jobsLight,https://devitjobs.uk/job_feed.xml,,,
 Tal.net,tal.net,https://tal.net/,,https://XXX.tal.net/candidate/,,,,,,https://${company_id}.tal.net/candidate

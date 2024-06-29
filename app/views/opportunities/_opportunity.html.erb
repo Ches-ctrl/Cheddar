@@ -1,0 +1,53 @@
+
+<li class="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6 dark:hover:bg-gray-700/50 lg:px-8">
+  <div class="flex gap-x-4 pr-6 sm:w-1/2 sm:flex-none">
+    <% if request.fullpath.include?('/basket') %>
+      <div class="flex w-6 z-50 items-center float-start">
+          <%= check_box_tag('job_ids[]', opportunity.id, multiple: true, class: "h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600", data: { basket_target: 'checkbox' } ) %>
+      </div>
+    <% end %>
+    <div class="flex items-center">
+      <%= image_tag("https://logo.clearbit.com/#{opportunity.company.url_website}", onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'", class: "h-12 w-12 flex-none rounded-full bg-gray-50") %>
+    </div>
+    <div class="min-w-0 flex-auto">
+      <%= link_to opportunity_path(opportunity.id) do %> 
+      <p class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
+        <span class="absolute inset-x-0 -top-px bottom-0"></span>
+        <%= opportunity.title.truncate(35) %>
+      </p>
+      <p class="mt-1 flex text-xs leading-5 text-gray-500 dark:text-gray-400">
+        <%= opportunity.company.name %>
+      </p>
+      <p class="mt-1 flex text-xs leading-5 text-gray-500 dark:text-gray-400">
+        <%= opportunity_public_location(opportunity) %>
+      </p>
+      <% end %>
+    </div>
+  </div>
+  <div class="flex shrink-0 items-center gap-x-4">
+    <div class="sm:flex sm:flex-col sm:items-end">
+      <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400"><%= opportunity_salary_presentation(opportunity) %></p>
+      <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400"><%= opportunity_public_employment_type(opportunity) %></p>
+      <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400"><%= opportunity_days_remaining(opportunity) %></p>
+    </div>
+  </div>
+  <div class="flex shrink-0 items-center gap-x-4">
+    <% if current_user %>
+      <div class="relative z-10">
+        <% if job_saved?(opportunity) %>
+          <%= link_to opportunity_destroy_saved_jobs_path(opportunity_id: opportunity.id), data: {turbo_method: :delete}, method: :delete, class:"inline-flex items-center gap-x-1.5 rounded-full bg-indigo-50 dark:bg-indigo-900 dark:hover:bg-indigo-700 p-3 text-sm font-semibold text-indigo-600 dark:text-indigo-400 shadow-sm hover:bg-indigo-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-200" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+              <path d="M2.25 2.25a.75.75 0 0 0 0 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 0 0-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 0 0 0-1.5H5.378A2.25 2.25 0 0 1 7.5 15h11.218a.75.75 0 0 0 .674-.421 60.358 60.358 0 0 0 2.96-7.228.75.75 0 0 0-.525-.965A60.864 60.864 0 0 0 5.68 4.509l-.232-.867A1.875 1.875 0 0 0 3.636 2.25H2.25ZM3.75 20.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM16.5 20.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z" />
+            </svg>                
+          <% end %>
+        <% else %>
+          <%= link_to opportunity_saved_jobs_path(opportunity), data: {turbo_method: :post}, class:"inline-flex items-center gap-x-1.5 rounded-full bg-indigo-50 dark:bg-indigo-900 dark:hover:bg-indigo-700 p-3 text-sm font-semibold text-indigo-600 dark:text-indigo-400 shadow-sm hover:bg-indigo-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-200" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+            </svg>                  
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</li>

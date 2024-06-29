@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 26 May 2024 06:23:48 GMT
+      - Thu, 27 Jun 2024 13:39:03 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -27,8 +27,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=UFzPyRSTLleCQeHuUV6snUQ8GMBG8mpC; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=GnYsWwvva7avEC3cRftcoKMd9grUq_IkZhQ8oo76eLQ-1716704628658-0.0.1.1-604800000;
+      - PHPSESSID=H89vp047-jMNm8vHve2CfdxsXH4W5xXu; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=EESkf93CxvFZIayeSkP0CH.KA_Jt5DonlSIqWgsAGfU-1719495543942-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -93,26 +93,25 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 889badb84c4393f4-LHR
+      - 89a5d74c89bd9539-LHR
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":{"totalCount":5},"result":[{"id":"45","jobOpeningName":"Lead
-        Product Manager,  CPG & Retail Execution","departmentId":"19029","departmentLabel":"30-000
+      string: '{"meta":{"totalCount":6},"result":[{"id":"45","jobOpeningName":"Lead
+        Product Manager, Retail Task Management & Execution","departmentId":"19029","departmentLabel":"30-000
         - Product","employmentStatusLabel":"Full-Time","location":{"city":"Ciudad
-        de M\u00e9xico","state":"CDMX"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"59","jobOpeningName":"Field
-        Trainer (Bolivia)","departmentId":"19024","departmentLabel":"70-000 - Global
-        Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"La
-        Paz"},"isRemote":null,"locationType":"1"},{"id":"60","jobOpeningName":"Lider
-        de Operaciones (Bolivia)","departmentId":"19024","departmentLabel":"70-000
-        - Global Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
-        Cruz de la Sierra"},"isRemote":null,"locationType":"1"},{"id":"61","jobOpeningName":"Account
+        de M\u00e9xico","state":"CDMX"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"61","jobOpeningName":"Account
         Executive (Bolivia)","departmentId":"19024","departmentLabel":"70-000 - Global
         Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
-        Cruz de la Sierra"},"isRemote":null,"locationType":"1"},{"id":"62","jobOpeningName":"Client
-        Service Executive (Bolivia)","departmentId":"19024","departmentLabel":"70-000
-        - Global Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
-        Cruz de la Sierra"},"isRemote":null,"locationType":"1"}]}'
-  recorded_at: Sun, 26 May 2024 06:23:48 GMT
+        Cruz de la Sierra"},"isRemote":null,"locationType":"1"},{"id":"72","jobOpeningName":"Lead
+        Product Manager, Dispatching & Routing","departmentId":"19029","departmentLabel":"30-000
+        - Product","employmentStatusLabel":"Full-Time DEEL","location":{"city":"Ciudad
+        de M\u00e9xico","state":"CDMX"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"74","jobOpeningName":"Client
+        Service Executive","departmentId":"19034","departmentLabel":"50-000 - Customer
+        Success","employmentStatusLabel":"Full-Time","location":{"city":"Bogota","state":null},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"0"},{"id":"79","jobOpeningName":"Client
+        Service Trainee","departmentId":"19034","departmentLabel":"50-000 - Customer
+        Success","employmentStatusLabel":"Full-Time","location":{"city":"Bogota","state":null},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"0"},{"id":"80","jobOpeningName":"Account
+        Executive ","departmentId":"19016","departmentLabel":"40-000 - Sales","employmentStatusLabel":"Full-Time","location":{"city":"Bogota","state":null},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"0"}]}'
+  recorded_at: Thu, 27 Jun 2024 13:39:03 GMT
 - request:
     method: get
     uri: https://premise.bamboohr.com/careers/company-info/
@@ -132,7 +131,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 26 May 2024 06:23:48 GMT
+      - Thu, 27 Jun 2024 13:39:04 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -140,8 +139,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=w3hcPYJ6KI65ckNYeEJ%2CczsBQjqDwPSv; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=kql_911JHjpf9i04nunIekwRRjmKajuxB4ISuPkSU4o-1716704628853-0.0.1.1-604800000;
+      - PHPSESSID=szHthqXvHr3PzXcIEa-ntZ1ntCif5wuL; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=IEhS0SqMawhnE3N8eD6Rocm7rRs9c9yxQ0FLcviUXbk-1719495544163-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -203,14 +202,19 @@ http_interactions:
       - nosniff
       Cf-Cache-Status:
       - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/csp-reporting.cloudflare.com\/cdn-cgi\/script_monitor\/report?m=uALCID6RSNX.gY_3ZCkGT4OXonKCxatFcWDG5osHN9Q-1719495544-1.0.1.1-gZjOcRXKy7mg40uo4ioQngbdTKzm9IcIo5jlYQoIsxE3juzTJ7Dq3PPcrDYP9myaAs_YHqLnLxKo29kgSFm.hQcEShYLoGycJQzAqcTaw1RK87jFcg4LBjSNBW_tCcjxTph2R8xkfy6r6Hm_tQPVASps7.Brslk8nJrh2A9hXbo"}],"group":"cf-csp-endpoint","max_age":86400}'
+      Content-Security-Policy-Report-Only:
+      - script-src 'none'; report-uri https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report?m=uALCID6RSNX.gY_3ZCkGT4OXonKCxatFcWDG5osHN9Q-1719495544-1.0.1.1-gZjOcRXKy7mg40uo4ioQngbdTKzm9IcIo5jlYQoIsxE3juzTJ7Dq3PPcrDYP9myaAs_YHqLnLxKo29kgSFm.hQcEShYLoGycJQzAqcTaw1RK87jFcg4LBjSNBW_tCcjxTph2R8xkfy6r6Hm_tQPVASps7.Brslk8nJrh2A9hXbo;
+        report-to cf-csp-endpoint
       Server:
       - cloudflare
       Cf-Ray:
-      - 889badb97cc66323-LHR
+      - 89a5d74dfd3863ce-LHR
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":[],"result":{"name":"Premise","id":"490341","logoUrl":"https:\/\/images4.bamboohr.com\/490341\/logos\/cropped.jpg?v=34","careerShareUrl":"https:\/\/premise.bamboohr.com\/careers","shareImageUrl":"https:\/\/premise.bamboohr.com\/jobs\/share_image\/34","inTrial":false,"appSessId":"19d532d225710b5b24b2038e6a5b2d7a33913f4d"}}'
-  recorded_at: Sun, 26 May 2024 06:23:48 GMT
+      string: '{"meta":[],"result":{"name":"Premise","id":"490341","logoUrl":"https:\/\/images4.bamboohr.com\/490341\/logos\/cropped.jpg?v=34","careerShareUrl":"https:\/\/premise.bamboohr.com\/careers","shareImageUrl":"https:\/\/premise.bamboohr.com\/jobs\/share_image\/34","inTrial":false,"appSessId":"f135350bf06b83d5c1d38d2ef4c41b45016d70f5"}}'
+  recorded_at: Thu, 27 Jun 2024 13:39:04 GMT
 - request:
     method: get
     uri: https://premise.bamboohr.com/careers/list
@@ -230,7 +234,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 26 May 2024 06:23:49 GMT
+      - Thu, 27 Jun 2024 13:39:04 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -238,8 +242,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=PVRp-yRuSnfwoMWGzAVGDkClphi21wkI; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=U0uV3GvO3SH3gnbPr68ObSXdPR95W2x51_sdDIb_PXo-1716704629037-0.0.1.1-604800000;
+      - PHPSESSID=xhgt4LYSwqW8U-gi-vh08yn9CPFv1jAB; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=sdMlGd0BPoxa8V6SEmyhL3IWxo5nxMyoIYgaMnPATo8-1719495544311-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -304,26 +308,25 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 889badbaad336544-LHR
+      - 89a5d74f38a793e6-LHR
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":{"totalCount":5},"result":[{"id":"45","jobOpeningName":"Lead
-        Product Manager,  CPG & Retail Execution","departmentId":"19029","departmentLabel":"30-000
+      string: '{"meta":{"totalCount":6},"result":[{"id":"45","jobOpeningName":"Lead
+        Product Manager, Retail Task Management & Execution","departmentId":"19029","departmentLabel":"30-000
         - Product","employmentStatusLabel":"Full-Time","location":{"city":"Ciudad
-        de M\u00e9xico","state":"CDMX"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"59","jobOpeningName":"Field
-        Trainer (Bolivia)","departmentId":"19024","departmentLabel":"70-000 - Global
-        Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"La
-        Paz"},"isRemote":null,"locationType":"1"},{"id":"60","jobOpeningName":"Lider
-        de Operaciones (Bolivia)","departmentId":"19024","departmentLabel":"70-000
-        - Global Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
-        Cruz de la Sierra"},"isRemote":null,"locationType":"1"},{"id":"61","jobOpeningName":"Account
+        de M\u00e9xico","state":"CDMX"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"61","jobOpeningName":"Account
         Executive (Bolivia)","departmentId":"19024","departmentLabel":"70-000 - Global
         Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
-        Cruz de la Sierra"},"isRemote":null,"locationType":"1"},{"id":"62","jobOpeningName":"Client
-        Service Executive (Bolivia)","departmentId":"19024","departmentLabel":"70-000
-        - Global Operations","employmentStatusLabel":"Full-Time DEEL","location":{"city":null,"state":null},"atsLocation":{"country":"Bolivia","state":null,"province":null,"city":"Santa
-        Cruz de la Sierra"},"isRemote":null,"locationType":"1"}]}'
-  recorded_at: Sun, 26 May 2024 06:23:48 GMT
+        Cruz de la Sierra"},"isRemote":null,"locationType":"1"},{"id":"72","jobOpeningName":"Lead
+        Product Manager, Dispatching & Routing","departmentId":"19029","departmentLabel":"30-000
+        - Product","employmentStatusLabel":"Full-Time DEEL","location":{"city":"Ciudad
+        de M\u00e9xico","state":"CDMX"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"74","jobOpeningName":"Client
+        Service Executive","departmentId":"19034","departmentLabel":"50-000 - Customer
+        Success","employmentStatusLabel":"Full-Time","location":{"city":"Bogota","state":null},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"0"},{"id":"79","jobOpeningName":"Client
+        Service Trainee","departmentId":"19034","departmentLabel":"50-000 - Customer
+        Success","employmentStatusLabel":"Full-Time","location":{"city":"Bogota","state":null},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"0"},{"id":"80","jobOpeningName":"Account
+        Executive ","departmentId":"19016","departmentLabel":"40-000 - Sales","employmentStatusLabel":"Full-Time","location":{"city":"Bogota","state":null},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"0"}]}'
+  recorded_at: Thu, 27 Jun 2024 13:39:04 GMT
 - request:
     method: get
     uri: https://premise.bamboohr.com/careers/45/detail
@@ -343,7 +346,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 26 May 2024 06:23:49 GMT
+      - Thu, 27 Jun 2024 13:39:04 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -351,8 +354,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=3BskVAM1dne5QjWVR-uKB1helGND7t-Z; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=nYE8U4htfpnc79HFBP0xVYKhe5_xF2xZc3kPtmsLb6o-1716704629254-0.0.1.1-604800000;
+      - PHPSESSID=cKa-exuemCvtN6kYr0lG%2CyQopoGMpbjh; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=dmwt7BDeusUm9qPF_gN9B9NNWs4nZuu7DyTVVo6Trc4-1719495544570-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -417,11 +420,11 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 889badbbdeb58862-LHR
+      - 89a5d7504b1371b4-LHR
     body:
       encoding: ASCII-8BIT
       string: '{"meta":{},"result":{"jobOpening":{"jobOpeningShareUrl":"https:\/\/premise.bamboohr.com\/careers\/45","jobOpeningName":"Lead
-        Product Manager,  CPG & Retail Execution","jobOpeningStatus":"Open","jobCategoryId":null,"departmentId":"19029","departmentLabel":"30-000
+        Product Manager, Retail Task Management & Execution","jobOpeningStatus":"Open","jobCategoryId":null,"departmentId":"19029","departmentLabel":"30-000
         - Product","employmentStatusLabel":"Full-Time","location":{"city":"Ciudad
         de M\u00e9xico","state":"CDMX","postalCode":"06600","addressCountry":"Mexico"},"atsLocation":{"country":null,"countryId":null,"state":null,"city":null},"description":"<p><span
         style=\"font-size: 15px; font-family: Arial, sans-serif;\">Premise is an on-demand
@@ -510,7 +513,7 @@ http_interactions:
         coverage for you and your family<\/span><\/li>\n<li><span style=\"font-size:
         15px; font-family: Arial, sans-serif;\">Generous PTO + paid holidays<\/span><\/li>\n<li><span
         style=\"font-size: 15px; font-family: Arial, sans-serif;\">Travel experience
-        to priority markets<\/span><\/li>\n<\/ul>","compensation":null,"datePosted":"2024-03-13","minimumExperience":null,"locationType":"2"},"formFields":{"firstName":{"isRequired":true,"value":""},"lastName":{"isRequired":true,"value":""},"email":{"isRequired":true,"value":""},"phone":{"isRequired":true,"value":""},"streetAddress":{"isRequired":true,"value":""},"city":{"isRequired":true,"value":""},"state":{"isRequired":true,"value":"","options":[]},"zip":{"isRequired":true,"value":""},"countryId":{"isRequired":true,"value":"139","options":[{"id":"1","text":"United
+        to priority markets<\/span><\/li>\n<\/ul>","compensation":null,"datePosted":"2024-03-13","minimumExperience":"Experienced","locationType":"2"},"formFields":{"firstName":{"isRequired":true,"value":""},"lastName":{"isRequired":true,"value":""},"email":{"isRequired":true,"value":""},"phone":{"isRequired":true,"value":""},"streetAddress":{"isRequired":true,"value":""},"city":{"isRequired":true,"value":""},"state":{"isRequired":true,"value":"","options":[]},"zip":{"isRequired":true,"value":""},"countryId":{"isRequired":true,"value":"139","options":[{"id":"1","text":"United
         States"},{"id":"2","text":"Canada"},{"id":"3","text":"Australia"},{"id":"4","text":"Afghanistan"},{"id":"5","text":"Albania"},{"id":"6","text":"Algeria"},{"id":"7","text":"American
         Samoa"},{"id":"8","text":"Andorra"},{"id":"9","text":"Anguilla"},{"id":"10","text":"Angola"},{"id":"11","text":"Antarctica"},{"id":"12","text":"Antigua
         and Barbuda"},{"id":"13","text":"Argentina"},{"id":"14","text":"Armenia"},{"id":"15","text":"Aruba"},{"id":"16","text":"Austria"},{"id":"17","text":"Azerbaijan"},{"id":"18","text":"Bahamas"},{"id":"19","text":"Bahrain"},{"id":"20","text":"Bangladesh"},{"id":"21","text":"Barbados"},{"id":"22","text":"Belgium"},{"id":"23","text":"Belize"},{"id":"24","text":"Benin"},{"id":"25","text":"Bermuda"},{"id":"26","text":"Bhutan"},{"id":"27","text":"Bolivia"},{"id":"28","text":"Bosnia
@@ -562,10 +565,10 @@ http_interactions:
         you have experience with experience with Gig economy platforms or two-sided
         marketplaces?","type":"short","value":"","isValueOther":false,"hasOther":"no","options":[]},{"id":"97","isRequired":false,"question":"Do
         you have experience working with CPGs and Retail Execution fields?","type":"short","value":"","isValueOther":false,"hasOther":"no","options":[]}],"genderId":[],"ethnicityId":[],"veteranStatusId":[],"disabilityId":[]}}}'
-  recorded_at: Sun, 26 May 2024 06:23:49 GMT
+  recorded_at: Thu, 27 Jun 2024 13:39:04 GMT
 - request:
     method: get
-    uri: http://dev.virtualearth.net/REST/v1/Locations/Ciudad%20de%20M%C3%A9xico,%20CDMX%2006600%20Mexico?key=
+    uri: http://dev.virtualearth.net/REST/v1/Locations/Ciudad%20de%20M%C3%A9xico,%20CDMX%2006600%20Mexico?key=As9GK0TwxULCFyDaoq4D-Y69ba9KgY2PSUp3XopYkZuhJWWm_gYcGosV7sjd7b8l
     body:
       encoding: US-ASCII
       string: ''
@@ -578,15 +581,15 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 401
-      message: Unauthorized
+      code: 200
+      message: OK
     headers:
       Date:
-      - Sun, 26 May 2024 06:23:49 GMT
+      - Thu, 27 Jun 2024 13:39:04 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '653'
+      - '1673'
       Connection:
       - keep-alive
       Access-Control-Allow-Headers:
@@ -599,13 +602,268 @@ http_interactions:
       - h3=":443"; ma=86400
       Cache-Control:
       - no-cache
+      X-Bm-Traceid:
+      - 548d9f0c03c70d0b8a358e2196cc72ce
+      X-Msedge-Ref:
+      - 'Ref SnR: 667d6b7856fc4129bf6006824a6a6f66|Ref A: AD48C858DA6746FF90084C465DF8C17E
+        Ref B: DB3EDGE2520 Ref C: 2024-06-27T13:39:04Z'
+      X-Bm-Srv:
+      - mapsplatform-frontend-84c7655474-vf58m, mapsplatform-forwardgeocoder-service-5b4f667648-ch2xl
+      X-Ms-Bm-Ws-Info:
+      - '0'
+      X-Bm-Fe-Elapsed:
+      - '100'
       X-Azure-Ref:
-      - 20240526T062349Z-1646bd8795fszjpb78dtavd4gn00000006vg000000006gfp
+      - 20240627T133904Z-165bd8dd578p2s64q6n006emdn00000001r000000001kxmx
+      X-Cache:
+      - CONFIG_NOCACHE
+      Accept-Ranges:
+      - bytes
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cDovL2Rldi52aXJ0dWFsZWFydGgubmV0L0JyYW5kaW5nL2xvZ29fcG93ZXJlZF9ieS5wbmciLCJjb3B5cmlnaHQiOiJDb3B5cmlnaHQgwqkgMjAyNCBNaWNyb3NvZnQgYW5kIGl0cyBzdXBwbGllcnMuIEFsbCByaWdodHMgcmVzZXJ2ZWQuIFRoaXMgQVBJIGNhbm5vdCBiZSBhY2Nlc3NlZCBhbmQgdGhlIGNvbnRlbnQgYW5kIGFueSByZXN1bHRzIG1heSBub3QgYmUgdXNlZCwgcmVwcm9kdWNlZCBvciB0cmFuc21pdHRlZCBpbiBhbnkgbWFubmVyIHdpdGhvdXQgZXhwcmVzcyB3cml0dGVuIHBlcm1pc3Npb24gZnJvbSBNaWNyb3NvZnQgQ29ycG9yYXRpb24uIiwicmVzb3VyY2VTZXRzIjpbeyJlc3RpbWF0ZWRUb3RhbCI6MiwicmVzb3VyY2VzIjpbeyJfX3R5cGUiOiJMb2NhdGlvbjpodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3NlYXJjaC9sb2NhbC93cy9yZXN0L3YxIiwiYmJveCI6WzE5LjA3MzMzMzc0MDIzNDM3NSwtOTkuNzM5MTIwNDgzMzk4NDQsMTkuNzY2MDk0MjA3NzYzNjcyLC05OC41NTA2MTM0MDMzMjAzMV0sIm5hbWUiOiJNZXhpY28gQ2l0eSwgTWV4aWNvIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlsxOS40MzI2NzgyMiwtOTkuMTM0MjA4NjhdfSwiYWRkcmVzcyI6eyJjb3VudHJ5UmVnaW9uIjoiTWV4aWNvIiwiZm9ybWF0dGVkQWRkcmVzcyI6Ik1leGljbyBDaXR5LCBNZXhpY28iLCJsb2NhbGl0eSI6Ik1leGljbyBDaXR5In0sImNvbmZpZGVuY2UiOiJIaWdoIiwiZW50aXR5VHlwZSI6IlBvcHVsYXRlZFBsYWNlIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlsxOS40MzI2NzgyMiwtOTkuMTM0MjA4NjhdLCJjYWxjdWxhdGlvbk1ldGhvZCI6IlJvb2Z0b3AiLCJ1c2FnZVR5cGVzIjpbIkRpc3BsYXkiXX1dLCJtYXRjaENvZGVzIjpbIkdvb2QiXX0seyJfX3R5cGUiOiJMb2NhdGlvbjpodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3NlYXJjaC9sb2NhbC93cy9yZXN0L3YxIiwiYmJveCI6WzE5LjQyMDY4MDk5OTc1NTg2LC05OS4xNzY1MTM2NzE4NzUsMTkuNDM1MzAyNzM0Mzc1LC05OS4xNDk4MTg0MjA0MTAxNl0sIm5hbWUiOiIwNjYwMCwgTWV4aWNvIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlsxOS40MjkyNjc4OCwtOTkuMTU3NzM3NzNdfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiQ0RNWCIsImFkbWluRGlzdHJpY3QyIjoiQ3VhdWh0w6ltb2MiLCJjb3VudHJ5UmVnaW9uIjoiTWV4aWNvIiwiZm9ybWF0dGVkQWRkcmVzcyI6IjA2NjAwLCBNZXhpY28iLCJwb3N0YWxDb2RlIjoiMDY2MDAifSwiY29uZmlkZW5jZSI6Ik1lZGl1bSIsImVudGl0eVR5cGUiOiJQb3N0Y29kZTEiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzE5LjQyOTI2Nzg4LC05OS4xNTc3Mzc3M10sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfV19XSwic3RhdHVzQ29kZSI6MjAwLCJzdGF0dXNEZXNjcmlwdGlvbiI6Ik9LIiwidHJhY2VJZCI6IjU0OGQ5ZjBjMDNjNzBkMGI4YTM1OGUyMTk2Y2M3MmNlIn0=
+  recorded_at: Thu, 27 Jun 2024 13:39:04 GMT
+- request:
+    method: get
+    uri: http://dev.virtualearth.net/REST/v1/Locations/Ciudad%20de%20M%C3%A9xico?key=As9GK0TwxULCFyDaoq4D-Y69ba9KgY2PSUp3XopYkZuhJWWm_gYcGosV7sjd7b8l
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 27 Jun 2024 13:39:05 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Headers:
+      - Content-Type,X-FD-Features,X-FD-FLIGHT,PreferAnonymous
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cache-Control:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      X-Bm-Traceid:
+      - c8c926473e760c7fcd18f08fef611032
+      X-Bm-Be-Elapsed:
+      - '68'
+      X-Msedge-Ref:
+      - 'Ref A: 237DA4B8D5584413A07C1880E0A21DC9 Ref B: DB3EDGE2615 Ref C: 2024-06-27T13:39:04Z'
+      X-Bm-Fe-Elapsed:
+      - '74'
+      X-Bm-Srv:
+      - mapsplatform-frontend-84c7655474-49gx2, DU00003069
+      X-Ms-Bm-Ws-Info:
+      - '0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      X-Azure-Ref:
+      - 20240627T133904Z-r175bff8f48cczh92eya5hmwf000000002p000000000g0ca
       X-Cache:
       - CONFIG_NOCACHE
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJOb0NyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cDovL2Rldi52aXJ0dWFsZWFydGgubmV0L0JyYW5kaW5nL2xvZ29fcG93ZXJlZF9ieS5wbmciLCJjb3B5cmlnaHQiOiJDb3B5cmlnaHQgwqkgMjAyNCBNaWNyb3NvZnQgYW5kIGl0cyBzdXBwbGllcnMuIEFsbCByaWdodHMgcmVzZXJ2ZWQuIFRoaXMgQVBJIGNhbm5vdCBiZSBhY2Nlc3NlZCBhbmQgdGhlIGNvbnRlbnQgYW5kIGFueSByZXN1bHRzIG1heSBub3QgYmUgdXNlZCwgcmVwcm9kdWNlZCBvciB0cmFuc21pdHRlZCBpbiBhbnkgbWFubmVyIHdpdGhvdXQgZXhwcmVzcyB3cml0dGVuIHBlcm1pc3Npb24gZnJvbSBNaWNyb3NvZnQgQ29ycG9yYXRpb24uIiwiZXJyb3JEZXRhaWxzIjpbIkFjY2VzcyB3YXMgZGVuaWVkLiBZb3UgbWF5IGhhdmUgZW50ZXJlZCB5b3VyIGNyZWRlbnRpYWxzIGluY29ycmVjdGx5LCBvciB5b3UgbWlnaHQgbm90IGhhdmUgYWNjZXNzIHRvIHRoZSByZXF1ZXN0ZWQgcmVzb3VyY2Ugb3Igb3BlcmF0aW9uLiJdLCJyZXNvdXJjZVNldHMiOltdLCJzdGF0dXNDb2RlIjo0MDEsInN0YXR1c0Rlc2NyaXB0aW9uIjoiVW5hdXRob3JpemVkIiwidHJhY2VJZCI6ImQxNjEyNzY4MmQ2MjYxNzNiMGFjMTgyNTkxZTViOTFiIn0=
-  recorded_at: Sun, 26 May 2024 06:23:49 GMT
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cHM6XC9cL2Rldi52aXJ0dWFsZWFydGgubmV0XC9CcmFuZGluZ1wvbG9nb19wb3dlcmVkX2J5LnBuZyIsImNvcHlyaWdodCI6IkNvcHlyaWdodCDCqSAyMDI0IE1pY3Jvc29mdCBhbmQgaXRzIHN1cHBsaWVycy4gQWxsIHJpZ2h0cyByZXNlcnZlZC4gVGhpcyBBUEkgY2Fubm90IGJlIGFjY2Vzc2VkIGFuZCB0aGUgY29udGVudCBhbmQgYW55IHJlc3VsdHMgbWF5IG5vdCBiZSB1c2VkLCByZXByb2R1Y2VkIG9yIHRyYW5zbWl0dGVkIGluIGFueSBtYW5uZXIgd2l0aG91dCBleHByZXNzIHdyaXR0ZW4gcGVybWlzc2lvbiBmcm9tIE1pY3Jvc29mdCBDb3Jwb3JhdGlvbi4iLCJyZXNvdXJjZVNldHMiOlt7ImVzdGltYXRlZFRvdGFsIjo1LCJyZXNvdXJjZXMiOlt7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzE5LjA3MzMzMzc0MDIzNDM3NSwtOTkuNzM5MTIwNDgzMzk4NDM4LDE5Ljc2NjA5NDIwNzc2MzY3MiwtOTguNTUwNjEzNDAzMzIwMzEyXSwibmFtZSI6Ik1leGljbyBDaXR5LCBNZXhpY28iLCJwb2ludCI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzE5LjQzMjY3ODIyLC05OS4xMzQyMDg2OF19LCJhZGRyZXNzIjp7ImNvdW50cnlSZWdpb24iOiJNZXhpY28iLCJmb3JtYXR0ZWRBZGRyZXNzIjoiTWV4aWNvIENpdHksIE1leGljbyIsImxvY2FsaXR5IjoiTWV4aWNvIENpdHkifSwiY29uZmlkZW5jZSI6IkhpZ2giLCJlbnRpdHlUeXBlIjoiUG9wdWxhdGVkUGxhY2UiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzE5LjQzMjY3ODIyLC05OS4xMzQyMDg2OF0sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzE5LjA1NjI3ODIyODc1OTc2NiwtOTkuMzYwMDA4MjM5NzQ2MSwxOS42MDAxOTY4MzgzNzg5MDYsLTk4Ljk1OTc5MzA5MDgyMDMxM10sIm5hbWUiOiJNZXhpY28gQ2l0eSIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMTkuMjc2ODcyNjMsLTk5LjEzOTQzNDgxXX0sImFkZHJlc3MiOnsiYWRtaW5EaXN0cmljdCI6IkNETVgiLCJjb3VudHJ5UmVnaW9uIjoiTWV4aWNvIiwiZm9ybWF0dGVkQWRkcmVzcyI6Ik1leGljbyBDaXR5In0sImNvbmZpZGVuY2UiOiJNZWRpdW0iLCJlbnRpdHlUeXBlIjoiQWRtaW5EaXZpc2lvbjEiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzE5LjI3Njg3MjYzLC05OS4xMzk0MzQ4MV0sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzE5LjA0ODIyNzMxMDE4MDY2NCwtOTkuMzY0OTA2MzExMDM1MTU2LDE5LjU5Mjk5ODUwNDYzODY3MiwtOTguOTQwMjkyMzU4Mzk4NDM4XSwibmFtZSI6Ik1leGljbyBDaXR5IiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlsxOS40MzI2NzgyMiwtOTkuMTM0MjA4NjhdfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiQ0RNWCIsImFkbWluRGlzdHJpY3QyIjoiTWV4aWNvIENpdHkiLCJjb3VudHJ5UmVnaW9uIjoiTWV4aWNvIiwiZm9ybWF0dGVkQWRkcmVzcyI6Ik1leGljbyBDaXR5In0sImNvbmZpZGVuY2UiOiJNZWRpdW0iLCJlbnRpdHlUeXBlIjoiQWRtaW5EaXZpc2lvbjIiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzE5LjQzMjY3ODIyLC05OS4xMzQyMDg2OF0sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzMwLjk3ODkwMTI0NDgxNTA1OSwtMTA4LjE5NzMyODg3NzYxNjA2LDMxLjAzNjg0MjAxMDgwMDE3NSwtMTA4LjEwNzIyMTI5MzI4MjM4XSwibmFtZSI6IkNvbG9uaWEgTcOpeGljbywgTWV4aWNvIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlszMS4wMDc4NzE2MywtMTA4LjE1MjI3NTA5XX0sImFkZHJlc3MiOnsiYWRtaW5EaXN0cmljdCI6IkNISUgiLCJjb3VudHJ5UmVnaW9uIjoiTWV4aWNvIiwiZm9ybWF0dGVkQWRkcmVzcyI6IkNvbG9uaWEgTcOpeGljbywgTWV4aWNvIiwibG9jYWxpdHkiOiJDb2xvbmlhIE3DqXhpY28ifSwiY29uZmlkZW5jZSI6IkxvdyIsImVudGl0eVR5cGUiOiJQb3B1bGF0ZWRQbGFjZSIsImdlb2NvZGVQb2ludHMiOlt7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMzEuMDA3ODcxNjMsLTEwOC4xNTIyNzUwOV0sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6Wy0yMy44OTYxOTIyMTUyNjc5NDgsMTQ2LjE1MzYwMTQ5NzQ3ODYzLC0yMy44MzgyNTE0NDkyODI4MzMsMTQ2LjIzODA2MTEwMDE3NzYyXSwibmFtZSI6Ik1leGljbywgQXVzdHJhbGlhIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlstMjMuODY3MjIxODMsMTQ2LjE5NTgzMTNdfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiUUxEIiwiYWRtaW5EaXN0cmljdDIiOiJCYXJjYWxkaW5lIiwiY291bnRyeVJlZ2lvbiI6IkF1c3RyYWxpYSIsImZvcm1hdHRlZEFkZHJlc3MiOiJNZXhpY28sIEF1c3RyYWxpYSIsImxvY2FsaXR5IjoiTWV4aWNvIn0sImNvbmZpZGVuY2UiOiJMb3ciLCJlbnRpdHlUeXBlIjoiUG9wdWxhdGVkUGxhY2UiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6Wy0yMy44NjcyMjE4MywxNDYuMTk1ODMxM10sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfV19XSwic3RhdHVzQ29kZSI6MjAwLCJzdGF0dXNEZXNjcmlwdGlvbiI6Ik9LIiwidHJhY2VJZCI6ImM4YzkyNjQ3M2U3NjBjN2ZjZDE4ZjA4ZmVmNjExMDMyfERVMDAwMDMwNjl8MC4wLjAuMXxSZWYgQTogMjM3REE0QjhENTU4NDQxM0EwN0MxODgwRTBBMjFEQzkgUmVmIEI6IERCM0VER0UyNjE1IFJlZiBDOiAyMDI0LTA2LTI3VDEzOjM5OjA0WiJ9
+  recorded_at: Thu, 27 Jun 2024 13:39:04 GMT
+- request:
+    method: get
+    uri: http://dev.virtualearth.net/REST/v1/Locations/CDMX?key=As9GK0TwxULCFyDaoq4D-Y69ba9KgY2PSUp3XopYkZuhJWWm_gYcGosV7sjd7b8l
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 27 Jun 2024 13:39:05 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '1629'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Headers:
+      - Content-Type,X-FD-Features,X-FD-FLIGHT,PreferAnonymous
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cache-Control:
+      - no-cache
+      X-Bm-Traceid:
+      - c73b026fd53e425509da9680d0a51b30
+      X-Msedge-Ref:
+      - 'Ref SnR: 667d6b79790e4f60827e348f05cabbf0|Ref A: 8C1DC4CB17DA44918DC57D43A587B342
+        Ref B: DB3EDGE2818 Ref C: 2024-06-27T13:39:05Z'
+      X-Bm-Srv:
+      - mapsplatform-frontend-84c7655474-pk29z, mapsplatform-forwardgeocoder-service-5b4f667648-cbrwz
+      X-Ms-Bm-Ws-Info:
+      - '0'
+      X-Bm-Fe-Elapsed:
+      - '245'
+      X-Azure-Ref:
+      - 20240627T133905Z-r175bff8f48j8zkhfnm32sg81000000001xg000000001k0e
+      X-Cache:
+      - CONFIG_NOCACHE
+      Accept-Ranges:
+      - bytes
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cDovL2Rldi52aXJ0dWFsZWFydGgubmV0L0JyYW5kaW5nL2xvZ29fcG93ZXJlZF9ieS5wbmciLCJjb3B5cmlnaHQiOiJDb3B5cmlnaHQgwqkgMjAyNCBNaWNyb3NvZnQgYW5kIGl0cyBzdXBwbGllcnMuIEFsbCByaWdodHMgcmVzZXJ2ZWQuIFRoaXMgQVBJIGNhbm5vdCBiZSBhY2Nlc3NlZCBhbmQgdGhlIGNvbnRlbnQgYW5kIGFueSByZXN1bHRzIG1heSBub3QgYmUgdXNlZCwgcmVwcm9kdWNlZCBvciB0cmFuc21pdHRlZCBpbiBhbnkgbWFubmVyIHdpdGhvdXQgZXhwcmVzcyB3cml0dGVuIHBlcm1pc3Npb24gZnJvbSBNaWNyb3NvZnQgQ29ycG9yYXRpb24uIiwicmVzb3VyY2VTZXRzIjpbeyJlc3RpbWF0ZWRUb3RhbCI6MiwicmVzb3VyY2VzIjpbeyJfX3R5cGUiOiJMb2NhdGlvbjpodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3NlYXJjaC9sb2NhbC93cy9yZXN0L3YxIiwiYmJveCI6WzE5LjA1NjI3ODIyODc1OTc2NiwtOTkuMzYwMDA4MjM5NzQ2MSwxOS42MDAxOTY4MzgzNzg5MDYsLTk4Ljk1OTc5MzA5MDgyMDMxXSwibmFtZSI6Ik1leGljbyBDaXR5IiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlsxOS4yNzY4NzI2MywtOTkuMTM5NDM0ODFdfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiQ0RNWCIsImNvdW50cnlSZWdpb24iOiJNZXhpY28iLCJmb3JtYXR0ZWRBZGRyZXNzIjoiTWV4aWNvIENpdHkifSwiY29uZmlkZW5jZSI6Ik1lZGl1bSIsImVudGl0eVR5cGUiOiJBZG1pbkRpdmlzaW9uMSIsImdlb2NvZGVQb2ludHMiOlt7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMTkuMjc2ODcyNjMsLTk5LjEzOTQzNDgxXSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19LHsiX190eXBlIjoiTG9jYXRpb246aHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9zZWFyY2gvbG9jYWwvd3MvcmVzdC92MSIsImJib3giOlsxOS4wNzMzMzM3NDAyMzQzNzUsLTk5LjczOTEyMDQ4MzM5ODQ0LDE5Ljc2NjA5NDIwNzc2MzY3MiwtOTguNTUwNjEzNDAzMzIwMzFdLCJuYW1lIjoiTWV4aWNvIENpdHksIE1leGljbyIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMTkuNDMyNjc4MjIsLTk5LjEzNDIwODY4XX0sImFkZHJlc3MiOnsiY291bnRyeVJlZ2lvbiI6Ik1leGljbyIsImZvcm1hdHRlZEFkZHJlc3MiOiJNZXhpY28gQ2l0eSwgTWV4aWNvIiwibG9jYWxpdHkiOiJNZXhpY28gQ2l0eSJ9LCJjb25maWRlbmNlIjoiTWVkaXVtIiwiZW50aXR5VHlwZSI6IlBvcHVsYXRlZFBsYWNlIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlsxOS40MzI2NzgyMiwtOTkuMTM0MjA4NjhdLCJjYWxjdWxhdGlvbk1ldGhvZCI6IlJvb2Z0b3AiLCJ1c2FnZVR5cGVzIjpbIkRpc3BsYXkiXX1dLCJtYXRjaENvZGVzIjpbIkdvb2QiXX1dfV0sInN0YXR1c0NvZGUiOjIwMCwic3RhdHVzRGVzY3JpcHRpb24iOiJPSyIsInRyYWNlSWQiOiJjNzNiMDI2ZmQ1M2U0MjU1MDlkYTk2ODBkMGE1MWIzMCJ9
+  recorded_at: Thu, 27 Jun 2024 13:39:05 GMT
+- request:
+    method: get
+    uri: http://dev.virtualearth.net/REST/v1/Locations/06600?key=As9GK0TwxULCFyDaoq4D-Y69ba9KgY2PSUp3XopYkZuhJWWm_gYcGosV7sjd7b8l
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 27 Jun 2024 13:39:05 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '3583'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Headers:
+      - Content-Type,X-FD-Features,X-FD-FLIGHT,PreferAnonymous
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cache-Control:
+      - no-cache
+      X-Bm-Traceid:
+      - b63f06fffb1986c719e6daf8b3c69e2f
+      X-Msedge-Ref:
+      - 'Ref A: 595EF8CE8CE845F8BE159EDA91AEB864 Ref B: DB3EDGE2616 Ref C: 2024-06-27T13:39:05Z|Ref
+        SnR: 667d6b7942114d538830cfc204113c76'
+      X-Bm-Srv:
+      - mapsplatform-frontend-84c7655474-pk29z, mapsplatform-forwardgeocoder-service-5b4f667648-gnflk
+      X-Ms-Bm-Ws-Info:
+      - '0'
+      X-Bm-Fe-Elapsed:
+      - '220'
+      X-Azure-Ref:
+      - 20240627T133905Z-165bd8dd578l8t6f1ssqrm30c800000001q00000000220bu
+      X-Cache:
+      - CONFIG_NOCACHE
+      Accept-Ranges:
+      - bytes
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cDovL2Rldi52aXJ0dWFsZWFydGgubmV0L0JyYW5kaW5nL2xvZ29fcG93ZXJlZF9ieS5wbmciLCJjb3B5cmlnaHQiOiJDb3B5cmlnaHQgwqkgMjAyNCBNaWNyb3NvZnQgYW5kIGl0cyBzdXBwbGllcnMuIEFsbCByaWdodHMgcmVzZXJ2ZWQuIFRoaXMgQVBJIGNhbm5vdCBiZSBhY2Nlc3NlZCBhbmQgdGhlIGNvbnRlbnQgYW5kIGFueSByZXN1bHRzIG1heSBub3QgYmUgdXNlZCwgcmVwcm9kdWNlZCBvciB0cmFuc21pdHRlZCBpbiBhbnkgbWFubmVyIHdpdGhvdXQgZXhwcmVzcyB3cml0dGVuIHBlcm1pc3Npb24gZnJvbSBNaWNyb3NvZnQgQ29ycG9yYXRpb24uIiwicmVzb3VyY2VTZXRzIjpbeyJlc3RpbWF0ZWRUb3RhbCI6NSwicmVzb3VyY2VzIjpbeyJfX3R5cGUiOiJMb2NhdGlvbjpodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3NlYXJjaC9sb2NhbC93cy9yZXN0L3YxIiwiYmJveCI6Wy0yMy41Mzg3NzI1ODMwMDc4MTIsLTQ2LjkwNTE0NzU1MjQ5MDIzNCwtMjMuNTI1NTc1NjM3ODE3MzgzLC00Ni44OTQyMjIyNTk1MjE0ODRdLCJuYW1lIjoiMDY2MDAsIEJyYXppbCIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbLTIzLjUzMTg4ODk2LC00Ni45MDE2MzQyMl19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJTUCIsImNvdW50cnlSZWdpb24iOiJCcmF6aWwiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiMDY2MDAsIEJyYXppbCIsImxvY2FsaXR5IjoiSmFuZGlyYSIsInBvc3RhbENvZGUiOiIwNjYwMCJ9LCJjb25maWRlbmNlIjoiSGlnaCIsImVudGl0eVR5cGUiOiJQb3N0Y29kZTIiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6Wy0yMy41MzE4ODg5NiwtNDYuOTAxNjM0MjJdLCJjYWxjdWxhdGlvbk1ldGhvZCI6IlJvb2Z0b3AiLCJ1c2FnZVR5cGVzIjpbIkRpc3BsYXkiXX1dLCJtYXRjaENvZGVzIjpbIkdvb2QiXX0seyJfX3R5cGUiOiJMb2NhdGlvbjpodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3NlYXJjaC9sb2NhbC93cy9yZXN0L3YxIiwiYmJveCI6WzQzLjU3MjYwODk0Nzc1MzkwNiw3LjA2NDM5NzgxMTg4OTY0OCw0My42MjI3OTg5MTk2Nzc3MzQsNy4xMzI5NzUxMDE0NzA5NDddLCJuYW1lIjoiMDY2MDAsIE1hcml0aW1lIEFscHMsIEZyYW5jZSIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbNDMuNTgwNTI0NDQsNy4xMjA2OTc1XX0sImFkZHJlc3MiOnsiYWRtaW5EaXN0cmljdCI6IlBBQ0EiLCJhZG1pbkRpc3RyaWN0MiI6Ik1hcml0aW1lIEFscHMiLCJjb3VudHJ5UmVnaW9uIjoiRnJhbmNlIiwiZm9ybWF0dGVkQWRkcmVzcyI6IjA2NjAwLCBNYXJpdGltZSBBbHBzLCBGcmFuY2UiLCJsb2NhbGl0eSI6IkFudGliZXMiLCJwb3N0YWxDb2RlIjoiMDY2MDAifSwiY29uZmlkZW5jZSI6IkhpZ2giLCJlbnRpdHlUeXBlIjoiUG9zdGNvZGUxIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOls0My41ODA1MjQ0NCw3LjEyMDY5NzVdLCJjYWxjdWxhdGlvbk1ldGhvZCI6IlJvb2Z0b3AiLCJ1c2FnZVR5cGVzIjpbIkRpc3BsYXkiXX1dLCJtYXRjaENvZGVzIjpbIkdvb2QiXX0seyJfX3R5cGUiOiJMb2NhdGlvbjpodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3NlYXJjaC9sb2NhbC93cy9yZXN0L3YxIiwiYmJveCI6WzE5LjQyMDY4MDk5OTc1NTg2LC05OS4xNzY1MTM2NzE4NzUsMTkuNDM1MzAyNzM0Mzc1LC05OS4xNDk4MTg0MjA0MTAxNl0sIm5hbWUiOiIwNjYwMCwgTWV4aWNvIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlsxOS40MjkyNjc4OCwtOTkuMTU3NzM3NzNdfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiQ0RNWCIsImFkbWluRGlzdHJpY3QyIjoiQ3VhdWh0w6ltb2MiLCJjb3VudHJ5UmVnaW9uIjoiTWV4aWNvIiwiZm9ybWF0dGVkQWRkcmVzcyI6IjA2NjAwLCBNZXhpY28iLCJwb3N0YWxDb2RlIjoiMDY2MDAifSwiY29uZmlkZW5jZSI6IkhpZ2giLCJlbnRpdHlUeXBlIjoiUG9zdGNvZGUxIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlsxOS40MjkyNjc4OCwtOTkuMTU3NzM3NzNdLCJjYWxjdWxhdGlvbk1ldGhvZCI6IlJvb2Z0b3AiLCJ1c2FnZVR5cGVzIjpbIkRpc3BsYXkiXX1dLCJtYXRjaENvZGVzIjpbIkdvb2QiXX0seyJfX3R5cGUiOiJMb2NhdGlvbjpodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3NlYXJjaC9sb2NhbC93cy9yZXN0L3YxIiwiYmJveCI6WzYuMDE3NTk4NjI4OTk3ODAzLDEwMC4yNzYzMzY2Njk5MjE4OCw2LjEyNjU5MzExMjk0NTU1NywxMDAuMzY0Njg1MDU4NTkzNzVdLCJuYW1lIjoiMDY2MDAsIE1hbGF5c2lhIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOls2LjEwNTM1OTA4LDEwMC4yOTM1NDA5NV19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJLZWRhaCIsImFkbWluRGlzdHJpY3QyIjoiRGFlcmFoIEtvdGEgU2V0YXIiLCJjb3VudHJ5UmVnaW9uIjoiTWFsYXlzaWEiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiMDY2MDAsIE1hbGF5c2lhIiwibG9jYWxpdHkiOiJLdWFsYSBLZWRhaCIsInBvc3RhbENvZGUiOiIwNjYwMCJ9LCJjb25maWRlbmNlIjoiSGlnaCIsImVudGl0eVR5cGUiOiJQb3N0Y29kZTEiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzYuMTA1MzU5MDgsMTAwLjI5MzU0MDk1XSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19LHsiX190eXBlIjoiTG9jYXRpb246aHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9zZWFyY2gvbG9jYWwvd3MvcmVzdC92MSIsImJib3giOlstNi41OTI3NTc1NjE2MjU4NTIsLTc4LjcyODI4MzI0ODMzOTU1LC02LjU4NTAzMjEyNjQ4NDQ5OSwtNzguNzE3OTE0MjYxNDI2MDddLCJuYW1lIjoiMDY2MDAsIFBlcnUiLCJwb2ludCI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6Wy02LjU4ODg5NDg0LC03OC43MjMwOTg3NV19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJDYWphbWFyY2EiLCJhZG1pbkRpc3RyaWN0MiI6IlByb3ZpbmNlIG9mIENob3RhIiwiY291bnRyeVJlZ2lvbiI6IlBlcnUiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiMDY2MDAsIFBlcnUiLCJsb2NhbGl0eSI6IkxhamFzIiwicG9zdGFsQ29kZSI6IjA2NjAwIn0sImNvbmZpZGVuY2UiOiJIaWdoIiwiZW50aXR5VHlwZSI6IlBvc3Rjb2RlMiIsImdlb2NvZGVQb2ludHMiOlt7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbLTYuNTg4ODk0ODQsLTc4LjcyMzA5ODc1XSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19XX1dLCJzdGF0dXNDb2RlIjoyMDAsInN0YXR1c0Rlc2NyaXB0aW9uIjoiT0siLCJ0cmFjZUlkIjoiYjYzZjA2ZmZmYjE5ODZjNzE5ZTZkYWY4YjNjNjllMmYifQ==
+  recorded_at: Thu, 27 Jun 2024 13:39:05 GMT
+- request:
+    method: get
+    uri: http://dev.virtualearth.net/REST/v1/Locations/Mexico?key=As9GK0TwxULCFyDaoq4D-Y69ba9KgY2PSUp3XopYkZuhJWWm_gYcGosV7sjd7b8l
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 27 Jun 2024 13:39:05 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Headers:
+      - Content-Type,X-FD-Features,X-FD-FLIGHT,PreferAnonymous
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cache-Control:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      X-Bm-Traceid:
+      - 8db6d942311494118fe08acce1eebea4
+      X-Bm-Be-Elapsed:
+      - '99'
+      X-Msedge-Ref:
+      - 'Ref A: C0D04FDA5B5146E08308F3D0B273209A Ref B: DB3EDGE1915 Ref C: 2024-06-27T13:39:05Z'
+      X-Bm-Fe-Elapsed:
+      - '106'
+      X-Bm-Srv:
+      - mapsplatform-frontend-84c7655474-vf58m, DU00003050
+      X-Ms-Bm-Ws-Info:
+      - '0'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      X-Azure-Ref:
+      - 20240627T133905Z-165bd8dd5788ggb5u64s64a71s00000002eg0000000058z9
+      X-Cache:
+      - CONFIG_NOCACHE
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cHM6XC9cL2Rldi52aXJ0dWFsZWFydGgubmV0XC9CcmFuZGluZ1wvbG9nb19wb3dlcmVkX2J5LnBuZyIsImNvcHlyaWdodCI6IkNvcHlyaWdodCDCqSAyMDI0IE1pY3Jvc29mdCBhbmQgaXRzIHN1cHBsaWVycy4gQWxsIHJpZ2h0cyByZXNlcnZlZC4gVGhpcyBBUEkgY2Fubm90IGJlIGFjY2Vzc2VkIGFuZCB0aGUgY29udGVudCBhbmQgYW55IHJlc3VsdHMgbWF5IG5vdCBiZSB1c2VkLCByZXByb2R1Y2VkIG9yIHRyYW5zbWl0dGVkIGluIGFueSBtYW5uZXIgd2l0aG91dCBleHByZXNzIHdyaXR0ZW4gcGVybWlzc2lvbiBmcm9tIE1pY3Jvc29mdCBDb3Jwb3JhdGlvbi4iLCJyZXNvdXJjZVNldHMiOlt7ImVzdGltYXRlZFRvdGFsIjo1LCJyZXNvdXJjZXMiOlt7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzE0LjQ4ODU4OTI4NjgwNDIsLTExOS43MDMzNjE1MTEyMzA0NywzNS4yNzE0MDgwODEwNTQ2ODcsLTgyLjYzNjYzNDgyNjY2MDE1Nl0sIm5hbWUiOiJNZXhpY28iLCJwb2ludCI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzIzLjkzMzU5MTg0LC0xMDIuNTA5Njk2OTZdfSwiYWRkcmVzcyI6eyJjb3VudHJ5UmVnaW9uIjoiTWV4aWNvIiwiZm9ybWF0dGVkQWRkcmVzcyI6Ik1leGljbyJ9LCJjb25maWRlbmNlIjoiSGlnaCIsImVudGl0eVR5cGUiOiJDb3VudHJ5UmVnaW9uIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlsyMy45MzM1OTE4NCwtMTAyLjUwOTY5Njk2XSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19LHsiX190eXBlIjoiTG9jYXRpb246aHR0cDpcL1wvc2NoZW1hcy5taWNyb3NvZnQuY29tXC9zZWFyY2hcL2xvY2FsXC93c1wvcmVzdFwvdjEiLCJiYm94IjpbMTguMzU1NDMyNTEwMzc1OTc3LC0xMDAuNDc5NjQ0Nzc1MzkwNjIsMjAuMzA3MzMyOTkyNTUzNzExLC05OC41NzA5MTUyMjIxNjc5NjldLCJuYW1lIjoiTcOpeGljbyIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMTkuMzU1OTkzMjcsLTk5LjY0NTM5MzM3XX0sImFkZHJlc3MiOnsiYWRtaW5EaXN0cmljdCI6Ik1FWCIsImNvdW50cnlSZWdpb24iOiJNZXhpY28iLCJmb3JtYXR0ZWRBZGRyZXNzIjoiTcOpeGljbyJ9LCJjb25maWRlbmNlIjoiTG93IiwiZW50aXR5VHlwZSI6IkFkbWluRGl2aXNpb24xIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlsxOS4zNTU5OTMyNywtOTkuNjQ1MzkzMzddLCJjYWxjdWxhdGlvbk1ldGhvZCI6IlJvb2Z0b3AiLCJ1c2FnZVR5cGVzIjpbIkRpc3BsYXkiXX1dLCJtYXRjaENvZGVzIjpbIkdvb2QiXX0seyJfX3R5cGUiOiJMb2NhdGlvbjpodHRwOlwvXC9zY2hlbWFzLm1pY3Jvc29mdC5jb21cL3NlYXJjaFwvbG9jYWxcL3dzXC9yZXN0XC92MSIsImJib3giOlszMC45Nzg5MDEyNDQ4MTUwNTksLTEwOC4xOTczMjg4Nzc2MTYwNiwzMS4wMzY4NDIwMTA4MDAxNzUsLTEwOC4xMDcyMjEyOTMyODIzOF0sIm5hbWUiOiJDb2xvbmlhIE3DqXhpY28sIE1leGljbyIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMzEuMDA3ODcxNjMsLTEwOC4xNTIyNzUwOV19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJDSElIIiwiY291bnRyeVJlZ2lvbiI6Ik1leGljbyIsImZvcm1hdHRlZEFkZHJlc3MiOiJDb2xvbmlhIE3DqXhpY28sIE1leGljbyIsImxvY2FsaXR5IjoiQ29sb25pYSBNw6l4aWNvIn0sImNvbmZpZGVuY2UiOiJMb3ciLCJlbnRpdHlUeXBlIjoiUG9wdWxhdGVkUGxhY2UiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzMxLjAwNzg3MTYzLC0xMDguMTUyMjc1MDldLCJjYWxjdWxhdGlvbk1ldGhvZCI6IlJvb2Z0b3AiLCJ1c2FnZVR5cGVzIjpbIkRpc3BsYXkiXX1dLCJtYXRjaENvZGVzIjpbIkdvb2QiXX0seyJfX3R5cGUiOiJMb2NhdGlvbjpodHRwOlwvXC9zY2hlbWFzLm1pY3Jvc29mdC5jb21cL3NlYXJjaFwvbG9jYWxcL3dzXC9yZXN0XC92MSIsImJib3giOlszOS4xMTE2MjE4NTY2ODk0NTMsLTkxLjkyMzUzMDU3ODYxMzI4MSwzOS4yMDc4MjA4OTIzMzM5ODQsLTkxLjgwMTQ1MjYzNjcxODc1XSwibmFtZSI6Ik1leGljbywgTU8iLCJwb2ludCI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzM5LjE3MDI4NDI3LC05MS44NzMzNTk2OF19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJNTyIsImFkbWluRGlzdHJpY3QyIjoiQXVkcmFpbiBDb3VudHkiLCJjb3VudHJ5UmVnaW9uIjoiVW5pdGVkIFN0YXRlcyIsImZvcm1hdHRlZEFkZHJlc3MiOiJNZXhpY28sIE1PIiwibG9jYWxpdHkiOiJNZXhpY28ifSwiY29uZmlkZW5jZSI6IkxvdyIsImVudGl0eVR5cGUiOiJQb3B1bGF0ZWRQbGFjZSIsImdlb2NvZGVQb2ludHMiOlt7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMzkuMTcwMjg0MjcsLTkxLjg3MzM1OTY4XSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19LHsiX190eXBlIjoiTG9jYXRpb246aHR0cDpcL1wvc2NoZW1hcy5taWNyb3NvZnQuY29tXC9zZWFyY2hcL2xvY2FsXC93c1wvcmVzdFwvdjEiLCJiYm94IjpbMjAuOTk3NDkzNzQzODk2NDg0LC04OS42MTYxMTkzODQ3NjU2MjUsMjEuMDA2ODgxNzEzODY3MTg4LC04OS42MDcxNTQ4NDYxOTE0XSwibmFtZSI6Ik3DqXhpY28sIE1leGljbyIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMjEuMDAzMzUxMjEsLTg5LjYxMTQzNDk0XX0sImFkZHJlc3MiOnsiYWRtaW5EaXN0cmljdCI6IllVQyIsImFkbWluRGlzdHJpY3QyIjoiTcOpcmlkYSIsImNvdW50cnlSZWdpb24iOiJNZXhpY28iLCJmb3JtYXR0ZWRBZGRyZXNzIjoiTcOpeGljbywgTWV4aWNvIn0sImNvbmZpZGVuY2UiOiJMb3ciLCJlbnRpdHlUeXBlIjoiTmVpZ2hib3Job29kIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlsyMS4wMDMzNTEyMSwtODkuNjExNDM0OTRdLCJjYWxjdWxhdGlvbk1ldGhvZCI6IlJvb2Z0b3AiLCJ1c2FnZVR5cGVzIjpbIkRpc3BsYXkiXX1dLCJtYXRjaENvZGVzIjpbIkdvb2QiXX1dfV0sInN0YXR1c0NvZGUiOjIwMCwic3RhdHVzRGVzY3JpcHRpb24iOiJPSyIsInRyYWNlSWQiOiI4ZGI2ZDk0MjMxMTQ5NDExOGZlMDhhY2NlMWVlYmVhNHxEVTAwMDAzMDUwfDAuMC4wLjF8UmVmIEE6IEMwRDA0RkRBNUI1MTQ2RTA4MzA4RjNEMEIyNzMyMDlBIFJlZiBCOiBEQjNFREdFMTkxNSBSZWYgQzogMjAyNC0wNi0yN1QxMzozOTowNVoifQ==
+  recorded_at: Thu, 27 Jun 2024 13:39:05 GMT
 recorded_with: VCR 6.2.0

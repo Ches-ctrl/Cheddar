@@ -1,8 +1,6 @@
 module Ats
   module Smartrecruiters
     module CompanyDetails
-      private
-
       def company_details(ats_identifier)
         url_ats_api = "#{url_api}#{ats_identifier}/postings"
         data = get_json_data(url_ats_api)
@@ -17,6 +15,8 @@ module Ats
           # TODO: scrape url_website from url_ats_main
         }
       end
+
+      private
 
       def fetch_description(data)
         data['content'].each do |posting|

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.feature "JobPage", type: :feature, job_page: true do
   pending "add some examples (or delete) #{__FILE__}"
 

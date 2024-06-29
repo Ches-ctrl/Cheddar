@@ -8,9 +8,8 @@ Rails.application.routes.draw do
   mount ActionCable.server => "/cable" # TODO: fix as not found at the moment
   mount Avo::Engine, at: '/avo'
 
-  devise_for :users, except: [:fetch_template]
+  devise_for :users, except: [:fetch_template] #, controllers: { registrations: 'users/registrations' }
   post '/users/fetch_template', to: 'users#fetch_template', as: :fetch_template
-
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
 
@@ -24,16 +23,14 @@ Rails.application.routes.draw do
   end
 
   # Pages
-  root to: "pages#home"
+  # root to: "pages#home"
   get 'about', to: 'pages#about', as: 'about'
-  get 'how_it_works', to: 'pages#how_it_works', as: 'how_it_works'
-  get 'privacy', to: 'pages#privacy', as: 'privacy'
-  get 'ts&cs', to: 'pages#ts_and_cs', as: 'ts_and_cs'
-  get 'landing', to: 'pages#landing', as: 'landing'
   get 'faqs', to: 'pages#faqs', as: 'faqs'
+  get 'how_it_works', to: 'pages#how_it_works', as: 'how_it_works'
+  get 'landing', to: 'pages#landing', as: 'landing'
+  get 'privacy', to: 'pages#privacy', as: 'privacy'
 
-  # Users
-  get 'profile', to: 'users#show', as: 'profile'
+  get 'ts&cs', to: 'pages#ts_and_cs', as: 'ts_and_cs'
 
   # Jobs
   get '/jobs/add_job', to: 'jobs#add_job'
@@ -42,14 +39,6 @@ Rails.application.routes.draw do
   post '/chatbot/chat', to: 'messages#chat'
 
   # Resources
-  resources :jobs, only: %i[index show create] do
-    resources :saved_jobs, only: [:create]
-    collection do
-      post :apply_to_selected_jobs, as: :apply
-    end
-    # TODO: fix app if breaking because you'll now need to specify the job in params
-    resources :job_applications, only: [:create]
-  end
 
   resources :companies, only: %i[index show]
   resources :job_applications, only: %i[index show new success create] do
@@ -59,6 +48,25 @@ Rails.application.routes.draw do
   end
 
   resources :emails, only: [:create]
-  resources :saved_jobs, only: %i[index show destroy]
   resources :educations, only: %i[new create]
+
+  ###
+  ### Taimwind Protocal Template
+  ###
+  get 'protocol', to: 'pages#protocol', as: 'protocol'
+
+  ###
+  ### Integration of new template
+  ###
+
+  get 'basket', to: 'saved_jobs#index', as: :saved_jobs
+  resources :opportunities, path: '/jobs', only: %i[index show] do
+    resources :saved_jobs, only: %i[create]
+    delete '/saved_jobs', to: 'saved_jobs#destroy', as: :destroy_saved_jobs
+    collection do
+      get 'opportunity_autocomplete', to: 'opportunity_autocomplete#index'
+    end
+  end
+
+  root to: 'uncategorized_pages#tothemoon'
 end
