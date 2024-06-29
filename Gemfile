@@ -124,7 +124,7 @@ gem 'newrelic_rpm'
 gem 'kaminari' # TODO: check whether we can replace with pagy
 
 # Front-end
-gem "high_voltage", "~> 3.1"
+# gem "high_voltage", "~> 3.1" # Turned off at the moment
 gem 'tinymce-rails' # TODO: now have trix and action text (check whether we need to replace)
 
 # Search
