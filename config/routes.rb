@@ -24,6 +24,10 @@ Rails.application.routes.draw do
 
   # Pages
   root to: 'uncategorized_pages#tothemoon'
+  get '/about', to: 'uncategorized_pages#about'
+  get '/contact', to: 'uncategorized_pages#contact'
+  get '/privacy', to: 'uncategorized_pages#privacy'
+  get '/terms', to: 'uncategorized_pages#terms'
 
   # Jobs
   get '/jobs/add_job', to: 'jobs#add_job'

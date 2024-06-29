@@ -13,7 +13,11 @@
   request.fullpath.end_with?('/users/sign_up') ||
   request.fullpath.end_with?('/users/edit') ||
   request.fullpath.include?('/users/edit?') ||
-  request.fullpath.end_with?('/users')
+  request.fullpath.end_with?('/users') ||
+  request.fullpath.include?('/about') ||
+  request.fullpath.include?('/contact') ||
+  request.fullpath.include?('/privacy') ||
+  request.fullpath.include?('/terms')
 %>
 <!DOCTYPE html>
 <html class="h-full" style="color-scheme: light;">
@@ -41,8 +45,8 @@
             <%= render "shared/template/flashes" %>
             <%= yield %>
           </main>
-          <%= render 'shared/template/page_footer', next_options: { title: "Quickstart", link_path: '#' } %>
         </div>
+        <%= render 'shared/template/page_footer', next_options: { title: "Quickstart", link_path: '#' } %>
       </div>
     </div>
   </body>
