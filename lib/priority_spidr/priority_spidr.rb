@@ -35,14 +35,14 @@ module Spidr
   # @see Agent.start_at
   #
   def self.start_at(url, ...)
-    PriorityAgent.start_at(url, ...)
+    PrioritySpidr::PriorityAgent.start_at(url, ...)
   end
 
   #
   # @see Agent.host
   #
   def self.host(name, ...)
-    PriorityAgent.host(name, ...)
+    PrioritySpidr::PriorityAgent.host(name, ...)
   end
 
   #
@@ -51,14 +51,14 @@ module Spidr
   # @since 0.7.0
   #
   def self.domain(name, ...)
-    PriorityAgent.domain(name, ...)
+    PrioritySpidr::PriorityAgent.domain(name, ...)
   end
 
   #
   # @see Agent.site
   #
   def self.site(url, ...)
-    PriorityAgent.site(url, ...)
+    PrioritySpidr::PriorityAgent.site(url, ...)
   end
 
   #

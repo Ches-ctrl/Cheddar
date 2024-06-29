@@ -1,4 +1,5 @@
-module Spidr
+require "spidr"
+module PrioritySpidr
   # Subclass of Spidr::Agent that puts urls matching `priority_stubs` at the front of the scrape queue
   class PriorityAgent<Spidr::Agent
     attr_accessor :priority_stubs
