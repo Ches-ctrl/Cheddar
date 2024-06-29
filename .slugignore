@@ -43,4 +43,6 @@ spec/fixtures/cassettes/ApplicantTrackingSystem/*.yml
 # Ignore documentation
 doc/**
 
+# Comment to enable merge from Heroku
+
 # rubocop:enable all
