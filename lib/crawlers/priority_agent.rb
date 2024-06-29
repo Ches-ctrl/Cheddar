@@ -1,7 +1,7 @@
 require "spidr"
-module PrioritySpidr
+module Crawlers
   # Subclass of Spidr::Agent that puts urls matching `priority_stubs` at the front of the scrape queue
-  class PriorityAgent<Spidr::Agent
+  class PriorityAgent < Spidr::Agent
     attr_accessor :priority_stubs
 
     def enqueue(url, level = 0)

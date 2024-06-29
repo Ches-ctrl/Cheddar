@@ -1,5 +1,3 @@
-require_relative "base_crawler"
-require_relative "netzero_hit"
 require "cgi"
 
 module Crawlers

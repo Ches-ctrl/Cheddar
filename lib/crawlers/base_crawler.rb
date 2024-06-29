@@ -1,4 +1,3 @@
-require_relative "../priority_spidr/priority_spidr"
 require "cgi"
 require "csv"
 
@@ -98,7 +97,7 @@ module Crawlers
 
     # Stop crawl due to crawl limits having been exceeded.
     #
-    # @param agent [Spidr::PriorityAgent]
+    # @param agent [PriorityAgent]
     def limits_exceeded(agent)
       puts "Scan limits exceeded."
       puts "Scanned #{agent.history.length} pages in #{elapsed_time.round(2)}s."
@@ -141,7 +140,7 @@ module Crawlers
 
     # Defines the action loop for each page.
     #
-    # @param agent [PrioritySpidr::PriorityAgent]
+    # @param agent [PriorityAgent::PriorityAgent]
     def every_page(agent)
       agent.priority_stubs = @priority_stubs
       agent.every_page do |page|
@@ -180,7 +179,7 @@ module Crawlers
     # @return [Array]
     def crawl
       pre_crawl_chores
-      PrioritySpidr.start_at(@starting_url, hosts: valid_hosts(@starting_url), strip_fragments: true, strip_query: true, robots: false) do |agent|
+      PriorityAgent.start_at(@starting_url, hosts: valid_hosts(@starting_url), strip_fragments: true, strip_query: true, robots: false) do |agent|
         every_page(agent)
       end
       return @hits
