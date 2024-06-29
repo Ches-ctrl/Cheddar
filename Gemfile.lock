@@ -339,7 +339,6 @@ GEM
     parser (3.3.3.0)
       ast (~> 2.4.1)
       racc
-    pathname (0.3.0)
     pg (1.5.6)
     pg_search (2.3.6)
       activerecord (>= 5.2)
@@ -623,7 +622,6 @@ DEPENDENCIES
   meta-tags
   newrelic_rpm
   nokogiri
-  pathname
   pg (~> 1.1)
   pg_search
   psych (~> 5.1.2)
