@@ -11,7 +11,7 @@ module Crawlers
     #
     # @param stubs_path [Pathname, NilClass]
     def initialize(url, stubs_path = File.join(File.dirname(__FILE__), "wordlists/netzero_priority_stubs.txt"))
-      super(url, stubs_path)
+      super
       @netzero_stubs = load_stubs(File.join(File.dirname(__FILE__), "wordlists/netzero_key_terms.txt"))
     end
 

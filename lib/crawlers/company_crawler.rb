@@ -11,7 +11,7 @@ module Crawlers
     #
     # @param stubs_path [Pathname, NilClass]
     def initialize(url, stubs_path = File.join(File.dirname(__FILE__), "wordlists/careers_page_stubs.txt"))
-      super(url, stubs_path)
+      super
       @url_regex = Regexp.new('https?://(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b(?:[-a-zA-Z0-9@:%_\+.~#?&//=]*)')
       @ats_stubs = load_ats_stubs
     end
