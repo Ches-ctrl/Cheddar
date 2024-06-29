@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   get '/contact', to: 'uncategorized_pages#contact'
   get '/privacy', to: 'uncategorized_pages#privacy'
   get '/terms', to: 'uncategorized_pages#terms'
+  get '/howitworks', to: 'uncategorized_pages#howitworks'
+  get '/pricing', to: 'uncategorized_pages#pricing'
 
   # Jobs
   get '/jobs/add_job', to: 'jobs#add_job'
