@@ -10,13 +10,14 @@ module Importer
       include FaradayHelpers
       # TODO: Add capability to save responses to S3
 
-      def initialize(ats_name)
+      def initialize(ats_name, redirect_processor)
         @ats = ApplicantTrackingSystem.find_by(name: ats_name)
+        @redirect_processor = redirect_processor
         @local_storage = LocalDataStorer.new(ats_name)
         set_initial_counts
       end
 
-      def call(url)
+      def call(url = nil)
         return false unless processable
 
         @url = url
@@ -87,7 +88,7 @@ module Importer
       end
 
       def process_redirect_jobs
-        @redirect_jobs.each { |job_data| Url::CreateDevitJobFromUrlJob.perform_later(job_data) }
+        @redirect_jobs.each { |job_data| @redirect_processor.perform_later(job_data) }
         p @redirect_jobs.count
         p "Redirected jobs processed."
       end
@@ -98,8 +99,6 @@ module Importer
         p "Company: #{company&.name}"
         job = JobCreator.call(ats: @ats, company:, data: job_data)
         p "Job: #{job&.title}"
-      rescue StandardError => e
-        Rails.logger.error "Error creating company and job: #{e.message}"
       end
 
       def log_initial_counts

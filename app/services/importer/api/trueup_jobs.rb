@@ -4,9 +4,9 @@ module Importer
     # API Endpoint: https://devitjobs.uk/api/jobsLight
     # To use this: rake admin:devitjobs
     # This works by: (1) fetching JSON from the API, (2) creating a company then job for each DevITJobs job, and (3) handling redirects.
-    class DevitJobs < JobPostingsApi
+    class TrueupJobs < JobPostingsApi
       def initialize
-        super('DevITJobs', Url::CreateDevitJobFromUrlJob)
+        super('TrueUp', Url::CreateTrueupJobFromUrlJob)
       end
 
       def call
@@ -15,8 +15,8 @@ module Importer
 
       private
 
-      def redirect?(json_data)
-        json_data['redirectJobUrl'].present?
+      def redirect?(_json_data)
+        true
       end
     end
   end
