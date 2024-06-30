@@ -32,16 +32,17 @@
     </div>
 
     <%# Basket Contents %>
-    <div class="flex pb-4 gap-x-8">
+    <div class="md:flex pb-4 gap-x-8">
       <ul role="list" class="flex-1 divide-y divide-gray-100 dark:divide-gray-800">
         <!-- #rename later to jobs for jobs/_job.html.erb -->
         <% @records.each do |opportunity| %>
           <%= render 'opportunities/opportunity', opportunity: %>
         <% end %>
       </ul>
+
       <!-- Order summary -->
-      <section aria-labelledby="summary-heading" class="flex flex-col justify-between rounded-lg md:min-w-30 lg:min-w-60 h-40 bg-gray-50 px-4 py-2 text-center sm:p-6 lg:col-span-5 lg:mt-0 lg:p-4">
-        <h2 id="summary-heading" class="text-lg font-medium text-gray-900">Order summary</h2>
+      <section aria-labelledby="summary-heading" class="flex flex-col justify-between mt-2 rounded-lg md:min-w-30 lg:min-w-60 h-40 bg-gray-50 px-4 py-2 text-center sm:p-6 lg:col-span-5 lg:mt-0 lg:p-4">
+        <h2 id="summary-heading" class="text-lg font-medium text-gray-900">Application summary</h2>
         <% if request.fullpath.eql?('/basket') %>
           <%# Main Checkbox %>
           <div class="flex justify-center pt-2 pr-0 sm:flex-none">
