@@ -16,7 +16,7 @@
   request.fullpath.include?('/contact') ||
   request.fullpath.include?('/privacy') ||
   request.fullpath.include?('/terms') ||
-  request.fullpath.include?('/pricing') ||
+  request.fullpath.include?('/pricing')
 %>
 <!DOCTYPE html>
 <html class="h-full" style="color-scheme: light;">
@@ -54,7 +54,7 @@
           <%= render 'shared/template/layout/sidebar' if @opportunities %>
         </div>
         <div class="relative flex h-full flex-col px-4 pt-14 sm:px-6 lg:px-8">
-          <main class="flex-auto">
+          <main class="flex-auto min-h-full">
             <%= render "shared/template/flashes" %>
             <%= yield %>
           </main>
