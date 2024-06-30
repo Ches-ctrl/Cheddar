@@ -43,7 +43,7 @@ class Company < ApplicationRecord
     return if url_website.present?
 
     if Rails.env.production?
-      clearbit_company_info = Categorizer::CompanyDomainService.lookup_domain(name)
+      clearbit_company_info = Categorizer::CompanyDomain.lookup_domain(name)
       self.url_website = clearbit_company_info['domain'] if clearbit_company_info && clearbit_company_info['domain'].present?
     else
       self.url_website = "https://www.example.com"
