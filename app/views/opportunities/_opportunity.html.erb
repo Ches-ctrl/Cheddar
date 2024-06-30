@@ -3,6 +3,9 @@
     <div class="flex w-6 z-50 items-center justify-center float-start me-1">
       <%= check_box_tag('job_ids[]', opportunity.id, multiple: true, class: "h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600", data: { basket_target: 'checkbox' } ) %>
     </div>
+  <% elsif request.fullpath.eql?('/in_progress') %>
+    <div class="flex w-6 z-50 items-center justify-center float-start me-1">
+    </div>
   <% end %>
   <div class="flex-grow overflow-hidden cursor-pointer rounded-xl !border border-gray-200 mt-2 hover:bg-gray-50 dark:hover:bg-gray-700/50">
     <%= link_to opportunity_path(opportunity.id) do %>
@@ -11,7 +14,7 @@
                         onerror: "this.src='https://i.pinimg.com/736x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg'",
                         class: "h-16 w-16 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10") %>
         <div>
-          <div class="font-medium leading-6 text-gray-900"><%= opportunity.title %></div>
+          <div class="font-medium leading-6 text-gray-900 dark:text-white"><%= opportunity.title %></div>
           <p class="mt-1 flex leading-5 text-gray-500 dark:text-gray-400"><%= opportunity.company.name %></p>
           <p class="mt-1 flex text-xs leading-5 text-gray-500 dark:text-gray-400">
             <%# opportunity_public_location(opportunity) %>
