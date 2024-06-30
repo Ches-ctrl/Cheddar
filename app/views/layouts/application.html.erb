@@ -99,20 +99,6 @@
         <%= yield %>
       </div>
     </div>
-    <% if Flipper.enabled?(:cheddargpt) %>
-      <div data-controller="chatbot">
-        <div>
-          <%= render partial: "messages/cheddargpt_modal" unless on_landing_page? %>
-          <% unless on_landing_page? %>
-            <div class="CheddarGPTmodal d-flex justify-content-center align-items-center" data-action="click->chatbot#open" >
-              <div class="yellow-circle d-none"></div>
-              <%= image_tag("cheddar_logo_new_3.svg", alt: "Cheddar Logo", style: "max-height: 50px; max-width: 50px;", class: "ms-1") %>
-              <%# <p class="mb-0">CheddarGPT</p> %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
     <% if Flipper.enabled?(:footer) %>
       <%= render "pages/footer" unless on_landing_page? %>
     <% end %>
