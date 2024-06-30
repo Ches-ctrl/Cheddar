@@ -11,14 +11,17 @@ class User < ApplicationRecord
   # == Extensions ===========================================================
   # == Instance Methods =====================================================
   # == Relationships ========================================================
+  has_one :user_detail, dependent: :destroy
+
   has_many :application_processes, dependent: :destroy
   has_many :educations, dependent: :destroy
   has_many :job_applications, through: :application_processes
   has_many :saved_jobs, dependent: :destroy
-  has_many_attached :cover_letter_templates
-  has_one :user_detail
+
   has_one_attached :photo
   has_one_attached :resume
+
+  has_many_attached :cover_letter_templates
   # == Scopes ===============================================================
   # == Validations ==========================================================
 end
