@@ -27,7 +27,7 @@ module OpportunityHelper
   end
 
   def opportunity_salary_presentation(opportunity)
-    opportunity.salary.present? ? opportunity.salary : "<br>".html_safe
+    opportunity.salary.present? ? opportunity.salary : nil
   end
 
   def opportunity_days_remaining(opportunity)
