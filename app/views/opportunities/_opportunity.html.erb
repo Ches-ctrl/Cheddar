@@ -34,7 +34,7 @@
             <% if current_user %>
               <div class="relative z-10">
                 <% if job_saved?(opportunity) %>
-                  <% if request.fullpath.eql?('/basket') %>
+                  <% if request.fullpath.eql?('/basket') || request.fullpath.eql?('/in_progress') %>
                     <%= link_to "Remove", opportunity_destroy_saved_jobs_path(opportunity_id: opportunity.id), data: {turbo_method: :delete}, method: :delete, class: "text-sm font-semibold text-indigo-600 dark:text-indigo-400" %>
                   <% else %>
                     <%= link_to opportunity_destroy_saved_jobs_path(opportunity_id: opportunity.id), data: {turbo_method: :delete}, method: :delete, class:"inline-flex items-center gap-x-1.5 rounded-full bg-indigo-50 dark:bg-indigo-900 dark:hover:bg-indigo-700 p-2 text-sm font-semibold text-indigo-600 dark:text-indigo-400 shadow-sm hover:bg-indigo-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-200" do %>
