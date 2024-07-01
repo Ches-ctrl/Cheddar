@@ -63,4 +63,3 @@ doc/**
 latest.dump
 
 /app/assets/builds/*
-# !/app/assets/builds/.keep
