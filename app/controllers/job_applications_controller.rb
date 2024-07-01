@@ -11,6 +11,13 @@ class JobApplicationsController < ApplicationController
     persist_job_application
   end
 
+  def destroy
+    load_application_process
+    load_job_application
+    build_saved_job
+    destroy_job_application
+  end
+
   private
 
   def application_process_scope
@@ -19,6 +26,18 @@ class JobApplicationsController < ApplicationController
 
   def assign_job_application_params
     @job_application.assign_attributes(job_application_params)
+  end
+
+  def build_saved_job
+    @saved_job = current_user.saved_jobs.new(job_id: @job_application.job_id)
+  end
+
+  def destroy_job_application
+    if @job_application.destroy && @saved_job.save
+      success_destroy_job_application_path
+    else
+      error_redirect_to_referrer
+    end
   end
 
   def load_application_process
@@ -54,4 +73,8 @@ class JobApplicationsController < ApplicationController
   end
 
   def save_job_application = @job_application.save
+
+  def success_destroy_job_application_path
+    redirect_to in_progress_jobs_path, notice: 'Job Application successfully removed!'
+  end
 end
