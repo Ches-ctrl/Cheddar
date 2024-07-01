@@ -19,19 +19,23 @@ class OpportunityFacetsBuilder < ApplicationTask
   end
 
   def process
-    build_facets
+    [build_facets, sort_facet]
   end
 
   ###
 
   def build_facets
-    @facets = sort_by_facets
-    @facets += posted_facets
+    # @facets = sort_by_facets
+    @facets = posted_facets
     @facets += seniority_facets
     @facets += location_facets
     @facets += role_facets
     @facets += employment_facets
     sorted(@facets)
+  end
+
+  def sort_facet
+    @sort = sort_by_facets
   end
 
   def sort_by_facets

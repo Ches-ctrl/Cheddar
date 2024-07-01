@@ -14,7 +14,7 @@ class OpportunitiesController < ApplicationController
   private
 
   def load_facets
-    @facets = OpportunityFacetsBuilder.call(@opportunities, opportunity_params)
+    @facets, @sort = OpportunityFacetsBuilder.call(@opportunities, opportunity_params)
   end
 
   def load_opportunity
