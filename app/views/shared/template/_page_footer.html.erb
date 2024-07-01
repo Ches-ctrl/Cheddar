@@ -1,36 +1,64 @@
-<% social_links = [
-  {
-    sr_text: 'Follow us on X',
-    icon_name: 'logos/x',
-    link: 'https://x.com'
-  },
-  {
-    sr_text: 'Follow us on Github',
-    icon_name: 'logos/github',
-    link: 'https://www.github.com/Ches-ctrl/Cheddar'
-  },
-  {
-    sr_text: 'Join our Discord server',
-    icon_name: 'logos/discord'
-  },
-  # {
-  #   sr_text: 'Follow us on LinkedIn',
-  #   icon_name: 'logos/linkedin',
-  #   link: 'https://www.linkedin.com/company/Cheddarjobs'
-  # }
-] %>
-<footer class="mx-auto w-full max-w-2xl space-y-10 pb-16 lg:max-w-5xl">
+<!-- footer -->
+<footer class="mx-auto w-full space-y-10 pb-4 lg:max-w-7xl">
+  <%# Social Links %>
   <div class="flex flex-col items-center justify-between gap-5 border-t border-zinc-900/5 pt-8 sm:flex-row dark:border-white/5">
     <p class="text-xs text-zinc-600 dark:text-zinc-400">
       &copy; Cheddar 2024. All rights reserved.
     </p>
-    <div class="flex gap-4">
-      <% social_links.each do |link| %>
-        <%= link_to  link[:link], class: 'group' do %>
-          <span class="sr-only"><%= link[:sr_text] %></span>
-          <%= inline_svg_tag("template/icons/#{link[:icon_name]}.svg") %>
+    <%= footer_social_links %>
+  </div>
+
+  <%# Footer Links %>
+  <div class="mx-auto max-w-7xl px-3 pb-8 pt-3">
+    <div class="xl:grid xl:grid-cols-3 xl:gap-1">
+      <div class="grid grid-cols-2 gap-8 xl:col-span-2">
+        <div class="md:grid md:grid-cols-2 md:gap-8">
+          <div>
+            <h3 class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Company</h3>
+            <ul role="list" class="mt-6 space-y-4">
+              <li>
+                <%= link_to "About", about_path, class: "text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-300" %>
+              </li>
+              <li>
+                <%= link_to "Contact", contact_path, class: "text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-300" %>
+              </li>
+              <li>
+                <%= link_to "Privacy", privacy_path, class: "text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-300" %>
+              </li>
+              <li>
+                <%= link_to "Terms", terms_path, class: "text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-300" %>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-10 md:mt-0">
+            <h3 class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Support</h3>
+            <ul role="list" class="mt-6 space-y-4">
+              <li>
+                <%= link_to "How It Works", root_path, class: "text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-300" %>
+              </li>
+              <li>
+                <%= link_to "Pricing", pricing_path, class: "text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-300" %>
+              </li>
+              <li>
+                <a href="https://cheddar.instatus.com/" class="text-sm leading-6 text-gray-600 hover:text-gray-900 dark:text-gray-300">Service Status</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <%# Newsletter Signup %>
+      <div class="mt-10 xl:mt-0">
+        <h3 class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Subscribe to our newsletter</h3>
+        <p class="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-300">The latest updates and jobs sent to your inbox</p>
+        <%= form_with(url: emails_path, method: :post, local: false, class: "mt-4 sm:flex sm:max-w-md") do |form| %>
+          <%= form.label :email_address, "Email address", class: "sr-only" %>
+          <%= form.email_field :email_address, autocomplete: "email", required: true, class: "w-full min-w-0 appearance-none rounded-md border-0 bg-white dark:bg-white/5 px-3 py-1.5 text-base text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:w-64 sm:text-sm sm:leading-6 xl:w-full", placeholder: "Enter your email" %>
+          <div class="sm:ml-4 sm:mt-0 sm:flex-shrink-0">
+        <%= form.submit "Subscribe", class: "flex w-full cursor-pointer items-center justify-center rounded-md !bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+          </div>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
 </footer>

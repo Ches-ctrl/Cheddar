@@ -1,0 +1,7 @@
+<%= provide(:title, 'Application Process - Specific fields') %>
+<article class="flex w-2/3 mx-auto h-full flex-col pb-5 pt-8">
+  <div class="grid max-w-8xl sm:grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
+    <%= render 'step_indicators' %>
+    <%= render 'additional_information_form', job_application: @job_application %>
+  </div>
+</article>

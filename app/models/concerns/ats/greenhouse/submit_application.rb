@@ -42,10 +42,10 @@ module Ats
           @fields.each do |field|
             field[1]
             if field[0] == 'resume'
-              file_path = Rails.root.join('tmp', "Resume - #{@user.first_name} #{@user.last_name} - - #{@job.title} - #{@job.company.name}.pdf")
+              file_path = Rails.root.join('tmp', "Resume - #{@user.user_detail.first_name} #{@user.user_detail.last_name} - - #{@job.title} - #{@job.company.name}.pdf")
               FileUtils.rm_f(file_path)
             elsif field[0] == 'cover_letter_'
-              file_path = Rails.root.join('tmp', "Cover Letter - #{@job.title} - #{@job.company.name} - #{@user.first_name} #{@user.last_name}.docx")
+              file_path = Rails.root.join('tmp', "Cover Letter - #{@job.title} - #{@job.company.name} - #{@user.user_detail.first_name} #{@user.user_detail.last_name}.docx")
               FileUtils.rm_f(file_path)
             end
           end
@@ -171,7 +171,7 @@ module Ats
         # NB. Changed this from previous URI.open due to security issue - noting in case this breaks functionality (CC)
         if file.instance_of?(String)
           docx = Htmltoword::Document.create(file)
-          file_path = Rails.root.join("tmp", "Cover Letter - #{@job.title} - #{@job.company.name} - #{@user.first_name} #{@user.last_name}.docx")
+          file_path = Rails.root.join("tmp", "Cover Letter - #{@job.title} - #{@job.company.name} - #{@user.user_detail.first_name} #{@user.user_detail.last_name}.docx")
           File.binwrite(file_path, docx)
         else
           uri = URI.parse(file.url)
@@ -182,7 +182,7 @@ module Ats
 
           raise "Failed to download file: #{response.message}" unless response.is_a?(Net::HTTPSuccess)
 
-          file_path = Rails.root.join("tmp", "Resume - #{@user.first_name} #{@user.last_name} - #{@job.title} - #{@job.company.name}.pdf")
+          file_path = Rails.root.join("tmp", "Resume - #{@user.user_detail.first_name} #{@user.user_detail.last_name} - #{@job.title} - #{@job.company.name}.pdf")
           File.binwrite(file_path, response.body)
         end
 

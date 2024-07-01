@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EditingColumnsForJobs < ActiveRecord::Migration[7.1]
   def change
     change_column_default :jobs, :employment_type, "Full-time"

@@ -1,9 +1,7 @@
 RSpec.describe JobApplication do
   describe 'Associations' do
-    it { is_expected.to have_many(:application_responses).dependent(:destroy) }
-    it { is_expected.to belong_to(:user) }
+    it { is_expected.to belong_to(:application_process) }
     it { is_expected.to belong_to(:job) }
-    it { is_expected.to have_one_attached(:screenshot) }
   end
 
   describe 'Validations' do

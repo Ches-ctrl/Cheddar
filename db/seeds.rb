@@ -121,25 +121,25 @@ puts "Created #{User.count} users..."
 
 puts "-------------------------------------"
 
-5.times do |_application|
-  JobApplication.create(
-    status: "Pre-test",
-    user_id: User.all.sample.id,
-    job_id: Job.all.sample.id
-  )
-  puts "Created job application"
-end
+# 5.times do |_application|
+#   JobApplication.create(
+#     status: "Pre-test",
+#     user_id: User.all.sample.id,
+#     job_id: Job.all.sample.id
+#   )
+#   puts "Created job application"
+# end
 
-5.times do |_application|
-  JobApplication.create(
-    status: "Applied",
-    user_id: User.find_by(first_name: "Charlotte", last_name: "Boyd").id,
-    job_id: Job.all.sample.id
-  )
-  puts "Created job application"
-end
+# 5.times do |_application|
+#   JobApplication.create(
+#     status: "Applied",
+#     user_id: User.find_by(first_name: "Charlotte", last_name: "Boyd").id,
+#     job_id: Job.all.sample.id
+#   )
+#   puts "Created job application"
+# end
 
-puts "Created #{JobApplication.count} job applications..."
+# puts "Created #{JobApplication.count} job applications..."
 
 puts "-------------------------------------"
 
@@ -158,9 +158,9 @@ puts "-------------------------------------"
 puts User.all
 puts User.count
 puts "-------------------------------------"
-puts JobApplication.all
-puts JobApplication.count
-puts "-------------------------------------"
+# puts JobApplication.all
+# puts JobApplication.count
+# puts "-------------------------------------"
 puts Country.all
 puts Country.count
 puts "-------------------------------------"
