@@ -26,7 +26,7 @@ class ApplicationProcessesController < ApplicationController
 
   def build_job_applications
     @job_applications = job_applications_params[:job_ids].map do |job_id|
-      @application_process.job_applications.new(job_id:)
+      @application_process.job_applications.new(job_id:, additional_info: { email: @application_process.user.user_detail.email })
     end
   end
 
@@ -48,7 +48,7 @@ class ApplicationProcessesController < ApplicationController
   end
 
   def render_application_process
-    redirect_to new_job_application_path(@job_applications.first), notice: 'Your application process was successfully created'
+    redirect_to edit_application_process_job_application_path(@application_process, @job_applications.first), notice: 'Your application process was successfully created'
   end
 
   def render_application_process_error
