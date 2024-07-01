@@ -23,6 +23,12 @@ module ApplicationProcessesHelper
     true
   end
 
+  def job_application_by_job(jobs, job)
+    current_application_process(jobs)
+      .job_applications
+      .find_by('job_applications.job_id': job.id)
+  end
+
   def first_job_application(jobs)
     ApplicationProcess.find_by(id: current_application_process(jobs).id)
                       .job_applications.first
