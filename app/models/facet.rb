@@ -1,18 +1,14 @@
 # frozen_string_literal: true
 
+# Model for building sidebar on index page
 class Facet
-  ####
-  #### accessors
-  ####
-
+  # == Attributes ===========================================================
   attr_accessor :attribute, :value, :count, :url_params, :type
 
-  ####
-  #### constants
-  ####
-
+  # == Validations ==========================================================
+  # == Constants ============================================================
   SENIORITY_POSITIONS = [nil, "internship", "entry-level", "junior", "mid-level", "lead", "senior",
-                         "manager/supervisor", "senior", "lead"]
+                         "manager/supervisor"]
 
   EMPLOYMENT_TYPE_POSITIONS = [nil, "internship", "part-time", "full-time", "contract"]
 
@@ -34,16 +30,10 @@ class Facet
     created_at_asc: 'jobs.created_at ASC'
   }.freeze
 
-  ####
-  #### extensions
-  ####
-
+  # == Extensions ===========================================================
   include ActiveModel::Model
 
-  ####
-  ####
-  ####
-
+  # == Instance Methods =====================================================
   def active?(params)
     if multi_attribute?
       'checked' if params[attribute]&.include?(value)
@@ -63,7 +53,7 @@ class Facet
   end
 
   def position
-    return 0 if sortable_by_count? || !multi_attribute?
+    return 1 if sortable_by_count? || !multi_attribute?
 
     static_positions.index(value) || 99
   end
@@ -94,10 +84,7 @@ class Facet
     removable?(params) ? remove_filter_url : apply_filter_url
   end
 
-  ####
-  #### self
-  ####
-
+  # == Class Methods ========================================================
   def self.set_attributes = @facets.map(&:attribute).uniq
 
   private
