@@ -78,7 +78,7 @@ class Facet
   end
 
   def url(params)
-    dup_params = params.dup
+    dup_params = params.except(:page).dup
     remove_filter_url = remove_value_from_hash(dup_params, attribute, value)
     apply_filter_url =  dup_params.merge(current_param)
     removable?(params) ? remove_filter_url : apply_filter_url
