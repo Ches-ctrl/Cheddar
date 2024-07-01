@@ -16,6 +16,8 @@ module Ats
         }
       end
 
+      private
+
       def fetch_company_api_data(url_ats_api)
         data = get_json_data(url_ats_api)
         data&.dig('offers') || {}

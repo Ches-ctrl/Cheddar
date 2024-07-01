@@ -37,30 +37,29 @@ class Company < ApplicationRecord
 
   # TODO: Have identified these as the primary drivers of slow test speed due to API calls. Need to decide on next steps.
   # TODO: This is a very hacky temporary solution to speed up tests. Need to fix this
+  # TODO: Remove these as depenedencies - we will find another way to do this
 
   def set_website_url
     return if url_website.present?
 
     if Rails.env.production?
-      clearbit_company_info = Categorizer::CompanyDomainService.lookup_domain(name)
+      clearbit_company_info = Categorizer::CompanyDomain.lookup_domain(name)
       self.url_website = clearbit_company_info['domain'] if clearbit_company_info && clearbit_company_info['domain'].present?
     else
       self.url_website = "https://www.example.com"
     end
   end
 
-  private
+  # def fetch_industry
+  #   return unless industry == 'n/a'
 
-  def fetch_industry
-    return unless industry == 'n/a'
-
-    if Rails.env.production?
-      industry, subcategory = Categorizer::CompanyIndustryService.lookup_industry(name, @name_keywords)
-      self.industry = industry
-      self.sub_industry = subcategory
-    else
-      self.industry = "Finance"
-      self.sub_industry = "Banking"
-    end
-  end
+  #   if Rails.env.production?
+  #     industry, subcategory = Categorizer::CompanyIndustryService.lookup_industry(name, @name_keywords)
+  #     self.industry = industry
+  #     self.sub_industry = subcategory
+  #   else
+  #     self.industry = "Finance"
+  #     self.sub_industry = "Banking"
+  #   end
+  # end
 end

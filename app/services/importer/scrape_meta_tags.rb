@@ -117,7 +117,7 @@ module Importer
         # TODO: Consider moving this logic to ApplicantTrackingSystem:
         if ats && company && !job
           job_id = ats.fetch_embedded_job_id(@url)
-          job = ats.find_or_create_job(company, job_id) if job_id
+          job = JobCreator.call(ats:, company:, job_id:) if job_id
           return if job&.persisted?
 
           puts "Associated #{link} from #{@url} meta tags with #{ats.name} and #{company.name} but couldn't create job."

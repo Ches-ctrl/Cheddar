@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Importer::Xml::Workable, type: :service, workable: true do
   describe "#import_xml" do
     pending "Add tests for Workable XML import"

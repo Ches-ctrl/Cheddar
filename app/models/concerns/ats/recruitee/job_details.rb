@@ -14,19 +14,10 @@ module Ats
         job_data['slug']
       end
 
-      private
-
-      def fetch_job_data(job)
-        job_apply_url = "#{job.company.url_ats_main}o/#{job.ats_job_id}/c/new"
-
-        all_jobs_data = get_json_data(job.api_url)
-        data = all_jobs_data["offers"]&.find { |job_data| job_data["careers_apply_url"] == job_apply_url }
-
-        return data if data
-
-        p "Job with ID #{job.ats_job_id} is expired."
-        job.live = false
-        return nil
+      def fetch_job_data(job_id, api_url, _ats_identifier)
+        all_jobs_data = get_json_data(api_url)
+        apply_url = fetch_apply_url(api_url, job_id)
+        all_jobs_data["offers"]&.find { |job_data| job_data["careers_apply_url"] == apply_url }
       end
 
       def job_url_api(_base_url, ats_identifier, _job_id)
@@ -36,7 +27,7 @@ module Ats
 
       def job_details(job, data)
         title, location = fetch_title_and_location(data)
-        job.assign_attributes(
+        {
           title:,
           requirements: data['requirements'],
           description: Flipper.enabled?(:job_description) ? [data['description'], data['requirements']].reject(&:blank?).join : 'Not added yet',
@@ -45,13 +36,20 @@ module Ats
           employment_type: fetch_employment_type(data),
           non_geocoded_location_string: location,
           posting_url: data['careers_apply_url'],
+          apply_url: fetch_apply_url(job.api_url, job.ats_job_id),
           date_posted: (Date.parse(data['updated_at']) if data['updated_at']),
           seniority: fetch_seniority(data),
           # req_cv: data['options_cv'] == 'required',
           # req_cover_letter: data['options_cover_letter'] == 'required',
           remote: data['remote'],
           hybrid: data['hybrid']
-        )
+        }
+      end
+
+      private
+
+      def fetch_apply_url(api_url, job_id)
+        api_url.sub('api/offers/', "o/#{job_id}/c/new")
       end
 
       def build_location_string(data)

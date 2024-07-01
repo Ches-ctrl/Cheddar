@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Applier::FormFiller do
   describe "FormFiller" do
     pending "add some examples (or delete) #{__FILE__}"

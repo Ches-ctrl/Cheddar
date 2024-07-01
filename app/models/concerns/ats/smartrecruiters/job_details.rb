@@ -11,15 +11,13 @@ module Ats
         job_data['id']
       end
 
-      private
-
       def job_url_api(base_url, ats_identifier, job_id)
         "#{base_url}#{ats_identifier}/postings/#{job_id}"
       end
 
-      def job_details(job, data)
+      def job_details(_job, data)
         title, location = fetch_title_and_location(data)
-        job.assign_attributes(
+        {
           title:,
           description: Flipper.enabled?(:job_description) ? build_description(data.dig('jobAd', 'sections')) : 'Not added yet',
           posting_url: data['applyUrl'],
@@ -31,8 +29,10 @@ module Ats
           date_posted: (Date.parse(data['releasedDate']) if data['releasedDate']),
           industry: data.dig('industry', 'label'),
           employment_type: data.dig('typeOfEmployment', 'label')
-        )
+        }
       end
+
+      private
 
       def fetch_location(data)
         country_custom_field = data['customField']&.find { |field| field['fieldId'] == "COUNTRY" }

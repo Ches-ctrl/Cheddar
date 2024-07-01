@@ -18,11 +18,18 @@ module Ats
         job_data['id']
       end
 
-      private
+      def job_url_api(_base_url, ats_identifier, job_id)
+        company = Company.find_by(ats_identifier:)
+        "#{company.url_ats_main}#{job_id}/detail"
+      end
 
-      def job_details(job, data)
+      def fetch_job_data(_job_id, api_url, _ats_identifier)
+        get_json_data(api_url)&.dig('result')
+      end
+
+      def job_details(_job, data)
         data = data['jobOpening']
-        job.assign_attributes(
+        {
           title: data['jobOpeningName'],
           description: Flipper.enabled?(:job_description) ? data['description'] : 'Not added yet',
           salary: data['compensation'],
@@ -35,17 +42,10 @@ module Ats
           non_geocoded_location_string: build_location_string(data),
           posting_url: data['jobOpeningShareUrl'],
           live: data['jobOpeningStatus'] == 'Open'
-        )
+        }
       end
 
-      def job_url_api(_base_url, ats_identifier, job_id)
-        company = Company.find_by(ats_identifier:)
-        "#{company.url_ats_main}#{job_id}/detail"
-      end
-
-      def fetch_job_data(job)
-        get_json_data(job.api_url)&.dig('result')
-      end
+      private
 
       def job_remote?(data)
         data['locationType'] == '1'

@@ -39,9 +39,9 @@ class CompanyJobsFetcher
     # create jobs with data from ATS company endpoint unless individual job endpoint exists:
     if @ats.individual_job_endpoint_exists?
       job_id = @ats.fetch_id(@job_data)
-      job = @ats.find_or_create_job(@company, job_id)
+      job = JobCreator.call(ats: @ats, company: @company, job_id:)
     else
-      job = @ats.find_or_create_job_by_data(@company, @job_data)
+      job = JobCreator.call(ats: @ats, company: @company, data: @job_data)
     end
     @jobs_found_or_created << job if job&.persisted?
   end

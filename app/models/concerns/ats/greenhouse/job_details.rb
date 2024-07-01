@@ -19,15 +19,13 @@ module Ats
         job_data['absolute_url']
       end
 
-      private
-
       def job_url_api(base_url, company_id, job_id)
         "#{base_url}#{company_id}/jobs/#{job_id}?pay_transparency=true" # &questions=true
       end
 
-      def job_details(job, data)
+      def job_details(_job, data)
         title, location = fetch_title_and_location(data)
-        job.assign_attributes(
+        {
           posting_url: data['absolute_url'],
           title:,
           description: Flipper.enabled?(:job_description) ? CGI.unescapeHTML(data['content']) : 'Not added yet',
@@ -37,8 +35,10 @@ module Ats
           date_posted: convert_from_iso8601(data['updated_at']),
           employment_type: fetch_employment_type(data) || 'Full-time',
           salary: fetch_salary(data)
-        )
+        }
       end
+
+      private
 
       def fetch_employment_type(data)
         default = 'Full-time'

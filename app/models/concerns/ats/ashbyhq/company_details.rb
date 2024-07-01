@@ -1,8 +1,6 @@
 module Ats
   module Ashbyhq
     module CompanyDetails
-      private
-
       def company_details(ats_identifier)
         url_ats_api = "#{url_api}#{ats_identifier}?includeCompensation=true"
         {
@@ -25,6 +23,8 @@ module Ats
           location: company_data['timezone']
         }
       end
+
+      private
 
       def fetch_description(data)
         [

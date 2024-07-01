@@ -1,8 +1,6 @@
 module Ats
   module Workable
     module CompanyDetails
-      private
-
       def company_details(ats_identifier)
         # TODO: Add capabilitiy to handle logos, mailbox, etc.
         url_ats_api = "#{url_api}#{ats_identifier}"
@@ -22,6 +20,8 @@ module Ats
           # logo_url: "https://workablehr.s3.amazonaws.com/uploads/account/logo/#{data['id']}/logo"
         }
       end
+
+      private
 
       def check_for_careers_url_redirect(url_ats_main)
       end

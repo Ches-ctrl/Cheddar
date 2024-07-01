@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe CategorySidebar do
   before do
     @roles = create_list(:role, 5)

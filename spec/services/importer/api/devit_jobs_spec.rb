@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Importer::Api::DevitJobs, type: :service, devitjobs: true do
   let(:service) { described_class.new }
 

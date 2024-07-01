@@ -16,9 +16,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
   end
 
   context "With current modules", :vcr do
-    before do
-      allow($stdout).to receive(:write) # suppresses terminal clutter
-
+    before(:all) do
       Builders::AtsBuilder.new.build
 
       @ashbyhq = ApplicantTrackingSystem.find_by(name: 'AshbyHQ')
@@ -34,10 +32,18 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
       @devitjobs = ApplicantTrackingSystem.find_by(name: 'DevITJobs')
     end
 
+    before(:each) do
+      allow($stdout).to receive(:write) # suppresses terminal clutter
+    end
+
     it 'can parse a url and determine the ATS' do
       bamboohr_url = 'https://avidbots.bamboohr.com/careers/789'
       ats = ApplicantTrackingSystem.determine_ats(bamboohr_url)
       expect(ats.name).to eq('BambooHR')
+
+      tricky_url = 'https://apply.workable.com/reedsy/j/7205B30B16/?utm_source=DevITjobs&utm_medium=Job Board'
+      ats = ApplicantTrackingSystem.determine_ats(tricky_url)
+      expect(ats.name).to eq('Workable')
     end
 
     it 'can parse a url and return the ATS, company and job_id' do
@@ -89,7 +95,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         COMPANIES.each_key do |ats_name|
           puts "Trying #{ats_name}"
           ats = ApplicantTrackingSystem.find_by(name: ats_name)
-          company = ats.find_or_create_company('zzzzz')
+          company = CompanyCreator.call(ats:, ats_identifier: 'zzzzz')
           expect(company.persisted?).to be_falsey
         end
       end
@@ -97,56 +103,56 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
 
     it 'can create a company with AshbyHQ' do
       VCR.use_cassette('create_company_ashbyhq') do
-        @ashbyhq.find_or_create_company('lightdash')
+        CompanyCreator.call(ats: @ashbyhq, ats_identifier: 'lightdash')
         expect(Company.last.name).to eq('Lightdash')
       end
     end
 
     it 'can create a company with BambooHR' do
       VCR.use_cassette('create_company_bamboohr') do
-        @bamboohr.find_or_create_company('avidbots')
+        CompanyCreator.call(ats: @bamboohr, ats_identifier: 'avidbots')
         expect(Company.last.name).to eq('Avidbots')
       end
     end
 
     it 'can create a company with Greenhouse' do
       VCR.use_cassette('create_company_greenhouse') do
-        @gh.find_or_create_company('codepath')
+        CompanyCreator.call(ats: @gh, ats_identifier: 'codepath')
         expect(Company.last.name).to eq('CodePath')
       end
     end
 
     it 'can create a company with Lever' do
       VCR.use_cassette('create_company_lever') do
-        @lever.find_or_create_company('GoToGroup')
+        CompanyCreator.call(ats: @lever, ats_identifier: 'GoToGroup')
         expect(Company.last.name).to eq('GoTo Group')
       end
     end
 
     it 'can create a company with Manatal' do
       VCR.use_cassette('create_company_manatal') do
-        @manatal.find_or_create_company('ptc-group')
+        CompanyCreator.call(ats: @manatal, ats_identifier: 'ptc-group')
         expect(Company.last.name).to eq('PTC Group')
       end
     end
 
     it 'can create a company with PinpointHQ' do
       VCR.use_cassette('create_company_pinpointhq') do
-        @pinpointhq.find_or_create_company('bathspa')
+        CompanyCreator.call(ats: @pinpointhq, ats_identifier: 'bathspa')
         expect(Company.last.name).to eq('Bath Spa University')
       end
     end
 
     it 'can create a company with Recruitee' do
       VCR.use_cassette('create_company_recruitee') do
-        @recruitee.find_or_create_company(RECRUITEE_COMPANY.first)
+        CompanyCreator.call(ats: @recruitee, ats_identifier: RECRUITEE_COMPANY.first)
         expect(Company.last.name).to eq(RECRUITEE_COMPANY.second)
       end
     end
 
     it 'can create a company with SmartRecruiters' do
       VCR.use_cassette('create_company_smartrecruiters') do
-        @smartrecruiters.find_or_create_company('Gousto1')
+        CompanyCreator.call(ats: @smartrecruiters, ats_identifier: 'Gousto1')
         expect(Company.last.name).to eq('Gousto')
       end
     end
@@ -154,14 +160,14 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
     # This test will route through proxy when API rate limit is reached
     it 'can create a company with Workable' do
       VCR.use_cassette('create_company_workable') do
-        @workable.find_or_create_company('kroo')
+        CompanyCreator.call(ats: @workable, ats_identifier: 'kroo')
         expect(Company.last.name).to eq('Kroo')
       end
     end
 
     it 'can create a company with Workday' do
       VCR.use_cassette('create_company_workday') do
-        @workday.find_or_create_company('motorolasolutions/Careers/5')
+        CompanyCreator.call(ats: @workday, ats_identifier: 'motorolasolutions/Careers/5')
         expect(Company.last.name).to eq('Motorola Solutions')
       end
     end
@@ -181,8 +187,8 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         feed = get_json_data(url)
         title = feed.dig('jobs', 0, 'title')
         job_id = feed.dig('jobs', 0, 'id')
-        company = @ashbyhq.find_or_create_company('lightdash')
-        job = @ashbyhq.find_or_create_job(company, job_id)
+        company = CompanyCreator.call(ats: @ashbyhq, ats_identifier: 'lightdash')
+        job = JobCreator.call(ats: @ashbyhq, company:, job_id:)
         expect(job.title).to eq(title)
       end
     end
@@ -193,8 +199,8 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         feed = get_json_data(url)
         title = feed.dig('result', 0, 'jobOpeningName')
         job_id = feed.dig('result', 0, 'id')
-        company = @bamboohr.find_or_create_company('premise')
-        job = @bamboohr.find_or_create_job(company, job_id)
+        company = CompanyCreator.call(ats: @bamboohr, ats_identifier: 'premise')
+        job = JobCreator.call(ats: @bamboohr, company:, job_id:)
         expect(job.title).to eq(title)
       end
     end
@@ -205,8 +211,8 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         feed = get_json_data(url)
         title = feed.dig('jobs', 0, 'title')
         job_id = feed.dig('jobs', 0, 'id')
-        company = @gh.find_or_create_company('codepath')
-        job = @gh.find_or_create_job(company, job_id)
+        company = CompanyCreator.call(ats: @gh, ats_identifier: 'codepath')
+        job = JobCreator.call(ats: @gh, company:, job_id:)
         expect(job.title).to eq(title)
       end
     end
@@ -217,8 +223,8 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         feed = get_json_data(url)
         title = feed.dig(0, 'text')
         job_id = feed.dig(0, 'id')
-        company = @lever.find_or_create_company('GoToGroup')
-        job = @lever.find_or_create_job(company, job_id)
+        company = CompanyCreator.call(ats: @lever, ats_identifier: 'GoToGroup')
+        job = JobCreator.call(ats: @lever, company:, job_id:)
         expect(job.title).to eq(title)
       end
     end
@@ -229,8 +235,8 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         feed = get_json_data(url)
         title = feed.dig('results', 0, 'position_name')
         job_id = feed.dig('results', 0, 'hash')
-        company = @manatal.find_or_create_company('ptc-group')
-        job = @manatal.find_or_create_job(company, job_id)
+        company = CompanyCreator.call(ats: @manatal, ats_identifier: 'ptc-group')
+        job = JobCreator.call(ats: @manatal, company:, job_id:)
         expect(job.title).to eq(title)
       end
     end
@@ -241,8 +247,8 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         feed = get_json_data(url)
         title = feed.dig('data', 0, 'title')
         job_id = feed.dig('data', 0, 'path').sub('/en/postings/', '')
-        company = @pinpointhq.find_or_create_company('bathspa')
-        job = @pinpointhq.find_or_create_job(company, job_id)
+        company = CompanyCreator.call(ats: @pinpointhq, ats_identifier: 'bathspa')
+        job = JobCreator.call(ats: @pinpointhq, company:, job_id:)
         expect(job.title).to eq(title)
       end
     end
@@ -253,8 +259,8 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         feed = get_json_data(url)
         title = feed.dig('offers', 0, 'title')
         job_id = feed.dig('offers', 0, 'slug')
-        company = @recruitee.find_or_create_company(RECRUITEE_COMPANY.first)
-        job = @recruitee.find_or_create_job(company, job_id)
+        company = CompanyCreator.call(ats: @recruitee, ats_identifier: RECRUITEE_COMPANY.first)
+        job = JobCreator.call(ats: @recruitee, company:, job_id:)
         expect(job.title).to eq(title)
       end
     end
@@ -265,8 +271,8 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         feed = get_json_data(url)
         title = feed.dig('content', 0, 'name')
         job_id = feed.dig('content', 0, 'id')
-        company = @smartrecruiters.find_or_create_company('Gousto1')
-        job = @smartrecruiters.find_or_create_job(company, job_id)
+        company = CompanyCreator.call(ats: @smartrecruiters, ats_identifier: 'Gousto1')
+        job = JobCreator.call(ats: @smartrecruiters, company:, job_id:)
         expect(job.title).to eq(title)
       end
     end
@@ -277,8 +283,8 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         feed = get_json_data(url)
         title = feed.dig('jobs', 0, 'title')
         job_id = feed.dig('jobs', 0, 'application_url').match(%r{https://apply\.workable\.com/j/(\w+)/apply})[1]
-        company = @workable.find_or_create_company(WORKABLE_COMPANY.first)
-        job = @workable.find_or_create_job(company, job_id)
+        company = CompanyCreator.call(ats: @workable, ats_identifier: WORKABLE_COMPANY.first)
+        job = JobCreator.call(ats: @workable, company:, job_id:)
         expect(job.title).to eq(title)
       end
     end
@@ -290,8 +296,8 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         job_data = data['jobPostings']&.first
         title = job_data['title']
         job_id = job_data['externalPath'].split('/').last
-        company = @workday.find_or_create_company(company_id)
-        job = @workday.find_or_create_job(company, job_id)
+        company = CompanyCreator.call(ats: @workday, ats_identifier: company_id)
+        job = JobCreator.call(ats: @workday, company:, job_id:)
         expect(job.title).to eq(title)
       end
     end
