@@ -1,4 +1,5 @@
 module Scraper
+  # Class for creating custom user agents
   class UserAgent
     require 'json'
     require 'open-uri'
