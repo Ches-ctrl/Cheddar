@@ -14,7 +14,7 @@ module FooterHelper
       {
         sr_text: 'Join our Discord server',
         icon_name: 'logos/discord'
-      },
+      }
       # {
       #   sr_text: 'Follow us on LinkedIn',
       #   icon_name: 'logos/linkedin',
