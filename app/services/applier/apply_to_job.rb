@@ -26,6 +26,7 @@ module Applier
       status = result ? "Applied" : "Submission failed"
       p "status: #{status}"
 
+      # TODO: Replace this with sidekiq-status gem capabilities
       ActionCable.server.broadcast(
         user_channel_name,
         {
