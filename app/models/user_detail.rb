@@ -4,6 +4,12 @@ class UserDetail < ApplicationRecord
   # == Attributes ===========================================================
   # == Callbacks ============================================================
   # == Class Methods ========================================================
+  def full_name
+    first_name = info['first_name'] || ""
+    last_name = info['last_name'] || ""
+    full_name = "#{first_name} #{last_name}".strip
+    full_name.present? ? full_name : "No Name"
+  end
   # == Constants ============================================================
   FREQUENT_ASKED_INFO_ATTRIBUTES = %w[
     first_name last_name email phone_number
