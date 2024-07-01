@@ -1,7 +1,13 @@
-<% title "Find the best jobs" %>
-<% description "Discover and apply to thousands of jobs with Cheddar's one-click application process." %>
+<%
+  set_meta_tags(
+    title: "Find the best jobs",
+    description: "Discover and apply to thousands of jobs with Cheddar's one-click application process.",
+    keywords: "Job search results page, SERP, job listings, job index page, job opportunities"
+  )
+%>
 <article class="flex h-full flex-col pb-10 pt-10">
   <ul role="list" class="divide-y divide-gray-100 dark:divide-gray-800">
+    <%= render '/shared/template/layout/sort_dropdown' %>
     <!-- #rename later to jobs for jobs/_job.html.erb -->
     <% @records.each do |opportunity| %>
       <%= render 'opportunities/opportunity', opportunity: %>
