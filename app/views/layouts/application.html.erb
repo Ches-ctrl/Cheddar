@@ -1,8 +1,9 @@
-<% if request.fullpath.eql?('/protocol') %>
-  <%= yield %>
-<% elsif request.fullpath.include?('/jobs') ||
+<% if request.fullpath.include?('/jobs') ||
   request.fullpath.include?('/basket') ||
+  request.fullpath.include?('/in_progress') ||
   request.fullpath.include?('/job_applications') ||
+  request.fullpath.include?('/application_processes/') ||
+  request.fullpath.include?('/user_details/') ||
   request.fullpath.eql?('/') ||
   request.fullpath.end_with?('/users/sign_in') ||
   request.fullpath.end_with?('/users/password/new') ||
@@ -10,19 +11,38 @@
   request.fullpath.end_with?('/users/sign_up') ||
   request.fullpath.end_with?('/users/edit') ||
   request.fullpath.include?('/users/edit?') ||
-  request.fullpath.end_with?('/users')
+  request.fullpath.end_with?('/users') ||
+  request.fullpath.include?('/about') ||
+  request.fullpath.include?('/contact') ||
+  request.fullpath.include?('/privacy') ||
+  request.fullpath.include?('/terms') ||
+  request.fullpath.include?('/pricing')
 %>
 <!DOCTYPE html>
 <html class="h-full" style="color-scheme: light;">
   <head>
+    <!-- Tags -->
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= display_meta_tags site: "Cheddar" %>
+    <%= display_meta_tags site: "Cheddar 🧀" %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= favicon_link_tag 'favicon.ico' %>
+
+    <!-- Stylesheets -->
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "layout", "inter-font", "data-turbo-track": "reload" %>
+
+    <!-- Favicon -->
+    <%= favicon_link_tag 'favicon.ico' %>
+
+    <!-- Importmaps -->
     <%= javascript_importmap_tags %>
+
+    <!-- Analytics -->
+    <% unless Rails.env.test? %>
+      <%= render "shared/google_analytics" %>
+      <%= render "shared/hotjar" %>
+      <%= render "shared/hubspot" %>
+    <% end %>
   </head>
   <body class="flex min-h-full bg-white antialiased dark:bg-zinc-900">
     <div class="w-full">
@@ -34,16 +54,17 @@
           <%= render 'shared/template/layout/sidebar' if @opportunities %>
         </div>
         <div class="relative flex h-full flex-col px-4 pt-14 sm:px-6 lg:px-8">
-          <main class="flex-auto">
+          <main class="flex-auto min-h-full">
             <%= render "shared/template/flashes" %>
             <%= yield %>
           </main>
-          <%= render 'shared/template/page_footer', next_options: { title: "Quickstart", link_path: '#' } %>
+          <%= render 'shared/template/page_footer', next_options: { title: "Quickstart", link_path: '#' } unless @opportunities %>
         </div>
       </div>
     </div>
   </body>
 </html>
+
 <% else %>
 <!DOCTYPE html>
 <html>
@@ -78,20 +99,6 @@
         <%= yield %>
       </div>
     </div>
-    <% if Flipper.enabled?(:cheddargpt) %>
-      <div data-controller="chatbot">
-        <div>
-          <%= render partial: "messages/cheddargpt_modal" unless on_landing_page? %>
-          <% unless on_landing_page? %>
-            <div class="CheddarGPTmodal d-flex justify-content-center align-items-center" data-action="click->chatbot#open" >
-              <div class="yellow-circle d-none"></div>
-              <%= image_tag("cheddar_logo_new_3.svg", alt: "Cheddar Logo", style: "max-height: 50px; max-width: 50px;", class: "ms-1") %>
-              <%# <p class="mb-0">CheddarGPT</p> %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
     <% if Flipper.enabled?(:footer) %>
       <%= render "pages/footer" unless on_landing_page? %>
     <% end %>

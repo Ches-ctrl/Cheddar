@@ -1,0 +1,207 @@
+<%= simple_form_for job_application, url: application_process_job_application_path, html: { method: :put, class: "md:col-span-2" } do |f| %>
+  <div class="grid gap-x-6 gap-y-8 sm:max-w-6xl sm:grid-cols-6">
+    <div class="sm:col-span-3">
+      <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">First name</label>
+      <div class="mt-2">
+        <%= f.input :first_name,
+          required: true,
+          label: false,
+          autofocus: true,
+          input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+        %>
+      </div>
+    </div>
+    <div class="sm:col-span-3">
+      <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Last name</label>
+      <div class="mt-2">
+        <%= f.input :last_name,
+          required: true,
+          label: false,
+          autofocus: false,
+          input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+        %>
+      </div>
+    </div>
+    <div class="col-span-full">
+      <label for="email" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Email address</label>
+      <div class="mt-2">
+        <%= f.input :email,
+          required: true,
+          label: false,
+          autofocus: false,
+          input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+        %>
+      </div>
+    </div>
+    <div class="col-span-full">
+      <label for="preferred-pronoun-select" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">What are your preferred pronouns?</label>
+      <div class="mt-2">
+        <%= f.input :preferred_pronoun_select,
+          collection: ['He/Him', 'She/Her', 'They/Them', 'Other', 'Prefer not to say'],
+          required: true,
+          label: false,
+          autofocus: false,
+          type: :select,
+          input_html: { class: "block w-full rounded-md border-0 py-1.5 bg-white/5 dark:hover:bg-zinc-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6" }
+        %>
+      </div>
+    </div>
+    <div class="col-span-full">
+      <label for="preferred-pronoun-text" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">If other then please specify:</label>
+      <div class="mt-2">
+        <%= f.input :preferred_pronoun_text,
+          required: false,
+          label: false,
+          autofocus: false,
+          input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+        %>
+      </div>
+    </div>
+    <div class="col-span-full">
+      <label for="phone_number" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Phone Number</label>
+      <div class="mt-2">
+        <%= f.input :phone_number,
+          required: true,
+          label: false,
+          autofocus: false,
+          input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+        %>
+      </div>
+    </div>
+    <div class="col-span-full">
+      <label for="address-first" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Address first</label>
+      <div class="mt-2">
+        <%= f.input :address_first,
+          required: true,
+          label: false,
+          autofocus: false,
+          input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+        %>
+      </div>
+    </div>
+    <div class="col-span-full">
+      <label for="address-second" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Address second</label>
+      <div class="mt-2">
+        <%= f.input :address_second,
+          required: true,
+          label: false,
+          autofocus: false,
+          input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+        %>
+      </div>
+    </div>
+    <div class="col-span-full">
+      <label for="post-code" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Post code</label>
+      <div class="mt-2">
+        <%= f.input :post_code,
+          required: true,
+          label: false,
+          autofocus: false,
+          input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+        %>
+      </div>
+    </div>
+    <div class="col-span-full">
+      <label for="city" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">City</label>
+      <div class="mt-2">
+        <%= f.input :city,
+          required: true,
+          label: false,
+          autofocus: false,
+          input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+        %>
+      </div>
+    </div>
+    <div class="col-span-full">
+      <label for="linkedin-profile" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Linkedin profile</label>
+      <div class="mt-2">
+        <%= f.input :linkedin_profile,
+          required: true,
+          label: false,
+          autofocus: false,
+          input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+        %>
+      </div>
+    </div>
+    <div class="col-span-full">
+      <label for="github-profile-url" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Github profile url</label>
+      <div class="mt-2">
+        <%= f.input :github_profile_url,
+          required: true,
+          label: false,
+          autofocus: false,
+          input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+        %>
+      </div>
+    </div>
+    <div class="col-span-full">
+      <label for="website-url" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Website url</label>
+      <div class="mt-2">
+        <%= f.input :website_url,
+          required: true,
+          label: false,
+          autofocus: false,
+          input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+        %>
+      </div>
+    </div>
+    <div class="col-span-full">
+      <label for="salary-expectation-figure" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">What is you annual salary expectation?</label>
+      <div class="mt-2">
+        <%= f.input :salary_expectation_figure,
+          required: true,
+          label: false,
+          autofocus: false,
+          input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+        %>
+      </div>
+    </div>
+    <div class="col-span-full">
+      <label for="right-to-work" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Do you have the right to work in the UK without a visa?</label>
+      <div class="mt-2">
+        <%= f.input :right_to_work,
+          required: true,
+          label: false,
+          autofocus: false,
+          input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+        %>
+      </div>
+    </div>
+    <div class="col-span-full">
+      <label for="notice-period" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">What is your notice period in weeks?</label>
+      <div class="mt-2">
+        <%= f.input :notice_period,
+          required: true,
+          label: false,
+          autofocus: false,
+          input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+        %>
+      </div>
+    </div>
+    <div class="col-span-full">
+      <label for="resume" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Resume</label>
+      <div class="mt-2">
+        <%= f.input :resume,
+          required: false,
+          label: false,
+          autofocus: false,
+          input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+        %>
+      </div>
+    </div>
+    <div class="col-span-full">
+      <label for="current-password" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Current password</label>
+      <div class="mt-2">
+        <%= f.input :current_password,
+            required: true,
+            label: false,
+            autofocus: false,
+            input_html: { class: "block w-full rounded-md border-0 py-1.5 bg-white/5 dark:hover:bg-zinc-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6" }
+        %>
+      </div>
+    </div>
+  </div>
+  <div class="mt-8 flex">
+    <%= f.button :submit, "Save", class: "flex w-full justify-center cursor-pointer rounded-md !bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white dark:text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+  </div>
+<% end %>

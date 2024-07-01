@@ -1,0 +1,37 @@
+<%= provide(:title, 'Application Process - Common fields') %>
+<article class="flex w-2/3 mx-auto h-full flex-col pb-5 pt-8">
+  <div class="grid max-w-8xl sm:grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
+    <%= render '/job_applications/step_indicators' %>
+    <div class="grid gap-x-6 gap-y-8 sm:max-w-6xl sm:grid-cols-6 md:col-span-2">
+      <% @application_process.job_applications.each do |job_application| %>
+        <div class="col-span-full">
+          <div class="mx-auto max-w-2xl space-y-16 sm:space-y-20 lg:mx-0 lg:max-w-none">
+            <div>
+              <h2 class="text-base font-semibold leading-7 text-gray-900 dark-text-white"><%= job_application.job.title %></h2>
+              <p class="mt-1 text-sm leading-6 text-gray-500 dark:text-gray-400"><%= job_application.job.company.name %></p>
+              <ul role="list" class="mt-6 divide-y divide-gray-100 dark:divide-gray-800 border-t border-gray-200 dark:border-gray-800 text-sm leading-6">
+                <% job_application.additional_info.each do |attribute, value| %>
+                  <li class="flex justify-between gap-x-6 py-6">
+                    <div>
+                      <p class="font-medium text-gray-900 dark:text-white"><%= attribute.humanize %></p>
+                      <p class="mt-1 text-sm leading-6 text-gray-500 dark:text-gray-400"><%= value %></p>
+                    </div>
+                    <!-- <button type="button" class="font-semibold text-indigo-600 hover:text-indigo-500">Update</button> -->
+                    <%= link_to edit_application_process_job_application_path(@application_process, job_application, anchor: "job_application_additional_info_#{attribute}"), class: "font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300" do %>
+                      <button type="button" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300">Update</button>
+                    <% end %>
+                  </li> 
+                <% end %>
+              </ul>
+              <div class="flex border-t border-gray-100 dark:border-gray-800 pt-6">
+                <%= link_to edit_application_process_job_application_path(@application_process, job_application), class: "font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300" do %>
+                  <button type="button" class="text-sm font-semibold leading-6 text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300"><span aria-hidden="true"></span>Review this application</button>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</article>
