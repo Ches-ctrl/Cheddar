@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Model for building sidebar on index page
+# Model for building sidebar on index page, each facet is an individual filter, groups of which make up a section on the LHS
 class Facet
   # == Attributes ===========================================================
   attr_accessor :attribute, :value, :count, :url_params, :type

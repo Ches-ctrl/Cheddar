@@ -28,6 +28,7 @@ class OpportunitiesFetcher < ApplicationTask
                  .order(sort)
   end
 
+  # return the ATS if the param is present
   def filter_by_ats(param)
     { name: param } if param.present?
   end

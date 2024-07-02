@@ -48,9 +48,10 @@ class OpportunityFacetsBuilder < ApplicationTask
     end.compact
   end
 
+  # Additional categorisation by ATS - note the short-form ats vs ApplicantTrackingSystem in the query
   def ats_facets
     attribute = 'ats'
-    facet_oppotunities(attribute).reorder(:'applicant_tracking_systems.name').group(:'applicant_tracking_systems.name').count.map do |ats, count|
+    facet_opportunities(attribute).reorder(:'applicant_tracking_systems.name').group(:'applicant_tracking_systems.name').count.map do |ats, count|
       next unless ats
 
       Facet.new(attribute:, value: ats, count:, url_params: @params, type: 'checkbox')
@@ -62,14 +63,14 @@ class OpportunityFacetsBuilder < ApplicationTask
     date_cutoffs = Constants::DateConversion::CONVERT_TO_DAYS.transform_values { |v| v.days.ago.beginning_of_day }
     date_cutoffs.map do |period, cutoff|
       value = period.downcase.gsub(/last |within a /, '').gsub(' ', '-')
-      count = facet_oppotunities(attribute).where(date_posted: cutoff..Date.today).count
+      count = facet_opportunities(attribute).where(date_posted: cutoff..Date.today).count
       Facet.new(attribute:, value:, count:, url_params: @params, type: 'radio')
     end.compact
   end
 
   def seniority_facets
     attribute = 'seniority'
-    facet_oppotunities(attribute).reorder(:seniority).group(:seniority).count.map do |seniority, count|
+    facet_opportunities(attribute).reorder(:seniority).group(:seniority).count.map do |seniority, count|
       next unless seniority
 
       value = seniority.downcase.split.first
@@ -79,7 +80,7 @@ class OpportunityFacetsBuilder < ApplicationTask
 
   def location_facets
     attribute = 'location'
-    facet_oppotunities(attribute).reorder(:'locations.city').group(:'locations.city').count.map do |location, count|
+    facet_opportunities(attribute).reorder(:'locations.city').group(:'locations.city').count.map do |location, count|
       value = location ? location.downcase.gsub(' ', '_') : 'remote'
       Facet.new(attribute:, value:, count:, url_params: @params, type: 'checkbox')
     end.compact
@@ -87,7 +88,7 @@ class OpportunityFacetsBuilder < ApplicationTask
 
   def role_facets
     attribute = 'role'
-    facet_oppotunities(attribute).reorder(:'roles.name').group(:'roles.name').count.map do |role, count|
+    facet_opportunities(attribute).reorder(:'roles.name').group(:'roles.name').count.map do |role, count|
       next unless role
 
       value = role.downcase.split.first
@@ -97,7 +98,7 @@ class OpportunityFacetsBuilder < ApplicationTask
 
   def employment_facets
     attribute = 'employment'
-    facet_oppotunities(attribute).reorder(:employment_type).group(:employment_type).count.map do |employment, count|
+    facet_opportunities(attribute).reorder(:employment_type).group(:employment_type).count.map do |employment, count|
       next unless employment
 
       value = employment
@@ -121,7 +122,7 @@ class OpportunityFacetsBuilder < ApplicationTask
     end
   end
 
-  def facet_oppotunities(exemption)
+  def facet_opportunities(exemption)
     FacetOpportunitiesFetcher.call(Job.all, @params.except(exemption))
   end
 end
