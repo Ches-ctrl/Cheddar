@@ -4,6 +4,13 @@
     <%= render '/job_applications/step_indicators' %>
     <div class="grid gap-x-6 gap-y-8 sm:max-w-6xl sm:grid-cols-6 md:col-span-2">
       <% @application_process.job_applications.each do |job_application| %>
+        <div class="col-start-6">
+          <%= simple_form_for job_application, url: application_process_submit_application_index_path(job_application), html: { method: :post } do |f| %>
+            <%= f.hidden_field :job_application_id, value: job_application.id %>
+            <%= f.hidden_field :payload, value: transformed_data(job_application) %>
+            <%= f.button :submit, "Submit", class: "flex w-full justify-center cursor-pointer rounded-md !bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white dark:text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+          <% end %>
+        </div>
         <div class="col-span-full overflow-hidden rounded-2xl shadow-md">
           <div class="not-prose">
             <div class="flex min-h-[calc(theme(spacing.12)+1px)] flex-wrap items-start gap-x-4 border-b border-zinc-700 bg-zinc-800 px-4 dark:border-zinc-800 dark:bg-transparent px-4">
