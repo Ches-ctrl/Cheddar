@@ -20,6 +20,10 @@ module PayloadApplicationProcessesHelper
     "Payload for #{ats_name(job_app)}: #{company_name(job_app)} - #{job_title(job_app)}"
   end
 
+  def posting_url(job_application)
+    job_application.job.posting_url
+  end
+
   private
 
   def ats_name(job_app)
