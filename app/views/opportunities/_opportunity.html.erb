@@ -25,10 +25,13 @@
       <dl class="border-0 border-gray-200 px-4 py-2 text-sm leading-6">
         <div class="flex justify-between items-center">
           <div class="flex items-center">
+            <%# TODO: Fix underlying data issues so that these if statements are no longer necessary %>
             <% if opportunity_salary_presentation(opportunity) %>
               <p class="text-xs leading-5 text-gray-500 dark:text-gray-400 me-2"><%= opportunity_salary_presentation(opportunity) %></p>
             <% end %>
-            <div class="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/10 me-2"><%= opportunity.seniority %></div>
+            <% if opportunity.seniority %>
+              <div class="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/10 me-2"><%= opportunity.seniority %></div>
+            <% end %>
             <div class="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/10">Net Zero</div>
           </div>
           <dd class="flex items-center gap-x-2">
