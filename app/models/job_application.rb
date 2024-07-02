@@ -8,12 +8,17 @@ class JobApplication < ApplicationRecord
   # == Extensions ===========================================================
   serialize :additional_info, coder: HashSerializer
   # store_accessor :additional_info, ADDITIONAL_INFO_ATTRIBUTES
+
   # == Instance Methods =====================================================
   # == Relationships ========================================================
   belongs_to :application_process
   belongs_to :job
+
+  #   has_one_attached :screenshot
+
   # == Scopes ===============================================================
   default_scope { order id: :asc }
+
   # == Validations ==========================================================
   validates :status, presence: true
 

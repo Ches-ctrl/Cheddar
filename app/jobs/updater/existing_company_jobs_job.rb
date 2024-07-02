@@ -1,6 +1,8 @@
 module Updater
-  class ExistingCompanyJobs < ApplicationJob
+  class ExistingCompanyJobsJob < ApplicationJob
+    include Sidekiq::Status::Worker
     include CompanyCsv
+
     sidekiq_options retry: false
 
     def perform

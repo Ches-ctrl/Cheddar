@@ -38,7 +38,7 @@
     <%= javascript_importmap_tags %>
 
     <!-- Analytics -->
-    <% unless Rails.env.test? %>
+    <% if Rails.env.production? ||%>
       <%= render "shared/google_analytics" %>
       <%= render "shared/hotjar" %>
       <%= render "shared/hubspot" %>
