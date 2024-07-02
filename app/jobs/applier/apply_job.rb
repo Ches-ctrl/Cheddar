@@ -1,5 +1,7 @@
 module Applier
   class ApplyJob < ApplicationJob
+    include Sidekiq::Status::Worker
+
     queue_as :default
     sidekiq_options retry: false
 
