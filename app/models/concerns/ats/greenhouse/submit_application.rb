@@ -11,8 +11,6 @@ module Ats
           p "Successfully reached #{@url}"
           find_apply_button(session).click
 
-          puts @fields
-
           @fields.each do |field|
             field = field[1]
             handle_field_interaction(session, field)
