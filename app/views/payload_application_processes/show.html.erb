@@ -14,7 +14,12 @@
         <div class="col-span-full overflow-hidden rounded-2xl shadow-md">
           <div class="not-prose">
             <div class="flex min-h-[calc(theme(spacing.12)+1px)] flex-wrap items-start gap-x-4 border-b border-zinc-700 bg-zinc-800 px-4 dark:border-zinc-800 dark:bg-transparent px-4">
-              <h3 class="mr-auto pt-3 text-xs font-semibold text-white"><%= payload_title(job_application) %></h3>
+              <%= link_to posting_url(job_application), target: "_blank", class: "text-xs font-semibold pt-3 flex flex-row items-center text-white hover:text-indigo-200" do %>
+                <h3 class="me-2"><%= payload_title(job_application) %></h3>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                </svg>
+              <% end %>
             </div>
             <div class="group bg-zinc-800 dark:bg-white/2.5">
               <div class="relative">
