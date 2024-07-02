@@ -59,7 +59,9 @@ Rails.application.routes.draw do
     get '/overview', to: 'overview_application_processes#show'
     get '/payload', to: 'payload_application_processes#show'
     resources :job_applications, only: %i[edit update]
+    resources :submit_application, only: %i[create]
   end
+
 
   resource :user_details, only: %i[edit update]
 end
