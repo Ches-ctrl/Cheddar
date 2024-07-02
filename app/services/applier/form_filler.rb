@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # require 'open-uri'
 # require 'json'
 # require 'htmltoword'
@@ -5,14 +7,14 @@
 # TODO: Handle job posting becoming closed (redirect or notification on page)
 module Applier
   # Core class for filling out forms using Capybara
-  class FormFiller
+  class FormFiller < ApplicationTask
     include Capybara::DSL
 
     def initialize(url, payload, job_application)
       @url = url
       @fields = payload
       @job_application = job_application
-      @ats = @job.applicant_tracking_system
+      @ats = @job_application.job.applicant_tracking_system
       # @user = @job_application.application_process.user
       @errors = nil
 
