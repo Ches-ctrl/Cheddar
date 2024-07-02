@@ -1,6 +1,6 @@
-require 'open-uri'
-require 'json'
-require 'htmltoword'
+# require 'open-uri'
+# require 'json'
+# require 'htmltoword'
 
 # TODO: Handle job posting becoming closed (redirect or notification on page)
 module Applier
@@ -8,21 +8,35 @@ module Applier
   class FormFiller
     include Capybara::DSL
 
-    def initialize(url, fields, job_application_id)
+    def initialize(url, payload, job_application)
       @url = url
-      @fields = fields
-      @job_application_id = job_application_id
-      @job_application = JobApplication.find_by_id(job_application_id)
-      @user = @job_application.user
-      @job = @job_application.job
+      @fields = payload
+      @job_application = job_application
       @ats = @job.applicant_tracking_system
+      # @user = @job_application.application_process.user
       @errors = nil
-      # TODO: simplify the instance variables
+
       # include the relevant ATS form_filler module
       include_ats_module
     end
 
-    def fill_out_form
+    def call
+      return unless processable
+
+      process
+    rescue StandardError => e
+      Rails.logger.error "Error running FormFiller: #{e.message}"
+      nil
+    end
+
+    private
+
+    def processable
+      @url && @fields && @job_application && @ats
+    end
+
+    def process
+      p "Hello from FormFiller!"
       submit_application
     end
 
@@ -35,8 +49,6 @@ module Applier
     end
 
     def submit_application
-      # TODO: Once we have a better sense of how form submission varies by ATS, can refactor so that
-      # the generic code goes here and the ATS-specific elements are referred to the ats_module
       return super if defined?(super)
 
       puts "Write a submit method for #{@ats.name}!"
