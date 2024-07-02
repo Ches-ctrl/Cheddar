@@ -16,7 +16,6 @@ class SubmitApplicationController < ApplicationController
   end
 
   def submit_application_params
-    # byebug
     params.require(:job_application).permit(:job_application_id, :payload)
   end
 end
