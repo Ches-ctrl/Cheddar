@@ -12,6 +12,7 @@ class ApplicationProcess < ApplicationRecord
   belongs_to :user
   has_many :job_applications, dependent: :destroy
   has_many :jobs, through: :job_applications
+
   # == Scopes ===============================================================
   # == Validations ==========================================================
   validates :status, presence: true
