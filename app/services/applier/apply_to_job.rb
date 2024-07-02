@@ -2,10 +2,10 @@
 
 module Applier
   # Core class for applying to jobs using either ApiApply or FormFiller depending on the ATS
+  # TODO: Add routing logic - in future will route to either FormFiller or ApiApply depending on the ATS
   class ApplyToJob < ApplicationTask
     def initialize(job_application, payload)
       @job_application = job_application
-      @job = @job_application.job
       @payload = payload
     end
 
@@ -21,31 +21,15 @@ module Applier
     private
 
     def processable
-      @job_application && @job && @payload # && @user
+      @job_application && @payload
     end
 
     def process
-      p "Hello from the job application service class!"
-      p @payload
-      spin_up_form_filler
+      apply_with_form_filler
     end
 
-    # TODO: In future will route to either FormFiller or ApiApply depending on the ATS - add routing logic
-    def spin_up_form_filler
-      Applier::FormFiller.call(@job.posting_url, @payload, @job_application)
+    def apply_with_form_filler
+      Applier::FormFiller.call(@job_application, @payload)
     end
-
-    # def create_action_cable_broadcast
-    #  ActionCable.server.broadcast(
-    #    user_channel_name,
-    #    {
-    #      event: "job_application_submitted",
-    #      job_application_id: application.id,
-    #      user_id: application.user.id,
-    #      job_id: job.id,
-    #      status:
-    #    }
-    #  )
-    # end
   end
 end
