@@ -11,7 +11,7 @@ namespace :admin do
 
   desc "Pull data from DevItJobs API"
   task devitjobs: :environment do
-    Importer::Api::DevitJobs.new.call
+    Importer::Api::DevitJobs.call
   end
 
   desc "Scrape data from TrueUp"
@@ -32,5 +32,10 @@ namespace :admin do
   desc "Export CSV version of record type"
   task export_to_csv: :environment do
     Csv::ExportToCsv.new.to_csv
+  end
+
+  desc "Test GetFormFields"
+  task formfields: :environment do
+    Importer::GetFormFields.call
   end
 end
