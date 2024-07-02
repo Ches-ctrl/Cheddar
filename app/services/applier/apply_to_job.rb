@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Applier
   # Core class for applying to jobs using either ApiApply or FormFiller depending on the ATS
   class ApplyToJob < ApplicationTask
