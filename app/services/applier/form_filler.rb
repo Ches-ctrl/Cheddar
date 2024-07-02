@@ -57,15 +57,15 @@ module Applier
       return
     end
 
-    def take_screenshot_and_store(session, job_application)
-      screenshot_path = Rails.root.join('tmp', "screenshot-#{job_application.id}.png")
-      session.save_screenshot(screenshot_path)
+    # def take_screenshot_and_store(session, job_application)
+    #   screenshot_path = Rails.root.join('tmp', "screenshot-#{job_application.id}.png")
+    #   session.save_screenshot(screenshot_path)
 
-      file = File.open(screenshot_path)
-      job_app = job_application
-      job_app.screenshot.attach(io: file, filename: "screenshot-#{job_application.id}.png", content_type: 'image/png')
+    #   file = File.open(screenshot_path)
+    #   job_app = job_application
+    #   job_app.screenshot.attach(io: file, filename: "screenshot-#{job_application.id}.png", content_type: 'image/png')
 
-      File.delete(screenshot_path)
-    end
+    #   File.delete(screenshot_path)
+    # end
   end
 end
