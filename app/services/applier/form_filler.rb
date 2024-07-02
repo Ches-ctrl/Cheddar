@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
+require 'json'
 # require 'open-uri'
-# require 'json'
 # require 'htmltoword'
 
 # TODO: Handle job posting becoming closed (redirect or notification on page)
@@ -10,11 +10,11 @@ module Applier
   class FormFiller < ApplicationTask
     include Capybara::DSL
 
-    def initialize(url, payload, job_application)
-      @url = url
-      @fields = payload
+    def initialize(job_application, payload)
       @job_application = job_application
+      @url = @job_application.job.posting_url
       @ats = @job_application.job.applicant_tracking_system
+      @fields = JSON.parse(payload)
       # @user = @job_application.application_process.user
       @errors = nil
 
