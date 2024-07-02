@@ -26,7 +26,7 @@ namespace :admin do
 
   desc "Update existing company jobs"
   task update_existing_company_jobs: :environment do
-    Updater::ExistingCompanyJobs.new.perform
+    Updater::ExistingCompanyJobsJob.perform_later
   end
 
   desc "Export CSV version of record type"
