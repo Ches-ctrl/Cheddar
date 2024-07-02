@@ -26,7 +26,8 @@ class OpportunityFacetsBuilder < ApplicationTask
 
   def build_facets
     # @facets = sort_by_facets
-    @facets = posted_facets
+    @facets = ats_facets
+    @facets += posted_facets
     @facets += seniority_facets
     @facets += location_facets
     @facets += role_facets
@@ -44,6 +45,16 @@ class OpportunityFacetsBuilder < ApplicationTask
     attribute = 'sort'
     %w[title title_desc company company_desc created_at created_at_asc].map do |value|
       Facet.new(attribute:, value:, count: 0, url_params: @params, type: 'radio')
+    end.compact
+  end
+
+  def ats_facets
+    attribute = 'ats'
+    facet_oppotunities(attribute).reorder(:'applicant_tracking_systems.name').group(:'applicant_tracking_systems.name').count.map do |ats, count|
+      next unless ats
+
+      value = ats.downcase.split.first
+      Facet.new(attribute:, value:, count:, url_params: @params, type: 'checkbox')
     end.compact
   end
 
@@ -96,9 +107,11 @@ class OpportunityFacetsBuilder < ApplicationTask
   end
 
   def sorted(facets)
-    facet_orders = %w[sort posted seniority location role employment]
+    facet_orders = %w[sort ats posted seniority location role employment]
     sorted_by_count(facets)
-    facets.sort_by! { |facet| facet_orders.index(facet.attribute) }
+    facets.sort_by! do |facet|
+      facet_orders.index(facet.attribute)
+    end
   end
 
   def sorted_by_count(facets)
