@@ -1,6 +1,6 @@
 module Applier
+  # Core class for applying to jobs
   class ApplyToJob
-    # TODO: Tidy up (1) ApplyJob (2) FormFiller and (3) SubmitApplication so that the correct functionality sits in each class/module
     attr_accessor :job_application_id, :user_id
 
     def initialize(job_application_id, user_id)
@@ -16,6 +16,8 @@ module Applier
 
       application_criteria = assign_values_to_form(application, user)
       fields_to_fill = application_criteria
+
+      ## Already done by Payload up to here
 
       form_filler = Applier::FormFiller.new(job.posting_url, fields_to_fill, @job_application_id)
       result = form_filler.fill_out_form
@@ -37,25 +39,6 @@ module Applier
           status:
         }
       )
-    end
-
-    private
-
-    def assign_values_to_form(application, user)
-      application_criteria = application.job.application_criteria
-      custom_fields = {}
-      ApplicationResponse.where(job_application_id: application.id).each do |response|
-        custom_fields[response.field_name] = response.field_value
-      end
-
-      application_criteria.each_key do |key|
-        if custom_fields[key].nil? && user.respond_to?(key) && user.send(key).present?
-          application_criteria[key]['value'] = user.send(key)
-        else
-          application_criteria[key]['value'] = custom_fields[key]
-        end
-      end
-      return application_criteria
     end
   end
 end
