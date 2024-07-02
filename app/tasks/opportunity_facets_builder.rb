@@ -53,8 +53,7 @@ class OpportunityFacetsBuilder < ApplicationTask
     facet_oppotunities(attribute).reorder(:'applicant_tracking_systems.name').group(:'applicant_tracking_systems.name').count.map do |ats, count|
       next unless ats
 
-      value = ats.downcase.split.first
-      Facet.new(attribute:, value:, count:, url_params: @params, type: 'checkbox')
+      Facet.new(attribute:, value: ats, count:, url_params: @params, type: 'checkbox')
     end.compact
   end
 
