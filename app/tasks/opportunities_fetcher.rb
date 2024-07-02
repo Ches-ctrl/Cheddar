@@ -28,6 +28,10 @@ class OpportunitiesFetcher < ApplicationTask
                  .order(sort)
   end
 
+  def filter_by_ats(param)
+    { name: param } if param.present?
+  end
+
   def filter_by_when_posted(param)
     return unless param.present?
 
@@ -58,6 +62,7 @@ class OpportunitiesFetcher < ApplicationTask
 
   def filters
     {
+      applicant_tracking_system: filter_by_ats(@params[:ats]),
       date_posted: filter_by_when_posted(@params[:posted]),
       seniority: filter_by_seniority(@params[:seniority]),
       locations: filter_by_location(@params[:location]),
