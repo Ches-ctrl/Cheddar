@@ -8,9 +8,9 @@ export default class extends Controller {
   toggleHidden(event) {
     const hidden = this.buttonTarget.getAttribute("aria-checked") === "false";
     this.fieldTargets.forEach((field) => {
-      const optional = !field.dataset.requiredValue
+      const isOptional = field.dataset.requiredValue === "false"; // Check for "false"
 
-      if (optional) {
+      if (isOptional) {
         field.hidden = hidden;
       }
     });

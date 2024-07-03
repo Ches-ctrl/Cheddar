@@ -38,7 +38,7 @@ module Ats
         city: {
           interaction: :input,
           locators: 'location',
-          required: true,
+          required: false,
           label: 'Location (City)',
           core_field: true
         },
