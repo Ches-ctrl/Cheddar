@@ -22,4 +22,3 @@ pin "@algolia/autocomplete-shared/dist/esm/preset-algolia/createRequester", to: 
 pin "htm", to: "https://ga.jspm.io/npm:htm@3.1.1/dist/htm.module.js"
 pin "preact", to: "https://ga.jspm.io/npm:preact@10.22.0/dist/preact.module.js"
 pin "@rails/activestorage", to: "@rails--activestorage.js" # @7.1.3
-pin "@rails/activestorage", to: "activestorage.esm.js"
