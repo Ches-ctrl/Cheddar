@@ -37,7 +37,7 @@ module Ats
         },
         city: {
           interaction: :input,
-          locators: 'job_application[location]',
+          locators: 'location',
           required: true,
           label: 'Location (City)',
           core_field: true
