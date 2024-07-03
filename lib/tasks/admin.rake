@@ -38,4 +38,9 @@ namespace :admin do
   task formfields: :environment do
     Importer::GetFormFields.call
   end
+
+  desc "Test OpenAI Integration"
+  task openai: :environment do
+    Openai.call
+  end
 end
