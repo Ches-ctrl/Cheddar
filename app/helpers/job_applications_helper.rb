@@ -14,9 +14,9 @@ module JobApplicationsHelper
   end
 
   def optional_fields(application_criteria)
-    application_criteria.select do |attribute, criteria_hash|
+    application_criteria.reject do |attribute, criteria_hash|
       application_criteria = ApplicationCriteria.new(criteria_hash.merge(attribute:))
-      !application_criteria.required
+      application_criteria.required
     end
   end
 
