@@ -31,6 +31,8 @@ class ApplicationProcessesController < ApplicationController
   end
 
   def last_resume
+    return unless @application_process.user.user_detail.resumes.attached?
+
     @application_process.user.user_detail.resumes.last.blob
   end
 

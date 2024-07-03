@@ -1,8 +1,8 @@
-<%= simple_form_for job_application, url: application_process_job_application_path, html: { method: :put, class: "md:col-span-2" } do |f| %>
+<%= simple_form_for job_application, url: application_process_job_application_path, html: { method: :put, class: "md:col-span-2", data: { mandatory_fields_only_target: 'form' } } do |f| %>
   <div class="grid gap-x-6 gap-y-8 sm:max-w-6xl sm:grid-cols-6">
     <% job_application.job.application_criteria.each do |attribute, criteria_hash| %>
       <% application_criteria = ApplicationCriteria.new(criteria_hash.merge(attribute:)) %>
-      <div class="col-span-full">
+      <div class="col-span-full" data-mandatory-fields-only-target="field" data-required-value="<%= application_criteria.required %>">
         <label for="<%= application_criteria.attribute %>>" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"><%= "#{mandatory_field(application_criteria)}#{application_criteria.attribute.humanize}" %></label>
         <div class="mt-2">
           <%= f.simple_fields_for :additional_info do |json_field_f| %>
