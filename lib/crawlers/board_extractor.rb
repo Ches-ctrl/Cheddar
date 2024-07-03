@@ -6,10 +6,14 @@ module Crawlers
       @company_id_regex = '[a-zA-Z0-9\-\_]+'
       @version_regex = '[0-9]+'
       @uuid_regex = '[a-zA-Z0-9\-]+'
-      @placeholders = ['${company_id}', '${version}', '${uuid}']
+      @workday_stub_regex = '([a-zA-Z\-]+/)?[a-zA-Z0-9\-\_]+'
       @pattern_pairs = ['${company_id}', @company_id_regex],
                        ['${version}', @version_regex],
-                       ['${uuid_id}', @uuid_regex]
+                       ['${uuid}', @uuid_regex],
+                       ['${workday_stub}', @workday_stub_regex]
+      @prematch_translators = [UrlTranslator.new('smartrecruiters', { 'jobs' => 'careers' }),
+                               UrlTranslator.new('paycomonline', { %r{/ViewJobDetails\?job=[0-9]+&} => '?' })]
+      @postmatch_translators = [UrlTranslator.new('myworkdayjobs', { '/job' => '' })]
       load_template_urls
       build_patterns
     end
@@ -37,6 +41,23 @@ module Crawlers
       end
     end
 
+    # Perform any applicable translations using the provided `UrlTranslator` list.
+    #
+    # @param url [String]
+    #
+    # @param translators [Array<UrlTranslator>]
+    #
+    # @returns [String]
+    def translate(url, translators)
+      translators.each do |translator|
+        if translator.translate?(url)
+          url = translator.translate(url)
+          return url
+        end
+      end
+      return url
+    end
+
     public
 
     # Given a url, extract and return the base url for the job board, if present.
@@ -47,9 +68,10 @@ module Crawlers
     #
     # @return [String, NilClass]
     def extract(url)
+      url = translate(url, @prematch_translators)
       @template_urls.each do |template|
         match = url.match(template)
-        return match[0] unless match.nil?
+        return translate(match[0], @postmatch_translators) unless match.nil?
       end
       return nil
     end
