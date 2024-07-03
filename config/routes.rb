@@ -62,4 +62,5 @@ Rails.application.routes.draw do
   end
 
   resource :user_details, only: %i[edit update]
+  resources :attachments, only: %i[destroy]
 end

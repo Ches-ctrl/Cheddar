@@ -17,11 +17,6 @@ class User < ApplicationRecord
   has_many :educations, dependent: :destroy
   has_many :job_applications, through: :application_processes
   has_many :saved_jobs, dependent: :destroy
-
-  has_one_attached :photo
-  has_one_attached :resume
-
-  has_many_attached :cover_letter_templates
   # == Scopes ===============================================================
   # == Validations ==========================================================
 end

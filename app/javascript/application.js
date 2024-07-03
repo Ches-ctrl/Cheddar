@@ -6,3 +6,6 @@ import "bootstrap"
 import "tom-select"
 import "canvas-confetti"
 import "@rails/actioncable"
+
+import * as ActiveStorage from "@rails/activestorage"
+ActiveStorage.start()
