@@ -47,8 +47,28 @@
                 value: application_criteria.value(job_application.additional_info)
               }
               %>
+            <% elsif application_criteria.resume? %>
+              <%= f.input :resume,
+                as: :file,
+                required: true,
+                label: false,
+                autofocus: false,
+                input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+              %>
+              <%= render "shared/forms/attachments_list", attachments: [job_application.resume], document_attached: job_application.resume.attached? %>
+            <% elsif application_criteria.cover_letter? %>
+              <%= f.input :cover_letter,
+                as: :file,
+                required: true,
+                label: false,
+                autofocus: false,
+                input_html: { class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+              %>
+              <%= render "shared/forms/attachments_list", attachments: [job_application.cover_letter], document_attached: job_application.cover_letter.attached? %>
             <% elsif application_criteria.upload? %>
-              We don't manage upload yet.
+              We don't manage the type of upload yet.
+            <% elsif application_criteria.valid? %>
+              <%= "Valid: #{ application_criteria.to_json.html_safe }" %>
             <% elsif !application_criteria.valid? %>
               <%= "Unvalid - Options are not present: #{ application_criteria.to_json.html_safe }" %>
             <% end %>

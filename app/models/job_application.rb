@@ -12,6 +12,8 @@ class JobApplication < ApplicationRecord
   # == Relationships ========================================================
   belongs_to :application_process
   belongs_to :job
+  has_one_attached :cover_letter
+  has_one_attached :resume
   # == Scopes ===============================================================
   default_scope { order id: :asc }
   # == Validations ==========================================================

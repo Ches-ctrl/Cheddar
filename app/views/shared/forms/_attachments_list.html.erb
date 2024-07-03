@@ -1,0 +1,11 @@
+<% if document_attached %>
+  <div class="block w-full py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+      <ul role="list" class="divide-y divide-gray-100 rounded-md border border-gray-200">
+        <% attachments.each do |attachment| %> 
+          <%= render "shared/forms/attachments_item", attachment: %>
+        <% end %>
+      </ul>
+    </dd>
+  </div>
+<% end %>
