@@ -42,12 +42,6 @@ module Ats
           label: 'Location (City)',
           core_field: true
         },
-        location_click: {
-          interaction: :listbox,
-          locators: 'ul#location_autocomplete-items-popup',
-          label: 'location_click',
-          core_field: true
-        },
         resume: {
           interaction: :upload,
           locators: 'button[aria-describedby="resume-allowable-file-types"',

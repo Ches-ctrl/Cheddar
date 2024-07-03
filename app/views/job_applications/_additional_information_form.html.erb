@@ -3,7 +3,7 @@
     <% job_application.job.application_criteria.each do |attribute, criteria_hash| %>
       <% application_criteria = ApplicationCriteria.new(criteria_hash.merge(attribute:)) %>
       <div class="col-span-full">
-        <label for="<%= application_criteria.attribute %>>" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"><%= application_criteria.attribute.humanize %></label>
+        <label for="<%= application_criteria.attribute %>>" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"><%= "#{mandatory_field(application_criteria)}#{application_criteria.attribute.humanize}" %></label>
         <div class="mt-2">
           <%= f.simple_fields_for :additional_info do |json_field_f| %>
             <% if application_criteria.valid? && application_criteria.input? %>

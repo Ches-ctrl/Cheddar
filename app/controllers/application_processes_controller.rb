@@ -26,8 +26,12 @@ class ApplicationProcessesController < ApplicationController
 
   def build_job_applications
     @job_applications = job_applications_params[:job_ids].map do |job_id|
-      @application_process.job_applications.new(job_id:, additional_info: { email: @application_process.user.user_detail.email })
+      @application_process.job_applications.new(job_id:, additional_info: { email: @application_process.user.user_detail.email }, resume: last_resume)
     end
+  end
+
+  def last_resume
+    @application_process.user.user_detail.resumes.last.blob
   end
 
   def load_application_process
