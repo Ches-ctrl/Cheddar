@@ -34,8 +34,8 @@ Rails.application.routes.draw do
   # Jobs
   get '/jobs/add_job', to: 'jobs#add_job'
 
-  # Chatbot
-  post '/chatbot/chat', to: 'messages#chat'
+  # AI Tasks
+  post '/resume/autofill', to: 'resume_parser#create'
 
   # Resources
   resources :companies, only: %i[index show]
@@ -61,7 +61,6 @@ Rails.application.routes.draw do
     resources :job_applications, only: %i[edit update]
     resources :submit_application, only: %i[create]
   end
-
 
   resource :user_details, only: %i[edit update]
 end
