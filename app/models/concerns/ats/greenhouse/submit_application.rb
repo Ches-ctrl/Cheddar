@@ -54,7 +54,7 @@ module Ats
           success = false
           @job_application.update(status: 'Submission failed')
         ensure
-          take_screenshot_and_store(session, @job_application)
+          # take_screenshot_and_store(session, @job_application)
           session.driver.quit
         end
         p "Success: #{success}"

@@ -32,6 +32,7 @@ jobs:
       CHROME_EXTENSION_ORIGIN: ${{ secrets.CHROME_EXTENSION_ORIGIN }}
       CRUNCHBASE_API_KEY: ${{ secrets.CRUNCHBASE_API_KEY }}
       SCRAPEUP_API_KEY: ${{ secrets.SCRAPEUP_API_KEY }}
+      OPENAI_ACCESS_TOKEN: ${{ secrets.OPENAI_ACCESS_TOKEN }}
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
     steps:

@@ -19,7 +19,7 @@
                     <%= link_to edit_application_process_job_application_path(@application_process, job_application, anchor: "job_application_additional_info_#{attribute}"), class: "font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300" do %>
                       <button type="button" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300">Update</button>
                     <% end %>
-                  </li> 
+                  </li>
                 <% end %>
                 <% if job_application.resume.attached? %>
                   <li class="flex justify-between gap-x-6 py-6">

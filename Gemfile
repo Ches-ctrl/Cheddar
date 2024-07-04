@@ -66,6 +66,8 @@ gem "selenium-webdriver", "~> 4.18.1"
 gem 'sidekiq', '~> 6.5.5'
 gem "sidekiq-failures", "~> 1.0"
 gem 'sidekiq-scheduler', '~> 5.0', '>= 5.0.3'
+gem 'sidekiq-status'
+# gem 'sidekiq-cron' # Add to be able to schedule jobs at specific times
 
 # Storage
 gem "cloudinary"

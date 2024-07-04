@@ -16,7 +16,7 @@
                             <span class="sr-only">Share</span>
                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
-                            </svg>      
+                            </svg>
                         </button>
                         <%= link_to "Apply", @opportunity.posting_url, class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white dark:text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", target: "_blank" %>
                     </div>
@@ -26,7 +26,7 @@
                         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                             <dt class="text-sm font-medium leading-6 text-gray-900 dark:text-white">Locations</dt>
                             <dd class="text-sm leading-6 text-gray-700 dark:text-gray-400 sm:col-span-2 sm:mt-0">
-                                <% @opportunity.locations.each do |location| %> 
+                                <% @opportunity.locations.each do |location| %>
                                     <span class="block"><%= location.full_presentation %></span>
                                 <% end %>
                             </dd>
@@ -110,7 +110,7 @@
                                         <%= link_to @opportunity.company.url_website, class:"inline-flex items-center gap-x-1.5 rounded-xl !bg-indigo-50 px-2.5 py-1.5 !text-sm !font-semibold !text-indigo-600 !shadow-sm !hover:bg-indigo-100 !focus-visible:outline !focus-visible:outline-2 !focus-visible:outline-offset-2 !focus-visible:outline-indigo-200", target: "_blank" do %>
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
-                                            </svg>  
+                                            </svg>
                                             Website
                                         <% end %>
                                         <%= link_to @opportunity.company.url_linkedin, class:"inline-flex items-center gap-x-1.5 rounded-xl !bg-indigo-50 px-2.5 py-2.5 !text-sm !font-semibold !text-indigo-600 !shadow-sm !hover:bg-indigo-100 !focus-visible:outline !focus-visible:outline-2 !focus-visible:outline-offset-2 !focus-visible:outline-indigo-200", target: "_blank" do %>
