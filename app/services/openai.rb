@@ -62,7 +62,7 @@ class Openai < ApplicationTask
     file["id"]
   end
 
-  def send_resume_to_openai(file_id)
+  def send_resume_to_openai(_file_id)
     puts "Processing resume with OpenAI"
     response = @assistant.chat(
       parameters: {
