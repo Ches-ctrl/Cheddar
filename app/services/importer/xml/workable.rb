@@ -7,6 +7,7 @@ module Importer
     # In order to handle this, we create a variable with all the job_posting_urls from the XML feed
     # We then resolve the redirect to get the final url and build the company / job posting from the API via CreateJobFromUrl, this bypasses rate limiting problems and uses standard functionality
     class Workable < ApplicationService
+      include FaradayHelpers
       # TODO: Fix this as only capturing a portion of the redirect urls at the moment. There is a wait screen page that is sometimes coming up and it may require a proxy to process. Check for the interim response code. Setup a proxy and use a different IP address to check the page.
       # TODO: Add count for number of urls in XML feed and number of urls processed so that we can evaluate success rate
 
