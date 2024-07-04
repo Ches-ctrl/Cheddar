@@ -1,4 +1,5 @@
 <div class="z-20 relative w-20 ml-auto inline-block text-left" data-controller="sort-dropdown" data-sort-dropdown-target="dropdownContainer">
+  <%# Button %>
   <div>
     <button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-1 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 hover:dark:bg-gray-500 dark:bg-zinc-900 dark:text-white" id="menu-button" aria-expanded="true" aria-haspopup="true" data-action="click->sort-dropdown#toggle">
       Sort
@@ -8,18 +9,10 @@
     </button>
   </div>
 
-  <!--
-    Dropdown menu, show/hide based on menu state.
-
-    Entering: "transition ease-out duration-100"
-      From: "transform opacity-0 scale-95"
-      To: "transform opacity-100 scale-100"
-    Leaving: "transition ease-in duration-75"
-      From: "transform opacity-100 scale-100"
-      To: "transform opacity-0 scale-95"
-  -->
+  <%# Dropdown %>
   <div class="hidden absolute right-0 z-10 mt-2 w-40 origin-top-right divide-y divide-gray-100 rounded-md bg-white dark:bg-zinc-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:border dark:border-white" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1" data-sort-dropdown-target="dropdown">
     <div class="py-1" role="none">
+      <%# TODO: Add active state CSS classes %>
       <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
       <% @sort.each do |facet| %>
         <%= link_to facet.url(request.params), class: 'flex items-center gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white ' do %>
