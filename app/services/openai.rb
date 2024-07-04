@@ -1,23 +1,28 @@
 # app/services/openai.rb
-# Class for interacting with OpenAI, primarily for resume analysis during user onboarding in the first instance
-# NB. In progress and not fully functional yet
+# Class for interacting with OpenAI, primarily for resume analysis during user onboarding
 # How this works:
 # 1. Initialize the OpenAI client and assistant
-# 2. Create a thread
-# 3. Upload the resume file
-# 4. Add the file to the thread
-# 5. Run the thread through the assistant
-# 6. Return the response & save to cloudinary
-# 7. Update the user_details with the response
+# 2. Upload the resume file
+# 3. Create a file vector store including the uploaded file
+# 4. Create a thread and run (in a single command) with the vector store attached
+# 5. Poll the response status until it is completed
+# 6. Retrieve the response
+# 7. Save the response to cloudinary as a raw JSON object
+# 8. Delete the thread, vector store, and file
+# 9. Update the user_details with the response (TBD)
 # NB. Note that threads are independent of assistants and thus must be created on @client rather than @assistant
-# NB. May need to use vector stores?
-# HelloGPT - asst_eX0JDDQHnRtmOOgWdB0rNuKY
 class Openai < ApplicationTask
+  # TODOs:
+  # 1. Create a file vector store
+  # 2. Add file to vector store
+  # 3. Attach vector store to assistant
+  # 4. Run request with assistant and vector store
+  # 5. Retrieve response
   def initialize
     p "Initialize"
     @client = OpenAI::Client.new
     @assistant = @client.assistants.retrieve(id: "asst_62b4xuE3RQvqlIDT1AYed0wZ")
-    @file_id = "file-FRXTfhSy25cp874ExD6Tr9h7"
+    # @file_id = "file-FRXTfhSy25cp874ExD6Tr9h7"
   end
 
   def call
@@ -32,29 +37,24 @@ class Openai < ApplicationTask
   private
 
   def processable
-    @client && @assistant && @file_id
+    @client && @assistant
   end
 
   def process
     puts "Processing"
-    # file = upload_file
-    # file = retrieve_file
+    file = upload_file
+    store = create_vector_store(file)
 
-    thread_id = create_thread
-    create_message(thread_id)
-
-    run_id, thread_id = create_thread_and_run
-    sleep 1
-
-    # run_id = run_thread(thread_id)
+    run_id, thread_id = create_thread_and_run(store)
     poll_response_status(run_id, thread_id)
 
     messages = @client.messages.list(thread_id:, parameters: { order: 'asc' })
-
-    puts pretty_generate(messages)
+    value = messages.dig("data", 0, "content", 0, "text", "value")
+    puts value
 
     # delete_thread(thread_id)
-    # delete_file(file)
+    delete_vector_store(store)
+    delete_file(file)
   end
 
   def upload_file
@@ -63,41 +63,32 @@ class Openai < ApplicationTask
     @client.files.upload(parameters: { file: my_file, purpose: "assistants" })
   end
 
-  # Used in testing to prevent the need to upload the file each time
-  def retrieve_file
-    puts "Retrieving file"
-    @client.files.retrieve(id: @file_id)
-  end
-
-  def create_thread
-    puts "Adding file to thread"
-    thread_response = @client.threads.create
-    thread_response["id"]
-  end
-
-  def create_message(thread_id)
-    puts "Creating message"
-    message = @client.messages.create(
-      thread_id:,
+  def create_vector_store(file)
+    puts "Creating vector store"
+    date = date_created
+    response = @client.vector_stores.create(
       parameters: {
-        role: "user",
-        content: "The name on my CV is Charlie. What is my name?"
+        name: "#{date} - Resume",
+        file_ids: [file['id']]
       }
     )
-    puts pretty_generate(message)
-  rescue StandardError => e
-    puts "An error occurred: #{e.message}"
+    puts pretty_generate(response)
+    response
   end
 
-  def run_thread(thread_id)
-    puts "Running thread"
-    run = @client.runs.create(thread_id:,
-                              parameters: {
-                                assistant_id: "asst_62b4xuE3RQvqlIDT1AYed0wZ",
-                                max_prompt_tokens: 256,
-                                max_completion_tokens: 16
-                              })
-    run["id"]
+  def create_thread_and_run(store)
+    puts "Creating thread and running"
+    response = @client.runs.create_thread_and_run(
+      parameters: {
+        assistant_id: "asst_62b4xuE3RQvqlIDT1AYed0wZ",
+        tool_resources: {
+          file_search: {
+            vector_store_ids: [store['id']]
+          }
+        }
+      }
+    )
+    [response['id'], response['thread_id']]
   rescue StandardError => e
     puts "An error occurred: #{e.message}"
   end
@@ -111,7 +102,7 @@ class Openai < ApplicationTask
       case status
       when 'queued', 'in_progress', 'cancelling'
         puts 'Sleeping'
-        sleep 3
+        sleep 1
       when 'completed'
         puts 'Completed'
         break
@@ -119,7 +110,6 @@ class Openai < ApplicationTask
         puts 'Requires action'
       when 'cancelled', 'failed', 'expired'
         puts "Run failed"
-        puts response
         puts response['last_error'].inspect
         break
       else
@@ -130,12 +120,31 @@ class Openai < ApplicationTask
     puts "An error occurred: #{e.message}"
   end
 
-  def create_thread_and_run
-    puts "Creating thread and running"
-    response = @client.runs.create_thread_and_run(parameters: { assistant_id: "asst_eX0JDDQHnRtmOOgWdB0rNuKY" })
-    run_id = response['id']
-    thread_id = response['thread_id']
-    [run_id, thread_id]
+  def delete_thread(thread_id)
+    puts "Deleting thread"
+    @client.threads.delete(id: thread_id)
+  rescue StandardError => e
+    puts "An error occurred: #{e.message}"
+  end
+
+  def delete_vector_store(store)
+    puts "Deleting vector store"
+    @client.vector_stores.delete(id: store['id'])
+  rescue StandardError => e
+    puts "An error occurred: #{e.message}"
+  end
+
+  def delete_file(file)
+    puts "Deleting file"
+    response = @client.files.delete(id: file['id'])
+    puts pretty_generate(response)
+    response
+  rescue StandardError => e
+    puts "An error occurred: #{e.message}"
+  end
+
+  def date_created
+    Time.now.strftime("%Y-%m-%d")
   end
 
   def pretty_generate(response)
