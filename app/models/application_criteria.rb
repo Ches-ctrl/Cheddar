@@ -21,12 +21,15 @@ class ApplicationCriteria
   # == Relationships ========================================================
   # == Scopes ===============================================================
   # == Validations ==========================================================
+
+  def checkbox? = interaction.eql?("checkbox")
+  def cover_letter? = attribute.include?("cover_letter")
   def input? = interaction.eql?("input")
-  def upload? = interaction.eql?("upload")
+  def radiogroup? = interaction.eql?("radiogroup")
+  def resume? = attribute.eql?("resume")
   def select? = interaction.eql?("select")
   def textarea? = interaction.eql?("textarea")
-  def radiogroup? = interaction.eql?("radiogroup")
-  def checkbox? = interaction.eql?("checkbox")
+  def upload? = interaction.eql?("upload")
 
   def value(json)
     json&.dig(locators)

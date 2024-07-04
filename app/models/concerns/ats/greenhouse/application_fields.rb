@@ -37,15 +37,9 @@ module Ats
         },
         city: {
           interaction: :input,
-          locators: 'job_application[location]',
-          required: true,
+          locators: 'location',
+          required: false,
           label: 'Location (City)',
-          core_field: true
-        },
-        location_click: {
-          interaction: :listbox,
-          locators: 'ul#location_autocomplete-items-popup',
-          label: 'location_click',
           core_field: true
         },
         resume: {

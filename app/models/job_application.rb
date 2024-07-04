@@ -14,6 +14,8 @@ class JobApplication < ApplicationRecord
   belongs_to :application_process
   belongs_to :job
 
+  has_one_attached :cover_letter
+  has_one_attached :resume
   #   has_one_attached :screenshot
 
   # == Scopes ===============================================================
@@ -24,22 +26,18 @@ class JobApplication < ApplicationRecord
 
   # Define custom methods (optional)
   def submitted?
-    status == "submitted"
+    status.eql?("submitted")
+  end
+
+  def completed?
+    status.eql?("completed")
+  end
+
+  def uncompleted?
+    status.eql?("uncompleted")
+  end
+
+  def unstarted?
+    status.eql?("new")
   end
 end
-
-# class JobApplication < ApplicationRecord
-#   belongs_to :user
-#   belongs_to :job
-
-#   has_many :application_responses, dependent: :destroy
-
-#   validates :status, presence: true
-#   validates :job_id, uniqueness: { scope: :user_id }
-
-#   accepts_nested_attributes_for :application_responses
-
-#   has_one_attached :screenshot
-
-#   # TODO: Check what happens if the job application fails - user should be able to resubmit
-# end

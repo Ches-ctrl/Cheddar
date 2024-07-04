@@ -35,9 +35,6 @@ module OpportunityHelper
   end
 
   def seniority_css(opportunity, seniority)
-    # TODO: Fix this once seniority is already defined (at the moment this manages nil values)
-    return nil unless opportunity.seniority&.include?(seniority)
-
-    ' text-gray-300 dark:text-gray-700'
+    ' text-gray-300 dark:text-gray-700' unless opportunity.seniority&.include?(seniority)
   end
 end

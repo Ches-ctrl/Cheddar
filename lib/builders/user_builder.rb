@@ -54,7 +54,7 @@ module Builders
 
     def attach_resume(user, resume)
       if File.exist?(resume)
-        user.resume.attach(io: File.open(resume), filename: File.basename(resume))
+        user.user_detail.resumes.attach(io: File.open(resume), filename: File.basename(resume))
         p "Attached resume - #{resume}"
       else
         p "No resume attached - #{user.email}"

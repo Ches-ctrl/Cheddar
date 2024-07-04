@@ -4,20 +4,19 @@ export default class extends Controller {
   static targets = ["form", "mainCheckbox", "applyButton", "checkbox"];
 
   connect() {
-    // Set up event listener for the main checkbox
-    this.mainCheckboxTarget.addEventListener("change", (event) => {
-        this.handleMainCheckboxChange(event);
-    });
+    if (this.hasMainCheckboxTarget) {
+      // Set up event listener for the main checkbox
+      this.mainCheckboxTarget.addEventListener("change", (event) => {
+          this.handleMainCheckboxChange(event);
+      });
 
-    // Set up event listeners on all checkboxes (including main checkbox)
-    this.checkboxTargets.forEach(checkbox => {
-        //   checkbox.addEventListener("change", this.handleCheckboxChange);
-        checkbox.addEventListener("change", (event) => {
-            this.handleCheckboxChange(event);
-        });
-    });
-    // Set initial state of apply button (likely disabled)
-    // this.applyButtonTarget.disabled = true;
+      // Set up event listeners on all checkboxes (including main checkbox)
+      this.checkboxTargets.forEach(checkbox => {
+          checkbox.addEventListener("change", (event) => {
+              this.handleCheckboxChange(event);
+          });
+      });
+    }
   }
   
   handleCheckboxChange(event) {

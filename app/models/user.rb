@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   # == Attributes ===========================================================
   # == Callbacks ============================================================
+  after_create :create_user_detail
   # == Class Methods ========================================================
   # == Constants ============================================================
   # == Extensions ===========================================================
@@ -17,11 +18,12 @@ class User < ApplicationRecord
   has_many :educations, dependent: :destroy
   has_many :job_applications, through: :application_processes
   has_many :saved_jobs, dependent: :destroy
-
-  has_one_attached :photo
-  has_one_attached :resume
-
-  has_many_attached :cover_letter_templates
   # == Scopes ===============================================================
   # == Validations ==========================================================
+
+  private
+
+  def create_user_detail
+    build_user_detail(email:)
+  end
 end

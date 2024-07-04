@@ -8,7 +8,15 @@ class JobApplicationsController < ApplicationController
     load_application_process
     load_job_application
     assign_job_application_params
+    assign_status
     persist_job_application
+  end
+
+  def destroy
+    load_application_process
+    load_job_application
+    build_saved_job
+    destroy_job_application
   end
 
   private
@@ -21,6 +29,33 @@ class JobApplicationsController < ApplicationController
     @job_application.assign_attributes(job_application_params)
   end
 
+  def assign_status
+    required_attributes = required_attributes(@job_application.job.application_criteria)
+    non_empty_or_null_attributes = non_empty_or_null_attributes(@job_application.additional_info)
+    status = (required_attributes - non_empty_or_null_attributes).empty? ? "completed" : "uncompleted"
+    @job_application.status = status
+  end
+
+  def non_empty_or_null_attributes(hash)
+    hash.select { |_key, value| !value.nil? && !value.empty? }.keys
+  end
+
+  def required_attributes(hash)
+    hash.select { |_key, value| value["required"] }.map { |_key, value| value["locators"] }
+  end
+
+  def build_saved_job
+    @saved_job = current_user.saved_jobs.new(job_id: @job_application.job_id)
+  end
+
+  def destroy_job_application
+    if @job_application.destroy && @saved_job.save
+      success_destroy_job_application_path
+    else
+      error_redirect_to_referrer
+    end
+  end
+
   def load_application_process
     @application_process = ApplicationProcessesQuery.call(application_process_scope)
                                                     .find(params[:application_process_id])
@@ -31,7 +66,8 @@ class JobApplicationsController < ApplicationController
   end
 
   def job_application_params
-    params.require(:job_application).permit(:application_process_id, :id, { additional_info: {} })
+    params.require(:job_application)
+          .permit(:application_process_id, :id, :resume, :cover_letter, { additional_info: {} })
   end
 
   def next_step_path
@@ -54,4 +90,8 @@ class JobApplicationsController < ApplicationController
   end
 
   def save_job_application = @job_application.save
+
+  def success_destroy_job_application_path
+    redirect_to in_progress_jobs_path, notice: 'Job Application successfully removed!'
+  end
 end

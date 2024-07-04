@@ -1,9 +1,9 @@
-<%= simple_form_for job_application, url: application_process_job_application_path, html: { method: :put, class: "md:col-span-2" } do |f| %>
+<%= simple_form_for job_application, url: application_process_job_application_path, html: { method: :put, class: "md:col-span-2", data: { mandatory_fields_only_target: 'form' } } do |f| %>
   <div class="grid gap-x-6 gap-y-8 sm:max-w-6xl sm:grid-cols-6">
     <% job_application.job.application_criteria.each do |attribute, criteria_hash| %>
       <% application_criteria = ApplicationCriteria.new(criteria_hash.merge(attribute:)) %>
-      <div class="col-span-full">
-        <label for="<%= application_criteria.attribute %>>" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"><%= application_criteria.attribute.humanize %></label>
+      <div class="col-span-full" data-mandatory-fields-only-target="field" data-required-value="<%= application_criteria.required %>">
+        <label for="<%= application_criteria.attribute %>>" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"><%= "#{mandatory_field(application_criteria)}#{application_criteria.attribute.humanize}" %></label>
         <div class="mt-2">
           <%= f.simple_fields_for :additional_info do |json_field_f| %>
             <% if application_criteria.valid? && application_criteria.input? %>
@@ -47,8 +47,28 @@
                 value: application_criteria.value(job_application.additional_info)
               }
               %>
+            <% elsif application_criteria.resume? %>
+              <%= f.input :resume,
+                as: :file,
+                required: attachment_required_but_absent?(application_criteria, job_application.resume),
+                label: false,
+                autofocus: false,
+                input_html: { direct_upload: true, class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+              %>
+              <%= render "shared/forms/attachments_list", attachments: [job_application.resume], document_attached: job_application.resume.attached? %>
+            <% elsif application_criteria.cover_letter? %>
+              <%= f.input :cover_letter,
+                as: :file,
+                required: attachment_required_but_absent?(application_criteria, job_application.cover_letter),
+                label: false,
+                autofocus: false,
+                input_html: { direct_upload: true, class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
+              %>
+              <%= render "shared/forms/attachments_list", attachments: [job_application.cover_letter], document_attached: job_application.cover_letter.attached? %>
             <% elsif application_criteria.upload? %>
-              We don't manage upload yet.
+              We don't manage the type of upload yet.
+            <% elsif application_criteria.valid? %>
+              <%= "Valid: #{ application_criteria.to_json.html_safe }" %>
             <% elsif !application_criteria.valid? %>
               <%= "Unvalid - Options are not present: #{ application_criteria.to_json.html_safe }" %>
             <% end %>

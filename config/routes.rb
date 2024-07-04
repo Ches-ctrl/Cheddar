@@ -58,9 +58,10 @@ Rails.application.routes.draw do
   resources :application_processes, only: %i[create show] do
     get '/overview', to: 'overview_application_processes#show'
     get '/payload', to: 'payload_application_processes#show'
-    resources :job_applications, only: %i[edit update]
+    resources :job_applications, only: %i[edit update destroy]
     resources :submit_application, only: %i[create]
   end
 
   resource :user_details, only: %i[edit update]
+  resources :attachments, only: %i[destroy]
 end

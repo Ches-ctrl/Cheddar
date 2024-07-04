@@ -15,4 +15,10 @@ module ApplicationHelper
     referrer_uri = URI(request.referrer)
     referrer_uri.path
   end
+
+  def filesize_in_mb(file)
+    file_size_in_bytes = file.byte_size
+    file_size_in_mb = (file_size_in_bytes.to_f / 1_048_576).round(2)
+    "#{file_size_in_mb}mb"
+  end
 end
