@@ -7,22 +7,20 @@
 # 4. Create a thread and run (in a single command) with the vector store attached
 # 5. Poll the response status until it is completed
 # 6. Retrieve the response
-# 7. Save the response to cloudinary as a raw JSON object
+# 7. Save the response to cloudinary as a raw JSON object (TBD)
 # 8. Delete the thread, vector store, and file
 # 9. Update the user_details with the response (TBD)
 # NB. Note that threads are independent of assistants and thus must be created on @client rather than @assistant
 class Openai < ApplicationTask
-  # TODOs:
-  # 1. Create a file vector store
-  # 2. Add file to vector store
-  # 3. Attach vector store to assistant
-  # 4. Run request with assistant and vector store
-  # 5. Retrieve response
+  # TODO: Pass a CV in as a url rather than a local file
+  # TODO: Constrain output to JSON only
+  # TODO: Improve quality of response so that more fields are filled
+  # TODO: Split into an inherited class so that we can use AI in other areas of hte app
   def initialize
     p "Initialize"
     @client = OpenAI::Client.new
     @assistant = @client.assistants.retrieve(id: "asst_62b4xuE3RQvqlIDT1AYed0wZ")
-    # @file_id = "file-FRXTfhSy25cp874ExD6Tr9h7"
+    # @file_id = "file-FRXTfhSy25cp874ExD6Tr9h7" # Obretetskiy_cv - kept for testing
   end
 
   def call
@@ -55,6 +53,8 @@ class Openai < ApplicationTask
     # delete_thread(thread_id)
     delete_vector_store(store)
     delete_file(file)
+    # list_vector_stores
+    # list_files
   end
 
   def upload_file
@@ -143,8 +143,20 @@ class Openai < ApplicationTask
     puts "An error occurred: #{e.message}"
   end
 
+  def list_vector_stores
+    puts "Listing vector stores"
+    response = @client.vector_stores.list
+    puts pretty_generate(response)
+  end
+
+  def list_files
+    puts "Checking resume uploaded"
+    response = @client.files.list
+    puts pretty_generate(response)
+  end
+
   def date_created
-    Time.now.strftime("%Y-%m-%d")
+    Time.now.strftime("%Y-%m-%d %H:%M:%S")
   end
 
   def pretty_generate(response)
