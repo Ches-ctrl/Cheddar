@@ -42,8 +42,6 @@ module Applier
       submit_application
     end
 
-    private
-
     def include_ats_module
       ats_name = @ats.name.gsub(/\W/, '').capitalize
       module_name = "Ats::#{ats_name}::SubmitApplication"

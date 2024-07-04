@@ -128,8 +128,6 @@ module Importer
       attributes
     end
 
-    private
-
     def parse_html
       html = URI.parse(@url).open
       Nokogiri::HTML(html)
