@@ -119,7 +119,7 @@ class Openai < ApplicationTask
     response = @client.chat(
       parameters: {
         model: "gpt-4o",
-        messages: [{ role: "user", content: "Hello!"}],
+        messages: [{ role: "user", content: "Hello!" }],
         temperature: 0.7
       }
     )
