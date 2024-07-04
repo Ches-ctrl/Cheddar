@@ -1,3 +1,4 @@
+# Helper for building the payload page with reference JSON outputs
 module PayloadApplicationProcessesHelper
   def transformed_data(job_application)
     # translator = ApiFormatTranslators::BaseAtsTranslator.create_translator(job_application)
@@ -15,10 +16,25 @@ module PayloadApplicationProcessesHelper
     transformed_criteria.to_json
   end
 
-  def payload_title(job_application)
-    ats_name = job_application.job.applicant_tracking_system.name
-    company_name = job_application.job.company.name
-    job_title = job_application.job.title
-    "Payload for #{ats_name}: #{company_name} - #{job_title}"
+  def payload_title(job_app)
+    "Payload for #{ats_name(job_app)}: #{company_name(job_app)} - #{job_title(job_app)}"
+  end
+
+  def posting_url(job_application)
+    job_application.job.posting_url
+  end
+
+  private
+
+  def ats_name(job_app)
+    job_app.job.applicant_tracking_system.name
+  end
+
+  def company_name(job_app)
+    job_app.job.company.name
+  end
+
+  def job_title(job_app)
+    job_app.job.title
   end
 end

@@ -55,7 +55,7 @@ class ApplicationProcessesController < ApplicationController
     render :new, status: :unprocessable_entity
   end
 
-  # TODO : create separate server
+  # TODO : create separate service class to hold this in time
   def call_service
     SavedJob.where(job_id: job_applications_params[:job_ids]).delete_all
   end

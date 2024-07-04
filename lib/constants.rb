@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Constants
   # TODO: refactor all these constants into sub-modules? Seems like rails convention may be to have this in a yaml file so TBD structure
 
