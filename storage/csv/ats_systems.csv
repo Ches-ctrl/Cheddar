@@ -5,7 +5,7 @@ Lever,jobs.lever.co,https://www.lever.co/,,https://jobs.lever.co/,https://api.le
 SmartRecruiters,careers.smartrecruiters|jobs.smartrecruiters,https://www.smartrecruiters.com/,,https://jobs.smartrecruiters.com,https://api.smartrecruiters.com/v1/companies/,https://jobs.smartrecruiters.com/,,,FALSE,https://careers.smartrecruiters.com/${company_id}
 AshbyHQ,jobs.ashbyhq|?ashby_jid,https://www.ashbyhq.com/,,https://jobs.ashbyhq.com/,https://api.ashbyhq.com/posting-api/job-board/,,,,FALSE,https://jobs.ashbyhq.com/${company_id}
 PinpointHQ,pinpointhq.com,https://www.pinpointhq.com/,,https://XXX.pinpointhq.com/,https://XXX.pinpointhq.com/postings.json,,,,FALSE,https://${company_id}.pinpointhq.com
-BambooHR,bamboohr.com/careers,https://www.bamboohr.com/,,https://XXX.bamboohr.com/careers/,https://XXX.bamboohr.com/careers/list,,,,FALSE,https://${company_id}.bamboohr.com/careers
+BambooHR,bamboohr.com,https://www.bamboohr.com/,,https://XXX.bamboohr.com/careers/,https://XXX.bamboohr.com/careers/list,,,,FALSE,https://${company_id}.bamboohr.com/careers
 Recruitee,recruitee.com,https://recruitee.com/,,https://XXX.recruitee.com/,https://XXX.recruitee.com/api/offers/,,,,FALSE,https://${company_id}.recruitee.com
 Manatal,careers-page.com,https://www.manatal.com/,,https://www.careers-page.com/,https://core.api.manatal.com/open/v3/career-page/,,,,FALSE,https://www.careers-page.com/${company_id}
 Phenom,phenompeople.com,https://www.phenom.com/,,,https://api.phenom.com/,,,,,
