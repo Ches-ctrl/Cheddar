@@ -1,14 +1,14 @@
 module FaradayHelpers
-  def fetch_json(url)
-    fetch_data(url, :parse_json)
+  def fetch_json(url, verb = :get, options = {})
+    fetch_data(url, :parse_json, verb, options)
   end
 
-  def fetch_xml(url)
-    fetch_data(url, :parse_xml)
+  def fetch_xml(url, verb = :get, options = {})
+    fetch_data(url, :parse_xml, verb, options)
   end
 
-  def stream_xml(url)
-    fetch_data(url, :stream_xml_data)
+  def stream_xml(url, verb = :get, options = {})
+    fetch_data(url, :stream_xml_data, verb, options)
   end
 
   private
@@ -16,8 +16,12 @@ module FaradayHelpers
   # TODO: Add custom user_agent, timeout, proxies, and retries
   # TODO: Add block handling for stream_xml
 
-  def fetch_data(url, parse_method)
-    response = Faraday.get(url)
+  def fetch_data(url, parse_method, verb = :get, options = {})
+    response = Faraday.send(verb, url, options) do |request|
+      request.params = options[:params]
+      request.headers = options[:headers]
+      request.body = options[:body]
+    end
     send(parse_method, response.body)
   rescue Faraday::Error => e
     log_error("HTTP request failed: #{e.message}")

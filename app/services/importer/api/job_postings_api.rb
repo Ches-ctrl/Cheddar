@@ -10,24 +10,24 @@ module Importer
       include FaradayHelpers
       # TODO: Add capability to save responses to S3
 
-      def initialize(ats_name, redirect_processor)
-        @ats = ApplicantTrackingSystem.find_by(name: ats_name)
+      def initialize(ats, api_details, redirect_processor)
+        @ats, @ats_name = ats.is_a?(ApplicantTrackingSystem) ? [ats, ats.name] : [nil, ats]
+        @api_details = api_details
         @redirect_processor = redirect_processor
-        @local_storage = LocalDataStorer.new(ats_name)
+        @local_storage = LocalDataStorer.new(@ats_name)
         set_initial_counts
       end
 
-      def call(url = nil)
+      def call
         return false unless processable
 
-        @url = url
         process
       end
 
       private
 
       def processable
-        @ats.present?
+        @ats_name.present? && @api_details.present?
       end
 
       def process
@@ -47,12 +47,19 @@ module Importer
         @initial_jobs = Job.count
       end
 
+      def new_faraday_request
+        endpoint = @api_details[:endpoint]
+        verb = @api_details[:verb]
+        options = @api_details[:options]
+        fetch_json(endpoint, verb, options)
+      end
+
       def fetch_jobs_data
         @local_storage.fetch_local_data || fetch_and_save_remote_data
       end
 
       def fetch_and_save_remote_data
-        jobs_data = fetch_json(@url)
+        jobs_data = new_faraday_request
         return unless jobs_data
 
         save_jobs_data(jobs_data)
@@ -107,7 +114,7 @@ module Importer
       end
 
       def log_fetched_jobs_data(jobs_data)
-        p "Fetched #{jobs_data.count} jobs from #{@ats.name}"
+        p "Fetched #{jobs_data.count} jobs from #{@ats_name}"
         log_redirects
       end
 
@@ -117,8 +124,8 @@ module Importer
       end
 
       def log_final_counts
-        p "Imported #{Company.count - @initial_companies} companies from #{@ats.name}"
-        p "Imported #{Job.count - @initial_jobs} jobs from #{@ats.name}"
+        p "Imported #{Company.count - @initial_companies} companies from #{@ats_name}"
+        p "Imported #{Job.count - @initial_jobs} jobs from #{@ats_name}"
       end
     end
   end
