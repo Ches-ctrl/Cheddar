@@ -1,6 +1,7 @@
 require 'csv'
 
 module Crawlers
+  # Class for extracting a company's ats board url from a specific job url.
   class BoardExtractor
     def initialize
       @company_id_regex = '[a-zA-Z0-9\-\_]+'
@@ -12,7 +13,8 @@ module Crawlers
                        ['${uuid}', @uuid_regex],
                        ['${workday_stub}', @workday_stub_regex]
       @prematch_translators = [UrlTranslator.new('smartrecruiters', { 'jobs' => 'careers' }),
-                               UrlTranslator.new('paycomonline', { %r{/ViewJobDetails\?job=[0-9]+&} => '?' })]
+                               UrlTranslator.new('paycomonline', { %r{/ViewJobDetails\?job=[0-9]+&} => '?' }),
+                               UrlTranslator.new('bamboohr', { 'js/embed.js'=> 'careers' })]
       @postmatch_translators = [UrlTranslator.new('myworkdayjobs', { '/job' => '' })]
       load_template_urls
       build_patterns
