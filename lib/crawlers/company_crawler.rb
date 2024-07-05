@@ -12,6 +12,7 @@ module Crawlers
       super
       @url_regex = Regexp.new('https?://(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b(?:[-a-zA-Z0-9@:%_\+.~#?&//=]*)')
       @ats_stubs = load_ats_stubs
+      @board_extractor = BoardExtractor.new
     end
 
     private
@@ -53,6 +54,18 @@ module Crawlers
       return false
     end
 
+    # Extract the board url from a job url.
+    #
+    # If the url extraction returns `nil`, the passed url will be returned unmodified.
+    #
+    # @param url [String]
+    #
+    # @ return [String]
+    def extract_board_url(url)
+      board_url = @board_extractor.extract(url)
+      return board_url.nil? ? url : board_url
+    end
+
     # Given an array, `urls`, return an array of ats urls according to `ats_stubs.txt`.
     #
     # @param urls [Array<String>]
@@ -61,7 +74,7 @@ module Crawlers
     def get_ats_urls(urls)
       ats_urls = []
       urls.each do |url|
-        ats_urls.append(url) if ats?(url)
+        ats_urls.append(extract_board_url(url)) if ats?(url)
       end
       return ats_urls
     end
