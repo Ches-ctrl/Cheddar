@@ -84,5 +84,10 @@ module Crawlers
       urls = get_urls_from_source(page.body)
       @hits += get_ats_urls(urls)
     end
+
+    def post_crawl_chores
+      super
+      @hits = @hits.uniq
+    end
   end
 end
