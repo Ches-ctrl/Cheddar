@@ -24,6 +24,7 @@ module Crawlers
       @starting_url = url
       @hits = []
       @priority_stubs = load_stubs(stubs_path)
+      @agent = nil
       # Initialize limts to `nil`
       set_limits
     end
@@ -62,8 +63,8 @@ module Crawlers
     # @param agent [Spidr::PriorityAgent]
     #
     # @return [TrueClass, FalseClass]
-    def max_crawl_exceeded?(agent)
-      return false unless !@max_crawl.nil? && @max_crawl < agent.history.length
+    def max_crawl_exceeded?
+      return false unless !@max_crawl.nil? && @max_crawl < @agent.history.length
 
       return true
     end
@@ -91,17 +92,17 @@ module Crawlers
     # @param agent [Spidr::PriorityAgent]
     #
     # @return [TrueClass, FalseClass]
-    def limits_exceeded?(agent)
-      return max_crawl_exceeded?(agent) || max_time_exceeded? || max_hits_exceeded?
+    def limits_exceeded?
+      return max_crawl_exceeded? || max_time_exceeded? || max_hits_exceeded?
     end
 
     # Stop crawl due to crawl limits having been exceeded.
     #
     # @param agent [PriorityAgent]
-    def limits_exceeded(agent)
+    def limits_exceeded
       puts "Scan limits exceeded."
-      puts "Scanned #{agent.history.length} pages in #{elapsed_time.round(2)}s."
-      agent.pause!
+      puts "Scanned #{@agent.history.length} pages in #{elapsed_time.round(2)}s."
+      @agent.pause!
     end
 
     # Print info about current page being crawled.
@@ -141,10 +142,10 @@ module Crawlers
     # Defines the action loop for each page.
     #
     # @param agent [PriorityAgent::PriorityAgent]
-    def every_page(agent)
-      agent.priority_stubs = @priority_stubs
-      agent.every_page do |page|
-        limits_exceeded(agent) if limits_exceeded?(agent)
+    def every_page
+      @agent.priority_stubs = @priority_stubs
+      @agent.every_page do |page|
+        limits_exceeded if limits_exceeded?
         page_status(page)
         scrape_page(page)
       end
@@ -179,8 +180,12 @@ module Crawlers
     # @return [Array]
     def crawl
       pre_crawl_chores
-      PriorityAgent.start_at(@starting_url, hosts: valid_hosts(@starting_url), strip_fragments: true, strip_query: true, robots: false) do |agent|
-        every_page(agent)
+      PriorityAgent.start_at(@starting_url,
+                             hosts: valid_hosts(@starting_url),
+                             strip_fragments: true,
+                             strip_query: true, robots: false) do |agent|
+        @agent = agent
+        every_page
       end
       return @hits
     end
