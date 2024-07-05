@@ -6,7 +6,7 @@ module Importer
     # Uses FaradayHelpers to fetch JSON data
     # First checks if data is saved locally, if not fetches from remote API to save on API calls
     # Works by (1) importing jobs hosted on the ATS (2) importing jobs hosted on other ATS systems
-    class JobPostingsApi
+    class JobPostingsApi < ApplicationTask
       include FaradayHelpers
       # TODO: Add capability to save responses to S3
 
@@ -42,20 +42,13 @@ module Importer
         log_final_counts
       end
 
-      def set_initial_counts
-        @initial_companies = Company.count
-        @initial_jobs = Job.count
-      end
-
-      def new_faraday_request
-        endpoint = @api_details[:endpoint]
-        verb = @api_details[:verb]
-        options = @api_details[:options]
-        fetch_json(endpoint, verb, options)
+      def extract_jobs_from_data(data)
+        data
       end
 
       def fetch_jobs_data
-        @local_storage.fetch_local_data || fetch_and_save_remote_data
+        data = @local_storage.fetch_local_data || fetch_and_save_remote_data
+        extract_jobs_from_data(data)
       end
 
       def fetch_and_save_remote_data
@@ -67,8 +60,20 @@ module Importer
         jobs_data
       end
 
+      def new_faraday_request
+        endpoint = @api_details[:endpoint]
+        verb = @api_details[:verb]
+        options = @api_details[:options]
+        fetch_json(endpoint, verb, options)
+      end
+
       def save_jobs_data(jobs_data)
         @local_storage.save_jobs_data(jobs_data)
+      end
+
+      def set_initial_counts
+        @initial_companies = Company.count
+        @initial_jobs = Job.count
       end
 
       def sort_by_hosted(jobs_data)

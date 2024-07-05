@@ -41,6 +41,10 @@ module Importer
         @ats.url_all_jobs.sub('XXX', ALGOLIA_APPLICATION_ID.downcase)
       end
 
+      def extract_jobs_from_data(data)
+        data.dig('results', 0, 'hits')
+      end
+
       def fetch_ats
         ApplicantTrackingSystem.find_by(name: 'TrueUp')
       end

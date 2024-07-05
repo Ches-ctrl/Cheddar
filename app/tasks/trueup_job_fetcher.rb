@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# TODO: process_as_true_up_job if unable to create_job_from_url
 class TrueupJobFetcher < ApplicationTask
   def initialize(job_data)
     @job_data = job_data
@@ -16,7 +17,7 @@ class TrueupJobFetcher < ApplicationTask
   end
 
   def process
-    # TODO: Create company separately, taking advantage of TrueUp company API
+    # TODO: Create company separately, taking advantage of TrueUp company API?
 
     url = @job_data['url']
     Url::CreateJobFromUrl.new(url).create_company_then_job
