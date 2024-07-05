@@ -66,6 +66,8 @@ gem "selenium-webdriver", "~> 4.18.1"
 gem 'sidekiq', '~> 6.5.5'
 gem "sidekiq-failures", "~> 1.0"
 gem 'sidekiq-scheduler', '~> 5.0', '>= 5.0.3'
+gem 'sidekiq-status'
+# gem 'sidekiq-cron' # Add to be able to schedule jobs at specific times
 
 # Storage
 gem "cloudinary"
@@ -124,7 +126,7 @@ gem 'newrelic_rpm'
 gem 'kaminari' # TODO: check whether we can replace with pagy
 
 # Front-end
-gem "high_voltage", "~> 3.1"
+# gem "high_voltage", "~> 3.1" # Turned off at the moment
 gem 'tinymce-rails' # TODO: now have trix and action text (check whether we need to replace)
 
 # Search

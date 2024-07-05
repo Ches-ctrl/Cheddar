@@ -1,0 +1,25 @@
+<div class="z-20 relative w-20 ml-auto inline-block text-left" data-controller="sort-dropdown" data-sort-dropdown-target="dropdownContainer">
+  <%# Button %>
+  <div>
+    <button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-1 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 hover:dark:bg-gray-500 dark:bg-zinc-900 dark:text-white" id="menu-button" aria-expanded="true" aria-haspopup="true" data-action="click->sort-dropdown#toggle">
+      Sort
+      <svg class="-mr-1 h-5 w-5 self-center text-gray-400 dark:text-gray-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+      </svg>
+    </button>
+  </div>
+
+  <%# Dropdown %>
+  <div class="hidden absolute right-0 z-10 mt-2 w-40 origin-top-right divide-y divide-gray-100 rounded-md bg-white dark:bg-zinc-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:border dark:border-white" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1" data-sort-dropdown-target="dropdown">
+    <div class="py-1" role="none">
+      <%# TODO: Add active state CSS classes %>
+      <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+      <% @sort.each do |facet| %>
+        <%= link_to facet.url(request.params), class: 'flex items-center gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white ' do %>
+            <input id="<%= "#{facet.attribute}-#{facet.value}" %>" type="radio" <%= facet.active?(request.params) %> class="cursor-pointer my-1 h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
+            <span class="truncate"><%= facet.presentation %></span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

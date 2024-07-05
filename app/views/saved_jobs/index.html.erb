@@ -1,37 +1,76 @@
-<% title "Saved Jobs" %>
-<article class="flex w-3/4 mx-auto h-full flex-col pb-10 pt-16" data-controller="basket">
-  <!-- form_for JobApllication.first, method: :post do |form| %> -->
-  <%= form_tag(new_job_application_path, method: :get, data: { basket_target: "form" })  do %>
-  <div class="divide-y bg-gray-100 dark:bg-zinc-800 divide-gray-100 dark:divide-gray-800">
-    <div class="relative flex justify-between gap-x-4 px-4 py-5 sm:px-6 lg:px-8">
-      <div class="flex gap-x-4 pr-0 sm:flex-none">
-        <div class="flex w-6 z-50 items-center float-start">
-          <input type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" data-basket-target="mainCheckbox">
-        </div>
-      </div>
-      <div class="flex flex-grow items-center">
-        <%= link_to "Apply", '#', class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white dark:text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 opacity-50 cursor-not-allowed", data: { basket_target: "applyButton", action: "click->basket#submit" } %>
-      </div>
-    </div>
-    <div class="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6">
-      <div class="flex h-16 justify-between">
-        <div class="flex">
-          <div class="sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-            <a href="#" class="inline-flex items-center border-b-2 border-indigo-500 dark:border-indigo-300 px-1 pt-1 text-sm font-medium text-gray-900 dark:text-white" aria-current="page">Basket</a>
-            <a href="#" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-white/10 hover:text-gray-700 dark:hover:text-gray-500">In progress</a>
-            <a href="#" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-white/10 hover:text-gray-700 dark:hover:text-gray-500">Applied</a>
-            <a href="#" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-white/10 hover:text-gray-700 dark:hover:text-gray-500">Calendar</a>
+<%
+  set_meta_tags(
+    title: "Basket",
+    description: "Basket page for Cheddar. The highest value job board for job seekers.",
+    keywords: "Basket, Checkout, Saved Jobs"
+  )
+%>
+<article class="flex w-3/4 mx-auto h-full flex-col pb-10 pt-10" data-controller="basket">
+  <%= form_tag(application_processes_path, method: :post, data: { basket_target: "form" }) do %>
+    <div class="divide-y divide-gray-100 dark:divide-gray-800">
+      <%# Page Headers %>
+      <div class="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6">
+        <div class="flex h-16 justify-between">
+          <div class="flex">
+            <div class="sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+              <% if current_page?(controller: 'saved_jobs', action: 'index') %>
+                <a href="#" class="inline-flex items-center border-b-2 border-indigo-500 dark:border-indigo-300 px-1 pt-1 text-sm font-medium text-gray-900 dark:text-white" aria-current="page">Basket</a>
+              <% else %>
+                <%= link_to "Basket", saved_jobs_path, class: "inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-white/10 hover:text-gray-700 dark:hover:text-gray-500" %>
+              <% end %>
+              <% if current_page?(controller: 'in_progress_jobs', action: 'index') %>
+                <a href="#" class="inline-flex items-center border-b-2 border-indigo-500 dark:border-indigo-300 px-1 pt-1 text-sm font-medium text-gray-900 dark:text-white" aria-current="page">In progress</a>
+              <% else %>
+                <%= link_to "In progress", in_progress_jobs_path, class: "inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-white/10 hover:text-gray-700 dark:hover:text-gray-500" %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <ul role="list" class="divide-y divide-gray-100 dark:divide-gray-800">
-    <!-- #rename later to jobs for jobs/_job.html.erb -->
-    <% @records.each do |opportunity| %>
-      <%= render 'opportunities/opportunity', opportunity: %>
+    <% if @records.present? %>
+      <%# Basket Contents %>
+      <div class="md:flex pb-4 gap-x-8">
+        <ul role="list" class="flex-1 divide-y divide-gray-100 dark:divide-gray-800">
+          <!-- #rename later to jobs for jobs/_job.html.erb -->
+          <% @records.each do |opportunity| %>
+            <%= render 'opportunities/opportunity', opportunity: %>
+          <% end %>
+        </ul>
+
+        <!-- Order summary -->
+        <section aria-labelledby="summary-heading" class="flex flex-col justify-between mt-2 rounded-lg md:min-w-30 lg:min-w-60 h-40 bg-gray-50 dark:bg-zinc-700 px-4 py-2 text-center sm:p-6 lg:col-span-5 lg:mt-0 lg:p-4">
+          <h2 id="summary-heading" class="text-lg font-medium text-gray-900 dark:text-white">Application summary</h2>
+          <% if request.fullpath.eql?('/basket') %>
+            <%# Main Checkbox %>
+            <div class="flex justify-center pt-2 pr-0 sm:flex-none">
+              <div class="flex z-50 items-center float-start">
+                <input type="checkbox" class="me-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" data-basket-target="mainCheckbox">
+                <p class="text-sm dark:text-gray-400">Add all jobs to basket</p>
+              </div>
+            </div>
+
+            <%# Apply Link %>
+            <div class="flex flex-grow items-center pt-4">
+              <%= link_to "Apply to all", '#', class: "w-full rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white dark:text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 opacity-50 cursor-not-allowed", data: { basket_target: "applyButton", action: "click->basket#submit" } %>
+            </div>
+          <% elsif request.fullpath.eql?('/in_progress') %>
+            <%# Continue Application %>
+            <div class="flex pt-4">
+              <%= link_to "Continue", edit_application_process_job_application_path(current_application_process(@records), first_job_application(@records)), class: "w-full rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white dark:text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+            </div>
+          <% else %>
+            <%# Spacing %>
+            <div class="flex gap-x-4 pr-0 sm:flex-none">
+              <div class="flex h-10">
+              </div>
+            </div>
+          <% end %>
+        </section>
+      </div>
+      <%= render 'shared/template/pagination', pagy: @pagy %>
+    <% else %>
+      <h2 class="p-5">No jobs yet</h2>
     <% end %>
-  </ul>
-  <%= render 'shared/template/pagination', pagy: @pagy %>
   <% end %>
 </article>

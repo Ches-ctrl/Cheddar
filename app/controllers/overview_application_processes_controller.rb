@@ -1,0 +1,2 @@
+class OverviewApplicationProcessesController < ApplicationProcessesController
+end

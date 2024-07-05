@@ -1,0 +1,16 @@
+<%= provide(:title, 'Application Process - Specific fields') %>
+<article class="flex w-2/3 mx-auto h-full flex-col pb-5 pt-8" data-controller="mandatory-fields-only">
+  <div class="flex items-center justify-end">
+    <button type="" <%= mandatory_fields_only_disability(@job_application) %> class="<%= mandatory_fields_only_disability_cursor_class(@job_application) %>relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" role="switch" aria-checked="false" data-mandatory-fields-only-target="button" data-action="mandatory-fields-only#toggleHidden">
+      <span aria-hidden="true" class="pointer-events-none inline-block h-5 w-5 translate-x-0 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out" data-mandatory-fields-only-target="innerRound"></span>
+    </button>
+    <span class="ml-3 text-sm" id="mandatory_fields_only">
+      <span class="font-medium text-gray-900">Hide optional fields</span>
+      <span class="text-gray-500"><%= mandatory_fields_only_label(@job_application) %></span>
+    </span>
+  </div>  
+  <div class="grid max-w-8xl sm:grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
+    <%= render 'step_indicators' %>
+    <%= render 'additional_information_form', job_application: @job_application %>
+  </div>
+</article>

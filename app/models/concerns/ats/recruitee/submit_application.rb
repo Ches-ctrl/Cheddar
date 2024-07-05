@@ -77,7 +77,7 @@ module Ats
           # There doesn't seem to be a way to upload a cover_letter file using this API
           convert_html_to_string(file)
         else
-          file_path = Rails.root.join('tmp', "#{filetype} - #{@user.first_name} #{@user.last_name} - #{@job.title} - #{@job.company.name}#{convert[filetype]}")
+          file_path = Rails.root.join('tmp', "#{filetype} - #{@user.user_detail.first_name} #{@user.user_detail.last_name} - #{@job.title} - #{@job.company.name}#{convert[filetype]}")
           File.binwrite(file_path, URI.parse(file.url).open.read)
           File.open(file_path)
         end

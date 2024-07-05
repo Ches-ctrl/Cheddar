@@ -11,9 +11,7 @@ module Builders
         email = process_env_variables(row['email'])
         password = process_env_variables(row['password'])
 
-        user = User.create(
-          email: email || row["email"],
-          password: password || row["password"],
+        user_data = {
           first_name: row["first_name"],
           last_name: row["last_name"],
           phone_number: row["phone_number"],
@@ -21,16 +19,23 @@ module Builders
           address_second: row["address_second"],
           post_code: row["post_code"],
           city: row["city"],
-          salary_expectation_text: row["salary_expectation_text"],
           salary_expectation_figure: row["salary_expectation_figure"],
-          notice_period: row["notice_period"],
-          employee_referral: row["employee_referral"],
-          admin: row["admin"]
+          notice_period: row["notice_period"]
+          # salary_expectation_text: row["salary_expectation_text"],
+          # employee_referral: row["employee_referral"]
+        }
+        user_detail = UserDetail.new(user_data)
+
+        user = User.create(
+          email: email || row["email"],
+          password: password || row["password"],
+          admin: row["admin"],
+          user_detail:
         )
 
         if user
           attach_resume(user, row["resume"])
-          puts "Created User - #{user.first_name}"
+          puts "Created User - #{user.email}"
         else
           puts "Error creating User - #{row['email']}"
         end
@@ -49,7 +54,7 @@ module Builders
 
     def attach_resume(user, resume)
       if File.exist?(resume)
-        user.resume.attach(io: File.open(resume), filename: File.basename(resume))
+        user.user_detail.resumes.attach(io: File.open(resume), filename: File.basename(resume))
         p "Attached resume - #{resume}"
       else
         p "No resume attached - #{user.email}"

@@ -4,20 +4,26 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # == Attributes ===========================================================
+  # == Callbacks ============================================================
+  after_create :create_user_detail
+  # == Class Methods ========================================================
+  # == Constants ============================================================
+  # == Extensions ===========================================================
+  # == Instance Methods =====================================================
   # == Relationships ========================================================
-  has_many :job_applications, dependent: :destroy
-  has_many :jobs, through: :job_applications
-  has_many :saved_jobs, dependent: :destroy
+  has_one :user_detail, dependent: :destroy
+
+  has_many :application_processes, dependent: :destroy
   has_many :educations, dependent: :destroy
-
-  has_one_attached :photo
-  has_one_attached :resume
-  has_many_attached :cover_letter_templates
-
+  has_many :job_applications, through: :application_processes
+  has_many :saved_jobs, dependent: :destroy
+  # == Scopes ===============================================================
   # == Validations ==========================================================
-  validates :first_name, :last_name, presence: true
 
-  def full_name
-    "#{first_name} #{last_name}"
+  private
+
+  def create_user_detail
+    build_user_detail(email:)
   end
 end

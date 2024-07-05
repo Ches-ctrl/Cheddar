@@ -27,7 +27,7 @@ module OpportunityHelper
   end
 
   def opportunity_salary_presentation(opportunity)
-    opportunity.salary.present? ? opportunity.salary : "<br>".html_safe
+    opportunity.salary.present? ? opportunity.salary : nil
   end
 
   def opportunity_days_remaining(opportunity)
@@ -35,6 +35,6 @@ module OpportunityHelper
   end
 
   def seniority_css(opportunity, seniority)
-    ' text-gray-300 dark:text-gray-700' unless opportunity.seniority.include?(seniority)
+    ' text-gray-300 dark:text-gray-700' unless opportunity.seniority&.include?(seniority)
   end
 end
