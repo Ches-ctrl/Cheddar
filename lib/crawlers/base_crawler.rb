@@ -100,8 +100,7 @@ module Crawlers
     #
     # @param agent [PriorityAgent]
     def limits_exceeded
-      puts "Scan limits exceeded."
-      puts "Scanned #{@agent.history.length} pages in #{elapsed_time.round(2)}s."
+      puts "Crawl limits exceeded."
       @agent.pause!
     end
 
@@ -137,6 +136,12 @@ module Crawlers
     def pre_crawl_chores
       @start_time = current_time
       puts "Beginning crawl of `#{@starting_url}`..."
+    end
+
+    # Perform post-crawl actions and clean up
+    def post_crawl_chores
+      puts 'Crawl completed.'
+      puts "Crawled #{@agent.history.length} pages in #{elapsed_time.round(2)}s."
     end
 
     # Defines the action loop for each page.
@@ -187,6 +192,7 @@ module Crawlers
         @agent = agent
         every_page
       end
+      post_crawl_chores
       return @hits
     end
   end
