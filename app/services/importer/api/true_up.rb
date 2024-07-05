@@ -1,21 +1,20 @@
 module Importer
   module Api
     class TrueUp < JobPostingsApi
-      URL_ALL_JOBS = 'https://XXX-dsn.algolia.net/1/indexes/*/queries'
       ALGOLIA_APPLICATION_ID = '4045RIZNH3'
-      ENDPOINT = URL_ALL_JOBS.sub('XXX', ALGOLIA_APPLICATION_ID.downcase)
       ALGOLIA_AGENT = 'Algolia for JavaScript (4.20.0); Browser (lite); instantsearch.js (4.58.0); react (18.2.0); react-instantsearch (7.2.0); react-instantsearch-core (7.2.0); next.js (13.1.1); JS Helper (3.14.2)'
       ALGOLIA_API_KEY = '1e21d9e9b2347abcdd2a64d409a74659'
 
       def initialize
-        super('TrueUp', api_details, Url::CreateTrueupJobFromUrlJob)
+        @ats = fetch_ats
+        super(@ats, api_details, Url::CreateTrueupJobFromUrlJob)
       end
 
       private
 
       def api_details
         {
-          endpoint: ENDPOINT,
+          endpoint:,
           verb: :post,
           options: {
             params:,
@@ -36,6 +35,14 @@ module Importer
             }
           ]
         }.to_json
+      end
+
+      def endpoint
+        @ats.url_all_jobs.sub('XXX', ALGOLIA_APPLICATION_ID.downcase)
+      end
+
+      def fetch_ats
+        ApplicantTrackingSystem.find_by(name: 'TrueUp')
       end
 
       def headers

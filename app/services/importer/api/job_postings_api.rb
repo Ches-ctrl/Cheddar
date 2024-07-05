@@ -11,10 +11,10 @@ module Importer
       # TODO: Add capability to save responses to S3
 
       def initialize(ats, api_details, redirect_processor)
-        @ats, @ats_name = ats.is_a?(ApplicantTrackingSystem) ? [ats, ats.name] : [nil, ats]
+        @ats = ats
         @api_details = api_details
         @redirect_processor = redirect_processor
-        @local_storage = LocalDataStorer.new(@ats_name)
+        @local_storage = LocalDataStorer.new(@ats.name)
         set_initial_counts
       end
 
@@ -27,7 +27,7 @@ module Importer
       private
 
       def processable
-        @ats_name.present? && @api_details.present?
+        @ats.present? && @api_details.present?
       end
 
       def process
@@ -114,7 +114,7 @@ module Importer
       end
 
       def log_fetched_jobs_data(jobs_data)
-        p "Fetched #{jobs_data.count} jobs from #{@ats_name}"
+        p "Fetched #{jobs_data.count} jobs from #{@ats.name}"
         log_redirects
       end
 
@@ -124,8 +124,8 @@ module Importer
       end
 
       def log_final_counts
-        p "Imported #{Company.count - @initial_companies} companies from #{@ats_name}"
-        p "Imported #{Job.count - @initial_jobs} jobs from #{@ats_name}"
+        p "Imported #{Company.count - @initial_companies} companies from #{@ats.name}"
+        p "Imported #{Job.count - @initial_jobs} jobs from #{@ats.name}"
       end
     end
   end
