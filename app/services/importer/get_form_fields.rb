@@ -66,7 +66,7 @@ module Importer
           label: label_text
         }
 
-        p attributes[name]
+        puts attributes[name]
 
         inputs = label.css('input', 'textarea').reject { |input| input['type'] == 'hidden' || !input['id'] }
         attributes[name][:locators] = inputs[0]['id'] unless inputs.empty?
@@ -106,7 +106,7 @@ module Importer
           attributes[name][:options] = question.css('label:has(input[type="checkbox"])').map do |option|
             option.text.strip
           end
-          p attributes[name]
+          puts attributes[name]
         end
       rescue Nokogiri::ElementNotFound
         @errors = true
@@ -114,7 +114,7 @@ module Importer
 
       extra_fields = attributes
 
-      p extra_fields
+      puts extra_fields
 
       # @job.requirement.no_of_qs = attributes.keys.count
 
@@ -139,6 +139,10 @@ module Importer
 
     def remove_trailing_underscore(string)
       string[-1] == '_' ? string[...-1] : string
+    end
+
+    def pretty_generate(json)
+      JSON.pretty_generate(json)
     end
   end
 end
