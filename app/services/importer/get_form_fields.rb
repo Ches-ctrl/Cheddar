@@ -13,9 +13,14 @@ module Importer
   # 3. Get the inputs relating to the question (input, textarea, select)
   # 5. Get the values for each input
   class GetFormFields < ApplicationTask
-    def initialize(job)
-      @job = job
-      @url = @job.posting_url
+    def initialize # (job)
+      # @job = job
+      # @url = @job.posting_url
+      # @url = "https://boards.greenhouse.io/cleoai/jobs/4628944002"
+      @url = "https://boards.greenhouse.io/cleoai/jobs/7301308002"
+      # @url = "https://boards.greenhouse.io/axios/jobs/6009256#app"
+      # @url = "https://boards.greenhouse.io/11fs/jobs/4060453101"
+      # @url = "https://boards.greenhouse.io/forter/jobs/7259821002"
       @ats_sections = %w[main_fields custom_fields demographic_questions eeoc_fields data_compliance security_code_fields]
       @fields = {}
       @errors = false
@@ -33,7 +38,7 @@ module Importer
     private
 
     def processable
-      @url && @job
+      @url # && @job
     end
 
     # HTML > Form > Section > Field > Label > Input > Options
@@ -183,40 +188,40 @@ module Importer
   end
 end
 
-OLD_STRUCTURE = {
-  first_name: {
-    interaction: :input,
-    locators: 'first_name',
-    required: true,
-    label: 'First Name',
-    core_field: true
-  }
-}
+# OLD_STRUCTURE = {
+#   first_name: {
+#     interaction: :input,
+#     locators: 'first_name',
+#     required: true,
+#     label: 'First Name',
+#     core_field: true
+#   }
+# }
 
-NEW_STRUCTURE = {
-  section: {
-    first_name: {
-      label:,
-      id:,
-      required:,
-      type:,
-      max_length:,
-      options: [
-        {
-          option:,
-          class:,
-          id:
-        }
-      ]
-    }
-  }
-}
+# NEW_STRUCTURE = {
+#   section: {
+#     first_name: {
+#       label:,
+#       id:,
+#       required:,
+#       type:,
+#       max_length:,
+#       options: [
+#         {
+#           option:,
+#           class:,
+#           id:
+#         }
+#       ]
+#     }
+#   }
+# }
 
 # For testing:
-# @url = "https://job-boards.greenhouse.io/monzo/jobs/6076740"
 # @url = "https://boards.greenhouse.io/cleoai/jobs/4628944002"
 # @url = "https://boards.greenhouse.io/cleoai/jobs/7301308002"
 # @url = "https://boards.greenhouse.io/axios/jobs/6009256#app"
 # @url = "https://boards.greenhouse.io/11fs/jobs/4060453101"
 # @url = "https://boards.greenhouse.io/forter/jobs/7259821002"
+# @url = "https://job-boards.greenhouse.io/monzo/jobs/6076740"
 # @url = "https://stripe.com/jobs/listing/account-executive-digital-natives/5414838/apply"
