@@ -58,12 +58,12 @@ module Importer
         next unless section_present?(section_html, section_name.humanize)
 
         fields = split_by_field(section_html)
+
         results = fields.map { |field| process_field(field) }
+        # remove null results
+        results = results.compact
 
-        puts pretty_generate(results)
-
-
-        # @fields[section_name] = { questions: process_fields(section_html) }
+        @fields[section_name] = { questions: results }
       end
 
       puts pretty_generate(@fields)
@@ -97,30 +97,45 @@ module Importer
       !fields.empty?
     end
 
-    def split_by_field(form)
-      form.css('.field')
+    def split_by_field(section_html)
+      section_html.css('.field')
     end
 
-    def process_fields(fields)
-      fields.map do |field|
-        label = field.at('label')&.text&.strip
-        inputs = field.css('input, select, textarea').map do |input|
-          {
-            name: input['name'],
-            type: input['type'],
-            value: input['value'],
-            id: input['id'],
-            checked: input['checked'] == 'checked'
-          }
-        end
-        { label:, inputs: }
-      end
-    end
+    # if input has type checkbox, radio add to options
+    # otherwise add to fields
 
     def process_field(field)
       label = field.at('label')&.text&.strip
-      options = field.css('input, select, textarea').map do |input|
-        next if input['type'] == 'hidden' || input['id'].nil?
+
+      if field.css('input[type="checkbox"], input[type="radio"]').any?
+        process_checkbox_radio(label, field)
+      else
+        process_input(label, field)
+      end
+    end
+
+    def process_checkbox_radio(label, field)
+      # label_text = label.xpath('descendant-or-self::text()[not(parent::select or parent::option or parent::ul or parent::label/input[@type="checkbox"])]').text
+      label_text = "test"
+
+      options = field.css('input[type="checkbox"], input[type="radio"]').map do |input|
+        next if input['type'] == 'hidden'
+
+        {
+          # id: input['id'],
+          option: get_label(field, input),
+          # type: input['type'] || input.name,
+          # value: input['value'],
+          # set: input['set']
+          class: input['class']
+        }
+      end
+      { id: label_text, type: 'checkbox', options: }
+    end
+
+    def process_input(_label, field)
+      field.css('input, textarea, select').map do |input|
+        next if input['type'] == 'hidden' || input['id'].nil? || input['id'].include?('dev-fields-1')
 
         {
           id: input['id'],
@@ -129,9 +144,9 @@ module Importer
           type: input['type'] || input.name,
           value: input['value'],
           set: input['set'],
+          max_length: input['maxlength']
         }
       end
-      { label:, options: }
     end
 
     # ==================
@@ -141,7 +156,7 @@ module Importer
       local_fields = []
 
       section_html.css('input, textarea, select').each do |input|
-        next if input['type'] == 'hidden' || input['type'] == 'checkbox' || input['type'] == 'radio'
+        next if input['type'] == 'hidden'
 
         id = input['id']
         next unless id
@@ -196,6 +211,23 @@ module Importer
     end
   end
 end
+
+# def process_field(field)
+#   label = field.at('label')&.text&.strip
+#   options = field.css('input, select, textarea').map do |input|
+#     next if input['type'] == 'hidden' || input['id'].nil?
+
+#     {
+#       id: input['id'],
+#       label: get_label(field, input),
+#       required: input['aria-required'],
+#       type: input['type'] || input.name,
+#       value: input['value'],
+#       set: input['set'],
+#     }
+#   end
+#   { label:, options: }
+# end
 
 # if type == 'checkbox'
 #   checkboxes[label] ||= { id:, label:, required:, type: 'checkbox', options: [] }
