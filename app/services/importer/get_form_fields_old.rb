@@ -142,6 +142,11 @@ module Importer
       string[-1] == '_' ? string[...-1] : string
     end
 
+    def find_apply_button
+      find(:xpath,
+           "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')] | //button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')]")
+    end
+
     def pretty_generate(json)
       JSON.pretty_generate(json)
     end
