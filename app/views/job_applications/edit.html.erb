@@ -10,21 +10,6 @@
       <span class="font-medium text-gray-900">Hide optional fields</span>
       <span class="text-gray-500"><%= mandatory_fields_only_label(@job_application) %></span>
     </span>
-
-    <%# iframe of job posting to reference against %>
-    <%# TODO: Add stimulus controller %>
-    <div data-modal-target="modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 hidden">
-      <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
-        <div class="flex justify-end p-2">
-          <button data-action="click->modal#close" class="text-gray-700 hover:text-gray-900">
-            &times;
-          </button>
-        </div>
-        <div class="p-6">
-          <iframe src="<%= @job_application.job.posting_url %>" frameborder="0" class="w-full h-96"></iframe>
-        </div>
-      </div>
-    </div>
   </div>
 
   <%# Render step indicators and application forms %>
