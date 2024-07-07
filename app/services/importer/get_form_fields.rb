@@ -4,26 +4,18 @@ module Importer
   # Splits based on category of fields - main, custom, demographic, eeoc
   # Notes - In a standard greenhouse form, every field exists within a field tag
   # Known Issues - Candidate Privacy Notice. Individual checkboxes. Identifying multi- vs single-select dropdowns. Embedded / custom job-boards
+  # NB. This will not pull all the fields if there is an additional section not listed in @ats_sections
+  # Allowable file types (Greenhouse): (File types: pdf, doc, docx, txt, rtf)
   # Instructions:
   # 1. Parse the HTML of the job posting
   # 2. Parse the form from the HTML (check for application form)
   # 3. Split by fields, get the labels (questions)
   # 3. Get the inputs relating to the question (input, textarea, select)
   # 5. Get the values for each input
-  # Allowable file types (Greenhouse): (File types: pdf, doc, docx, txt, rtf)
-  # NB. This will not pull all the fields if there is an additional section not listed in @ats_sections (?rewrite?)
-  # TODO: Handle security codes (verification fields)
   class GetFormFields < ApplicationTask
     def initialize
-      # @job = job
-      # @url = @job.posting_url
-      # @url = "https://job-boards.greenhouse.io/monzo/jobs/6076740"
-      # @url = "https://boards.greenhouse.io/cleoai/jobs/4628944002"
-      @url = "https://boards.greenhouse.io/cleoai/jobs/7301308002"
-      # @url = "https://boards.greenhouse.io/axios/jobs/6009256#app"
-      # @url = "https://boards.greenhouse.io/11fs/jobs/4060453101"
-      # @url = "https://boards.greenhouse.io/forter/jobs/7259821002"
-      # @url = "https://stripe.com/jobs/listing/account-executive-digital-natives/5414838/apply"
+      @job = job
+      @url = @job.posting_url
       @ats_sections = %w[main_fields custom_fields demographic_questions eeoc_fields data_compliance security_code_fields]
       @fields = {}
       @errors = false
@@ -41,7 +33,7 @@ module Importer
     private
 
     def processable
-      @url # && @job
+      @url && @job
     end
 
     # HTML > Form > Section > Field > Label > Input > Options
@@ -191,10 +183,11 @@ module Importer
   end
 end
 
-# Old label methods:
-# label = field.children.select { |node| node.text? && node.content.strip != '' }.map(&:text).join.strip
-# puts "0. #{label}"
-# label = field.css('label').map(&:text).join(' ')
-# puts "1. #{label}"
-# label = field.css('label').text.strip
-# puts "2. #{label}"
+# For testing:
+# @url = "https://job-boards.greenhouse.io/monzo/jobs/6076740"
+# @url = "https://boards.greenhouse.io/cleoai/jobs/4628944002"
+# @url = "https://boards.greenhouse.io/cleoai/jobs/7301308002"
+# @url = "https://boards.greenhouse.io/axios/jobs/6009256#app"
+# @url = "https://boards.greenhouse.io/11fs/jobs/4060453101"
+# @url = "https://boards.greenhouse.io/forter/jobs/7259821002"
+# @url = "https://stripe.com/jobs/listing/account-executive-digital-natives/5414838/apply"
