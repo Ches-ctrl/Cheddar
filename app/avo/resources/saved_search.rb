@@ -1,5 +1,6 @@
 class Avo::Resources::SavedSearch < Avo::BaseResource
-  self.includes = []
+  self.includes = [:user, [export_attachment: :blob]]
+
   # self.search = {
   #   query: -> { query.ransack(id_eq: params[:q], m: "or").result(distinct: false) }
   # }
