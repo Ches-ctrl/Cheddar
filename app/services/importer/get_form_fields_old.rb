@@ -5,11 +5,12 @@ module Importer
   # Core class for getting form fields using Nokogiri/Capybara
   # NB. Only scrapes extra fields and combines those with the standard set of Greenhouse fields at the moment
   # TODO: Add routing logic - in future will route to either NokoFields / CapyFields or ApiFields depending on the ATS
-  class GetFormFields < ApplicationTask
+  class GetFormFieldsOld < ApplicationTask
     def initialize
       # @job = job
       # @url = @job.posting_url
-      @url = "https://job-boards.greenhouse.io/monzo/jobs/6076740"
+      # @url = "https://job-boards.greenhouse.io/monzo/jobs/6076740"
+      @url = "https://boards.greenhouse.io/forter/jobs/7259821002"
     end
 
     def call
@@ -50,7 +51,7 @@ module Importer
         # Stripping text, downcasing and replacing spaces with underscores to act as primary keys
         label_text = label.xpath('descendant-or-self::text()[not(parent::select or parent::option or parent::ul or parent::label/input[@type="checkbox"])]').text
 
-        p label_text
+        # p label_text
 
         required = label_text.include?("*")
         label_text = label_text.split("*")[0]
@@ -66,7 +67,7 @@ module Importer
           label: label_text
         }
 
-        puts attributes[name]
+        # puts attributes[name]
 
         inputs = label.css('input', 'textarea').reject { |input| input['type'] == 'hidden' || !input['id'] }
         attributes[name][:locators] = inputs[0]['id'] unless inputs.empty?
@@ -114,7 +115,7 @@ module Importer
 
       extra_fields = attributes
 
-      puts extra_fields
+      puts pretty_generate(extra_fields)
 
       # @job.requirement.no_of_qs = attributes.keys.count
 
