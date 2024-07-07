@@ -1,11 +1,9 @@
 module Importer
   # Core class for getting form fields directly from the API
   # Splits based on category of fields - main, custom, demographic, eeoc
-  # Known Issues - XXX
+  # Known Issues - Building the checkbox logic for the data_compliance section
   # Allowable file types (Greenhouse): (File types: pdf, doc, docx, txt, rtf)
   # NB. Must include all params to get additional fields from the API
-  # Instructions:
-  # 1.
   class GetApiFields < ApplicationTask
     include FaradayHelpers
 
