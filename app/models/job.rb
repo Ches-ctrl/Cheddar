@@ -3,6 +3,8 @@ class Job < ApplicationRecord
   include PgSearch::Model
   include Constants::DateConversion
 
+  PERMITTED_SEARCH_PARAMS = [:id, :page, :posted, :query, :sort, :apply_with_cheddar, { employment: [], location: [], role: [], seniority: [], ats: [] }]
+
   # == Attributes ===========================================================
 
   # == Extensions ===========================================================
