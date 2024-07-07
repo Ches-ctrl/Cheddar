@@ -13,7 +13,7 @@ module Importer
   # 3. Get the inputs relating to the question (input, textarea, select)
   # 5. Get the values for each input
   class GetFormFields < ApplicationTask
-    def initialize
+    def initialize(job)
       @job = job
       @url = @job.posting_url
       @ats_sections = %w[main_fields custom_fields demographic_questions eeoc_fields data_compliance security_code_fields]
@@ -182,6 +182,35 @@ module Importer
     end
   end
 end
+
+OLD_STRUCTURE = {
+  first_name: {
+    interaction: :input,
+    locators: 'first_name',
+    required: true,
+    label: 'First Name',
+    core_field: true
+  }
+}
+
+NEW_STRUCTURE = {
+  section: {
+    first_name: {
+      label:,
+      id:,
+      required:,
+      type:,
+      max_length:,
+      options: [
+        {
+          option:,
+          class:,
+          id:
+        }
+      ]
+    }
+  }
+}
 
 # For testing:
 # @url = "https://job-boards.greenhouse.io/monzo/jobs/6076740"
