@@ -110,32 +110,48 @@ module Importer
 
     def process_checkbox_radio(label, field)
       id = field.at('input[type="hidden"][id*="question_id"]')['id']
+      required = field.css('input[type="checkbox"], input[type="radio"]').first['aria-required']
       options = field.css('input[type="checkbox"], input[type="radio"]').map do |input|
         next if input['type'] == 'hidden'
 
         {
-          option: get_label(field, input),
-          class: input['class'],
-          id: input['id'] # For uniquely identifying the option
+          label: get_label(field, input),
+          id: input['id'], # For uniquely identifying the option
+          required: input['aria-required'],
+          class: input['class']
           # value: input['value'], # Useful for submitting post requests
         }
       end
-      { label:, id:, type: 'checkbox', options: }
+      {
+        label:,
+        id:,
+        required:,
+        type: 'checkbox',
+        options:
+      }
     end
 
     def process_select(label, field)
       id = field.at('input[type="hidden"][id*="question_id"]')['id']
+      required = field.css('select').first['aria-required']
       options = field.css('option').map do |option|
         next if option.text.strip == "--" || option.text.strip == "Please select"
 
         {
-          option: option.text.strip,
-          class: option['class'],
-          id: option['id'] # For uniquely identifying the option
+          label: option.text.strip,
+          id: option['id'], # For uniquely identifying the option
+          required: option['aria-required'],
+          class: option['class']
           # value: option['value'], # Useful for submitting post requests
         }
       end
-      { label:, id:, type: 'select', options: }
+      {
+        label:,
+        id:,
+        required:,
+        type: 'select',
+        options:
+      }
     end
 
     def process_input(_label, field)
@@ -208,9 +224,10 @@ end
 #       max_length:,
 #       options: [
 #         {
-#           option:,
+#           label:,
+#           id:,
+#           required:,
 #           class:,
-#           id:
 #         }
 #       ]
 #     }
