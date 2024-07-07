@@ -9,7 +9,8 @@
             <div class="flex min-w-0 flex-1 justify-end text-right space-x-4 pt-1.5">
               <div>
                 <p class="text-sm text-gray-500 dark:text-gray-400">
-                  <%= job.title %><br/>
+                  <%= job.title %>
+                  <br>
                   <span class="font-medium text-gray-900 dark:text-white">
                     <%= job.company.name %>
                   </span>
@@ -20,7 +21,7 @@
               <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-400 ring-8 ring-transparent">
                 <svg class="size-5 text-white dark:text-gray-900" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path fill-rule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clip-rule="evenodd" />
-                </svg>                
+                </svg>
               </span>
             <% elsif job_application.completed? %>
               <span class="flex h-8 w-8 items-center justify-center rounded-full bg-green-500 ring-8 ring-transparent">
@@ -32,7 +33,7 @@
               <span class="flex h-8 w-8 items-center justify-center rounded-full bg-yellow-400 ring-8 ring-transparent">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 text-yellow-800 dark:text-gray-900">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
-                </svg>                
+                </svg>
               </span>
             <% elsif job_application.unstarted? %>
               <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 dark:bg-gray-600 ring-8 ring-transparent"></span>
@@ -59,7 +60,7 @@
               <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-400 ring-8 ring-transparent">
                 <svg class="size-5 text-white dark:text-gray-900" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path fill-rule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clip-rule="evenodd" />
-                </svg>                
+                </svg>
               </span>
             <% elsif application_step_completed?("overview") %>
               <span class="flex h-8 w-8 items-center justify-center rounded-full bg-green-500 ring-8 ring-transparent">
@@ -92,7 +93,7 @@
               <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-400 ring-8 ring-transparent">
                 <svg class="size-5 text-white dark:text-gray-900" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path fill-rule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clip-rule="evenodd" />
-                </svg>                
+                </svg>
               </span>
             <% elsif application_step_completed?("payload") %>
               <span class="flex h-8 w-8 items-center justify-center rounded-full bg-green-500 ring-8 ring-transparent">
