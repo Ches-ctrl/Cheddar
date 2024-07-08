@@ -38,7 +38,7 @@ class ExportJobCsvGenerator < ApplicationTask
   end
 
   def attach_csv
-    @saved_search.export.attach(io: @tempfile, filename:, content_type: 'application/csv')
+    @saved_search.export.attach(io: @tempfile, filename:)
   end
 
   def fetch_jobs
@@ -46,6 +46,6 @@ class ExportJobCsvGenerator < ApplicationTask
   end
 
   def filename
-    @tempfile.path.split('/').last
+    @tempfile.path.split('/').last.split('.csv').first
   end
 end
