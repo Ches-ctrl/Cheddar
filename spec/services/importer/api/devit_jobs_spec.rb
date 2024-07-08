@@ -2,7 +2,7 @@ RSpec.describe Importer::Api::DevitJobs, type: :service, devitjobs: true do
   let(:service) { described_class.new }
 
   before do
-    allow(ApplicantTrackingSystem).to receive(:find_by).with(name: 'DevITJobs').and_return(double('ATS', url_all_jobs: 'https://devitjobs.uk/api/jobsLight'))
+    allow(ApplicantTrackingSystem).to receive(:find_by).with(name: 'DevITJobs').and_return(double('ATS', name: 'DevITJobs', url_all_jobs: 'https://devitjobs.uk/api/jobsLight'))
   end
 
   describe '#import_jobs', :vcr do

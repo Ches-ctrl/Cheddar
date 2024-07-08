@@ -51,33 +51,3 @@ module Ats
     end
   end
 end
-
-{
-  "job_id"=>"1818f540-831b-4487-8a55-c87fe36080cb",
-  "company_id"=>"lemfi",
-  "title"=>"Senior Software Engineer- Golang",
-  "url"=>"https://lemonade-technology-inc.breezy.hr/p/524f20b229a3-senior-software-engineer-golang",
-  "updated_at"=>"2024-07-03T23:36:07.000Z",
-  "updated_at_timestamp"=>1720049767,
-  "location"=>"United Kingdom (remote)",
-  "unique_id"=>"br-lemfi-524f20b229a3",
-  "salary_range_min"=>nil,
-  "salary_range_max"=>nil,
-  "company_url_clean"=>"lemfi.com",
-  "company_short"=>"LemFi",
-  "company"=>"LemFi",
-  "business_description_short"=>"Remittance payments",
-  "valuation"=>nil,
-  "job_openings_total"=>24,
-  "date_founded"=>"2020-01-01T00:00:00.000Z",
-  "trajectory_score"=>nil,
-  "ai_ready"=>1,
-  "sponsored"=>0,
-  "promoted"=>0,
-  "description_tags"=>["GoLang", "AWS", "PostgreSQL", "Docker", "GitHub"],
-  "company_investor_details"=>[{"name"=>"Y Combinator", "url"=>"ycombinator.com", "tag_id"=>"yc"}],
-  "company_description_plus"=>["🌱 Early-stage startup", "Total funding $34M", "Last raised 10mo ago ($33M Series A)", "5 yrs old", "110 employees"],
-  "ats_ux_warning"=>"",
-  "objectID"=>"12479004002",
-  "_highlightResult"=>{"title"=>{"value"=>"Senior Software Engineer- Golang", "matchLevel"=>"none", "matchedWords"=>[]}, "company"=>{"value"=>"LemFi", "matchLevel"=>"none", "matchedWords"=>[]}}
-}

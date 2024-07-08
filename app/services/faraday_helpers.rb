@@ -25,9 +25,9 @@ module FaradayHelpers
 
   def fetch_data(url, parse_method, verb = :get, options = {})
     response = Faraday.send(verb, url, options) do |request|
-      request.params = options[:params]
-      request.headers = options[:headers]
-      request.body = options[:body]
+      request.params = options[:params] || []
+      request.headers = options[:headers] || []
+      request.body = options[:body] || []
     end
     send(parse_method, response.body)
   rescue Faraday::Error => e
