@@ -63,11 +63,9 @@ module Importer
         @ats.url_all_jobs.sub('XXX', ALGOLIA_APPLICATION_ID.downcase)
       end
 
-      def extract_jobs_from_data(data)
-        results = data&.dig('results')
-
-        jobs = results&.inject([]) do |total, job_group|
-          total + (job_group['hits'] || [])
+      def extract_jobs_from_data
+        jobs = job_results.inject([]) do |total, tranche|
+          total + (tranche['hits'] || [])
         end
 
         jobs.uniq
@@ -81,6 +79,10 @@ module Importer
         {
           'Content-Type': 'application/json'
         }
+      end
+
+      def job_results
+        @data&.dig('results') || []
       end
 
       def params

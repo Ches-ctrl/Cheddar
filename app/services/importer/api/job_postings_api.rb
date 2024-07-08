@@ -53,13 +53,13 @@ module Importer
         p "Job: #{job&.title}"
       end
 
-      def extract_jobs_from_data(data)
-        data
+      def extract_jobs_from_data
+        @data
       end
 
       def fetch_jobs_data
-        data = @local_storage.fetch_local_data || fetch_and_save_remote_data
-        extract_jobs_from_data(data)
+        @data = @local_storage.fetch_local_data || fetch_and_save_remote_data
+        extract_jobs_from_data
       end
 
       def fetch_and_save_remote_data
