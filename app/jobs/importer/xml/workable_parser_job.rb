@@ -5,7 +5,7 @@ module Importer
       retry_on StandardError, attempts: 0
 
       def perform
-          Importer::Xml::WorkableParser.new.import_jobs
+        Importer::Xml::WorkableParser.new.import_jobs
       end
     end
   end
