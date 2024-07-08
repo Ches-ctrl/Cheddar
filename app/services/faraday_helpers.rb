@@ -1,4 +1,11 @@
 module FaradayHelpers
+  def faraday_request(details)
+    endpoint = details[:endpoint]
+    verb = details[:verb]
+    options = details[:options]
+    fetch_json(endpoint, verb, options)
+  end
+
   def fetch_json(url, verb = :get, options = {})
     fetch_data(url, :parse_json, verb, options)
   end

@@ -27,7 +27,5 @@ class DevitJobFetcher < ApplicationTask
     p "Company: #{company&.name}"
     job = JobCreator.call(ats:, company:, data: @job_data)
     p "Job: #{job&.title}"
-  rescue StandardError => e
-    Rails.logger.error "Error creating company and job: #{e.message}"
   end
 end

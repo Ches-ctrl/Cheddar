@@ -42,6 +42,17 @@ module Importer
         log_final_counts
       end
 
+      def count_redirects
+        @redirect_jobs.count
+      end
+
+      def create_company_and_job(job_data)
+        company = CompanyCreator.call(ats: @ats, data: job_data)
+        p "Company: #{company&.name}"
+        job = JobCreator.call(ats: @ats, company:, data: job_data)
+        p "Job: #{job&.title}"
+      end
+
       def extract_jobs_from_data(data)
         data
       end
@@ -52,65 +63,12 @@ module Importer
       end
 
       def fetch_and_save_remote_data
-        jobs_data = new_faraday_request
+        jobs_data = faraday_request(@api_details)
         return unless jobs_data
 
         save_jobs_data(jobs_data)
 
         jobs_data
-      end
-
-      def new_faraday_request
-        endpoint = @api_details[:endpoint]
-        verb = @api_details[:verb]
-        options = @api_details[:options]
-        fetch_json(endpoint, verb, options)
-      end
-
-      def save_jobs_data(jobs_data)
-        @local_storage.save_jobs_data(jobs_data)
-      end
-
-      def set_initial_counts
-        @initial_companies = Company.count
-        @initial_jobs = Job.count
-      end
-
-      def sort_by_hosted(jobs_data)
-        @redirect_jobs, @hosted_jobs = jobs_data.partition { |job_data| redirect?(job_data) }
-      end
-
-      # def redirect?(_job_data)
-      #   false
-      # end
-
-      def count_redirects
-        @redirect_jobs.count
-      end
-
-      def process_jobs
-        process_hosted_jobs
-        process_redirect_jobs
-      end
-
-      def process_hosted_jobs
-        @hosted_jobs.each { |job_data| create_company_and_job(job_data) }
-        p @hosted_jobs.count
-        p "Hosted jobs processed."
-      end
-
-      def process_redirect_jobs
-        @redirect_jobs.each { |job_data| @redirect_processor.perform_later(job_data) }
-        p @redirect_jobs.count
-        p "Redirected jobs processed."
-      end
-
-      def create_company_and_job(job_data)
-        # TODO: Refactor to call CompanyCreator and JobCreator as service classes
-        company = CompanyCreator.call(ats: @ats, data: job_data)
-        p "Company: #{company&.name}"
-        job = JobCreator.call(ats: @ats, company:, data: job_data)
-        p "Job: #{job&.title}"
       end
 
       def log_initial_counts
@@ -131,6 +89,40 @@ module Importer
       def log_final_counts
         p "Imported #{Company.count - @initial_companies} companies from #{@ats.name}"
         p "Imported #{Job.count - @initial_jobs} jobs from #{@ats.name}"
+      end
+
+      def process_jobs
+        process_hosted_jobs
+        process_redirect_jobs
+      end
+
+      def process_hosted_jobs
+        @hosted_jobs.each { |job_data| create_company_and_job(job_data) }
+        p @hosted_jobs.count
+        p "Hosted jobs processed."
+      end
+
+      def process_redirect_jobs
+        @redirect_jobs.each { |job_data| @redirect_processor.perform_later(job_data) }
+        p @redirect_jobs.count
+        p "Redirected jobs processed."
+      end
+
+      # def redirect?(_job_data)
+      #   false
+      # end
+
+      def save_jobs_data(jobs_data)
+        @local_storage.save_jobs_data(jobs_data)
+      end
+
+      def set_initial_counts
+        @initial_companies = Company.count
+        @initial_jobs = Job.count
+      end
+
+      def sort_by_hosted(jobs_data)
+        @redirect_jobs, @hosted_jobs = jobs_data.partition { |job_data| redirect?(job_data) }
       end
     end
   end

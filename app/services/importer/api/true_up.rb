@@ -10,8 +10,6 @@ module Importer
         super(@ats, api_details, Url::CreateTrueupJobFromUrlJob)
       end
 
-      private
-
       def api_details
         {
           endpoint:,
@@ -24,14 +22,38 @@ module Importer
         }
       end
 
+      private
+
       def body
-        hits_per_page = 2000
+        # TODO: figure out how to most efficiently formulate this request to get all jobs, despite the hits_per_page limit
+
+        hits_per_page = 300 # This is limited by the API
         max_values_per_facet = 2000
         {
           requests: [
             {
               indexName: 'job',
               params: "facetFilters=[[\"job_locations_combined:🇬🇧 London, UK\",\"job_locations_combined:🇬🇧 United Kingdom (remote)\"],[\"job_categories_lvl0:Engineering (Software)\"]]&facets=[\"job_categories_lvl0\",\"job_locations_combined\"]&hitsPerPage=#{hits_per_page}&maxValuesPerFacet=#{max_values_per_facet}&query=&tagFilters="
+            },
+            {
+              indexName: 'job',
+              params: "facetFilters=[[\"job_locations_combined:🇬🇧 London, UK\",\"job_locations_combined:🇬🇧 United Kingdom (remote)\"]]&facets=[\"job_categories_lvl0\"]&hitsPerPage=#{hits_per_page}&maxValuesPerFacet=#{max_values_per_facet}&page=0&query="
+            },
+            {
+              indexName: 'job',
+              params: "facetFilters=[[\"job_categories_lvl0:Engineering (Software)\"]]&facets=job_locations_combined&hitsPerPage=#{hits_per_page}&maxValuesPerFacet=#{max_values_per_facet}&page=0&query="
+            },
+            {
+              indexName: 'job',
+              params: "facetFilters=[[\"job_locations_combined:🇬🇧 London, UK\",\"job_locations_combined:🇬🇧 United Kingdom (remote)\"],[\"job_categories_lvl0:Engineering (Software)\"]]&facets=[\"company_stage\",\"company_valuation\",\"curated_company_lists\",\"customer_type\",\"description_tags\",\"job_categories_lvl0\",\"job_categories_lvl1\",\"job_locations_combined\",\"level\",\"public_private\",\"themes\",\"top_investors\"]&highlightPostTag=__/ais-highlight__&highlightPreTag=__ais-highlight__&hitsPerPage=#{hits_per_page}&maxValuesPerFacet=#{max_values_per_facet}&page=0&query=&tagFilters="
+            },
+            {
+              indexName: 'job',
+              params: "facetFilters=[[\"job_locations_combined:🇬🇧 London, UK\",\"job_locations_combined:🇬🇧 United Kingdom (remote)\"]]&facets=[\"job_categories_lvl0\"]&highlightPostTag=__/ais-highlight__&highlightPreTag=__ais-highlight__&hitsPerPage=#{hits_per_page}&maxValuesPerFacet=#{max_values_per_facet}&page=0&query="
+            },
+            {
+              indexName: 'job',
+              params: "facetFilters=[[\"job_categories_lvl0:Engineering (Software)\"]]&facets=job_locations_combined&highlightPostTag=__/ais-highlight__&highlightPreTag=__ais-highlight__&hitsPerPage=#{hits_per_page}&maxValuesPerFacet=#{max_values_per_facet}&page=0&query="
             }
           ]
         }.to_json
@@ -42,7 +64,13 @@ module Importer
       end
 
       def extract_jobs_from_data(data)
-        data.dig('results', 0, 'hits')
+        results = data&.dig('results')
+
+        jobs = results&.inject([]) do |total, job_group|
+          total + (job_group['hits'] || [])
+        end
+
+        jobs.uniq
       end
 
       def fetch_ats
