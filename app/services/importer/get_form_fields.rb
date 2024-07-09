@@ -13,7 +13,7 @@ module Importer
   # 3. Get the inputs relating to the question (input, textarea, select)
   # 5. Get the values for each input
   class GetFormFields < ApplicationTask
-    def initialize # (job)
+    def initialize
       # @job = job
       # @url = @job.posting_url
       # @url = "https://boards.greenhouse.io/cleoai/jobs/4628944002"

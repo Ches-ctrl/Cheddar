@@ -2,7 +2,8 @@ module Ats
   module Greenhouse
     module ApplicationFields
       def get_application_criteria(job, _data)
-        job.application_criteria = Importer::GetFormFields.call(job)
+        # job.application_criteria = Importer::GetFormFields.call(job)
+        job.application_criteria = Importer::GetApiFields.call
       end
 
       CORE_FIELDS = {
