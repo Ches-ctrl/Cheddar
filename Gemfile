@@ -102,7 +102,7 @@ gem 'rails-html-sanitizer'
 # gem 'faraday' # Installed as a dependency via Cloudinary
 
 # Web Scraping Frameworks
-# gem 'spidr' # TODO: Install for CompanyCrawler and NetZeroChecker
+gem 'spidr' # TODO: Install for CompanyCrawler and NetZeroChecker
 # gem 'tanakai' # potentially install this gem if spidr proves insufficient, based on capybara
 # gem 'wombat' # backup gem for web scraping based on mechanize
 
