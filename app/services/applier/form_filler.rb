@@ -27,11 +27,9 @@ module Applier
 
     def process
       visit_url
-      click_apply_button
-      fill_in_all_fields
-      sleep 2
+      fill_application_form
       click_submit_button
-      confirm_submission_was_successful
+      verify_submission
     ensure
       @session.quit
     end
@@ -49,11 +47,13 @@ module Applier
     end
 
     def click_submit_button
+      sleep 2 # temporary -- just for testing
       submit_button.click
     end
 
-    def confirm_submission_was_successful
-      sleep 4
+    def verify_submission
+      sleep 4 # temporary -- just for testing
+      # TODO: add logic to check for successful submission message or other indicators
     end
 
     def doc_tmp_file(file_text)
@@ -63,11 +63,14 @@ module Applier
       filepath
     end
 
+    def fill_application_form
+      click_apply_button
+      fill_in_all_fields
+    end
+
     def fill_in_all_fields
       within(@application_form) do
-        @fields.each do |field|
-          fill_in_field(field)
-        end
+        @fields.each { |field| fill_in_field(field) }
       end
     end
 
