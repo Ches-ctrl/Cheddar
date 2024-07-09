@@ -19,6 +19,30 @@ module Applier
       end
     end
 
+    def handle_input
+      return super unless @locator.to_i.positive? # unless locator is numerical
+
+      hidden_element = find(:css, "input[type='hidden'][value='#{@locator}']")
+      field = hidden_element.sibling('input', visible: true)[:id]
+      fill_in(field, with: @value)
+    end
+
+    def handle_multi_select
+      @value.each do |value|
+        find(:css, "input[type='checkbox'][value='#{value}'][set='#{@locator}']").click
+      end
+    end
+
+    def handle_demographic_question
+      parent = find(:css, "input[type='hidden'][value='#{@locator}']")
+               .ancestor('div', class: 'demographic_question')
+      within(parent) do
+        @value.each do |value|
+          find(:css, "input[type='checkbox'][value='#{value}']").click
+        end
+      end
+    end
+
     def sample_payload
       {
         user_fullname: 'John Smith',
@@ -56,24 +80,29 @@ module Applier
             value: 'Thank you for considering my application. It really is an honor to apply to your company. Please hire me. I would like to work here very much. I promise to work very very hard and always get along well with my coworkers.'
           },
           {
-            locator: 'What are your salary expectations for the role?',
+            locator: '27737478002',
             interaction: :input,
             value: 'I would like to earn a decent salary. I am not greedy.'
           },
           {
-            locator: "Let's make sure you know how we handle your data 🔐",
+            locator: '18804072002',
             interaction: :multi_select,
-            value: ["I've read it 🤓"]
+            value: ['88174211002']
           },
           {
-            locator: 'Where did you hear about us?',
+            locator: '24229694002',
             interaction: :multi_select,
-            value: ['Cleo Tech Blog', 'Silicon Milkroundabout', 'Brighton Ruby']
+            value: ['114986929002', '114986935002', '114986948002']
           },
           {
-            locator: 'What is your sexual orientation?',
-            interaction: :multi_select,
-            value: ["I don't know"]
+            locator: '4000101002',
+            interaction: :demographic_question,
+            value: ['4000548002', '4004737002', '4000550002']
+          },
+          {
+            locator: '4000862002',
+            interaction: :demographic_question,
+            value: ['4004741002']
           }
         ]
       }
