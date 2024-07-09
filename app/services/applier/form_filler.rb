@@ -14,7 +14,7 @@ module Applier
     def call
       return false unless processable
 
-      Capybara.using_session(@session) do
+      using_session(@session) do
         process
       end
     end
