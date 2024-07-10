@@ -2,7 +2,7 @@
 
 module Applier
   class GhFormFiller < FormFiller
-    def initialize(payload = sample_payload)
+    def initialize(payload = codepath_payload)
       super
     end
 
@@ -19,11 +19,22 @@ module Applier
       end
     end
 
-    def handle_input
-      return super unless @locator.to_i.positive? # unless locator is numerical
+    def handle_demographic_question
+      parent = find(:css, "input[type='hidden'][value='#{@locator}']")
+               .ancestor('div', class: 'demographic_question')
+      within(parent) do
+        @value.each do |value|
+          next unless value.is_a?(String)
 
-      hidden_element = find(:css, "input[type='hidden'][value='#{@locator}']")
-      field = hidden_element.sibling('input', visible: true)[:id]
+          find(:css, "input[type='checkbox'][value='#{value}']").click
+        end
+      end
+    end
+
+    def handle_input
+      return super unless locator_is_numerical?
+
+      field = hidden_element.sibling(:css, 'input, textarea', visible: true)[:id]
       fill_in(field, with: @value)
     end
 
@@ -33,13 +44,22 @@ module Applier
       end
     end
 
-    def handle_demographic_question
-      parent = find(:css, "input[type='hidden'][value='#{@locator}']")
-               .ancestor('div', class: 'demographic_question')
-      within(parent) do
-        @value.each do |value|
-          find(:css, "input[type='checkbox'][value='#{value}']").click
-        end
+    def handle_select
+      hidden_element.sibling('div', visible: true).click
+      page.document.find('li', text: selector_text, visible: true).click
+    end
+
+    def hidden_element
+      find(:css, "input[type='hidden'][value='#{@locator}']")
+    end
+
+    def locator_is_numerical?
+      @locator.to_i.positive?
+    end
+
+    def selector_text
+      within(hidden_element.sibling(:css, "select", visible: false)) do
+        find(:css, "option[value='#{@value}']").text
       end
     end
 
@@ -98,6 +118,86 @@ module Applier
             locator: '4000101002',
             interaction: :demographic_question,
             value: ['4000548002', '4004737002', '4000550002']
+          },
+          {
+            locator: '4000862002',
+            interaction: :demographic_question,
+            value: ['4004741002']
+          }
+        ]
+      }
+    end
+
+    def codepath_payload
+      {
+        user_fullname: 'John Smith',
+        apply_url: 'https://boards.greenhouse.io/codepath/jobs/4035988007',
+        form_locator: '#application_form',
+        fields: [
+          {
+            locator: 'first_name',
+            interaction: :input,
+            value: 'John'
+          },
+          {
+            locator: 'last_name',
+            interaction: :input,
+            value: 'Smith'
+          },
+          {
+            locator: 'email',
+            interaction: :input,
+            value: 'j.smith@example.com'
+          },
+          {
+            locator: 'phone',
+            interaction: :input,
+            value: '(555) 555-5555'
+          },
+          {
+            locator: "button[aria-describedby='resume-allowable-file-types']",
+            interaction: :upload,
+            value: File.open('public/Obretetskiy_cv.pdf')
+          },
+          {
+            locator: 'button[aria-describedby="cover_letter-allowable-file-types"]',
+            interaction: :upload,
+            value: 'Thank you for considering my application. It really is an honor to apply to your company. Please hire me. I would like to work here very much. I promise to work very very hard and always get along well with my coworkers.'
+          },
+          {
+            locator: '4159819007',
+            interaction: :input,
+            value: 'https://www.linkedin.com/in/my_profile'
+          },
+          {
+            locator: '4159820007',
+            interaction: :input,
+            value: 'Would be really cool and fun.'
+          },
+          {
+            locator: '4179768007',
+            interaction: :input,
+            value: 'I helped to build this thing. It was a lot of work!'
+          },
+          {
+            locator: '4159821007',
+            interaction: :select,
+            value: '1'
+          },
+          {
+            locator: '4782743007',
+            interaction: :select,
+            value: '6001300007'
+          },
+          {
+            locator: '6561969007',
+            interaction: :input,
+            value: 'John Quincy Adams'
+          },
+          {
+            locator: '4006277007',
+            interaction: :demographic_question,
+            value: ['4037604007', '4037606007', ['4037607007', 'Hermaphropantandrogynous']]
           },
           {
             locator: '4000862002',
