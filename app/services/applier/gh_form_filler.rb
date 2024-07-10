@@ -19,14 +19,21 @@ module Applier
       end
     end
 
+    def click_and_answer_follow_up(checkbox, follow_up_value)
+      checkbox.click
+      return unless follow_up_value
+
+      find(:css, "input[type='text']", focused: true).set(follow_up_value)
+    end
+
     def handle_demographic_question
       parent = find(:css, "input[type='hidden'][value='#{@locator}']")
                .ancestor('div', class: 'demographic_question')
       within(parent) do
         @value.each do |value|
-          next unless value.is_a?(String)
-
-          find(:css, "input[type='checkbox'][value='#{value}']").click
+          value, follow_up_value = value if value.is_a?(Array)
+          checkbox = find(:css, "input[type='checkbox'][value='#{value}']")
+          click_and_answer_follow_up(checkbox, follow_up_value)
         end
       end
     end
@@ -177,7 +184,7 @@ module Applier
           {
             locator: '4179768007',
             interaction: :input,
-            value: 'I helped to build this thing. It was a lot of work!'
+            value: 'So I helped to build this thing. It was a lot of work! Phew! And you know, it all went pretty well.'
           },
           {
             locator: '4159821007',
@@ -197,12 +204,32 @@ module Applier
           {
             locator: '4006277007',
             interaction: :demographic_question,
-            value: ['4037604007', '4037606007', ['4037607007', 'Hermaphropantandrogynous']]
+            value: ['4037604007', '4037606007', ['4037607007', 'The Ever-Evolving Enigma Embracing Every Embodiment']]
           },
           {
-            locator: '4000862002',
+            locator: '4006278007',
             interaction: :demographic_question,
-            value: ['4004741002']
+            value: ['4037610007', '4037611007', '4037612007', '4037614007', '4037617007', ['4037618007', 'diverse']]
+          },
+          {
+            locator: '4006279007',
+            interaction: :demographic_question,
+            value: ['4037622007', '4037624007', '4037625007', '4037627007']
+          },
+          {
+            locator: '4006280007',
+            interaction: :demographic_question,
+            value: [['4037630007', 'Sometimes.']]
+          },
+          {
+            locator: '4006281007',
+            interaction: :demographic_question,
+            value: ['4037632007']
+          },
+          {
+            locator: '4006282007',
+            interaction: :demographic_question,
+            value: [['4037638007', "You can't handle the truth!"]]
           }
         ]
       }
