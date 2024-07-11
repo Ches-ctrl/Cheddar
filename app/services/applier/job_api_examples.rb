@@ -1,6 +1,7 @@
 # rubocop:disable Lint/SymbolConversion
 # rubocop:disable Style/NumericLiterals
 # rubocop:disable Style/QuotedSymbols
+job_id = ats_identifier = ''
 
 EXAMPLES = {
   'AshbyHQ' => {
