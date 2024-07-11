@@ -23,9 +23,9 @@ class SavedJobsController < ApplicationController
 
   def destroy_saved_job
     if @saved_job.destroy
-      success_deleted_job_redirect_to_referrer
+      success_redirect_to_referrer('Job successfully unsaved!')
     else
-      error_redirect_to_referrer
+      error_redirect_to_referrer('Something went wrong, please try again')
     end
   end
 
@@ -40,26 +40,14 @@ class SavedJobsController < ApplicationController
 
   def persist_saved_job
     if @saved_job.save
-      success_saved_job_redirect_to_referrer
+      success_redirect_to_referrer('Job successfully saved!')
     else
-      error_redirect_to_referrer
+      error_redirect_to_referrer('Something went wrong, please try again')
     end
   end
 
   def saved_jobs_scope
     Job.where(id: current_user.saved_jobs.pluck(:job_id))
-  end
-
-  def success_saved_job_redirect_to_referrer
-    redirect_to request.referrer, notice: 'Job successfully saved!'
-  end
-
-  def success_deleted_job_redirect_to_referrer
-    redirect_to request.referrer, notice: 'Job successfully unsaved!'
-  end
-
-  def error_redirect_to_referrer
-    redirect_to request.referrer, alert: 'Something went wrong, please try again'
   end
 
   def saved_job_params

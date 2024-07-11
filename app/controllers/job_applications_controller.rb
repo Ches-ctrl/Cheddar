@@ -52,7 +52,7 @@ class JobApplicationsController < ApplicationController
     if @job_application.destroy && @saved_job.save
       success_destroy_job_application_path
     else
-      error_redirect_to_referrer
+      error_redirect_to_referrer('Something went wrong, please try again')
     end
   end
 
