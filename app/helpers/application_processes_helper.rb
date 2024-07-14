@@ -47,17 +47,17 @@ module ApplicationProcessesHelper
     data.index(target) < data.index(comparison)
   end
 
-  def prefilled_value(application_criteria, job_application)
-    filled_value(application_criteria, job_application) || user_detail_value(application_criteria, job_application)
+  def prefilled_value(question, job_application)
+    filled_value(question, job_application) || user_detail_value(question, job_application)
   end
 
-  def filled_value(application_criteria, job_application)
-    application_criteria.value(job_application.additional_info)
+  def filled_value(question, job_application)
+    question.value(job_application)
   end
 
-  def user_detail_value(application_criteria, job_application)
-    return unless UserDetail::FREQUENT_ASKED_INFO_ATTRIBUTES.include?(application_criteria.attribute)
+  def user_detail_value(question, job_application)
+    return unless UserDetail::FREQUENT_ASKED_INFO_ATTRIBUTES.include?(question.attribute)
 
-    job_application.application_process.user.user_detail.public_send(application_criteria.attribute)
+    job_application.application_process.user.user_detail.public_send(question.attribute)
   end
 end

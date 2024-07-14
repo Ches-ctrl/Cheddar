@@ -8,7 +8,14 @@ module Ats
       def get_application_criteria(job, _data)
         # TODO: get application_criteria from API
         p "Getting Workable application criteria"
-        job.application_criteria = PERSONAL_FIELDS.merge(PROFILE_FIELDS).merge(DETAILS_FIELDS).merge(ADDITIONAL_FIELDS)
+        # job.application_criteria = PERSONAL_FIELDS.merge(PROFILE_FIELDS).merge(DETAILS_FIELDS).merge(ADDITIONAL_FIELDS)
+        # job.save
+        job.build_application_criterion(form_structure: {
+          **PERSONAL_FIELDS,
+          **PROFILE_FIELDS,
+          **DETAILS_FIELDS,
+          **ADDITIONAL_FIELDS
+                                        })
         job.save
       end
 

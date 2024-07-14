@@ -1,76 +1,75 @@
 <%= simple_form_for job_application, url: application_process_job_application_path, html: { method: :put, class: "md:col-span-2", data: { mandatory_fields_only_target: 'form' } } do |f| %>
   <div class="grid gap-x-6 gap-y-8 sm:max-w-6xl sm:grid-cols-6">
-    <% job_application.job.application_criteria.each do |attribute, criteria_hash| %>
-      <% application_criteria = ApplicationCriteria.new(criteria_hash.merge(attribute:)) %>
-      <div class="col-span-full" data-mandatory-fields-only-target="field" data-required-value="<%= application_criteria.required %>">
-        <label for="<%= application_criteria.attribute %>>" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"><%= "#{mandatory_field(application_criteria)}#{application_criteria.attribute.humanize}" %></label>
+    <% job_application.job.application_criterion.questions.each do |question| %>
+      <div class="col-span-full" data-mandatory-fields-only-target="field" data-required-value="<%= question.required %>">
+        <label for="<%= question.attribute %>>" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"><%= "#{mandatory_field(question)}#{question.attribute.humanize}" %></label>
         <div class="mt-2">
           <%= f.simple_fields_for :additional_info do |json_field_f| %>
-            <% if application_criteria.valid? && application_criteria.input? %>
-              <%= json_field_f.input application_criteria.locators,
-                required: application_criteria.required,
+            <% if question.valid? && question.input? %>
+              <%= json_field_f.input question.selector,
+                required: question.required,
                 label: false,
                 autofocus: false,
                 input_html: { 
                   class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6',
-                  value: prefilled_value(application_criteria, job_application)
+                  value: prefilled_value(question, job_application)
                 }
               %>
-            <% elsif application_criteria.valid? && (application_criteria.select? || application_criteria.multi_checkbox?) %>
-              <%= json_field_f.input application_criteria.locators,
-                collection: application_criteria.options,
-                required: application_criteria.required,
+            <% elsif question.valid? && (question.select? || question.multi_checkbox?) %>
+              <%= json_field_f.input question.locators,
+                collection: question.options,
+                required: question.required,
                 label: false,
                 autofocus: false,
                 type: :select,
-                selected: application_criteria.value(job_application.additional_info),
+                selected: question.value(job_application.additional_info),
                 input_html: { class: "block w-full rounded-md border-0 py-1.5 bg-white/5 dark:hover:bg-zinc-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6",
-                  value: prefilled_value(application_criteria, job_application)
+                  value: prefilled_value(question, job_application)
                 }
               %>
-            <% elsif application_criteria.valid? && application_criteria.textarea? %>
-              <%= json_field_f.input application_criteria.locators,
-                required: application_criteria.required,
+            <% elsif question.valid? && question.textarea? %>
+              <%= json_field_f.input question.locators,
+                required: question.required,
                 label: false,
                 autofocus: false,
                 as: :text,
                 input_html: { rows: 5, class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6',
-                value: application_criteria.value(job_application.additional_info)
+                value: question.value(job_application.additional_info)
               }
               %>
-            <% elsif application_criteria.valid? && application_criteria.radiogroup? %>
-              <%= json_field_f.input application_criteria.locators,
-                required: application_criteria.required,
+            <% elsif question.valid? && question.radiogroup? %>
+              <%= json_field_f.input question.locators,
+                required: question.required,
                 label: false,
                 autofocus: false,
                 input_html: { class: 'rounded-4 block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6',
-                value: application_criteria.value(job_application.additional_info)
+                value: question.value(job_application.additional_info)
               }
               %>
-            <% elsif application_criteria.resume? %>
+            <% elsif question.resume? %>
               <%= f.input :resume,
                 as: :file,
-                required: attachment_required_but_absent?(application_criteria, job_application.resume),
+                required: attachment_required_but_absent?(question, job_application.resume),
                 label: false,
                 autofocus: false,
                 input_html: { direct_upload: true, class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
               %>
               <%= render "shared/forms/attachments_list", attachments: [job_application.resume], document_attached: job_application.resume.attached? %>
-            <% elsif application_criteria.cover_letter? %>
+            <% elsif question.cover_letter? %>
               <%= f.input :cover_letter,
                 as: :file,
-                required: attachment_required_but_absent?(application_criteria, job_application.cover_letter),
+                required: attachment_required_but_absent?(question, job_application.cover_letter),
                 label: false,
                 autofocus: false,
                 input_html: { direct_upload: true, class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6' }
               %>
               <%= render "shared/forms/attachments_list", attachments: [job_application.cover_letter], document_attached: job_application.cover_letter.attached? %>
-            <% elsif application_criteria.upload? %>
+            <% elsif question.upload? %>
               We don't manage the type of upload yet.
-            <% elsif application_criteria.valid? %>
-              <%= "Valid: #{ application_criteria.to_json.html_safe }" %>
-            <% elsif !application_criteria.valid? %>
-              <%= "Unvalid - Options are not present: #{ application_criteria.to_json.html_safe }" %>
+            <% elsif question.valid? %>
+              <%= "Valid: #{ question.to_json.html_safe }" %>
+            <% elsif !question.valid? %>
+              <%= "Unvalid - Options are not present: #{ question.to_json.html_safe }" %>
             <% end %>
           <% end %>
         </div>

@@ -6,28 +6,20 @@ class Job < ApplicationRecord
   PERMITTED_SEARCH_PARAMS = [:id, :page, :posted, :query, :sort, :apply_with_cheddar, { employment: [], location: [], role: [], seniority: [], ats: [] }]
 
   # == Attributes ===========================================================
-
   # == Extensions ===========================================================
-  serialize :application_criteria, coder: JSON
-
   # == Relationships ========================================================
-  belongs_to :company
   belongs_to :applicant_tracking_system, optional: true # TODO: remove optional
-
-  has_one :requirement, dependent: :destroy
-
+  belongs_to :company
   has_many :job_applications, dependent: :destroy
-  has_many :saved_jobs, dependent: :destroy
-
-  has_many :jobs_locations, dependent: :destroy
-  has_many :locations, through: :jobs_locations
-
   has_many :jobs_countries, dependent: :destroy
+  has_many :jobs_locations, dependent: :destroy
   has_many :countries, through: :jobs_countries
-
   has_many :jobs_roles, dependent: :destroy
+  has_many :locations, through: :jobs_locations
   has_many :roles, through: :jobs_roles
-
+  has_many :saved_jobs, dependent: :destroy
+  has_one :application_criterion, dependent: :destroy
+  has_one :requirement, dependent: :destroy
   # == Validations ==========================================================
   validates :posting_url, uniqueness: true, presence: true
   validates :title, presence: true
@@ -55,11 +47,11 @@ class Job < ApplicationRecord
   end
 
   # == Instance Methods =====================================================
-  def application_criteria
-    return [] if read_attribute(:application_criteria).nil?
+  # def application_criteria
+  #   return [] if read_attribute(:application_criteria).nil?
 
-    read_attribute(:application_criteria).with_indifferent_access
-  end
+  #   read_attribute(:application_criteria).with_indifferent_access
+  # end
 
   private
 
@@ -68,8 +60,8 @@ class Job < ApplicationRecord
   end
 
   def update_requirements
-    requirement = Requirement.create(job: self)
-    requirement.no_of_qs = application_criteria.size
+    # requirement = Requirement.create(job: self)
+    # requirement.no_of_qs = application_criteria.size
   end
 
   def standardize_attributes

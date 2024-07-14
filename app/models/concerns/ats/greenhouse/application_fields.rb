@@ -2,9 +2,125 @@ module Ats
   module Greenhouse
     module ApplicationFields
       def get_application_criteria(job, _data)
-        job.application_criteria = CORE_FIELDS
-        # GetForm.perform
+        job.build_application_criterion(form_structure: NEW_CORE_FIELDS)
+        job.save
       end
+
+      NEW_CORE_FIELDS = [
+        {
+          data_source: "scraping",
+          section_slug: "core_fields",
+          title: "Main critera",
+          description: nil,
+          questions: [
+            {
+              attribute: "first_name",
+              required: true,
+              label: "First Name",
+              description: nil,
+              fields: [
+                {
+                  id: nil,
+                  selector: "first_name",
+                  type: 'input_text',
+                  max_length: 50,
+                  options: []
+                }
+              ]
+            },
+            {
+              attribute: "last_name",
+              required: true,
+              label: "Last Name",
+              description: nil,
+              fields: [
+                {
+                  id: nil,
+                  selector: "last_name",
+                  type: 'input_text',
+                  max_length: 50,
+                  options: []
+                }
+              ]
+            },
+            {
+              attribute: "email",
+              required: true,
+              label: "Email",
+              description: nil,
+              fields: [
+                {
+                  id: nil,
+                  selector: "email",
+                  type: 'input_text',
+                  max_length: 50,
+                  options: []
+                }
+              ]
+            },
+            {
+              attribute: "phone_number",
+              required: true,
+              label: "Phone Number",
+              description: nil,
+              fields: [
+                {
+                  id: nil,
+                  selector: "phone",
+                  type: 'input_text',
+                  max_length: 15,
+                  options: []
+                }
+              ]
+            },
+            {
+              attribute: "city_applicant",
+              required: true,
+              label: "Location (City)",
+              description: nil,
+              fields: [
+                {
+                  id: nil,
+                  selector: "location",
+                  type: 'input_text',
+                  max_length: 50,
+                  options: []
+                }
+              ]
+            },
+            {
+              attribute: "resume",
+              required: true,
+              label: "Resume/CV",
+              description: nil,
+              fields: [
+                {
+                  id: nil,
+                  selector: 'button[aria-describedby="resume-allowable-file-types"]',
+                  type: "input_file",
+                  max_length: nil,
+                  options: []
+                }
+              ]
+            },
+            {
+              attribute: "cover_letter",
+              required: true,
+              label: "Cover Letter",
+              description: nil,
+              fields: [
+                {
+                  id: nil,
+                  selector: 'button[aria-describedby="cover_letter-allowable-file-types"]',
+                  type: "input_file",
+                  max_length: nil,
+                  options: []
+                }
+              ]
+            }
+          ]
+        }
+      ]
 
       CORE_FIELDS = {
         first_name: {
@@ -44,7 +160,7 @@ module Ats
         },
         resume: {
           interaction: :upload,
-          locators: 'button[aria-describedby="resume-allowable-file-types"',
+          locators: 'button[aria-describedby="resume-allowable-file-types"]',
           required: true,
           label: 'Resume/CV',
           core_field: true

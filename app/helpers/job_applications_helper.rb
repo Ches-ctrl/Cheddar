@@ -8,23 +8,20 @@ module JobApplicationsHelper
   end
 
   def mandatory_fields_only_label(job_application)
-    total = job_application.job.application_criteria.count
-    optionals = optional_fields(job_application.job.application_criteria).count
+    total = job_application.job.application_criterion.questions.count
+    optionals = optional_fields(job_application.job.application_criterion).count
     "(#{optionals} out of #{total})"
   end
 
   def optional_fields(application_criteria)
-    application_criteria.reject do |attribute, criteria_hash|
-      application_criteria = ApplicationCriteria.new(criteria_hash.merge(attribute:))
-      application_criteria.required
-    end
+    application_criteria.questions.reject(&:required)
   end
 
   def mandatory_fields_only_disability(job_application)
-    'disabled' if optional_fields(job_application.job.application_criteria).none?
+    'disabled' if optional_fields(job_application.job.application_criterion).none?
   end
 
   def mandatory_fields_only_disability_cursor_class(job_application)
-    '!cursor-not-allowed ' if optional_fields(job_application.job.application_criteria).none?
+    '!cursor-not-allowed ' if optional_fields(job_application.job.application_criterion).none?
   end
 end
