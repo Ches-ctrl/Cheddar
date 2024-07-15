@@ -3,6 +3,8 @@
 module Applier
   class FormFiller < ApplicationTask
     include Capybara::DSL
+    include LoggingHelper
+
     def initialize(payload)
       @application_form = payload[:form_locator]
       @fields = payload[:fields]
@@ -27,7 +29,7 @@ module Applier
 
     def process
       visit_url
-      fill_application_form
+      log_runtime { fill_application_form }
       click_submit_button
       verify_submission
     ensure
@@ -58,12 +60,8 @@ module Applier
     end
 
     def fill_application_form
-      runtime = Benchmark.realtime do
-        click_apply_button
-        fill_in_all_fields
-      end
-
-      p "fill_application_form took #{runtime} seconds."
+      click_apply_button
+      fill_in_all_fields
     end
 
     def fill_in_all_fields
@@ -124,8 +122,8 @@ module Applier
 
     def verify_input(retries = 3)
       returned_value = yield.value
-      raise Errors::IncorrectInputError unless returned_value == @value
-    rescue Errors::IncorrectInputError
+      raise Applier::IncorrectInputError unless returned_value == @value
+    rescue Applier::IncorrectInputError
       retries -= 1
       retry unless retries.negative?
     end
