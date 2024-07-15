@@ -29,7 +29,7 @@ module Applier
 
     def process
       visit_url
-      log_runtime { fill_application_form }
+      log_runtime(:fill_application_form)
       click_submit_button
       verify_submission
     ensure
