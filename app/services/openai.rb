@@ -1,12 +1,26 @@
 # app/services/openai.rb
-# Class for interacting with OpenAI, primarily for resume analysis during user onboarding in the first instance
-# NB. In progress and not fully functional yet
+# Class for interacting with OpenAI, primarily for resume analysis during user onboarding
+# How this works:
+# 1. Initialize the OpenAI client and assistant
+# 2. Upload the resume file
+# 3. Create a file vector store including the uploaded file
+# 4. Create a thread and run (in a single command) with the vector store attached
+# 5. Poll the response status until it is completed
+# 6. Retrieve the response
+# 7. Save the response to cloudinary as a raw JSON object (TBD)
+# 8. Delete the thread, vector store, and file
+# 9. Update the user_details with the response (TBD)
+# NB. Note that threads are independent of assistants and thus must be created on @client rather than @assistant
 class Openai < ApplicationTask
+  # TODO: Pass a CV in as a url rather than a local file
+  # TODO: Constrain output to JSON only
+  # TODO: Improve quality of response so that more fields are filled
+  # TODO: Split into an inherited class so that we can use AI in other areas of hte app
   def initialize
     p "Initialize"
     @client = OpenAI::Client.new
     @assistant = @client.assistants.retrieve(id: "asst_62b4xuE3RQvqlIDT1AYed0wZ")
-    @file_id = "file-FRXTfhSy25cp874ExD6Tr9h7"
+    # @file_id = "file-FRXTfhSy25cp874ExD6Tr9h7" # Obretetskiy_cv - kept for testing
   end
 
   def call
@@ -21,109 +35,128 @@ class Openai < ApplicationTask
   private
 
   def processable
-    @client
+    @client && @assistant
   end
 
   def process
     puts "Processing"
-    thread_id = create_thread
-    puts thread_id
-    message = create_message(thread_id)
-    puts message
-    list_messages(thread_id)
+    file = upload_file
+    store = create_vector_store(file)
+
+    run_id, thread_id = create_thread_and_run(store)
+    poll_response_status(run_id, thread_id)
+
+    messages = @client.messages.list(thread_id:, parameters: { order: 'asc' })
+    value = messages.dig("data", 0, "content", 0, "text", "value")
+    puts value
+
+    # delete_thread(thread_id)
+    delete_vector_store(store)
+    delete_file(file)
+    # list_vector_stores
+    # list_files
   end
 
-  def admin
-    # Not called but kept for reference regarding the API structure
-    upload_resume
-    list_assistants
-    list_uploaded_files
-    basic_chat
-  end
-
-  def list_assistants
-    response = @client.assistants.list
-    puts pretty_generate(response)
-  end
-
-  def upload_resume
+  def upload_file
     puts "Uploading resume"
     my_file = File.open("public/Obretetskiy_cv.pdf", "rb")
     @client.files.upload(parameters: { file: my_file, purpose: "assistants" })
   end
 
-  def list_uploaded_files
-    puts "Checking resume uploaded"
-    @client.files.list
-  end
-
-  def find_file_by_filename(list, filename)
-    file = list["data"].find { |file| file["filename"] == filename }
-    file["id"]
-  end
-
-  def send_resume_to_openai(_file_id)
-    puts "Processing resume with OpenAI"
-    response = @assistant.chat(
+  def create_vector_store(file)
+    puts "Creating vector store"
+    date = date_created
+    response = @client.vector_stores.create(
       parameters: {
-        model: "gpt-4o",
-        # file_id:,
-        attachments: [
-          {
-            file_id: file.id,
-            tools: [{ type: "file_search" }]
+        name: "#{date} - Resume",
+        file_ids: [file['id']]
+      }
+    )
+    puts pretty_generate(response)
+    response
+  end
+
+  def create_thread_and_run(store)
+    puts "Creating thread and running"
+    response = @client.runs.create_thread_and_run(
+      parameters: {
+        assistant_id: "asst_62b4xuE3RQvqlIDT1AYed0wZ",
+        tool_resources: {
+          file_search: {
+            vector_store_ids: [store['id']]
           }
-        ],
-        messages: [{ role: "user", content: "Here is my resume. Tell me my name" }],
-        # messages: [{ role: "user", content: "Respond with a sample JSON"}],
-        temperature: 0.7
+        }
       }
     )
-    puts response
-    puts pretty_generate(response.dig("choices", 0, "message", "content"))
-  end
-
-  def create_thread
-    puts "Creating thread"
-    thread_response = @assistant.threads.create
-    thread_response['id']
-  end
-
-  def list_messages(thread_id)
-    puts "Listing messages"
-    messages_response = @assistant.threads.messages.list(thread_id)
-    puts messages_response
-  end
-
-  def create_message(thread_id)
-    puts "Creating message"
-    message_response = @assistant.threads.messages.create(
-      thread_id,
-      {
-        role: 'user',
-        content: 'My name is charlie. What is my name?'
-        # attachments: [
-        #   {
-        #     file_id: file_id,
-        #     tools: [{ type: 'file_search' }]
-        #   }
-        # ]
-      }
-    )
-    puts message_response
+    [response['id'], response['thread_id']]
   rescue StandardError => e
-    puts e
+    puts "An error occurred: #{e.message}"
   end
 
-  def basic_chat
-    response = @client.chat(
-      parameters: {
-        model: "gpt-4o",
-        messages: [{ role: "user", content: "Hello!" }],
-        temperature: 0.7
-      }
-    )
-    puts response.dig("choices", 0, "message", "content")
+  def poll_response_status(run_id, thread_id)
+    puts "Polling response status"
+    loop do
+      response = @client.runs.retrieve(id: run_id, thread_id:)
+      status = response['status']
+
+      case status
+      when 'queued', 'in_progress', 'cancelling'
+        puts 'Sleeping'
+        sleep 1
+      when 'completed'
+        puts 'Completed'
+        break
+      when 'requires_action'
+        puts 'Requires action'
+      when 'cancelled', 'failed', 'expired'
+        puts "Run failed"
+        puts response['last_error'].inspect
+        break
+      else
+        puts "Unknown status response: #{status}"
+      end
+    end
+  rescue StandardError => e
+    puts "An error occurred: #{e.message}"
+  end
+
+  def delete_thread(thread_id)
+    puts "Deleting thread"
+    @client.threads.delete(id: thread_id)
+  rescue StandardError => e
+    puts "An error occurred: #{e.message}"
+  end
+
+  def delete_vector_store(store)
+    puts "Deleting vector store"
+    @client.vector_stores.delete(id: store['id'])
+  rescue StandardError => e
+    puts "An error occurred: #{e.message}"
+  end
+
+  def delete_file(file)
+    puts "Deleting file"
+    response = @client.files.delete(id: file['id'])
+    puts pretty_generate(response)
+    response
+  rescue StandardError => e
+    puts "An error occurred: #{e.message}"
+  end
+
+  def list_vector_stores
+    puts "Listing vector stores"
+    response = @client.vector_stores.list
+    puts pretty_generate(response)
+  end
+
+  def list_files
+    puts "Checking resume uploaded"
+    response = @client.files.list
+    puts pretty_generate(response)
+  end
+
+  def date_created
+    Time.now.strftime("%Y-%m-%d %H:%M:%S")
   end
 
   def pretty_generate(response)
