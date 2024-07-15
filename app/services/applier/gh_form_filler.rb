@@ -29,7 +29,7 @@ module Applier
     def handle_demographic_question
       parent = find(:css, "input[type='hidden'][value='#{@locator}']")
                .ancestor('div', class: 'demographic_question')
-      within(parent) do
+      within parent do
         @value.each do |value|
           value, follow_up_value = value if value.is_a?(Array)
           checkbox = find(:css, "input[type='checkbox'][value='#{value}']")

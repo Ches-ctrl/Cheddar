@@ -58,12 +58,16 @@ module Applier
     end
 
     def fill_application_form
-      click_apply_button
-      fill_in_all_fields
+      runtime = Benchmark.realtime do
+        click_apply_button
+        fill_in_all_fields
+      end
+
+      p "fill_application_form took #{runtime} seconds."
     end
 
     def fill_in_all_fields
-      within(@application_form) do
+      within @application_form do
         @fields.each { |field| fill_in_field(field) }
       end
     end
@@ -77,7 +81,7 @@ module Applier
     end
 
     def handle_input
-      fill_in(@locator, with: @value)
+      verify_input { fill_in(@locator, with: @value) }
     end
 
     def handle_radiogroup
@@ -85,7 +89,7 @@ module Applier
     end
 
     def handle_multi_select
-      within(response_field) do
+      within response_field do
         @value.each { |value| check(value) }
       end
     end
@@ -116,6 +120,14 @@ module Applier
 
     def unique_string
       "#{@user_fullname}_#{timestamp}"
+    end
+
+    def verify_input(retries = 3)
+      returned_value = yield.value
+      raise Errors::IncorrectInputError unless returned_value == @value
+    rescue Errors::IncorrectInputError
+      retries -= 1
+      retry unless retries.negative?
     end
 
     def verify_submission
