@@ -27,8 +27,10 @@ class JobAttributesFetcher < ApplicationTask
   def process
     @job.assign_attributes(core_params)
     @job.assign_attributes(job_details)
-
-    application_criteria # TODO: rewrite modules so this returns an attribute hash like job_details
+    # @job.build_application_criterion(
+    #   form_structure: @ats.get_application_criteria(@job, @data)
+    # )
+    @job.application_criteria = application_criteria
     @job.save
   end
 

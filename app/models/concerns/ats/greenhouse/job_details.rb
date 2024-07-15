@@ -20,7 +20,7 @@ module Ats
       end
 
       def job_url_api(base_url, company_id, job_id)
-        "#{base_url}#{company_id}/jobs/#{job_id}?pay_transparency=true" # &questions=true
+        "#{base_url}#{company_id}/jobs/#{job_id}?questions=true&location_questions=true&demographic_questions=true&&compliance=true&pay_transparency=true"
       end
 
       def job_details(_job, data)

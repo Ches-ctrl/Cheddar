@@ -53,11 +53,11 @@ class Job < ApplicationRecord
   end
 
   # == Instance Methods =====================================================
-  def application_criteria
-    return [] if read_attribute(:application_criteria).nil?
+  # def application_criteria
+  #   return [] if read_attribute(:application_criteria).nil?
 
-    read_attribute(:application_criteria).with_indifferent_access
-  end
+  #   read_attribute(:application_criteria).with_indifferent_access
+  # end
 
   private
 

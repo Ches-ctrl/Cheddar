@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Importer
   # Core class for getting form fields directly from the API
   # Splits based on category of fields - main, custom, demographic, eeoc
@@ -7,19 +9,11 @@ module Importer
   class GetApiFields < ApplicationTask
     include FaradayHelpers
 
-    def initialize
-      # @job = job
-      # @url = @job.api_url
-      @url = "https://boards-api.greenhouse.io/v1/boards/cleoai/jobs/4628944002"
-      # @url = "https://boards-api.greenhouse.io/v1/boards/cleoai/jobs/7301308002"
-      # @url = "https://boards-api.greenhouse.io/v1/boards/monzo/jobs/6076740"
-      # @url = "https://boards-api.greenhouse.io/v1/boards/axios/jobs/6009256"
-      # @url = "https://boards-api.greenhouse.io/v1/boards/11fs/jobs/4060453101"
-      # @url = "https://boards-api.greenhouse.io/v1/boards/forter/jobs/7259821002"
-      # @url = "https://boards-api.greenhouse.io/v1/boards/cleoai/jobs/4628944002"
-      @url += "?questions=true&location_questions=true&demographic_questions=true&&compliance=true&pay_transparency=true"
-      # @ats_sections = %w[main_fields custom_fields demographic_questions eeoc_fields data_compliance security_code_fields]
-      @fields = {}
+    def initialize(data, data_source = nil, sections = [:core])
+      @data = data
+      @data_source = data_source
+      @sections = sections
+      @fields = []
       @errors = false
     end
 
@@ -27,28 +21,46 @@ module Importer
       return unless processable
 
       process
-    rescue StandardError => e
-      Rails.logger.error "Error running GetFormFields: #{e.message}"
-      nil
     end
 
     private
 
     def processable
-      @url # && @job
+      @data
     end
 
     def process
-      p "Hello from GetApiFields!"
+      build_fields
+      log_and_return_fields
+    end
 
-      json = fetch_json(@url)
-      return unless json
+    def add_section_to_fields(section)
+      @fields << instance_variable_get("@#{section}_fields")
+    end
 
-      @fields['main_fields'] = json['questions']
-      @fields['demographic_questions'] = json['demographic_questions']
-      @fields['location_questions'] = json['location_questions']
-      @fields['data_compliance'] = json['data_compliance']
+    def build_fields
+      @sections.each do |section|
+        send(:"generate_#{section}_fields")
+        send(:"fetch_#{section}_questions")
+        add_section_to_fields(section)
+      end
+    end
 
+    def fetch_core_questions
+      core_questions&.each { |question| @core_fields[:questions] << create_question(question) }
+    end
+
+    def generate_core_fields
+      @core_fields = {
+        data_source: @data_source,
+        section_slug: 'core_fields',
+        title: 'Main application',
+        description: nil,
+        questions: []
+      }
+    end
+
+    def log_and_return_fields
       puts pretty_generate(@fields)
       @fields
     end
