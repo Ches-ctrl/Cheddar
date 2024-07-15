@@ -30,7 +30,6 @@ class JobAttributesFetcher < ApplicationTask
 
     application_criteria # TODO: rewrite modules so this returns an attribute hash like job_details
     @job.save
-    fetch_form_fields
   end
 
   def application_criteria
@@ -43,11 +42,6 @@ class JobAttributesFetcher < ApplicationTask
       applicant_tracking_system: @ats,
       api_url: @api_url
     }
-  end
-
-  def fetch_form_fields
-    # TODO: create separate module methods for this
-    Flipper.enabled?(:get_form_fields) ? Importer::GetFormFieldsJob.perform_later(@job) : "Form Fields turned off"
   end
 
   def job_details
