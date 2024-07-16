@@ -56,7 +56,7 @@ class Job < ApplicationRecord
   end
 
   def update_requirements
-    no_of_qs = application_question_set.form_structure.map { |section| section['questions'] }.flatten.count
+    no_of_qs = application_question_set.no_of_qs
     build_requirement(no_of_qs:)
     save
   end
