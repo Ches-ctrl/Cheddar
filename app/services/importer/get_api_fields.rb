@@ -57,6 +57,10 @@ module Importer
 
     def core_details = @standard_fields[question_id] || {}
 
+    def core_section_description = nil
+
+    def core_section_title = 'Main application'
+
     def create_question
       {
         attribute: generate_attribute_from_label(question_label),

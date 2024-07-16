@@ -16,10 +16,6 @@ module Importer
 
     def core_questions = @data['questions']
 
-    def core_section_description = nil
-
-    def core_section_title = 'Main application'
-
     def data_source = :api
 
     def demographic_questions = @data.dig('demographic_questions', 'questions')
@@ -27,6 +23,26 @@ module Importer
     def demographic_section_description = @data.dig('demographic_questions', 'description')
 
     def demographic_section_title = @data.dig('demographic_questions', 'header')
+
+    def compliance_questions
+      @data['compliance']&.inject([]) do |questions, section|
+        questions + section['questions'].map do |question|
+          {
+            description: section['description']
+          }.merge(question)
+        end
+      end&.compact
+    end
+
+    def location_questions = nil
+
+    def location_section_description = nil
+
+    def location_section_title = nil
+
+    def compliance_section_title = 'EEOC compliance questions'
+
+    def compliance_section_description = @data.dig('compliance', 0, 'description')
 
     def field_id(field) = field['name']
 
@@ -54,7 +70,7 @@ module Importer
 
     def question_required? = @question['required']
 
-    def sections = %i[core demographic]
+    def sections = %i[core demographic compliance location]
   end
 end
 
