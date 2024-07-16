@@ -39,6 +39,16 @@ namespace :admin do
     Importer::GetFormFields.call
   end
 
+  desc "Test GetFormFieldsOld"
+  task formfieldsold: :environment do
+    Importer::GetFormFieldsOld.call
+  end
+
+  desc "Test GetApiFields"
+  task apifields: :environment do
+    Importer::GetApiFields.call
+  end
+
   desc "Test OpenAI Integration"
   task openai: :environment do
     Openai.call
