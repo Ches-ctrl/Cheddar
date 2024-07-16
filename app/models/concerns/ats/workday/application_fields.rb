@@ -3,7 +3,9 @@ module Ats
     module ApplicationFields
       def get_application_question_set(job, _data)
         p "Getting Workday application criteria"
-        job.application_question_set = {} # TODO: fix this
+
+        # TODO : implement new application_question_structure structure
+        # job.build_application_question_set = {} # TODO: fix this
         job.save
       end
     end

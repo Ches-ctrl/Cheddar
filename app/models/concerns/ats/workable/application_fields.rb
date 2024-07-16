@@ -8,12 +8,8 @@ module Ats
       def get_application_question_set(job, _data)
         # TODO: get application_question_set from API
         p "Getting Workable application criteria"
-        job.build_application_question_set(form_structure: {
-          **NEW_CORE_FIELDS # ,
-                                             # **PROFILE_FIELDS,
-                                             # **DETAILS_FIELDS,
-                                             # **ADDITIONAL_FIELDS
-                                           })
+        job.build_application_question_set(form_structure: NEW_CORE_FIELDS)
+          # **NEW_CORE_FIELDS # , # **PROFILE_FIELDS, # **DETAILS_FIELDS, # **ADDITIONAL_FIELDS #  })
         job.save
       end
 

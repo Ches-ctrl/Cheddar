@@ -56,7 +56,7 @@ class Job < ApplicationRecord
   end
 
   def update_requirements
-    no_of_qs = application_question_set.no_of_qs
+    no_of_qs = application_question_set&.no_of_qs.to_i
     build_requirement(no_of_qs:)
     save
   end
