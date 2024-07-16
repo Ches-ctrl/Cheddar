@@ -40,7 +40,7 @@ class SavedSearchesController < ApplicationController
   end
 
   def generate_csv
-    return true unless current_user&.admin?
+    return true unless current_user.admin?
 
     ExportJobCsvGenerator.call(@saved_search)
   end
