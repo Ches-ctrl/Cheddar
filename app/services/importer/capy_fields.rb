@@ -125,16 +125,15 @@ module Importer
 
       Capybara.current_session.driver.quit
 
-      extra_fields = attributes
+      # TODO: extra_fields must adopt the exact same structure as application_question_set ...
+      # extra_fields = attributes
+      # unless extra_fields.nil?
+      #   @job.application_criteria = @job.application_criteria.merge(extra_fields)
+      #   p @job.application_criteria
+      # end
 
       p "job is #{@job}"
-
       @job.requirement.no_of_qs = attributes.keys.count
-
-      unless extra_fields.nil?
-        @job.application_criteria = @job.application_criteria.merge(extra_fields)
-        p @job.application_criteria
-      end
       @job.apply_with_cheddar = true
       @job.save
 
