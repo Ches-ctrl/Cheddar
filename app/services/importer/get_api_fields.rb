@@ -38,6 +38,10 @@ module Importer
       @fields << instance_variable_get("@#{section}_fields")
     end
 
+    def add_core_fields_to_fields
+      @fields << @core_fields
+    end
+
     def build_fields
       @sections.each do |section|
         send(:"generate_#{section}_fields")
@@ -46,8 +50,23 @@ module Importer
       end
     end
 
+    def core_details = CORE_FIELDS[question_id] || {}
+
+    def create_question
+      {
+        attribute: question_label.strip.downcase.gsub(' ', '_'),
+        required: question_required?,
+        label: question_label,
+        description: question_description,
+        fields: fetch_question_fields
+      }.merge(core_details)
+    end
+
     def fetch_core_questions
-      core_questions&.each { |question| @core_fields[:questions] << create_question(question) }
+      core_questions&.each do |question|
+        @question = question
+        @core_fields[:questions] << create_question
+      end
     end
 
     def generate_core_fields
@@ -63,6 +82,26 @@ module Importer
     def log_and_return_fields
       puts pretty_generate(@fields)
       @fields
+    end
+
+    def fetch_question_fields
+      question_fields&.map do |field|
+        {
+          id: field_id(field),
+          type: standardize_type(field_type(field)),
+          max_length: field_max_length(field),
+          options: field_options(field).map do |option|
+            {
+              id: option_id(option),
+              label: option_label(option)
+            }
+          end
+        }
+      end
+    end
+
+    def standardize_type(type)
+      TYPES[type] || type
     end
   end
 end

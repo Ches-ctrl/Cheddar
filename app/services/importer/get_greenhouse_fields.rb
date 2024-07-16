@@ -8,52 +8,33 @@ module Importer
 
     private
 
-    def add_core_fields_to_fields
-      @fields << @core_fields
-    end
-
     def core_questions = @data['questions']
-
-    def create_question(question)
-      # TODO: move this logic to parent class
-      id = question.dig('fields', 0, 'name')
-      core_details = CORE_FIELDS[id] || {}
-      question_details(question, core_details)
-    end
 
     def data_source = :api
 
-    def fetch_question_fields(fields)
-      fields.map do |field|
-        {
-          id: field['name'],
-          type: standardize_type(field['type']),
-          max_length: (255 if field['type'] == 'input_text'),
-          options: field['values'].map do |attributes|
-            {
-              id: attributes['value'],
-              label: attributes['label']
-            }
-          end
-        }
-      end
-    end
+    def field_id(field) = field['name']
 
-    def question_details(question, core_details)
-      {
-        attribute: question['label'].strip.downcase.gsub(' ', '_'),
-        required: question['required'],
-        label: question['label'],
-        description: question['description'],
-        fields: fetch_question_fields(question['fields'])
-      }.merge(core_details)
-    end
+    def field_max_length(field) = (255 if field_type(field) == 'input_text')
+
+    def field_options(field) = field['values']
+
+    def field_type(field) = field['type']
+
+    def option_id(option) = option['value']
+
+    def option_label(option) = option['label']
+
+    def question_description = @question['description']
+
+    def question_fields = @question['fields']
+
+    def question_id = @question.dig('fields', 0, 'name')
+
+    def question_label = @question['label']
+
+    def question_required? = @question['required']
 
     def sections = [:core]
-
-    def standardize_type(type)
-      TYPES[type] || type
-    end
   end
 end
 
