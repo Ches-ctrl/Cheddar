@@ -30,7 +30,7 @@ class JobApplicationsController < ApplicationController
   end
 
   def assign_status
-    required_attributes = required_attributes(@job_application.job.application_question_set.questions)
+    required_attributes = required_attributes(@job_application.application_question_set.questions)
     non_empty_or_null_attributes = non_empty_or_null_attributes(@job_application.additional_info)
     status = (required_attributes - non_empty_or_null_attributes).empty? ? "completed" : "uncompleted"
     @job_application.status = status
