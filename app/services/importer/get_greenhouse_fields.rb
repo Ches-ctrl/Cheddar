@@ -3,7 +3,13 @@
 module Importer
   class GetGreenhouseFields < GetApiFields
     def initialize(data)
-      super(data, data_source, sections)
+      options = {
+        data_source:,
+        sections:,
+        standard_fields: STANDARD_FIELDS,
+        types: TYPES
+      }
+      super(data, options)
     end
 
     private
@@ -52,7 +58,7 @@ module Importer
   end
 end
 
-CORE_FIELDS = {
+STANDARD_FIELDS = {
   'first_name' => {
     attribute: :first_name,
     fields: [

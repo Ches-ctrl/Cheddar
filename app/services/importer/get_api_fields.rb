@@ -9,12 +9,12 @@ module Importer
   class GetApiFields < ApplicationTask
     include FaradayHelpers
 
-    MAX_ATTRIBUTE_LENGTH = 60
-
-    def initialize(data, data_source = nil, sections = [:core])
+    def initialize(data, options = {})
       @data = data
-      @data_source = data_source
-      @sections = sections
+      @data_source = options[:data_source]
+      @sections = options[:sections] || [:core]
+      @standard_fields = options[:standard_fields] || {}
+      @types = options[:types] || {}
       @fields = []
       @errors = false
     end
@@ -55,7 +55,7 @@ module Importer
       end
     end
 
-    def core_details = CORE_FIELDS[question_id] || {}
+    def core_details = @standard_fields[question_id] || {}
 
     def create_question
       {
@@ -65,12 +65,6 @@ module Importer
         description: question_description,
         fields: fetch_question_fields
       }.merge(core_details)
-    end
-
-    def generate_attribute_from_label(label)
-      first_question_mark = label.index('?')
-      max_length = [first_question_mark, MAX_ATTRIBUTE_LENGTH].compact.min
-      label.strip.slice(..max_length).downcase.gsub('/', ' ').gsub(/[^a-z ]/, '').gsub(/ +/, '_')
     end
 
     def fetch_question_fields
@@ -93,6 +87,12 @@ module Importer
 
     def fetch_questions(section) = send(:"#{section}_questions")
 
+    def generate_attribute_from_label(label, max_attribute_length = 60)
+      first_question_mark = label.index('?')
+      max_length = [first_question_mark, max_attribute_length].compact.min
+      label.slice(..max_length).downcase.gsub('/', ' ').gsub(/[^a-z ]/, '').strip.gsub(/ +/, '_')
+    end
+
     def generate_section(section)
       @section_fields = {
         build_type: @data_source,
@@ -109,7 +109,7 @@ module Importer
     end
 
     def standardize_type(type)
-      TYPES[type] || type
+      @types[type] || type
     end
   end
 end
