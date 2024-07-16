@@ -3,28 +3,23 @@ class Job < ApplicationRecord
   include PgSearch::Model
   include Constants::DateConversion
 
+  PERMITTED_SEARCH_PARAMS = [:id, :page, :posted, :query, :sort, :apply_with_cheddar, { employment: [], location: [], role: [], seniority: [], ats: [] }]
+
   # == Attributes ===========================================================
-
   # == Extensions ===========================================================
-  serialize :application_criteria, coder: JSON
-
   # == Relationships ========================================================
-  belongs_to :company
   belongs_to :applicant_tracking_system, optional: true # TODO: remove optional
-
+  belongs_to :company
+  has_one :application_question_set, dependent: :destroy
   has_one :requirement, dependent: :destroy
-
   has_many :job_applications, dependent: :destroy
-  has_many :saved_jobs, dependent: :destroy
-
-  has_many :jobs_locations, dependent: :destroy
-  has_many :locations, through: :jobs_locations
-
   has_many :jobs_countries, dependent: :destroy
+  has_many :jobs_locations, dependent: :destroy
   has_many :countries, through: :jobs_countries
-
   has_many :jobs_roles, dependent: :destroy
+  has_many :locations, through: :jobs_locations
   has_many :roles, through: :jobs_roles
+  has_many :saved_jobs, dependent: :destroy
 
   # == Validations ==========================================================
   validates :posting_url, uniqueness: true, presence: true
@@ -53,11 +48,6 @@ class Job < ApplicationRecord
   end
 
   # == Instance Methods =====================================================
-  def application_criteria
-    return [] if read_attribute(:application_criteria).nil?
-
-    read_attribute(:application_criteria).with_indifferent_access
-  end
 
   private
 
@@ -66,8 +56,9 @@ class Job < ApplicationRecord
   end
 
   def update_requirements
-    requirement = Requirement.create(job: self)
-    requirement.no_of_qs = application_criteria.size
+    no_of_qs = application_question_set&.no_of_qs.to_i
+    build_requirement(no_of_qs:)
+    save
   end
 
   def standardize_attributes

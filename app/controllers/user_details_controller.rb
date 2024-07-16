@@ -21,7 +21,7 @@ class UserDetailsController < ApplicationController
   end
 
   def load_user_detail
-    @user_detail = UserDetail.with_attached_resumes
+    @user_detail = UserDetail.eager_load([resumes_attachments: :blob])
                              .find_or_initialize_by(user_id: current_user.id)
   end
 

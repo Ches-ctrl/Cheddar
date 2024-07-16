@@ -3,10 +3,10 @@ Rails.application.routes.draw do
 
   authenticate :user, ->(user) { user.admin? } do
     mount Sidekiq::Web => '/sidekiq'
+    mount Avo::Engine, at: '/avo'
   end
 
   mount ActionCable.server => "/cable" # TODO: fix as not found at the moment
-  mount Avo::Engine, at: '/avo'
 
   devise_for :users, except: [:fetch_template], controllers: { registrations: 'users/registrations' }
   post '/users/fetch_template', to: 'users#fetch_template', as: :fetch_template
@@ -64,4 +64,5 @@ Rails.application.routes.draw do
 
   resource :user_details, only: %i[edit update]
   resources :attachments, only: %i[destroy]
+  resources :saved_searches, only: %i[index create update destroy]
 end

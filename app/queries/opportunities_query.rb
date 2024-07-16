@@ -13,8 +13,7 @@ class OpportunitiesQuery < ApplicationQuery
   private
 
   def associations
-    %i[requirement company locations countries roles applicant_tracking_system]
-      .push({ locations: :country })
+    %i[requirement company locations roles applicant_tracking_system]
   end
 
   def london_junior_dev_roles(relation)

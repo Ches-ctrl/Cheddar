@@ -1,0 +1,33 @@
+<li class="flex items-center justify-between gap-x-6 py-5 sm:max-w-6xl sm:grid-cols-6">
+	<div class="flex min-w-0 gap-x-4">
+		<%= link_to saved_search_path(saved_search), data: {turbo_method: :delete}, method: :delete, class: "inline-flex items-center my-3 p-4 rounded-full bg-indigo-50 dark:bg-indigo-900 dark:hover:bg-indigo-700 text-sm font-semibold text-indigo-600 dark:text-indigo-400 shadow-sm hover:bg-indigo-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-200" do %>
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"></path>
+			</svg>
+		<% end %>
+		<div class="min-w-0 flex-auto">
+			<p class="text-sm font-semibold leading-6 text-gray-900"><%= saved_search.friendly_title %></p>
+			<p class="mt-1 truncate text-xs leading-5 text-gray-500">Last updated_at: <%= saved_search.job_last_updated_at.strftime('%Y-%m-%d') %></p>
+      <p class="mt-1 truncate text-xs leading-5 text-gray-500">Last count: <%= saved_search.jobs_count.to_s %></p>
+      <!-- <span class="mt-1 truncate text-xs leading-5 text-gray-500">Params: <%= saved_search.params %></span> -->
+		</div>
+	</div>
+  <div class="flex items-center justify-between gap-x-6 py-5 sm:max-w-6xl sm:grid-cols-6">
+    <% if saved_search.optin %>
+      <%= link_to saved_search_path(saved_search, optin: false), data: {turbo_method: :put}, method: :put do %>
+        <button type="button" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent !bg-indigo-600 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2" role="switch" aria-checked="true">
+          <span class="sr-only">Optin Notifications</span>
+          <span class="pointer-events-none inline-block h-5 w-5 translate-x-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+        </button>
+        <% end %>
+    <% else %>
+      <%= link_to saved_search_path(saved_search, optin: true), data: {turbo_method: :put}, method: :put do %>
+        <button type="button" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent !bg-gray-200 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" role="switch" aria-checked="false">
+          <span class="sr-only">Optout Notifications</span>
+          <span class="pointer-events-none inline-block h-5 w-5 translate-x-0 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+        </button>
+      <% end %>
+    <% end %>
+    <%= link_to "View", opportunities_path(saved_search.params), class: "rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" %>
+  </div>
+</li>

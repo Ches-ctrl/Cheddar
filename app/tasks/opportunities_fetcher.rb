@@ -28,7 +28,10 @@ class OpportunitiesFetcher < ApplicationTask
                  .order(sort)
   end
 
-  # return the ATS if the param is present
+  def filter_by_apply_with_cheddar(param)
+    param
+  end
+
   def filter_by_ats(param)
     { name: param } if param.present?
   end
@@ -63,6 +66,7 @@ class OpportunitiesFetcher < ApplicationTask
 
   def filters
     {
+      apply_with_cheddar: filter_by_apply_with_cheddar(@params[:apply_with_cheddar]),
       applicant_tracking_system: filter_by_ats(@params[:ats]),
       date_posted: filter_by_when_posted(@params[:posted]),
       seniority: filter_by_seniority(@params[:seniority]),
