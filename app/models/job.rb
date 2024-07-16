@@ -55,10 +55,10 @@ class Job < ApplicationRecord
     self.date_posted ||= Date.today
   end
 
-  # TODO : no_of_qs
   def update_requirements
-    # requirement = Requirement.create(job: self)
-    # requirement.no_of_qs = application_criteria.size
+    no_of_qs = application_question_set.no_of_qs
+    build_requirement(no_of_qs:)
+    save
   end
 
   def standardize_attributes

@@ -309,12 +309,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_16_104558) do
     t.jsonb "params", default: {}, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-<<<<<<< HEAD
     t.integer "jobs_count"
     t.datetime "job_last_updated_at"
     t.boolean "optin", default: false
-=======
->>>>>>> cba566b844bfa61990f8cc0f8f4dab8039974e80
     t.index ["user_id"], name: "index_saved_searches_on_user_id"
   end
 

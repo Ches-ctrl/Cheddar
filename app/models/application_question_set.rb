@@ -26,4 +26,8 @@ class ApplicationQuestionSet < ApplicationRecord
                   .map { |question| ApplicationQuestion.new(question) }
                   .flatten
   end
+
+  def no_of_qs
+    form_structure.map { |section| section['questions'] }.flatten.count
+  end
 end

@@ -51,8 +51,8 @@ class ApplicationQuestion
   def type = fields.first['type']
 
   def answered_value(job_application)
-    return job_application.resume.blob.url if attribute.eql?("resume") && job_application.resume.attached?
-    return job_application.cover_letter.blob.url if attribute.eql?("cover_letter") && job_application.cover_letter.attached?
+    return job_application.resume.blob.url if resume? && job_application.resume.attached?
+    return job_application.cover_letter.blob.url if cover_letter? && job_application.cover_letter.attached?
 
     job_application.additional_info[attribute]
   end

@@ -113,18 +113,19 @@ module Importer
         @errors = true
       end
 
-      extra_fields = attributes
+      Capybara.current_session.driver.quit
 
-      puts pretty_generate(extra_fields)
-
-      # @job.requirement.no_of_qs = attributes.keys.count
-
+      # TODO: extra_fields must adopt the exact same structure as application_question_set ...
+      # extra_fields = attributes
       # unless extra_fields.nil?
       #   @job.application_criteria = @job.application_criteria.merge(extra_fields)
       #   p @job.application_criteria
       # end
-      # @job.apply_with_cheddar = true
-      # @job.save
+
+      p "job is #{@job}"
+      @job.requirement.no_of_qs = attributes.keys.count
+      @job.apply_with_cheddar = true
+      @job.save
 
       attributes
     end

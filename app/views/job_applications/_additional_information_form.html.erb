@@ -1,6 +1,6 @@
 <%= simple_form_for job_application, url: application_process_job_application_path, html: { method: :put, class: "md:col-span-2", data: { mandatory_fields_only_target: 'form' } } do |f| %>
   <div class="grid gap-x-6 gap-y-8 sm:max-w-6xl sm:grid-cols-6">
-    <% job_application.job.application_question_set.questions.each do |question| %>
+    <% job_application.application_question_set.questions.each do |question| %>
       <div class="col-span-full" data-mandatory-fields-only-target="field" data-required-value="<%= question.required %>">
         <label for="<%= question.attribute %>>" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"><%= "#{mandatory_field(question)}#{question.attribute.humanize}" %></label>
         <div class="mt-2">
