@@ -6,13 +6,8 @@ class SavedSearchesQuery < ApplicationQuery
   end
 
   def call
-    @relation = @relation.order(:created_at) # .eager_load(*associations)
+    @relation = @relation.order(:created_at)
   end
 
-  private
-
-  def associations
-    # %i[requirement company locations countries roles applicant_tracking_system]
-    #   .push({ locations: :country })
-  end
+  # private
 end
