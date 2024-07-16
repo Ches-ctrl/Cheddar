@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_13_085606) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_16_104558) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -58,14 +58,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_13_085606) do
     t.boolean "login", default: false
   end
 
-  create_table "application_criteria", force: :cascade do |t|
-    t.bigint "job_id", null: false
-    t.jsonb "form_structure", default: {}, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["job_id"], name: "index_application_criteria_on_job_id"
-  end
-
   create_table "application_processes", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "status", default: "new", null: false
@@ -74,6 +66,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_13_085606) do
     t.datetime "updated_at", null: false
     t.datetime "submitted_at"
     t.index ["user_id"], name: "index_application_processes_on_user_id"
+  end
+
+  create_table "application_question_sets", force: :cascade do |t|
+    t.bigint "job_id", null: false
+    t.jsonb "form_structure", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_application_question_sets_on_job_id"
   end
 
   create_table "climate_commitments", force: :cascade do |t|
@@ -343,8 +343,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_13_085606) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "application_criteria", "jobs"
   add_foreign_key "application_processes", "users"
+  add_foreign_key "application_question_sets", "jobs"
   add_foreign_key "climate_commitments", "companies"
   add_foreign_key "educations", "users"
   add_foreign_key "job_applications", "application_processes"

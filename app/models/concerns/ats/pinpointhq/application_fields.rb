@@ -1,9 +1,9 @@
 module Ats
   module Pinpointhq
     module ApplicationFields
-      def get_application_criteria(job, _data)
+      def get_application_question_set(job, _data)
         p "Getting PinpointHQ application criteria"
-        job.application_criteria = CORE_FIELDS.merge(PROFILE_FIELDS).merge(QUESTION_FIELDS).merge(DIVERSITY_FIELDS)
+        job.application_question_set = CORE_FIELDS.merge(PROFILE_FIELDS).merge(QUESTION_FIELDS).merge(DIVERSITY_FIELDS)
         job.save
       end
 

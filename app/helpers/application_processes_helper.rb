@@ -52,7 +52,7 @@ module ApplicationProcessesHelper
   end
 
   def filled_value(question, job_application)
-    question.value(job_application)
+    question.answered_value(job_application)
   end
 
   def user_detail_value(question, job_application)

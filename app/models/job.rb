@@ -10,6 +10,8 @@ class Job < ApplicationRecord
   # == Relationships ========================================================
   belongs_to :applicant_tracking_system, optional: true # TODO: remove optional
   belongs_to :company
+  has_one :application_question_set, dependent: :destroy
+  has_one :requirement, dependent: :destroy
   has_many :job_applications, dependent: :destroy
   has_many :jobs_countries, dependent: :destroy
   has_many :jobs_locations, dependent: :destroy
@@ -18,8 +20,7 @@ class Job < ApplicationRecord
   has_many :locations, through: :jobs_locations
   has_many :roles, through: :jobs_roles
   has_many :saved_jobs, dependent: :destroy
-  has_one :application_criterion, dependent: :destroy
-  has_one :requirement, dependent: :destroy
+
   # == Validations ==========================================================
   validates :posting_url, uniqueness: true, presence: true
   validates :title, presence: true
@@ -47,11 +48,6 @@ class Job < ApplicationRecord
   end
 
   # == Instance Methods =====================================================
-  # def application_criteria
-  #   return [] if read_attribute(:application_criteria).nil?
-
-  #   read_attribute(:application_criteria).with_indifferent_access
-  # end
 
   private
 
@@ -59,6 +55,7 @@ class Job < ApplicationRecord
     self.date_posted ||= Date.today
   end
 
+  # TODO : no_of_qs
   def update_requirements
     # requirement = Requirement.create(job: self)
     # requirement.no_of_qs = application_criteria.size

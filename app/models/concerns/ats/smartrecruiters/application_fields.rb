@@ -1,9 +1,9 @@
 module Ats
   module Smartrecruiters
     module ApplicationFields
-      def get_application_criteria(job, _data)
+      def get_application_question_set(job, _data)
         p "Getting smartrecruiters application criteria"
-        job.application_criteria = CORE_FIELDS.merge(WEB_FIELDS).merge(ADDITIONAL_FIELDS)
+        job.application_question_set = CORE_FIELDS.merge(WEB_FIELDS).merge(ADDITIONAL_FIELDS)
         job.save
       end
 

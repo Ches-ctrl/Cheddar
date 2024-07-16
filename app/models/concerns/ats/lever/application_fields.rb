@@ -1,9 +1,9 @@
 module Ats
   module Lever
     module ApplicationFields
-      def get_application_criteria(job, _data)
+      def get_application_question_set(job, _data)
         p "Getting lever application criteria"
-        job.application_criteria = CORE_FIELDS.merge(CUSTOM_FIELDS)
+        job.application_question_set = CORE_FIELDS.merge(CUSTOM_FIELDS)
         job.save
       end
 

@@ -28,13 +28,13 @@ class JobAttributesFetcher < ApplicationTask
     @job.assign_attributes(core_params)
     @job.assign_attributes(job_details)
 
-    application_criteria # TODO: rewrite modules so this returns an attribute hash like job_details
+    application_question_set # TODO: rewrite modules so this returns an attribute hash like job_details
     @job.save
     fetch_form_fields
   end
 
-  def application_criteria
-    @ats.get_application_criteria(@job, @data)
+  def application_question_set
+    @ats.get_application_question_set(@job, @data)
   end
 
   def core_params

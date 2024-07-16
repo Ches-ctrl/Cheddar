@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class ApplicationCriterion < ApplicationRecord
-  self.table_name = 'application_criteria'
+class ApplicationQuestionSet < ApplicationRecord
   # == Attributes ===========================================================
   # == Callbacks ============================================================
   # == Constants ============================================================
@@ -24,7 +23,7 @@ class ApplicationCriterion < ApplicationRecord
     form_structure.map { |section| section }
                   .map { |criterion_hash| criterion_hash['questions'] }
                   .flatten
-                  .map { |question| Question.new(question) }
+                  .map { |question| ApplicationQuestion.new(question) }
                   .flatten
   end
 end

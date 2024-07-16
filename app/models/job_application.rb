@@ -16,7 +16,7 @@ class JobApplication < ApplicationRecord
 
   has_one_attached :cover_letter
   has_one_attached :resume
-  has_one :application_criterion, through: :job
+  has_one :application_question_set, through: :job
   #   has_one_attached :screenshot
 
   # == Scopes ===============================================================
@@ -26,8 +26,11 @@ class JobApplication < ApplicationRecord
   validates :status, presence: true
 
   def api_payload
-    # application_criterion.questions.map(&:payload)
-    application_criterion.questions.map { |question| question.payload(self) }
+    # application_question_set.questions.map { |question| question.payload(self) }
+    application_question_set.questions.map do |question|
+      # byebug if question.selector == "phone"
+      question.payload(self)
+    end
   end
 
   def submitted?

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Question
+class ApplicationQuestion
   # == PORO - Accessors =====================================================
   attr_accessor :attribute, :label, :fields, :required, :description
 
@@ -43,14 +43,17 @@ class Question
   end
 
   def payload(job_application)
-    { attribute: { input_text: type, value: value(job_application) } }
+    { attribute: { input_text: type, value: answered_value(job_application) } }
   end
 
   def selector = fields.first['selector']
 
   def type = fields.first['type']
 
-  def value(job_application)
+  def answered_value(job_application)
+    return job_application.resume.blob.url if attribute.eql?("resume") && job_application.resume.attached?
+    return job_application.cover_letter.blob.url if attribute.eql?("cover_letter") && job_application.cover_letter.attached?
+
     job_application.additional_info[attribute]
   end
 

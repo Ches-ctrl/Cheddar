@@ -1,8 +1,8 @@
 module Ats
   module Greenhouse
     module ApplicationFields
-      def get_application_criteria(job, _data)
-        job.build_application_criterion(form_structure: NEW_CORE_FIELDS)
+      def get_application_question_set(job, _data)
+        job.build_application_question_set(form_structure: NEW_CORE_FIELDS)
         job.save
       end
 

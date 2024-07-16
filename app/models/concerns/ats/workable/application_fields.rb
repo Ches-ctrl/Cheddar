@@ -5,15 +5,15 @@ module Ats
       # TODO: Check validatity of fields (not yet tested)
       # TODO: Handle labels from form fields
 
-      def get_application_criteria(job, _data)
-        # TODO: get application_criteria from API
+      def get_application_question_set(job, _data)
+        # TODO: get application_question_set from API
         p "Getting Workable application criteria"
-        job.build_application_criterion(form_structure: {
+        job.build_application_question_set(form_structure: {
           **NEW_CORE_FIELDS # ,
-                                          # **PROFILE_FIELDS,
-                                          # **DETAILS_FIELDS,
-                                          # **ADDITIONAL_FIELDS
-                                        })
+                                             # **PROFILE_FIELDS,
+                                             # **DETAILS_FIELDS,
+                                             # **ADDITIONAL_FIELDS
+                                           })
         job.save
       end
 
