@@ -10,9 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_07_132559) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_27_161903) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -139,6 +138,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_07_132559) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["feature_key", "key", "value"], name: "index_flipper_gates_on_feature_key_and_key_and_value", unique: true
+  end
+
+  create_table "industries", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "job_applications", force: :cascade do |t|
@@ -297,12 +302,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_07_132559) do
     t.index ["user_id"], name: "index_saved_jobs_on_user_id"
   end
 
-  create_table "saved_searches", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.jsonb "params", default: {}, null: false
+  create_table "sub_industries", force: :cascade do |t|
+    t.string "name"
+    t.bigint "industry_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_saved_searches_on_user_id"
+    t.index ["industry_id"], name: "index_sub_industries_on_industry_id"
   end
 
   create_table "technologies", force: :cascade do |t|
@@ -320,6 +325,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_07_132559) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -327,7 +333,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_07_132559) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false, null: false
-    t.string "email"
+    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -350,6 +356,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_07_132559) do
   add_foreign_key "requirements", "jobs"
   add_foreign_key "saved_jobs", "jobs"
   add_foreign_key "saved_jobs", "users"
-  add_foreign_key "saved_searches", "users"
+  add_foreign_key "sub_industries", "industries"
   add_foreign_key "user_details", "users"
 end
