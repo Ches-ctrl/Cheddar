@@ -9,6 +9,8 @@ module Importer
   class GetApiFields < ApplicationTask
     include FaradayHelpers
 
+    MAX_ATTRIBUTE_LENGTH = 60
+
     def initialize(data, data_source = nil, sections = [:core])
       @data = data
       @data_source = data_source
@@ -34,19 +36,22 @@ module Importer
       log_and_return_fields
     end
 
-    def add_section_to_fields(section)
-      @fields << instance_variable_get("@#{section}_fields")
-    end
-
-    def add_core_fields_to_fields
-      @fields << @core_fields
+    def add_section_to_fields
+      @fields << @section_fields
     end
 
     def build_fields
       @sections.each do |section|
-        send(:"generate_#{section}_fields")
-        send(:"fetch_#{section}_questions")
-        add_section_to_fields(section)
+        generate_section(section)
+        build_questions(section)
+        add_section_to_fields
+      end
+    end
+
+    def build_questions(section)
+      fetch_questions(section)&.each do |question|
+        @question = question
+        @section_fields[:questions] << create_question
       end
     end
 
@@ -54,7 +59,7 @@ module Importer
 
     def create_question
       {
-        attribute: question_label.strip.slice(..50).downcase.gsub(' ', '_'),
+        attribute: generate_attribute_from_label(question_label),
         required: question_required?,
         label: question_label,
         description: question_description,
@@ -62,26 +67,10 @@ module Importer
       }.merge(core_details)
     end
 
-    def fetch_core_questions
-      core_questions&.each do |question|
-        @question = question
-        @core_fields[:questions] << create_question
-      end
-    end
-
-    def generate_core_fields
-      @core_fields = {
-        data_source: @data_source,
-        section_slug: 'core_fields',
-        title: 'Main application',
-        description: nil,
-        questions: []
-      }
-    end
-
-    def log_and_return_fields
-      puts pretty_generate(@fields)
-      @fields
+    def generate_attribute_from_label(label)
+      first_question_mark = label.index('?')
+      max_length = [first_question_mark, MAX_ATTRIBUTE_LENGTH].compact.min
+      label.strip.slice(..max_length).downcase.gsub('/', ' ').gsub(/[^a-z ]/, '').gsub(/ +/, '_')
     end
 
     def fetch_question_fields
@@ -93,11 +82,30 @@ module Importer
           options: field_options(field).map do |option|
             {
               id: option_id(option),
-              label: option_label(option)
-            }
+              label: option_label(option),
+              free_form: option_free_form(option),
+              decline_to_answer: option_decline_to_answer(option)
+            }.compact
           end
-        }
+        }.compact
       end
+    end
+
+    def fetch_questions(section) = send(:"#{section}_questions")
+
+    def generate_section(section)
+      @section_fields = {
+        build_type: @data_source,
+        section_slug: "#{section}_fields",
+        title: send(:"#{section}_section_title"),
+        description: send(:"#{section}_section_description"),
+        questions: []
+      }
+    end
+
+    def log_and_return_fields
+      puts pretty_generate(@fields)
+      @fields
     end
 
     def standardize_type(type)

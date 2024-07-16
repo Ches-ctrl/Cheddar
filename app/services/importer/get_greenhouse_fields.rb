@@ -10,23 +10,37 @@ module Importer
 
     def core_questions = @data['questions']
 
+    def core_section_description = nil
+
+    def core_section_title = 'Main application'
+
     def data_source = :api
+
+    def demographic_questions = @data.dig('demographic_questions', 'questions')
+
+    def demographic_section_description = @data.dig('demographic_questions', 'description')
+
+    def demographic_section_title = @data.dig('demographic_questions', 'header')
 
     def field_id(field) = field['name']
 
     def field_max_length(field) = (255 if field_type(field) == 'input_text')
 
-    def field_options(field) = field['values']
+    def field_options(field) = field['values'] || field['answer_options']
 
     def field_type(field) = field['type']
 
-    def option_id(option) = option['value']
+    def option_id(option) = option['value'] || option['id']
 
     def option_label(option) = option['label']
 
+    def option_free_form(option) = option['free_form']
+
+    def option_decline_to_answer(option) = option['decline_to_answer']
+
     def question_description = @question['description']
 
-    def question_fields = @question['fields']
+    def question_fields = @question['fields'] || [@question]
 
     def question_id = @question.dig('fields', 0, 'name')
 
@@ -34,7 +48,7 @@ module Importer
 
     def question_required? = @question['required']
 
-    def sections = [:core]
+    def sections = %i[core demographic]
   end
 end
 
