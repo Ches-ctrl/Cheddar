@@ -54,9 +54,7 @@ class Job < ApplicationRecord
 
   # == Instance Methods =====================================================
   def application_criteria
-    return [] if read_attribute(:application_criteria).nil?
-
-    read_attribute(:application_criteria)
+    read_attribute(:application_criteria) || []
   end
 
   private

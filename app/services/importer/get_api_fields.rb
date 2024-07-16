@@ -37,7 +37,7 @@ module Importer
     end
 
     def add_section_to_fields
-      @fields << @section_fields
+      @fields << @section_fields if @section_fields[:questions].present?
     end
 
     def build_fields
@@ -71,20 +71,24 @@ module Importer
       }.merge(core_details)
     end
 
+    def fetch_options(field)
+      field_options(field).map do |option|
+        {
+          id: option_id(option),
+          label: option_label(option),
+          free_form: option_free_form(option),
+          decline_to_answer: option_decline_to_answer(option)
+        }.compact
+      end
+    end
+
     def fetch_question_fields
       question_fields&.map do |field|
         {
           id: field_id(field),
           type: standardize_type(field_type(field)),
           max_length: field_max_length(field),
-          options: field_options(field).map do |option|
-            {
-              id: option_id(option),
-              label: option_label(option),
-              free_form: option_free_form(option),
-              decline_to_answer: option_decline_to_answer(option)
-            }.compact
-          end
+          options: fetch_options(field)
         }.compact
       end
     end
@@ -112,8 +116,6 @@ module Importer
       @fields
     end
 
-    def standardize_type(type)
-      @types[type] || type
-    end
+    def standardize_type(type) = @types[type] || type
   end
 end

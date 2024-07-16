@@ -28,7 +28,7 @@ module Importer
       @data['compliance']&.inject([]) do |questions, section|
         questions + section['questions'].map do |question|
           {
-            description: section['description']
+            'description' => section['description']
           }.merge(question)
         end
       end&.compact
@@ -44,7 +44,9 @@ module Importer
 
     def compliance_section_description = @data.dig('compliance', 0, 'description')
 
-    def field_id(field) = field['name']
+    def convert_to_numerical_id(value) = value.is_a?(String) ? value.sub(/question_(?=\d+)/, '') : value
+
+    def field_id(field) = convert_to_numerical_id(field['name'])
 
     def field_max_length(field) = (255 if field_type(field) == 'input_text')
 
