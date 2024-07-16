@@ -3,9 +3,9 @@ module Ats
     module ApplicationFields
       def get_application_question_set(job, _data)
         p "Getting Manatal application criteria"
-        data = fetch_application_fields(job)
 
         # TODO : implement new application_question_structure structure
+        # data = fetch_application_fields(job)
         # job.application_question_set = build_application_question_set_from(data)
         job.apply_with_cheddar = true
         job.save

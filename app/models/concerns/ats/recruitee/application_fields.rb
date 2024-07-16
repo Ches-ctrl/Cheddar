@@ -1,7 +1,7 @@
 module Ats
   module Recruitee
     module ApplicationFields
-      def get_application_question_set(job, data)
+      def get_application_question_set(job, _data)
         p "Getting Recruitee application criteria"
 
         # TODO : implement new application_question_structure structure
