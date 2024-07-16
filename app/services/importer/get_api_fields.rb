@@ -54,7 +54,7 @@ module Importer
 
     def create_question
       {
-        attribute: question_label.strip.downcase.gsub(' ', '_'),
+        attribute: question_label.strip.slice(..50).downcase.gsub(' ', '_'),
         required: question_required?,
         label: question_label,
         description: question_description,
