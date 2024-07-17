@@ -12,10 +12,10 @@ class JobCreator < ApplicationTask
     return unless processable
 
     process
-    # rescue StandardError => e
-    #   p e.message
-    #   Rails.logger.error "Error creating job: #{e.message}"
-    #   nil
+  rescue StandardError => e
+    p e.message
+    Rails.logger.error "Error creating job: #{e.message}"
+    nil
   end
 
   private
