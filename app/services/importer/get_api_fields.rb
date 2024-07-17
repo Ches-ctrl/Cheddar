@@ -36,7 +36,7 @@ module Importer
       log_and_return_fields
     end
 
-    def add_section_to_fields
+    def add_section_to_fields(_section)
       @fields << @section_fields if @section_fields[:questions].present?
     end
 
@@ -44,7 +44,7 @@ module Importer
       @sections.each do |section|
         generate_section(section)
         build_questions(section)
-        add_section_to_fields
+        add_section_to_fields(section)
       end
     end
 

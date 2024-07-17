@@ -14,7 +14,13 @@ module Importer
 
     private
 
-    def core_questions = @data['questions']
+    def add_location_questions_to_core_questions
+      core_questions = @data['questions']
+      insert_before = :resume
+      insert_questions(core_questions, location_questions, insert_before)
+    end
+
+    def core_questions = location_question_present? ? add_location_questions_to_core_questions : @data['questions']
 
     def data_source = :api
 
@@ -34,17 +40,19 @@ module Importer
       end&.compact
     end
 
-    def location_questions = nil
+    def location_question_present? = @data['location_questions'].present?
 
-    def location_section_description = nil
-
-    def location_section_title = nil
+    def location_questions
+      @data['location_questions'].reject do |question|
+        question.dig('fields', 0, 'type') == 'input_hidden'
+      end
+    end
 
     def compliance_section_title = 'EEOC compliance questions'
 
     def compliance_section_description = @data.dig('compliance', 0, 'description')
 
-    def convert_to_numerical_id(value) = value.is_a?(String) ? value.sub(/question_(?=\d+)/, '') : value
+    def convert_to_numerical_id(value) = value.is_a?(String) && value =~ /question_(\d+)/ ? ::Regexp.last_match(1) : value
 
     def field_id(field) = convert_to_numerical_id(field['name'])
 
@@ -53,6 +61,13 @@ module Importer
     def field_options(field) = field['values'] || field['answer_options']
 
     def field_type(field) = field['type']
+
+    def insert_questions(questions, questions_to_insert, identifier)
+      index = questions
+              .index { |question| question.dig('fields', 0, 'name') == identifier.to_s } ||
+              questions.size
+      questions[0...index] + questions_to_insert + questions[index..]
+    end
 
     def option_id(option) = option['value'] || option['id']
 
@@ -72,7 +87,7 @@ module Importer
 
     def question_required? = @question['required']
 
-    def sections = %i[core demographic compliance location]
+    def sections = %i[core demographic compliance]
   end
 end
 
@@ -127,11 +142,12 @@ STANDARD_FIELDS = {
   },
   'location' => {
     attribute: :city_applicant,
+    label: 'Location (City)',
     fields: [
       {
-        id: 'location',
-        selector: nil,
-        type: :input,
+        id: 'auto_complete_input',
+        selector: 'input[name="job_application[location]"]',
+        type: :location,
         max_length: 255,
         options: []
       }
