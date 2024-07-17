@@ -48,9 +48,9 @@ class Job < ApplicationRecord
   end
 
   # == Instance Methods =====================================================
-  def application_question_set
-    read_attribute(:application_question_set) || []
-  end
+  # def application_question_set
+  #   read_attribute(:application_question_set) || []
+  # end
 
   private
 

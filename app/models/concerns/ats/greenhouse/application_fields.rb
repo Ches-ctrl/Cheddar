@@ -1,9 +1,8 @@
 module Ats
   module Greenhouse
     module ApplicationFields
-      def get_application_question_set(job, data)
-        form_structure = Importer::GetGreenhouseFields.call(data)
-        job.build_application_question_set(form_structure:)
+      def get_application_question_set(_job, data)
+        Importer::GetGreenhouseFields.call(data)
       end
     end
   end
