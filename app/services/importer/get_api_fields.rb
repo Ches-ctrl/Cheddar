@@ -36,20 +36,21 @@ module Importer
       log_and_return_fields
     end
 
-    def add_section_to_fields(_section)
+    def add_section_to_fields
       @fields << @section_fields if @section_fields[:questions].present?
     end
 
     def build_fields
       @sections.each do |section|
-        generate_section(section)
-        build_questions(section)
-        add_section_to_fields(section)
+        @section = section
+        generate_section
+        build_questions
+        add_section_to_fields
       end
     end
 
-    def build_questions(section)
-      fetch_questions(section)&.each do |question|
+    def build_questions
+      fetch_questions&.each do |question|
         @question = question
         @section_fields[:questions] << create_question
       end
@@ -93,7 +94,7 @@ module Importer
       end
     end
 
-    def fetch_questions(section) = send(:"#{section}_questions")
+    def fetch_questions = send(:"#{@section}_questions")
 
     def generate_attribute_from_label(label, max_attribute_length = 60)
       first_question_mark = label.index('?')
@@ -101,12 +102,12 @@ module Importer
       label.slice(..max_length).downcase.gsub('/', ' ').gsub(/[^a-z ]/, '').strip.gsub(/ +/, '_')
     end
 
-    def generate_section(section)
+    def generate_section
       @section_fields = {
         build_type: @data_source,
-        section_slug: "#{section}_fields",
-        title: send(:"#{section}_section_title"),
-        description: send(:"#{section}_section_description"),
+        section_slug: "#{@section}_fields",
+        title: send(:"#{@section}_section_title"),
+        description: send(:"#{@section}_section_description"),
         questions: []
       }
     end

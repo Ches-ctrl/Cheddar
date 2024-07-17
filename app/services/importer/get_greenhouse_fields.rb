@@ -20,6 +20,20 @@ module Importer
       insert_questions(core_questions, location_questions, insert_before)
     end
 
+    def compliance_questions
+      @data['compliance']&.flat_map do |section|
+        section['questions'].map do |question|
+          { 'description' => section['description'] }.merge(question)
+        end
+      end&.compact
+    end
+
+    def compliance_section_title = 'EEOC compliance questions'
+
+    def compliance_section_description = @data.dig('compliance', 0, 'description')
+
+    def convert_to_numerical_id(value) = value.is_a?(String) && value =~ /question_(\d+)/ ? ::Regexp.last_match(1) : value
+
     def core_questions = location_question_present? ? add_location_questions_to_core_questions : @data['questions']
 
     def data_source = :api
@@ -29,30 +43,6 @@ module Importer
     def demographic_section_description = @data.dig('demographic_questions', 'description')
 
     def demographic_section_title = @data.dig('demographic_questions', 'header')
-
-    def compliance_questions
-      @data['compliance']&.inject([]) do |questions, section|
-        questions + section['questions'].map do |question|
-          {
-            'description' => section['description']
-          }.merge(question)
-        end
-      end&.compact
-    end
-
-    def location_question_present? = @data['location_questions'].present?
-
-    def location_questions
-      @data['location_questions'].reject do |question|
-        question.dig('fields', 0, 'type') == 'input_hidden'
-      end
-    end
-
-    def compliance_section_title = 'EEOC compliance questions'
-
-    def compliance_section_description = @data.dig('compliance', 0, 'description')
-
-    def convert_to_numerical_id(value) = value.is_a?(String) && value =~ /question_(\d+)/ ? ::Regexp.last_match(1) : value
 
     def field_id(field) = convert_to_numerical_id(field['name'])
 
@@ -67,6 +57,14 @@ module Importer
               .index { |question| question.dig('fields', 0, 'name') == identifier.to_s } ||
               questions.size
       questions[0...index] + questions_to_insert + questions[index..]
+    end
+
+    def location_question_present? = @data['location_questions'].present?
+
+    def location_questions
+      @data['location_questions'].reject do |question|
+        question.dig('fields', 0, 'type') == 'input_hidden'
+      end
     end
 
     def option_id(option) = option['value'] || option['id']
