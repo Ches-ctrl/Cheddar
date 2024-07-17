@@ -56,7 +56,7 @@ module Importer
       end
     end
 
-    def core_details = @standard_fields[question_id] || {}
+    def core_details = @standard_fields[question_id(@question)] || {}
 
     def core_section_description = nil
 
@@ -115,6 +115,18 @@ module Importer
     def log_and_return_fields
       puts pretty_generate(@fields)
       @fields
+    end
+
+    def insert_questions(base_qs, qs_to_insert, method, target)
+      index = find_insertion_index(base_qs, method, target)
+      base_qs[0...index] + qs_to_insert + base_qs[index..]
+    end
+
+    def find_insertion_index(base_qs, method, target)
+      target_index = base_qs.find_index { |q| question_id(q) == target.to_s }
+      return base_qs.size unless target_index
+
+      method == :insert_after ? target_index + 1 : target_index
     end
 
     def standardize_type(type) = @types[type] || type

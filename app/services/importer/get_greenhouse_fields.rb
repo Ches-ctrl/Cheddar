@@ -14,12 +14,6 @@ module Importer
 
     private
 
-    def add_location_questions_to_core_questions
-      core_questions = @data['questions']
-      insert_before = :resume
-      insert_questions(core_questions, location_questions, insert_before)
-    end
-
     def compliance_questions
       @data['compliance']&.flat_map do |section|
         section['questions'].map do |question|
@@ -34,7 +28,14 @@ module Importer
 
     def convert_to_numerical_id(value) = value.is_a?(String) && value =~ /question_(\d+)/ ? ::Regexp.last_match(1) : value
 
-    def core_questions = location_question_present? ? add_location_questions_to_core_questions : @data['questions']
+    def core_questions
+      questions = @data['questions']
+
+      questions = insert_questions(questions, location_questions, :insert_before, :resume) if location_question_present?
+      questions = insert_questions(questions, education_questions, :insert_after, :cover_letter) if education_question_present?
+
+      questions
+    end
 
     def data_source = :api
 
@@ -44,6 +45,12 @@ module Importer
 
     def demographic_section_title = @data.dig('demographic_questions', 'header')
 
+    def education_question_present? = @data['education'].present?
+
+    def education_questions
+      []
+    end
+
     def field_id(field) = convert_to_numerical_id(field['name'])
 
     def field_max_length(field) = (255 if field_type(field) == 'input_text')
@@ -51,13 +58,6 @@ module Importer
     def field_options(field) = field['values'] || field['answer_options']
 
     def field_type(field) = field['type']
-
-    def insert_questions(questions, questions_to_insert, identifier)
-      index = questions
-              .index { |question| question.dig('fields', 0, 'name') == identifier.to_s } ||
-              questions.size
-      questions[0...index] + questions_to_insert + questions[index..]
-    end
 
     def location_question_present? = @data['location_questions'].present?
 
@@ -79,7 +79,7 @@ module Importer
 
     def question_fields = @question['fields'] || [@question]
 
-    def question_id = @question.dig('fields', 0, 'name')
+    def question_id(question) = question.dig('fields', 0, 'name')
 
     def question_label = @question['label']
 
