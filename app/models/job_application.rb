@@ -16,6 +16,7 @@ class JobApplication < ApplicationRecord
 
   has_one_attached :cover_letter
   has_one_attached :resume
+  has_one :application_question_set, through: :job
   #   has_one_attached :screenshot
 
   # == Scopes ===============================================================
@@ -24,7 +25,14 @@ class JobApplication < ApplicationRecord
   # == Validations ==========================================================
   validates :status, presence: true
 
-  # Define custom methods (optional)
+  def api_payload
+    # application_question_set.questions.map { |question| question.payload(self) }
+    application_question_set.questions.map do |question|
+      # byebug if question.selector == "phone"
+      question.payload(self)
+    end
+  end
+
   def submitted?
     status.eql?("submitted")
   end

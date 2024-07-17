@@ -1,8 +1,8 @@
 module Ats
   module Devitjobs
     module ApplicationFields
-      def get_application_criteria(job, _data)
-        job.application_criteria = CORE_FIELDS
+      def get_application_question_set(job, _data)
+        job.application_question_set = CORE_FIELDS
       end
 
       CORE_FIELDS = {

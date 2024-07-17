@@ -1,11 +1,12 @@
 module Ats
   module Manatal
     module ApplicationFields
-      def get_application_criteria(job, _data)
+      def get_application_question_set(job, _data)
         p "Getting Manatal application criteria"
-        data = fetch_application_fields(job)
 
-        job.application_criteria = build_application_criteria_from(data)
+        # TODO : implement new application_question_structure structure
+        # data = fetch_application_fields(job)
+        # job.application_question_set = build_application_question_set_from(data)
         job.apply_with_cheddar = true
         job.save
         # TODO: update job.requirement
@@ -16,7 +17,7 @@ module Ats
         get_json_data(endpoint)
       end
 
-      def build_application_criteria_from(data)
+      def build_application_question_set_from(data)
         data.to_h do |field|
           p field
           label = field['label']

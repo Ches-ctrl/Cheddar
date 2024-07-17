@@ -27,15 +27,14 @@ class JobAttributesFetcher < ApplicationTask
   def process
     @job.assign_attributes(core_params)
     @job.assign_attributes(job_details)
-    # @job.build_application_criterion(
-    #   form_structure: @ats.get_application_criteria(@job, @data)
-    # )
-    @job.application_criteria = application_criteria
+    @job.build_application_question_set(
+      form_structure: application_question_set
+    )
     @job.save
   end
 
-  def application_criteria
-    @ats.get_application_criteria(@job, @data)
+  def application_question_set
+    @ats.get_application_question_set(@job, @data)
   end
 
   def core_params

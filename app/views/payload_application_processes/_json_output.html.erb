@@ -1,16 +1,12 @@
 <pre class="overflow-x-auto px-4 pb-4 text-xs text-white">
-<% unless transformed_data.ends_with?('not found!') %>
 <code class="language-json">
 <span><span style="color: var(--shiki-color-text)">{</span></span>
-<% JSON(transformed_data).each do |key, hash| %>
-<%= ('<span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-keyword)">"' + key + '"</span><span style="color: var(--shiki-token-punctuation)">:</span><span style="color: var(--shiki-color-text)"> </span><span style="color: var(--shiki-color-text)">{</span>').html_safe %>
-<% hash.each do |key, value| %>
-<%= ('<span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-keyword)">"' + key + '"</span><span style="color: var(--shiki-token-punctuation)">:</span><span style="color: var(--shiki-color-text)"> </span><span style="color: var(--shiki-token-string-expression)">"' + value.to_s + '"</span><span style="color: var(--shiki-token-punctuation)">'+ (last_element?(hash, key) ? '' : ',') +'</span></span>').html_safe %><%= ('<br /><span><span style="color: var(--shiki-color-text)">  },</span></span>').html_safe if last_element?(hash, key) %>
-<% end %>
+<% questions.each do |question| %>
+<%= ('<span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-keyword)">"' + question.attribute + '"</span><span style="color: var(--shiki-token-punctuation)">:</span><span style="color: var(--shiki-color-text)"> </span><span style="color: var(--shiki-color-text)">{</span>').html_safe %>
+<%= ('<span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-keyword)">"selector: "</span><span style="color: var(--shiki-token-punctuation)">:</span><span style="color: var(--shiki-color-text)"> </span><span style="color: var(--shiki-token-string-expression)">"' + question.selector + '"</span><span style="color: var(--shiki-token-punctuation)">,</span></span>').html_safe %>
+<%= ('<span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-keyword)">"type: "</span><span style="color: var(--shiki-token-punctuation)">:</span><span style="color: var(--shiki-color-text)"> </span><span style="color: var(--shiki-token-string-expression)">"' + question.type + '"</span><span style="color: var(--shiki-token-punctuation)">,</span></span>').html_safe %>
+<%= ('<span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-keyword)">"value: "</span><span style="color: var(--shiki-token-punctuation)">:</span><span style="color: var(--shiki-color-text)"> </span><span style="color: var(--shiki-token-string-expression)">"' + question.answered_value(job_application).to_s + '"</span><span style="color: var(--shiki-token-punctuation)"></span></span>').html_safe %><%= ('<br /><span><span style="color: var(--shiki-color-text)">  },</span></span>').html_safe %>
 <% end %>
 <span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-comment)">// ...</span></span>
 <span><span style="color: var(--shiki-color-text)">}</span></span><span></span></code>
-<% else %>
-    <%= transformed_data %>
-<% end %>
 </pre>

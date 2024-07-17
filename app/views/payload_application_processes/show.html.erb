@@ -23,7 +23,7 @@
             </div>
             <div class="group bg-zinc-800 dark:bg-white/2.5">
               <div class="relative">
-                <%= render 'json_output', transformed_data: transformed_data(job_application) %>
+                <%= render 'json_output', job_application:, questions: job_application.application_question_set.questions %>
               </div>
             </div>
           </div>
