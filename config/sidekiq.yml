@@ -16,7 +16,7 @@
   :schedule:
     jobs_updater:
       cron: '0 1 * * *' # Runs once per day (at 1 am)
-      class: Updater::ExistingCompanyJobs
+      class: Updater::ExistingCompanyJobsJob
       queue: updates
     devitjobs_updater:
       cron: '0 2 * * *' # Runs once per day (at 2 am)

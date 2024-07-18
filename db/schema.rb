@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_27_161903) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_16_104558) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_27_161903) do
     t.datetime "updated_at", null: false
     t.datetime "submitted_at"
     t.index ["user_id"], name: "index_application_processes_on_user_id"
+  end
+
+  create_table "application_question_sets", force: :cascade do |t|
+    t.bigint "job_id", null: false
+    t.jsonb "form_structure", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_application_question_sets_on_job_id"
   end
 
   create_table "climate_commitments", force: :cascade do |t|
@@ -186,7 +194,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_27_161903) do
     t.boolean "live", default: true
     t.date "date_posted"
     t.date "deadline"
-    t.text "application_criteria"
     t.text "responsibilities"
     t.text "requirements"
     t.text "benefits"
@@ -302,6 +309,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_27_161903) do
     t.index ["user_id"], name: "index_saved_jobs_on_user_id"
   end
 
+  create_table "saved_searches", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.jsonb "params", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "jobs_count"
+    t.datetime "job_last_updated_at"
+    t.boolean "optin", default: false
+    t.index ["user_id"], name: "index_saved_searches_on_user_id"
+  end
+
   create_table "sub_industries", force: :cascade do |t|
     t.string "name"
     t.bigint "industry_id", null: false
@@ -340,6 +358,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_27_161903) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "application_processes", "users"
+  add_foreign_key "application_question_sets", "jobs"
   add_foreign_key "climate_commitments", "companies"
   add_foreign_key "educations", "users"
   add_foreign_key "job_applications", "application_processes"
@@ -356,6 +375,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_27_161903) do
   add_foreign_key "requirements", "jobs"
   add_foreign_key "saved_jobs", "jobs"
   add_foreign_key "saved_jobs", "users"
+<<<<<<< HEAD
+=======
+  add_foreign_key "saved_searches", "users"
+>>>>>>> a4020253d8b56cfef0acbf67d254ae88fc2b9a2b
   add_foreign_key "sub_industries", "industries"
   add_foreign_key "user_details", "users"
 end

@@ -1,13 +1,16 @@
 require 'nokogiri'
+require 'open-uri'
 
 module Importer
   # Core class for getting form fields using Nokogiri/Capybara
+  # NB. Only scrapes extra fields and combines those with the standard set of Greenhouse fields at the moment
   # TODO: Add routing logic - in future will route to either NokoFields / CapyFields or ApiFields depending on the ATS
-  class CapyFields < ApplicationTask
-    include Capybara::DSL
-
-    def initialize(job)
-      @job = job
+  class GetFormFieldsOld < ApplicationTask
+    def initialize
+      # @job = job
+      # @url = @job.posting_url
+      # @url = "https://job-boards.greenhouse.io/monzo/jobs/6076740"
+      @url = "https://boards.greenhouse.io/forter/jobs/7259821002"
     end
 
     def call
@@ -15,55 +18,40 @@ module Importer
 
       process
     rescue StandardError => e
-      Rails.logger.error "Error running FormFiller: #{e.message}"
+      Rails.logger.error "Error running GetFormFields: #{e.message}"
       nil
     end
 
     private
 
     def processable
-      @job
+      @url # && @job
     end
 
     def process
-      p "Hello from CapyFields!"
-      run_capybara
+      p "Hello from GetFormFields!"
+      scrape_page
     end
 
-    def run_capybara
-      return unless @job.api_url&.include?('greenhouse') # Not yet able to handle Lever or DevIT jobs
+    def scrape_page
+      # return unless @job.api_url&.include?('greenhouse') # Not yet able to handle Lever or DevIT job
 
-      Capybara.current_driver = :selenium_chrome_headless # session = Capybara::Session.new(:selenium_chrome_headless)
-      # all the capybara commands should be session.visit
-      # begin, rescue, ensure
+      doc = parse_html
+      form = parse_form(doc)
 
-      visit(@job.posting_url)
-      return if page.has_selector?('#flash_pending')
-
-      begin
-        find_apply_button.click
-      rescue StandardError
-        nil
-      end
-
-      # Find Form Fields
-
-      form = find('form', text: /apply|application/i)
-      form_html = page.evaluate_script("arguments[0].outerHTML", form.native)
-      nokogiri_form = Nokogiri::HTML.fragment(form_html)
-
-      labels = nokogiri_form.css('label')
+      labels = form.css('label')
 
       attributes = {}
+
       labels.each do |label|
         # Could do this based off of name of ID
-
         # TODO: Add ability to deal with boolean required fields. Input will have an asterisk in a span class in that case
         # TODO: Fix issue where additional core fields will be shown to the user even if not required when included in the core greenhouse set
 
         # Stripping text, downcasing and replacing spaces with underscores to act as primary keys
-
         label_text = label.xpath('descendant-or-self::text()[not(parent::select or parent::option or parent::ul or parent::label/input[@type="checkbox"])]').text
+
+        # p label_text
 
         required = label_text.include?("*")
         label_text = label_text.split("*")[0]
@@ -78,6 +66,8 @@ module Importer
           required:,
           label: label_text
         }
+
+        # puts attributes[name]
 
         inputs = label.css('input', 'textarea').reject { |input| input['type'] == 'hidden' || !input['id'] }
         attributes[name][:locators] = inputs[0]['id'] unless inputs.empty?
@@ -99,7 +89,7 @@ module Importer
       end
 
       begin
-        demographics = nokogiri_form.css("#demographic_questions")
+        demographics = form.css("#demographic_questions")
         demographics_questions = demographics.css(".demographic_question")
         demographics_questions.each do |question|
           label = question.children.select(&:text?).map(&:text).join.strip
@@ -117,29 +107,40 @@ module Importer
           attributes[name][:options] = question.css('label:has(input[type="checkbox"])').map do |option|
             option.text.strip
           end
-          p attributes[name]
+          puts attributes[name]
         end
-      rescue Capybara::ElementNotFound
+      rescue Nokogiri::ElementNotFound
         @errors = true
       end
 
       Capybara.current_session.driver.quit
 
-      extra_fields = attributes
+      # TODO: extra_fields must adopt the exact same structure as application_question_set ...
+      # extra_fields = attributes
+      # unless extra_fields.nil?
+      #   @job.application_criteria = @job.application_criteria.merge(extra_fields)
+      #   p @job.application_criteria
+      # end
 
       p "job is #{@job}"
-
       @job.requirement.no_of_qs = attributes.keys.count
-
-      unless extra_fields.nil?
-        @job.application_criteria = @job.application_criteria.merge(extra_fields)
-        p @job.application_criteria
-      end
       @job.apply_with_cheddar = true
       @job.save
 
-      # TODO: Check that including this here doesn't cause issues
-      return attributes
+      attributes
+    end
+
+    def parse_html
+      html = URI.parse(@url).open
+      Nokogiri::HTML(html)
+    end
+
+    def parse_form(doc)
+      doc.css('form').first
+    end
+
+    def remove_trailing_underscore(string)
+      string[-1] == '_' ? string[...-1] : string
     end
 
     def find_apply_button
@@ -147,8 +148,8 @@ module Importer
            "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')] | //button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'apply')]")
     end
 
-    def remove_trailing_underscore(string)
-      string[-1] == '_' ? string[...-1] : string
+    def pretty_generate(json)
+      JSON.pretty_generate(json)
     end
   end
 end

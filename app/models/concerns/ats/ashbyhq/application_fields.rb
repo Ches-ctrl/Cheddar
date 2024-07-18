@@ -1,12 +1,13 @@
 module Ats
   module Ashbyhq
     module ApplicationFields
-      def get_application_criteria(job, _data)
+      def get_application_question_set(job, _data)
         p "Getting AshbyHQ application criteria"
         data = fetch_job_api_data(job.ats_job_id, job.company.ats_identifier)
         return unless (job_data = data.dig('data', 'jobPosting'))
 
-        job.application_criteria = build_application_criteria_from(job_data)
+        # TODO : implement new application_question_structure structure
+        # job.application_question_set = build_application_question_set_from(job_data)
         job.update(deadline: job_data['applicationDeadline']) # not sure what format
         job.save
       end
@@ -28,7 +29,7 @@ module Ats
         JSON.parse(response.body)
       end
 
-      def build_application_criteria_from(data)
+      def build_application_question_set_from(data)
         attributes = {}
 
         application_form = data.dig('applicationForm', 'sections')

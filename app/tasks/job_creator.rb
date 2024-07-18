@@ -25,6 +25,7 @@ class JobCreator < ApplicationTask
 
   def process
     create_job
+    # attach application_question_set?
     log_and_save_new_job
   end
 

@@ -30,7 +30,7 @@ class JobApplicationsController < ApplicationController
   end
 
   def assign_status
-    required_attributes = required_attributes(@job_application.job.application_criteria)
+    required_attributes = required_attributes(@job_application.application_question_set.questions)
     non_empty_or_null_attributes = non_empty_or_null_attributes(@job_application.additional_info)
     status = (required_attributes - non_empty_or_null_attributes).empty? ? "completed" : "uncompleted"
     @job_application.status = status
@@ -40,8 +40,8 @@ class JobApplicationsController < ApplicationController
     hash.select { |_key, value| !value.nil? && !value.empty? }.keys
   end
 
-  def required_attributes(hash)
-    hash.select { |_key, value| value["required"] }.map { |_key, value| value["locators"] }
+  def required_attributes(questions)
+    questions.select(&:required).map(&:selector)
   end
 
   def build_saved_job
@@ -52,7 +52,7 @@ class JobApplicationsController < ApplicationController
     if @job_application.destroy && @saved_job.save
       success_destroy_job_application_path
     else
-      error_redirect_to_referrer
+      error_redirect_to_referrer('Something went wrong, please try again')
     end
   end
 

@@ -1,17 +1,5 @@
 <article class="flex w-2/3 mx-auto h-full flex-col pb-10 pt-16">
-  <h1 class="sr-only">Account Settings</h1>
-  <header class="border-b border-zinc-900/5 dark:border-white/5">
-    <nav class="flex overflow-x-auto py-4">
-      <ul role="list" class="flex min-w-full flex-none gap-x-6 px-4 text-sm font-semibold leading-6 text-gray-400 sm:px-6 lg:px-8">
-        <li>
-          <%= link_to "Account", edit_registration_path(current_user), class: "text-indigo-600 dark:text-indigo-400" %>
-        </li>
-        <li>
-          <%= link_to "Frequent asked information", edit_user_details_path, class: "text-gray-400 hover:text-indigo-600" %>
-        </li>
-      </ul>
-    </nav>
-  </header>
+  <%= render "user_details/account_navigation_header" %>
   <div class="divide-y divide-zinc-900/5 dark:divide-white/5">
     <%= render 'update_email_form' %>
   </div>

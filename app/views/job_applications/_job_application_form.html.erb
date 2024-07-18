@@ -10,7 +10,7 @@
   <%= hidden_field_tag :job_id, job_application.job.id %>
   <% core_field_count = job_application.application_responses.count { |field| field['core_field'] }%>
 
-    <%# Dynamically creates form elements based on application_criteria - converts to fields ready for application responses. %>
+    <%# Dynamically creates form elements based on application_question_set - converts to fields ready for application responses. %>
     <% job_application.application_responses.each_with_index do |response, response_index| %>
 
       <% if response_index == 0 %>

@@ -34,6 +34,11 @@ module OpportunityHelper
     opportunity.deadline.nil? || opportunity.deadline < Date.today ? "Rolling" : opportunity.deadline.strftime("%d/%m")
   end
 
+  def permitted_search_params
+    params.permit(Job::PERMITTED_SEARCH_PARAMS)
+          .except(:id, :sort, :page)
+  end
+
   def seniority_css(opportunity, seniority)
     ' text-gray-300 dark:text-gray-700' unless opportunity.seniority&.include?(seniority)
   end

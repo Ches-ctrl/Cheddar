@@ -14,6 +14,6 @@ class ApplicationProcessesQuery < ApplicationQuery
 
   def associations
     %i[job_applications]
-      .push({ job_applications: { job: :company } })
+      .push({ job_applications: { job: %i[company application_question_set] } })
   end
 end

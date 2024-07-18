@@ -1,15 +1,17 @@
 module Ats
   module Recruitee
     module ApplicationFields
-      def get_application_criteria(job, data)
+      def get_application_question_set(job, _data)
         p "Getting Recruitee application criteria"
-        job.application_criteria = build_application_criteria_from(data)
+
+        # TODO : implement new application_question_structure structure
+        # job.application_question_set = build_application_question_set_from(data)
         job.apply_with_cheddar = true
         job.save
         # TODO: update job.requirement
       end
 
-      def build_application_criteria_from(data)
+      def build_application_question_set_from(data)
         attributes = build_core_fields(data)
         additional_fields = build_additional_fields(data['open_questions'])
 

@@ -62,4 +62,8 @@ module FaradayHelpers
   def log_error(message)
     Rails.logger.error(message)
   end
+
+  def pretty_generate(json)
+    JSON.pretty_generate(json)
+  end
 end
