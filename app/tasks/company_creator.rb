@@ -42,9 +42,11 @@ class CompanyCreator < ApplicationTask
   end
 
   def log_and_save_new_company
+    return unless @company&.new_record?
+
     p CompanyDescriptionFetcher.call(@company)
     p @company.set_website_url
-    Rails.logger.info "Company created - #{@company.name}" if @company.new_record? && @company.save
+    Rails.logger.info "Company created - #{@company.name}" if @company.save
   end
 
   def supplementary_attributes_from_data

@@ -7,7 +7,7 @@ module Ats
       end
 
       def company_details(ats_identifier)
-        data = Importer::Scraper::TrueUpCompanyDetails.call(ats_identifier)
+        data = Importer::Api::TrueUpCompanyDetails.call(ats_identifier)
         {
           name: data['company'],
           url_website: data['company_url_clean'], # TODO: make this the long form

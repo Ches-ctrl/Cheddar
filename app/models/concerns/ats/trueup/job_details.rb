@@ -38,15 +38,16 @@ module Ats
       end
 
       def build_salary(data)
-        # assumes that the salary is listed in GBP
+        currency = 'GBP' # assumes that the salary is listed in GBP
+        symbol = '£'
 
         min = data['salary_range_min']
         max = data['salary_range_max']
-        return unless min || max
+        return unless min
 
-        salary_low = number_with_delimiter(min)
-        salary_high = number_with_delimiter(max)
-        salary_low == salary_high ? "£#{salary_low} GBP" : "£#{salary_low} - £#{salary_high} GBP"
+        salary_low = "#{symbol}#{number_with_delimiter(min)} "
+        salary_high = max.present? ? "- #{symbol}#{number_with_delimiter(max)} " : ''
+        "#{salary_low}#{salary_high} #{currency}}"
       end
     end
   end
