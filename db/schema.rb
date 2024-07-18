@@ -375,10 +375,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_16_104558) do
   add_foreign_key "requirements", "jobs"
   add_foreign_key "saved_jobs", "jobs"
   add_foreign_key "saved_jobs", "users"
-<<<<<<< HEAD
-=======
   add_foreign_key "saved_searches", "users"
->>>>>>> a4020253d8b56cfef0acbf67d254ae88fc2b9a2b
   add_foreign_key "sub_industries", "industries"
   add_foreign_key "user_details", "users"
 end
