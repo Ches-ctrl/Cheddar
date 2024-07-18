@@ -1,8 +1,8 @@
 module Ats
   module Greenhouse
     module ApplicationFields
-      def get_application_question_set(_job, data)
-        Importer::GetGreenhouseFields.call(data)
+      def get_application_question_set(job, data)
+        Importer::GetGreenhouseFields.call(job, data)
       end
     end
   end

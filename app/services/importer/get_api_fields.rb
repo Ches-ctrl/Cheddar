@@ -9,7 +9,7 @@ module Importer
   class GetApiFields < ApplicationTask
     include FaradayHelpers
 
-    def initialize(data, options = {})
+    def initialize(_job, data, options = {})
       @data = data
       @data_source = options[:data_source]
       @sections = options[:sections] || [:core]
@@ -75,7 +75,7 @@ module Importer
     def fetch_options(field)
       field_options(field).map do |option|
         {
-          id: option_id(option),
+          id: option_id(option)&.to_s,
           label: option_label(option),
           free_form: option_free_form(option),
           decline_to_answer: option_decline_to_answer(option)
@@ -86,7 +86,7 @@ module Importer
     def fetch_question_fields
       question_fields&.map do |field|
         {
-          id: field_id(field),
+          id: field_id(field)&.to_s,
           type: standardize_type(field_type(field)),
           max_length: field_max_length(field),
           options: fetch_options(field)
@@ -123,7 +123,7 @@ module Importer
     end
 
     def find_insertion_index(base_qs, method, target)
-      target_index = base_qs.find_index { |q| question_id(q) == target.to_s }
+      target_index = base_qs.find_index { |q| question_id(q) == target }
       return base_qs.size unless target_index
 
       method == :insert_after ? target_index + 1 : target_index
