@@ -34,7 +34,7 @@ class JobAttributesFetcher < ApplicationTask
   end
 
   def application_question_set
-    @ats.get_application_question_set(@job, @data)
+    @ats.respond_to?(:get_application_question_set) ? @ats.get_application_question_set(@job, @data) : []
   end
 
   def core_params

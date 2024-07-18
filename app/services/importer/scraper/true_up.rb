@@ -5,6 +5,7 @@ module Importer
       include CompanyCsv
       include CheckUrlIsValid
 
+      # NB: This class has been replaced by Importer::Api::TrueUp
       # TODO: Refactor this as can be improved and use standard scraping classes
 
       NUMBER_OF_RESULT_PAGES = 70

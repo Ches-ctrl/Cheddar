@@ -16,7 +16,8 @@ namespace :admin do
 
   desc "Scrape data from TrueUp"
   task scrape_true_up: :environment do
-    Importer::Scraper::TrueUp.new.perform
+    # Importer::Scraper::TrueUp.new.perform
+    Importer::Api::TrueUp.call
   end
 
   desc "Import XML from Workable"
