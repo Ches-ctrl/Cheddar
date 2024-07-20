@@ -58,7 +58,7 @@ module Importer
       ].map { |question| @standard_fields[question].merge(required: @education_required) }
     end
 
-    def field_id(field) = convert_to_numerical_id(field['name'])
+    def field_id(field) = convert_to_numerical_id(field['name'] || field['id'])
 
     def field_max_length(field) = (255 if field_type(field) == 'input_text')
 
