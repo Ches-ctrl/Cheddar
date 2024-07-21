@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_16_104558) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_21_155222) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -60,7 +60,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_16_104558) do
 
   create_table "application_processes", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "status", default: "new", null: false
+    t.string "status", default: "initial", null: false
     t.jsonb "frequent_asked_info", default: {}, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -153,7 +153,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_16_104558) do
     t.bigint "application_process_id", null: false
     t.bigint "job_id", null: false
     t.jsonb "additional_info", default: {}, null: false
-    t.string "status", default: "new", null: false
+    t.string "status", default: "initial", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["application_process_id"], name: "index_job_applications_on_application_process_id"

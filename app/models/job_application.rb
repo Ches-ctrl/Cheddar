@@ -21,14 +21,15 @@ class JobApplication < ApplicationRecord
 
   # == Scopes ===============================================================
   default_scope { order id: :asc }
+  scope :in_progress, -> { where(status: %i[new completed]) }
+  scope :submitted, -> { where(status: %i[submitted]) }
 
   # == Validations ==========================================================
-  validates :status, presence: true
+  enum :status, { initial: "initial", completed: "completed", submitted: "submitted", rejected: "rejected" },
+       default: :initial, validate: true
 
   def api_payload
-    # application_question_set.questions.map { |question| question.payload(self) }
     application_question_set.questions.map do |question|
-      # byebug if question.selector == "phone"
       question.payload(self)
     end
   end

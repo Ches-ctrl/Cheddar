@@ -23,6 +23,11 @@
               <% else %>
                 <%= link_to "In progress", in_progress_jobs_path, class: "inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-white/10 hover:text-gray-700 dark:hover:text-gray-500" %>
               <% end %>
+              <% if current_page?(controller: 'submitted_jobs', action: 'index') %>
+                <a href="#" class="inline-flex items-center border-b-2 border-indigo-500 dark:border-indigo-300 px-1 pt-1 text-sm font-medium text-gray-900 dark:text-white" aria-current="page">Submitted</a>
+              <% else %>
+                <%= link_to "Submitted", submitted_jobs_path, class: "inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-white/10 hover:text-gray-700 dark:hover:text-gray-500" %>
+              <% end %>
             </div>
           </div>
         </div>
