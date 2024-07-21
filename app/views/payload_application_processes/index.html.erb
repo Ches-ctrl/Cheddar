@@ -1,0 +1,42 @@
+<%= provide(:title, 'Application Process - Payload viewer') %>
+<article class="flex w-2/3 mx-auto h-full flex-col pb-5 pt-8">
+  <div class="grid max-w-8xl sm:grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
+    <%= render '/job_applications/step_indicators' %>
+    <div class="grid gap-x-6 gap-y-8 sm:max-w-6xl sm:grid-cols-6 md:col-span-2">
+      <% @application_process.job_applications.each do |job_application| %>
+        <div class="flex col-span-full justify-end items-center gap-x-6 sm:gap-x-8">
+          <%= link_to application_process_job_application_payload_path(@application_process, job_application), class: "-m-2.5 p-2.5 text-gray-400 hover:text-gray-500 dark:text-gray-500 hover:dark:text-gray-400" do %>
+            <span class="sr-only">Json file</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+            </svg>            
+          <% end %>
+          <div class="col-start-6">
+            <%= simple_form_for job_application, url: application_process_submit_application_index_path(job_application), html: { method: :post } do |f| %>
+              <%= f.hidden_field :job_application_id, value: job_application.id %>
+              <%= f.hidden_field :payload, value: transformed_data(job_application) %>
+              <%= f.button :submit, "Submit", class: "flex w-full justify-center cursor-pointer rounded-md !bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white dark:text-gray-900 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-span-full overflow-hidden rounded-2xl shadow-md">
+          <div class="not-prose">
+            <div class="flex min-h-[calc(theme(spacing.12)+1px)] flex-wrap items-start gap-x-4 border-b border-zinc-700 bg-zinc-800 px-4 dark:border-zinc-800 dark:bg-transparent px-4">
+              <%= link_to posting_url(job_application), target: "_blank", class: "text-xs font-semibold pt-3 flex flex-row items-center text-white hover:text-indigo-200" do %>
+                <h3 class="me-2"><%= payload_title(job_application) %></h3>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                </svg>
+              <% end %>
+            </div>
+            <div class="group bg-zinc-800 dark:bg-white/2.5">
+              <div class="relative">
+                <%= render 'json_output', job_application:, questions: job_application.application_question_set.questions %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</article>

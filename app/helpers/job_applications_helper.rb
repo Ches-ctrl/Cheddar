@@ -3,6 +3,12 @@ module JobApplicationsHelper
     application_question_set.required && !attachment.attached?
   end
 
+  def different_section?(previous_question, question)
+    return false unless previous_question
+
+    previous_question&.section != question.section
+  end
+
   def mandatory_field(application_question_set)
     application_question_set.required ? "* " : ""
   end

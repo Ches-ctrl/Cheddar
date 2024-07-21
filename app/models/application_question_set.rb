@@ -14,17 +14,9 @@ class ApplicationQuestionSet < ApplicationRecord
   # == Instance Methods =====================================================
   # == Class Methods ========================================================
   def questions
-    # hh = []
-    # hh << form_structure.map { |section| section }
-    #                     .map { |criterion_hash| criterion_hash['questions'] }
-    #                     .flatten
-    #                     .map { |question| Question.new(question) }
-    # hh.flatten
-    form_structure.map { |section| section }
-                  .map { |criterion_hash| criterion_hash['questions'] }
-                  .flatten
-                  .map { |question| ApplicationQuestion.new(question) }
-                  .flatten
+    form_structure.map do |section|
+      section['questions'].map { |question| ApplicationQuestion.new(question.merge(section: section['title'])) }
+    end.flatten
   end
 
   def no_of_qs

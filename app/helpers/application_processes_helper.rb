@@ -47,17 +47,20 @@ module ApplicationProcessesHelper
     data.index(target) < data.index(comparison)
   end
 
-  def prefilled_value(question, job_application)
-    filled_value(question, job_application) || user_detail_value(question, job_application)
+  def overview_humanized_value(job_application, attribute, value)
+    question = job_application.application_question_set.questions.find { |question| question.attribute.eql?(attribute) }
+    question.option_text_value(value)
+  end
+
+  def prefilled_value(question, job_application, last_applicant_answers)
+    filled_value(question, job_application) || previously_answered_value(question, last_applicant_answers)
   end
 
   def filled_value(question, job_application)
     question.answered_value(job_application)
   end
 
-  def user_detail_value(question, job_application)
-    return unless UserDetail::FREQUENT_ASKED_INFO_ATTRIBUTES.include?(question.attribute)
-
-    job_application.application_process.user.user_detail.public_send(question.attribute)
+  def previously_answered_value(question, last_applicant_answers)
+    last_applicant_answers.find { |hash| hash[question.attribute] }&.values&.first
   end
 end
