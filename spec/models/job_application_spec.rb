@@ -5,7 +5,8 @@ RSpec.describe JobApplication do
   end
 
   describe 'Validations' do
-    it { is_expected.to validate_presence_of(:status) }
+    it { is_expected.to validate_inclusion_of(:status).in_array(JobApplication.statuses.keys) }
+
     xit { is_expected.to validate_uniqueness_of(:job_id).scoped_to(:user_id) }
   end
 end
