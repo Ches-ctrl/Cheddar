@@ -1,4 +1,3 @@
-
 <% if question.valid? && question.input? %>
   <%= field_form.input question.attribute,
     autofocus: false,
@@ -85,6 +84,7 @@
   <%= render "shared/forms/attachments_list", attachments: [job_application.cover_letter], document_attached: job_application.cover_letter.attached? %>
 <% elsif question.upload? %>
   We don't manage the type of upload yet.
-<% elsif question.valid? %>
-  <%= "Valid: #{ question.to_json.html_safe }" %>
+<% else %>
+  <%= "Question: #{ question.to_json.html_safe }" %>
 <% end %>
+<% true || byebug %>

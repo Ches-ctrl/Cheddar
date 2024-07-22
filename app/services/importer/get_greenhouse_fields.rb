@@ -44,7 +44,7 @@ module Importer
 
     def core_questions
       questions = @data['questions']
-      insert_questions(questions, location_questions, :insert_before, 'resume') if location_question_present?
+      questions = insert_questions(questions, location_questions, :insert_before, 'resume') if location_question_present?
       questions
     end
 
