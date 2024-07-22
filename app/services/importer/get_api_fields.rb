@@ -112,6 +112,10 @@ module Importer
       }
     end
 
+    def options?(field)
+      field[:type].match?(/select/)
+    end
+
     def log_and_return_fields
       puts pretty_generate(@fields)
       @fields
