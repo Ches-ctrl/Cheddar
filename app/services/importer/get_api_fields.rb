@@ -43,9 +43,7 @@ module Importer
     def build_fields
       @sections.each do |section|
         @section = section
-        generate_section
-        build_questions
-        add_section_to_fields
+        build_section
       end
     end
 
@@ -56,6 +54,12 @@ module Importer
       end
     end
 
+    def build_section
+      generate_section
+      build_questions
+      add_section_to_fields
+    end
+
     def core_details = @standard_fields[question_id(@question)] || {}
 
     def core_section_description = nil
@@ -63,6 +67,8 @@ module Importer
     def core_section_title = 'Main application'
 
     def create_question
+      p "attempting to create a question from the following data..."
+      p @question
       {
         attribute: generate_attribute_from_label(question_label),
         required: question_required?,
