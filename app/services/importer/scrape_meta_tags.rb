@@ -30,19 +30,26 @@ module Importer
     private
 
     def able_to_fetch_document?
-      loop do
-        puts "trying to get a response: #{@url}"
-        response = get_response(@url)
-        case response
-        when Net::HTTPSuccess
-          return fetch_doc
-        when Net::HTTPRedirection || Net::HTTPMovedPermanently
-          @url = fetch_redirect(@url, response)
-        else
-          p response
-          return false
+      # TODO: refactor this to use Faraday
+
+      Timeout.timeout(5) do
+        loop do
+          puts "trying to get a response: #{@url}"
+          response = get_response(@url)
+          case response
+          when Net::HTTPSuccess
+            return fetch_doc
+          when Net::HTTPRedirection || Net::HTTPMovedPermanently
+            @url = fetch_redirect(@url, response)
+          else
+            p response
+            return false
+          end
         end
       end
+    rescue Timeout::Error
+      p "Timeout while fetching document from #{@url}"
+      return false
     end
 
     def fetch_doc

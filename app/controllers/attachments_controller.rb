@@ -9,21 +9,13 @@ class AttachmentsController < ApplicationController
   def destroy_attachment
     if @attachment.present?
       @attachment.purge
-      success_redirect_to_referrer
+      success_redirect_to_referrer('Attachment successfully removed!')
     else
-      error_redirect_to_referrer
+      error_redirect_to_referrer('Something went wrong, please try again')
     end
   end
 
   def load_attachment
     @attachment = ActiveStorage::Attachment.find(params.permit(:id)[:id])
-  end
-
-  def success_redirect_to_referrer
-    redirect_to request.referrer, notice: 'Attachment successfully removed!'
-  end
-
-  def error_redirect_to_referrer
-    redirect_to request.referrer, alert: 'Something went wrong, please try again'
   end
 end

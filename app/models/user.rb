@@ -18,6 +18,7 @@ class User < ApplicationRecord
   has_many :educations, dependent: :destroy
   has_many :job_applications, through: :application_processes
   has_many :saved_jobs, dependent: :destroy
+  has_many :saved_searches, dependent: :destroy
   # == Scopes ===============================================================
   # == Validations ==========================================================
 

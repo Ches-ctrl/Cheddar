@@ -27,14 +27,14 @@ class JobAttributesFetcher < ApplicationTask
   def process
     @job.assign_attributes(core_params)
     @job.assign_attributes(job_details)
-
-    application_criteria # TODO: rewrite modules so this returns an attribute hash like job_details
-    @job.save
-    fetch_form_fields
+    @job.build_application_question_set(
+      form_structure: application_question_set
+    )
+    @job
   end
 
-  def application_criteria
-    @ats.get_application_criteria(@job, @data)
+  def application_question_set
+    @ats.respond_to?(:get_application_question_set) ? @ats.get_application_question_set(@job, @data) : []
   end
 
   def core_params
@@ -43,11 +43,6 @@ class JobAttributesFetcher < ApplicationTask
       applicant_tracking_system: @ats,
       api_url: @api_url
     }
-  end
-
-  def fetch_form_fields
-    # TODO: create separate module methods for this
-    Flipper.enabled?(:get_form_fields) ? Importer::GetFormFieldsJob.perform_later(@job) : "Form Fields turned off"
   end
 
   def job_details

@@ -1,0 +1,17 @@
+<article class="flex w-2/3 mx-auto h-full flex-col pb-10 pt-16">
+  <%= render "user_details/account_navigation_header" %>
+  <div class="divide-y divide-zinc-900/5 dark:divide-white/5">
+    <div class="grid max-w-8xl sm:grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
+      <div>
+        <h2 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">Saved searches</h2>
+        <p class="mt-1 text-sm leading-6 text-gray-500 dark:text-gray-400">
+          Never miss a perfect fit: Save your search criteria and get alerted about new matching jobs.
+        </p>
+      </div>
+      <ul role="list" class="md:col-span-2 divide-y divide-gray-100 dark:divide-gray-800">
+        <%= render @saved_searches %>
+      </ul>
+    </div>
+  </div>
+</article>
+  

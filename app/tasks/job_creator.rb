@@ -13,7 +13,6 @@ class JobCreator < ApplicationTask
 
     process
   rescue StandardError => e
-    p e.message
     Rails.logger.error "Error creating job: #{e.message}"
     nil
   end
@@ -26,6 +25,7 @@ class JobCreator < ApplicationTask
 
   def process
     create_job
+    # attach application_question_set?
     log_and_save_new_job
   end
 

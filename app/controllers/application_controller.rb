@@ -19,10 +19,8 @@ class ApplicationController < ActionController::Base
                                              :right_to_work, { cover_letter_templates: [] }])
   end
 
-  def user_root_path
-    return request.referrer if request.referrer.end_with?('/users/edit') || request.referrer.include?('/users/edit?')
-
-    root_path
+  def error_redirect_to_referrer(alert)
+    redirect_to request.referrer, alert:
   end
 
   def on_landing_page?
@@ -56,4 +54,14 @@ class ApplicationController < ActionController::Base
                   }
   end
   # rubocop:enable Metrics/MethodLength
+
+  def success_redirect_to_referrer(notice)
+    redirect_to request.referrer, notice:
+  end
+
+  def user_root_path
+    return request.referrer if request.referrer.end_with?('/users/edit') || request.referrer.include?('/users/edit?')
+
+    root_path
+  end
 end

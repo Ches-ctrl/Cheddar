@@ -16,7 +16,8 @@ namespace :admin do
 
   desc "Scrape data from TrueUp"
   task scrape_true_up: :environment do
-    Importer::Scraper::TrueUp.new.perform
+    # Importer::Scraper::TrueUp.new.perform
+    Importer::Api::TrueUp.call
   end
 
   desc "Import XML from Workable"
@@ -37,6 +38,16 @@ namespace :admin do
   desc "Test GetFormFields"
   task formfields: :environment do
     Importer::GetFormFields.call
+  end
+
+  desc "Test GetFormFieldsOld"
+  task formfieldsold: :environment do
+    Importer::GetFormFieldsOld.call
+  end
+
+  desc "Test GetApiFields"
+  task apifields: :environment do
+    Importer::GetApiFields.call
   end
 
   desc "Test OpenAI Integration"
