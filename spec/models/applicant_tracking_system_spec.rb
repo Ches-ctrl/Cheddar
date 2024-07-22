@@ -33,7 +33,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
     end
 
     before(:each) do
-      allow($stdout).to receive(:write) # suppresses terminal clutter
+      # allow($stdout).to receive(:write) # suppresses terminal clutter
     end
 
     it 'can parse a url and determine the ATS' do

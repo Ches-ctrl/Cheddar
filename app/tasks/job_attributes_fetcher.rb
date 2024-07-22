@@ -25,7 +25,8 @@ class JobAttributesFetcher < ApplicationTask
   end
 
   def process
-    @job.assign_attributes core_params.merge(job_details)
+    @job.assign_attributes(core_params)
+    @job.assign_attributes(job_details)
     @job.build_application_question_set(
       form_structure: application_question_set
     )

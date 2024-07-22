@@ -22,6 +22,7 @@ module Ats
 
       def job_details(job, data)
         title, location = fetch_title_and_location(data)
+        p job.company
         {
           title:,
           description: Flipper.enabled?(:job_description) ? data['description'] : 'Not added yet',
