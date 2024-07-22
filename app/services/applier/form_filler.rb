@@ -1,69 +1,141 @@
 # frozen_string_literal: true
 
-require 'json'
-# require 'open-uri'
-# require 'htmltoword'
-
-# TODO: Handle job posting becoming closed (redirect or notification on page)
 module Applier
-  # Core class for filling out forms using Capybara
   class FormFiller < ApplicationTask
     include Capybara::DSL
+    include LoggingHelper
 
-    def initialize(job_application, payload)
-      @job_application = job_application
-      @url = @job_application.job.posting_url
-      @ats = @job_application.job.applicant_tracking_system
-      @fields = JSON.parse(payload)
-      # @user = @job_application.application_process.user
-      @errors = nil
-
-      # include the relevant ATS form_filler module
-      include_ats_module
+    def initialize(payload)
+      @application_form = payload[:form_locator]
+      @fields = payload[:fields]
+      @session = Capybara::Session.new(:selenium)
+      @url = payload[:apply_url]
+      @user_fullname = payload[:user_fullname]
     end
 
     def call
-      return unless processable
+      return false unless processable
 
-      process
-    rescue StandardError => e
-      Rails.logger.error "Error running FormFiller: #{e.message}"
-      nil
+      using_session(@session) do
+        process
+      end
     end
 
     private
 
     def processable
-      @url && @fields && @job_application && @ats
+      @url && @fields && @session
     end
 
     def process
-      p "Hello from FormFiller!"
-      submit_application
+      visit_url
+      log_runtime(:fill_application_form)
+      click_submit_button
+      verify_submission
+    ensure
+      @session.quit
     end
 
-    def include_ats_module
-      ats_name = @ats.name.gsub(/\W/, '').capitalize
-      module_name = "Ats::#{ats_name}::SubmitApplication"
-      extend Object.const_get(module_name) if Object.const_defined?(module_name)
+    def apply_button
+      find(:css, 'button, a', text: /apply/i, match: :first)
     end
 
-    def submit_application
-      return super if defined?(super)
-
-      puts "Write a submit method for #{@ats.name}!"
-      return
+    def attach_file_to_application
+      find(@locator).attach_file(@filepath)
     end
 
-    # def take_screenshot_and_store(session, job_application)
-    #   screenshot_path = Rails.root.join('tmp', "screenshot-#{job_application.id}.png")
-    #   session.save_screenshot(screenshot_path)
+    def click_apply_button
+      apply_button.click
+    end
 
-    #   file = File.open(screenshot_path)
-    #   job_app = job_application
-    #   job_app.screenshot.attach(io: file, filename: "screenshot-#{job_application.id}.png", content_type: 'image/png')
+    def click_submit_button
+      sleep 2 # temporary -- just for testing
+      submit_button.click
+    end
 
-    #   File.delete(screenshot_path)
-    # end
+    def doc_tmp_file
+      docx = Htmltoword::Document.create(@value)
+      @filepath = Rails.root.join("tmp", "Cover Letter_#{unique_string}.docx")
+      File.binwrite(@filepath, docx)
+    end
+
+    def fill_application_form
+      click_apply_button
+      fill_in_all_fields
+    end
+
+    def fill_in_all_fields
+      within @application_form do
+        @fields.each { |field| fill_in_field(field) }
+      end
+    end
+
+    def fill_in_field(field)
+      @locator = field[:locator]
+      @value = field[:value]
+      send(:"handle_#{field[:interaction]}")
+    rescue Capybara::ElementNotFound => e
+      p e.message
+    end
+
+    def handle_input
+      verify_input { fill_in(@locator, with: @value) }
+    end
+
+    def handle_radiogroup
+      choose(option: @value, name: @locator)
+    end
+
+    def handle_multi_select
+      within response_field do
+        @value.each { |value| check(value) }
+      end
+    end
+
+    def handle_upload
+      @value.instance_of?(String) ? doc_tmp_file : pdf_tmp_file
+      attach_file_to_application
+    end
+
+    def pdf_tmp_file
+      @filepath = Rails.root.join("tmp", "Resume - #{unique_string}.pdf")
+      File.binwrite(@filepath, @value)
+    end
+
+    def response_field
+      first('label', text: @locator)
+    rescue Capybara::ElementNotFound
+      first('div', text: @locator)
+    end
+
+    def submit_button
+      first(:button, text: /submit/i) || first(:link, text: /submit/i)
+    end
+
+    def timestamp
+      Time.now.to_s.truncate(19).gsub(/\D/, '')
+    end
+
+    def unique_string
+      "#{@user_fullname}_#{timestamp}"
+    end
+
+    def verify_input(retries = 3)
+      returned_value = yield.value
+      raise Applier::IncorrectInputError unless returned_value == @value
+    rescue Applier::IncorrectInputError
+      retries -= 1
+      retry unless retries.negative?
+    end
+
+    def verify_submission
+      sleep 4 # temporary -- just for testing
+      # TODO: add logic to check for successful submission message or other indicators
+    end
+
+    def visit_url
+      visit(@url)
+      p "Successfully reached #{@url}"
+    end
   end
 end
