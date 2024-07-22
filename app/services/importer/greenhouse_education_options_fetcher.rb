@@ -5,12 +5,12 @@ module Importer
     include FaradayHelpers
 
     def initialize(company_id, type)
-      @endpoint = "https://boards-api.greenhouse.io/v1/boards/#{company_id}/education/#{type}s"
-      @data, @total_count, @per_page = initial_request
+      @type = type
+      @endpoint = "https://boards-api.greenhouse.io/v1/boards/#{company_id}/education/#{@type}s"
     end
 
     def call
-      return unless processable
+      return [] unless processable
 
       process
     end
@@ -18,15 +18,20 @@ module Importer
     private
 
     def processable
-      @data && @total_count && @per_page
+      processable_types.include?(@type)
     end
 
     def process
+      fetch_meta_data
       fetch_all_results
       parse_data
     end
 
     def extract(data) = data&.dig('items')
+
+    def fetch_meta_data
+      @data, @total_count, @per_page = initial_request
+    end
 
     def fetch_all_results
       additional_pages = @total_count / @per_page
@@ -54,6 +59,8 @@ module Importer
         }
       end
     end
+
+    def processable_types = ['school', 'degree', 'discipline']
 
     def request_options
       {

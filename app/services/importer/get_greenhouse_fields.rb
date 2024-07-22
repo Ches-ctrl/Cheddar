@@ -18,9 +18,8 @@ module Importer
     private
 
     def build_education_question(type)
-      puts "Building education question, type: #{type}."
       question = @standard_fields[type].merge(required: @education_required)
-      question[:fields][0][:options] = Importer::GreenhouseEducationOptionsFetcher.call(@company_id, type) if options?(question[:fields][0])
+      question[:fields][0][:options] = Importer::GreenhouseEducationOptionsFetcher.call(@company_id, type)
       question
     end
 
