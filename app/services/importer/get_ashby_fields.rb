@@ -42,13 +42,13 @@ module Importer
 
     def fetch_questions = @section_data['fieldEntries']
 
-    def field_id(field) = field['path']
+    def field_id = @field['path']
 
-    def field_max_length(_field) = nil
+    def field_max_length = nil
 
-    def field_options(field) = field['selectableValues'] || []
+    def field_options = @field['selectableValues'] || []
 
-    def field_type(field) = field['type']
+    def field_type = @field['type']
 
     def form_section = FORM_SECTIONS[@section]
 
@@ -58,7 +58,7 @@ module Importer
 
     def option_free_form(_option) = nil
 
-    def option_id(option) = option['value']
+    def option_id(_option) = "input[id$='#{field_id}-labeled-radio-#{@option_index}']"
 
     def option_label(option) = option['label']
 
@@ -66,7 +66,7 @@ module Importer
 
     def question_fields = [@question['field']]
 
-    def question_id(question) = question.dig('field', 'path') || question[:attribute]
+    def question_id(question) = question.dig('field', 'path')
 
     def question_label = @question.dig('field', 'title')
 
@@ -104,6 +104,61 @@ module Importer
             id: '_systemfield_email',
             selector: nil,
             type: :input,
+            options: []
+          }
+        ]
+      },
+      '_systemfield_location' => {
+        attribute: :location,
+        fields: [
+          {
+            id: '_systemfield_location',
+            selector: nil,
+            type: :location,
+            options: []
+          }
+        ]
+      },
+      '_systemfield_resume' => {
+        attribute: :resume,
+        fields: [
+          {
+            id: '_systemfield_resume',
+            selector: nil,
+            type: :upload,
+            options: []
+          }
+        ]
+      },
+      '_systemfield_eeoc_gender' => {
+        attribute: :gender,
+        fields: [
+          {
+            id: '_systemfield_eeoc_gender',
+            selector: nil,
+            type: :select,
+            options: []
+          }
+        ]
+      },
+      '_systemfield_eeoc_race' => {
+        attribute: :race,
+        fields: [
+          {
+            id: '_systemfield_eeoc_race',
+            selector: nil,
+            type: :select,
+            options: []
+          }
+        ]
+      },
+      '_systemfield_eeoc_veteran_status' => {
+        attribute: :veteran_status,
+        fields: [
+          {
+            id: '_systemfield_eeoc_veteran_status',
+            selector: nil,
+            type: :select,
             options: []
           }
         ]

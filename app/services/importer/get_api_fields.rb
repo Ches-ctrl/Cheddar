@@ -67,8 +67,6 @@ module Importer
     def core_section_title = 'Main application'
 
     def create_question
-      p "attempting to create a question from the following data..."
-      p @question
       {
         attribute: generate_attribute_from_label(question_label),
         required: question_required?,
@@ -78,8 +76,9 @@ module Importer
       }.merge(core_details)
     end
 
-    def fetch_options(field)
-      field_options(field).map do |option|
+    def fetch_options
+      field_options.map.with_index do |option, index|
+        @option_index = index
         {
           id: option_id(option)&.to_s,
           label: option_label(option),
@@ -91,11 +90,12 @@ module Importer
 
     def fetch_question_fields
       question_fields&.map do |field|
+        @field = field
         {
-          id: field_id(field)&.to_s,
-          type: standardize_type(field_type(field)),
-          max_length: field_max_length(field),
-          options: fetch_options(field)
+          id: field_id&.to_s,
+          type: standardize_type(field_type),
+          max_length: field_max_length,
+          options: fetch_options
         }.compact
       end
     end
