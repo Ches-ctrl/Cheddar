@@ -64,6 +64,7 @@ Rails.application.routes.draw do
       get '/payload', to: 'payload_application_processes#show'
     end
     resources :application_submissions, only: %i[create]
+    resources :submit_application, only: %i[create]
   end
 
   resource :user_details, only: %i[edit update]

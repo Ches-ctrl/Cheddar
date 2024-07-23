@@ -1,96 +1,74 @@
 <% if question.valid? && question.input? %>
   <%= field_form.input question.attribute,
-    autofocus: false,
     hint: question.description&.html_safe,
     label: question.label,
     required: question.required,
     input_html: { 
-      class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6',
       value: prefilled_value(question, job_application, last_applicant_answers)
     }
   %>
 <% elsif question.valid? && question.select? %>
   <%= field_form.input question.attribute,
-    autofocus: false,
     collection: question.options,
     include_blank: true,
     hint: question.description&.html_safe,
     label: question.label,
     required: question.required,
     selected: prefilled_value(question, job_application, last_applicant_answers),
-    type: :select,
-    input_html: { 
-      class: "block w-full rounded-md border-0 py-1.5 bg-white/5 dark:hover:bg-zinc-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6"
-    }
+    type: :select
   %>
 <% elsif question.valid? && question.multi_select? %>
   <%= field_form.input question.attribute,
-    autofocus: false,
+    as: :check_boxes,
     collection: question.options,
     hint: question.description&.html_safe,
     label: question.label,
     required: question.required,
     selected: prefilled_value(question, job_application, last_applicant_answers),
-    type: :select,
     input_html: { 
-      multiple: true,
-      class: "block w-full rounded-md border-0 py-1.5 bg-white/5 dark:hover:bg-zinc-900 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6",
-    },
-    wrapper_html: { label: question.label }
+      class: 'h-5 w-5 my-3 me-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600',
+    }
   %>
 <% elsif question.valid? && question.textarea? %>
   <%= field_form.input question.attribute,
-    autofocus: false,
     hint: question.description&.html_safe,
     label: question.label,
     required: question.required,
     as: :text,
-    input_html: { 
+    input_html: {
+      class: 'block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
       rows: 5,
-      class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6',
       value: prefilled_value(question, job_application, last_applicant_answers)
     }
   %>
 <% elsif question.valid? && question.radiogroup? %>
   <%= field_form.input question.attribute,
-    autofocus: false,
     label: question.label,
     hint: question.description&.html_safe,
     required: question.required,
     input_html: { 
-      class: 'rounded-4 block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6',
       value: prefilled_value(question, job_application, last_applicant_answers)
     }
   %>
-<% elsif question.resume? %>
-  <%= form.input :resume,
+<% elsif question.resume? || question.cover_letter? %>
+  <% document = question.resume? ? job_application.resume : job_application.cover_letter %>
+  <%= form.input question.attribute,
     as: :file,
-    autofocus: false,
     hint: question.description&.html_safe,
     label: question.label,
-    required: attachment_required_but_absent?(question, job_application.resume),
+    required: attachment_required_but_absent?(question, document),
     input_html: { 
       direct_upload: true,
-      class: 'block w-full rounded-md border-0 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6'
+      class: 'block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400
+              file:bg-gray-200 file:border-0
+              file:me-4
+              file:py-1.5 file:px-2
+              dark:file:bg-neutral-700 dark:file:text-neutral-400'
     }
   %>
-  <%= render "shared/forms/attachments_list", attachments: [job_application.resume], document_attached: job_application.resume.attached? %>
-<% elsif question.cover_letter? %>
-  <%= form.input :cover_letter,
-    as: :file,
-    autofocus: false,
-    hint: question.description&.html_safe,
-    label: question.label,
-    required: attachment_required_but_absent?(question, job_application.cover_letter),
-    input_html: { 
-      direct_upload: true,
-      class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6'
-    }
-  %>
-  <%= render "shared/forms/attachments_list", attachments: [job_application.cover_letter], document_attached: job_application.cover_letter.attached? %>
+  <%= render "shared/forms/attachments_list", attachments: [document], document_attached: document.attached? %>
 <% elsif question.upload? %>
   We don't manage the type of upload yet.
 <% else %>
   <%= "Question: #{ question.to_json.html_safe }" %>
 <% end %>
-<% true || byebug %>
