@@ -21,7 +21,7 @@ class JobApplication < ApplicationRecord
 
   # == Scopes ===============================================================
   default_scope { order id: :asc }
-  scope :in_progress, -> { where(status: %w[initial completed]) }
+  scope :in_progress, -> { where(status: %i[initial completed]) }
   scope :submitted, -> { where(status: %i[submitted]) }
 
   # == Validations ==========================================================
