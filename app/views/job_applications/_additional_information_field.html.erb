@@ -14,6 +14,7 @@
     autofocus: false,
     collection: question.options,
     include_blank: true,
+    hint: question.description&.html_safe,
     label: question.label,
     required: question.required,
     selected: prefilled_value(question, job_application, last_applicant_answers),
@@ -26,6 +27,7 @@
   <%= field_form.input question.attribute,
     autofocus: false,
     collection: question.options,
+    hint: question.description&.html_safe,
     label: question.label,
     required: question.required,
     selected: prefilled_value(question, job_application, last_applicant_answers),
@@ -38,9 +40,10 @@
   %>
 <% elsif question.valid? && question.textarea? %>
   <%= field_form.input question.attribute,
-    required: question.required,
-    label: question.label,
     autofocus: false,
+    hint: question.description&.html_safe,
+    label: question.label,
+    required: question.required,
     as: :text,
     input_html: { 
       rows: 5,
@@ -52,6 +55,7 @@
   <%= field_form.input question.attribute,
     autofocus: false,
     label: question.label,
+    hint: question.description&.html_safe,
     required: question.required,
     input_html: { 
       class: 'rounded-4 block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6',
@@ -62,6 +66,7 @@
   <%= form.input :resume,
     as: :file,
     autofocus: false,
+    hint: question.description&.html_safe,
     label: question.label,
     required: attachment_required_but_absent?(question, job_application.resume),
     input_html: { 
@@ -73,9 +78,10 @@
 <% elsif question.cover_letter? %>
   <%= form.input :cover_letter,
     as: :file,
-    required: attachment_required_but_absent?(question, job_application.cover_letter),
-    label: question.label,
     autofocus: false,
+    hint: question.description&.html_safe,
+    label: question.label,
+    required: attachment_required_but_absent?(question, job_application.cover_letter),
     input_html: { 
       direct_upload: true,
       class: 'block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6'
