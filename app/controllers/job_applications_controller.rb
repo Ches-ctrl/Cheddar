@@ -30,6 +30,10 @@ class JobApplicationsController < ApplicationController
     @job_application.assign_attributes(status:)
   end
 
+  def attach_resume_to_subsequent_job_applications
+    SubsequentJobApplicationsResumeAttacher.call(@application_process, @job_application)
+  end
+
   def build_saved_job
     @saved_job = current_user.saved_jobs.new(job_id: @job_application.job_id)
   end
@@ -73,7 +77,7 @@ class JobApplicationsController < ApplicationController
   end
 
   def persist_job_application
-    if save_job_application
+    if save_job_application && attach_resume_to_subsequent_job_applications
       redirect_to next_step_path, notice: 'Job successfully saved!'
     else
       render :new, status: :unprocessable_entity

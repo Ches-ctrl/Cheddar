@@ -15,7 +15,7 @@ class ApplicationSubmissionsController < ApplicationController
   def assign_statuses
     @application_process.assign_attributes(status: :submitted)
     @job_applications = @application_process.job_applications.map do |job_application|
-      job_application.assign_attributes(status: :submitted)
+      job_application.assign_attributes(submissions_params)
       job_application
     end
   end
@@ -31,6 +31,10 @@ class ApplicationSubmissionsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def submissions_params
+    { status: :submitted, submitted_at: Time.now }
   end
   # def enqueue_job_application
   #   Applier::ApplyJob.perform_later(@job_application, submit_application_params[:payload])
