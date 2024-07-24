@@ -2,9 +2,7 @@
 
 module Applier
   class DevitFormFiller < FormFiller
-    def initialize(payload = sample_payload)
-      super
-    end
+    private
 
     def submit_button
       first(:button, text: /\bsend\b/i) || first(:link, text: /\bsend\b/i)

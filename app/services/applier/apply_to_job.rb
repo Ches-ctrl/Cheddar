@@ -14,9 +14,9 @@ module Applier
       return unless processable
 
       process
-    rescue StandardError => e
-      Rails.logger.error "Error submitting job application: #{e.message}"
-      nil
+      # rescue StandardError => e
+      #   Rails.logger.error "Error submitting job application: #{e.message}"
+      #   nil
     end
 
     private
@@ -29,7 +29,9 @@ module Applier
       apply_with_form_filler
     end
 
-    def apply_with_form_filler = form_filler.call(@job_application, @payload)
+    def apply_with_form_filler
+      @form_filler.call(@payload)
+    end
 
     def form_filler
       ats = @job_application.applicant_tracking_system.name

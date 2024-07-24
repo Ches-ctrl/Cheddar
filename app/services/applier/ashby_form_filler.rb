@@ -2,9 +2,7 @@
 
 module Applier
   class AshbyFormFiller < FormFiller
-    def initialize(payload = multiverse_payload)
-      super
-    end
+    private
 
     def attach_file_to_application
       hidden_element.attach_file(@filepath)

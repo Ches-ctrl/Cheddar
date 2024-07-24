@@ -2,10 +2,6 @@
 
 module Applier
   class GhFormFiller < FormFiller
-    def initialize(payload = codepath_payload)
-      super
-    end
-
     private
 
     def click_submit_button
