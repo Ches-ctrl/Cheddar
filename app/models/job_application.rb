@@ -28,10 +28,13 @@ class JobApplication < ApplicationRecord
   enum :status, { initial: "initial", completed: "completed", submitted: "submitted", rejected: "rejected" },
        default: :initial, validate: true
 
-  def api_payload
-    application_question_set.questions.map do |question|
+  def payload
+    apply_url = job.posting_url
+    user_fullname = application_process.user.user_detail.full_name
+    fields = application_question_set.questions.map do |question|
       question.payload(self)
     end
+    { user_fullname:, apply_url:, fields: }
   end
 
   def submitted?
