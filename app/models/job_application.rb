@@ -29,7 +29,7 @@ class JobApplication < ApplicationRecord
        default: :initial, validate: true
 
   def payload
-    apply_url = job.posting_url
+    apply_url = job.apply_url || job.posting_url
     user_fullname = application_process.user.user_detail.full_name
     fields = application_question_set.questions.map do |question|
       question.payload(self)

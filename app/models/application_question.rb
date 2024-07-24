@@ -57,7 +57,6 @@ class ApplicationQuestion
   end
 
   def payload(job_application)
-    # { attribute: { input_text: type, value: answered_value(job_application) } }
     { locator:, interaction: type, value: answered_value(job_application) }
   end
 
