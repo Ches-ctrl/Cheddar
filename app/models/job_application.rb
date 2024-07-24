@@ -17,6 +17,7 @@ class JobApplication < ApplicationRecord
   has_one_attached :cover_letter
   has_one_attached :resume
   has_one :application_question_set, through: :job
+  has_one :applicant_tracking_system, through: :job
   #   has_one_attached :screenshot
 
   # == Scopes ===============================================================

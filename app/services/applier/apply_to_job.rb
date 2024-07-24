@@ -7,6 +7,7 @@ module Applier
     def initialize(job_application, payload)
       @job_application = job_application
       @payload = payload
+      @form_filler = form_filler
     end
 
     def call
@@ -21,15 +22,24 @@ module Applier
     private
 
     def processable
-      @job_application && @payload
+      @job_application && @payload && @form_filler
     end
 
     def process
       apply_with_form_filler
     end
 
-    def apply_with_form_filler
-      Applier::FormFiller.call(@job_application, @payload)
+    def apply_with_form_filler = form_filler.call(@job_application, @payload)
+
+    def form_filler
+      ats = @job_application.applicant_tracking_system.name
+      FORM_FILLER[ats]
     end
+
+    FORM_FILLER = {
+      'Greenhouse' => GhFormFiller,
+      'AshbyHQ' => AshbyFormFiller,
+      'DevITJobs' => DevitFormFiller
+    }
   end
 end
