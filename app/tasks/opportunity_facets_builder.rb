@@ -51,7 +51,7 @@ class OpportunityFacetsBuilder < ApplicationTask
 
   def apply_with_cheddar_facets
     attribute = 'apply_with_cheddar'
-    facet_opportunities(attribute).group(:apply_with_cheddar).count.map do |apply_with_cheddar, count|
+    facet_opportunities(attribute).reorder(:apply_with_cheddar).group(:apply_with_cheddar).count.map do |apply_with_cheddar, count|
       next unless apply_with_cheddar
 
       Facet.new(attribute:, value: apply_with_cheddar.to_s, count:, url_params: @params, type: 'switch')

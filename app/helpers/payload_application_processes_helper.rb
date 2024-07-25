@@ -1,7 +1,7 @@
 # Helper for building the payload page with reference JSON outputs
 module PayloadApplicationProcessesHelper
   def transformed_data(job_application)
-    job_application.api_payload
+    job_application.payload
   end
 
   def payload_title(job_app)
