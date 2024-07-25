@@ -99,7 +99,7 @@ puts "Preparing to re-seed database with #{response} #{ats_list.join(' and ')} j
 ats_list.each_with_index do |ats_name, i|
 
   puts "\nBuilding a list of job urls from the following companies:"
-  puts "This may take a little while, worry not young padawan...\n"
+  puts "This may take a little while, worry not young padawan...\n\n"
 
   ats = ApplicantTrackingSystem.find_by(name: ats_name)
   company_list = companies[ats_name.downcase.to_sym]

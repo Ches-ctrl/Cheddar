@@ -70,7 +70,7 @@ module Applier
       {
         user_fullname: 'John Smith',
         apply_url: 'https://boards.greenhouse.io/cleoai/jobs/4628944002',
-        form_locator: '#application_form',
+        form_locator: '#application_form', # this shouldn't be necessary
         fields: [
           {
             locator: 'first_name',
