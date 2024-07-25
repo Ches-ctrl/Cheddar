@@ -1,22 +1,20 @@
 class InProgressJobsController < SavedJobsController
-  include Pagy::Backend
-
   def index
-    load_in_progress_jobs
+    load_jobs
   end
 
   private
 
-  def load_in_progress_jobs
-    @saved_jobs = OpportunitiesFetcher.call(in_progress_jobs_scope, in_progress_job_params)
+  def load_jobs
+    @saved_jobs = OpportunitiesFetcher.call(jobs_scope, job_params)
     @pagy, @records = pagy(@saved_jobs, items: 20)
   end
 
-  def in_progress_jobs_scope
-    Job.where(id: current_user.job_applications.pluck(:job_id))
+  def job_params
+    params.permit(:page)
   end
 
-  def in_progress_job_params
-    params.permit(:page)
+  def jobs_scope
+    Job.where(id: current_user.job_applications.in_progress.pluck(:job_id))
   end
 end

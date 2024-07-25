@@ -15,14 +15,17 @@
 
     <%# Show only mandatory fields %>
     <span class="ml-3 text-sm" id="mandatory_fields_only">
-      <span class="font-medium text-gray-900">Hide optional fields</span>
-      <span class="text-gray-500"><%= mandatory_fields_only_label(@job_application) %></span>
+      <span class="font-medium text-gray-900 dark:text-white">Hide optional fields</span>
+      <span class="text-gray-500 dark:text-gray-400"><%= mandatory_fields_only_label(@job_application) %></span>
     </span>
   </div>
 
   <%# Render step indicators and application forms %>
   <div class="grid max-w-8xl sm:grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
     <%= render 'step_indicators' %>
-    <%= render 'additional_information_form', job_application: @job_application %>
+    <%= render 'additional_information_form', job_application: @job_application, last_applicant_answers: @last_applicant_answers %>
+    <div class="mt-8 flex"></div>
+      <%= link_to "Remove this application & Continue", application_process_job_application_path(@application_process, @job_application), data: {turbo_method: :delete}, method: :delete, class: "text-sm font-semibold text-indigo-600 dark:text-indigo-400" %>
+    </div>
   </div>
 </article>

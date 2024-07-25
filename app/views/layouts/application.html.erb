@@ -1,6 +1,7 @@
 <% if request.fullpath.include?('/jobs') ||
   request.fullpath.include?('/basket') ||
   request.fullpath.include?('/in_progress') ||
+  request.fullpath.include?('/submitted') ||
   request.fullpath.include?('/job_applications') ||
   request.fullpath.include?('/application_processes/') ||
   request.fullpath.include?('/user_details/') ||
@@ -31,6 +32,7 @@
     <!-- Stylesheets -->
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "layout", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "custom", "inter-font", "data-turbo-track": "reload" %>
 
     <!-- Favicon -->
     <%= favicon_link_tag 'favicon.ico' %>

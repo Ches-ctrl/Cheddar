@@ -2,7 +2,7 @@
 
 class ApplicationQuestion
   # == PORO - Accessors =====================================================
-  attr_accessor :attribute, :label, :fields, :required, :description
+  attr_accessor :section, :attribute, :label, :fields, :required, :description
 
   # == Attributes ===========================================================
   # == Callbacks ============================================================
@@ -11,14 +11,8 @@ class ApplicationQuestion
   # == Extensions ===========================================================
   # == Initialize ============================================================
   def initialize(questions_params)
-    # questions_params.each.each.each.each do |key, value|
-    #   # Check for valid attributes before assigning (optional)
-    #   public_send("#{key}=", value) if respond_to?(attribute)
-    #   # question_params['attribute']
-    # end
-    # question_hash = questions_params.first # Assuming first element is a hash
     questions_params.map do |key, value|
-      public_send("#{key}=", value) # if respond_to?(attribute)
+      public_send("#{key}=", value)
     end
   end
 
@@ -29,26 +23,13 @@ class ApplicationQuestion
 
   def checkbox? = type.eql?("checkbox")
   def cover_letter? = attribute.include?("cover_letter")
-  def input? = type.eql?("input_text")
+  def input? = type.eql?("input") || type.eql?("education_input")
+  def multi_select? = type.eql?("multi_select")
   def radiogroup? = type.eql?("radiogroup")
   def resume? = attribute.eql?("resume")
-  def select? = type.eql?("select")
+  def select? = type.eql?("select") || type.eql?("education_select")
   def textarea? = type.eql?("textarea")
   def upload? = type.eql?("upload")
-
-  def field = fields.first
-
-  def multi_checkbox?
-    type.eql?("checkbox") && (options&.count&.> 1)
-  end
-
-  def payload(job_application)
-    { attribute: { input_text: type, value: answered_value(job_application) } }
-  end
-
-  def selector = fields.first['selector']
-
-  def type = fields.first['type']
 
   def answered_value(job_application)
     return job_application.resume.blob.url if resume? && job_application.resume.attached?
@@ -56,6 +37,32 @@ class ApplicationQuestion
 
     job_application.additional_info[attribute]
   end
+
+  def field = fields.first
+
+  def locator = field['selector'] || "##{field['id']}"
+
+  def multi_checkbox?
+    type.eql?("checkbox") && (options&.count&.> 1)
+  end
+
+  def option_text_value(value)
+    return value if options.none?
+
+    options.to_h.invert[value]
+  end
+
+  def options
+    field['options'].map { |option| [option['label'], option['id']] }
+  end
+
+  def payload(job_application)
+    { locator:, interaction: type, value: answered_value(job_application) }
+  end
+
+  def selector = field['selector'] || field['id']
+
+  def type = field['type']
 
   def valid?
     if checkbox? || radiogroup?

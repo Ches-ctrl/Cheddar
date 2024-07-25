@@ -39,5 +39,6 @@ class UserDetailsController < ApplicationController
     params.require(:user_detail)
           .permit(UserDetail::FREQUENT_ASKED_INFO_ATTRIBUTES)
           .merge(resumes: params.require(:user_detail)[:resumes])
+          .reject { |_key, value| value.blank? }
   end
 end

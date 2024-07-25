@@ -15,7 +15,8 @@ class ApplicationProcess < ApplicationRecord
 
   # == Scopes ===============================================================
   # == Validations ==========================================================
-  validates :status, presence: true
+  enum :status, { initial: "initial", submitted: "submitted", rejected: "rejected" },
+       default: :initial, validate: true
 
   # == Instance Methods =====================================================
   def find_application_for_job(job)

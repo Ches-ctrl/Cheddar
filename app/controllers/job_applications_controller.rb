@@ -2,13 +2,13 @@ class JobApplicationsController < ApplicationController
   def edit
     load_application_process
     load_job_application
+    load_last_applicant_answers
   end
 
   def update
     load_application_process
     load_job_application
     assign_job_application_params
-    assign_status
     persist_job_application
   end
 
@@ -27,21 +27,11 @@ class JobApplicationsController < ApplicationController
 
   def assign_job_application_params
     @job_application.assign_attributes(job_application_params)
+    @job_application.assign_attributes(status:)
   end
 
-  def assign_status
-    required_attributes = required_attributes(@job_application.application_question_set.questions)
-    non_empty_or_null_attributes = non_empty_or_null_attributes(@job_application.additional_info)
-    status = (required_attributes - non_empty_or_null_attributes).empty? ? "completed" : "uncompleted"
-    @job_application.status = status
-  end
-
-  def non_empty_or_null_attributes(hash)
-    hash.select { |_key, value| !value.nil? && !value.empty? }.keys
-  end
-
-  def required_attributes(questions)
-    questions.select(&:required).map(&:selector)
+  def attach_resume_to_subsequent_job_applications
+    SubsequentJobApplicationsResumeAttacher.call(@application_process, @job_application)
   end
 
   def build_saved_job
@@ -56,6 +46,10 @@ class JobApplicationsController < ApplicationController
     end
   end
 
+  def load_last_applicant_answers
+    @last_applicant_answers = LastApplicantAnswersFetcher.call(current_user)
+  end
+
   def load_application_process
     @application_process = ApplicationProcessesQuery.call(application_process_scope)
                                                     .find(params[:application_process_id])
@@ -68,6 +62,7 @@ class JobApplicationsController < ApplicationController
   def job_application_params
     params.require(:job_application)
           .permit(:application_process_id, :id, :resume, :cover_letter, { additional_info: {} })
+          .reject { |_key, value| value.blank? }
   end
 
   def next_step_path
@@ -82,7 +77,7 @@ class JobApplicationsController < ApplicationController
   end
 
   def persist_job_application
-    if save_job_application
+    if save_job_application && attach_resume_to_subsequent_job_applications
       redirect_to next_step_path, notice: 'Job successfully saved!'
     else
       render :new, status: :unprocessable_entity
@@ -91,7 +86,12 @@ class JobApplicationsController < ApplicationController
 
   def save_job_application = @job_application.save
 
+  def status
+    JobApplicationStatusFetcher.call(@job_application)
+  end
+
   def success_destroy_job_application_path
-    redirect_to in_progress_jobs_path, notice: 'Job Application successfully removed!'
+    where_to_go = request.referrer.include?('/job_applications/') ? next_step_path : in_progress_jobs_path
+    redirect_to where_to_go, notice: 'Job Application successfully removed!'
   end
 end

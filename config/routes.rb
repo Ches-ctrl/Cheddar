@@ -53,12 +53,17 @@ Rails.application.routes.draw do
 
   get 'basket', to: 'saved_jobs#index', as: :saved_jobs
   get 'in_progress', to: 'in_progress_jobs#index', as: :in_progress_jobs
+  get 'submitted', to: 'submitted_jobs#index', as: :submitted_jobs
 
   # Application Process
   resources :application_processes, only: %i[create show] do
     get '/overview', to: 'overview_application_processes#show'
-    get '/payload', to: 'payload_application_processes#show'
-    resources :job_applications, only: %i[edit update destroy]
+    get '/payloads', to: 'payload_application_processes#index'
+
+    resources :job_applications, only: %i[edit update destroy] do
+      get '/payload', to: 'payload_application_processes#show'
+    end
+    resources :application_submissions, only: %i[create]
     resources :submit_application, only: %i[create]
   end
 
