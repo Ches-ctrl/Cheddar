@@ -18,6 +18,10 @@ module Ats
         "#{url_api}#{ats_identifier}?includeCompensation=true"
       end
 
+      def fetch_url(job_data)
+        job_data['jobUrl']
+      end
+
       def fetch_job_data(job_id, api_url, _ats_identifier)
         all_jobs_data = get_json_data(api_url)
         all_jobs_data["jobs"]&.find { |job| job["id"] == job_id }

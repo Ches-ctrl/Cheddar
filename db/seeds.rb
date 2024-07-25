@@ -54,31 +54,33 @@ puts "Created #{ApplicantTrackingSystem.count} ATSs"
 
 puts "-------------------------------------"
 
-greenhouse_companies = [
-  "cleoai",
-  "ably30",
-  "11fs",
-  "clearscoretechnologylimited",
-  "codepath",
-  "copperco",
-  "coreweave",
-  "cultureamp",
-  "deliveroo",
-  "doctolib",
-  "epicgames",
-  "figma",
-  "forter",
-  "geniussports",
-  "getir",
-  "gomotive",
-  "grammarly",
-  "intercom",
-  "janestreet",
-  "knowde",
-  "narvar",
-  "niantic",
-  "opendoor"
-]
+companies = {
+  ashbyhq: [
+    'airwallex',
+    'Crusoe',
+    'isometric',
+    'lightdash',
+    'multiverse'
+  ],
+  greenhouse: [
+    'cleoai',
+    '11fs',
+    'codepath',
+    'copperco',
+    'deliveroo',
+    'doctolib',
+    'epicgames',
+    'figma',
+    'forter',
+    'geniussports',
+    'getir',
+    'gomotive',
+    'intercom',
+    'janestreet',
+    'knowde',
+    'narvar',
+  ]
+}
 
 puts "Creating new roles..."
 
@@ -89,24 +91,31 @@ puts "Created #{Role.count} roles"
 
 puts "-------------------------------------"
 
-puts "Preparing to re-seed database with #{response} Greenhouse jobs...\n"
-
-puts "Creating new jobs via Greenhouse API..."
-
+ats_list = ['AshbyHQ', 'Greenhouse']
 defunct_urls = []
 
-puts "\nBuilding a list of job urls from the following companies:"
-puts "This may take a little while, worry not young padawan..."
+puts "Preparing to re-seed database with #{response} #{ats_list.join(' and ')} jobs...\n"
 
-relevant_job_urls = Importer::GetRelevantJobUrls.new(greenhouse_companies).fetch_jobs
-jobs_to_seed = relevant_job_urls.shuffle.take(response)
+ats_list.each_with_index do |ats_name, i|
 
-# jobs_to_seed = [
-#   "https://boards.greenhouse.io/11fs/jobs/4296543101",
-# ]
+  puts "\nBuilding a list of job urls from the following companies:"
+  puts "This may take a little while, worry not young padawan...\n"
 
-jobs_to_seed.each do |url|
-  Url::CreateJobFromUrl.new(url).create_company_then_job
+  ats = ApplicantTrackingSystem.find_by(name: ats_name)
+  company_list = companies[ats_name.downcase.to_sym]
+  relevant_job_urls = Importer::GetRelevantJobUrls.new(ats, company_list).fetch_jobs
+  number_of_jobs = (response - Job.count) / (ats_list.size - i)
+  jobs_to_seed = relevant_job_urls.shuffle.take(number_of_jobs)
+
+  puts "\nCreating #{jobs_to_seed.size} new jobs via #{ats_name} API...\n"
+
+  jobs_to_seed.each do |url|
+    _ats, _company, job = Url::CreateJobFromUrl.new(url).create_company_then_job
+    next if job&.persisted?
+
+    puts "failed to create #{ats_name} job from #{url}"
+    defunct_urls << url
+  end
 end
 
 puts "Created #{Job.count} jobs..."
@@ -170,7 +179,7 @@ puts "-------------------------------------"
 
 puts "Done!\n"
 
-puts "The following urls refer to jobs that are no longer live and should be deleted from the seedfile:" unless defunct_urls.empty?
+puts "Job creation failed with the following urls:" unless defunct_urls.empty?
 defunct_urls.each do |url|
   puts url
 end
