@@ -1,20 +1,19 @@
 # frozen_string_literal: true
 
 module Applier
-  class GhFormFiller < FormFiller
+  class GreenhouseFormFiller < FormFiller
+    def initialize(payload = sample_payload)
+      super
+      convert_locators
+    end
+
     private
 
-    def application_form = '#application_form'
+    def application_form = '#application-form'
 
     def click_submit_button
       sleep 2
       p "I didn't actually submit the application."
-    end
-
-    def attach_file_to_application
-      attach_file(@filepath) do
-        find(@locator).click
-      end
     end
 
     def click_and_answer_follow_up(checkbox, follow_up_value)
@@ -23,6 +22,15 @@ module Applier
 
       find(:css, "input[type='text']", focused: true).set(follow_up_value)
     end
+
+    def convert_locators
+      @fields.each do |field|
+        locator = field[:locator]
+        field[:locator] = "question_#{locator}" if numerical?(locator)
+      end
+    end
+
+    def expand_select_menu = find_by_id(@locator).click
 
     def handle_demographic_question
       parent = find(:css, "input[type='hidden'][value='#{@locator}']")
@@ -36,13 +44,6 @@ module Applier
       end
     end
 
-    def handle_input
-      return super unless locator_is_numerical?
-
-      field = hidden_element.sibling(:css, 'input, textarea', visible: true)[:id]
-      fill_in(field, with: @value)
-    end
-
     def handle_multi_select
       @value.each do |value|
         find(:css, "input[type='checkbox'][value='#{value}'][set='#{@locator}']").click
@@ -50,29 +51,33 @@ module Applier
     end
 
     def handle_select
-      hidden_element.sibling('div', visible: true).click
-      page.document.find('li', text: selector_text, visible: true).click
+      expand_select_menu
+      select_option.click
+    end
+
+    def handle_upload
+      pdf_tmp_file
+      attach_file_to_application
     end
 
     def hidden_element
       find(:css, "input[type='hidden'][value='#{@locator}']")
     end
 
-    def locator_is_numerical?
-      @locator.to_i.positive?
+    def numerical?(string) = string.to_i.positive?
+
+    def pdf_tmp_file
+      uri = URI.parse(@value)
+      @value = Net::HTTP.get_response(uri).body
+      super
     end
 
-    def selector_text
-      within(hidden_element.sibling(:css, "select", visible: false)) do
-        find(:css, "option[value='#{@value}']").text
-      end
-    end
+    def select_option = find("#react-select-#{@locator}-option-#{@value}")
 
     def sample_payload
       {
         user_fullname: 'John Smith',
-        apply_url: 'https://boards.greenhouse.io/cleoai/jobs/4628944002',
-        form_locator: '#application_form', # this shouldn't be necessary
+        apply_url: 'https://job-boards.greenhouse.io/narvar/jobs/5976785',
         fields: [
           {
             locator: 'first_name',
@@ -95,49 +100,79 @@ module Applier
             value: '(555) 555-5555'
           },
           {
-            locator: "button[aria-describedby='resume-allowable-file-types']",
+            locator: "resume",
             interaction: :upload,
-            value: File.open('public/Obretetskiy_cv.pdf')
+            value: 'https://res.cloudinary.com/dzpupuayh/image/upload/v1/development/nd4p85sryuu40oz77n0bhs29b2sz.pdf?_a=BACCd2Bn'
           },
+          # {
+          #   locator: 'button[aria-describedby="cover_letter-allowable-file-types"]',
+          #   interaction: :upload,
+          #   value: 'Thank you for considering my application. It really is an honor to apply to your company. Please hire me. I would like to work here very much. I promise to work very very hard and always get along well with my coworkers.'
+          # },
           {
-            locator: 'button[aria-describedby="cover_letter-allowable-file-types"]',
-            interaction: :upload,
-            value: 'Thank you for considering my application. It really is an honor to apply to your company. Please hire me. I would like to work here very much. I promise to work very very hard and always get along well with my coworkers.'
-          },
-          {
-            locator: '27737478002',
+            locator: '48034254',
             interaction: :input,
-            value: 'I would like to earn a decent salary. I am not greedy.'
+            value: 'Coca-Cola'
           },
           {
-            locator: '18804072002',
-            interaction: :multi_select,
-            value: ['88174211002']
+            locator: '48034255',
+            interaction: :input,
+            value: 'Owner and CEO'
           },
           {
-            locator: '24229694002',
-            interaction: :multi_select,
-            value: ['114986929002', '114986935002', '114986948002']
+            locator: '48034256',
+            interaction: :input,
+            value: 'https:://www.linkedin.com/in/my_profile'
           },
           {
-            locator: '4000101002',
-            interaction: :demographic_question,
-            value: ['4000548002', '4004737002', '4000550002']
+            locator: '48034257',
+            interaction: :select,
+            value: 0
           },
           {
-            locator: '4000862002',
-            interaction: :demographic_question,
-            value: ['4004741002']
+            locator: '48034258',
+            interaction: :select,
+            value: 0
+          },
+          {
+            locator: '48034259',
+            interaction: :select,
+            value: 0
+          },
+          {
+            locator: '48034260',
+            interaction: :select,
+            value: 0
+          },
+          {
+            locator: 'gender',
+            interaction: :select,
+            value: 0
+          },
+          {
+            locator: 'hispanic_ethnicity',
+            interaction: :select,
+            value: 1
+          },
+          {
+            locator: 'veteran_status',
+            interaction: :select,
+            value: 1
+          },
+          {
+            locator: 'disability_status',
+            interaction: :select,
+            value: 0
           }
         ]
       }
     end
 
     def codepath_payload
+      # old format
       {
         user_fullname: 'John Smith',
         apply_url: 'https://boards.greenhouse.io/codepath/jobs/4035988007',
-        form_locator: '#application_form',
         fields: [
           {
             locator: 'first_name',

@@ -7,7 +7,6 @@ module Applier
     def initialize(job_application)
       @job_application = job_application
       @payload = @job_application.payload
-      @form_filler = form_filler
     end
 
     def call
@@ -22,10 +21,11 @@ module Applier
     private
 
     def processable
-      @payload && @form_filler
+      @payload && @payload[:apply_url]
     end
 
     def process
+      select_form_filler
       apply_with_form_filler
     end
 
@@ -33,15 +33,21 @@ module Applier
       @form_filler.call(@payload)
     end
 
-    def form_filler
-      ats = @job_application&.applicant_tracking_system&.name
-      FORM_FILLER[ats]
+    def check_which_greenhouse
+      @payload[:apply_url].include?('job-boards') ? GreenhouseFormFiller : GhFormFiller
     end
 
-    FORM_FILLER = {
-      'Greenhouse' => GhFormFiller,
-      'AshbyHQ' => AshbyFormFiller,
-      'DevITJobs' => DevitFormFiller
-    }
+    def form_filler
+      {
+        'Greenhouse' => check_which_greenhouse,
+        'AshbyHQ' => AshbyFormFiller,
+        'DevITJobs' => DevitFormFiller
+      }
+    end
+
+    def select_form_filler
+      ats = @job_application&.applicant_tracking_system&.name
+      @form_filler = form_filler[ats]
+    end
   end
 end

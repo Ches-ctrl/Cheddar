@@ -6,7 +6,6 @@ module Applier
     include LoggingHelper
 
     def initialize(payload)
-      @application_form = payload[:form_locator]
       @fields = payload[:fields]
       @session = Capybara::Session.new(:selenium)
       @url = payload[:apply_url]
@@ -36,12 +35,14 @@ module Applier
       @session.quit
     end
 
+    def application_form = '#form'
+
     def apply_button
       find(:css, 'button, a', text: /apply/i, match: :first)
     end
 
     def attach_file_to_application
-      find(@locator).attach_file(@filepath)
+      attach_file(@locator, @filepath)
     end
 
     def click_apply_button
@@ -65,7 +66,7 @@ module Applier
     end
 
     def fill_in_all_fields
-      within @application_form do
+      within application_form do
         @fields.each { |field| fill_in_field(field) }
       end
     end
