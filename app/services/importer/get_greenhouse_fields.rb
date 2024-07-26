@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module Importer
+  # company_id is the ATS identifier for the company
+  # Needs the company_id to fetch the education options
   class GetGreenhouseFields < GetApiFields
     def initialize(job, data)
       @company_id = job.company.ats_identifier

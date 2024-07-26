@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 module Importer
+  # Calls the base API class with options specific to the ATS
+  # Options are a fixed list limited to the below
+  # One-line methods are mostly for matching the generic structure to the particular API structure
+  # Ashby has always 1x ApplicationForm (JSON) and can have many SurveyForms (Array)
+  # StandardFields replaces the ID with our structure of JSON fields for each of the StandardFields found
+  # TYPES maps the Ashby field types to our standard field types
   class GetAshbyFields < GetApiFields
     def initialize(job, data)
       options = {
@@ -9,8 +15,6 @@ module Importer
         standard_fields: STANDARD_FIELDS,
         types: TYPES
       }
-      @section_index = nil
-
       super(job, data, options)
     end
 
