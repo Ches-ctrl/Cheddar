@@ -30,7 +30,7 @@ class JobAttributesFetcher < ApplicationTask
     @job.build_application_question_set(
       form_structure: application_question_set
     )
-    @job
+    save_and_return_job
   end
 
   def application_question_set
@@ -47,5 +47,10 @@ class JobAttributesFetcher < ApplicationTask
 
   def job_details
     @ats.job_details(@job, @data)
+  end
+
+  def save_and_return_job
+    @job.save
+    @job
   end
 end

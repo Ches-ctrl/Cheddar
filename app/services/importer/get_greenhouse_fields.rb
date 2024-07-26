@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module Importer
+  # company_id is the ATS identifier for the company
+  # Needs the company_id to fetch the education options
   class GetGreenhouseFields < GetApiFields
     def initialize(job, data)
       @company_id = job.company.ats_identifier
@@ -58,13 +60,13 @@ module Importer
 
     def education_questions = EDUCATION_FIELDS.map { |type| build_education_question(type) }
 
-    def field_id(field) = convert_to_numerical_id(field['name'] || field['id'])
+    def field_id = convert_to_numerical_id(@field['name'] || @field['id'])
 
-    def field_max_length(field) = (255 if field_type(field) == 'input_text')
+    def field_max_length = (255 if field_type == 'input_text')
 
-    def field_options(field) = field['values'] || field['answer_options']
+    def field_options = @field['values'] || @field['answer_options']
 
-    def field_type(field) = field['type']
+    def field_type = @field['type']
 
     def insert_education_questions
       @education_required = @data['education'] == 'education_required'
