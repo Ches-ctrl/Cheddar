@@ -4,9 +4,9 @@ module Applier
   # Core class for applying to jobs using either ApiApply or FormFiller depending on the ATS
   # TODO: Add routing logic - in future will route to either FormFiller or ApiApply depending on the ATS
   class ApplyToJob < ApplicationTask
-    def initialize(job_application, payload)
+    def initialize(job_application)
       @job_application = job_application
-      @payload = payload
+      @payload = @job_application.payload
       @form_filler = form_filler
     end
 
@@ -22,7 +22,7 @@ module Applier
     private
 
     def processable
-      @job_application && @payload && @form_filler
+      @payload && @form_filler
     end
 
     def process
@@ -34,7 +34,7 @@ module Applier
     end
 
     def form_filler
-      ats = @job_application.applicant_tracking_system.name
+      ats = @job_application&.applicant_tracking_system&.name
       FORM_FILLER[ats]
     end
 

@@ -6,7 +6,6 @@ module Applier
     include LoggingHelper
 
     def initialize(payload)
-      payload = JSON.parse(payload, symbolize_names: true)
       @application_form = payload[:form_locator]
       @fields = payload[:fields]
       @session = Capybara::Session.new(:selenium)

@@ -8,10 +8,7 @@ module Applier
     sidekiq_options retry: false
 
     def perform(job_application)
-      # check that job_application.status == 'Completed'
-      # extract payload with job_application.payload
-
-      Applier::ApplyToJob.call(job_application)
+      Applier::ApplyToJob.call(job_application) if job_application.status == 'submitted'
     end
   end
 end
