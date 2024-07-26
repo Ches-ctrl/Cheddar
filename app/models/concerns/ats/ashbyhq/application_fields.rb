@@ -15,7 +15,7 @@ module Ats
       private
 
       def fetch_job_api_data(job_id, ats_identifier)
-        faraday_request request_details(job_id, ats_identifier)
+        faraday_request(request_details(job_id, ats_identifier))
       end
 
       def endpoint = 'https://jobs.ashbyhq.com/api/non-user-graphql?op=ApiJobPosting'
