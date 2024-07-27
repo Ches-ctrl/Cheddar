@@ -24,7 +24,7 @@
     hint: question.description&.html_safe,
     label: question.label,
     required: question.required,
-    selected: prefilled_value(question, job_application, last_applicant_answers),
+    checked: prefilled_value(question, job_application, last_applicant_answers),
     input_html: { 
       class: 'h-5 w-5 my-3 me-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600',
     }

@@ -37,16 +37,8 @@ class ApplicationQuestion
     return job_application.resume.blob.url if resume? && job_application.resume.attached?
     return job_application.cover_letter.blob.url if cover_letter? && job_application.cover_letter.attached?
 
-    # return multi_answered_value(job_application) if multi_select?
-
     job_application.additional_info[attribute]
   end
-
-  # def multi_answered_value(job_application)
-  #   job_application.additional_info.select do |k, values|
-  #     byebug
-  #   end
-  # end
 
   def boolean_options
     [['Yes', 'true'], ['No', 'false']]
