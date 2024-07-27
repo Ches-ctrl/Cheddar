@@ -61,6 +61,13 @@ module ApplicationProcessesHelper
   end
 
   def previously_answered_value(question, last_applicant_answers)
+    return previously_answered_linkedin_value(last_applicant_answers) if question.linkedin_related?
+
     last_applicant_answers.find { |hash| hash[question.attribute] }&.values&.first
+  end
+
+  def previously_answered_linkedin_value(last_applicant_answers)
+    last_applicant_answers.fourth.keys.first.include?('linkedin')
+    last_applicant_answers.find { |hash| hash.keys.first.include?('linkedin') }&.values&.first
   end
 end

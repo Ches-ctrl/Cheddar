@@ -25,6 +25,7 @@ class ApplicationQuestion
   def checkbox? = type.eql?("checkbox")
   def cover_letter? = attribute.include?("cover_letter")
   def input? = type.eql?("input") || type.eql?("education_input")
+  def linkedin_related? = attribute.include?('linkedin')
   def multi_select? = type.eql?("multi_select")
   def radiogroup? = type.eql?("radiogroup")
   def resume? = attribute.eql?("resume")
