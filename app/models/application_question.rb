@@ -40,7 +40,7 @@ class ApplicationQuestion
   end
 
   def boolean_options
-    [['Yes', true], ['No', false]]
+    [['Yes', 'true'], ['No', 'false']]
   end
 
   def field = fields.first
