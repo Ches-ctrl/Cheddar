@@ -52,10 +52,12 @@ class ApplicationQuestion
     type.eql?("checkbox") && (options&.count&.> 1)
   end
 
-  def option_text_value(value)
-    return value if options.none?
+  def option_text_values(values)
+    return values if options.none?
 
-    options.to_h.invert[value]
+    # return options.to_h.invert.slice(*value).values if value.is_a?(Array)
+    options.to_h.invert.slice(*values).values
+    # [options.to_h.invert[value]]
   end
 
   def options
