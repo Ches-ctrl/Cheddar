@@ -6,10 +6,10 @@ module Ats
       def parse_url(url, saved_ids = nil)
         # Doesn't yet handle urls without a job_id due to conflict with embedded urls
         regex_formats = [
-          %r{https://boards\.?[a-zA-Z]*\.greenhouse\.io/(?!embed)([^/]+)(?:/jobs/(\d+))?},
-          %r{https://boards\.?[a-zA-Z]*\.greenhouse\.io/embed/job_app\?for=([^&]+)(?:&token=(\d+))?},
-          %r{https://boards-api\.?[a-zA-Z]*\.greenhouse\.io(?:/v1/boards)?/([^/]+)(?:/jobs/(\d+))?},
-          %r{https://boards\.?[a-zA-Z]*\.greenhouse\.io/embed/job_board/js\?for=([^&]+)}
+          %r{https://(?:job-)?boards\.?[a-zA-Z]*\.greenhouse\.io/(?!embed)([^/]+)(?:/jobs/(\d+))?},
+          %r{https://(?:job-)?boards\.?[a-zA-Z]*\.greenhouse\.io/embed/job_app\?for=([^&]+)(?:&token=(\d+))?},
+          %r{https://(?:job-)?boards-api\.?[a-zA-Z]*\.greenhouse\.io(?:/v1/boards)?/([^/]+)(?:/jobs/(\d+))?},
+          %r{https://(?:job-)?boards\.?[a-zA-Z]*\.greenhouse\.io/embed/job_board/js\?for=([^&]+)}
         ]
 
         alt_formats = [
@@ -17,7 +17,7 @@ module Ats
         ]
 
         embedded_formats = [
-          %r{://boards\.?[a-zA-Z]*\.greenhouse\.io/embed/job_app\?token=(\d+)}
+          %r{://(?:job-)?boards\.?[a-zA-Z]*\.greenhouse\.io/embed/job_app\?token=(\d+)}
         ]
 
         ats_identifier, job_id = try_standard_formats(url, regex_formats)

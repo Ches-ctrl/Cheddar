@@ -1,7 +1,7 @@
 class ApplicationSubmissionsController < ApplicationController
   def create
     load_application_process
-    # enqueue_job_application
+    enqueue_job_applications
     assign_statuses
     persist_application_process_and_job_applications
   end
@@ -20,6 +20,10 @@ class ApplicationSubmissionsController < ApplicationController
     end
   end
 
+  def enqueue_job_applications
+    @application_process.job_applications.each { |app| Applier::ApplyJob.perform_later(app) }
+  end
+
   def load_application_process
     @application_process = ApplicationProcess.eager_load(:job_applications)
                                              .find(application_submissions_params[:application_process_id])
@@ -34,9 +38,7 @@ class ApplicationSubmissionsController < ApplicationController
   end
 
   def submissions_params
-    { status: :submitted, submitted_at: Time.now }
+    { status: :submitted }
+    # { status: :submitted, submitted_at: Time.now }
   end
-  # def enqueue_job_application
-  #   Applier::ApplyJob.perform_later(@job_application, submit_application_params[:payload])
-  # end
 end

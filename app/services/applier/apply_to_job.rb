@@ -4,32 +4,50 @@ module Applier
   # Core class for applying to jobs using either ApiApply or FormFiller depending on the ATS
   # TODO: Add routing logic - in future will route to either FormFiller or ApiApply depending on the ATS
   class ApplyToJob < ApplicationTask
-    def initialize(job_application, payload)
+    def initialize(job_application)
       @job_application = job_application
-      @payload = payload
+      @payload = @job_application.payload
     end
 
     def call
       return unless processable
 
       process
-    rescue StandardError => e
-      Rails.logger.error "Error submitting job application: #{e.message}"
-      nil
+      # rescue StandardError => e
+      #   Rails.logger.error "Error submitting job application: #{e.message}"
+      #   nil
     end
 
     private
 
     def processable
-      @job_application && @payload
+      @payload && @payload[:apply_url]
     end
 
     def process
+      select_form_filler
       apply_with_form_filler
     end
 
     def apply_with_form_filler
-      Applier::FormFiller.call(@job_application, @payload)
+      @form_filler.call(@payload)
+    end
+
+    def check_which_greenhouse
+      @payload[:apply_url].include?('job-boards') ? GreenhouseFormFiller : GhFormFiller
+    end
+
+    def form_filler
+      {
+        'Greenhouse' => check_which_greenhouse,
+        'AshbyHQ' => AshbyFormFiller,
+        'DevITJobs' => DevitFormFiller
+      }
+    end
+
+    def select_form_filler
+      ats = @job_application&.applicant_tracking_system&.name
+      @form_filler = form_filler[ats]
     end
   end
 end
