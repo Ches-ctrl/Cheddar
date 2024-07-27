@@ -13,6 +13,10 @@ class ApplicationQuestionSet < ApplicationRecord
   # == Validations ==========================================================
   # == Instance Methods =====================================================
   # == Class Methods ========================================================
+  def question_by_attribute(attribute)
+    questions.find { |question| question.attribute.eql?(attribute) }
+  end
+
   def questions
     form_structure.map do |section|
       section['questions'].map { |question| ApplicationQuestion.new(question.merge(section: section['title'])) }

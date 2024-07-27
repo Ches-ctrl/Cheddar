@@ -47,14 +47,12 @@ module ApplicationProcessesHelper
     data.index(target) < data.index(comparison)
   end
 
-  def overview_attribute(job_application, attribute)
-    question = job_application.application_question_set.questions.find { |question| question.attribute.eql?(attribute) }
-    question.label
+  def overview_question_label(job_application, attribute)
+    job_application.application_question_set.question_by_attribute(attribute).label
   end
 
   def overview_humanized_value(job_application, attribute, values)
-    question = job_application.application_question_set.questions.find { |question| question.attribute.eql?(attribute) }
-    question.option_text_values(values)
+    job_application.application_question_set.question_by_attribute(attribute).option_text_values(values)
   end
 
   def prefilled_value(question, job_application, last_applicant_answers)
