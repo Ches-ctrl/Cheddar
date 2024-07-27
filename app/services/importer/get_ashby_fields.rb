@@ -177,7 +177,7 @@ module Importer
       'Number' => :number,
       'Boolean' => :boolean,
       'Location' => :location,
-      'LongText' => :textbox,
+      'LongText' => :textarea,
       'ValueSelect' => :select,
       'MultiValueSelect' => :multi_select,
       'Phone' => :input,
