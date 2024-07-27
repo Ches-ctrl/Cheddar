@@ -47,17 +47,15 @@ module ApplicationProcessesHelper
     data.index(target) < data.index(comparison)
   end
 
-  def overview_humanized_value(job_application, attribute, values)
-    # return overview_multiple_select_values(job_application, attribute, value) if attribute.include?('identity')
+  def overview_attribute(job_application, attribute)
+    question = job_application.application_question_set.questions.find { |question| question.attribute.eql?(attribute) }
+    question.label
+  end
 
+  def overview_humanized_value(job_application, attribute, values)
     question = job_application.application_question_set.questions.find { |question| question.attribute.eql?(attribute) }
     question.option_text_values(values)
   end
-
-  # def overview_multiple_select_values(job_application, attribute, value)
-  #   questions = job_application.application_question_set.questions.map { |question| question.multi_select? && question.option_text_value(value) }
-  #   # questions.option_text_value(value)
-  # end
 
   def prefilled_value(question, job_application, last_applicant_answers)
     filled_value(question, job_application) || previously_answered_value(question, last_applicant_answers)

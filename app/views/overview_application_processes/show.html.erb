@@ -13,7 +13,7 @@
                 <% job_application.additional_info.each do |attribute, value| %>
                   <li class="flex justify-between gap-x-6 py-6">
                     <div>
-                      <p class="font-medium text-gray-900 dark:text-white"><%= attribute.humanize %></p>
+                      <p class="font-medium text-gray-900 dark:text-white"><%= overview_humanized_attribute(job_application, attribute) %></p>
                       <% overview_humanized_value(job_application, attribute, [value].flatten).each do |value| %>
                         <p class="mt-1 text-sm leading-6 text-gray-500 dark:text-gray-400"><%= value %></p>
                       <% end %>

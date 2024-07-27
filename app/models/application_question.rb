@@ -55,9 +55,7 @@ class ApplicationQuestion
   def option_text_values(values)
     return values if options.none?
 
-    # return options.to_h.invert.slice(*value).values if value.is_a?(Array)
     options.to_h.invert.slice(*values).values
-    # [options.to_h.invert[value]]
   end
 
   def options
