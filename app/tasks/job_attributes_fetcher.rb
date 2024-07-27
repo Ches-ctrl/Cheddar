@@ -60,8 +60,6 @@ class JobAttributesFetcher < ApplicationTask
   end
 
   def save_and_return_job
-    debugger
-
     @job.save
     @job
   end
