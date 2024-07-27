@@ -21,6 +21,7 @@ class ApplicationQuestion
   # == Scopes ===============================================================
   # == Validations ==========================================================
 
+  def boolean? = type.eql?("boolean")
   def checkbox? = type.eql?("checkbox")
   def cover_letter? = attribute.include?("cover_letter")
   def input? = type.eql?("input") || type.eql?("education_input")
@@ -36,6 +37,10 @@ class ApplicationQuestion
     return job_application.cover_letter.blob.url if cover_letter? && job_application.cover_letter.attached?
 
     job_application.additional_info[attribute]
+  end
+
+  def boolean_options
+    [['Yes', true], ['No', false]]
   end
 
   def field = fields.first

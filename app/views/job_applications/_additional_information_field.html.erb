@@ -41,7 +41,17 @@
       value: prefilled_value(question, job_application, last_applicant_answers)
     }
   %>
-<% elsif question.valid? && question.radiogroup? %>
+<% elsif question.valid? && question.boolean? %>
+  <%= field_form.input question.attribute,
+    collection: question.boolean_options,
+    label: question.label,
+    hint: question.description&.html_safe,
+    required: question.required,
+    input_html: { 
+      value: prefilled_value(question, job_application, last_applicant_answers)
+    }
+  %>
+<% elsif false && question.valid? && question.radiogroup? %>
   <%= field_form.input question.attribute,
     label: question.label,
     hint: question.description&.html_safe,
