@@ -40,7 +40,7 @@ class Job < ApplicationRecord
                   }
 
   # == Callbacks ============================================================
-  after_create :set_date_created, :update_requirements, :standardize_attributes, :set_apply_with_cheddar
+  after_create :set_date_created, :update_requirements, :standardize_attributes
 
   # == Class Methods ========================================================
   def self.including_any(params, param)
