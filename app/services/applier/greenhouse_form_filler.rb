@@ -2,7 +2,7 @@
 
 module Applier
   class GreenhouseFormFiller < FormFiller
-    def initialize(payload = cleoai_payload)
+    def initialize
       super
       convert_locators
     end
