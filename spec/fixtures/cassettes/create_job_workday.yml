@@ -21,7 +21,11 @@ http_interactions:
       message: OK
     headers:
       Date:
+<<<<<<< HEAD
       - Thu, 01 Aug 2024 20:04:29 GMT
+=======
+      - Mon, 29 Jul 2024 14:11:16 GMT
+>>>>>>> 90e103fb (deleted some cassettes)
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -35,6 +39,7 @@ http_interactions:
       Expires:
       - Thu, 1 Jan 1970 00:00:00 UTC
       Set-Cookie:
+<<<<<<< HEAD
       - PLAY_SESSION=e0d58957871daa469ff3435e86c5bb4701c209d4-instance=vps-prod-t36mo4n1.prod-vps.pr502.cust.pdx.wd;
         SameSite=Lax; Path=/; Secure; HTTPOnly
       - __cf_bm=ul95aPmNfgctuAPtBdRpECPCkC0bObDjhADUGsW517Q-1722542669-1.0.1.1-w5poZwD6aoymXHRfVg06xygstwYJea2eCEqLRtUR7Kndtc6X7DQDgdzG_sz_imC9cg6sYchxehcsMHOcXBf9ew;
@@ -51,22 +56,49 @@ http_interactions:
       - no-store, no-cache
       X-Wd-Request-Id:
       - VPS|1a5d0686-7b29-4ab9-a203-658b7243cd65
+=======
+      - PLAY_SESSION=679293ba0937e5b56ae0ef4a02041f61f8294315-instance=vps-prod-fv4yfptg.prod-vps.pr501.cust.pdx.wd;
+        SameSite=Lax; Path=/; Secure; HTTPOnly
+      - __cf_bm=oIGswK1tVQ_TMFOv0LtAQIiMx.SWM2FpXndREoOJNmU-1722262276-1.0.1.1-rHBwpn0qOP0RXnuh7JIWrYJnJTBRafoWPQJc.w48gsShnJQJ0WQSkHOLf6caZqU2sm1Bdvj4IKkPpZgYjSFVtQ;
+        path=/; expires=Mon, 29-Jul-24 14:41:16 GMT; domain=.motorolasolutions.wd5.myworkdayjobs.com;
+        HttpOnly; Secure; SameSite=None
+      - __cflb=02DiuHJZe28xXz6hQKNFTtNTjdFAZDpBKcfV3HwGQoD4g; SameSite=None; Secure;
+        path=/; expires=Tue, 30-Jul-24 13:11:16 GMT; HttpOnly
+      - _cfuvid=AQ0Ef9SkiBqDddo5jb7PnOYnxjosU6Y7c4M1VRqUeQY-1722262276975-0.0.1.1-604800000;
+        path=/; domain=.motorolasolutions.wd5.myworkdayjobs.com; HttpOnly; Secure;
+        SameSite=None
+      - wd-browser-id=874ff929-c95d-4624-a047-1ba3d1de6db3; Path=/; Secure; HTTPOnly
+      - wday_vps_cookie=1357552650.53810.0000; path=/; Httponly; Secure; SameSite=none
+      Cache-Control:
+      - no-store, no-cache
+      X-Wd-Request-Id:
+      - VPS|edf849e0-eb32-4738-bcb8-6ae95a0e67d3
+>>>>>>> 90e103fb (deleted some cassettes)
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Cf-Cache-Status:
       - DYNAMIC
       Report-To:
+<<<<<<< HEAD
       - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=SXTZHdFxn%2BOIp6DITzMLu%2FanKDenH0B0vXE6Tnrw%2FpgEhvC7lNVSq0O21gRDjFYZ8Q4CNbh3fDzaA0lgM87o%2BfEgsBRxZ8nyGqtZ2mF8yYNC42YB384Q85D4I35z7J7ocLbMTM8nMTicfhKxWdpGShN9uuqj5g%2B%2FyA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+=======
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=JQwvwMwqsafBPIJIjny8w62PCdzmb9OFWnbGPxB7Q6IglZbOpN0Vj5zBoQD2%2FoSx2Vi%2FhLWCdtNQfVuFJmnt%2F7%2FSLh6m4%2BW3Bn0Om4uwfP%2B49J47NXjlM5HXZdinqYUSnEbiqYgCpAst3Z2SbT7HKgZH4ArY8uAZsg%3D%3D"}],"group":"cf-nel","max_age":604800}'
+>>>>>>> 90e103fb (deleted some cassettes)
       Nel:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
+<<<<<<< HEAD
       - 8ac86ffbacd53b41-IAD
+=======
+      - 8aadb279fb094267-EWR
+>>>>>>> 90e103fb (deleted some cassettes)
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
+<<<<<<< HEAD
       string: '{"total":608,"jobPostings":[{"title":"Channel Account Manager - Video
         Security & Access Control (San Diego)","externalPath":"/job/San-Diego-CA/Channel-Account-Manager---Video-Security---Access-Control--San-Diego-_R48997","locationsText":"San
         Diego, CA, More...","postedOn":"Posted Today","bulletFields":["R48997","San
@@ -148,10 +180,91 @@ http_interactions:
         India (ZIN114)","id":"4114a9c5ddc5010679785ea9e8011a38","count":3},{"descriptor":"Bangalore
         offsite, India","id":"83e4449f1df80133688024551401456f","count":4},{"descriptor":"Bay
         Shore, NY (NY54)","id":"d879770ce580100165639203abdb0000","count":3},{"descriptor":"Beltsville,
+=======
+      string: '{"total":618,"jobPostings":[{"title":"Technical Support Specialist","externalPath":"/job/United-Kingdom-Offsite-ZUK99/Technical-Support-Specialist_R48704","locationsText":"United
+        Kingdom Offsite (ZUK99)","postedOn":"Posted Today","bulletFields":["R48704","United
+        Kingdom Offsite (ZUK99)"]},{"title":"Accounts Payable Specialist","externalPath":"/job/Krakow-Poland/Accounts-Payable-Specialist_R48927","locationsText":"Krakow,
+        Poland","postedOn":"Posted Today","bulletFields":["R48927","Krakow, Poland"]},{"title":"Intern
+        Manual Software Tester","externalPath":"/job/Krakow-Poland/Intern-Manual-Software-Tester_R47825","locationsText":"Krakow,
+        Poland","postedOn":"Posted Today","bulletFields":["R47825","Krakow, Poland"]},{"title":"Sales
+        Development Representative, Cloud IT EMEA","externalPath":"/job/Lisbon-Portugal/Sales-Development-Representative--Cloud-IT-EMEA_R48856","locationsText":"Lisbon,
+        Portugal","postedOn":"Posted Today","bulletFields":["R48856","Lisbon, Portugal
+        (ZPT16)"]},{"title":"Planview Developer","externalPath":"/job/Bangalore-India/Planview-Developer_R45582-1","locationsText":"Bangalore,
+        India","postedOn":"Posted Today","bulletFields":["R45582","Bangalore, India
+        (ZIN110)"]},{"title":"Customer Service & IT Advisor","externalPath":"/job/Rugby-UK-ZUK107/Customer-Service---IT-Advisor_R48791","locationsText":"Rugby,
+        UK (ZUK107)","postedOn":"Posted Today","bulletFields":["R48791","Rugby, UK
+        (ZUK107)"]},{"title":"Customer Service & IT Advisor","externalPath":"/job/Rugby-UK-ZUK107/Customer-Service---IT-Advisor_R48793","locationsText":"Rugby,
+        UK (ZUK107)","postedOn":"Posted Today","bulletFields":["R48793","Rugby, UK
+        (ZUK107)"]},{"title":"Senior Technical Support Engineer (Edesix Mobile Video
+        APAC Region)","externalPath":"/job/Penang-Malaysia/Senior-Technical-Support-Engineer--Edesix-Mobile-Video-APAC-Region-_R48950","locationsText":"Penang,
+        Malaysia","postedOn":"Posted Today","bulletFields":["R48950","Penang, Malaysia
+        (ZMY33)"]},{"title":"Customer Support Manager","externalPath":"/job/Dubai-UAE/Customer-Support-Manager_R46043-1","locationsText":"Dubai,
+        UAE","postedOn":"Posted Today","bulletFields":["R46043","Dubai, UAE (ZUA20)"]},{"title":"Systems
+        Integrations and Tests Engineer","externalPath":"/job/Krakow-Poland/Systems-Integrations-and-Tests-Engineer_R48671","locationsText":"Krakow,
+        Poland","postedOn":"Posted Today","bulletFields":["R48671","Krakow, Poland"]},{"title":"Senior
+        UX Designer","externalPath":"/job/Krakow-Poland/Senior-UX-Designer_R47040-1","locationsText":"Krakow,
+        Poland","postedOn":"Posted Today","bulletFields":["R47040","Krakow, Poland"]},{"title":"Software
+        Engineer","externalPath":"/job/Bangalore-India/Software-Engineer_R48528","locationsText":"Bangalore,
+        India","postedOn":"Posted Today","bulletFields":["R48528","Bangalore, India
+        (ZIN110)"]},{"title":"Software Engineer","externalPath":"/job/Bangalore-India/Software-Engineer_R48521","locationsText":"Bangalore,
+        India","postedOn":"Posted Today","bulletFields":["R48521","Bangalore, India
+        (ZIN110)"]},{"title":"SOC Analyst","externalPath":"/job/Schaumburg-IL/SOC-Analyst_R48874","locationsText":"Schaumburg,
+        IL","postedOn":"Posted Yesterday","bulletFields":["R48874","Schaumburg, IL
+        (IL01)"]},{"title":"Technical Triage Supervisor","externalPath":"/job/Reynosa-Mexico/Technical-Triage-Supervisor_R47739","locationsText":"Reynosa,
+        Mexico","postedOn":"Posted 3 Days Ago","bulletFields":["R47739","Reynosa,
+        Mexico (ZMX70)"]},{"title":"Senior Sales Engineer","externalPath":"/job/Pennsylvania-US-Offsite/Senior-Sales-Engineer_R48701","locationsText":"Pennsylvania,
+        US Offsite, More...","postedOn":"Posted 3 Days Ago","bulletFields":["R48701","Pennsylvania,
+        US Offsite (PA999)"]},{"title":"Director of Procurement","externalPath":"/job/Greater-Chicago-Area/Director-of-Procurement_R48891","locationsText":"Greater
+        Chicago Area, More...","postedOn":"Posted 3 Days Ago","bulletFields":["R48891","Greater
+        Chicago Area"]},{"title":"NOC Agent I","externalPath":"/job/Santiago-Chile/NOC-Agent-I_R48421","locationsText":"Santiago,
+        Chile","postedOn":"Posted 3 Days Ago","bulletFields":["R48421","Santiago,
+        Chile (ZCE10)"]},{"title":"Tecnico Instalador RF","externalPath":"/job/Calama-Chile/Tecnico-Instalador-RF_R48725","locationsText":"Calama,
+        Chile","postedOn":"Posted 3 Days Ago","bulletFields":["R48725","Calama, Chile
+        (ZCE17)"]},{"title":"Tecnico Instalador RF","externalPath":"/job/Calama-Chile/Tecnico-Instalador-RF_R48730","locationsText":"Calama,
+        Chile","postedOn":"Posted 3 Days Ago","bulletFields":["R48730","Calama, Chile
+        (ZCE17)"]}],"facets":[{"facetParameter":"jobFamilyGroup","descriptor":"Job
+        Category","values":[{"descriptor":"Engineering & Sciences","id":"2161bef685534428b91fad96fc9069b4","count":292},{"descriptor":"Sales","id":"51170c2b83944d19b9666b23fc81a3b4","count":91},{"descriptor":"Service
+        & Support","id":"c2197eea2758408bbbe52d2c04006230","count":82},{"descriptor":"Manufacturing
+        & Supply Chain","id":"5a650a685cb64a0ba694baa053e24bda","count":36},{"descriptor":"Information
+        Technology","id":"c3fc17b768e842e39b7192f0bf4cb0f1","count":28},{"descriptor":"Marketing","id":"98e69dcc548d4f27b918cd1a989abb24","count":28},{"descriptor":"Professional
+        Services","id":"60d771b675b201093e19718f600171af","count":18},{"descriptor":"Finance","id":"8e0e5fd2f9d246ce9c29c005c2dd4868","count":18},{"descriptor":"General
+        Management & Operations","id":"659a52e90f764b73bcb230a3ab5bb6d5","count":13},{"descriptor":"Administration
+        & Facilities","id":"0191c22da3ac417c94d450ccdb06a7ed","count":5},{"descriptor":"Legal
+        & Regulatory","id":"4170777a1c914320ad8828c0ec033c53","count":4},{"descriptor":"Human
+        Resources","id":"8e651d1131bc4aad9a089b555adc3975","count":3}]},{"facetParameter":"timeType","descriptor":"Regions","values":[{"descriptor":"North
+        America","id":"436f05d7afa343d5a8c9f92ef3e8c71b","count":186},{"descriptor":"Asia
+        Pacific","id":"14bb6aa2c25e4a218b2a3faaa951e44c","count":136},{"descriptor":"Europe
+        Middle East Africa","id":"e61d35cf9e484fa080984bec674f16ca","count":119},{"descriptor":"Latin
+        America","id":"d6565dafd0ce4473932b0ce1ce9a0307","count":22}]},{"facetParameter":"timeType123","descriptor":"Time
+        Type","values":[{"descriptor":"Full time","id":"6e8e99fd0c7648ebbf0074d32dc873f5","count":611},{"descriptor":"Part
+        time","id":"43259991a4cc42f1a7570dd5dc911e13","count":7}]},{"facetParameter":"locationMainGroup","values":[{"facetParameter":"locationCountry","descriptor":"Countries","values":[{"descriptor":"Argentina","id":"e42ad5eac46d4cc9b367ceaef42577c5","count":4},{"descriptor":"Australia","id":"d903bb3fedad45039383f6de334ad4db","count":8},{"descriptor":"Austria","id":"d004c0d1a6c84511ab048669fcdf9fd7","count":3},{"descriptor":"Brazil","id":"1a29bb1357b240ab99a2fa755cc87c0e","count":19},{"descriptor":"Bulgaria","id":"25f4875dc598484dbeee857eb2d81652","count":3},{"descriptor":"Canada","id":"a30a87ed25634629aa6c3958aa2b91ea","count":24},{"descriptor":"Chile","id":"53fe09ef12b9408682a1d2439823f2e0","count":8},{"descriptor":"Colombia","id":"e8106cd6a3534f2dba6fdee2d41db89d","count":2},{"descriptor":"Denmark","id":"49ab063f422741e2aef271de00efeac8","count":3},{"descriptor":"Egypt","id":"d865e83093ad42319653b08e61f7db49","count":1},{"descriptor":"France","id":"54c5b6971ffb4bf0b116fe7651ec789a","count":2},{"descriptor":"Germany","id":"dcc5b7608d8644b3a93716604e78e995","count":10},{"descriptor":"India","id":"c4f78be1a8f14da0ab49ce1162348a5e","count":60},{"descriptor":"Ireland","id":"04a05835925f45b3a59406a2a6b72c8a","count":30},{"descriptor":"Italy","id":"8cd04a563fd94da7b06857a79faaf815","count":2},{"descriptor":"Japan","id":"8b705da2becf43cfaccc091da0988ab2","count":1},{"descriptor":"Malaysia","id":"972dc4ba8d454bc0b893ff84b1529077","count":60},{"descriptor":"Mexico","id":"e2adff9272454660ac4fdb56fc70bb51","count":5},{"descriptor":"Morocco","id":"7aaca3f6fc774f16802a4df4718a5b53","count":1},{"descriptor":"Norway","id":"d07f8ca8625e4345b98a91d0558b872a","count":2},{"descriptor":"Oman","id":"e8424552931249ba9c6c1d7706cdc01d","count":1},{"descriptor":"Philippines","id":"e56f1daf83e04bacae794ba5c5593560","count":2},{"descriptor":"Poland","id":"131d5ac7e3ee4d7b962bdc96e498e412","count":95},{"descriptor":"Portugal","id":"2e8c5034deb045d49315417c347472ca","count":10},{"descriptor":"Romania","id":"f2e609fe92974a55a05fc1cdc2852122","count":1},{"descriptor":"Saudi
+        Arabia","id":"50423b5190ad49bb89e94cd58dfaad69","count":2},{"descriptor":"Singapore","id":"80938777cac5440fab50d729f9634969","count":2},{"descriptor":"Spain","id":"bd34c524a6a04ae6915f5d96fa086199","count":3},{"descriptor":"Switzerland","id":"187134fccb084a0ea9b4b95f23890dbe","count":1},{"descriptor":"Taiwan","id":"a4e08b475d6a4176853c9d1cb9854e02","count":1},{"descriptor":"United
+        Arab Emirates","id":"7b4fa1f369bd4604ba3692682fcbe345","count":3},{"descriptor":"United
+        Kingdom","id":"29247e57dbaf46fb855b224e03170bc7","count":36},{"descriptor":"United
+        States of America","id":"bc33aa3152ec42d4995f4791a106ed09","count":226},{"descriptor":"Vietnam","id":"db69e8c8446c11de98360015c5e6daf6","count":3}]},{"facetParameter":"locations","descriptor":"Locations","values":[{"descriptor":"Adelaide,
+        Australia","id":"84a18dcbc0d5453081ff0257c1ddc017","count":1},{"descriptor":"Alabama,
+        US Offsite","id":"bbb70e9710004203b5c0165259b19722","count":1},{"descriptor":"Alabama
+        Remote Work","id":"a2aa2501ee340139269db5448422f90a","count":2},{"descriptor":"Alberta
+        Remote Work","id":"a2aa2501ee3401ebad8800458422350b","count":2},{"descriptor":"Albuquerque,
+        NM (NM06)","id":"726d9bb69ca00184bc0a4eeaae18a9a7","count":2},{"descriptor":"Allen,
+        TX (TX139)","id":"a2aa2501ee340194a7e124312b23666e","count":22},{"descriptor":"Antofagasta,
+        Chile","id":"ff21797042291056c2292e32bd504b2e","count":1},{"descriptor":"Argentina
+        Offsite (ZAR99)","id":"5b4156247dd945009ecdd0815cc32261","count":2},{"descriptor":"Arizona,
+        US Offsite","id":"1427da907f71482e93d2ca9a94f4a721","count":19},{"descriptor":"Arizona
+        Remote Work","id":"a2aa2501ee3401172758a8448422ef0a","count":14},{"descriptor":"Arkansas
+        Remote Work","id":"a2aa2501ee340168512097448422e00a","count":1},{"descriptor":"Atlanta,
+        GA","id":"e6754dd8376744ae8810143cfdbd586b","count":1},{"descriptor":"Austria
+        Offsite (ZAT99)","id":"22cd4ef36d4410e861598876a5d8cdbe","count":2},{"descriptor":"Bangalore,
+        India","id":"dc87e0de602f103e7f08db009e1c78c9","count":50},{"descriptor":"Bangalore,
+        India (ZIN114)","id":"4114a9c5ddc5010679785ea9e8011a38","count":5},{"descriptor":"Bangalore
+        offsite, India","id":"83e4449f1df80133688024551401456f","count":3},{"descriptor":"Bay
+        Shore, NY (NY54)","id":"d879770ce580100165639203abdb0000","count":6},{"descriptor":"Beltsville,
+>>>>>>> 90e103fb (deleted some cassettes)
         MD","id":"ec2584050ebf102fb4ed7d77e3a0219e","count":5},{"descriptor":"Berlin,
         Germany (ZWG172)","id":"da1bb7b30412011d12861db1754a47e2","count":4},{"descriptor":"Birmingham,
         AL","id":"37cbf3aa4d9810d6aa793a34d460121d","count":1},{"descriptor":"Bogota,
         Colombia (ZCL04)","id":"4e4bade28097445dbdf1e9acd5883db8","count":2},{"descriptor":"Brazil
+<<<<<<< HEAD
         Offsite","id":"31e50f098c28482282d16915b1f03b02","count":2},{"descriptor":"Brazil
         Remote Work","id":"a2aa2501ee3401046547064584223a0b","count":14},{"descriptor":"British
         Columbia,CAN Offsite","id":"99abf5d326b8405d913f070afd962314","count":3},{"descriptor":"British
@@ -218,6 +331,76 @@ http_interactions:
         US Offsite","id":"5e9d2bcbc1df436db79c28a492f83838","count":3},{"descriptor":"Kentucky
         Remote Work","id":"a2aa2501ee340110c46bcf468422b20c","count":3},{"descriptor":"Krakow,
         Poland","id":"cdb6c301cead01c0fd6255fbbe0073b9","count":88},{"descriptor":"Krakow,
+=======
+        Offsite","id":"31e50f098c28482282d16915b1f03b02","count":1},{"descriptor":"Brazil
+        Remote Work","id":"a2aa2501ee3401046547064584223a0b","count":14},{"descriptor":"British
+        Columbia,CAN Offsite","id":"99abf5d326b8405d913f070afd962314","count":2},{"descriptor":"British
+        Columbia Remote Work","id":"a2aa2501ee3401529baefa448422300b","count":2},{"descriptor":"Buenos
+        Aires, Ar - bus cntr (ZAR20)","id":"82f5b0bf5d18014fe0aa2c9b8f01e376","count":2},{"descriptor":"Bulgaria
+        Offsite (ZBU99)","id":"b20e212a792d4ebba04149117d379262","count":3},{"descriptor":"Burswood,
+        Australia","id":"315987c1b99841a2a788d8e7f09c3e85","count":1},{"descriptor":"Cairo,
+        Egypt","id":"27419f4f50f31074bf6d12933928093d","count":1},{"descriptor":"Calama,
+        Chile","id":"5add0ac80d6801f6eb698aeb780d6d24","count":3},{"descriptor":"California
+        Northern, US Offsite","id":"51094660fa0a4ec4b328886f73a854d2","count":5},{"descriptor":"California
+        Northern Remote Work","id":"a2aa2501ee34015666cf5f448422b30a","count":11},{"descriptor":"California
+        Southern, US Offsite","id":"2e27a5a31dfb43d6b1fe21b8f268733c","count":6},{"descriptor":"California
+        Southern Remote Work","id":"a2aa2501ee34016f686b59448422ae0a","count":13},{"descriptor":"Charlotte,
+        NC","id":"09f65edec644100fb96d7a9a30a7de0e","count":1},{"descriptor":"Chicago,
+        IL","id":"56b899ac82d3102ebb10086c343f0eed","count":44},{"descriptor":"Chile
+        Remote Work","id":"a2aa2501ee340133264bcf4484220d0b","count":1},{"descriptor":"Colorado,
+        US Offsite","id":"14ab7340d6e645c1827628a28827563a","count":1},{"descriptor":"Colorado
+        Remote Work","id":"a2aa2501ee34015a1230464484229f0a","count":9},{"descriptor":"Connecticut,
+        US Offsite","id":"399e74c7d2c4436ea401e45369f54a9c","count":3},{"descriptor":"Connecticut
+        Remote Work","id":"a2aa2501ee3401d887c339448422950a","count":2},{"descriptor":"Cork,
+        Ireland","id":"61b9ddf3a0c51000b136358fdbcb0000","count":1},{"descriptor":"Cork,
+        Ireland - Business CNTR (ZEI16)","id":"e8aed7fb96be1000b4bd44c6150c0000","count":29},{"descriptor":"Culver
+        City, CA","id":"f2cb61a1d06a01e3044baadd1f01ba77","count":7},{"descriptor":"Dallas,
+        TX","id":"d0be8406d7eb0108618092b78c8c3d7d","count":3},{"descriptor":"Dallas,
+        TX (TX143)","id":"61b9ddf3a0c51000b1184fb114ed0000","count":1},{"descriptor":"Delaware,
+        US Offsite","id":"fdbba75aa4044c649cf4ddd888004e1e","count":8},{"descriptor":"Delaware
+        Remote Work","id":"a2aa2501ee3401860b4433448422900a","count":5},{"descriptor":"Dubai,
+        UAE","id":"7dda71e222860100aa71137f4c680000","count":2},{"descriptor":"Eagan,
+        MN","id":"45632196659f01ded4d69952ac36dd7a","count":1},{"descriptor":"Edinburgh,
+        UK (ZUK129)","id":"8ea7f11f5aab01453121bf8100021cae","count":6},{"descriptor":"Elgin,
+        IL","id":"56b899ac82d3102ebe1e9ed8fc6722d7","count":1},{"descriptor":"Farmington
+        Hills, MI (MI17)","id":"da1bb7b3041201d56bf55c9f774a95e3","count":1},{"descriptor":"Florida,
+        US Offsite","id":"024e19ecdef743ea8576fd1f592a479c","count":22},{"descriptor":"Florida
+        Remote Work","id":"a2aa2501ee34015d6ddb26478422fd0c","count":24},{"descriptor":"Fornebu,
+        Norway (ZNO11)","id":"ba927ad987ee01020389e6b494000000","count":1},{"descriptor":"Fort
+        Collins, CO (CO29)","id":"4114a9c5ddc501787dea77fde7019936","count":2},{"descriptor":"Fort
+        Worth, TX (TX135)","id":"731a6d25b4bc01260a2ef4efbe0b4e60","count":2},{"descriptor":"Framingham,
+        MA","id":"442a24924422100157ed1e5a4c5c0000","count":1},{"descriptor":"Fresno,
+        CA (CA180)","id":"4114a9c5ddc501232fd3ac42e7010636","count":2},{"descriptor":"Ft.
+        Lauderdale, FL (FL87)","id":"da5e91a4328101abe15bda8ec823a9bc","count":2},{"descriptor":"Georgia,
+        US Offsite","id":"f1180d181cc140dba59dd0e993a002f1","count":14},{"descriptor":"Georgia
+        Remote Work","id":"a2aa2501ee3401b67a9904478422df0c","count":14},{"descriptor":"Germany
+        Offsite (ZWG99)","id":"5c1aee55369b44a2a5136da8dec8e315","count":6},{"descriptor":"Glasgow,
+        UK (ZUK118)","id":"c58eb349976110517e3f4e27ea7ff036","count":2},{"descriptor":"Glostrup,
+        Denmark (ZDK02)","id":"27a1c404f5744ae68442996960fe2804","count":3},{"descriptor":"Greater
+        Chicago Area","id":"a2aa2501ee34015128ebf2468422d00c","count":15},{"descriptor":"Greater
+        Dallas Area","id":"a2aa2501ee34013ba7b67b4584229a0b","count":1},{"descriptor":"Gurgaon,
+        India","id":"d879770ce5801001ba2441f0f8260000","count":4},{"descriptor":"Hemel
+        Hempstead (ZUK113)","id":"1d2d122d7b9410525727fa7446ff9305","count":1},{"descriptor":"Ho
+        Chi Minh, Vietnam","id":"04fbb808deef1000aba4980e9ce60000","count":2},{"descriptor":"Ho
+        Chi Minh City, Vietnam (ZVI16)","id":"da5e91a4328101b8bd368cee2324adf1","count":1},{"descriptor":"Idaho
+        Remote Work","id":"a2aa2501ee3401e0c730f9468422d50c","count":2},{"descriptor":"Idstein,
+        Germany (ZWG86)","id":"04a42199937044bbbf6010ed72d1d007","count":2},{"descriptor":"Illinois,
+        US Offsite","id":"037ebcbfd6ee4ad8a96ca2f9ec955366","count":33},{"descriptor":"Illinois
+        Remote Work","id":"a2aa2501ee3401b4149aec468422cb0c","count":28},{"descriptor":"Indiana,
+        US Offsite","id":"86ac456645c1476581ccafcdabd07091","count":10},{"descriptor":"Indianapolis,
+        IN","id":"7f977422e7ba456a98281fb6d502202e","count":1},{"descriptor":"Indiana
+        Remote Work","id":"a2aa2501ee3401181c56e6468422c60c","count":15},{"descriptor":"India
+        Offsite (ZIN99)","id":"801ee26ff10b4e2389d3a9d125e02ae3","count":2},{"descriptor":"Iowa,
+        US Offsite","id":"1787eed6fea6446f9bc1036e9a5962d9","count":1},{"descriptor":"Iowa
+        Remote Work","id":"a2aa2501ee34012b9d0fda468422bc0c","count":7},{"descriptor":"Italy
+        Offsite (ZIT99)","id":"7de50b13083047dfb5400de1b3b32aba","count":1},{"descriptor":"Kansas,
+        US Offsite","id":"061f9780eeaf4ab392eb38562e8635c0","count":4},{"descriptor":"Kansas
+        Remote Work","id":"a2aa2501ee3401a115bcd4468422b70c","count":5},{"descriptor":"Kentucky,
+        US Offsite","id":"5e9d2bcbc1df436db79c28a492f83838","count":2},{"descriptor":"Kentucky
+        Remote Work","id":"a2aa2501ee340110c46bcf468422b20c","count":2},{"descriptor":"Krakow,
+        Poland","id":"cdb6c301cead01c0fd6255fbbe0073b9","count":90},{"descriptor":"Krakow,
+        Poland","id":"30c4e7f824bd4b1a892b4ee4a537c2f7","count":2},{"descriptor":"Krakow,
+>>>>>>> 90e103fb (deleted some cassettes)
         Poland","id":"3cc51f087f9747d5b0b2af9d001b0281","count":1},{"descriptor":"Kuala
         Lumpur, Malaysia","id":"817fef2f26ad4eec85f3d1f59f67a08c","count":2},{"descriptor":"Lexington,
         SC (SC07)","id":"da5e91a43281017cec012a9ab8239ba2","count":1},{"descriptor":"Linthicum,
@@ -1232,6 +1415,8 @@ http_interactions:
       - 20240801T200439Z-1697884bc79wlrg78x2zdk40t80000000dxg0000000092f0
       X-Cache:
       - CONFIG_NOCACHE
+      Accept-Ranges:
+      - bytes
     body:
       encoding: ASCII-8BIT
       string: !binary |-
