@@ -4,11 +4,12 @@ module Importer
   class GetGreenhouseFields < GetApiFields
     def initialize(job, data)
       @company_id = job.company.ats_identifier
+      @new_greenhouse_format = job.posting_url.include?('job-boards')
 
       options = {
         data_source: :api,
         sections: %i[core demographic compliance],
-        standard_fields: STANDARD_FIELDS,
+        standard_fields:,
         types: TYPES
       }
 
@@ -80,7 +81,11 @@ module Importer
       end
     end
 
-    def option_id(option) = option['value'] || option['id']
+    def option_id(option)
+      return option['value'] unless @section == :demographic
+
+      @new_greenhouse_format ? option_label(option) : option['id']
+    end
 
     def option_label(option) = option['label']
 
@@ -97,201 +102,203 @@ module Importer
     def question_label = @question['label']
 
     def question_required? = @question['required']
+
+    EDUCATION_FIELDS = [
+      'school',
+      'degree',
+      'discipline',
+      'start_date',
+      'end_date'
+    ]
+
+    def standard_fields
+      {
+        'first_name' => {
+          attribute: :first_name,
+          fields: [
+            {
+              id: 'first_name',
+              selector: nil,
+              type: :input,
+              max_length: 255,
+              options: []
+            }
+          ]
+        },
+        'last_name' => {
+          attribute: :last_name,
+          fields: [
+            {
+              id: 'last_name',
+              selector: nil,
+              type: :input,
+              max_length: 255,
+              options: []
+            }
+          ]
+        },
+        'email' => {
+          attribute: :email,
+          fields: [
+            {
+              id: 'email',
+              selector: nil,
+              type: :input,
+              max_length: 255,
+              options: []
+            }
+          ]
+        },
+        'phone' => {
+          attribute: :phone_number,
+          fields: [
+            {
+              id: 'phone',
+              selector: nil,
+              type: :input,
+              max_length: 255,
+              options: []
+            }
+          ]
+        },
+        'location' => {
+          attribute: :city_applicant,
+          label: 'Location (City)',
+          fields: [
+            {
+              id: 'auto_complete_input',
+              selector: 'input[name="job_application[location]"]',
+              type: :location,
+              max_length: 255,
+              options: []
+            }
+          ]
+        },
+        'resume' => {
+          attribute: :resume,
+          fields: [
+            {
+              id: ('resume' if @new_greenhouse_format),
+              selector: ('button[aria-describedby="resume-allowable-file-types"]' unless @new_greenhouse_format),
+              type: :upload,
+              max_length: 255,
+              options: []
+            },
+            {
+              id: 'resume_text',
+              selector: nil,
+              type: :input,
+              options: []
+            }
+          ]
+        },
+        'cover_letter' => {
+          attribute: :cover_letter,
+          fields: [
+            {
+              id: ('cover_letter' if @new_greenhouse_format),
+              selector: ('button[aria-describedby="cover_letter-allowable-file-types"]' unless @new_greenhouse_format),
+              type: :upload,
+              max_length: 255,
+              options: []
+            },
+            {
+              id: 'cover_letter_text',
+              selector: nil,
+              type: :input,
+              options: []
+            }
+          ]
+        },
+        'school' => {
+          attribute: :school_applicant,
+          label: 'School',
+          description: nil,
+          fields: [
+            {
+              id: 'education_school_name_0',
+              selector: 'input[name="job_application[educations][][school_name_id]"]',
+              type: :education_select
+            }
+          ]
+        },
+        'degree' => {
+          attribute: :degree_applicant,
+          label: 'Degree',
+          description: nil,
+          fields: [
+            {
+              id: 'education_degree_0',
+              selector: 'select[name="job_application[educations][][degree_id]"]',
+              type: :education_select,
+              options: []
+            }
+          ]
+        },
+        'discipline' => {
+          attribute: :discipline_applicant,
+          label: 'Discipline',
+          description: nil,
+          fields: [
+            {
+              id: 'education_discipline_0',
+              selector: 'select[name="job_application[educations][][discipline_id]"]',
+              type: :education_select,
+              options: []
+            }
+          ]
+        },
+        'start_date' => {
+          attribute: :education_start_date_applicant,
+          label: 'Start Date',
+          description: nil,
+          fields: [
+            {
+              id: nil,
+              selector: 'input[name="job_application[educations][][start_date][month]"]',
+              type: :education_input,
+              max_length: 2,
+              options: []
+            },
+            {
+              id: nil,
+              selector: 'input[name="job_application[educations][][start_date][year]"]',
+              type: :education_input,
+              max_length: 4,
+              options: []
+            }
+          ]
+        },
+        'end_date' => {
+          attribute: :education_end_date_applicant,
+          label: 'End Date',
+          description: nil,
+          fields: [
+            {
+              id: nil,
+              selector: 'input[name="job_application[educations][][end_date][month]"]',
+              type: :education_input,
+              max_length: 2,
+              options: []
+            },
+            {
+              id: nil,
+              selector: 'input[name="job_application[educations][][end_date][year]"]',
+              type: :education_input,
+              max_length: 4,
+              options: []
+            }
+          ]
+        }
+      }
+    end
+
+    TYPES = {
+      'input_file' => :upload,
+      'input_text' => :input,
+      'multi_value_multi_select' => :multi_select,
+      'multi_value_single_select' => :select,
+      'textarea' => :textarea
+    }
   end
 end
-
-EDUCATION_FIELDS = [
-  'school',
-  'degree',
-  'discipline',
-  'start_date',
-  'end_date'
-]
-
-STANDARD_FIELDS = {
-  'first_name' => {
-    attribute: :first_name,
-    fields: [
-      {
-        id: 'first_name',
-        selector: nil,
-        type: :input,
-        max_length: 255,
-        options: []
-      }
-    ]
-  },
-  'last_name' => {
-    attribute: :last_name,
-    fields: [
-      {
-        id: 'last_name',
-        selector: nil,
-        type: :input,
-        max_length: 255,
-        options: []
-      }
-    ]
-  },
-  'email' => {
-    attribute: :email,
-    fields: [
-      {
-        id: 'email',
-        selector: nil,
-        type: :input,
-        max_length: 255,
-        options: []
-      }
-    ]
-  },
-  'phone' => {
-    attribute: :phone_number,
-    fields: [
-      {
-        id: 'phone',
-        selector: nil,
-        type: :input,
-        max_length: 255,
-        options: []
-      }
-    ]
-  },
-  'location' => {
-    attribute: :city_applicant,
-    label: 'Location (City)',
-    fields: [
-      {
-        id: 'auto_complete_input',
-        selector: 'input[name="job_application[location]"]',
-        type: :location,
-        max_length: 255,
-        options: []
-      }
-    ]
-  },
-  'resume' => {
-    attribute: :resume,
-    fields: [
-      {
-        id: nil,
-        selector: 'button[aria-describedby="resume-allowable-file-types"]',
-        type: :upload,
-        max_length: 255,
-        options: []
-      },
-      {
-        id: 'resume_text',
-        selector: nil,
-        type: :input,
-        options: []
-      }
-    ]
-  },
-  'cover_letter' => {
-    attribute: :cover_letter,
-    fields: [
-      {
-        id: nil,
-        selector: 'button[aria-describedby="cover_letter-allowable-file-types"]',
-        type: :upload,
-        max_length: 255,
-        options: []
-      },
-      {
-        id: 'cover_letter_text',
-        selector: nil,
-        type: :input,
-        options: []
-      }
-    ]
-  },
-  'school' => {
-    attribute: :school_applicant,
-    label: 'School',
-    description: nil,
-    fields: [
-      {
-        id: 'education_school_name_0',
-        selector: 'input[name="job_application[educations][][school_name_id]"]',
-        type: :education_select
-      }
-    ]
-  },
-  'degree' => {
-    attribute: :degree_applicant,
-    label: 'Degree',
-    description: nil,
-    fields: [
-      {
-        id: 'education_degree_0',
-        selector: 'select[name="job_application[educations][][degree_id]"]',
-        type: :education_select,
-        options: []
-      }
-    ]
-  },
-  'discipline' => {
-    attribute: :discipline_applicant,
-    label: 'Discipline',
-    description: nil,
-    fields: [
-      {
-        id: 'education_discipline_0',
-        selector: 'select[name="job_application[educations][][discipline_id]"]',
-        type: :education_select,
-        options: []
-      }
-    ]
-  },
-  'start_date' => {
-    attribute: :education_start_date_applicant,
-    label: 'Start Date',
-    description: nil,
-    fields: [
-      {
-        id: nil,
-        selector: 'input[name="job_application[educations][][start_date][month]"]',
-        type: :education_input,
-        max_length: 2,
-        options: []
-      },
-      {
-        id: nil,
-        selector: 'input[name="job_application[educations][][start_date][year]"]',
-        type: :education_input,
-        max_length: 4,
-        options: []
-      }
-    ]
-  },
-  'end_date' => {
-    attribute: :education_end_date_applicant,
-    label: 'End Date',
-    description: nil,
-    fields: [
-      {
-        id: nil,
-        selector: 'input[name="job_application[educations][][end_date][month]"]',
-        type: :education_input,
-        max_length: 2,
-        options: []
-      },
-      {
-        id: nil,
-        selector: 'input[name="job_application[educations][][end_date][year]"]',
-        type: :education_input,
-        max_length: 4,
-        options: []
-      }
-    ]
-  }
-}
-
-TYPES = {
-  'input_file' => :upload,
-  'input_text' => :input,
-  'multi_value_multi_select' => :multi_select,
-  'multi_value_single_select' => :select,
-  'textarea' => :textarea
-}
