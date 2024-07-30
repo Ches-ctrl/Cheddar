@@ -21,11 +21,13 @@ class ApplicationQuestion
   # == Scopes ===============================================================
   # == Validations ==========================================================
 
+  # nb: attribute can be nil, so safe navigation operator is necessary with #include?
+
   def boolean? = type.eql?("boolean")
   def checkbox? = type.eql?("checkbox")
-  def cover_letter? = attribute.include?("cover_letter")
+  def cover_letter? = attribute&.include?("cover_letter")
   def input? = type.eql?("input") || type.eql?("education_input")
-  def linkedin_related? = attribute.include?('linkedin')
+  def linkedin_related? = attribute&.include?('linkedin')
   def multi_select? = type.eql?("multi_select")
   def radiogroup? = type.eql?("radiogroup")
   def resume? = attribute.eql?("resume")
