@@ -64,7 +64,6 @@ module Importer
 
     def create_question
       {
-        attribute: generate_attribute_from_label(question_label),
         required: question_required?,
         label: question_label,
         description: question_description,
@@ -96,11 +95,18 @@ module Importer
 
     def fetch_questions = send(:"#{@section}_questions")
 
-    def generate_attribute_from_label(label, max_attribute_length = 60)
-      first_question_mark = label.index('?')
-      max_length = [first_question_mark, max_attribute_length].compact.min
-      label.slice(..max_length).downcase.gsub('/', ' ').gsub(/[^a-z ]/, '').strip.gsub(/ +/, '_')
+    def find_insertion_index(base_qs, method, target)
+      target_index = base_qs.find_index { |q| question_id(q) == target }
+      return base_qs.size unless target_index
+
+      method == :insert_after ? target_index + 1 : target_index
     end
+
+    # def generate_attribute_from_label(label, max_attribute_length = 60)
+    #   first_question_mark = label.index('?')
+    #   max_length = [first_question_mark, max_attribute_length].compact.min
+    #   label.slice(..max_length).downcase.gsub('/', ' ').gsub(/[^a-z ]/, '').strip.gsub(/ +/, '_')
+    # end
 
     def generate_section
       @section_fields = {
@@ -112,21 +118,14 @@ module Importer
       }
     end
 
-    def log_and_return_fields
-      puts pretty_generate(@fields)
-      @fields
-    end
-
     def insert_questions(base_qs, qs_to_insert, method, target)
       index = find_insertion_index(base_qs, method, target)
       base_qs[0...index] + qs_to_insert + base_qs[index..]
     end
 
-    def find_insertion_index(base_qs, method, target)
-      target_index = base_qs.find_index { |q| question_id(q) == target }
-      return base_qs.size unless target_index
-
-      method == :insert_after ? target_index + 1 : target_index
+    def log_and_return_fields
+      puts pretty_generate(@fields)
+      @fields
     end
 
     def standardize_type(type) = @types[type] || type

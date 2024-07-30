@@ -43,11 +43,6 @@ module Applier
       end
     end
 
-    def handle_select
-      expand_select_menu
-      select_option.click
-    end
-
     def hidden_element
       find(:css, "input[type='hidden'][value='#{@locator}']")
     end

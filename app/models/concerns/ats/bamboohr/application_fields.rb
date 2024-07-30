@@ -1,12 +1,12 @@
 module Ats
   module Bamboohr
     module ApplicationFields
-      def get_application_question_set(job, _data)
+      def get_application_question_set(job, data)
         p "Getting BambooHR application criteria"
 
         # TODO : implement new application_question_structure structure
         # job.application_question_set = build_application_question_set_from(data['formFields'])
-        job.save
+        Importer::GetBambooFields.call(job, data)
       end
 
       private
