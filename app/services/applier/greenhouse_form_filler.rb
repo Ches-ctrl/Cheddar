@@ -48,22 +48,11 @@ module Applier
       select_option.click
     end
 
-    def handle_upload
-      pdf_tmp_file
-      attach_file_to_application
-    end
-
     def hidden_element
       find(:css, "input[type='hidden'][value='#{@locator}']")
     end
 
     def numerical?(string) = string.to_i.positive?
-
-    def pdf_tmp_file
-      uri = URI.parse(@value)
-      @value = Net::HTTP.get_response(uri).body
-      super
-    end
 
     def select_option = find("#react-select-#{@locator}-option-#{@value}")
 
@@ -97,11 +86,11 @@ module Applier
             interaction: :upload,
             value: 'https://res.cloudinary.com/dzpupuayh/image/upload/v1/development/nd4p85sryuu40oz77n0bhs29b2sz.pdf?_a=BACCd2Bn'
           },
-          # {
-          #   locator: 'button[aria-describedby="cover_letter-allowable-file-types"]',
-          #   interaction: :upload,
-          #   value: 'Thank you for considering my application. It really is an honor to apply to your company. Please hire me. I would like to work here very much. I promise to work very very hard and always get along well with my coworkers.'
-          # },
+          {
+            locator: 'cover_letter',
+            interaction: :upload,
+            value: 'Thank you for considering my application. It really is an honor to apply to your company. Please hire me. I would like to work here very much. I promise to work very very hard and always get along well with my coworkers.'
+          },
           {
             locator: '48034254',
             interaction: :input,
@@ -191,11 +180,11 @@ module Applier
             interaction: :upload,
             value: 'https://res.cloudinary.com/dzpupuayh/image/upload/v1/development/nd4p85sryuu40oz77n0bhs29b2sz.pdf?_a=BACCd2Bn'
           },
-          # {
-          #   locator: 'button[aria-describedby="cover_letter-allowable-file-types"]',
-          #   interaction: :upload,
-          #   value: 'Thank you for considering my application. It really is an honor to apply to your company. Please hire me. I would like to work here very much. I promise to work very very hard and always get along well with my coworkers.'
-          # },
+          {
+            locator: 'cover_letter',
+            interaction: :upload,
+            value: 'Thank you for considering my application. It really is an honor to apply to your company. Please hire me. I would like to work here very much. I promise to work very very hard and always get along well with my coworkers.'
+          },
           {
             locator: 'question_28496729002',
             interaction: :input,

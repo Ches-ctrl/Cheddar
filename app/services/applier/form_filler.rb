@@ -38,12 +38,14 @@ module Applier
     def application_form = '#form'
 
     def apply_button
-      find(:css, 'button, a', text: /apply/i, match: :first)
+      find(:css, 'button, a', text: /apply/i, match: :first, visible: true, wait: 5)
     end
 
     def attach_file_to_application
       attach_file(@locator, @filepath)
     end
+
+    def boolean_field = find(:css, "label[for='#{@locator}']")
 
     def click_apply_button
       apply_button.click
@@ -79,6 +81,8 @@ module Applier
       p e.message
     end
 
+    def handle_boolean = (boolean_field.click if @value)
+
     def handle_input
       verify_input { fill_in(@locator, with: @value) }
     end
@@ -94,11 +98,13 @@ module Applier
     end
 
     def handle_upload
-      @value.instance_of?(String) ? doc_tmp_file : pdf_tmp_file
+      url?(@value) ? pdf_tmp_file : doc_tmp_file
       attach_file_to_application
     end
 
     def pdf_tmp_file
+      uri = URI.parse(@value)
+      @value = Net::HTTP.get_response(uri).body # TODO: replace with CheckUrlIsValid#get?
       @filepath = Rails.root.join("tmp", "Resume - #{unique_string}.pdf")
       File.binwrite(@filepath, @value)
     end
@@ -119,6 +125,12 @@ module Applier
 
     def unique_string
       "#{@user_fullname}_#{timestamp}"
+    end
+
+    def url?(string)
+      URI(string).present?
+    rescue
+      false
     end
 
     def verify_input(retries = 3)
