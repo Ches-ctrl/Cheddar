@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 01 Aug 2024 20:03:13 GMT
+      - Tue, 30 Jul 2024 16:27:49 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -27,8 +27,9 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=ItRxkH1cfthovUKYBQRt6sc-EdKqGTHB; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=5CvvZFT3VbSFC3s.EWUvU27Q5jGCDLeR9XZlGk1OSDQ-1722542593356-0.0.1.1-604800000;
+      - PHPSESSID=y-%2Cnr%2Csp9LZ59-o2GuzEmf7TSL63bHDD; path=/; secure; HttpOnly;
+        SameSite=None
+      - _cfuvid=yhgNb23pY7t02elm2r_wgUBhkYXTQ34v656dw43FU9E-1722356869371-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -93,11 +94,11 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 8ac86e245afdbac6-ZRH
+      - 8ab6b7de6ad3955c-LHR
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":[],"result":{"name":"Avidbots","id":"72799","logoUrl":"https:\/\/images3.bamboohr.com\/72799\/logos\/cropped.jpg?v=32","careerShareUrl":"https:\/\/avidbots.bamboohr.com\/careers","shareImageUrl":"https:\/\/avidbots.bamboohr.com\/jobs\/share_image\/32","inTrial":false,"appSessId":"78fa57a99e0624f91bd6224d76726f6ef9190ca1"}}'
-  recorded_at: Thu, 01 Aug 2024 20:03:13 GMT
+      string: '{"meta":[],"result":{"name":"Avidbots","id":"72799","logoUrl":"https:\/\/images3.bamboohr.com\/72799\/logos\/cropped.jpg?v=32","careerShareUrl":"https:\/\/avidbots.bamboohr.com\/careers","shareImageUrl":"https:\/\/avidbots.bamboohr.com\/jobs\/share_image\/32","inTrial":false,"appSessId":"8543dbd83baba96408b91a8fa6ed28026e4d7394"}}'
+  recorded_at: Tue, 30 Jul 2024 16:27:49 GMT
 - request:
     method: get
     uri: https://avidbots.bamboohr.com/careers/list
@@ -117,7 +118,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 01 Aug 2024 20:03:13 GMT
+      - Tue, 30 Jul 2024 16:27:49 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -125,8 +126,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=XwU3tOCGOPGyRNJsieUmGL8qCqHdOmoH; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=8cDD5qBPr62mf8vYZ8aCCydSjzSIM.drXs7.pHic.1M-1722542593666-0.0.1.1-604800000;
+      - PHPSESSID=iXJSP1hLe75xOALKFd0DPnTOU7Zp0Nry; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=tgVLkcm8d7fy3VaCaHucLbRcZSiprYca2IXxSuSNO0w-1722356869889-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -191,12 +192,14 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 8ac86e290963bc5d-ZRH
+      - 8ab6b7e1cac576ba-LHR
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":{"totalCount":16},"result":[{"id":"693","jobOpeningName":"Technical
+      string: '{"meta":{"totalCount":17},"result":[{"id":"693","jobOpeningName":"Technical
         Support Specialist English","departmentId":"19493","departmentLabel":"Technical
-        Support","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"792","jobOpeningName":"Director
+        Support","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"783","jobOpeningName":"IT
+        Specialist","departmentId":"18495","departmentLabel":"IT","employmentStatusLabel":"Full-Time","location":{"city":"Hyderabad
+        ","state":"Telangana"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"792","jobOpeningName":"Director
         of Financial Planning & Analysis","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Waterloo"},"isRemote":null,"locationType":"1"},{"id":"795","jobOpeningName":"Traveling
         Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
         Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Brampton"},"isRemote":null,"locationType":"1"},{"id":"796","jobOpeningName":"Traveling
@@ -224,5 +227,5 @@ http_interactions:
         Operations","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"808","jobOpeningName":"Senior
         Manager, Software Development, Web & Mobile","departmentId":"18433","departmentLabel":"Engineering
         ","employmentStatusLabel":"Full-Time","location":{"city":"Kitchener","state":"Ontario"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"}]}'
-  recorded_at: Thu, 01 Aug 2024 20:03:13 GMT
+  recorded_at: Tue, 30 Jul 2024 16:27:49 GMT
 recorded_with: VCR 6.2.0
