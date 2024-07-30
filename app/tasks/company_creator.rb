@@ -12,9 +12,9 @@ class CompanyCreator < ApplicationTask
     return unless processable
 
     process
-    # rescue StandardError => e
-    #   Rails.logger.error "Error creating company: #{e.message}"
-    #   nil
+  rescue StandardError => e
+    Rails.logger.error "Error creating company: #{e.message}"
+    nil
   end
 
   private
