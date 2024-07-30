@@ -43,7 +43,9 @@ module Importer
 
     def compliance_section_description = @data.dig('compliance', 0, 'description')
 
-    def convert_to_numerical_id(value) = value.is_a?(String) && value =~ /question_(\d+)/ ? ::Regexp.last_match(1) : value.to_s
+    def convert_to_numerical_id(value)
+      !@new_greenhouse_format && value =~ /question_(\d+)/ ? ::Regexp.last_match(1) : value
+    end
 
     def core_questions
       questions = @data['questions']
