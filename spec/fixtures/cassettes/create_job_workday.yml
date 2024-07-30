@@ -824,8 +824,8 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 403
-      message: Forbidden
+      code: 200
+      message: OK
     headers:
       Date:
       - Tue, 06 Aug 2024 00:05:19 GMT
@@ -1359,6 +1359,8 @@ http_interactions:
       - 20240806T000537Z-17cc7bff758fqkc92vkwezwxbg0000000fw0000000001d3t
       X-Cache:
       - CONFIG_NOCACHE
+      Accept-Ranges:
+      - bytes
     body:
       encoding: ASCII-8BIT
       string: !binary |-
