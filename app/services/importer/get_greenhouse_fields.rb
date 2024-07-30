@@ -41,7 +41,9 @@ module Importer
 
     def compliance_section_description = @data.dig('compliance', 0, 'description')
 
-    def convert_to_numerical_id(value) = value.is_a?(String) && value =~ /question_(\d+)/ ? ::Regexp.last_match(1) : value.to_s
+    def convert_to_numerical_id(value)
+      !@new_greenhouse_format && value =~ /question_(\d+)/ ? ::Regexp.last_match(1) : value
+    end
 
     def core_questions
       questions = @data['questions']
@@ -59,7 +61,7 @@ module Importer
 
     def education_questions = EDUCATION_FIELDS.map { |type| build_education_question(type) }
 
-    def field_id(field) = convert_to_numerical_id(field['name'] || field['id'])
+    def field_id(field) = @section == :demographic ? field['id'].to_s : convert_to_numerical_id(field['name'])
 
     def field_max_length(field) = (255 if field_type(field) == 'input_text')
 

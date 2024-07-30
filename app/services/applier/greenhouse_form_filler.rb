@@ -2,9 +2,8 @@
 
 module Applier
   class GreenhouseFormFiller < FormFiller
-    def initialize
+    def initialize(payload = cleoai_payload)
       super
-      convert_locators
     end
 
     private
@@ -20,15 +19,6 @@ module Applier
       value, follow_up_value = value if value.is_a?(Array)
       find(:css, "div[role='option']", text: value.strip).click
       find_by_id("#{@locator}-freeform").set(follow_up_value) if follow_up_value
-    end
-
-    def convert_locators
-      @fields.each do |field|
-        next if field[:interaction].to_s.include?('demographic')
-
-        locator = field[:locator]
-        field[:locator] = "question_#{locator}" if numerical?(locator)
-      end
     end
 
     def demographic_label = find_by_id("#{@locator}-label")
@@ -53,7 +43,7 @@ module Applier
 
     def handle_multi_select
       @value.each do |value|
-        find(:css, "input[type='checkbox'][value='#{value}'][name='#{@locator}[]']").click
+        find(:css, "input[type='checkbox'][value='#{value}'][name='#{@locator}']").click
       end
     end
 
@@ -211,32 +201,32 @@ module Applier
           #   value: 'Thank you for considering my application. It really is an honor to apply to your company. Please hire me. I would like to work here very much. I promise to work very very hard and always get along well with my coworkers.'
           # },
           {
-            locator: '28496729002',
+            locator: 'question_28496729002',
             interaction: :input,
             value: 'https://www.linkedin.com/in/my_profile'
           },
           {
-            locator: '28496730002',
+            locator: 'question_28496730002',
             interaction: :input,
             value: 'Gosh, it would be really cool and fun.'
           },
           {
-            locator: '28496731002',
+            locator: 'question_28496731002',
             interaction: :select,
             value: '0'
           },
           {
-            locator: '28496732002',
+            locator: 'question_28496732002',
             interaction: :input,
             value: '£1,000,000'
           },
           {
-            locator: '28496733002',
+            locator: 'question_28496733002[]',
             interaction: :multi_select,
             value: ['176762294002']
           },
           {
-            locator: '28496734002',
+            locator: 'question_28496734002[]',
             interaction: :multi_select,
             value: ['176762295002', '176762303002', '176762307002']
           },
