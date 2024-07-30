@@ -2,10 +2,6 @@
 
 module Applier
   class GreenhouseFormFiller < FormFiller
-    def initialize(payload = cleoai_payload)
-      super
-    end
-
     private
 
     def application_form = '#application-form'

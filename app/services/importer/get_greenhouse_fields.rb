@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# This class first determines whether a job is new_format or old_format based on its posting_url.
+# There is a limited amount of format-specific logic in terms of building the locators for certain fields.
+
 module Importer
   class GetGreenhouseFields < GetApiFields
     def initialize(job, data)
