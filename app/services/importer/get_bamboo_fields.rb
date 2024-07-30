@@ -32,16 +32,16 @@ module Importer
     def create_question = deep_merge(core_details, question_details)
 
     def deep_merge(core, question)
-      core.merge(question) { |key, a, b| key == :fields ? a[0].merge(b[0]) : a }
+      core.merge(question) { |key, a, b| key == :fields ? [a[0].merge(b[0])] : a }
     end
 
-    def field_id(field) = question_id(field)
+    def field_id = question_id(@field)
 
-    def field_max_length(field) = (255 if field_type(field) == 'input_text') # check this
+    def field_max_length = nil
 
-    def field_options(field) = field['options'] || []
+    def field_options = @field['options'] || []
 
-    def field_type(field) = field['type']
+    def field_type = @field['type']
 
     def option_id(option) = option['id']
 

@@ -66,7 +66,7 @@ module Importer
 
     def education_questions = EDUCATION_FIELDS.map { |type| build_education_question(type) }
 
-    def field_id(field) = @section == :demographic ? field['id'].to_s : convert_to_numerical_id(field['name'])
+    def field_id = @section == :demographic ? @field['id'].to_s : convert_to_numerical_id(@field['name'])
 
     def field_max_length = (255 if field_type == 'input_text')
 
