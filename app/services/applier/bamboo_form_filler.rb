@@ -11,7 +11,7 @@ module Applier
     def application_form = '#careerApplicationForm'
 
     def attach_file_to_application
-      find(:css, "input[name='#{@locator}']")
+      find("input[name='#{@locator}']")
         .sibling('div')
         .find('input')
         .attach_file(@filepath)
@@ -21,6 +21,19 @@ module Applier
       sleep 2
       p "I didn't actually submit the application."
     end
+
+    def expand_select_menu = @hidden_select_field.sibling('div').click
+
+    def handle_select
+      @hidden_select_field = find("select[name='#{@locator}']")
+      return if option_prefilled?
+
+      super
+    end
+
+    def option_prefilled? = @hidden_select_field.has_css?("option[value='#{@value}']")
+
+    def select_option = page.document.find_by_id(@value, visible: true)
 
     def sample_payload
       {
@@ -62,21 +75,21 @@ module Applier
             interaction: :input,
             value: 'London'
           },
-          # {
-          #   locator: 'state',
-          #   interaction: :input,
-          #   value: 'Greater London'
-          # },
+          {
+            locator: 'state',
+            interaction: :select,
+            value: '370'
+          },
           {
             locator: 'zip',
             interaction: :input,
             value: 'E2 8DY'
           },
-          # {
-          #   locator: 'countryId',
-          #   interaction: :input,
-          #   value: 'United Kingdom'
-          # },
+          {
+            locator: 'countryId',
+            interaction: :select,
+            value: '222'
+          },
           {
             locator: 'dateAvailable',
             interaction: :input,
