@@ -48,7 +48,6 @@ module Applier
       {
         user_fullname: 'John Smith',
         apply_url: 'https://jobs.ashbyhq.com/lightdash/9efa292a-cc34-4388-90a2-2bed5126ace4',
-        form_locator: '#form',
         fields: [
           {
             locator: '_systemfield_name',
@@ -88,7 +87,6 @@ module Applier
       {
         user_fullname: 'Jean-Jacques Rousseau',
         apply_url: 'https://jobs.ashbyhq.com/multiverse/69afde82-dad8-4923-937e-a8d7f0551db4',
-        form_locator: '#form',
         fields: [
           {
             locator: '_systemfield_name',
@@ -103,7 +101,7 @@ module Applier
           {
             locator: '_systemfield_resume',
             interaction: :upload,
-            value: File.open('public/Obretetskiy_cv.pdf')
+            value: 'https://res.cloudinary.com/dzpupuayh/image/upload/v1/development/nd4p85sryuu40oz77n0bhs29b2sz.pdf?_a=BACCd2Bn'
           },
           {
             locator: '1e68a3c6-1709-40e3-ad14-379c7f5bb56d',
