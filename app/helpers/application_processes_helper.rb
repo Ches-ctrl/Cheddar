@@ -47,9 +47,12 @@ module ApplicationProcessesHelper
     data.index(target) < data.index(comparison)
   end
 
-  def overview_humanized_value(job_application, attribute, value)
-    question = job_application.application_question_set.questions.find { |question| question.attribute.eql?(attribute) }
-    question.option_text_value(value)
+  def overview_question_label(job_application, attribute)
+    job_application.application_question_set.question_by_attribute(attribute).label
+  end
+
+  def overview_humanized_value(job_application, attribute, values)
+    job_application.application_question_set.question_by_attribute(attribute).option_text_values(values)
   end
 
   def prefilled_value(question, job_application, last_applicant_answers)
@@ -61,6 +64,12 @@ module ApplicationProcessesHelper
   end
 
   def previously_answered_value(question, last_applicant_answers)
+    return previously_answered_linkedin_value(last_applicant_answers) if question.linkedin_related?
+
     last_applicant_answers.find { |hash| hash[question.attribute] }&.values&.first
+  end
+
+  def previously_answered_linkedin_value(last_applicant_answers)
+    last_applicant_answers.find { |hash| hash.keys.first.include?('linkedin') }&.values&.first
   end
 end

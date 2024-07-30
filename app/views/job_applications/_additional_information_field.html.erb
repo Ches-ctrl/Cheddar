@@ -24,7 +24,7 @@
     hint: question.description&.html_safe,
     label: question.label,
     required: question.required,
-    selected: prefilled_value(question, job_application, last_applicant_answers),
+    checked: prefilled_value(question, job_application, last_applicant_answers),
     input_html: { 
       class: 'h-5 w-5 my-3 me-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600',
     }
@@ -41,7 +41,15 @@
       value: prefilled_value(question, job_application, last_applicant_answers)
     }
   %>
-<% elsif question.valid? && question.radiogroup? %>
+<% elsif question.valid? && question.boolean? %>
+  <%= field_form.input question.attribute,
+    collection: question.boolean_options,
+    label: question.label,
+    hint: question.description&.html_safe,
+    required: question.required,
+    selected: prefilled_value(question, job_application, last_applicant_answers)
+  %>
+<% elsif false && question.valid? && question.radiogroup? %>
   <%= field_form.input question.attribute,
     label: question.label,
     hint: question.description&.html_safe,

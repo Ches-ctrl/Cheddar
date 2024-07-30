@@ -26,7 +26,7 @@ class JobApplication < ApplicationRecord
   scope :submitted, -> { where(status: %i[submitted]) }
 
   # == Validations ==========================================================
-  enum :status, { initial: "initial", completed: "completed", submitted: "submitted", rejected: "rejected" },
+  enum :status, { initial: "initial", completed: "completed", uncompleted: "uncompleted", submitted: "submitted", rejected: "rejected" },
        default: :initial, validate: true
 
   def payload

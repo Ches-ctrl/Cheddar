@@ -30,11 +30,23 @@ class JobAttributesFetcher < ApplicationTask
     @job.build_application_question_set(
       form_structure: application_question_set
     )
+    @job.assign_attributes(apply_with_cheddar:)
     save_and_return_job
   end
 
   def application_question_set
     @ats.respond_to?(:get_application_question_set) ? @ats.get_application_question_set(@job, @data) : []
+  end
+
+  def apply_with_cheddar
+    return false unless application_question_set&.first&.dig(:questions)
+
+    application_question_set.first[:questions]
+                            .none? { |question| apply_with_cheddar_conditions(question) }
+  end
+
+  def apply_with_cheddar_conditions(question)
+    question[:required] && question[:fields].find { |field| field[:type].eql?(:location) }
   end
 
   def core_params
