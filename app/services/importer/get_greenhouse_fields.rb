@@ -4,6 +4,8 @@
 # There is a limited amount of format-specific logic in terms of building the locators for certain fields.
 
 module Importer
+  # company_id is the ATS identifier for the company
+  # Needs the company_id to fetch the education options
   class GetGreenhouseFields < GetApiFields
     def initialize(job, data)
       @company_id = job.company.ats_identifier
@@ -66,11 +68,11 @@ module Importer
 
     def field_id(field) = @section == :demographic ? field['id'].to_s : convert_to_numerical_id(field['name'])
 
-    def field_max_length(field) = (255 if field_type(field) == 'input_text')
+    def field_max_length = (255 if field_type == 'input_text')
 
-    def field_options(field) = field['values'] || field['answer_options']
+    def field_options = @field['values'] || @field['answer_options']
 
-    def field_type(field) = field['type']
+    def field_type = @field['type']
 
     def insert_education_questions
       @education_required = @data['education'] == 'education_required'

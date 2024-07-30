@@ -25,7 +25,6 @@ class JobCreator < ApplicationTask
 
   def process
     create_job
-    # attach application_question_set?
     log_and_save_new_job
   end
 
@@ -36,7 +35,6 @@ class JobCreator < ApplicationTask
   end
 
   def log_and_save_new_job
-    # TODO: Ensure job isn't previously saved by application_fields module
     Rails.logger.info "Job created - #{@job.title}" if @job.new_record? && @job.save
     @job
   end

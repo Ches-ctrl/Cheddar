@@ -1,12 +1,12 @@
 module Ats
   module Smartrecruiters
     module ApplicationFields
-      def get_application_question_set(job, _data)
+      def get_application_question_set(_job, _data)
         p "Getting smartrecruiters application criteria"
 
         # TODO : implement new application_question_structure structure
         # job.application_question_set = CORE_FIELDS.merge(WEB_FIELDS).merge(ADDITIONAL_FIELDS)
-        job.save
+        []
       end
 
       CORE_FIELDS = {

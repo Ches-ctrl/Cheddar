@@ -321,7 +321,8 @@ module Importer
     TYPES = {
       'checkbox' => :boolean,
       'long' => :textarea,
-      'short' => :input
+      'short' => :input,
+      'yes_no' => :boolean
     }
   end
 end

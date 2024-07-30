@@ -2,7 +2,8 @@ module Ats
   module Devitjobs
     module ApplicationFields
       def get_application_question_set(_job, _data)
-        CORE_FIELDS
+        # CORE_FIELDS
+        []
       end
 
       CORE_FIELDS = [

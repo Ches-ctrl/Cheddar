@@ -43,9 +43,7 @@ module Importer
     def build_fields
       @sections.each do |section|
         @section = section
-        generate_section
-        build_questions
-        add_section_to_fields
+        build_section
       end
     end
 
@@ -54,6 +52,12 @@ module Importer
         @question = question
         @section_fields[:questions] << create_question
       end
+    end
+
+    def build_section
+      generate_section
+      build_questions
+      add_section_to_fields
     end
 
     def core_details = @standard_fields[question_id(@question)] || {}
@@ -71,8 +75,9 @@ module Importer
       }.merge(core_details)
     end
 
-    def fetch_options(field)
-      field_options(field).map do |option|
+    def fetch_options
+      field_options.map.with_index do |option, index|
+        @option_index = index
         {
           id: option_id(option)&.to_s,
           label: option_label(option),
@@ -84,11 +89,12 @@ module Importer
 
     def fetch_question_fields
       question_fields&.map do |field|
+        @field = field
         {
-          id: field_id(field)&.to_s,
-          type: standardize_type(field_type(field)),
-          max_length: field_max_length(field),
-          options: fetch_options(field)
+          id: field_id&.to_s,
+          type: standardize_type(field_type),
+          max_length: field_max_length,
+          options: fetch_options
         }.compact
       end
     end
