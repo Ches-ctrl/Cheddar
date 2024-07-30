@@ -38,7 +38,7 @@ module Applier
     def application_form = '#form'
 
     def apply_button
-      find(:css, 'button, a', text: /apply/i, match: :first, visible: true, wait: 5)
+      find(:css, 'button, a', text: /apply/i, match: :first, visible: true, wait: 8)
     end
 
     def attach_file_to_application
@@ -95,6 +95,11 @@ module Applier
       within response_field do
         @value.each { |value| check(value) }
       end
+    end
+
+    def handle_select
+      expand_select_menu
+      select_option.click
     end
 
     def handle_upload
