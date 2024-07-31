@@ -62,6 +62,18 @@ companies = {
     'lightdash',
     'multiverse'
   ],
+  bamboohr: [
+    'avidbots',
+    'gfo',
+    'heirloom',
+    'hyperjar',
+    'kiteworks',
+    'meedan',
+    'prezi',
+    'resurgo',
+    'turn',
+    'xtm'
+  ],
   greenhouse: [
     'cleoai',
     '11fs',
@@ -91,7 +103,7 @@ puts "Created #{Role.count} roles"
 
 puts "-------------------------------------"
 
-ats_list = ['AshbyHQ', 'Greenhouse']
+ats_list = ['AshbyHQ', 'BambooHR', 'Greenhouse']
 defunct_urls = []
 
 puts "Preparing to re-seed database with #{response} #{ats_list.join(' and ')} jobs...\n"

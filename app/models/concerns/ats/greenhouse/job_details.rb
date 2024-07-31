@@ -15,7 +15,7 @@ module Ats
         job_data['id']
       end
 
-      def fetch_url(job_data)
+      def fetch_url(job_data, _company_id)
         job_data['absolute_url']
       end
 

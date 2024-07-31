@@ -22,9 +22,9 @@ module Importer
     def return_relevant_jobs
       data = @ats.fetch_company_jobs(@ats_identifier)
       relevant_jobs = []
-      data&.each do |job|
-        title, location = @ats.fetch_title_and_location(job)
-        relevant_jobs << @ats.fetch_url(job) if relevant?(title, location)
+      data&.each do |job_data|
+        title, location = @ats.fetch_title_and_location(job_data)
+        relevant_jobs << @ats.fetch_url(job_data, @ats_identifier) if relevant?(title, location)
       end
       relevant_jobs
     end

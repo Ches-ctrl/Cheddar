@@ -67,14 +67,6 @@ module Importer
 
     def question_required? = @question['isRequired']
 
-    EDUCATION_FIELDS = [
-      'school',
-      'degree',
-      'discipline',
-      'start_date',
-      'end_date'
-    ]
-
     STANDARD_FIELDS = {
       'firstName' => {
         label: 'First Name',
