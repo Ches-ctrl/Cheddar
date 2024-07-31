@@ -3,7 +3,7 @@ module Ats
     module ApplicationFields
       def get_application_question_set(job, data)
         # Importer::GetGreenhouseFields.call(job, data)
-        Importer::GreenhouseFieldsBuilder.call(job, data) # TODO : check before merge
+        Importer::GreenhouseFieldsBuilder.call(data) # TODO : check before merge
       end
     end
   end
