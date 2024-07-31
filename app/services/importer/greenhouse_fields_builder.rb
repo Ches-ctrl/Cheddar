@@ -79,7 +79,7 @@ module Importer
         id = field[:name]
         selector = field[:id] # specific to demographic_questions
         type = field[:type]
-        max_length = field[:max_length] = 255
+        max_length = field[:max_length] || 255
         options = options_params(field[:values] || field[:answer_options]) # specific to demographic_questions
         { id:, selector:, type:, max_length:, options: }
       end
