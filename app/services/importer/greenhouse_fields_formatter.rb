@@ -1,5 +1,13 @@
 # frozen_string_literal: true
 
+# This service object is responsible for formatting Greenhouse data into a structured format suitable for our application.
+# It extracts specific sections (core questions, demographics, compliance, location) from the raw data and transforms them into a standardized format.
+# The output of this service is used by greenhouse_fields_builder.
+
+# Key functionalities:
+# - Extracts core questions directly from the raw data.
+# - Formats demographic and compliance questions with title, description, and transformed questions.
+# - Creates a location question with auto-complete input for city.
 module Importer
   class GreenhouseFieldsFormatter < ApplicationTask
     def initialize(data)
