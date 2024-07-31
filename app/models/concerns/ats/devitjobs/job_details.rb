@@ -11,7 +11,7 @@ module Ats
         [title, job_location, remote]
       end
 
-      def fetch_url(job_data)
+      def fetch_url(job_data, _company_id = nil)
         p "Fetching URL"
         url_base + job_data['jobUrl']
       end
