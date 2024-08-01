@@ -32,7 +32,7 @@ module Applier
 
     def handle_date
       handle_input
-      send_keys(:return)
+      send_keys(:return) # close datepicker
     end
 
     def handle_education
@@ -291,7 +291,7 @@ module Applier
               },
               {
                 locator: 'end_date',
-                interaction: :input,
+                interaction: :date,
                 value: '122023'
               }
             ]
@@ -322,7 +322,7 @@ module Applier
               },
               {
                 locator: 'end_date',
-                interaction: :input,
+                interaction: :date,
                 value: '062023'
               }
             ]
