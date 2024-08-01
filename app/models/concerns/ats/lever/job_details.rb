@@ -11,7 +11,7 @@ module Ats
         job_data['id']
       end
 
-      def fetch_posting_url(job_data, _company_id)
+      def fetch_posting_url(job_data)
         job_data['hostedUrl']
       end
 
