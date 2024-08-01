@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 29 Jul 2024 09:13:54 GMT
+      - Thu, 01 Aug 2024 20:03:33 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -27,10 +27,10 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - AWSALB=Id9KkZ+4zJcvMgF2gG1h1JsYeljQlQ/8CP25eLA8VaOy1RBguGx+n6t80XLuPo+sd7ru1GIoe3pEaHZSqXjvHukeL+yl9CclSjLowyB/Bg/pIwsafFEc4rMMPpUw;
-        Expires=Mon, 05 Aug 2024 09:13:54 GMT; Path=/
-      - AWSALBCORS=Id9KkZ+4zJcvMgF2gG1h1JsYeljQlQ/8CP25eLA8VaOy1RBguGx+n6t80XLuPo+sd7ru1GIoe3pEaHZSqXjvHukeL+yl9CclSjLowyB/Bg/pIwsafFEc4rMMPpUw;
-        Expires=Mon, 05 Aug 2024 09:13:54 GMT; Path=/; SameSite=None; Secure
+      - AWSALB=pRI94CtbKzzf6pvPGqiqylW07ipJihqaGoxQZBy0zub9m6JoyQmGqWYU7Fz7AOZjKAe+dQGvCJLDa+VI6PbxEYJWWXigpvU3qxxVbpFOGOPqhLrkxsEBHOwuZHm7;
+        Expires=Thu, 08 Aug 2024 20:03:33 GMT; Path=/
+      - AWSALBCORS=pRI94CtbKzzf6pvPGqiqylW07ipJihqaGoxQZBy0zub9m6JoyQmGqWYU7Fz7AOZjKAe+dQGvCJLDa+VI6PbxEYJWWXigpvU3qxxVbpFOGOPqhLrkxsEBHOwuZHm7;
+        Expires=Thu, 08 Aug 2024 20:03:33 GMT; Path=/; SameSite=None; Secure
       Dcr-Decision-By:
       - public-posting-api
       Dcr-Processing-Time-Ms:
@@ -40,7 +40,7 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       Etag:
-      - W/"c5a9-tmL+EiWr0pgat2hhK4D4zDLHX8s"
+      - W/"90e0-7TFEpwVXb6bWBvegJY+rmmrnOac"
       Datacenter:
       - fran
       Strict-Transport-Security:
@@ -54,11 +54,90 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 8aabfee23b67459b-LHR
+      - 8ac86ea80860bbf9-ZRH
     body:
       encoding: ASCII-8BIT
-      string: '{"offset":0,"limit":100,"totalFound":18,"content":[{"id":"744000003338800","name":"Food
-        Technical Administrator - (12 Month Fixed Term Contract)","uuid":"5646d6c7-574b-4322-b34c-fda5c3d5aeb0","jobAdId":"47bf63d9-ac4e-44c9-9c37-2703577b6e4d","defaultJobAd":true,"refNumber":"000000000578","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-07-29T08:51:00.002Z","location":{"city":"Warrington","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
+      string: '{"offset":0,"limit":100,"totalFound":13,"content":[{"id":"744000004103271","name":"Software
+        Engineer - Frontend React / TypeScript","uuid":"40d7894b-0500-45b3-9ca6-73615ec50839","jobAdId":"e784b016-8f0b-42b3-baa6-7163ec2d9d01","defaultJobAd":true,"refNumber":"000000000542","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-08-01T12:58:53.953Z","location":{"city":"London","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
+        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
+        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
+        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"b2c16d92-d5b0-4389-abdf-8ac9e31e4935","valueLabel":"Tech
+        Level 2"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
+        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"bf5b9a5d-9705-4d96-a909-742091f5f1cc","valueLabel":"Expand"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"5a69e22e-765e-4a12-a350-d4e31b30e07b","valueLabel":"Software
+        Engineering - JS"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"ea2db863-e8a2-4ecd-a924-e4976ee9059b","valueLabel":"New
+        Markets"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"8896b943-e635-423d-abd1-fe06e3c75f8d","valueLabel":"C8100"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
+        Type","valueId":"FTE","valueLabel":"FTE - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
+        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
+        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"a30fb794-73f2-481b-8929-cb8f5a0ecd5d","valueLabel":"Ireland
+        1"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career track","valueId":"328b8cfa-6440-47fa-9283-64be12b08b13","valueLabel":"Software
+        Engineering - Career Track"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
+        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
+        Annual Salary","valueLabel":"63000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
+        Hiring Manager","valueLabel":"Arjun Sathe"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/744000004103271","language":{"code":"en","label":"English","labelNative":"English
+        (US)"}},{"id":"744000004098105","name":"Senior Full-Stack Software Engineer
+        - React / Node / TypeScript","uuid":"41cb7a35-f7d3-4390-8b43-4814aa39e49b","jobAdId":"b667f41c-1a7a-45c9-b413-0b5f1be699d0","defaultJobAd":true,"refNumber":"000000000534","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-08-01T12:28:26.291Z","location":{"city":"London","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
+        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
+        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
+        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"016eba4b-03ae-4e8a-b42e-eddcc3b0d082","valueLabel":"Tech
+        Level 3"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
+        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"bf5b9a5d-9705-4d96-a909-742091f5f1cc","valueLabel":"Expand"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"5a69e22e-765e-4a12-a350-d4e31b30e07b","valueLabel":"Software
+        Engineering - JS"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"ea2db863-e8a2-4ecd-a924-e4976ee9059b","valueLabel":"New
+        Markets"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"8896b943-e635-423d-abd1-fe06e3c75f8d","valueLabel":"C8100"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
+        Type","valueId":"FTE","valueLabel":"FTE - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
+        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
+        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"1cdd887e-233c-4bcb-89b6-f0fccc93ba2c","valueLabel":"Ireland
+        2"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career track","valueId":"328b8cfa-6440-47fa-9283-64be12b08b13","valueLabel":"Software
+        Engineering - Career Track"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
+        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
+        Annual Salary","valueLabel":"90000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
+        Hiring Manager","valueLabel":"Arjun Sathe"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/744000004098105","language":{"code":"en","label":"English","labelNative":"English
+        (US)"}},{"id":"744000004078680","name":"Full-Stack Software Engineer - React
+        / Node / TypeScript","uuid":"9d260c59-0024-4943-b4ed-a27e36bc5aab","jobAdId":"7aa456f0-4296-4fe3-b85f-17fa8d8a2e2d","defaultJobAd":true,"refNumber":"000000000535","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-08-01T11:01:46.122Z","location":{"city":"London","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
+        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
+        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
+        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"b2c16d92-d5b0-4389-abdf-8ac9e31e4935","valueLabel":"Tech
+        Level 2"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
+        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"bf5b9a5d-9705-4d96-a909-742091f5f1cc","valueLabel":"Expand"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"f55dbcfa-4ee0-4022-8fba-9ed0fd62508d","valueLabel":"Software
+        Engineering - iOS"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"ea2db863-e8a2-4ecd-a924-e4976ee9059b","valueLabel":"New
+        Markets"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"8896b943-e635-423d-abd1-fe06e3c75f8d","valueLabel":"C8100"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
+        Type","valueId":"FTE","valueLabel":"FTE - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
+        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
+        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"1cdd887e-233c-4bcb-89b6-f0fccc93ba2c","valueLabel":"Ireland
+        2"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career track","valueId":"328b8cfa-6440-47fa-9283-64be12b08b13","valueLabel":"Software
+        Engineering - Career Track"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
+        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
+        Annual Salary","valueLabel":"63000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
+        Hiring Manager","valueLabel":"Arjun Sathe"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/744000004078680","language":{"code":"en","label":"English","labelNative":"English
+        (US)"}},{"id":"744000003779977","name":"Finance Analyst (12 Month FTC)","uuid":"fbbf5c23-15ad-4e8c-81da-1cbef12ef5c3","jobAdId":"62f0a60a-6ae7-4a50-8b31-7e2d11e843b6","defaultJobAd":true,"refNumber":"000000000584","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-07-31T07:46:58.151Z","location":{"city":"Warrington","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
+        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
+        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
+        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"1520c772-c2db-4295-97f5-cd489facac05","valueLabel":"No
+        Grade"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
+        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"89bfcfbf-70a5-4b90-b359-0386e3a795b3","valueLabel":"Unbox"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"bc3b4b69-4858-4ccd-88a3-d99ddafc17e9","valueLabel":"Default"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"aff242fd-e4f8-4fbc-a6a2-6c9187cda37f","valueLabel":"Finance"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost
+        centre","valueId":"c401ae5a-7da7-4aa7-9a61-97fd6c30c26b","valueLabel":"C2010"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
+        Type","valueId":"FTC","valueLabel":"FTC - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
+        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
+        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"5a7e8125-914f-4c69-875e-544e2592cadf","valueLabel":"Default"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career
+        track","valueId":"6087cc0d-9d78-40a0-b5ba-94fa2e397c0b","valueLabel":"Default"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
+        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
+        Annual Salary","valueLabel":"40000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
+        Hiring Manager","valueLabel":"Rachel Hastings"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/744000003779977","language":{"code":"en","label":"English","labelNative":"English
+        (US)"}},{"id":"744000003360384","name":"Junior Technical Artworker - (12 Month
+        Fixed Term Contract)","uuid":"d67d464f-923c-4e6c-8a94-55113df4dd68","jobAdId":"862af3c0-0fd6-4041-8bd7-5e1c1a3c8e1b","defaultJobAd":true,"refNumber":"000000000574","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-07-29T10:18:30.916Z","location":{"city":"London","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
+        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
+        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"associate","label":"Associate"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"1520c772-c2db-4295-97f5-cd489facac05","valueLabel":"No
+        Grade"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
+        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"0e447d0a-2ee5-4f18-8154-07908e50a8d3","valueLabel":"Choice"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"bc3b4b69-4858-4ccd-88a3-d99ddafc17e9","valueLabel":"Default"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"f1225bfe-265b-422d-8408-a8d3500d2fac","valueLabel":"Food
+        Technical"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"453d3290-2ab5-455e-814a-47fac3037fb7","valueLabel":"C5400"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
+        Type","valueId":"FTC","valueLabel":"FTC - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
+        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
+        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"5a7e8125-914f-4c69-875e-544e2592cadf","valueLabel":"Default"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career
+        track","valueId":"6087cc0d-9d78-40a0-b5ba-94fa2e397c0b","valueLabel":"Default"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
+        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
+        Annual Salary","valueLabel":"26000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
+        Hiring Manager","valueLabel":"Sarah Fancourt"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/744000003360384","language":{"code":"en","label":"English","labelNative":"English
+        (US)"}},{"id":"744000003338800","name":"Food Technical Administrator - (12
+        Month Fixed Term Contract)","uuid":"5646d6c7-574b-4322-b34c-fda5c3d5aeb0","jobAdId":"47bf63d9-ac4e-44c9-9c37-2703577b6e4d","defaultJobAd":true,"refNumber":"000000000578","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-07-29T08:51:00.002Z","location":{"city":"Warrington","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
         And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
         Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"associate","label":"Associate"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"1520c772-c2db-4295-97f5-cd489facac05","valueLabel":"No
         Grade"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
@@ -98,45 +177,6 @@ http_interactions:
         hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
         Annual Salary","valueLabel":"28000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
         Hiring Manager","valueLabel":"Tara Abboud"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/744000003335215","language":{"code":"en","label":"English","labelNative":"English
-        (US)"}},{"id":"744000003218005","name":"Junior Technical Artworker - (12 Month
-        Fixed Term Contract)","uuid":"ac45b3c0-efce-406b-aced-638d8ba90846","jobAdId":"862af3c0-0fd6-4041-8bd7-5e1c1a3c8e1b","defaultJobAd":true,"refNumber":"000000000574","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-07-27T08:17:24.961Z","location":{"city":"London","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
-        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
-        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
-        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"1520c772-c2db-4295-97f5-cd489facac05","valueLabel":"No
-        Grade"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
-        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"0e447d0a-2ee5-4f18-8154-07908e50a8d3","valueLabel":"Choice"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"bc3b4b69-4858-4ccd-88a3-d99ddafc17e9","valueLabel":"Default"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"f1225bfe-265b-422d-8408-a8d3500d2fac","valueLabel":"Food
-        Technical"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"453d3290-2ab5-455e-814a-47fac3037fb7","valueLabel":"C5400"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
-        Type","valueId":"FTC","valueLabel":"FTC - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
-        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
-        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"5a7e8125-914f-4c69-875e-544e2592cadf","valueLabel":"Default"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career
-        track","valueId":"6087cc0d-9d78-40a0-b5ba-94fa2e397c0b","valueLabel":"Default"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
-        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
-        Annual Salary","valueLabel":"26000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
-        Hiring Manager","valueLabel":"Sarah Fancourt"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/744000003218005","language":{"code":"en","label":"English","labelNative":"English
-        (US)"}},{"id":"744000003217965","name":"Junior Technical Artworker - (12 Month
-        Fixed Term Contract)","uuid":"bd4d1d8c-18e2-428c-bad1-ac75c55524c3","jobAdId":"73a77ffc-84c8-47fc-9655-91ccff9f0c72","defaultJobAd":false,"refNumber":"000000000574","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-07-27T08:16:39.707Z","location":{"city":"Warrington","region":"England","country":"gb","remote":false,"latitude":"53.39203999999999","longitude":"-2.6023453"},"industry":{"id":"food_and_beverages","label":"Food
-        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
-        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
-        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"1520c772-c2db-4295-97f5-cd489facac05","valueLabel":"No
-        Grade"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
-        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"0e447d0a-2ee5-4f18-8154-07908e50a8d3","valueLabel":"Choice"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"bc3b4b69-4858-4ccd-88a3-d99ddafc17e9","valueLabel":"Default"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"f1225bfe-265b-422d-8408-a8d3500d2fac","valueLabel":"Food
-        Technical"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"453d3290-2ab5-455e-814a-47fac3037fb7","valueLabel":"C5400"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
-        Type","valueId":"FTC","valueLabel":"FTC - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
-        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
-        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"5a7e8125-914f-4c69-875e-544e2592cadf","valueLabel":"Default"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career
-        track","valueId":"6087cc0d-9d78-40a0-b5ba-94fa2e397c0b","valueLabel":"Default"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
-        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
-        Annual Salary","valueLabel":"26000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
-        Hiring Manager","valueLabel":"Sarah Fancourt"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/744000003217965","language":{"code":"en","label":"English","labelNative":"English
-        (US)"}},{"id":"744000002592247","name":"Warehouse Team Leader","uuid":"9430262b-497f-4913-956a-3810227a6aae","jobAdId":"c1e22017-3b58-4d31-996d-4981c990c017","defaultJobAd":true,"refNumber":"REF557M","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-07-24T15:58:22.621Z","location":{"city":"Warrington","region":"England","country":"gb","remote":false,"latitude":"53.39203999999999","longitude":"-2.6023453"},"industry":{"id":"food_and_beverages","label":"Food
-        And Beverages"},"department":{},"function":{"id":"manufacturing","label":"Manufacturing"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"associate","label":"Associate"},"customField":[{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost
-        centre","valueId":"6ce5a87a-fa2e-4b22-92a2-1e2d0d33b853","valueLabel":"C6200"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
-        Type","valueId":"FTE-PT","valueLabel":"FTE - Part Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
-        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
-        Kingdom"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
-        frequency","valueId":"ed971745-c9f9-44cf-965d-a4e45b4198e0","valueLabel":"Weekly"},{"fieldId":"630c70a2b3f729267bca7e2a","fieldLabel":"Application
-        question set","valueId":"844e1347-6c41-4722-aacd-702296a74e61","valueLabel":"Operations"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"f7c15500-dc0f-4ce6-84aa-34f7682262ec","valueLabel":"Operations
-        Fulfilment"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/744000002592247","language":{"code":"en","label":"English","labelNative":"English
         (US)"}},{"id":"744000002567175","name":"Production Supervisor, Nights","uuid":"166818f4-a1bd-4b55-88dc-38d2db087b01","jobAdId":"2b5bbf7d-8e6e-4f6c-9502-919acbfeeaa3","defaultJobAd":true,"refNumber":"000000000571","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-07-24T14:15:23.863Z","location":{"city":"Spalding","region":"England","country":"gb","remote":false,"latitude":"52.7872877","longitude":"-0.1558005"},"industry":{"id":"food_and_beverages","label":"Food
         And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
         Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
@@ -151,20 +191,6 @@ http_interactions:
         hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
         Annual Salary","valueLabel":"38200 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
         Hiring Manager","valueLabel":"Jamie Tointon"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/744000002567175","language":{"code":"en","label":"English","labelNative":"English
-        (US)"}},{"id":"744000002516325","name":"QA Manager","uuid":"7b1d3b45-b557-42e1-b559-22866054da08","jobAdId":"980a4b7c-d00d-4000-a8b0-e6779e1e4a22","defaultJobAd":true,"refNumber":"000000000449","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-07-24T10:07:36.454Z","location":{"city":"Warrington","region":"England","country":"gb","remote":false,"latitude":"53.39203999999999","longitude":"-2.6023453"},"industry":{"id":"food_and_beverages","label":"Food
-        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
-        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
-        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"1520c772-c2db-4295-97f5-cd489facac05","valueLabel":"No
-        Grade"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
-        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"88d8ccdd-8459-4264-b8a2-5c8e7edb2197","valueLabel":"Foundations"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"bc3b4b69-4858-4ccd-88a3-d99ddafc17e9","valueLabel":"Default"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"f1225bfe-265b-422d-8408-a8d3500d2fac","valueLabel":"Food
-        Technical"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"453d3290-2ab5-455e-814a-47fac3037fb7","valueLabel":"C5400"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
-        Type","valueId":"FTE","valueLabel":"FTE - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
-        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
-        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"5a7e8125-914f-4c69-875e-544e2592cadf","valueLabel":"Default"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career
-        track","valueId":"6087cc0d-9d78-40a0-b5ba-94fa2e397c0b","valueLabel":"Default"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
-        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
-        Annual Salary","valueLabel":"31500 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
-        Hiring Manager","valueLabel":"Joanna Frankowska"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/744000002516325","language":{"code":"en","label":"English","labelNative":"English
         (US)"}},{"id":"744000002509176","name":"Multimedia Content Creator - (6 month
         Fixed Term Contract)","uuid":"a59f7ad5-965a-46b5-b4bb-da0ddd545d84","jobAdId":"9a077858-fda3-416b-b911-f3af7a1cdef3","defaultJobAd":true,"refNumber":"000000000530","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-07-24T09:50:33.260Z","location":{"city":"London","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
         And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
@@ -194,21 +220,8 @@ http_interactions:
         hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
         Annual Salary","valueLabel":"47500 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
         Hiring Manager","valueLabel":"Fiona Robertson"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/744000002510384","language":{"code":"en-GB","label":"English
-        (UK)","labelNative":"English (UK)"}},{"id":"744000002509565","name":"Head
-        of Proposition Strategy","uuid":"17c4ec83-1eb1-405a-8f83-92d9d29edbc1","jobAdId":"44b7a231-595b-4c86-89b7-0dfffd8db18b","defaultJobAd":true,"refNumber":"000000000504","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-07-24T09:40:20.240Z","location":{"city":"London","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
-        And Beverages"},"department":{},"function":{"id":"strategy_planning","label":"Strategy/Planning"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
-        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"c4eea2d7-23dd-404d-8c2a-e5ac5c2bd3d6","valueLabel":"Band
-        HoF"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
-        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"d7da8bb0-a7a6-4695-9090-ccd265bfe159","valueLabel":"Default"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"bc3b4b69-4858-4ccd-88a3-d99ddafc17e9","valueLabel":"Default"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"1d598e78-7b70-42b7-a200-648d7fc44988","valueLabel":"Sustainability
-        & Insights"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"03eb4ac1-b7a1-40ec-a6b4-cfcc568bc6d6","valueLabel":"C7400"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
-        Type","valueId":"FTE","valueLabel":"FTE - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
-        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
-        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"5a7e8125-914f-4c69-875e-544e2592cadf","valueLabel":"Default"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career
-        track","valueId":"6087cc0d-9d78-40a0-b5ba-94fa2e397c0b","valueLabel":"Default"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
-        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
-        Annual Salary","valueLabel":"125000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
-        Hiring Manager","valueLabel":"Shaun Pearce"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/744000002509565","language":{"code":"en","label":"English","labelNative":"English
-        (US)"}},{"id":"744000002508312","name":"Head of Finance - (Operations & Cost)","uuid":"1535d5e2-796b-42bc-92da-25aa58effb11","jobAdId":"84aa8dc9-0dc2-4b54-b88b-b568797cf3f2","defaultJobAd":true,"refNumber":"000000000556","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-07-24T09:37:53.396Z","location":{"city":"Warrington","region":"England","country":"gb","remote":false,"latitude":"53.39203999999999","longitude":"-2.6023453"},"industry":{"id":"food_and_beverages","label":"Food
+        (UK)","labelNative":"English (UK)"}},{"id":"744000002508312","name":"Head
+        of Finance - (Operations & Cost)","uuid":"1535d5e2-796b-42bc-92da-25aa58effb11","jobAdId":"84aa8dc9-0dc2-4b54-b88b-b568797cf3f2","defaultJobAd":true,"refNumber":"000000000556","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-07-24T09:37:53.396Z","location":{"city":"Warrington","region":"England","country":"gb","remote":false,"latitude":"53.39203999999999","longitude":"-2.6023453"},"industry":{"id":"food_and_beverages","label":"Food
         And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
         Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
         Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"c4eea2d7-23dd-404d-8c2a-e5ac5c2bd3d6","valueLabel":"Band
@@ -239,84 +252,6 @@ http_interactions:
         hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
         Annual Salary","valueLabel":"50000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
         Hiring Manager","valueLabel":"Bashir Hasan"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/744000002506395","language":{"code":"en","label":"English","labelNative":"English
-        (US)"}},{"id":"744000002501275","name":"Software Engineer - Python","uuid":"827aefd7-0370-499b-a07b-9c5450eabe92","jobAdId":"c609f6b8-5962-4513-8fa5-ec1798e818a9","defaultJobAd":true,"refNumber":"000000000517","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-07-24T09:02:31.668Z","location":{"city":"London","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
-        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
-        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
-        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"b2c16d92-d5b0-4389-abdf-8ac9e31e4935","valueLabel":"Tech
-        Level 2"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
-        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"c1bbedc3-2c26-4ccd-a145-e4a3ca0b92a3","valueLabel":"Convenience"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"9518cb38-8496-4900-978a-7895876f389e","valueLabel":"Software
-        Engineering - Python"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"5155817f-eff5-400d-b0ff-e89372a9a9ff","valueLabel":"Software
-        Engineering"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"227456be-bb49-4239-bb9a-68842b0471ed","valueLabel":"C7000"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
-        Type","valueId":"FTE","valueLabel":"FTE - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
-        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
-        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"c29ce972-8e58-4651-89c5-f889a25f8b4f","valueLabel":"Pickles"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career
-        track","valueId":"328b8cfa-6440-47fa-9283-64be12b08b13","valueLabel":"Software
-        Engineering - Career Track"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
-        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
-        Annual Salary","valueLabel":"63000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
-        Hiring Manager","valueLabel":"Muireann Gorton"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/744000002501275","language":{"code":"en","label":"English","labelNative":"English
-        (US)"}},{"id":"744000002500955","name":"Senior Software Engineer - Python","uuid":"8a3d5f10-90c6-4f5c-ad04-4d3ce4cc4d01","jobAdId":"93ad949f-ba3c-40d7-8e50-36e37d3f48ce","defaultJobAd":true,"refNumber":"000000000518","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-07-24T09:00:59.393Z","location":{"city":"London","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
-        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
-        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
-        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"016eba4b-03ae-4e8a-b42e-eddcc3b0d082","valueLabel":"Tech
-        Level 3"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
-        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"c1bbedc3-2c26-4ccd-a145-e4a3ca0b92a3","valueLabel":"Convenience"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"9518cb38-8496-4900-978a-7895876f389e","valueLabel":"Software
-        Engineering - Python"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"5155817f-eff5-400d-b0ff-e89372a9a9ff","valueLabel":"Software
-        Engineering"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"227456be-bb49-4239-bb9a-68842b0471ed","valueLabel":"C7000"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
-        Type","valueId":"FTE","valueLabel":"FTE - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
-        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
-        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"c29ce972-8e58-4651-89c5-f889a25f8b4f","valueLabel":"Pickles"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career
-        track","valueId":"328b8cfa-6440-47fa-9283-64be12b08b13","valueLabel":"Software
-        Engineering - Career Track"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
-        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
-        Annual Salary","valueLabel":"90000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
-        Hiring Manager","valueLabel":"Muireann Gorton"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/744000002500955","language":{"code":"en","label":"English","labelNative":"English
-        (US)"}},{"id":"744000002498002","name":"Senior iOS Developer - Foundations","uuid":"08aae2b7-b719-4d10-9f7a-107135d0477c","jobAdId":"ab6ac55a-350d-4c27-b732-00e1a6bd92a9","defaultJobAd":true,"refNumber":"000000000527","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-07-24T08:55:17.987Z","location":{"city":"London","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
-        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
-        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
-        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"016eba4b-03ae-4e8a-b42e-eddcc3b0d082","valueLabel":"Tech
-        Level 3"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
-        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"1a46a100-4147-4dbf-a599-f8b442c6f461","valueLabel":"Tech
-        Foundations"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"f55dbcfa-4ee0-4022-8fba-9ed0fd62508d","valueLabel":"Software
-        Engineering - iOS"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"5155817f-eff5-400d-b0ff-e89372a9a9ff","valueLabel":"Software
-        Engineering"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"227456be-bb49-4239-bb9a-68842b0471ed","valueLabel":"C7000"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
-        Type","valueId":"FTE","valueLabel":"FTE - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
-        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
-        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"2831580c-6eaa-4b2c-8c96-593208d43dcf","valueLabel":"iOS
-        Foundations"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career track","valueId":"328b8cfa-6440-47fa-9283-64be12b08b13","valueLabel":"Software
-        Engineering - Career Track"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
-        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
-        Annual Salary","valueLabel":"95000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
-        Hiring Manager","valueLabel":"James Carson"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/744000002498002","language":{"code":"en","label":"English","labelNative":"English
-        (US)"}},{"id":"744000002498534","name":"iOS Developer","uuid":"89fee71a-9098-4a25-8ddf-58cb10134477","jobAdId":"7aa456f0-4296-4fe3-b85f-17fa8d8a2e2d","defaultJobAd":true,"refNumber":"000000000535","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-07-24T08:49:31.661Z","location":{"city":"London","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
-        And Beverages"},"department":{},"function":{"id":"information_technology","label":"Information
-        Technology"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
-        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"b2c16d92-d5b0-4389-abdf-8ac9e31e4935","valueLabel":"Tech
-        Level 2"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
-        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"bf5b9a5d-9705-4d96-a909-742091f5f1cc","valueLabel":"Expand"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"f55dbcfa-4ee0-4022-8fba-9ed0fd62508d","valueLabel":"Software
-        Engineering - iOS"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"ea2db863-e8a2-4ecd-a924-e4976ee9059b","valueLabel":"New
-        Markets"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"8896b943-e635-423d-abd1-fe06e3c75f8d","valueLabel":"C8100"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
-        Type","valueId":"FTE","valueLabel":"FTE - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
-        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
-        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"1cdd887e-233c-4bcb-89b6-f0fccc93ba2c","valueLabel":"Ireland
-        2"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career track","valueId":"328b8cfa-6440-47fa-9283-64be12b08b13","valueLabel":"Software
-        Engineering - Career Track"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
-        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
-        Annual Salary","valueLabel":"63000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
-        Hiring Manager","valueLabel":"Arjun Sathe"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/744000002498534","language":{"code":"en","label":"English","labelNative":"English
-        (US)"}},{"id":"744000000526675","name":"Production Supervisor, Nights (R)","uuid":"1404f33e-0743-4890-9055-80d86f199ad3","jobAdId":"54528012-4f1d-4fcf-b711-90513477f221","defaultJobAd":true,"refNumber":"000000000479","company":{"identifier":"Gousto1","name":"Gousto"},"releasedDate":"2024-07-15T17:26:12.655Z","location":{"city":"Warrington","country":"gb","remote":false},"industry":{"id":"food_and_beverages","label":"Food
-        And Beverages"},"department":{},"function":{"id":"production","label":"Production"},"typeOfEmployment":{"id":"permanent","label":"Full-time"},"experienceLevel":{"id":"mid_senior_level","label":"Mid-Senior
-        Level"},"customField":[{"fieldId":"630c7100443cdf3e99c72afa","fieldLabel":"Grade","valueId":"1520c772-c2db-4295-97f5-cd489facac05","valueLabel":"No
-        Grade"},{"fieldId":"630f84820e23e120dc6765d9","fieldLabel":"Legal entity","valueId":"fb5748db-69db-483b-b9c3-06f38d9296db","valueLabel":"Gousto"},{"fieldId":"630c74d55d9cbe1185a98b8f","fieldLabel":"Pay
-        frequency","valueId":"7cade280-1285-48d0-a136-ea0e0d038243","valueLabel":"Monthly"},{"fieldId":"630c743b160583356526ff22","fieldLabel":"Tribe","valueId":"d7da8bb0-a7a6-4695-9090-ccd265bfe159","valueLabel":"Default"},{"fieldId":"63a2ed58cccaf22c88b3909d","fieldLabel":"Domain/Skills","valueId":"bc3b4b69-4858-4ccd-88a3-d99ddafc17e9","valueLabel":"Default"},{"fieldId":"630c7063d147dd2caf234895","fieldLabel":"Division","valueId":"f7c15500-dc0f-4ce6-84aa-34f7682262ec","valueLabel":"Operations
-        Fulfilment"},{"fieldId":"630c718549d137263821dbba","fieldLabel":"Cost centre","valueId":"ceaf9ff8-3d53-47a1-b3dc-fb41178686f3","valueLabel":"C6000"},{"fieldId":"630c751c775db95e9f403d17","fieldLabel":"Employee
-        Type","valueId":"FTE","valueLabel":"FTE - Full Time"},{"fieldId":"632a2fbb5f1d045b5e572594","fieldLabel":"Confidential
-        Job","valueId":"aeb77cba-230a-4b9d-a31f-88672f23503e","valueLabel":"No"},{"fieldId":"COUNTRY","fieldLabel":"Country","valueId":"gb","valueLabel":"United
-        Kingdom"},{"fieldId":"630c7488443cdf3e99c72afb","fieldLabel":"Squad","valueId":"5a7e8125-914f-4c69-875e-544e2592cadf","valueLabel":"Default"},{"fieldId":"638dc74c67724579b30f4968","fieldLabel":"Career
-        track","valueId":"6087cc0d-9d78-40a0-b5ba-94fa2e397c0b","valueLabel":"Default"},{"fieldId":"62fa018542f61523460b010e","fieldLabel":"Brands","valueId":"default","valueLabel":"Gousto"},{"fieldId":"6311e8352f4ccc2569c5df15","fieldLabel":"Contracted
-        hours","valueLabel":"0"},{"fieldId":"6315bbb61806394796f5b97a","fieldLabel":"Maximum
-        Annual Salary","valueLabel":"39000 GBP"},{"fieldId":"630f42baa093972a1e31f0ac","fieldLabel":"Planful
-        Hiring Manager","valueLabel":"Clare Baker"}],"visibility":"PUBLIC","ref":"https://api.smartrecruiters.com/v1/companies/Gousto1/postings/744000000526675","language":{"code":"en","label":"English","labelNative":"English
         (US)"}}]}'
-  recorded_at: Mon, 29 Jul 2024 09:13:54 GMT
+  recorded_at: Thu, 01 Aug 2024 20:03:33 GMT
 recorded_with: VCR 6.2.0

@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 24 Jun 2024 10:47:38 GMT
+      - Thu, 01 Aug 2024 20:04:43 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -27,8 +27,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=Qgd8ylnne3e84wWEkGc8fnPNKAP8uSGb; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=C8CWjZH.jf4oUaOkrlJXZsIzEiLlVLLD48Go9f6Qq4A-1719226058981-0.0.1.1-604800000;
+      - PHPSESSID=EqpuAUWNWAq7srelnpVcRjUt5BOtWAz%2C; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=Fh.0Uky5GLjSaRYip2tJdwo7uz1yvD0tROFwMmVN4GE-1722542683286-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -93,11 +93,11 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 898c2411cff476bf-LHR
+      - 8ac87055e852020d-ZRH
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":[],"result":{"name":"Avidbots","id":"72799","logoUrl":"https:\/\/images3.bamboohr.com\/72799\/logos\/cropped.jpg?v=32","careerShareUrl":"https:\/\/avidbots.bamboohr.com\/careers","shareImageUrl":"https:\/\/avidbots.bamboohr.com\/jobs\/share_image\/32","inTrial":false,"appSessId":"aa0e7d7d282207e8d4d7b770c730daf855f99f19"}}'
-  recorded_at: Mon, 24 Jun 2024 10:47:38 GMT
+      string: '{"meta":[],"result":{"name":"Avidbots","id":"72799","logoUrl":"https:\/\/images3.bamboohr.com\/72799\/logos\/cropped.jpg?v=32","careerShareUrl":"https:\/\/avidbots.bamboohr.com\/careers","shareImageUrl":"https:\/\/avidbots.bamboohr.com\/jobs\/share_image\/32","inTrial":false,"appSessId":"749c03f8427100615b313779fcb0001aa444e9f0"}}'
+  recorded_at: Thu, 01 Aug 2024 20:04:43 GMT
 - request:
     method: get
     uri: https://avidbots.bamboohr.com/careers/list
@@ -117,7 +117,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 24 Jun 2024 10:47:39 GMT
+      - Thu, 01 Aug 2024 20:04:43 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -125,8 +125,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=xHgyzhH31rYEHbTDp40692OHmG4dRCjl; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=FW7RWTkpBQ76VpCUeYkh1z9aqi3f7DBMT8cmTdjTfxw-1719226059562-0.0.1.1-604800000;
+      - PHPSESSID=CHJbGj1PMSADJFddQWtdXxApjpUYVHd5; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=MCI2EdGVfqVT..yTGm2wFYxgH.a42Nb_ak822VP_9ig-1722542683960-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -191,25 +191,40 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 898c24156f4a9571-LHR
+      - 8ac8705afa60bac6-ZRH
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":{"totalCount":8},"result":[{"id":"693","jobOpeningName":"Technical
+      string: '{"meta":{"totalCount":16},"result":[{"id":"693","jobOpeningName":"Technical
         Support Specialist English","departmentId":"19493","departmentLabel":"Technical
-        Support","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"783","jobOpeningName":"IT
-        Specialist","departmentId":"18495","departmentLabel":"IT","employmentStatusLabel":"Full-Time","location":{"city":"Hyderabad
-        ","state":"Telangana"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"790","jobOpeningName":"Contracts
-        Management Specialist","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Waterloo"},"isRemote":null,"locationType":"1"},{"id":"792","jobOpeningName":"Director
-        of Financial Planning & Analysis","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Waterloo"},"isRemote":null,"locationType":"1"},{"id":"793","jobOpeningName":"Director
-        of Financial Planning & Analysis","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
-        States","state":"Illinois","province":null,"city":"Chicago"},"isRemote":null,"locationType":"1"},{"id":"795","jobOpeningName":"Traveling
+        Support","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"792","jobOpeningName":"Director
+        of Financial Planning & Analysis","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Waterloo"},"isRemote":null,"locationType":"1"},{"id":"795","jobOpeningName":"Traveling
         Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
         Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Brampton"},"isRemote":null,"locationType":"1"},{"id":"796","jobOpeningName":"Traveling
         Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
         Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Mississauga"},"isRemote":null,"locationType":"1"},{"id":"797","jobOpeningName":"Traveling
         Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
-        Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Scarborough"},"isRemote":null,"locationType":"1"}]}'
-  recorded_at: Mon, 24 Jun 2024 10:47:39 GMT
+        Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Scarborough"},"isRemote":null,"locationType":"1"},{"id":"798","jobOpeningName":"Traveling
+        Service Technician ","departmentId":"19494","departmentLabel":"Field Service","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Mississauga"},"isRemote":null,"locationType":"1"},{"id":"799","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Toronto"},"isRemote":null,"locationType":"1"},{"id":"800","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Illinois","province":null,"city":"Chicago"},"isRemote":null,"locationType":"1"},{"id":"801","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Massachusetts","province":null,"city":"Boston"},"isRemote":null,"locationType":"1"},{"id":"802","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Texas","province":null,"city":"Dallas"},"isRemote":null,"locationType":"1"},{"id":"803","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"North Carolina","province":null,"city":"Charlotte"},"isRemote":null,"locationType":"1"},{"id":"804","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Michigan","province":null,"city":"Detroit"},"isRemote":null,"locationType":"1"},{"id":"805","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Minnesota","province":null,"city":"Minneapolis"},"isRemote":null,"locationType":"1"},{"id":"806","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Utah","province":null,"city":"Salt Lake City"},"isRemote":null,"locationType":"1"},{"id":"807","jobOpeningName":"Customer
+        Care Associate, CPG Coordinator","departmentId":"19492","departmentLabel":"Support
+        Operations","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"808","jobOpeningName":"Senior
+        Manager, Software Development, Web & Mobile","departmentId":"18433","departmentLabel":"Engineering
+        ","employmentStatusLabel":"Full-Time","location":{"city":"Kitchener","state":"Ontario"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"}]}'
+  recorded_at: Thu, 01 Aug 2024 20:04:44 GMT
 - request:
     method: get
     uri: https://avidbots.bamboohr.com/careers/list
@@ -229,7 +244,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 24 Jun 2024 10:47:40 GMT
+      - Thu, 01 Aug 2024 20:04:44 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -237,8 +252,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=kmm315U8CohUsgw1IAdhhsCqB0tAOZMB; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=5.yailijdOaVoeX9iek95K5WS4Z8XulbuYQ1P0viG3Q-1719226060180-0.0.1.1-604800000;
+      - PHPSESSID=vk%2C0JcizZkB7m6SEDa-eCIkHkzDwWsYq; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=rx7L7grLqCJqC3iBNonZ0v2HKc8oTRIhGPtVPhY3K5A-1722542684789-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -303,28 +318,43 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 898c24193b926403-LHR
+      - 8ac870601c9701f4-ZRH
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":{"totalCount":8},"result":[{"id":"693","jobOpeningName":"Technical
+      string: '{"meta":{"totalCount":16},"result":[{"id":"693","jobOpeningName":"Technical
         Support Specialist English","departmentId":"19493","departmentLabel":"Technical
-        Support","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"783","jobOpeningName":"IT
-        Specialist","departmentId":"18495","departmentLabel":"IT","employmentStatusLabel":"Full-Time","location":{"city":"Hyderabad
-        ","state":"Telangana"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"790","jobOpeningName":"Contracts
-        Management Specialist","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Waterloo"},"isRemote":null,"locationType":"1"},{"id":"792","jobOpeningName":"Director
-        of Financial Planning & Analysis","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Waterloo"},"isRemote":null,"locationType":"1"},{"id":"793","jobOpeningName":"Director
-        of Financial Planning & Analysis","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
-        States","state":"Illinois","province":null,"city":"Chicago"},"isRemote":null,"locationType":"1"},{"id":"795","jobOpeningName":"Traveling
+        Support","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"792","jobOpeningName":"Director
+        of Financial Planning & Analysis","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Waterloo"},"isRemote":null,"locationType":"1"},{"id":"795","jobOpeningName":"Traveling
         Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
         Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Brampton"},"isRemote":null,"locationType":"1"},{"id":"796","jobOpeningName":"Traveling
         Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
         Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Mississauga"},"isRemote":null,"locationType":"1"},{"id":"797","jobOpeningName":"Traveling
         Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
-        Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Scarborough"},"isRemote":null,"locationType":"1"}]}'
-  recorded_at: Mon, 24 Jun 2024 10:47:40 GMT
+        Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Scarborough"},"isRemote":null,"locationType":"1"},{"id":"798","jobOpeningName":"Traveling
+        Service Technician ","departmentId":"19494","departmentLabel":"Field Service","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Mississauga"},"isRemote":null,"locationType":"1"},{"id":"799","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Toronto"},"isRemote":null,"locationType":"1"},{"id":"800","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Illinois","province":null,"city":"Chicago"},"isRemote":null,"locationType":"1"},{"id":"801","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Massachusetts","province":null,"city":"Boston"},"isRemote":null,"locationType":"1"},{"id":"802","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Texas","province":null,"city":"Dallas"},"isRemote":null,"locationType":"1"},{"id":"803","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"North Carolina","province":null,"city":"Charlotte"},"isRemote":null,"locationType":"1"},{"id":"804","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Michigan","province":null,"city":"Detroit"},"isRemote":null,"locationType":"1"},{"id":"805","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Minnesota","province":null,"city":"Minneapolis"},"isRemote":null,"locationType":"1"},{"id":"806","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Utah","province":null,"city":"Salt Lake City"},"isRemote":null,"locationType":"1"},{"id":"807","jobOpeningName":"Customer
+        Care Associate, CPG Coordinator","departmentId":"19492","departmentLabel":"Support
+        Operations","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"808","jobOpeningName":"Senior
+        Manager, Software Development, Web & Mobile","departmentId":"18433","departmentLabel":"Engineering
+        ","employmentStatusLabel":"Full-Time","location":{"city":"Kitchener","state":"Ontario"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"}]}'
+  recorded_at: Thu, 01 Aug 2024 20:04:44 GMT
 - request:
     method: get
-    uri: http://dev.virtualearth.net/REST/v1/Locations/Cali,%20Colombia?key=AqoHOjTLU9xiQRNrMWCItCk6OTpE5e8oJs4YUI-lqKDYauSw7IAyhCtjk0pUFcbC
+    uri: http://dev.virtualearth.net/REST/v1/Locations/Cali,%20Colombia?key=AmhBY6imsSQC_f1o8tlcEXoO6WxekJR2plXfZQr7g_Y6I35Yh18bR1khIX9jc9vI
     body:
       encoding: US-ASCII
       string: ''
@@ -337,15 +367,15 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 200
-      message: OK
+      code: 403
+      message: Forbidden
     headers:
       Date:
-      - Mon, 24 Jun 2024 10:47:40 GMT
+      - Thu, 01 Aug 2024 20:04:44 GMT
       Content-Type:
       - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
+      Content-Length:
+      - '588'
       Connection:
       - keep-alive
       Access-Control-Allow-Headers:
@@ -354,40 +384,20 @@ http_interactions:
       - POST, GET, OPTIONS
       Access-Control-Allow-Origin:
       - "*"
-      Alt-Svc:
-      - h3=":443"; ma=86400
       Cache-Control:
       - no-cache
-      Vary:
-      - Accept-Encoding
-      X-Bm-Traceid:
-      - 7bd8bff574c3cc074768d9eb4d8e5277
-      X-Bm-Be-Elapsed:
-      - '78'
-      X-Msedge-Ref:
-      - 'Ref A: 2D7D590E710549DFB3A6E96DB4335BDC Ref B: DB3EDGE1718 Ref C: 2024-06-24T10:47:40Z'
-      X-Bm-Fe-Elapsed:
-      - '85'
-      X-Bm-Srv:
-      - mapsplatform-frontend-684fb9868c-gzrd9, DU00003080
-      X-Ms-Bm-Ws-Info:
-      - '0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
       X-Azure-Ref:
-      - 20240624T104740Z-r175bff8f482qgb6pvb772bce000000003kg000000005nzf
+      - 20240801T200444Z-1697884bc79h8hrkb81ewv82k00000000cf0000000005gr6
       X-Cache:
       - CONFIG_NOCACHE
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cHM6XC9cL2Rldi52aXJ0dWFsZWFydGgubmV0XC9CcmFuZGluZ1wvbG9nb19wb3dlcmVkX2J5LnBuZyIsImNvcHlyaWdodCI6IkNvcHlyaWdodCDCqSAyMDI0IE1pY3Jvc29mdCBhbmQgaXRzIHN1cHBsaWVycy4gQWxsIHJpZ2h0cyByZXNlcnZlZC4gVGhpcyBBUEkgY2Fubm90IGJlIGFjY2Vzc2VkIGFuZCB0aGUgY29udGVudCBhbmQgYW55IHJlc3VsdHMgbWF5IG5vdCBiZSB1c2VkLCByZXByb2R1Y2VkIG9yIHRyYW5zbWl0dGVkIGluIGFueSBtYW5uZXIgd2l0aG91dCBleHByZXNzIHdyaXR0ZW4gcGVybWlzc2lvbiBmcm9tIE1pY3Jvc29mdCBDb3Jwb3JhdGlvbi4iLCJyZXNvdXJjZVNldHMiOlt7ImVzdGltYXRlZFRvdGFsIjozLCJyZXNvdXJjZXMiOlt7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzMuMzMyMTkyNDIwOTU5NDcyNywtNzYuNTkyODQ5NzMxNDQ1MzEyLDMuNTA2MjQyNzUyMDc1MTk1MywtNzYuNDYxMzE4OTY5NzI2NTYyXSwibmFtZSI6IkNhbGksIENvbG9tYmlhIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlszLjQ1MTkyMzg1LC03Ni41MzI4NzUwNl19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJWQUMiLCJhZG1pbkRpc3RyaWN0MiI6IkNhbGkiLCJjb3VudHJ5UmVnaW9uIjoiQ29sb21iaWEiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiQ2FsaSwgQ29sb21iaWEiLCJsb2NhbGl0eSI6IkNhbGkifSwiY29uZmlkZW5jZSI6IkhpZ2giLCJlbnRpdHlUeXBlIjoiUG9wdWxhdGVkUGxhY2UiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzMuNDUxOTIzODUsLTc2LjUzMjg3NTA2XSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19LHsiX190eXBlIjoiTG9jYXRpb246aHR0cDpcL1wvc2NoZW1hcy5taWNyb3NvZnQuY29tXC9zZWFyY2hcL2xvY2FsXC93c1wvcmVzdFwvdjEiLCJiYm94IjpbMy4yNzMzOTY5Njg4NDE1NTI3LC03Ni43MDcwOTIyODUxNTYyNSwzLjU0NzkxOTAzNDk1Nzg4NTcsLTc2LjQ1ODc2MzEyMjU1ODZdLCJuYW1lIjoiQ2FsaSIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMy4zOTkwNDM4LC03Ni41NzY0OTIzMV19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJWQUMiLCJhZG1pbkRpc3RyaWN0MiI6IkNhbGkiLCJjb3VudHJ5UmVnaW9uIjoiQ29sb21iaWEiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiQ2FsaSJ9LCJjb25maWRlbmNlIjoiSGlnaCIsImVudGl0eVR5cGUiOiJBZG1pbkRpdmlzaW9uMiIsImdlb2NvZGVQb2ludHMiOlt7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMy4zOTkwNDM4LC03Ni41NzY0OTIzMV0sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzMuNDYxMjExMzQ0Nzc2NzM1NiwtNzYuNTI3NjEzMDEwMDIwNTczLDMuNDY4OTM2Nzc5OTE4MDg4NiwtNzYuNTE3MjkzNjA2MTkwMzY0XSwibmFtZSI6IkNhbGksIENvbG9tYmlhIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlszLjQ2NTA3NDA2LC03Ni41MjI0NTMzMV19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJWQUMiLCJhZG1pbkRpc3RyaWN0MiI6IkNhbGkiLCJjb3VudHJ5UmVnaW9uIjoiQ29sb21iaWEiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiQ2FsaSwgQ29sb21iaWEiLCJsb2NhbGl0eSI6IkNvbXVuYSAyIn0sImNvbmZpZGVuY2UiOiJMb3ciLCJlbnRpdHlUeXBlIjoiUmFpbHdheVN0YXRpb24iLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzMuNDY1MDc0MDYsLTc2LjUyMjQ1MzMxXSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19XX1dLCJzdGF0dXNDb2RlIjoyMDAsInN0YXR1c0Rlc2NyaXB0aW9uIjoiT0siLCJ0cmFjZUlkIjoiN2JkOGJmZjU3NGMzY2MwNzQ3NjhkOWViNGQ4ZTUyNzd8RFUwMDAwMzA4MHwwLjAuMC4xfFJlZiBBOiAyRDdENTkwRTcxMDU0OURGQjNBNkU5NkRCNDMzNUJEQyBSZWYgQjogREIzRURHRTE3MTggUmVmIEM6IDIwMjQtMDYtMjRUMTA6NDc6NDBaIn0=
-  recorded_at: Mon, 24 Jun 2024 10:47:40 GMT
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJEZW5pZWRDcmVkZW50aWFscyIsImJyYW5kTG9nb1VyaSI6Imh0dHA6Ly9kZXYudmlydHVhbGVhcnRoLm5ldC9CcmFuZGluZy9sb2dvX3Bvd2VyZWRfYnkucG5nIiwiY29weXJpZ2h0IjoiQ29weXJpZ2h0IMKpIDIwMjQgTWljcm9zb2Z0IGFuZCBpdHMgc3VwcGxpZXJzLiBBbGwgcmlnaHRzIHJlc2VydmVkLiBUaGlzIEFQSSBjYW5ub3QgYmUgYWNjZXNzZWQgYW5kIHRoZSBjb250ZW50IGFuZCBhbnkgcmVzdWx0cyBtYXkgbm90IGJlIHVzZWQsIHJlcHJvZHVjZWQgb3IgdHJhbnNtaXR0ZWQgaW4gYW55IG1hbm5lciB3aXRob3V0IGV4cHJlc3Mgd3JpdHRlbiBwZXJtaXNzaW9uIGZyb20gTWljcm9zb2Z0IENvcnBvcmF0aW9uLiIsImVycm9yRGV0YWlscyI6WyJUaGUgcmVxdWVzdCB3YXMgZm9yYmlkZGVuLiAgWW91ciBjcmVkZW50aWFscyBtYXkgYmUgZGVuaWVkIG9yIHN1c3BlbmRlZC4iXSwicmVzb3VyY2VTZXRzIjpbXSwic3RhdHVzQ29kZSI6NDAzLCJzdGF0dXNEZXNjcmlwdGlvbiI6IkZvcmJpZGRlbiIsInRyYWNlSWQiOiJjYmU0N2MzOTZkOTNlYWMzY2JiYzI4MmFmMWMyMjk1YyJ9
+  recorded_at: Thu, 01 Aug 2024 20:04:45 GMT
 - request:
     method: get
-    uri: http://dev.virtualearth.net/REST/v1/Locations/Hyderabad,%20Telangana?key=AqoHOjTLU9xiQRNrMWCItCk6OTpE5e8oJs4YUI-lqKDYauSw7IAyhCtjk0pUFcbC
+    uri: http://dev.virtualearth.net/REST/v1/Locations/Cali,%20Colombia?key=AmhBY6imsSQC_f1o8tlcEXoO6WxekJR2plXfZQr7g_Y6I35Yh18bR1khIX9jc9vI
     body:
       encoding: US-ASCII
       string: ''
@@ -400,15 +410,15 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 200
-      message: OK
+      code: 403
+      message: Forbidden
     headers:
       Date:
-      - Mon, 24 Jun 2024 10:47:40 GMT
+      - Thu, 01 Aug 2024 20:04:45 GMT
       Content-Type:
       - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
+      Content-Length:
+      - '588'
       Connection:
       - keep-alive
       Access-Control-Allow-Headers:
@@ -417,35 +427,58 @@ http_interactions:
       - POST, GET, OPTIONS
       Access-Control-Allow-Origin:
       - "*"
-      Alt-Svc:
-      - h3=":443"; ma=86400
       Cache-Control:
       - no-cache
-      Vary:
-      - Accept-Encoding
-      X-Bm-Traceid:
-      - 18fd3281c8d5b39e97ea7a97e4ab2dc2
-      X-Bm-Be-Elapsed:
-      - '77'
-      X-Msedge-Ref:
-      - 'Ref A: 943BCE38C3AF42CEB787EC9D4AADD399 Ref B: DB3EDGE1815 Ref C: 2024-06-24T10:47:40Z'
-      X-Bm-Fe-Elapsed:
-      - '85'
-      X-Bm-Srv:
-      - mapsplatform-frontend-684fb9868c-7d92v, DU00003063
-      X-Ms-Bm-Ws-Info:
-      - '0'
-      X-Aspnet-Version:
-      - 4.0.30319
-      X-Powered-By:
-      - ASP.NET
       X-Azure-Ref:
-      - 20240624T104740Z-165bd8dd578w9bdh3bue1pwca400000003zg000000018vf8
+      - 20240801T200445Z-1697884bc797pwmfhwh0qvdhs00000000d50000000009v8y
       X-Cache:
       - CONFIG_NOCACHE
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cHM6XC9cL2Rldi52aXJ0dWFsZWFydGgubmV0XC9CcmFuZGluZ1wvbG9nb19wb3dlcmVkX2J5LnBuZyIsImNvcHlyaWdodCI6IkNvcHlyaWdodCDCqSAyMDI0IE1pY3Jvc29mdCBhbmQgaXRzIHN1cHBsaWVycy4gQWxsIHJpZ2h0cyByZXNlcnZlZC4gVGhpcyBBUEkgY2Fubm90IGJlIGFjY2Vzc2VkIGFuZCB0aGUgY29udGVudCBhbmQgYW55IHJlc3VsdHMgbWF5IG5vdCBiZSB1c2VkLCByZXByb2R1Y2VkIG9yIHRyYW5zbWl0dGVkIGluIGFueSBtYW5uZXIgd2l0aG91dCBleHByZXNzIHdyaXR0ZW4gcGVybWlzc2lvbiBmcm9tIE1pY3Jvc29mdCBDb3Jwb3JhdGlvbi4iLCJyZXNvdXJjZVNldHMiOlt7ImVzdGltYXRlZFRvdGFsIjo1LCJyZXNvdXJjZXMiOlt7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzE3LjIxMjUzOTY3Mjg1MTU2Miw3OC4xMTc3MDYyOTg4MjgxMjUsMTcuODA1MTI2MTkwMTg1NTQ3LDc4Ljc1MTQ0OTU4NDk2MDkzOF0sIm5hbWUiOiJIeWRlcmFiYWQsIEluZGlhIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlsxNy4zNjU5OTkyMiw3OC40NzU5OTc5Ml19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJURyIsImNvdW50cnlSZWdpb24iOiJJbmRpYSIsImZvcm1hdHRlZEFkZHJlc3MiOiJIeWRlcmFiYWQsIEluZGlhIiwibG9jYWxpdHkiOiJIeWRlcmFiYWQifSwiY29uZmlkZW5jZSI6IkhpZ2giLCJlbnRpdHlUeXBlIjoiUG9wdWxhdGVkUGxhY2UiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzE3LjM2NTk5OTIyLDc4LjQ3NTk5NzkyXSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19LHsiX190eXBlIjoiTG9jYXRpb246aHR0cDpcL1wvc2NoZW1hcy5taWNyb3NvZnQuY29tXC9zZWFyY2hcL2xvY2FsXC93c1wvcmVzdFwvdjEiLCJiYm94IjpbMTcuMjgwNDQ4OTEzNTc0MjE5LDc4LjM2NjAzNTQ2MTQyNTc4MSwxNy40OTE5ODUzMjEwNDQ5MjIsNzguNTU0NTczMDU5MDgyMDMxXSwibmFtZSI6Ikh5ZGVyYWJhZCIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMTcuMzYxNzE5MTMsNzguNDc1MTY2MzJdfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiVEciLCJhZG1pbkRpc3RyaWN0MiI6Ikh5ZGVyYWJhZCIsImNvdW50cnlSZWdpb24iOiJJbmRpYSIsImZvcm1hdHRlZEFkZHJlc3MiOiJIeWRlcmFiYWQifSwiY29uZmlkZW5jZSI6Ik1lZGl1bSIsImVudGl0eVR5cGUiOiJBZG1pbkRpdmlzaW9uMiIsImdlb2NvZGVQb2ludHMiOlt7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMTcuMzYxNzE5MTMsNzguNDc1MTY2MzJdLCJjYWxjdWxhdGlvbk1ldGhvZCI6IlJvb2Z0b3AiLCJ1c2FnZVR5cGVzIjpbIkRpc3BsYXkiXX1dLCJtYXRjaENvZGVzIjpbIkdvb2QiXX0seyJfX3R5cGUiOiJMb2NhdGlvbjpodHRwOlwvXC9zY2hlbWFzLm1pY3Jvc29mdC5jb21cL3NlYXJjaFwvbG9jYWxcL3dzXC9yZXN0XC92MSIsImJib3giOlsxNy4wMzUzMjc1NzQ3ODc3MjIsNzkuMjQ3NTY1OTQzMzM2NTI1LDE3LjA0MzA1MzAwOTkyOTA3NSw3OS4yNTgzMzkyMDgwMzA2NjJdLCJuYW1lIjoiSHlkZXJhYmFkLCBJbmRpYSIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMTcuMDM5MTkwMjksNzkuMjUyOTUyNThdfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiVEciLCJjb3VudHJ5UmVnaW9uIjoiSW5kaWEiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiSHlkZXJhYmFkLCBJbmRpYSIsImxvY2FsaXR5IjoiSHlkZXJhYmFkIn0sImNvbmZpZGVuY2UiOiJMb3ciLCJlbnRpdHlUeXBlIjoiTmVpZ2hib3Job29kIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlsxNy4wMzkxOTAyOSw3OS4yNTI5NTI1OF0sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6XC9cL3NjaGVtYXMubWljcm9zb2Z0LmNvbVwvc2VhcmNoXC9sb2NhbFwvd3NcL3Jlc3RcL3YxIiwiYmJveCI6WzE3LjcxNTI5OTI2OTczNDAxMSw3OS4xNTUyNjA3NDYzMjE3NzMsMTcuNzIzMDI0NzA0ODc1MzY0LDc5LjE2NjA3NDA5MjU0NTQxNV0sIm5hbWUiOiJIeWRlcmFiYWQsIEluZGlhIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlsxNy43MTkxNjE5OSw3OS4xNjA2Njc0Ml19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJURyIsImNvdW50cnlSZWdpb24iOiJJbmRpYSIsImZvcm1hdHRlZEFkZHJlc3MiOiJIeWRlcmFiYWQsIEluZGlhIiwibG9jYWxpdHkiOiJIeWRlcmFiYWQifSwiY29uZmlkZW5jZSI6IkxvdyIsImVudGl0eVR5cGUiOiJOZWlnaGJvcmhvb2QiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzE3LjcxOTE2MTk5LDc5LjE2MDY2NzQyXSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19LHsiX190eXBlIjoiTG9jYXRpb246aHR0cDpcL1wvc2NoZW1hcy5taWNyb3NvZnQuY29tXC9zZWFyY2hcL2xvY2FsXC93c1wvcmVzdFwvdjEiLCJiYm94IjpbMTYuOTQ2MzgwMjc4NjQ1MTQ0LDc4LjE3ODQyMzI5NTI1NjYwNywxNi45NTQxMDU3MTM3ODY0OTcsNzguMTg5MTkxNDUwODM3MTQzXSwibmFtZSI6Ikh5ZGVyYWJhZCwgSW5kaWEiLCJwb2ludCI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzE2Ljk1MDI0Myw3OC4xODM4MDczN119LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJURyIsImNvdW50cnlSZWdpb24iOiJJbmRpYSIsImZvcm1hdHRlZEFkZHJlc3MiOiJIeWRlcmFiYWQsIEluZGlhIiwibG9jYWxpdHkiOiJIeWRlcmFiYWQifSwiY29uZmlkZW5jZSI6IkxvdyIsImVudGl0eVR5cGUiOiJOZWlnaGJvcmhvb2QiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzE2Ljk1MDI0Myw3OC4xODM4MDczN10sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfV19XSwic3RhdHVzQ29kZSI6MjAwLCJzdGF0dXNEZXNjcmlwdGlvbiI6Ik9LIiwidHJhY2VJZCI6IjE4ZmQzMjgxYzhkNWIzOWU5N2VhN2E5N2U0YWIyZGMyfERVMDAwMDMwNjN8MC4wLjAuMXxSZWYgQTogOTQzQkNFMzhDM0FGNDJDRUI3ODdFQzlENEFBREQzOTkgUmVmIEI6IERCM0VER0UxODE1IFJlZiBDOiAyMDI0LTA2LTI0VDEwOjQ3OjQwWiJ9
-  recorded_at: Mon, 24 Jun 2024 10:47:40 GMT
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJEZW5pZWRDcmVkZW50aWFscyIsImJyYW5kTG9nb1VyaSI6Imh0dHA6Ly9kZXYudmlydHVhbGVhcnRoLm5ldC9CcmFuZGluZy9sb2dvX3Bvd2VyZWRfYnkucG5nIiwiY29weXJpZ2h0IjoiQ29weXJpZ2h0IMKpIDIwMjQgTWljcm9zb2Z0IGFuZCBpdHMgc3VwcGxpZXJzLiBBbGwgcmlnaHRzIHJlc2VydmVkLiBUaGlzIEFQSSBjYW5ub3QgYmUgYWNjZXNzZWQgYW5kIHRoZSBjb250ZW50IGFuZCBhbnkgcmVzdWx0cyBtYXkgbm90IGJlIHVzZWQsIHJlcHJvZHVjZWQgb3IgdHJhbnNtaXR0ZWQgaW4gYW55IG1hbm5lciB3aXRob3V0IGV4cHJlc3Mgd3JpdHRlbiBwZXJtaXNzaW9uIGZyb20gTWljcm9zb2Z0IENvcnBvcmF0aW9uLiIsImVycm9yRGV0YWlscyI6WyJUaGUgcmVxdWVzdCB3YXMgZm9yYmlkZGVuLiAgWW91ciBjcmVkZW50aWFscyBtYXkgYmUgZGVuaWVkIG9yIHN1c3BlbmRlZC4iXSwicmVzb3VyY2VTZXRzIjpbXSwic3RhdHVzQ29kZSI6NDAzLCJzdGF0dXNEZXNjcmlwdGlvbiI6IkZvcmJpZGRlbiIsInRyYWNlSWQiOiI4YzFjMTFiODBlYTZlNjFiZjE2OTU2ZmE2OTVlMGViZSJ9
+  recorded_at: Thu, 01 Aug 2024 20:04:45 GMT
+- request:
+    method: get
+    uri: http://dev.virtualearth.net/REST/v1/Locations/Kitchener,%20Ontario?key=AmhBY6imsSQC_f1o8tlcEXoO6WxekJR2plXfZQr7g_Y6I35Yh18bR1khIX9jc9vI
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 403
+      message: Forbidden
+    headers:
+      Date:
+      - Thu, 01 Aug 2024 20:04:45 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '588'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Headers:
+      - Content-Type,X-FD-Features,X-FD-FLIGHT,PreferAnonymous
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache
+      X-Azure-Ref:
+      - 20240801T200445Z-1697884bc79rz5nphhx4e9n4en0000000dh0000000005tc8
+      X-Cache:
+      - CONFIG_NOCACHE
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJEZW5pZWRDcmVkZW50aWFscyIsImJyYW5kTG9nb1VyaSI6Imh0dHA6Ly9kZXYudmlydHVhbGVhcnRoLm5ldC9CcmFuZGluZy9sb2dvX3Bvd2VyZWRfYnkucG5nIiwiY29weXJpZ2h0IjoiQ29weXJpZ2h0IMKpIDIwMjQgTWljcm9zb2Z0IGFuZCBpdHMgc3VwcGxpZXJzLiBBbGwgcmlnaHRzIHJlc2VydmVkLiBUaGlzIEFQSSBjYW5ub3QgYmUgYWNjZXNzZWQgYW5kIHRoZSBjb250ZW50IGFuZCBhbnkgcmVzdWx0cyBtYXkgbm90IGJlIHVzZWQsIHJlcHJvZHVjZWQgb3IgdHJhbnNtaXR0ZWQgaW4gYW55IG1hbm5lciB3aXRob3V0IGV4cHJlc3Mgd3JpdHRlbiBwZXJtaXNzaW9uIGZyb20gTWljcm9zb2Z0IENvcnBvcmF0aW9uLiIsImVycm9yRGV0YWlscyI6WyJUaGUgcmVxdWVzdCB3YXMgZm9yYmlkZGVuLiAgWW91ciBjcmVkZW50aWFscyBtYXkgYmUgZGVuaWVkIG9yIHN1c3BlbmRlZC4iXSwicmVzb3VyY2VTZXRzIjpbXSwic3RhdHVzQ29kZSI6NDAzLCJzdGF0dXNEZXNjcmlwdGlvbiI6IkZvcmJpZGRlbiIsInRyYWNlSWQiOiI2OGQxMmY2YmM1MzdmNWQ1YTA0NDFkZjYyZDViNmJlZiJ9
+  recorded_at: Thu, 01 Aug 2024 20:04:45 GMT
 recorded_with: VCR 6.2.0

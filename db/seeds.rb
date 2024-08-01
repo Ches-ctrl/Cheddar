@@ -56,11 +56,11 @@ puts "-------------------------------------"
 
 companies = {
   ashbyhq: [
-    # 'airwallex',
-    # 'Crusoe',
-    # 'isometric',
-    # 'lightdash',
-    # 'multiverse'
+    'airwallex',
+    'Crusoe',
+    'isometric',
+    'lightdash',
+    'multiverse'
   ],
   greenhouse: [
     'cleoai',
@@ -69,16 +69,16 @@ companies = {
     'copperco',
     'deliveroo',
     'doctolib',
-    # 'epicgames',
-    # 'figma',
-    # 'forter',
-    # 'geniussports',
-    # 'getir',
-    # 'gomotive',
-    # 'intercom',
-    # 'janestreet',
-    # 'knowde',
-    # 'narvar',
+    'epicgames',
+    'figma',
+    'forter',
+    'geniussports',
+    'getir',
+    'gomotive',
+    'intercom',
+    'janestreet',
+    'knowde',
+    'narvar',
   ]
 }
 

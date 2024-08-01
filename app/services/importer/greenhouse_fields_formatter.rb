@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-# This service object is responsible for formatting Greenhouse data into a structured format suitable for our application.
-# It extracts specific sections (core questions, demographics, compliance, location) from the raw data and transforms them into a standardized format.
-# The output of this service is used by greenhouse_fields_builder.
-
-# Key functionalities:
-# - Extracts core questions directly from the raw data.
-# - Formats demographic and compliance questions with title, description, and transformed questions.
-# - Creates a location question with auto-complete input for city.
 module Importer
+  # This service object is responsible for formatting Greenhouse data into a structured format suitable for our application.
+  # It extracts specific sections (core questions, demographics, compliance, location) from the raw data and transforms them into a standardized format.
+  # The output of this service is used by fields_builder.
+
+  # Key functionalities:
+  # - Extracts core questions directly from the raw data.
+  # - Formats demographic and compliance questions with title, description, and transformed questions.
+  # - Creates a location question with auto-complete input for city.
   class GreenhouseFieldsFormatter < ApplicationTask
     def initialize(data)
       @data = data
@@ -32,7 +32,7 @@ module Importer
 
     def select_transform_data
       {
-        core_questions: { title: nil, description: nil, questions: @data[:questions] },
+        core_questions: { title: "Main application", description: nil, questions: @data[:questions] },
         demographic_questions: demographic_formatter(@data.dig(:demographic_questions, :questions)),
         compliance_questions: compliance_formatter(@data[:compliance]),
         location_questions: { title: nil, description: nil, questions: location_formatter(@data[:location_questions]) }

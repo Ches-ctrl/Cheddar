@@ -4,18 +4,18 @@ module Ats
       include FaradayHelpers
 
       def get_application_question_set(job, _data)
-        p "Getting AshbyHQ application criteria"
-        data = fetch_job_api_data(job.ats_job_id, job.company.ats_identifier)
-        return [] unless (job_data = data&.dig('data', 'jobPosting'))
+        data = fetch_job_api_data(job)
+        return [] unless (data = data&.dig('data', 'jobPosting'))
 
-        job.update(deadline: job_data['applicationDeadline']) # not sure what format
-        Importer::GetAshbyFields.call(job, job_data)
+        job.update(deadline: data['applicationDeadline'])
+        formatted_data = Importer::AshbyhqFieldsFormatter.call(job, data.with_indifferent_access)
+        Importer::FieldsBuilder.call(formatted_data)
       end
 
       private
 
-      def fetch_job_api_data(job_id, ats_identifier)
-        faraday_request(request_details(job_id, ats_identifier))
+      def fetch_job_api_data(job)
+        faraday_request(request_details(job.ats_job_id, job.company.ats_identifier))
       end
 
       def endpoint = 'https://jobs.ashbyhq.com/api/non-user-graphql?op=ApiJobPosting'

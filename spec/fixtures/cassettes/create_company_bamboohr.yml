@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 27 Jun 2024 13:37:08 GMT
+      - Thu, 01 Aug 2024 20:03:13 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -27,8 +27,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=jCI0oesFh3xz5Ng5pNezqBOxPHI4W6Zd; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=6bC5zOlReUtJOG.ixoFCYEtR5hA0_hXE8wXg_kIyKt8-1719495428191-0.0.1.1-604800000;
+      - PHPSESSID=ItRxkH1cfthovUKYBQRt6sc-EdKqGTHB; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=5CvvZFT3VbSFC3s.EWUvU27Q5jGCDLeR9XZlGk1OSDQ-1722542593356-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -93,11 +93,11 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 89a5d4774b2293fb-LHR
+      - 8ac86e245afdbac6-ZRH
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":[],"result":{"name":"Avidbots","id":"72799","logoUrl":"https:\/\/images3.bamboohr.com\/72799\/logos\/cropped.jpg?v=32","careerShareUrl":"https:\/\/avidbots.bamboohr.com\/careers","shareImageUrl":"https:\/\/avidbots.bamboohr.com\/jobs\/share_image\/32","inTrial":false,"appSessId":"10849400f1c97860cedbba354dd51727d353865a"}}'
-  recorded_at: Thu, 27 Jun 2024 13:37:08 GMT
+      string: '{"meta":[],"result":{"name":"Avidbots","id":"72799","logoUrl":"https:\/\/images3.bamboohr.com\/72799\/logos\/cropped.jpg?v=32","careerShareUrl":"https:\/\/avidbots.bamboohr.com\/careers","shareImageUrl":"https:\/\/avidbots.bamboohr.com\/jobs\/share_image\/32","inTrial":false,"appSessId":"78fa57a99e0624f91bd6224d76726f6ef9190ca1"}}'
+  recorded_at: Thu, 01 Aug 2024 20:03:13 GMT
 - request:
     method: get
     uri: https://avidbots.bamboohr.com/careers/list
@@ -117,7 +117,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 27 Jun 2024 13:37:08 GMT
+      - Thu, 01 Aug 2024 20:03:13 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -125,8 +125,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=YdbgN%2CMFA-3M7EQGP8LZyOkQ3jvnldhd; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=cPuUdo.8v5.YseY_Y7jB5205A75sZPT0H1NR4JqJDzw-1719495428705-0.0.1.1-604800000;
+      - PHPSESSID=XwU3tOCGOPGyRNJsieUmGL8qCqHdOmoH; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=8cDD5qBPr62mf8vYZ8aCCydSjzSIM.drXs7.pHic.1M-1722542593666-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -191,23 +191,38 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 89a5d47a6b3d7717-LHR
+      - 8ac86e290963bc5d-ZRH
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":{"totalCount":8},"result":[{"id":"693","jobOpeningName":"Technical
+      string: '{"meta":{"totalCount":16},"result":[{"id":"693","jobOpeningName":"Technical
         Support Specialist English","departmentId":"19493","departmentLabel":"Technical
-        Support","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"783","jobOpeningName":"IT
-        Specialist","departmentId":"18495","departmentLabel":"IT","employmentStatusLabel":"Full-Time","location":{"city":"Hyderabad
-        ","state":"Telangana"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"790","jobOpeningName":"Contracts
-        Management Specialist","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Waterloo"},"isRemote":null,"locationType":"1"},{"id":"792","jobOpeningName":"Director
-        of Financial Planning & Analysis","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Waterloo"},"isRemote":null,"locationType":"1"},{"id":"793","jobOpeningName":"Director
-        of Financial Planning & Analysis","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
-        States","state":"Illinois","province":null,"city":"Chicago"},"isRemote":null,"locationType":"1"},{"id":"795","jobOpeningName":"Traveling
+        Support","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"792","jobOpeningName":"Director
+        of Financial Planning & Analysis","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Waterloo"},"isRemote":null,"locationType":"1"},{"id":"795","jobOpeningName":"Traveling
         Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
         Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Brampton"},"isRemote":null,"locationType":"1"},{"id":"796","jobOpeningName":"Traveling
         Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
         Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Mississauga"},"isRemote":null,"locationType":"1"},{"id":"797","jobOpeningName":"Traveling
         Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
-        Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Scarborough"},"isRemote":null,"locationType":"1"}]}'
-  recorded_at: Thu, 27 Jun 2024 13:37:08 GMT
+        Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Scarborough"},"isRemote":null,"locationType":"1"},{"id":"798","jobOpeningName":"Traveling
+        Service Technician ","departmentId":"19494","departmentLabel":"Field Service","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Mississauga"},"isRemote":null,"locationType":"1"},{"id":"799","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Toronto"},"isRemote":null,"locationType":"1"},{"id":"800","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Illinois","province":null,"city":"Chicago"},"isRemote":null,"locationType":"1"},{"id":"801","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Massachusetts","province":null,"city":"Boston"},"isRemote":null,"locationType":"1"},{"id":"802","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Texas","province":null,"city":"Dallas"},"isRemote":null,"locationType":"1"},{"id":"803","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"North Carolina","province":null,"city":"Charlotte"},"isRemote":null,"locationType":"1"},{"id":"804","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Michigan","province":null,"city":"Detroit"},"isRemote":null,"locationType":"1"},{"id":"805","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Minnesota","province":null,"city":"Minneapolis"},"isRemote":null,"locationType":"1"},{"id":"806","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Utah","province":null,"city":"Salt Lake City"},"isRemote":null,"locationType":"1"},{"id":"807","jobOpeningName":"Customer
+        Care Associate, CPG Coordinator","departmentId":"19492","departmentLabel":"Support
+        Operations","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"808","jobOpeningName":"Senior
+        Manager, Software Development, Web & Mobile","departmentId":"18433","departmentLabel":"Engineering
+        ","employmentStatusLabel":"Full-Time","location":{"city":"Kitchener","state":"Ontario"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"}]}'
+  recorded_at: Thu, 01 Aug 2024 20:03:13 GMT
 recorded_with: VCR 6.2.0
