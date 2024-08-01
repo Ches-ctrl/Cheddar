@@ -45,7 +45,7 @@ module Applier
       attach_file(@locator, @filepath)
     end
 
-    def boolean_field = find(:css, "label[for='#{@locator}']")
+    def boolean_field = find(@locator)
 
     def click_apply_button
       apply_button.click
@@ -83,9 +83,9 @@ module Applier
 
     def handle_boolean = (boolean_field.click if @value)
 
-    def handle_input
-      verify_input { fill_in(@locator, with: @value) }
-    end
+    def handle_checkbox = check(@value)
+
+    def handle_input = verify_input { fill_in(@locator, with: @value) }
 
     def handle_radiogroup
       choose(option: @value, name: @locator)
@@ -98,8 +98,10 @@ module Applier
     end
 
     def handle_select
-      expand_select_menu
-      select_option.click
+      within select_menu do
+        click # expand
+        select_option.click
+      end
     end
 
     def handle_upload
@@ -119,6 +121,8 @@ module Applier
     rescue Capybara::ElementNotFound
       first('div', text: @locator)
     end
+
+    def select_menu = find_by_id(@locator)
 
     def submit_button
       first(:button, text: /submit/i) || first(:link, text: /submit/i)

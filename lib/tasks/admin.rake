@@ -54,4 +54,14 @@ namespace :admin do
   task openai: :environment do
     Openai.call
   end
+
+  desc "Test GetBambooFields"
+  task bamboo_ff: :environment do
+    Applier::BambooFormFiller.call
+  end
+
+  desc "Test GetWorkableFields"
+  task workable_ff: :environment do
+    Applier::WorkableFormFiller.call
+  end
 end

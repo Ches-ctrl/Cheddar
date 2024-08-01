@@ -17,12 +17,12 @@ module Applier
         .attach_file(@filepath)
     end
 
+    def boolean_field = find(:css, "label[for='#{@locator}']")
+
     def click_submit_button
       sleep 2
       p "I didn't actually submit the application."
     end
-
-    def expand_select_menu = @hidden_select_field.sibling('div').click
 
     def handle_select
       @hidden_select_field = find("select[name='#{@locator}']")
@@ -32,6 +32,8 @@ module Applier
     end
 
     def option_prefilled? = @hidden_select_field.has_css?("option[value='#{@value}']")
+
+    def select_menu = @hidden_select_field.sibling('div')
 
     def select_option = page.document.find_by_id(@value, visible: true)
 
