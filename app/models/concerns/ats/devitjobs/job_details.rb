@@ -11,7 +11,7 @@ module Ats
         [title, job_location, remote]
       end
 
-      def fetch_url(job_data, _company_id = nil)
+      def fetch_posting_url(job_data, _company_id = nil)
         p "Fetching URL"
         url_base + job_data['jobUrl']
       end
@@ -24,7 +24,7 @@ module Ats
       def job_details(_job, data)
         p "Fetching job details"
         title, location, remote = fetch_title_and_location(data)
-        posting_url = fetch_url(data)
+        posting_url = fetch_posting_url(data)
         description, date_posted, deadline = scrape_description_and_posting_date(posting_url)
         {
           title:,
