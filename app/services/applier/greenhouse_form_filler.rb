@@ -23,8 +23,6 @@ module Applier
       demographic_label.sibling('div').first('div div div').click
     end
 
-    def expand_select_menu = find_by_id(@locator).click
-
     def handle_demographic_question
       @value.each do |value|
         expand_demographic_select_menu
@@ -33,7 +31,7 @@ module Applier
     end
 
     def handle_demographic_select
-      expand_select_menu
+      select_menu.click
       click_and_answer_follow_up(@value)
     end
 
