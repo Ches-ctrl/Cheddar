@@ -18,8 +18,8 @@ module Ats
         job_data['id']
       end
 
-      def fetch_url(job_data, company_id)
-        "https://#{company_id}.bamboohr.com/careers/#{job_data['id']}"
+      def fetch_posting_url(job_data, company_id)
+        url_base.sub('XXX', company_id) + job_data['id']
       end
 
       def job_url_api(_base_url, ats_identifier, job_id)
