@@ -49,7 +49,7 @@ module Importer
 
       core_data.map do |raw_question|
         type = INPUT_TYPES[raw_question.dig(:field, :type)]
-        fields = [{ name: raw_question.dig(:field, :path), selector: nil, type:, values: [] }]
+        fields = [{ name: raw_question.dig(:field, :path), selector: nil, type:, options: [] }]
         label = raw_question.dig(:field, :title) || raw_question.dig(:field, :humanReadablePath)
 
         { description: nil, label:, required: raw_question[:isRequired], fields: }
@@ -69,8 +69,8 @@ module Importer
     def survey_questions(survey_data)
       survey_data.map do |question|
         attribute = question[:label].parameterize.underscore.first(50)
-        values = question[:answer_options].map { |option| option.transform_keys({ 'id' => 'value' }) }
-        fields = [{ name: question[:id], type: question[:type], values: }]
+        options = question[:answer_options].map { |option| option.transform_keys({ 'id' => 'value' }) }
+        fields = [{ name: question[:id], type: question[:type], options: }]
         { attribute:, description: nil, label: question[:label], required: question[:required], fields: }
       end
     end

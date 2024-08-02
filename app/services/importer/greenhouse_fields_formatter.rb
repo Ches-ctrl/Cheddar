@@ -32,7 +32,7 @@ module Importer
 
     def select_transform_data
       {
-        core_questions: { title: "Main application", description: nil, questions: @data[:questions] },
+        core_questions: { title: "Main application", description: nil, questions: core_questions(@data[:questions]) },
         demographic_questions: demographic_formatter(@data.dig(:demographic_questions, :questions)),
         compliance_questions: compliance_formatter(@data[:compliance]),
         location_questions: { title: nil, description: nil, questions: location_formatter(@data[:location_questions]) }
@@ -55,11 +55,19 @@ module Importer
       compliance_data.map do |section|
         section[:questions].map do |question|
           fields = question[:fields].map do |field|
-            { name: field[:name], type: field[:type], values: field[:values] }
+            { name: field[:name], type: field[:type], options: field[:values] }
           end
           { description: section[:description], label: question[:label], required: question[:required], fields: }
         end
       end.flatten
+    end
+
+    def core_questions(core_data)
+      core_data.each do |question|
+        question.deep_transform_keys! do |key|
+          key == 'values' ? 'options' : key
+        end
+      end
     end
 
     def demographic_formatter(demographic_data)
@@ -75,8 +83,8 @@ module Importer
     def demographic_questions(demographic_data)
       demographic_data.map do |question|
         attribute = question[:label].parameterize.underscore.first(50)
-        values = question[:answer_options].map { |option| option.transform_keys({ 'id' => 'value' }) }
-        fields = [{ name: question[:id], type: question[:type], values: }]
+        options = question[:answer_options].map { |option| option.transform_keys({ 'id' => 'value' }) }
+        fields = [{ name: question[:id], type: question[:type], options: }]
         { attribute:, description: nil, label: question[:label], required: question[:required], fields: }
       end
     end
