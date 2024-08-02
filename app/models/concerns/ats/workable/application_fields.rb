@@ -5,11 +5,9 @@ module Ats
       # TODO: Check validatity of fields (not yet tested)
       # TODO: Handle labels from form fields
 
-      def get_application_question_set(_job, _data)
-        p "Getting Workable application criteria"
-
-        # Importer::WorkableFieldsFormatter.call(data)
-        [] # TODO: Delete this line and uncomment the line above.
+      def get_application_question_set(_job, data)
+        formatted_data = Importer::WorkableFieldsFormatter.call(data.with_indifferent_access)
+        Importer::FieldsBuilder.call(formatted_data)
       end
 
       def update_requirements(_job)

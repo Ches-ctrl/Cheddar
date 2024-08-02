@@ -2,6 +2,24 @@
 
 module Importer
   class WorkableFieldsFormatter < ApplicationTask
-    # all yours, JB!
+    def initialize(data)
+      @data = data
+    end
+
+    def call
+      return [] unless processable
+
+      process
+    end
+
+    private
+
+    def processable
+      false
+    end
+
+    def process
+      # All yours, JB!
+    end
   end
 end
