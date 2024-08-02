@@ -44,12 +44,13 @@ module Importer
 
     ###
 
-    def any_questions(core_data)
-      return {} unless core_data
+    def any_questions(questions_data)
+      return {} unless questions_data
 
-      core_data.map do |raw_question|
+      questions_data.map do |raw_question|
         type = INPUT_TYPES[raw_question.dig(:field, :type)]
-        fields = [{ name: raw_question.dig(:field, :path), selector: nil, type:, options: [] }]
+        options = raw_question.dig(:field, :selectableValues) || []
+        fields = [{ name: raw_question.dig(:field, :path), selector: nil, type:, options: }]
         label = raw_question.dig(:field, :title) || raw_question.dig(:field, :humanReadablePath)
 
         { description: nil, label:, required: raw_question[:isRequired], fields: }
@@ -59,20 +60,12 @@ module Importer
     def survey_formatter(survey_data)
       return {} unless survey_data.any?
 
+      survey_data = survey_data.first[:sections]
       {
         title: survey_data.first[:title],
         description: survey_data.first[:descriptionHtml],
         questions: any_questions(survey_data.first[:fieldEntries])
       }
-    end
-
-    def survey_questions(survey_data)
-      survey_data.map do |question|
-        attribute = question[:label].parameterize.underscore.first(50)
-        options = question[:answer_options].map { |option| option.transform_keys({ 'id' => 'value' }) }
-        fields = [{ name: question[:id], type: question[:type], options: }]
-        { attribute:, description: nil, label: question[:label], required: question[:required], fields: }
-      end
     end
 
     INPUT_TYPES = {

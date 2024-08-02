@@ -49,7 +49,7 @@ module Importer
     def build_type = :api
 
     def log_and_return_fields
-      puts pretty_generate(@fields)
+      # puts pretty_generate(@fields)
       @fields
     end
 
