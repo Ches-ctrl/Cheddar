@@ -38,7 +38,7 @@ module Importer
     def select_transform_data
       {
         core_questions: { title: "Main application", description: nil, questions: any_questions(@data.dig(:applicationForm, :sections).first[:fieldEntries]) },
-        survey_questions: survey_formatter(@data[:surveyForms].first[:sections])
+        survey_questions: survey_formatter(@data[:surveyForms])
       }
     end
 
@@ -57,7 +57,7 @@ module Importer
     end
 
     def survey_formatter(survey_data)
-      return {} unless survey_data
+      return {} unless survey_data.any?
 
       {
         title: survey_data.first[:title],
