@@ -48,13 +48,34 @@ module Importer
       return {} unless questions_data
 
       questions_data.map do |raw_question|
+        attribute = attribute(raw_question)
         type = INPUT_TYPES[raw_question.dig(:field, :type)]
         options = raw_question.dig(:field, :selectableValues) || []
         fields = [{ name: raw_question.dig(:field, :path), selector: nil, type:, options: }]
         label = raw_question.dig(:field, :title) || raw_question.dig(:field, :humanReadablePath)
 
-        { description: nil, label:, required: raw_question[:isRequired], fields: }
+        { attribute:, label:, description: nil, required: raw_question[:isRequired], fields: }
       end
+    end
+
+    def attribute(question)
+      attribute_strict_match(question[:field][:path]) ||
+        attribute_strict_match(question[:field][:type]) ||
+        attribute_strict_match(question[:field][:title].parameterize.underscore) ||
+        attribute_inclusive_match(question) ||
+        default_attribute(question)
+    end
+
+    def attribute_inclusive_match(question)
+      ATTRIBUTES_DICTIONNARY.find { |k, _v| default_attribute(question).include?(k) }&.last
+    end
+
+    def attribute_strict_match(key)
+      ATTRIBUTES_DICTIONNARY[key]
+    end
+
+    def default_attribute(question)
+      question[:field][:title].parameterize.underscore.first(60)
     end
 
     def survey_formatter(survey_data)
@@ -67,6 +88,19 @@ module Importer
         questions: any_questions(survey_data.first[:fieldEntries])
       }
     end
+
+    ATTRIBUTES_DICTIONNARY = {
+      '_systemfield_name' => :full_name,
+      '_systemfield_email' => :email,
+      '_systemfield_location' => :location,
+      '_systemfield_resume' => :resume,
+      '_systemfield_eeoc_gender' => :gender,
+      '_systemfield_eeoc_race' => :race,
+      '_systemfield_eeoc_veteran_status' => :veteran_status,
+      'phone' => :phone_number,
+      'linkedin' => :linkedin,
+      'cover_letter' => 'cover_letter'
+    }
 
     INPUT_TYPES = {
       'String' => :input,

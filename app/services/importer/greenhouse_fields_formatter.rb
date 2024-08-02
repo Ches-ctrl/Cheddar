@@ -57,7 +57,8 @@ module Importer
           fields = question[:fields].map do |field|
             { name: field[:name], type: field[:type], options: field[:values] }
           end
-          { description: section[:description], label: question[:label], required: question[:required], fields: }
+          attribute = debugger
+          { attribute:, label: question[:label], description: section[:description], required: question[:required], fields: }
         end
       end.flatten
     end
@@ -85,7 +86,7 @@ module Importer
         attribute = question[:label].parameterize.underscore.first(50)
         options = question[:answer_options].map { |option| option.transform_keys({ 'id' => 'value' }) }
         fields = [{ name: question[:id], type: question[:type], options: }]
-        { attribute:, description: nil, label: question[:label], required: question[:required], fields: }
+        { attribute:, label: question[:label], description: nil, required: question[:required], fields: }
       end
     end
 
