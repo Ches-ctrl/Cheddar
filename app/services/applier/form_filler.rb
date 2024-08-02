@@ -53,7 +53,8 @@ module Applier
 
     def click_submit_button
       sleep 2 # temporary -- just for testing
-      submit_button.click
+      p "I didn't submit the form. Change the FormFiller#click_submit_button method to actually submit it."
+      # submit_button.click
     end
 
     def doc_tmp_file
