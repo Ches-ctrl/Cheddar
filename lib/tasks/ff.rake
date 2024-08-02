@@ -1,6 +1,6 @@
 namespace :ff do
   desc "Test AshbyFormFiller"
-  task bamboohr: :environment do
+  task ashbyhq: :environment do
     payload = prompt_user(ASHBY_PAYLOADS)
     Applier::AshbyFormFiller.call(payload)
   end
