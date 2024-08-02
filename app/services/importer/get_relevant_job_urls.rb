@@ -38,7 +38,7 @@ module Importer
 
     def ats_specific_args
       # Additional parameters required to build the posting_url with some ATS
-      [@ats_identifier] if @ats_name == 'BambooHR'
+      [@ats_identifier] if ['BambooHR', 'Workable'].include?(@ats_name)
     end
   end
 end
