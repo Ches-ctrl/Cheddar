@@ -6,12 +6,10 @@ module Ats
       # TODO: Handle labels from form fields
 
       def get_application_question_set(_job, _data)
-        # TODO: get application_question_set from API
         p "Getting Workable application criteria"
 
-        # TODO : implement new application_question_structure structure
-        # **NEW_CORE_FIELDS # , # **PROFILE_FIELDS, # **DETAILS_FIELDS, # **ADDITIONAL_FIELDS #  })
-        NEW_CORE_FIELDS
+        # Importer::WorkableFieldsFormatter.call(data)
+        [] # TODO: Delete this line and uncomment the line above.
       end
 
       def update_requirements(_job)
