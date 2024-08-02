@@ -157,16 +157,6 @@ module Applier
             interaction: :boolean,
             value: true
           }
-          # {
-          #   locator: '#cvFileId',
-          #   interaction: :upload,
-          #   value: File.open('public/Obretetskiy_cv.pdf')
-          # },
-          # {
-          #   locator: 'motivationLetter',
-          #   interaction: :input,
-          #   value: 'Thank you for considering my application. It really is an honor to apply to your company. Please hire me. I would like to work here very much. I promise to work very very hard and always get along well with my coworkers.'
-          # }
         ]
       }
     end

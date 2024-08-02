@@ -11,7 +11,9 @@ module Applier
 
     def application_form = 'form[data-ui="application-form"]'
 
-    def boolean_field = find(:fieldset, @locator)
+    def boolean_checkbox? = has_selector?("##{@locator}")
+
+    def boolean_group = find(:fieldset, @locator)
 
     def boolean_string = @value ? 'yes' : 'no'
 
@@ -22,10 +24,12 @@ module Applier
       p "I didn't actually submit the application."
     end
 
-    def education_section = find(:css, 'div[data-ui="education"]')
+    def group_section = find("div[data-ui='#{@locator}']")
 
     def handle_boolean
-      boolean_field
+      return super if boolean_checkbox?
+
+      boolean_group
         .find('span', text: boolean_string)
         .click
     end
@@ -35,12 +39,13 @@ module Applier
       send_keys(:return) # close datepicker
     end
 
-    def handle_education
-      within education_section do
+    def handle_group
+      within group_section do
         click_button('add-section')
         @value.each { |field| fill_in_field(field) }
         click_button('save-section')
       end
+      sleep 0.2 # avoid javascript error
     end
 
     def select_menu = find("div[data-ui='#{@locator}']")
@@ -266,8 +271,8 @@ module Applier
             value: 'Yeah.'
           },
           {
-            locator: nil,
-            interaction: :education,
+            locator: 'education',
+            interaction: :group,
             value: [
               {
                 locator: 'school',
@@ -297,8 +302,8 @@ module Applier
             ]
           },
           {
-            locator: nil,
-            interaction: :education,
+            locator: 'education',
+            interaction: :group,
             value: [
               {
                 locator: 'school',
@@ -328,6 +333,78 @@ module Applier
             ]
           },
           {
+            locator: 'experience',
+            interaction: :group,
+            value: [
+              {
+                locator: 'title',
+                interaction: :input,
+                value: 'Junior Software Engineer'
+              },
+              {
+                locator: 'company',
+                interaction: :input,
+                value: 'Google'
+              },
+              {
+                locator: 'industry',
+                interaction: :input,
+                value: 'Advertising'
+              },
+              {
+                locator: 'summary',
+                interaction: :input,
+                value: 'To resist the Sword of the Common-wealth, in defence of another man, guilty, or innocent, no man hath Liberty; because such Liberty, takes away from the Soveraign, the means of Protecting us; and is therefore destructive of the very essence of Government.'
+              },
+              {
+                locator: 'start_date',
+                interaction: :date,
+                value: '012018'
+              },
+              {
+                locator: 'end_date',
+                interaction: :date,
+                value: '082020'
+              }
+            ]
+          },
+          {
+            locator: 'experience',
+            interaction: :group,
+            value: [
+              {
+                locator: 'title',
+                interaction: :input,
+                value: 'Software Engineer II'
+              },
+              {
+                locator: 'company',
+                interaction: :input,
+                value: 'Twitter'
+              },
+              {
+                locator: 'industry',
+                interaction: :input,
+                value: 'Communications'
+              },
+              {
+                locator: 'summary',
+                interaction: :input,
+                value: 'The finall Cause, End, or Designe of men, (who naturally love Liberty, and Dominion over others,) in the introduction of that restraint upon themselves (in which wee see them live in Common-wealths,) is the foresight of their own preservation.'
+              },
+              {
+                locator: 'start_date',
+                interaction: :date,
+                value: '042024'
+              },
+              {
+                locator: 'current',
+                interaction: :boolean,
+                value: true
+              }
+            ]
+          },
+          {
             locator: 'summary',
             interaction: :input,
             value: 'Some people try to pick up girls and get called assholes. This never happened to Pablo Picasso. He could walk down your street and girls could not resist to stare, and so Pablo Picasso was never called an asshole'
@@ -351,6 +428,26 @@ module Applier
             locator: 'cover_letter',
             interaction: :input,
             value: 'Thank you for considering my application. It really is an honor to apply to your company. Please hire me. I would like to work here very much. I promise to work very very hard and always get along well with my coworkers.'
+          },
+          {
+            locator: 'QA_8326235',
+            interaction: :input,
+            value: 'Man, I got more experience than you can wave a stick at. Months, buddy. Months and weeks of experience.'
+          },
+          {
+            locator: 'QA_8326237',
+            interaction: :input,
+            value: 'Just let me know anytime.'
+          },
+          {
+            locator: 'QA_8326238',
+            interaction: :input,
+            value: 'Shoreditch Stables North, 138 Kingsland Rd'
+          },
+          {
+            locator: 'QA_8326239',
+            interaction: :input,
+            value: "Mate, that's pretty far away from me, actually."
           }
         ]
       }

@@ -45,7 +45,7 @@ module Applier
       attach_file(@locator, @filepath)
     end
 
-    def boolean_field = find(@locator)
+    def boolean_field = find_by_id(@locator)
 
     def click_apply_button
       apply_button.click
