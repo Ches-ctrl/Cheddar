@@ -66,7 +66,7 @@ class ApplicationQuestion
     { locator:, interaction: type, value: answered_value(job_application) }
   end
 
-  def selector = field['selector'] || field['id']
+  def selector = field['selector'] || field['name'].to_s
 
   def type = field['type']
 

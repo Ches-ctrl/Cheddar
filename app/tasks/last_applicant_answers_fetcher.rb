@@ -4,7 +4,7 @@ class LastApplicantAnswersFetcher < ApplicationTask
   def initialize(current_user)
     @current_user = current_user
     @user_detail = current_user.user_detail
-    @job_applications = current_user.job_applications.where(status: "completed")
+    @job_applications = current_user.job_applications # .where(status: "completed")
   end
 
   def call
