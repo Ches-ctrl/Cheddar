@@ -18,12 +18,14 @@ class ApplicationQuestionSet < ApplicationRecord
   end
 
   def questions
-    form_structure.map do |section|
-      section['questions'].map { |question| ApplicationQuestion.new(question.merge(section: section['title'])) }
-    end.flatten
+    form_structure.map do |_section, section_data|
+      next unless section_data.is_a?(Hash)
+
+      section_data['questions'].map { |question| ApplicationQuestion.new(question.merge(section: section_data['title'])) }
+    end.compact.flatten
   end
 
   def no_of_qs
-    form_structure.map { |section| section[:questions] }.flatten.count
+    form_structure.select { |section| section['questions'] }.flatten.count
   end
 end

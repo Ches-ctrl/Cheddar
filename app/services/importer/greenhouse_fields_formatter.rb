@@ -45,8 +45,8 @@ module Importer
       return {} unless compliance_data
 
       {
-        title: section_attribute_finder(:compliance, :title) || "EEOC compliance questions",
-        description: section_attribute_finder(:compliance, :description),
+        title: "EEOC compliance questions",
+        description: compliance_data.first[:description],
         questions: compliance_questions(compliance_data)
       }
     end
@@ -55,9 +55,9 @@ module Importer
       compliance_data.map do |section|
         section[:questions].map do |question|
           fields = question[:fields].map do |field|
-            { name: field[:name], type: field[:type], options: field[:values] }
+            { name: field[:name], type: INPUT_TYPES[field[:type]], options: field[:values] }
           end
-          attribute = debugger
+          attribute = attribute(question)
           { attribute:, label: question[:label], description: section[:description], required: question[:required], fields: }
         end
       end.flatten
@@ -68,6 +68,8 @@ module Importer
         question.deep_transform_keys! do |key|
           key == 'values' ? 'options' : key
         end
+        question[:attribute] = attribute(question)
+        question[:fields].each { |field| field[:type] = INPUT_TYPES[field[:type]] }
       end
     end
 
@@ -75,17 +77,17 @@ module Importer
       return {} unless demographic_data
 
       {
-        title: section_attribute_finder(:demographic_questions, :header),
-        description: section_attribute_finder(:demographic_questions, :description),
+        title: @data.dig(:demographic_questions, :header),
+        description: @data.dig(:demographic_questions, :description),
         questions: demographic_questions(demographic_data)
       }
     end
 
     def demographic_questions(demographic_data)
       demographic_data.map do |question|
-        attribute = question[:label].parameterize.underscore.first(50)
+        attribute = attribute(question)
         options = question[:answer_options].map { |option| option.transform_keys({ 'id' => 'value' }) }
-        fields = [{ name: question[:id], type: question[:type], options: }]
+        fields = [{ name: question[:id], type: INPUT_TYPES[question[:type]], options: }]
         { attribute:, label: question[:label], description: nil, required: question[:required], fields: }
       end
     end
@@ -94,9 +96,9 @@ module Importer
       return [] unless location_data.any?
 
       [{
-        attribute: :city_applicant,
+        attribute: 'city_applicant',
         required: false,
-        label: "Location (City)",
+        label: "Location (City))",
         description: nil,
         fields: [{
           id: "auto_complete_input",
@@ -108,10 +110,48 @@ module Importer
       }]
     end
 
-    def section_attribute_finder(section, attribute)
-      return nil unless @data[section].present?
+    ###
+    ### attribute
+    ###
 
-      @data.dig(section, attribute)
+    def attribute(question)
+      (attribute_strict_match(question[:fields].first[:name]) unless question[:fields].nil?) ||
+        attribute_strict_match(question[:label].parameterize.underscore.first(60)) ||
+        attribute_inclusive_match(question) ||
+        default_attribute(question)
     end
+
+    def attribute_inclusive_match(question)
+      ATTRIBUTES_DICTIONNARY.find { |k, _v| default_attribute(question).include?(k) }&.last
+    end
+
+    def attribute_strict_match(key)
+      ATTRIBUTES_DICTIONNARY[key]
+    end
+
+    def default_attribute(question)
+      question[:label].parameterize.underscore.first(60)
+    end
+
+    ATTRIBUTES_DICTIONNARY = {
+      'email' => 'email',
+      'location' => 'location',
+      'resume' => 'resume',
+      'phone' => 'phone_number',
+      'linkedin' => 'linkedin',
+      'cover_letter' => 'cover_letter'
+    }
+
+    ###
+    ### types
+    ###
+
+    INPUT_TYPES = {
+      'input_file' => :upload,
+      'input_text' => :input,
+      'multi_value_multi_select' => :multi_select,
+      'multi_value_single_select' => :select,
+      'textarea' => :textarea
+    }
   end
 end

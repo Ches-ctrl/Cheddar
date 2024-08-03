@@ -34,18 +34,17 @@ module Importer
     ###
 
     def build_fields
-      @fields = @data.map do |section_sym, section_data|
-        {
-          build_type:,
-          section_slug: section_sym,
+      question_set = { build_type: }
+      @data.each do |section_sym, section_data|
+        question_set[section_sym] = {
           title: section_data[:title],
           description: section_data[:description],
           questions: questions_builder(section_data[:questions])
         }
       end
+      @fields = question_set
     end
 
-    # TODO : change especially if application_question_set becomes hash (instead of array)
     def build_type = :api
 
     def log_and_return_fields
@@ -61,7 +60,7 @@ module Importer
 
     def question_params(question)
       {
-        attribute: question[:fields].first[:name],
+        attribute: question[:attribute],
         description: question[:description],
         label: question[:label],
         required: question[:required],

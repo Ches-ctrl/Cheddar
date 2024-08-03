@@ -58,10 +58,25 @@ module Importer
       end
     end
 
+    def survey_formatter(survey_data)
+      return {} unless survey_data.any?
+
+      survey_data = survey_data.first[:sections]
+      {
+        title: survey_data.first[:title],
+        description: survey_data.first[:descriptionHtml],
+        questions: any_questions(survey_data.first[:fieldEntries])
+      }
+    end
+
+    ###
+    ### attribute
+    ###
+
     def attribute(question)
       attribute_strict_match(question[:field][:path]) ||
         attribute_strict_match(question[:field][:type]) ||
-        attribute_strict_match(question[:field][:title].parameterize.underscore) ||
+        attribute_strict_match(question[:field][:title].parameterize.underscore.first(60)) ||
         attribute_inclusive_match(question) ||
         default_attribute(question)
     end
@@ -78,29 +93,22 @@ module Importer
       question[:field][:title].parameterize.underscore.first(60)
     end
 
-    def survey_formatter(survey_data)
-      return {} unless survey_data.any?
-
-      survey_data = survey_data.first[:sections]
-      {
-        title: survey_data.first[:title],
-        description: survey_data.first[:descriptionHtml],
-        questions: any_questions(survey_data.first[:fieldEntries])
-      }
-    end
-
     ATTRIBUTES_DICTIONNARY = {
-      '_systemfield_name' => :full_name,
-      '_systemfield_email' => :email,
-      '_systemfield_location' => :location,
-      '_systemfield_resume' => :resume,
-      '_systemfield_eeoc_gender' => :gender,
-      '_systemfield_eeoc_race' => :race,
-      '_systemfield_eeoc_veteran_status' => :veteran_status,
-      'phone' => :phone_number,
-      'linkedin' => :linkedin,
+      '_systemfield_name' => 'full_name',
+      '_systemfield_email' => 'email',
+      '_systemfield_location' => 'location',
+      '_systemfield_resume' => 'resume',
+      '_systemfield_eeoc_gender' => 'gender',
+      '_systemfield_eeoc_race' => 'race',
+      '_systemfield_eeoc_veteran_status' => 'veteran_status',
+      'phone' => 'phone_number',
+      'linkedin' => 'linkedin',
       'cover_letter' => 'cover_letter'
     }
+
+    ###
+    ### types
+    ###
 
     INPUT_TYPES = {
       'String' => :input,
