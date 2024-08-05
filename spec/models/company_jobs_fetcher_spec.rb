@@ -3,7 +3,7 @@ require Rails.root.join('spec', 'support', 'spec_constants.rb')
 RSpec.describe CompanyJobsFetcher do
   context "with an existing company" do
     before do
-      allow($stdout).to receive(:write) # suppresses terminal clutter
+      # allow($stdout).to receive(:write) # suppresses terminal clutter
 
       Builders::AtsBuilder.new.build
     end
@@ -18,14 +18,10 @@ RSpec.describe CompanyJobsFetcher do
             company = CompanyCreator.call(ats:, data:)
           end
 
-          output = StringIO.new
-          $stdout = output
+          jobs = CompanyJobsFetcher.new(company).call
 
-          CompanyJobsFetcher.new(company).call
-
-          $stdout = STDOUT
-
-          expect(output.string).to match(/Found or created \d+ new jobs with .+\./)
+          expect(jobs).to be_an(Array)
+          expect(jobs.first).to be_a(Job) if jobs.present?
         end
       end
     end

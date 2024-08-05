@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 01 Aug 2024 20:04:43 GMT
+      - Mon, 05 Aug 2024 15:58:23 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -27,8 +27,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=EqpuAUWNWAq7srelnpVcRjUt5BOtWAz%2C; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=Fh.0Uky5GLjSaRYip2tJdwo7uz1yvD0tROFwMmVN4GE-1722542683286-0.0.1.1-604800000;
+      - PHPSESSID=CoMSQRPa6ZNVrX075GAReEWoBl9Mm4J1; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=JXejdKM23EMUJ4dWhHRn7EUo78mpb6cS.Lbs2W5i2Z0-1722873503867-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -93,11 +93,11 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 8ac87055e852020d-ZRH
+      - 8ae7fd040a7bbed5-LHR
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":[],"result":{"name":"Avidbots","id":"72799","logoUrl":"https:\/\/images3.bamboohr.com\/72799\/logos\/cropped.jpg?v=32","careerShareUrl":"https:\/\/avidbots.bamboohr.com\/careers","shareImageUrl":"https:\/\/avidbots.bamboohr.com\/jobs\/share_image\/32","inTrial":false,"appSessId":"749c03f8427100615b313779fcb0001aa444e9f0"}}'
-  recorded_at: Thu, 01 Aug 2024 20:04:43 GMT
+      string: '{"meta":[],"result":{"name":"Avidbots","id":"72799","logoUrl":"https:\/\/images3.bamboohr.com\/72799\/logos\/cropped.jpg?v=32","careerShareUrl":"https:\/\/avidbots.bamboohr.com\/careers","shareImageUrl":"https:\/\/avidbots.bamboohr.com\/jobs\/share_image\/32","inTrial":false,"appSessId":"adc65c68c49f43ddf1d77259e3841d830c104e9b"}}'
+  recorded_at: Mon, 05 Aug 2024 15:58:23 GMT
 - request:
     method: get
     uri: https://avidbots.bamboohr.com/careers/list
@@ -117,7 +117,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 01 Aug 2024 20:04:43 GMT
+      - Mon, 05 Aug 2024 15:58:24 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -125,8 +125,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=CHJbGj1PMSADJFddQWtdXxApjpUYVHd5; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=MCI2EdGVfqVT..yTGm2wFYxgH.a42Nb_ak822VP_9ig-1722542683960-0.0.1.1-604800000;
+      - PHPSESSID=LtR-taxEt73GhWdHCcuvp0KsHCCxMZey; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=1Olp9DqsgqoLHpQCmLm3nMkVxICuWwgcjUDUzZrbwzM-1722873504549-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -191,19 +191,17 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 8ac8705afa60bac6-ZRH
+      - 8ae7fd08587c532a-LHR
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":{"totalCount":16},"result":[{"id":"693","jobOpeningName":"Technical
+      string: '{"meta":{"totalCount":15},"result":[{"id":"693","jobOpeningName":"Technical
         Support Specialist English","departmentId":"19493","departmentLabel":"Technical
         Support","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"792","jobOpeningName":"Director
         of Financial Planning & Analysis","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Waterloo"},"isRemote":null,"locationType":"1"},{"id":"795","jobOpeningName":"Traveling
         Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
         Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Brampton"},"isRemote":null,"locationType":"1"},{"id":"796","jobOpeningName":"Traveling
         Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
-        Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Mississauga"},"isRemote":null,"locationType":"1"},{"id":"797","jobOpeningName":"Traveling
-        Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
-        Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Scarborough"},"isRemote":null,"locationType":"1"},{"id":"798","jobOpeningName":"Traveling
+        Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Mississauga"},"isRemote":null,"locationType":"1"},{"id":"798","jobOpeningName":"Traveling
         Service Technician ","departmentId":"19494","departmentLabel":"Field Service","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Mississauga"},"isRemote":null,"locationType":"1"},{"id":"799","jobOpeningName":"Strategic
         Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Toronto"},"isRemote":null,"locationType":"1"},{"id":"800","jobOpeningName":"Strategic
         Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
@@ -224,7 +222,7 @@ http_interactions:
         Operations","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"808","jobOpeningName":"Senior
         Manager, Software Development, Web & Mobile","departmentId":"18433","departmentLabel":"Engineering
         ","employmentStatusLabel":"Full-Time","location":{"city":"Kitchener","state":"Ontario"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"}]}'
-  recorded_at: Thu, 01 Aug 2024 20:04:44 GMT
+  recorded_at: Mon, 05 Aug 2024 15:58:24 GMT
 - request:
     method: get
     uri: https://avidbots.bamboohr.com/careers/list
@@ -244,7 +242,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 01 Aug 2024 20:04:44 GMT
+      - Mon, 05 Aug 2024 15:58:25 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -252,8 +250,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=vk%2C0JcizZkB7m6SEDa-eCIkHkzDwWsYq; path=/; secure; HttpOnly; SameSite=None
-      - _cfuvid=rx7L7grLqCJqC3iBNonZ0v2HKc8oTRIhGPtVPhY3K5A-1722542684789-0.0.1.1-604800000;
+      - PHPSESSID=a8BFIfMfQiEgUfqOUnmS-FYvmWPy-QTe; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=ryaSHRh1plyOYLUiimxO1a4Qm4.xlzjvRyl227uJydQ-1722873505150-0.0.1.1-604800000;
         path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
@@ -318,19 +316,17 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 8ac870601c9701f4-ZRH
+      - 8ae7fd0c2b596544-LHR
     body:
       encoding: ASCII-8BIT
-      string: '{"meta":{"totalCount":16},"result":[{"id":"693","jobOpeningName":"Technical
+      string: '{"meta":{"totalCount":15},"result":[{"id":"693","jobOpeningName":"Technical
         Support Specialist English","departmentId":"19493","departmentLabel":"Technical
         Support","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"792","jobOpeningName":"Director
         of Financial Planning & Analysis","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Waterloo"},"isRemote":null,"locationType":"1"},{"id":"795","jobOpeningName":"Traveling
         Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
         Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Brampton"},"isRemote":null,"locationType":"1"},{"id":"796","jobOpeningName":"Traveling
         Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
-        Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Mississauga"},"isRemote":null,"locationType":"1"},{"id":"797","jobOpeningName":"Traveling
-        Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
-        Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Scarborough"},"isRemote":null,"locationType":"1"},{"id":"798","jobOpeningName":"Traveling
+        Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Mississauga"},"isRemote":null,"locationType":"1"},{"id":"798","jobOpeningName":"Traveling
         Service Technician ","departmentId":"19494","departmentLabel":"Field Service","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Mississauga"},"isRemote":null,"locationType":"1"},{"id":"799","jobOpeningName":"Strategic
         Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Toronto"},"isRemote":null,"locationType":"1"},{"id":"800","jobOpeningName":"Strategic
         Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
@@ -351,10 +347,10 @@ http_interactions:
         Operations","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"808","jobOpeningName":"Senior
         Manager, Software Development, Web & Mobile","departmentId":"18433","departmentLabel":"Engineering
         ","employmentStatusLabel":"Full-Time","location":{"city":"Kitchener","state":"Ontario"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"}]}'
-  recorded_at: Thu, 01 Aug 2024 20:04:44 GMT
+  recorded_at: Mon, 05 Aug 2024 15:58:25 GMT
 - request:
     method: get
-    uri: http://dev.virtualearth.net/REST/v1/Locations/Cali,%20Colombia?key=AmhBY6imsSQC_f1o8tlcEXoO6WxekJR2plXfZQr7g_Y6I35Yh18bR1khIX9jc9vI
+    uri: http://dev.virtualearth.net/REST/v1/Locations/Cali,%20Colombia?key=As9GK0TwxULCFyDaoq4D-Y69ba9KgY2PSUp3XopYkZuhJWWm_gYcGosV7sjd7b8l
     body:
       encoding: US-ASCII
       string: ''
@@ -371,11 +367,11 @@ http_interactions:
       message: Forbidden
     headers:
       Date:
-      - Thu, 01 Aug 2024 20:04:44 GMT
+      - Mon, 05 Aug 2024 15:58:25 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '588'
+      - '2254'
       Connection:
       - keep-alive
       Access-Control-Allow-Headers:
@@ -386,18 +382,31 @@ http_interactions:
       - "*"
       Cache-Control:
       - no-cache
+      X-Bm-Traceid:
+      - 149fe53ff1c22ce9da25f8ebb6cd0de0
+      X-Msedge-Ref:
+      - 'Ref A: 8AE6CB25BA174E4289D5E1EF7D38A0AD Ref B: DB3EDGE1921 Ref C: 2024-08-05T15:58:25Z|Ref
+        SnR: 66b0f6a1147b466e85edc8d63e6ae3ea'
+      X-Bm-Srv:
+      - mapsplatform-frontend-5787975794-v8sq7, mapsplatform-forwardgeocoder-service-5c6dd87786-c2qmm
+      X-Ms-Bm-Ws-Info:
+      - '0'
+      X-Bm-Fe-Elapsed:
+      - '62'
       X-Azure-Ref:
-      - 20240801T200444Z-1697884bc79h8hrkb81ewv82k00000000cf0000000005gr6
+      - 20240805T155825Z-154b59dbc6dsvkxvrm4qx06vtn00000000a000000000p06m
       X-Cache:
       - CONFIG_NOCACHE
+      Accept-Ranges:
+      - bytes
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJEZW5pZWRDcmVkZW50aWFscyIsImJyYW5kTG9nb1VyaSI6Imh0dHA6Ly9kZXYudmlydHVhbGVhcnRoLm5ldC9CcmFuZGluZy9sb2dvX3Bvd2VyZWRfYnkucG5nIiwiY29weXJpZ2h0IjoiQ29weXJpZ2h0IMKpIDIwMjQgTWljcm9zb2Z0IGFuZCBpdHMgc3VwcGxpZXJzLiBBbGwgcmlnaHRzIHJlc2VydmVkLiBUaGlzIEFQSSBjYW5ub3QgYmUgYWNjZXNzZWQgYW5kIHRoZSBjb250ZW50IGFuZCBhbnkgcmVzdWx0cyBtYXkgbm90IGJlIHVzZWQsIHJlcHJvZHVjZWQgb3IgdHJhbnNtaXR0ZWQgaW4gYW55IG1hbm5lciB3aXRob3V0IGV4cHJlc3Mgd3JpdHRlbiBwZXJtaXNzaW9uIGZyb20gTWljcm9zb2Z0IENvcnBvcmF0aW9uLiIsImVycm9yRGV0YWlscyI6WyJUaGUgcmVxdWVzdCB3YXMgZm9yYmlkZGVuLiAgWW91ciBjcmVkZW50aWFscyBtYXkgYmUgZGVuaWVkIG9yIHN1c3BlbmRlZC4iXSwicmVzb3VyY2VTZXRzIjpbXSwic3RhdHVzQ29kZSI6NDAzLCJzdGF0dXNEZXNjcmlwdGlvbiI6IkZvcmJpZGRlbiIsInRyYWNlSWQiOiJjYmU0N2MzOTZkOTNlYWMzY2JiYzI4MmFmMWMyMjk1YyJ9
-  recorded_at: Thu, 01 Aug 2024 20:04:45 GMT
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cDovL2Rldi52aXJ0dWFsZWFydGgubmV0L0JyYW5kaW5nL2xvZ29fcG93ZXJlZF9ieS5wbmciLCJjb3B5cmlnaHQiOiJDb3B5cmlnaHQgwqkgMjAyNCBNaWNyb3NvZnQgYW5kIGl0cyBzdXBwbGllcnMuIEFsbCByaWdodHMgcmVzZXJ2ZWQuIFRoaXMgQVBJIGNhbm5vdCBiZSBhY2Nlc3NlZCBhbmQgdGhlIGNvbnRlbnQgYW5kIGFueSByZXN1bHRzIG1heSBub3QgYmUgdXNlZCwgcmVwcm9kdWNlZCBvciB0cmFuc21pdHRlZCBpbiBhbnkgbWFubmVyIHdpdGhvdXQgZXhwcmVzcyB3cml0dGVuIHBlcm1pc3Npb24gZnJvbSBNaWNyb3NvZnQgQ29ycG9yYXRpb24uIiwicmVzb3VyY2VTZXRzIjpbeyJlc3RpbWF0ZWRUb3RhbCI6MywicmVzb3VyY2VzIjpbeyJfX3R5cGUiOiJMb2NhdGlvbjpodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3NlYXJjaC9sb2NhbC93cy9yZXN0L3YxIiwiYmJveCI6WzMuMzMyMTkyNDIwOTU5NDcyNywtNzYuNTkyODQ5NzMxNDQ1MzEsMy41MDYyNDI3NTIwNzUxOTUzLC03Ni40NjEzMTg5Njk3MjY1Nl0sIm5hbWUiOiJDYWxpLCBDb2xvbWJpYSIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMy40NTE5MjM4NSwtNzYuNTMyODc1MDZdfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiVkFDIiwiYWRtaW5EaXN0cmljdDIiOiJDYWxpIiwiY291bnRyeVJlZ2lvbiI6IkNvbG9tYmlhIiwiZm9ybWF0dGVkQWRkcmVzcyI6IkNhbGksIENvbG9tYmlhIiwibG9jYWxpdHkiOiJDYWxpIn0sImNvbmZpZGVuY2UiOiJIaWdoIiwiZW50aXR5VHlwZSI6IlBvcHVsYXRlZFBsYWNlIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlszLjQ1MTkyMzg1LC03Ni41MzI4NzUwNl0sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc2VhcmNoL2xvY2FsL3dzL3Jlc3QvdjEiLCJiYm94IjpbMy4yNzMzOTY5Njg4NDE1NTI3LC03Ni43MDcwOTIyODUxNTYyNSwzLjU0NzkxOTAzNDk1Nzg4NTcsLTc2LjQ1ODc2MzEyMjU1ODZdLCJuYW1lIjoiQ2FsaSIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMy4zOTkwNDM4LC03Ni41NzY0OTIzMV19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJWQUMiLCJhZG1pbkRpc3RyaWN0MiI6IkNhbGkiLCJjb3VudHJ5UmVnaW9uIjoiQ29sb21iaWEiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiQ2FsaSJ9LCJjb25maWRlbmNlIjoiSGlnaCIsImVudGl0eVR5cGUiOiJBZG1pbkRpdmlzaW9uMiIsImdlb2NvZGVQb2ludHMiOlt7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMy4zOTkwNDM4LC03Ni41NzY0OTIzMV0sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc2VhcmNoL2xvY2FsL3dzL3Jlc3QvdjEiLCJiYm94IjpbMy40NjEyMTEzNDQ3NzY3MzU2LC03Ni41Mjc2MTMwMTAwMjA1NywzLjQ2ODkzNjc3OTkxODA4ODYsLTc2LjUxNzI5MzYwNjE5MDM2XSwibmFtZSI6IkNhbGksIENvbG9tYmlhIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlszLjQ2NTA3NDA2LC03Ni41MjI0NTMzMV19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJWQUMiLCJhZG1pbkRpc3RyaWN0MiI6IkNhbGkiLCJjb3VudHJ5UmVnaW9uIjoiQ29sb21iaWEiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiQ2FsaSwgQ29sb21iaWEiLCJsb2NhbGl0eSI6IkNvbXVuYSAyIn0sImNvbmZpZGVuY2UiOiJMb3ciLCJlbnRpdHlUeXBlIjoiUmFpbHdheVN0YXRpb24iLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzMuNDY1MDc0MDYsLTc2LjUyMjQ1MzMxXSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19XX1dLCJzdGF0dXNDb2RlIjoyMDAsInN0YXR1c0Rlc2NyaXB0aW9uIjoiT0siLCJ0cmFjZUlkIjoiMTQ5ZmU1M2ZmMWMyMmNlOWRhMjVmOGViYjZjZDBkZTAifQ==
+  recorded_at: Mon, 05 Aug 2024 15:58:25 GMT
 - request:
     method: get
-    uri: http://dev.virtualearth.net/REST/v1/Locations/Cali,%20Colombia?key=AmhBY6imsSQC_f1o8tlcEXoO6WxekJR2plXfZQr7g_Y6I35Yh18bR1khIX9jc9vI
+    uri: http://dev.virtualearth.net/REST/v1/Locations/Cali,%20Colombia?key=As9GK0TwxULCFyDaoq4D-Y69ba9KgY2PSUp3XopYkZuhJWWm_gYcGosV7sjd7b8l
     body:
       encoding: US-ASCII
       string: ''
@@ -414,11 +423,11 @@ http_interactions:
       message: Forbidden
     headers:
       Date:
-      - Thu, 01 Aug 2024 20:04:45 GMT
+      - Mon, 05 Aug 2024 15:58:25 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '588'
+      - '2254'
       Connection:
       - keep-alive
       Access-Control-Allow-Headers:
@@ -429,18 +438,31 @@ http_interactions:
       - "*"
       Cache-Control:
       - no-cache
+      X-Bm-Traceid:
+      - ae3113d1e11d969f55531baf077976b5
+      X-Msedge-Ref:
+      - 'Ref SnR: 66b0f6a1c771420c98330c8bc43479ff|Ref A: 5E804B09EA934E31BD460A72D5F53095
+        Ref B: DB3EDGE3113 Ref C: 2024-08-05T15:58:25Z'
+      X-Bm-Srv:
+      - mapsplatform-frontend-5787975794-vdpbh, mapsplatform-forwardgeocoder-service-5c6dd87786-qbqtt
+      X-Ms-Bm-Ws-Info:
+      - '0'
+      X-Bm-Fe-Elapsed:
+      - '172'
       X-Azure-Ref:
-      - 20240801T200445Z-1697884bc797pwmfhwh0qvdhs00000000d50000000009v8y
+      - 20240805T155825Z-17cc7bff758xx2snssy33kwq4g00000003pg00000000d6zz
       X-Cache:
       - CONFIG_NOCACHE
+      Accept-Ranges:
+      - bytes
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJEZW5pZWRDcmVkZW50aWFscyIsImJyYW5kTG9nb1VyaSI6Imh0dHA6Ly9kZXYudmlydHVhbGVhcnRoLm5ldC9CcmFuZGluZy9sb2dvX3Bvd2VyZWRfYnkucG5nIiwiY29weXJpZ2h0IjoiQ29weXJpZ2h0IMKpIDIwMjQgTWljcm9zb2Z0IGFuZCBpdHMgc3VwcGxpZXJzLiBBbGwgcmlnaHRzIHJlc2VydmVkLiBUaGlzIEFQSSBjYW5ub3QgYmUgYWNjZXNzZWQgYW5kIHRoZSBjb250ZW50IGFuZCBhbnkgcmVzdWx0cyBtYXkgbm90IGJlIHVzZWQsIHJlcHJvZHVjZWQgb3IgdHJhbnNtaXR0ZWQgaW4gYW55IG1hbm5lciB3aXRob3V0IGV4cHJlc3Mgd3JpdHRlbiBwZXJtaXNzaW9uIGZyb20gTWljcm9zb2Z0IENvcnBvcmF0aW9uLiIsImVycm9yRGV0YWlscyI6WyJUaGUgcmVxdWVzdCB3YXMgZm9yYmlkZGVuLiAgWW91ciBjcmVkZW50aWFscyBtYXkgYmUgZGVuaWVkIG9yIHN1c3BlbmRlZC4iXSwicmVzb3VyY2VTZXRzIjpbXSwic3RhdHVzQ29kZSI6NDAzLCJzdGF0dXNEZXNjcmlwdGlvbiI6IkZvcmJpZGRlbiIsInRyYWNlSWQiOiI4YzFjMTFiODBlYTZlNjFiZjE2OTU2ZmE2OTVlMGViZSJ9
-  recorded_at: Thu, 01 Aug 2024 20:04:45 GMT
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cDovL2Rldi52aXJ0dWFsZWFydGgubmV0L0JyYW5kaW5nL2xvZ29fcG93ZXJlZF9ieS5wbmciLCJjb3B5cmlnaHQiOiJDb3B5cmlnaHQgwqkgMjAyNCBNaWNyb3NvZnQgYW5kIGl0cyBzdXBwbGllcnMuIEFsbCByaWdodHMgcmVzZXJ2ZWQuIFRoaXMgQVBJIGNhbm5vdCBiZSBhY2Nlc3NlZCBhbmQgdGhlIGNvbnRlbnQgYW5kIGFueSByZXN1bHRzIG1heSBub3QgYmUgdXNlZCwgcmVwcm9kdWNlZCBvciB0cmFuc21pdHRlZCBpbiBhbnkgbWFubmVyIHdpdGhvdXQgZXhwcmVzcyB3cml0dGVuIHBlcm1pc3Npb24gZnJvbSBNaWNyb3NvZnQgQ29ycG9yYXRpb24uIiwicmVzb3VyY2VTZXRzIjpbeyJlc3RpbWF0ZWRUb3RhbCI6MywicmVzb3VyY2VzIjpbeyJfX3R5cGUiOiJMb2NhdGlvbjpodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3NlYXJjaC9sb2NhbC93cy9yZXN0L3YxIiwiYmJveCI6WzMuMzMyMTkyNDIwOTU5NDcyNywtNzYuNTkyODQ5NzMxNDQ1MzEsMy41MDYyNDI3NTIwNzUxOTUzLC03Ni40NjEzMTg5Njk3MjY1Nl0sIm5hbWUiOiJDYWxpLCBDb2xvbWJpYSIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMy40NTE5MjM4NSwtNzYuNTMyODc1MDZdfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiVkFDIiwiYWRtaW5EaXN0cmljdDIiOiJDYWxpIiwiY291bnRyeVJlZ2lvbiI6IkNvbG9tYmlhIiwiZm9ybWF0dGVkQWRkcmVzcyI6IkNhbGksIENvbG9tYmlhIiwibG9jYWxpdHkiOiJDYWxpIn0sImNvbmZpZGVuY2UiOiJIaWdoIiwiZW50aXR5VHlwZSI6IlBvcHVsYXRlZFBsYWNlIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlszLjQ1MTkyMzg1LC03Ni41MzI4NzUwNl0sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc2VhcmNoL2xvY2FsL3dzL3Jlc3QvdjEiLCJiYm94IjpbMy4yNzMzOTY5Njg4NDE1NTI3LC03Ni43MDcwOTIyODUxNTYyNSwzLjU0NzkxOTAzNDk1Nzg4NTcsLTc2LjQ1ODc2MzEyMjU1ODZdLCJuYW1lIjoiQ2FsaSIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMy4zOTkwNDM4LC03Ni41NzY0OTIzMV19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJWQUMiLCJhZG1pbkRpc3RyaWN0MiI6IkNhbGkiLCJjb3VudHJ5UmVnaW9uIjoiQ29sb21iaWEiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiQ2FsaSJ9LCJjb25maWRlbmNlIjoiSGlnaCIsImVudGl0eVR5cGUiOiJBZG1pbkRpdmlzaW9uMiIsImdlb2NvZGVQb2ludHMiOlt7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMy4zOTkwNDM4LC03Ni41NzY0OTIzMV0sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc2VhcmNoL2xvY2FsL3dzL3Jlc3QvdjEiLCJiYm94IjpbMy40NjEyMTEzNDQ3NzY3MzU2LC03Ni41Mjc2MTMwMTAwMjA1NywzLjQ2ODkzNjc3OTkxODA4ODYsLTc2LjUxNzI5MzYwNjE5MDM2XSwibmFtZSI6IkNhbGksIENvbG9tYmlhIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlszLjQ2NTA3NDA2LC03Ni41MjI0NTMzMV19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJWQUMiLCJhZG1pbkRpc3RyaWN0MiI6IkNhbGkiLCJjb3VudHJ5UmVnaW9uIjoiQ29sb21iaWEiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiQ2FsaSwgQ29sb21iaWEiLCJsb2NhbGl0eSI6IkNvbXVuYSAyIn0sImNvbmZpZGVuY2UiOiJMb3ciLCJlbnRpdHlUeXBlIjoiUmFpbHdheVN0YXRpb24iLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzMuNDY1MDc0MDYsLTc2LjUyMjQ1MzMxXSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19XX1dLCJzdGF0dXNDb2RlIjoyMDAsInN0YXR1c0Rlc2NyaXB0aW9uIjoiT0siLCJ0cmFjZUlkIjoiYWUzMTEzZDFlMTFkOTY5ZjU1NTMxYmFmMDc3OTc2YjUifQ==
+  recorded_at: Mon, 05 Aug 2024 15:58:25 GMT
 - request:
     method: get
-    uri: http://dev.virtualearth.net/REST/v1/Locations/Kitchener,%20Ontario?key=AmhBY6imsSQC_f1o8tlcEXoO6WxekJR2plXfZQr7g_Y6I35Yh18bR1khIX9jc9vI
+    uri: http://dev.virtualearth.net/REST/v1/Locations/Kitchener,%20Ontario?key=As9GK0TwxULCFyDaoq4D-Y69ba9KgY2PSUp3XopYkZuhJWWm_gYcGosV7sjd7b8l
     body:
       encoding: US-ASCII
       string: ''
@@ -453,15 +475,15 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 403
-      message: Forbidden
+      code: 200
+      message: OK
     headers:
       Date:
-      - Thu, 01 Aug 2024 20:04:45 GMT
+      - Mon, 05 Aug 2024 15:58:25 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '588'
+      - '1708'
       Connection:
       - keep-alive
       Access-Control-Allow-Headers:
@@ -472,13 +494,26 @@ http_interactions:
       - "*"
       Cache-Control:
       - no-cache
+      X-Bm-Traceid:
+      - bf12ddda7c490aa31ac5e93240ff5a86
+      X-Msedge-Ref:
+      - 'Ref SnR: 66b0f6a189134614b44f1bf7a86014a4|Ref A: 773A3F59BB0747CB91B0F830142226A0
+        Ref B: DB3EDGE2522 Ref C: 2024-08-05T15:58:25Z'
+      X-Bm-Srv:
+      - mapsplatform-frontend-5787975794-m9rrs, mapsplatform-forwardgeocoder-service-5c6dd87786-kgttl
+      X-Ms-Bm-Ws-Info:
+      - '0'
+      X-Bm-Fe-Elapsed:
+      - '74'
       X-Azure-Ref:
-      - 20240801T200445Z-1697884bc79rz5nphhx4e9n4en0000000dh0000000005tc8
+      - 20240805T155825Z-154b59dbc6d4lbkr1guc1w7bzw00000004gg00000000czy1
       X-Cache:
       - CONFIG_NOCACHE
+      Accept-Ranges:
+      - bytes
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJEZW5pZWRDcmVkZW50aWFscyIsImJyYW5kTG9nb1VyaSI6Imh0dHA6Ly9kZXYudmlydHVhbGVhcnRoLm5ldC9CcmFuZGluZy9sb2dvX3Bvd2VyZWRfYnkucG5nIiwiY29weXJpZ2h0IjoiQ29weXJpZ2h0IMKpIDIwMjQgTWljcm9zb2Z0IGFuZCBpdHMgc3VwcGxpZXJzLiBBbGwgcmlnaHRzIHJlc2VydmVkLiBUaGlzIEFQSSBjYW5ub3QgYmUgYWNjZXNzZWQgYW5kIHRoZSBjb250ZW50IGFuZCBhbnkgcmVzdWx0cyBtYXkgbm90IGJlIHVzZWQsIHJlcHJvZHVjZWQgb3IgdHJhbnNtaXR0ZWQgaW4gYW55IG1hbm5lciB3aXRob3V0IGV4cHJlc3Mgd3JpdHRlbiBwZXJtaXNzaW9uIGZyb20gTWljcm9zb2Z0IENvcnBvcmF0aW9uLiIsImVycm9yRGV0YWlscyI6WyJUaGUgcmVxdWVzdCB3YXMgZm9yYmlkZGVuLiAgWW91ciBjcmVkZW50aWFscyBtYXkgYmUgZGVuaWVkIG9yIHN1c3BlbmRlZC4iXSwicmVzb3VyY2VTZXRzIjpbXSwic3RhdHVzQ29kZSI6NDAzLCJzdGF0dXNEZXNjcmlwdGlvbiI6IkZvcmJpZGRlbiIsInRyYWNlSWQiOiI2OGQxMmY2YmM1MzdmNWQ1YTA0NDFkZjYyZDViNmJlZiJ9
-  recorded_at: Thu, 01 Aug 2024 20:04:45 GMT
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cDovL2Rldi52aXJ0dWFsZWFydGgubmV0L0JyYW5kaW5nL2xvZ29fcG93ZXJlZF9ieS5wbmciLCJjb3B5cmlnaHQiOiJDb3B5cmlnaHQgwqkgMjAyNCBNaWNyb3NvZnQgYW5kIGl0cyBzdXBwbGllcnMuIEFsbCByaWdodHMgcmVzZXJ2ZWQuIFRoaXMgQVBJIGNhbm5vdCBiZSBhY2Nlc3NlZCBhbmQgdGhlIGNvbnRlbnQgYW5kIGFueSByZXN1bHRzIG1heSBub3QgYmUgdXNlZCwgcmVwcm9kdWNlZCBvciB0cmFuc21pdHRlZCBpbiBhbnkgbWFubmVyIHdpdGhvdXQgZXhwcmVzcyB3cml0dGVuIHBlcm1pc3Npb24gZnJvbSBNaWNyb3NvZnQgQ29ycG9yYXRpb24uIiwicmVzb3VyY2VTZXRzIjpbeyJlc3RpbWF0ZWRUb3RhbCI6MiwicmVzb3VyY2VzIjpbeyJfX3R5cGUiOiJMb2NhdGlvbjpodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3NlYXJjaC9sb2NhbC93cy9yZXN0L3YxIiwiYmJveCI6WzQzLjM1Mzg1NTEzMzA1NjY0LC04MC41NzM1ODU1MTAyNTM5LDQzLjUwNjg1NTAxMDk4NjMzLC04MC4zNzkwNDM1NzkxMDE1Nl0sIm5hbWUiOiJLaXRjaGVuZXIsIE9OIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOls0My40NDk3ODcxNCwtODAuNDg5MDg5OTddfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiT04iLCJhZG1pbkRpc3RyaWN0MiI6IldhdGVybG9vIiwiY291bnRyeVJlZ2lvbiI6IkNhbmFkYSIsImZvcm1hdHRlZEFkZHJlc3MiOiJLaXRjaGVuZXIsIE9OIiwibG9jYWxpdHkiOiJLaXRjaGVuZXIifSwiY29uZmlkZW5jZSI6IkhpZ2giLCJlbnRpdHlUeXBlIjoiUG9wdWxhdGVkUGxhY2UiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzQzLjQ0OTc4NzE0LC04MC40ODkwODk5N10sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc2VhcmNoL2xvY2FsL3dzL3Jlc3QvdjEiLCJiYm94IjpbNDMuNDUxODM3MjAzMDgzNjIsLTgwLjUwMTM5NTM2NzU2Njk2LDQzLjQ1OTU2MjYzODIyNDk3LC04MC40ODcyMDYzMTcwMDMzNl0sIm5hbWUiOiJLaXRjaGVuZXIsIE9OIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOls0My40NTU2OTk5MiwtODAuNDk0MzAwODRdfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiT04iLCJhZG1pbkRpc3RyaWN0MiI6IldhdGVybG9vIiwiY291bnRyeVJlZ2lvbiI6IkNhbmFkYSIsImZvcm1hdHRlZEFkZHJlc3MiOiJLaXRjaGVuZXIsIE9OIiwibG9jYWxpdHkiOiJLaXRjaGVuZXIifSwiY29uZmlkZW5jZSI6IkxvdyIsImVudGl0eVR5cGUiOiJSYWlsd2F5U3RhdGlvbiIsImdlb2NvZGVQb2ludHMiOlt7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbNDMuNDU1Njk5OTIsLTgwLjQ5NDMwMDg0XSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19XX1dLCJzdGF0dXNDb2RlIjoyMDAsInN0YXR1c0Rlc2NyaXB0aW9uIjoiT0siLCJ0cmFjZUlkIjoiYmYxMmRkZGE3YzQ5MGFhMzFhYzVlOTMyNDBmZjVhODYifQ==
+  recorded_at: Mon, 05 Aug 2024 15:58:25 GMT
 recorded_with: VCR 6.2.0

@@ -100,6 +100,7 @@ gem 'rails-html-sanitizer'
 # HTTP Clients
 # gem 'httparty' # Installed as a dependency via Avo
 # gem 'faraday' # Installed as a dependency via Cloudinary
+gem 'faraday-follow_redirects', '~> 0.3.0'
 
 # Web Scraping Frameworks
 # gem 'spidr' # TODO: Install for CompanyCrawler and NetZeroChecker
