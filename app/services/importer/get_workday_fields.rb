@@ -5,8 +5,9 @@ module Importer
     include FaradayHelpers
 
     def initialize(api_url)
-      @data = fetch_data_from_api(api_url)
-      @api_url_base = extract_base_url(api_url)
+      @api_url = api_url
+      @data = fetch_data_from_api
+      @api_url_base = extract_base_url
     end
 
     def call
@@ -27,13 +28,23 @@ module Importer
     end
 
     def authenticate
-      p "You need to authenticate"
-      false
+      result = Importer::Scraper::WorkdayCookieFetcher.call(authentication_endpoints)
+      cookie = result.map { |cookie| "#{cookie[:name]}=#{cookie[:value]}" }.join('; ')
+      p "Here's the cookie: #{cookie}"
+      @data = fetch_data_from_api(cookie)
     end
 
-    def authentication_required?
-      @data.any? { |section| section[:widget] == 'authentication' }
+    def authentication_endpoints
+      data = authentication_widget
+      {
+        sign_in_url: @api_url_base + data[:signInRequestUri],
+        create_account_url: @api_url_base + data[:createAccountRequestUri]
+      }
     end
+
+    def authentication_required? = authentication_widget.present?
+
+    def authentication_widget = @data.find { |section| section[:widget] == 'authentication' }
 
     def build_fields
       @fields = sections.map do |section|
@@ -45,10 +56,10 @@ module Importer
       end
     end
 
-    def extract_base_url(api_url) = URI(api_url).origin
+    def extract_base_url = URI(@api_url).origin
 
-    def fetch_data_from_api(api_url)
-      faraday_request(request_details(api_url))
+    def fetch_data_from_api(cookie = nil)
+      faraday_request(request_details(cookie))
         &.with_indifferent_access
         &.dig(:body, :children)
     end
@@ -57,12 +68,13 @@ module Importer
       puts pretty_generate(@fields)
     end
 
-    def request_details(endpoint)
+    def request_details(cookie)
       {
-        endpoint:,
+        endpoint: @api_url,
         options: {
           headers: {
-            'Accept' => 'application/json'
+            'Accept' => 'application/json',
+            'Cookie' => cookie
           }
         }
       }
