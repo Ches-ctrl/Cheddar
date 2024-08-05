@@ -23,8 +23,15 @@ module FaradayHelpers
   # TODO: Add custom user_agent, timeout, proxies, and retries
   # TODO: Add block handling for stream_xml
 
+  def connection
+    Faraday.new do |f|
+      f.use Faraday::FollowRedirects::Middleware # Enables redirects
+      f.adapter Faraday.default_adapter
+    end
+  end
+
   def fetch_data(url, parse_method, verb = :get, options = {})
-    response = Faraday.send(verb, url, options) do |request|
+    response = connection.send(verb, url, options) do |request|
       request.params = options[:params] || {}
       request.headers = options[:headers] || {}
       request.body = options[:body]

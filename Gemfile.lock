@@ -613,6 +613,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails (= 6.4.3)
   faker
+  faraday-follow_redirects (~> 0.3.0)
   flipper-active_record (~> 1.3)
   font-awesome-sass (~> 6.5.1)
   geocoder
