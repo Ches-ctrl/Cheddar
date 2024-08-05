@@ -32,6 +32,7 @@ module Ats
         {
           title:,
           description: Flipper.enabled?(:job_description) ? job_data['jobDescription'] : 'Not added yet',
+          apply_url: "#{job_data['externalUrl']}/apply",
           posting_url: job_data['externalUrl'],
           remote: remote?(location),
           non_geocoded_location_string: location,

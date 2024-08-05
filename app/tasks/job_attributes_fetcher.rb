@@ -39,10 +39,11 @@ class JobAttributesFetcher < ApplicationTask
   end
 
   def apply_with_cheddar
-    return false unless application_question_set&.first&.dig(:questions)
+    form_structure = @job.application_question_set.form_structure
+    return false unless form_structure&.first&.dig(:questions)
 
-    application_question_set.first[:questions]
-                            .none? { |question| apply_with_cheddar_conditions(question) }
+    form_structure.first[:questions]
+                  .none? { |question| apply_with_cheddar_conditions(question) }
   end
 
   def apply_with_cheddar_conditions(question)
