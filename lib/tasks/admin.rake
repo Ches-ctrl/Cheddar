@@ -54,4 +54,10 @@ namespace :admin do
   task openai: :environment do
     Openai.call
   end
+
+  desc "Test GetWorkdayFields"
+  task workday_fields: :environment do
+    apply_url = 'https://motorolasolutions.wd5.myworkdayjobs.com/en-US/Careers/job/Software-Engineer_R47616/apply/'
+    Importer::GetWorkdayFields.call(apply_url)
+  end
 end
