@@ -1,13 +1,20 @@
 module Ats
   module Workable
     module ApplicationFields
+      include FaradayHelpers
       # Question - scrape all fields or add standard set each time?
       # TODO: Check validatity of fields (not yet tested)
       # TODO: Handle labels from form fields
 
       def get_application_question_set(_job, data)
-        formatted_data = Importer::WorkableFieldsFormatter.call(data.with_indifferent_access)
+        form_data = fetch_form_data(data['shortcode'])
+        formatted_data = Importer::WorkableFieldsFormatter.call(form_data)
         Importer::FieldsBuilder.call(formatted_data)
+      end
+
+      def fetch_form_data(shortcode)
+        endpoint = "#{url_base}api/v1/jobs/#{shortcode}/form"
+        fetch_json(endpoint)
       end
 
       def update_requirements(_job)
