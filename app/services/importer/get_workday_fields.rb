@@ -2,12 +2,18 @@
 
 module Importer
   class GetWorkdayFields < ApplicationTask
+    # Some Workday companies require a login cookie to fetch fields
+    # If login is required, the API response will include an authentication widget
+    # #user_authenticated? checks this and logs in using ENV credentials if required
+    # WorkdayCookieFetcher retrieves the cookie, which is attached to the request header
+    # Then we make the request again, attaching the cookie
     include FaradayHelpers
 
     def initialize(api_url)
       @api_url = api_url
       @data = fetch_data_from_api
       @api_url_base = extract_base_url
+      @cookie = nil
     end
 
     def call
@@ -29,16 +35,16 @@ module Importer
 
     def authenticate
       result = Importer::Scraper::WorkdayCookieFetcher.call(authentication_endpoints)
-      cookie = result.map { |cookie| "#{cookie[:name]}=#{cookie[:value]}" }.join('; ')
-      p "Here's the cookie: #{cookie}"
-      @data = fetch_data_from_api(cookie)
+      @cookie = result.map { |cookie| "#{cookie[:name]}=#{cookie[:value]}" }.join('; ')
+      @data = fetch_data_from_api
     end
 
     def authentication_endpoints
       data = authentication_widget
       {
+        create_account_url: @api_url_base + data[:createAccountRequestUri],
         sign_in_url: @api_url_base + data[:signInRequestUri],
-        create_account_url: @api_url_base + data[:createAccountRequestUri]
+        target_url: @api_url
       }
     end
 
@@ -58,23 +64,24 @@ module Importer
 
     def extract_base_url = URI(@api_url).origin
 
-    def fetch_data_from_api(cookie = nil)
-      faraday_request(request_details(cookie))
+    def fetch_data_from_api
+      faraday_request(request_details)
         &.with_indifferent_access
         &.dig(:body, :children)
     end
 
     def print_and_return_fields
       puts pretty_generate(@fields)
+      @fields
     end
 
-    def request_details(cookie)
+    def request_details(endpoint = @api_url)
       {
-        endpoint: @api_url,
+        endpoint:,
         options: {
           headers: {
             'Accept' => 'application/json',
-            'Cookie' => cookie
+            'Cookie' => @cookie
           }
         }
       }
@@ -84,7 +91,7 @@ module Importer
       @data
         .find { |section| section[:widget] == 'taskOrchestration' }
         .fetch(:documentGroups)
-        .reject { |section| section[:name] == 'Autofill with Resume' }
+        .reject { |section| section[:excludedGroup] || section[:name] == 'Autofill with Resume' }
     end
 
     def user_authenticated?
