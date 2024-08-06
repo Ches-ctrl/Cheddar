@@ -12,8 +12,8 @@ module Ats
         job_data['shortcode']
       end
 
+      # build long-form posting url that includes company_id
       def fetch_posting_url(job_data, company_id)
-        # build long-form posting url that includes company_id
         shortcode = fetch_id(job_data)
         url_base + "#{company_id}/j/#{shortcode}/apply/"
       end

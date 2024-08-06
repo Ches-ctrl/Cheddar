@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 module Importer
+  # Some Workday companies require a login cookie to fetch fields
+  # If login is required, the API response will include an authentication widget
+  # #user_authenticated? checks this and logs in using ENV credentials if required
+  # WorkdayCookieFetcher retrieves the cookie, which is attached to the request header
+  # Then we make the request again, attaching the cookie
+  # Currently caches the cookie to avoid repeated logins
+  # The initial request to @api_url gets us a json containing the name of each form section and
+  # an endpoint to fetch the section questions. #build_fields iterates through the sections,
+  # calls each endpoint, extracts relevant data and joins it together into a single array.
   class GetWorkdayFields < ApplicationTask
-    # Some Workday companies require a login cookie to fetch fields
-    # If login is required, the API response will include an authentication widget
-    # #user_authenticated? checks this and logs in using ENV credentials if required
-    # WorkdayCookieFetcher retrieves the cookie, which is attached to the request header
-    # Then we make the request again, attaching the cookie
     include FaradayHelpers
 
     def initialize(api_url)
@@ -42,10 +46,10 @@ module Importer
     end
 
     def authentication_endpoints
-      data = authentication_widget
+      source = authentication_widget
       {
-        create_account_url: @api_url_base + data[:createAccountRequestUri],
-        sign_in_url: @api_url_base + data[:signInRequestUri],
+        # create_account_url: @api_url_base + source[:createAccountRequestUri],
+        sign_in_url: @api_url_base + source[:signInRequestUri],
         target_url: @api_url
       }
     end
