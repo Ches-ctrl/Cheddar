@@ -188,7 +188,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         title = feed.dig('jobs', 0, 'title')
         job_id = feed.dig('jobs', 0, 'id')
         company = CompanyCreator.call(ats: @ashbyhq, ats_identifier: 'lightdash')
-        job = JobCreator.call(ats: @ashbyhq, company:, job_id:)
+        job = JobCreator.call(ats: @ashbyhq, company:, job_id:, data: feed)
         expect(job.title).to eq(title)
       end
     end
@@ -211,7 +211,7 @@ RSpec.describe ApplicantTrackingSystem, type: :model, ats: true do
         feed = get_json_data(url)
         title = feed.dig('jobs', 0, 'title')
         job_id = feed.dig('jobs', 0, 'id')
-        company = CompanyCreator.call(ats: @gh, ats_identifier: 'codepath')
+        company = CompanyCreator.call(ats: @gh, ats_identifier: 'codepath', data: feed)
         job = JobCreator.call(ats: @gh, company:, job_id:)
         expect(job.title).to eq(title)
       end

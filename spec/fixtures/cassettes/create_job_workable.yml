@@ -426,7 +426,7 @@ http_interactions:
   recorded_at: Tue, 30 Jul 2024 16:26:33 GMT
 - request:
     method: get
-    uri: http://dev.virtualearth.net/REST/v1/Locations/Wilmington,%20Delaware%20United%20States?key=As9GK0TwxULCFyDaoq4D-Y69ba9KgY2PSUp3XopYkZuhJWWm_gYcGosV7sjd7b8l
+    uri: http://dev.virtualearth.net/REST/v1/Locations/Wilmington,%20Delaware%20United%20States?key=AmhBY6imsSQC_f1o8tlcEXoO6WxekJR2plXfZQr7g_Y6I35Yh18bR1khIX9jc9vI
     body:
       encoding: US-ASCII
       string: ''
@@ -439,15 +439,15 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 200
-      message: OK
+      code: 403
+      message: Forbidden
     headers:
       Date:
       - Tue, 30 Jul 2024 16:26:39 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '1749'
+      - '588'
       Connection:
       - keep-alive
       Access-Control-Allow-Headers:
@@ -456,8 +456,6 @@ http_interactions:
       - POST, GET, OPTIONS
       Access-Control-Allow-Origin:
       - "*"
-      Alt-Svc:
-      - h3=":443"; ma=86400
       Cache-Control:
       - no-cache
       X-Bm-Traceid:
@@ -475,8 +473,6 @@ http_interactions:
       - 20240730T162639Z-154b59dbc6dk4hlw0sn6sps1r000000009f000000000692m
       X-Cache:
       - CONFIG_NOCACHE
-      Accept-Ranges:
-      - bytes
     body:
       encoding: ASCII-8BIT
       string: !binary |-
