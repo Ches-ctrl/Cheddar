@@ -36,6 +36,10 @@ class JobAttributesFetcher < ApplicationTask
     @ats.respond_to?(:get_application_question_set) ? @ats.get_application_question_set(@job, @data) : []
   end
 
+  # This method determines if a user can apply to a job using Cheddar app.
+  # It checks if the application question set contains core questions that are mandatory but not actually managed.
+  # i.e : autocomplete & mandatory location
+  # Returns true if no such question is found, indicating the user can apply with Cheddar.
   def apply_with_cheddar
     return false unless application_question_set.dig(:core_questions, :questions)
 

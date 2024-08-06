@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+# This service object is responsible for fetching the most recent answers
+# provided by the current user across their job applications and user details.
+# It aims to allow pre-filling input fields based on the user's previous answers during application_process
+
 class LastApplicantAnswersFetcher < ApplicationTask
   def initialize(current_user)
     @current_user = current_user
