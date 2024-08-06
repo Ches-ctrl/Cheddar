@@ -59,7 +59,7 @@ module Importer
     end
 
     def survey_formatter(survey_data)
-      return {} unless survey_data
+      return {} unless survey_data.any?
 
       {
         title: survey_data.first[:title],
