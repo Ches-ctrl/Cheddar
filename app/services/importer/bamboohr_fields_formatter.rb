@@ -17,6 +17,17 @@ module Importer
 
     private
 
+<<<<<<< HEAD
+=======
+    def processable
+      @data
+    end
+
+    def process
+      select_transform_data
+    end
+
+>>>>>>> e38a3c31 (BamboohrFieldsFormatter & remove job as parameter for Formatters)
     def select_transform_data
       {
         core_questions: { title: "Main application", description: nil, questions: core_questions(@data[:formFields].except(:customQuestions)) },
@@ -121,7 +132,10 @@ module Importer
       'long' => :textarea,
       'short' => :input
     }
+<<<<<<< HEAD
 
     def output_file_name = 'bamboohr_formatter_output.json'
+=======
+>>>>>>> e38a3c31 (BamboohrFieldsFormatter & remove job as parameter for Formatters)
   end
 end
