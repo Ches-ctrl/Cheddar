@@ -28,14 +28,13 @@ class JobAttributesFetcher < ApplicationTask
     @job.assign_attributes(core_params)
     @job.assign_attributes(job_details)
     @job.build_application_question_set(
-      form_structure: fetch_application_question_set
+      form_structure: application_question_set
     )
     @job.assign_attributes(apply_with_cheddar:)
     save_and_return_job
   end
 
-  # May trigger an API call, depending on the ATS
-  def fetch_application_question_set
+  def application_question_set
     @ats.respond_to?(:get_application_question_set) ? @ats.get_application_question_set(@job, @data) : []
   end
 
