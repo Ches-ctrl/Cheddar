@@ -4881,8 +4881,8 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 200
-      message: OK
+      code: 403
+      message: Forbidden
     headers:
       Date:
       - Tue, 06 Aug 2024 00:22:52 GMT
@@ -5382,8 +5382,8 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 200
-      message: OK
+      code: 403
+      message: Forbidden
     headers:
       Date:
       - Tue, 06 Aug 2024 00:23:08 GMT
@@ -5740,8 +5740,8 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 200
-      message: OK
+      code: 403
+      message: Forbidden
     headers:
       Date:
       - Tue, 06 Aug 2024 00:23:11 GMT
@@ -6543,8 +6543,8 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 200
-      message: OK
+      code: 403
+      message: Forbidden
     headers:
       Date:
       - Tue, 06 Aug 2024 00:23:32 GMT
@@ -7044,8 +7044,8 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 200
-      message: OK
+      code: 403
+      message: Forbidden
     headers:
       Date:
       - Tue, 06 Aug 2024 00:23:51 GMT
@@ -7402,8 +7402,8 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 200
-      message: OK
+      code: 403
+      message: Forbidden
     headers:
       Date:
       - Tue, 06 Aug 2024 00:23:53 GMT
@@ -7911,7 +7911,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '1821'
+      - '588'
       Connection:
       - keep-alive
       Access-Control-Allow-Headers:
@@ -7967,7 +7967,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '3606'
+      - '588'
       Connection:
       - keep-alive
       Access-Control-Allow-Headers:
@@ -8261,8 +8261,8 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 200
-      message: OK
+      code: 403
+      message: Forbidden
     headers:
       Date:
       - Tue, 06 Aug 2024 00:24:19 GMT
@@ -8762,8 +8762,8 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 200
-      message: OK
+      code: 403
+      message: Forbidden
     headers:
       Date:
       - Tue, 06 Aug 2024 00:24:37 GMT
