@@ -13,7 +13,7 @@ module Importer
           config.test_id = :'data-automation-id'
           config.default_max_wait_time = 5
         end
-        @session = Capybara::Session.new(:selenium)
+        @session = Capybara::Session.new(:selenium) # replace with :selenium_chrome_headless
       end
 
       def call

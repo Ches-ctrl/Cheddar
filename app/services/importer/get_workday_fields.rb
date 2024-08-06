@@ -34,8 +34,10 @@ module Importer
     end
 
     def authenticate
-      result = Importer::Scraper::WorkdayCookieFetcher.call(authentication_endpoints)
-      @cookie = result.map { |cookie| "#{cookie[:name]}=#{cookie[:value]}" }.join('; ')
+      Rails.cache.fetch(cache_key, expires_in: 1.hour) do
+        result = Importer::Scraper::WorkdayCookieFetcher.call(authentication_endpoints)
+        @cookie = result.map { |cookie| "#{cookie[:name]}=#{cookie[:value]}" }.join('; ')
+      end
       @data = fetch_data_from_api
     end
 
@@ -61,6 +63,8 @@ module Importer
           &.dig(:body)
       end
     end
+
+    def cache_key = "authentication_cookie_#{@base_url}"
 
     def extract_base_url = URI(@api_url).origin
 
