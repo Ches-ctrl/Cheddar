@@ -122,18 +122,18 @@ module Importer
     end
 
     def attribute_inclusive_match(question)
-      ATTRIBUTES_DICTIONNARY.find { |k, _v| default_attribute(question).include?(k) }&.last
+      ATTRIBUTES_DICTIONARY.find { |k, _v| default_attribute(question).include?(k) }&.last
     end
 
     def attribute_strict_match(key)
-      ATTRIBUTES_DICTIONNARY[key]
+      ATTRIBUTES_DICTIONARY[key]
     end
 
     def default_attribute(question)
       question[:label].parameterize.underscore.first(60)
     end
 
-    ATTRIBUTES_DICTIONNARY = {
+    ATTRIBUTES_DICTIONARY = {
       'email' => 'email',
       'location' => 'location',
       'resume' => 'resume',
