@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 module Applier
+  # Parent class for handling workflow of filling application forms in Capybara.
+  # Initialized with payload from JobApplication.
+  # Each question type has its own method, which is named #handle_[question_type].
+  # Children inheriting from this class will override some of the above methods with logic specific to each ATS's form.
+  # Creates a tmp file to handle file uploads. :user_fullname is required only for the purpose of naming the file that's uploaded.
+  # #verify_input prevents long strings being inputted inaccurately; seems to work faster than using #send_keys to input text.
   class FormFiller < ApplicationTask
     include Capybara::DSL
     include LoggingHelper
@@ -45,7 +51,7 @@ module Applier
       attach_file(@locator, @filepath)
     end
 
-    def boolean_field = find(:css, "label[for='#{@locator}']")
+    def boolean_field = find_by_id(@locator)
 
     def click_apply_button
       apply_button.click
@@ -53,7 +59,8 @@ module Applier
 
     def click_submit_button
       sleep 2 # temporary -- just for testing
-      submit_button.click
+      p "I didn't submit the form. Change the FormFiller#click_submit_button method to actually submit it."
+      # submit_button.click
     end
 
     def doc_tmp_file
@@ -83,9 +90,9 @@ module Applier
 
     def handle_boolean = (boolean_field.click if @value)
 
-    def handle_input
-      verify_input { fill_in(@locator, with: @value) }
-    end
+    def handle_checkbox = check(@value)
+
+    def handle_input = verify_input { fill_in(@locator, with: @value) }
 
     def handle_radiogroup
       choose(option: @value, name: @locator)
@@ -98,8 +105,10 @@ module Applier
     end
 
     def handle_select
-      expand_select_menu
-      select_option.click
+      within select_menu do
+        click # expand
+        select_option.click
+      end
     end
 
     def handle_upload
@@ -119,6 +128,8 @@ module Applier
     rescue Capybara::ElementNotFound
       first('div', text: @locator)
     end
+
+    def select_menu = find_by_id(@locator)
 
     def submit_button
       first(:button, text: /submit/i) || first(:link, text: /submit/i)

@@ -62,6 +62,18 @@ companies = {
     'lightdash',
     'multiverse'
   ],
+  bamboohr: [
+    'avidbots',
+    'gfo',
+    'heirloom',
+    'hyperjar',
+    'kiteworks',
+    'meedan',
+    'prezi',
+    'resurgo',
+    'turn',
+    'xtm'
+  ],
   greenhouse: [
     'cleoai',
     '11fs',
@@ -79,6 +91,13 @@ companies = {
     'janestreet',
     'knowde',
     'narvar',
+  ],
+  workable: [
+    'builderai',
+    'carbonclean',
+    'grayce',
+    'nqc',
+    'starling-bank'
   ]
 }
 
@@ -91,10 +110,10 @@ puts "Created #{Role.count} roles"
 
 puts "-------------------------------------"
 
-ats_list = ['AshbyHQ', 'Greenhouse']
+ats_list = ['AshbyHQ', 'BambooHR', 'Greenhouse', 'Workable']
 defunct_urls = []
 
-puts "Preparing to re-seed database with #{response} #{ats_list.join(' and ')} jobs...\n"
+puts "Preparing to re-seed database with #{response} #{ats_list.to_sentence} jobs...\n"
 
 ats_list.each_with_index do |ats_name, i|
 

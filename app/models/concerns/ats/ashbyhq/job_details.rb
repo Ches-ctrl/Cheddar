@@ -18,7 +18,7 @@ module Ats
         "#{url_api}#{ats_identifier}?includeCompensation=true"
       end
 
-      def fetch_url(job_data)
+      def fetch_posting_url(job_data)
         job_data['jobUrl']
       end
 

@@ -5,13 +5,9 @@ module Ats
       # TODO: Check validatity of fields (not yet tested)
       # TODO: Handle labels from form fields
 
-      def get_application_question_set(_job, _data)
-        # TODO: get application_question_set from API
-        p "Getting Workable application criteria"
-
-        # TODO : implement new application_question_structure structure
-        # **NEW_CORE_FIELDS # , # **PROFILE_FIELDS, # **DETAILS_FIELDS, # **ADDITIONAL_FIELDS #  })
-        NEW_CORE_FIELDS
+      def get_application_question_set(_job, data)
+        formatted_data = Importer::WorkableFieldsFormatter.call(data.with_indifferent_access)
+        Importer::FieldsBuilder.call(formatted_data)
       end
 
       def update_requirements(_job)

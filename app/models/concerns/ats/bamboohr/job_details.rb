@@ -18,6 +18,10 @@ module Ats
         job_data['id']
       end
 
+      def fetch_posting_url(job_data, company_id)
+        url_base.sub('XXX', company_id) + job_data['id']
+      end
+
       def job_url_api(_base_url, ats_identifier, job_id)
         company = Company.find_by(ats_identifier:)
         "#{company.url_ats_main}#{job_id}/detail"

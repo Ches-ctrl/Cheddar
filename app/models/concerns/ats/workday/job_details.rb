@@ -32,6 +32,7 @@ module Ats
         {
           title:,
           description: Flipper.enabled?(:job_description) ? job_data['jobDescription'] : 'Not added yet',
+          apply_url: "#{job_data['externalUrl']}/apply",
           posting_url: job_data['externalUrl'],
           remote: remote?(location),
           non_geocoded_location_string: location,
@@ -44,6 +45,8 @@ module Ats
       private
 
       def fetch_location(data)
+        return unless data['locationsText'] || data['location']
+
         location = data['locationsText']
         return fetch_quick_location(location) if location # this is not detailed data
 
