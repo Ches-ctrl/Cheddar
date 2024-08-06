@@ -6,36 +6,39 @@ module Importer
       include Capybara::DSL
 
       def initialize(details)
-        @create_account_url = details[:create_account_url]
         @sign_in_url = details[:sign_in_url]
         @target = details[:target_url]
-        Capybara.configure do |config|
-          config.test_id = :'data-automation-id'
-          config.default_max_wait_time = 5
-        end
-        @session = Capybara::Session.new(:selenium) # replace with :selenium_chrome_headless
       end
 
       def call
-        return nil unless processable
+        return unless processable
 
-        using_session(@session) do
-          process
-        end
+        process
       end
 
       private
 
       def processable
-        @sign_in_url && @create_account_url
+        @sign_in_url && @target
       end
 
       def process
-        sign_in
-        create_account unless login_success?
-        return_cookie
-      ensure
-        @session.quit
+        begin_session
+        using_session(@session) do
+          sign_in
+          create_account unless login_success?
+          return_cookie
+        ensure
+          @session.quit
+        end
+      end
+
+      def begin_session
+        Capybara.configure do |config|
+          config.test_id = :'data-automation-id'
+          config.default_max_wait_time = 5
+        end
+        @session = Capybara::Session.new(:selenium) # replace with :selenium_chrome_headless
       end
 
       def cookie_has_updated?

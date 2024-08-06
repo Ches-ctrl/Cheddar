@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Applier
+  # This handles Greenhouse jobs in the old format
   class GhFormFiller < FormFiller
     private
 
