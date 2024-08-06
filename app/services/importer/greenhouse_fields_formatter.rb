@@ -22,14 +22,6 @@ module Importer
 
     private
 
-    def processable
-      @data
-    end
-
-    def process
-      select_transform_data
-    end
-
     def select_transform_data
       {
         core_questions: { title: "Main application", description: nil, questions: core_questions(@data[:questions]) },
@@ -153,5 +145,7 @@ module Importer
       'multi_value_single_select' => :select,
       'textarea' => :textarea
     }
+
+    def output_file_name = 'greenhouse_formatter_output.json'
   end
 end

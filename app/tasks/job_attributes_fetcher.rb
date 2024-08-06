@@ -61,6 +61,13 @@ class JobAttributesFetcher < ApplicationTask
 
   def save_and_return_job
     @job.save
+    output_application_question_set
     @job
+  end
+
+  def output_application_question_set
+    output_file_name = "#{@ats.name.underscore}_aqs_builder_output.json"
+    output_file_path = Rails.root.join('public', output_file_name)
+    File.write(output_file_path, application_question_set.to_json)
   end
 end

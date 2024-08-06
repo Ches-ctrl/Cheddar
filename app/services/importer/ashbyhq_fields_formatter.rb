@@ -26,14 +26,6 @@ module Importer
 
     private
 
-    def processable
-      @data
-    end
-
-    def process
-      select_transform_data
-    end
-
     def select_transform_data
       {
         core_questions: { title: "Main application", description: nil, questions: any_questions(@data.dig(:applicationForm, :sections).first[:fieldEntries]) },
@@ -124,5 +116,7 @@ module Importer
       'Score' => :input,
       'SocialLink' => :input
     }
+
+    def output_file_name = 'ashbyhq_formatter_output.json'
   end
 end
