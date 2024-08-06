@@ -73,41 +73,6 @@ module Importer
     end
 
     def attribute_inclusive_match(question)
-      ATTRIBUTES_DICTIONNARY.find { |k, _v| default_attribute(question).include?(k) }&.last
-    end
-
-    def attribute_strict_match(key)
-      ATTRIBUTES_DICTIONNARY[key]
-    end
-
-    def default_attribute(question)
-      question[:field][:title].parameterize.underscore.first(60)
-    end
-
-    def survey_formatter(survey_data)
-      return {} unless survey_data.any?
-
-      survey_data = survey_data.first[:sections]
-      {
-        title: survey_data.first[:title],
-        description: survey_data.first[:descriptionHtml],
-        questions: any_questions(survey_data.first[:fieldEntries])
-      }
-    end
-
-    ###
-    ### attribute
-    ###
-
-    def attribute(question)
-      attribute_strict_match(question[:field][:path]) ||
-        attribute_strict_match(question[:field][:type]) ||
-        attribute_strict_match(question[:field][:title].parameterize.underscore.first(60)) ||
-        attribute_inclusive_match(question) ||
-        default_attribute(question)
-    end
-
-    def attribute_inclusive_match(question)
       ATTRIBUTES_DICTIONARY.find { |k, _v| default_attribute(question).include?(k) }&.last
     end
 
