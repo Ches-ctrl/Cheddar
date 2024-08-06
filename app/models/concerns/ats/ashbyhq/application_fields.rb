@@ -8,7 +8,7 @@ module Ats
         return [] unless (data = data&.dig('data', 'jobPosting'))
 
         job.update(deadline: data['applicationDeadline'])
-        formatted_data = Importer::AshbyhqFieldsFormatter.call(job, data.with_indifferent_access)
+        formatted_data = Importer::AshbyhqFieldsFormatter.call(data.with_indifferent_access)
         Importer::FieldsBuilder.call(formatted_data)
       end
 

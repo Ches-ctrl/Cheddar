@@ -14,8 +14,7 @@ module Importer
   #   - Builds question fields with name, selector (optional), type, and values (if applicable).
 
   class AshbyhqFieldsFormatter < ApplicationTask
-    def initialize(job, data)
-      @job = job
+    def initialize(data)
       @data = data
     end
 

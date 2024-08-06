@@ -27,9 +27,7 @@ class JobAttributesFetcher < ApplicationTask
   def process
     @job.assign_attributes(core_params)
     @job.assign_attributes(job_details)
-    @job.build_application_question_set(
-      form_structure: application_question_set
-    )
+    @job.build_application_question_set(form_structure: application_question_set)
     @job.assign_attributes(apply_with_cheddar:)
     save_and_return_job
   end
