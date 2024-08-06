@@ -61,7 +61,7 @@ class ApplicationQuestion
   end
 
   def options
-    field['options'].map { |option| [option['label'], option['id']] }
+    field['options'].map { |option| [option['label'], option['value']] }
   end
 
   def payload(job_application)
