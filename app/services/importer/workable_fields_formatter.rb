@@ -6,16 +6,6 @@ module Importer
   # The output of this service is used by fields_builder.
 
   class WorkableFieldsFormatter < FieldsFormatter
-    def initialize(data)
-      @data = data
-    end
-
-    def call
-      return [] unless processable
-
-      process
-    end
-
     private
 
     def select_transform_data

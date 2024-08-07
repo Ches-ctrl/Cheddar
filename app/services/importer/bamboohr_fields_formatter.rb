@@ -5,16 +5,6 @@ module Importer
   # It extracts specific sections (core questions and Details) and transforms them into a standardized format.
   # The output of this service is used by fields_builder.
   class BamboohrFieldsFormatter < FieldsFormatter
-    def initialize(data)
-      @data = data
-    end
-
-    def call
-      return unless processable
-
-      process
-    end
-
     private
 
     def select_transform_data

@@ -14,16 +14,6 @@ module Importer
   #   - Builds question fields with name, selector (optional), type, and values (if applicable).
 
   class AshbyhqFieldsFormatter < FieldsFormatter
-    def initialize(data)
-      @data = data
-    end
-
-    def call
-      return unless processable
-
-      process
-    end
-
     private
 
     def select_transform_data

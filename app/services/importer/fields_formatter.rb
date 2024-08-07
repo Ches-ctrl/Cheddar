@@ -3,6 +3,16 @@
 module Importer
   # TODO
   class FieldsFormatter < ApplicationTask
+    def initialize(data)
+      @data = data
+    end
+
+    def call
+      return unless processable
+
+      process
+    end
+
     private
 
     def processable

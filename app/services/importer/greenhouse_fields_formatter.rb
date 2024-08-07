@@ -10,16 +10,6 @@ module Importer
   # - Formats demographic and compliance questions with title, description, and transformed questions.
   # - Creates a location question with auto-complete input for city.
   class GreenhouseFieldsFormatter < FieldsFormatter
-    def initialize(data)
-      @data = data
-    end
-
-    def call
-      return unless processable
-
-      process
-    end
-
     private
 
     def select_transform_data
