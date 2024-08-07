@@ -65,15 +65,6 @@
       value: prefilled_value(question, job_application, last_applicant_answers)
     }
   %>
-<% elsif false && question.valid? && question.radiogroup? %>
-  <%= field_form.input question.attribute,
-    hint: question.description&.html_safe,
-    label: question.label,
-    required: question.required,
-    input_html: { 
-      value: prefilled_value(question, job_application, last_applicant_answers)
-    }
-  %>
 <% elsif question.valid? && question.date_picker? %>
   <%= field_form.input question.attribute,
     as: :date,
