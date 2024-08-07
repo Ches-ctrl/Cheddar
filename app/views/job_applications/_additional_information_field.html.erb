@@ -35,8 +35,8 @@
   <%= field_form.input question.attribute,
     collection: question.options,
     include_blank: true,
-    hint: raw("#{question.description}".html_safe),
-    label: question.label,
+    hint: question.description&.html_safe,
+    label: question.label + '++',
     required: question.required,
     selected: prefilled_value(question, job_application, last_applicant_answers),
     type: :select

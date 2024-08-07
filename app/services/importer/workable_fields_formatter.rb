@@ -22,7 +22,8 @@ module Importer
 
       questions_data.map do |raw_question|
         attribute = raw_question[:id]
-        options = raw_question[:options]&.map { |option| option.transform_keys({ 'id' => 'value', 'value' => 'label' }) } || []
+        options = raw_question[:options]&.map { |option| option.transform_keys({ 'value' => 'label' }) }&.map { |option| option.transform_keys({ 'name' => 'value' }) } || []
+
         type = INPUT_TYPES[raw_question[:type]]
         fields = [{ name: attribute, selector: nil, type:, options: }]
         label = raw_question[:label]
