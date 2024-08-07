@@ -2,7 +2,7 @@
 
 module Importer
   # This service object builds a structured representation of job application fields based on pre-formatted Greenhouse data.
-  # It relies on the `GreenhouseFieldsFormatter` to prepare the raw data and then constructs a list of field sections.
+  # It relies on FieldsFormatters to prepare the raw data and then constructs a list of field sections.
   # Each section includes details like title, description, build type (API in this case), and individual questions.
   # Question details incorporate attributes, labels, descriptions, required status, and associated field objects.
   # The output of this service is used to the job associated application_question_set.
