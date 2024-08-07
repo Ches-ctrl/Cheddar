@@ -1431,7 +1431,7 @@
           {
             "name": "dateAvailable",
             "selector": null,
-            "type": "input",
+            "type": "date_picker",
             "options": [
 
             ]
@@ -1455,15 +1455,15 @@
         ]
       },
       {
-        "attribute": "cover_letter",
+        "attribute": "website_url",
         "description": null,
-        "label": "Cover letter",
-        "required": true,
+        "label": "Website url",
+        "required": false,
         "fields": [
           {
-            "name": "coverLetterFileId",
+            "name": "websiteUrl",
             "selector": null,
-            "type": "upload",
+            "type": "input",
             "options": [
 
             ]
@@ -1489,57 +1489,10 @@
     ]
   },
   "additional_questions": {
-    "title": "Additional questions",
+    "title": null,
     "description": null,
     "questions": [
-      {
-        "attribute": "_why_do_you_want_to_join_the_turn_io_team?",
-        "description": null,
-        "label": " Why do you want to join the Turn.io team?",
-        "required": false,
-        "fields": [
-          {
-            "name": "82",
-            "selector": null,
-            "type": "textarea",
-            "options": [
 
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "turn_is_a_value_driven_company__tell_us_about_one_of_your_pe",
-        "description": null,
-        "label": "Turn is a value-driven company. Tell us about one of your personal values and how you apply it at work?",
-        "required": false,
-        "fields": [
-          {
-            "name": "83",
-            "selector": null,
-            "type": "textarea",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "how_did_you_hear_about_this_position?_",
-        "description": null,
-        "label": "How did you hear about this position? ",
-        "required": false,
-        "fields": [
-          {
-            "name": "84",
-            "selector": null,
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
-      }
     ]
   }
 }

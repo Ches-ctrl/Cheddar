@@ -103,11 +103,12 @@ module Importer
     ###
 
     def input_type(attribute, type, options)
-      return :upload if %w[resume cover_letter].include?(attribute)
       return :agreement_checkbox if type.eql?('checkbox') && options.empty?
+      return :date_picker if attribute.eql?('date_available')
       return :select if options.present?
+      return :upload if %w[resume cover_letter].include?(attribute)
 
-      INPUT_TYPES[type] || (type.nil? ? nil : debugger) || :input
+      INPUT_TYPES[type] || :input
     end
 
     INPUT_TYPES = {

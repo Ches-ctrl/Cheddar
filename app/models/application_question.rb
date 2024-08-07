@@ -27,6 +27,7 @@ class ApplicationQuestion
   def boolean? = type.eql?("boolean")
   def checkbox? = type.eql?("checkbox")
   def cover_letter? = attribute&.include?("cover_letter")
+  def date_picker? = type.eql?("date_picker")
   def input? = type.eql?("input") || type.eql?("education_input")
   def linkedin_related? = attribute&.include?('linkedin')
   def multi_select? = type.eql?("multi_select")

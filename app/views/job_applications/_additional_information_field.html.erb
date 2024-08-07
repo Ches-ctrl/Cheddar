@@ -55,10 +55,10 @@
   %>
 <% elsif question.valid? && question.textarea? %>
   <%= field_form.input question.attribute,
+    as: :text,
     hint: question.description&.html_safe,
     label: question.label,
     required: question.required,
-    as: :text,
     input_html: {
       class: 'block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
       rows: 5,
@@ -67,8 +67,19 @@
   %>
 <% elsif false && question.valid? && question.radiogroup? %>
   <%= field_form.input question.attribute,
-    label: question.label,
     hint: question.description&.html_safe,
+    label: question.label,
+    required: question.required,
+    input_html: { 
+      value: prefilled_value(question, job_application, last_applicant_answers)
+    }
+  %>
+<% elsif question.valid? && question.date_picker? %>
+  <%= field_form.input question.attribute,
+    as: :date,
+    hint: question.description&.html_safe,
+    html5: true,
+    label: question.label,
     required: question.required,
     input_html: { 
       value: prefilled_value(question, job_application, last_applicant_answers)
