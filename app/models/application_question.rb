@@ -23,6 +23,7 @@ class ApplicationQuestion
 
   # nb: attribute can be nil, so safe navigation operator is necessary with #include?
 
+  def agreement_checkbox? = type.eql?("agreement_checkbox")
   def boolean? = type.eql?("boolean")
   def checkbox? = type.eql?("checkbox")
   def cover_letter? = attribute&.include?("cover_letter")

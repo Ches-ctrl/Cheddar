@@ -1458,44 +1458,12 @@
         "attribute": "cover_letter",
         "description": null,
         "label": "Cover letter",
-        "required": false,
+        "required": true,
         "fields": [
           {
             "name": "coverLetterFileId",
             "selector": null,
             "type": "upload",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "referred_by",
-        "description": null,
-        "label": "Referred by",
-        "required": false,
-        "fields": [
-          {
-            "name": "referredBy",
-            "selector": null,
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "website_url",
-        "description": null,
-        "label": "Website url",
-        "required": false,
-        "fields": [
-          {
-            "name": "websiteUrl",
-            "selector": null,
-            "type": "input",
             "options": [
 
             ]
@@ -1525,15 +1493,15 @@
     "description": null,
     "questions": [
       {
-        "attribute": "by_submitting_your_application_you_are_agreeing_to_prezi_com",
+        "attribute": "_why_do_you_want_to_join_the_turn_io_team?",
         "description": null,
-        "label": "By submitting your application you are agreeing to Prezi.com Kft processing your personal data in accordance with our Recruitment Policy. To understand more about how and why we collect your personal data, the type of information we collect about you, how we use and share your personal data, how long we store your personal data and to learn more about your choices and rights we encourage you to read through the policy. Please find the policies here: https://prezi.com/recruitment-policy/ and  https://prezi.com/cms/legal/privacy-policy/",
-        "required": true,
+        "label": " Why do you want to join the Turn.io team?",
+        "required": false,
         "fields": [
           {
-            "name": "44",
+            "name": "82",
             "selector": null,
-            "type": "select",
+            "type": "textarea",
             "options": [
 
             ]
@@ -1541,15 +1509,31 @@
         ]
       },
       {
-        "attribute": "do_you_have_a_legal_right_to_work_in_the_country_you_are_loc",
+        "attribute": "turn_is_a_value_driven_company__tell_us_about_one_of_your_pe",
         "description": null,
-        "label": "Do you have a legal right to work in the country you are located in without additional visa?",
+        "label": "Turn is a value-driven company. Tell us about one of your personal values and how you apply it at work?",
         "required": false,
         "fields": [
           {
-            "name": "45",
+            "name": "83",
             "selector": null,
-            "type": "boolean",
+            "type": "textarea",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "how_did_you_hear_about_this_position?_",
+        "description": null,
+        "label": "How did you hear about this position? ",
+        "required": false,
+        "fields": [
+          {
+            "name": "84",
+            "selector": null,
+            "type": "input",
             "options": [
 
             ]

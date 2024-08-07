@@ -12,6 +12,8 @@ module Importer
         core_questions: { title: "Main application", description: nil, questions: core_questions(@data[:formFields].except(:customQuestions)) },
         additional_questions: additional_formatter(@data.dig(:formFields, :customQuestions))
       }
+      # debugger if @select_transform_data.to_s.include?('By submitting your application')
+      # @select_transform_data
     end
 
     ###
@@ -24,7 +26,7 @@ module Importer
 
         attribute = attribute(raw_attribute)
         options = raw_question[:options]&.map { |option| option.transform_keys({ 'id' => 'value', 'text' => 'label' }) } || []
-        type = input_type(attribute, options)
+        type = input_type(attribute, raw_question[:type], options)
         fields = [{ name: raw_attribute, selector: nil, type:, options: }]
         label = attribute.underscore.humanize
 
@@ -48,7 +50,7 @@ module Importer
       questions_data.map do |raw_question|
         attribute = attribute(raw_question[:question])
         options = raw_question[:options]&.map { |option| option.transform_keys({ 'id' => 'value', 'text' => 'label' }) } || []
-        type = INPUT_TYPES[raw_question[:type]]
+        type = input_type(attribute, raw_question[:type], options)
         fields = [{ name: raw_question[:id], selector: nil, type:, options: }]
         label = raw_question[:question]
 
@@ -100,10 +102,12 @@ module Importer
     ### types
     ###
 
-    def input_type(attribute, options)
+    def input_type(attribute, type, options)
       return :upload if %w[resume cover_letter].include?(attribute)
+      return :agreement_checkbox if type.eql?('checkbox') && options.empty?
+      return :select if options.present?
 
-      options.present? ? :select : :input
+      INPUT_TYPES[type] || (type.nil? ? nil : debugger) || :input
     end
 
     INPUT_TYPES = {
