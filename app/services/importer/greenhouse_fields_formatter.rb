@@ -9,7 +9,7 @@ module Importer
   # - Extracts core questions directly from the raw data.
   # - Formats demographic and compliance questions with title, description, and transformed questions.
   # - Creates a location question with auto-complete input for city.
-  class GreenhouseFieldsFormatter < ApplicationTask
+  class GreenhouseFieldsFormatter < FieldsFormatter
     def initialize(data)
       @data = data
     end

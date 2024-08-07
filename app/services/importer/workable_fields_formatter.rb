@@ -5,7 +5,7 @@ module Importer
   # It extracts specific sections (core questions and Details) and transforms them into a standardized format.
   # The output of this service is used by fields_builder.
 
-  class WorkableFieldsFormatter < ApplicationTask
+  class WorkableFieldsFormatter < FieldsFormatter
     def initialize(data)
       @data = data
     end

@@ -71,7 +71,7 @@ class JobAttributesFetcher < ApplicationTask
 
   def output_application_question_set
     output_file_name = "#{@ats.name.underscore}_aqs_builder_output.json"
-    output_file_path = Rails.root.join('public', output_file_name)
-    File.write(output_file_path, application_question_set.to_json)
+    output_file_path = Rails.root.join('public', 'jsons', output_file_name)
+    File.write(output_file_path, JSON.pretty_generate(application_question_set))
   end
 end

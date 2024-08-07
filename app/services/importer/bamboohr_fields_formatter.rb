@@ -4,7 +4,7 @@ module Importer
   # This service object is responsible for formatting data received from Bamboohr, into a structured format suitable for our application.
   # It extracts specific sections (core questions and Details) and transforms them into a standardized format.
   # The output of this service is used by fields_builder.
-  class BamboohrFieldsFormatter < ApplicationTask
+  class BamboohrFieldsFormatter < FieldsFormatter
     def initialize(data)
       @data = data
     end

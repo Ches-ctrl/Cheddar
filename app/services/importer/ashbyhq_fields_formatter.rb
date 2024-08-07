@@ -13,7 +13,7 @@ module Importer
   #   - Maps field types from Ashbyhq to internal application types (using INPUT_TYPES constant).
   #   - Builds question fields with name, selector (optional), type, and values (if applicable).
 
-  class AshbyhqFieldsFormatter < ApplicationTask
+  class AshbyhqFieldsFormatter < FieldsFormatter
     def initialize(data)
       @data = data
     end

@@ -1,0 +1,273 @@
+{
+  "core_questions": {
+    "title": "Main application",
+    "description": null,
+    "questions": [
+      {
+        "description": null,
+        "label": "First Name",
+        "required": true,
+        "fields": [
+          {
+            "name": "first_name",
+            "type": null,
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "first_name"
+      },
+      {
+        "description": null,
+        "label": "Last Name",
+        "required": true,
+        "fields": [
+          {
+            "name": "last_name",
+            "type": null,
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "last_name"
+      },
+      {
+        "description": null,
+        "label": "Email",
+        "required": true,
+        "fields": [
+          {
+            "name": "email",
+            "type": null,
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "email"
+      },
+      {
+        "description": null,
+        "label": "Phone",
+        "required": true,
+        "fields": [
+          {
+            "name": "phone",
+            "type": null,
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "phone_number"
+      },
+      {
+        "description": null,
+        "label": "Resume/CV",
+        "required": true,
+        "fields": [
+          {
+            "name": "resume",
+            "type": null,
+            "options": [
+
+            ]
+          },
+          {
+            "name": "resume_text",
+            "type": null,
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "resume"
+      },
+      {
+        "description": null,
+        "label": "Cover Letter",
+        "required": false,
+        "fields": [
+          {
+            "name": "cover_letter",
+            "type": null,
+            "options": [
+
+            ]
+          },
+          {
+            "name": "cover_letter_text",
+            "type": null,
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "cover_letter"
+      },
+      {
+        "description": null,
+        "label": "LinkedIn Profile",
+        "required": false,
+        "fields": [
+          {
+            "name": "question_25224686002",
+            "type": null,
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "linkedin"
+      },
+      {
+        "description": null,
+        "label": "Relevant experience as an Embedded engineer\n",
+        "required": true,
+        "fields": [
+          {
+            "name": "question_25385758002",
+            "type": null,
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "relevant_experience_as_an_embedded_engineer"
+      },
+      {
+        "description": null,
+        "label": "Relevant experience in  Linux and/or RTOS?",
+        "required": true,
+        "fields": [
+          {
+            "name": "question_25385759002",
+            "type": null,
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "relevant_experience_in_linux_and_or_rtos"
+      },
+      {
+        "description": null,
+        "label": "Do you have experience with the development or embedded deployment of machine learning / AI / deep learning models?",
+        "required": true,
+        "fields": [
+          {
+            "name": "question_25385760002",
+            "type": null,
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "do_you_have_experience_with_the_development_or_embedded_depl"
+      }
+    ]
+  },
+  "demographic_questions": {
+    "title": "Global Diversity Survey",
+    "description": "<p>We invite applicants to share their demographic background. If you choose to complete this survey, your responses may be used to identify areas of improvement in our hiring process.</p>",
+    "questions": [
+      {
+        "attribute": "how_would_you_describe_your_gender_identity_mark_all_that_ap",
+        "label": "How would you describe your gender identity? (mark all that apply)",
+        "description": null,
+        "required": false,
+        "fields": [
+          {
+            "name": 4024732002,
+            "type": "select",
+            "options": [
+              {
+                "value": 4148157002,
+                "label": "Male",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4148158002,
+                "label": "Female",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4148160002,
+                "label": "I don't wish to answer",
+                "free_form": false,
+                "decline_to_answer": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "do_you_have_a_disability_or_chronic_condition_physical_visua",
+        "label": "Do you have a disability or chronic condition (physical, visual, auditory, cognitive, mental, emotional, or other) that substantially limits one or more of your major life activities, including mobility, communication and learning?",
+        "description": null,
+        "required": false,
+        "fields": [
+          {
+            "name": 4024734002,
+            "type": "select",
+            "options": [
+              {
+                "value": 4148169002,
+                "label": "Yes",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4148170002,
+                "label": "No",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4148171002,
+                "label": "I prefer to self-describe",
+                "free_form": true,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4148172002,
+                "label": "I don't wish to answer",
+                "free_form": false,
+                "decline_to_answer": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "compliance_questions": {
+  },
+  "location_questions": {
+    "title": null,
+    "description": null,
+    "questions": [
+      {
+        "attribute": "city_applicant",
+        "required": false,
+        "label": "Location (City))",
+        "description": null,
+        "fields": [
+          {
+            "id": "auto_complete_input",
+            "selector": "input[name=\"job_application[location]\"]",
+            "type": "location",
+            "max_length": 255,
+            "options": [
+
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
