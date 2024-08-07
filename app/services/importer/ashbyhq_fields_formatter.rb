@@ -17,7 +17,7 @@ module Importer
     private
 
     def select_transform_data
-      {
+      @select_transform_data ||= {
         core_questions: { title: "Main application", description: nil, questions: any_questions(@data.dig(:applicationForm, :sections).first[:fieldEntries]) },
         survey_questions: survey_formatter(@data[:surveyForms])
       }

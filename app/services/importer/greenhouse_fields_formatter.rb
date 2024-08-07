@@ -13,7 +13,7 @@ module Importer
     private
 
     def select_transform_data
-      {
+      @select_transform_data ||= {
         core_questions: { title: "Main application", description: nil, questions: core_questions(@data[:questions]) },
         demographic_questions: demographic_formatter(@data.dig(:demographic_questions, :questions)),
         compliance_questions: compliance_formatter(@data[:compliance]),

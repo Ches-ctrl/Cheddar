@@ -9,7 +9,7 @@ module Importer
     private
 
     def select_transform_data
-      {
+      @select_transform_data ||= {
         core_questions: { title: "Main application", description: nil, questions: any_questions(@data.except('Details').map { |_k, hash| hash[:fields] }.flatten) },
         additional_questions: additional_formatter(@data.dig(:Details, :fields))
       }

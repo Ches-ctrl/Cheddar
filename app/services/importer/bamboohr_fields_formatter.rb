@@ -8,7 +8,7 @@ module Importer
     private
 
     def select_transform_data
-      {
+      @select_transform_data ||= {
         core_questions: { title: "Main application", description: nil, questions: core_questions(@data[:formFields].except(:customQuestions)) },
         additional_questions: additional_formatter(@data.dig(:formFields, :customQuestions))
       }

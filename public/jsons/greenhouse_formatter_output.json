@@ -10,7 +10,7 @@
         "fields": [
           {
             "name": "first_name",
-            "type": null,
+            "type": "input",
             "options": [
 
             ]
@@ -25,7 +25,7 @@
         "fields": [
           {
             "name": "last_name",
-            "type": null,
+            "type": "input",
             "options": [
 
             ]
@@ -40,7 +40,7 @@
         "fields": [
           {
             "name": "email",
-            "type": null,
+            "type": "input",
             "options": [
 
             ]
@@ -55,7 +55,7 @@
         "fields": [
           {
             "name": "phone",
-            "type": null,
+            "type": "input",
             "options": [
 
             ]
@@ -70,14 +70,14 @@
         "fields": [
           {
             "name": "resume",
-            "type": null,
+            "type": "upload",
             "options": [
 
             ]
           },
           {
             "name": "resume_text",
-            "type": null,
+            "type": "textarea",
             "options": [
 
             ]
@@ -92,14 +92,14 @@
         "fields": [
           {
             "name": "cover_letter",
-            "type": null,
+            "type": "upload",
             "options": [
 
             ]
           },
           {
             "name": "cover_letter_text",
-            "type": null,
+            "type": "textarea",
             "options": [
 
             ]
@@ -109,12 +109,336 @@
       },
       {
         "description": null,
-        "label": "LinkedIn Profile",
+        "label": "Additional information (for source)",
         "required": false,
         "fields": [
           {
-            "name": "question_5722372101",
-            "type": null,
+            "name": "question_22258579002",
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "additional_information_for_source"
+      },
+      {
+        "description": null,
+        "label": "Have you interviewed with Jane Street before?",
+        "required": true,
+        "fields": [
+          {
+            "name": "question_22258580002",
+            "type": "select",
+            "options": [
+              {
+                "label": "Yes",
+                "value": 1
+              },
+              {
+                "label": "No",
+                "value": 0
+              }
+            ]
+          }
+        ],
+        "attribute": "have_you_interviewed_with_jane_street_before"
+      },
+      {
+        "description": null,
+        "label": "Pronouns",
+        "required": false,
+        "fields": [
+          {
+            "name": "question_22258581002",
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "pronouns"
+      },
+      {
+        "description": null,
+        "label": "Are you currently a student?",
+        "required": true,
+        "fields": [
+          {
+            "name": "question_22258582002",
+            "type": "select",
+            "options": [
+              {
+                "label": "Yes",
+                "value": 1
+              },
+              {
+                "label": "No",
+                "value": 0
+              }
+            ]
+          }
+        ],
+        "attribute": "are_you_currently_a_student"
+      },
+      {
+        "description": null,
+        "label": "Enter your college/university",
+        "required": false,
+        "fields": [
+          {
+            "name": "question_22258583002",
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "enter_your_college_university"
+      },
+      {
+        "description": null,
+        "label": "Candidate: college/university",
+        "required": false,
+        "fields": [
+          {
+            "name": "question_22258584002",
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "candidate_college_university"
+      },
+      {
+        "description": null,
+        "label": "Major/Field of study",
+        "required": false,
+        "fields": [
+          {
+            "name": "question_22258585002",
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "major_field_of_study"
+      },
+      {
+        "description": null,
+        "label": "Year you expect to complete your education",
+        "required": true,
+        "fields": [
+          {
+            "name": "question_22258586002",
+            "type": "select",
+            "options": [
+              {
+                "label": "2019",
+                "value": 105049588002
+              },
+              {
+                "label": "2020",
+                "value": 105049589002
+              },
+              {
+                "label": "2021",
+                "value": 105049590002
+              },
+              {
+                "label": "2022",
+                "value": 105049591002
+              },
+              {
+                "label": "2023",
+                "value": 105049592002
+              },
+              {
+                "label": "2024",
+                "value": 105049593002
+              },
+              {
+                "label": "2025",
+                "value": 105049594002
+              },
+              {
+                "label": "2026",
+                "value": 105049595002
+              },
+              {
+                "label": "2027",
+                "value": 105049596002
+              },
+              {
+                "label": "2028",
+                "value": 105049597002
+              },
+              {
+                "label": "2029",
+                "value": 105049598002
+              },
+              {
+                "label": "2030",
+                "value": 105049599002
+              }
+            ]
+          }
+        ],
+        "attribute": "year_you_expect_to_complete_your_education"
+      },
+      {
+        "description": null,
+        "label": "What is your off-cycle availability?",
+        "required": false,
+        "fields": [
+          {
+            "name": "question_22258587002",
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "what_is_your_off_cycle_availability"
+      },
+      {
+        "description": "<p>Why you&rsquo;re interested in Jane Street<br />How you heard about us<br />If you have a job now, why you&rsquo;re looking for a new one</p>",
+        "label": "Extra",
+        "required": false,
+        "fields": [
+          {
+            "name": "question_22258588002",
+            "type": "textarea",
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "extra"
+      },
+      {
+        "description": null,
+        "label": "Year you expect to begin full time employment",
+        "required": true,
+        "fields": [
+          {
+            "name": "question_22258589002",
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "year_you_expect_to_begin_full_time_employment"
+      },
+      {
+        "description": null,
+        "label": "Current degree end date",
+        "required": false,
+        "fields": [
+          {
+            "name": "question_22258590002",
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "current_degree_end_date"
+      },
+      {
+        "description": null,
+        "label": "Current degree start date",
+        "required": false,
+        "fields": [
+          {
+            "name": "question_22258591002",
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "current_degree_start_date"
+      },
+      {
+        "description": null,
+        "label": "Who is your current employer/position?",
+        "required": false,
+        "fields": [
+          {
+            "name": "question_22258592002",
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "who_is_your_current_employer_position"
+      },
+      {
+        "description": null,
+        "label": "What is your current education level?",
+        "required": false,
+        "fields": [
+          {
+            "name": "question_22258593002",
+            "type": "select",
+            "options": [
+              {
+                "label": "High School",
+                "value": 105049600002
+              },
+              {
+                "label": "Undergraduate",
+                "value": 105049601002
+              },
+              {
+                "label": "Masters/Graduate",
+                "value": 105049602002
+              },
+              {
+                "label": "PhD",
+                "value": 105049603002
+              },
+              {
+                "label": "Postdoc",
+                "value": 105049604002
+              },
+              {
+                "label": "Other",
+                "value": 105049605002
+              }
+            ]
+          }
+        ],
+        "attribute": "what_is_your_current_education_level"
+      },
+      {
+        "description": null,
+        "label": "What year did you graduate high school?",
+        "required": false,
+        "fields": [
+          {
+            "name": "question_23466236002",
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "what_year_did_you_graduate_high_school"
+      },
+      {
+        "description": null,
+        "label": "LinkedIn profile",
+        "required": false,
+        "fields": [
+          {
+            "name": "question_25506763002",
+            "type": "input",
             "options": [
 
             ]
@@ -123,110 +447,417 @@
         "attribute": "linkedin"
       },
       {
-        "description": "<p>When you apply to a job on this site, the personal data contained in your application will be collected by Copper Technologies Group \"controller\", which is located at Blockchain House, 17 Broadwick Street London, W1F 0DE.&nbsp;&nbsp;</p>\n<p>Your personal data will be processed for the purposes of managing controller's recruitment related activities which include setting up and conducting interviews and tests for applicants, evaluating and assessing the results and as is otherwise needed in the recruitment and hiring processes.</p>\n<p>Such processing is legally permissionable under Art. 6 (1)(f) of Regulation (EU) 2016/697 (General Data Protection Regulation) as necessary for the purposes of the legitimate interests pursued by the controller which are the solicitation, evaluation, and selection of applicants for employment.</p>\n<p>Your personal information will be shared with Greenhouse Software Inc., a cloud service provider located in the United States of America and engaged by controller to help manage its recruitment and hiring process on controller's behalf. Accordingly, if you are located outside of the United States, your personal data will be transferred to the United States once you submit it through this site. Because the European Union Commission has determined that United States data privacy laws do not ensure an adequate level of protection for personal data collected from the EU data subjects, the transfer will be subject to appropriate additional safeguards under the Privacy Shield.</p>\n<p>Your personal data will be retained by Copper Technologies Group as long as Copper.co determines is necessary to evaluate your application for employment. Under the Data Privacy Policy, you have the right to request access to your personal data, to request that your personal data be rectified or deleted and the request that processing of your personal data be restricted. You may also have the right to data portability. In addition you may lodge a complaint with an EU supervisory authority.</p>\n<p>&nbsp;</p>",
-        "label": "GDPR Notice ",
+        "description": null,
+        "label": "Website UID",
         "required": false,
         "fields": [
           {
-            "name": "question_5722374101",
-            "type": null,
+            "name": "question_25725993002",
+            "type": "input",
             "options": [
-              {
-                "label": "Acknowledge",
-                "value": 25175796101
-              }
+
             ]
           }
         ],
-        "attribute": "gdpr_notice"
+        "attribute": "website_uid"
       },
       {
         "description": null,
-        "label": "Do you have experience in Scala?",
+        "label": "How did you hear about us?",
         "required": true,
         "fields": [
           {
-            "name": "question_5771609101",
-            "type": null,
+            "name": "question_28213648002",
+            "type": "select",
             "options": [
               {
-                "label": "Yes",
-                "value": 1
+                "label": "3Blue1Brown",
+                "value": 173978052002
               },
               {
-                "label": "No",
-                "value": 0
+                "label": "Academic advisor",
+                "value": 173978055002
+              },
+              {
+                "label": "Academic camp...",
+                "value": 173978059002
+              },
+              {
+                "label": "Academic department",
+                "value": 173978065002
+              },
+              {
+                "label": "Advent of Code",
+                "value": 173978071002
+              },
+              {
+                "label": "AoPS - Art of Problem Solving",
+                "value": 173978077002
+              },
+              {
+                "label": "BEAM - Bridge to Enter Advanced Mathematics",
+                "value": 173978082002
+              },
+              {
+                "label": "Bright Network",
+                "value": 173978087002
+              },
+              {
+                "label": "CMD-IT; Tapia Conference",
+                "value": 173978095002
+              },
+              {
+                "label": "ColorStack",
+                "value": 173978103002
+              },
+              {
+                "label": "Computerphile",
+                "value": 173978111002
+              },
+              {
+                "label": "Cracking the Cryptic",
+                "value": 173978119002
+              },
+              {
+                "label": "Current employee...",
+                "value": 173978128002
+              },
+              {
+                "label": "Current/former intern",
+                "value": 173978136002
+              },
+              {
+                "label": "DS4A",
+                "value": 173978145002
+              },
+              {
+                "label": "ETC",
+                "value": 173978156002
+              },
+              {
+                "label": "Estimathon",
+                "value": 173978162002
+              },
+              {
+                "label": "Facebook",
+                "value": 173978168002
+              },
+              {
+                "label": "Faculty referral...",
+                "value": 173978172002
+              },
+              {
+                "label": "Figgie event",
+                "value": 173978177002
+              },
+              {
+                "label": "Figgie online",
+                "value": 173978183002
+              },
+              {
+                "label": "Game night",
+                "value": 173978188002
+              },
+              {
+                "label": "Glassdoor",
+                "value": 173978193002
+              },
+              {
+                "label": "Grace Hopper Celebration",
+                "value": 173978204002
+              },
+              {
+                "label": "GradCracker",
+                "value": 173978211002
+              },
+              {
+                "label": "HireWomenStem",
+                "value": 173978214002
+              },
+              {
+                "label": "ICFP",
+                "value": 173978221002
+              },
+              {
+                "label": "ICML",
+                "value": 173978233002
+              },
+              {
+                "label": "Info session",
+                "value": 173978239002
+              },
+              {
+                "label": "Jane Street Get to Know Us",
+                "value": 173978248002
+              },
+              {
+                "label": "Jane Street T-shirt or item",
+                "value": 173978261002
+              },
+              {
+                "label": "Jane Street Tech Blog",
+                "value": 173978267002
+              },
+              {
+                "label": "Jane Street Tech Talk on YouTube",
+                "value": 173978273002
+              },
+              {
+                "label": "Jane Street games",
+                "value": 173978281002
+              },
+              {
+                "label": "Jane Street puzzles",
+                "value": 173978289002
+              },
+              {
+                "label": "Job Openings for Economists (JOE)",
+                "value": 173978296002
+              },
+              {
+                "label": "Kaggle",
+                "value": 173978306002
+              },
+              {
+                "label": "Lesbians Who Tech Summit",
+                "value": 173978312002
+              },
+              {
+                "label": "LinkedIn",
+                "value": 173978318002
+              },
+              {
+                "label": "MLT",
+                "value": 173978324002
+              },
+              {
+                "label": "Math Association of America",
+                "value": 173978331002
+              },
+              {
+                "label": "Mathfest",
+                "value": 173978337002
+              },
+              {
+                "label": "Mathjobs.org",
+                "value": 173978342002
+              },
+              {
+                "label": "Mystery Planet",
+                "value": 173978349002
+              },
+              {
+                "label": "NCWIT",
+                "value": 173978355002
+              },
+              {
+                "label": "NSBE",
+                "value": 173978360002
+              },
+              {
+                "label": "Networking dinner",
+                "value": 173978366002
+              },
+              {
+                "label": "NeurIPS",
+                "value": 173978373002
+              },
+              {
+                "label": "Numberphile",
+                "value": 173978379002
+              },
+              {
+                "label": "OSDI",
+                "value": 173978385002
+              },
+              {
+                "label": "Online forum...",
+                "value": 173978395002
+              },
+              {
+                "label": "Other Conference...",
+                "value": 173978399002
+              },
+              {
+                "label": "Other...",
+                "value": 173978410002
+              },
+              {
+                "label": "PLDI",
+                "value": 173978413002
+              },
+              {
+                "label": "POCIT",
+                "value": 173978419002
+              },
+              {
+                "label": "POPL",
+                "value": 173978433002
+              },
+              {
+                "label": "Per Scholas",
+                "value": 173978438002
+              },
+              {
+                "label": "Perspektywy Women in Tech",
+                "value": 173978442002
+              },
+              {
+                "label": "Piazza",
+                "value": 173978444002
+              },
+              {
+                "label": "Pre-university academic competition (IOI, IMO, HMMT, AIME, etc.)...",
+                "value": 173978449002
+              },
+              {
+                "label": "PuzzleCity",
+                "value": 173978454002
+              },
+              {
+                "label": "PyCon",
+                "value": 173978457002
+              },
+              {
+                "label": "REU program",
+                "value": 173978471002
+              },
+              {
+                "label": "Rare Recruitment (UK)",
+                "value": 173978476002
+              },
+              {
+                "label": "Real Numbers",
+                "value": 173978486002
+              },
+              {
+                "label": "Ron Brown Scholar Program",
+                "value": 173978492002
+              },
+              {
+                "label": "SREcon",
+                "value": 173978496002
+              },
+              {
+                "label": "STEM Women (UK organization)",
+                "value": 173978501002
+              },
+              {
+                "label": "Scientific Association of Mathematical Finance",
+                "value": 173978504002
+              },
+              {
+                "label": "StandUp Maths",
+                "value": 173978507002
+              },
+              {
+                "label": "Steve Mould",
+                "value": 173978514002
+              },
+              {
+                "label": "StrangeLoop",
+                "value": 173978517002
+              },
+              {
+                "label": "Student Freedom Initiative",
+                "value": 173978522002
+              },
+              {
+                "label": "Tech Talks",
+                "value": 173978526002
+              },
+              {
+                "label": "Twitter/X",
+                "value": 173978531002
+              },
+              {
+                "label": "University club...",
+                "value": 173978534002
+              },
+              {
+                "label": "University job board",
+                "value": 173978535002
+              },
+              {
+                "label": "University-hosted event (e.g., career fair, career services event, etc.)...",
+                "value": 173978539002
+              },
+              {
+                "label": "University-level competition (ICPC, Putnam, IMC, etc.)...",
+                "value": 173978542002
+              },
+              {
+                "label": "WeChat",
+                "value": 173978544002
+              },
+              {
+                "label": "Word of mouth",
+                "value": 173978547002
+              },
+              {
+                "label": "Working Not Working",
+                "value": 173978549002
+              },
+              {
+                "label": "Oxford Online Maths Club",
+                "value": 173978552002
+              },
+              {
+                "label": "CVPR",
+                "value": 173978554002
+              },
+              {
+                "label": "EMNLP",
+                "value": 173978556002
+              },
+              {
+                "label": "NANOG",
+                "value": 173978561002
+              },
+              {
+                "label": "PyTorch",
+                "value": 173978563002
+              },
+              {
+                "label": "SIGCOMM",
+                "value": 173978566002
+              },
+              {
+                "label": "STOC",
+                "value": 173978570002
+              },
+              {
+                "label": "Women in Logic",
+                "value": 173978572002
+              },
+              {
+                "label": "Jane Street OCaml Unboxed",
+                "value": 173978576002
+              },
+              {
+                "label": "Jane Street's Signals & Threads podcast",
+                "value": 173978578002
+              },
+              {
+                "label": "Periodic Videos",
+                "value": 173978580002
+              },
+              {
+                "label": "Reconcilable Differences",
+                "value": 173978585002
+              },
+              {
+                "label": "The Art of the Problem",
+                "value": 173978590002
+              },
+              {
+                "label": "HackerNews",
+                "value": 175461515002
               }
             ]
           }
         ],
-        "attribute": "do_you_have_experience_in_scala"
-      },
-      {
-        "description": null,
-        "label": "Are you based in UK?",
-        "required": true,
-        "fields": [
-          {
-            "name": "question_5823740101",
-            "type": null,
-            "options": [
-              {
-                "label": "Yes",
-                "value": 1
-              },
-              {
-                "label": "No",
-                "value": 0
-              }
-            ]
-          }
-        ],
-        "attribute": "are_you_based_in_uk"
-      },
-      {
-        "description": null,
-        "label": "Do you have the Right to Work in UK?",
-        "required": true,
-        "fields": [
-          {
-            "name": "question_5823741101",
-            "type": null,
-            "options": [
-              {
-                "label": "Yes",
-                "value": 1
-              },
-              {
-                "label": "No",
-                "value": 0
-              }
-            ]
-          }
-        ],
-        "attribute": "do_you_have_the_right_to_work_in_uk"
-      },
-      {
-        "description": null,
-        "label": "Will you now or in future require sponsorship?",
-        "required": true,
-        "fields": [
-          {
-            "name": "question_5903718101",
-            "type": null,
-            "options": [
-              {
-                "label": "Yes",
-                "value": 1
-              },
-              {
-                "label": "No",
-                "value": 0
-              }
-            ]
-          }
-        ],
-        "attribute": "will_you_now_or_in_future_require_sponsorship"
+        "attribute": "how_did_you_hear_about_us"
       }
     ]
   },
