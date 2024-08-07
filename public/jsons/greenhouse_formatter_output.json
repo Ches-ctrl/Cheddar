@@ -113,7 +113,7 @@
         "required": false,
         "fields": [
           {
-            "name": "question_25224686002",
+            "name": "question_5722372101",
             "type": null,
             "options": [
 
@@ -123,127 +123,114 @@
         "attribute": "linkedin"
       },
       {
-        "description": null,
-        "label": "Relevant experience as an Embedded engineer\n",
-        "required": true,
+        "description": "<p>When you apply to a job on this site, the personal data contained in your application will be collected by Copper Technologies Group \"controller\", which is located at Blockchain House, 17 Broadwick Street London, W1F 0DE.&nbsp;&nbsp;</p>\n<p>Your personal data will be processed for the purposes of managing controller's recruitment related activities which include setting up and conducting interviews and tests for applicants, evaluating and assessing the results and as is otherwise needed in the recruitment and hiring processes.</p>\n<p>Such processing is legally permissionable under Art. 6 (1)(f) of Regulation (EU) 2016/697 (General Data Protection Regulation) as necessary for the purposes of the legitimate interests pursued by the controller which are the solicitation, evaluation, and selection of applicants for employment.</p>\n<p>Your personal information will be shared with Greenhouse Software Inc., a cloud service provider located in the United States of America and engaged by controller to help manage its recruitment and hiring process on controller's behalf. Accordingly, if you are located outside of the United States, your personal data will be transferred to the United States once you submit it through this site. Because the European Union Commission has determined that United States data privacy laws do not ensure an adequate level of protection for personal data collected from the EU data subjects, the transfer will be subject to appropriate additional safeguards under the Privacy Shield.</p>\n<p>Your personal data will be retained by Copper Technologies Group as long as Copper.co determines is necessary to evaluate your application for employment. Under the Data Privacy Policy, you have the right to request access to your personal data, to request that your personal data be rectified or deleted and the request that processing of your personal data be restricted. You may also have the right to data portability. In addition you may lodge a complaint with an EU supervisory authority.</p>\n<p>&nbsp;</p>",
+        "label": "GDPR Notice ",
+        "required": false,
         "fields": [
           {
-            "name": "question_25385758002",
+            "name": "question_5722374101",
             "type": null,
             "options": [
-
+              {
+                "label": "Acknowledge",
+                "value": 25175796101
+              }
             ]
           }
         ],
-        "attribute": "relevant_experience_as_an_embedded_engineer"
+        "attribute": "gdpr_notice"
       },
       {
         "description": null,
-        "label": "Relevant experience in  Linux and/or RTOS?",
+        "label": "Do you have experience in Scala?",
         "required": true,
         "fields": [
           {
-            "name": "question_25385759002",
+            "name": "question_5771609101",
             "type": null,
             "options": [
-
+              {
+                "label": "Yes",
+                "value": 1
+              },
+              {
+                "label": "No",
+                "value": 0
+              }
             ]
           }
         ],
-        "attribute": "relevant_experience_in_linux_and_or_rtos"
+        "attribute": "do_you_have_experience_in_scala"
       },
       {
         "description": null,
-        "label": "Do you have experience with the development or embedded deployment of machine learning / AI / deep learning models?",
+        "label": "Are you based in UK?",
         "required": true,
         "fields": [
           {
-            "name": "question_25385760002",
+            "name": "question_5823740101",
             "type": null,
             "options": [
-
+              {
+                "label": "Yes",
+                "value": 1
+              },
+              {
+                "label": "No",
+                "value": 0
+              }
             ]
           }
         ],
-        "attribute": "do_you_have_experience_with_the_development_or_embedded_depl"
+        "attribute": "are_you_based_in_uk"
+      },
+      {
+        "description": null,
+        "label": "Do you have the Right to Work in UK?",
+        "required": true,
+        "fields": [
+          {
+            "name": "question_5823741101",
+            "type": null,
+            "options": [
+              {
+                "label": "Yes",
+                "value": 1
+              },
+              {
+                "label": "No",
+                "value": 0
+              }
+            ]
+          }
+        ],
+        "attribute": "do_you_have_the_right_to_work_in_uk"
+      },
+      {
+        "description": null,
+        "label": "Will you now or in future require sponsorship?",
+        "required": true,
+        "fields": [
+          {
+            "name": "question_5903718101",
+            "type": null,
+            "options": [
+              {
+                "label": "Yes",
+                "value": 1
+              },
+              {
+                "label": "No",
+                "value": 0
+              }
+            ]
+          }
+        ],
+        "attribute": "will_you_now_or_in_future_require_sponsorship"
       }
     ]
   },
   "demographic_questions": {
-    "title": "Global Diversity Survey",
-    "description": "<p>We invite applicants to share their demographic background. If you choose to complete this survey, your responses may be used to identify areas of improvement in our hiring process.</p>",
-    "questions": [
-      {
-        "attribute": "how_would_you_describe_your_gender_identity_mark_all_that_ap",
-        "label": "How would you describe your gender identity? (mark all that apply)",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": 4024732002,
-            "type": "select",
-            "options": [
-              {
-                "value": 4148157002,
-                "label": "Male",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4148158002,
-                "label": "Female",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4148160002,
-                "label": "I don't wish to answer",
-                "free_form": false,
-                "decline_to_answer": false
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "do_you_have_a_disability_or_chronic_condition_physical_visua",
-        "label": "Do you have a disability or chronic condition (physical, visual, auditory, cognitive, mental, emotional, or other) that substantially limits one or more of your major life activities, including mobility, communication and learning?",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": 4024734002,
-            "type": "select",
-            "options": [
-              {
-                "value": 4148169002,
-                "label": "Yes",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4148170002,
-                "label": "No",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4148171002,
-                "label": "I prefer to self-describe",
-                "free_form": true,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4148172002,
-                "label": "I don't wish to answer",
-                "free_form": false,
-                "decline_to_answer": false
-              }
-            ]
-          }
-        ]
-      }
-    ]
   },
   "compliance_questions": {
   },
@@ -251,23 +238,7 @@
     "title": null,
     "description": null,
     "questions": [
-      {
-        "attribute": "city_applicant",
-        "required": false,
-        "label": "Location (City))",
-        "description": null,
-        "fields": [
-          {
-            "id": "auto_complete_input",
-            "selector": "input[name=\"job_application[location]\"]",
-            "type": "location",
-            "max_length": 255,
-            "options": [
 
-            ]
-          }
-        ]
-      }
     ]
   }
 }
