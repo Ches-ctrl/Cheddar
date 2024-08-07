@@ -102,6 +102,13 @@
       }
     ]
   },
+  "detail_questions": {
+    "title": null,
+    "description": null,
+    "questions": [
+
+    ]
+  },
   "survey_questions": {
     "title": null,
     "description": null,

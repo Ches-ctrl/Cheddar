@@ -19,8 +19,11 @@ module Importer
     def select_transform_data
       @select_transform_data ||= {
         core_questions: { title: "Main application", description: nil, questions: any_questions(@data.dig(:applicationForm, :sections).first[:fieldEntries]) },
+        detail_questions: detail_formatter(@data.dig(:applicationForm, :sections)&.second&.[](:fieldEntries)),
         survey_questions: survey_formatter(@data[:surveyForms])
       }
+      # debugger if @data.to_s.include?('Why Multiverse?')
+      # @select_transform_data
     end
 
     ###
@@ -39,8 +42,14 @@ module Importer
       end
     end
 
+    def detail_formatter(detail_data)
+      return {} unless detail_data.present?
+
+      { title: "Detail information", description: nil, questions: any_questions(detail_data) }
+    end
+
     def survey_formatter(survey_data)
-      return {} unless survey_data.any?
+      return {} unless survey_data.present?
 
       survey_data = survey_data.first[:sections]
       {

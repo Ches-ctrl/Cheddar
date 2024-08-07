@@ -7,21 +7,20 @@
       value: prefilled_value(question, job_application, last_applicant_answers)
     }
   %>
-<% elsif question.valid? && question.select? %>
+<% elsif question.valid? && question.boolean? %>
   <%= field_form.input question.attribute,
-    collection: question.options,
-    include_blank: true,
+    collection: question.boolean_options,
     hint: question.description&.html_safe,
     label: question.label,
     required: question.required,
     selected: prefilled_value(question, job_application, last_applicant_answers),
     type: :select
   %>
-<% elsif question.valid? && question.boolean? %>
+<% elsif question.valid? && question.select? %>
   <%= field_form.input question.attribute,
-    collection: question.boolean_options,
+    collection: question.options,
     include_blank: true,
-    hint: question.description&.html_safe,
+    hint: raw("#{question.description}".html_safe),
     label: question.label,
     required: question.required,
     selected: prefilled_value(question, job_application, last_applicant_answers),

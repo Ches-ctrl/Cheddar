@@ -1409,7 +1409,7 @@
         "attribute": "linkedin",
         "label": "Linkedin",
         "description": null,
-        "required": true,
+        "required": false,
         "fields": [
           {
             "name": "linkedinUrl",
@@ -1425,7 +1425,7 @@
         "attribute": "date_available",
         "label": "Date available",
         "description": null,
-        "required": true,
+        "required": false,
         "fields": [
           {
             "name": "dateAvailable",
@@ -1441,10 +1441,42 @@
         "attribute": "desired_pay",
         "label": "Desired pay",
         "description": null,
-        "required": true,
+        "required": false,
         "fields": [
           {
             "name": "desiredPay",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "cover_letter",
+        "label": "Cover letter",
+        "description": null,
+        "required": false,
+        "fields": [
+          {
+            "name": "coverLetterFileId",
+            "selector": null,
+            "type": "upload",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "referred_by",
+        "label": "Referred by",
+        "description": null,
+        "required": false,
+        "fields": [
+          {
+            "name": "referredBy",
             "selector": null,
             "type": "input",
             "options": [
@@ -1484,162 +1516,6 @@
             ]
           }
         ]
-      },
-      {
-        "attribute": "referred_by",
-        "label": "Referred by",
-        "description": null,
-        "required": true,
-        "fields": [
-          {
-            "name": "referredBy",
-            "selector": null,
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "gender",
-        "label": "Gender",
-        "description": null,
-        "required": true,
-        "fields": [
-          {
-            "name": "genderId",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "value": "-1",
-                "label": "Decline to answer"
-              },
-              {
-                "value": "1",
-                "label": "Male"
-              },
-              {
-                "value": "2",
-                "label": "Female"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "ethnicity",
-        "label": "Ethnicity",
-        "description": null,
-        "required": true,
-        "fields": [
-          {
-            "name": "ethnicityId",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "value": "-1",
-                "label": "Decline to answer"
-              },
-              {
-                "value": "18443",
-                "label": "American Indian or Alaska Native"
-              },
-              {
-                "value": "18444",
-                "label": "Asian"
-              },
-              {
-                "value": "18445",
-                "label": "Black or African American"
-              },
-              {
-                "value": "18446",
-                "label": "Hispanic or Latino"
-              },
-              {
-                "value": "18447",
-                "label": "Native Hawaiian or Other Pacific Islander"
-              },
-              {
-                "value": "18448",
-                "label": "Two or More Races"
-              },
-              {
-                "value": "18449",
-                "label": "White"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "veteran_status_id",
-        "label": "Veteran status",
-        "description": null,
-        "required": true,
-        "fields": [
-          {
-            "name": "veteranStatusId",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "value": "-1",
-                "label": "Decline to answer"
-              },
-              {
-                "value": "-2",
-                "label": "Not a veteran"
-              },
-              {
-                "value": "18462",
-                "label": "Active Duty Wartime or Campaign Badge Veteran"
-              },
-              {
-                "value": "18460",
-                "label": "Armed Forces Service Medal Veteran"
-              },
-              {
-                "value": "18461",
-                "label": "Disabled Veteran"
-              },
-              {
-                "value": "18463",
-                "label": "Recently Separated Veteran"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "disability_id",
-        "label": "Disability",
-        "description": null,
-        "required": true,
-        "fields": [
-          {
-            "name": "disabilityId",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "value": "-1",
-                "label": "Decline to answer"
-              },
-              {
-                "value": "18490",
-                "label": "No, I don't have a disability"
-              },
-              {
-                "value": "18489",
-                "label": "Yes, I have a disability (or previously had a disability)"
-              }
-            ]
-          }
-        ]
       }
     ]
   },
@@ -1648,13 +1524,29 @@
     "description": null,
     "questions": [
       {
-        "attribute": "do_you_live_in_the_pacific_time_zone?",
-        "label": "Do you live in the Pacific time zone?",
+        "attribute": "by_submitting_your_application_you_are_agreeing_to_prezi_com",
+        "label": "By submitting your application you are agreeing to Prezi.com Kft processing your personal data in accordance with our Recruitment Policy. To understand more about how and why we collect your personal data, the type of information we collect about you, how we use and share your personal data, how long we store your personal data and to learn more about your choices and rights we encourage you to read through the policy. Please find the policies here: https://prezi.com/recruitment-policy/ and  https://prezi.com/cms/legal/privacy-policy/",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "44",
+            "selector": null,
+            "type": "select",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "do_you_have_a_legal_right_to_work_in_the_country_you_are_loc",
+        "label": "Do you have a legal right to work in the country you are located in without additional visa?",
         "description": null,
         "required": false,
         "fields": [
           {
-            "name": "135",
+            "name": "45",
             "selector": null,
             "type": "boolean",
             "options": [

@@ -36,6 +36,38 @@
         ]
       },
       {
+        "attribute": "linkedin",
+        "label": "LinkedIn",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "4f7775b3-49a9-4ea0-bd77-914ff207aa76",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "would_you_require_a_visa_sponsorship_to_work_in_london",
+        "label": "Would you require a visa sponsorship to work in London?",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "aae1f5c2-9455-4c3e-b3f0-981bfb6a86ed",
+            "selector": null,
+            "type": "boolean",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
         "attribute": "resume",
         "label": "Resume",
         "description": null,
@@ -52,79 +84,15 @@
         ]
       },
       {
-        "attribute": "cover_letter",
-        "label": "Cover Letter (optional)",
+        "attribute": "why_do_you_want_to_join_us",
+        "label": "Why do you want to join us?",
         "description": null,
-        "required": false,
+        "required": true,
         "fields": [
           {
-            "name": "1e68a3c6-1709-40e3-ad14-379c7f5bb56d",
+            "name": "368fb697-8981-4e82-b834-4d793ae43ba7",
             "selector": null,
-            "type": "upload",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "best_contact_number",
-        "label": "Best Contact Number",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": "569d6217-f421-453e-b860-49a3c33c0359",
-            "selector": null,
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "linkedin",
-        "label": "LinkedIn Profile",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": "28412d74-aaaa-41c2-9cee-7305e6e4d496",
-            "selector": null,
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "please_share_your_preferred_pronouns",
-        "label": "Please share your preferred pronouns.",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": "a46e0f80-7b7d-4125-8edd-b17be1c967f9",
-            "selector": null,
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "please_share_your_preferred_name_if_applicable",
-        "label": "Please share your preferred name (if applicable).",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": "42fb1f5b-4a09-4039-aafe-ae7ec9ae57fd",
-            "selector": null,
-            "type": "input",
+            "type": "textarea",
             "options": [
 
             ]
@@ -133,286 +101,8 @@
       }
     ]
   },
+  "detail_questions": {
+  },
   "survey_questions": {
-    "title": "Diversity Survey",
-    "description": "<p><strong>Welcome to the Multiverse Candidate Diversity, Equity &amp; Inclusion Survey</strong></p><p>Inclusion is at the heart of Multiverse's mission and values. As part of Multiverse's commitment to monitoring diversity, equity and inclusion, we'd appreciate it if you would be happy to complete our survey. We collect this information so that we can continuously improve our inclusive hiring practices throughout our recruitment process. Your answers will be anonymous and will not affect the outcome of your application.</p><p><em>*This survey is not mandatory for you to continue with this application.</em></p>",
-    "questions": [
-      {
-        "attribute": "what_is_your_current_age",
-        "label": "What is your current age?",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": "cf0f1bc7-7ce6-4eb3-aebc-b6562141cb68",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "label": "Under 30",
-                "value": "age_under_30"
-              },
-              {
-                "label": "30-39",
-                "value": "age_30_to_39"
-              },
-              {
-                "label": "40-49",
-                "value": "age_40_to_49"
-              },
-              {
-                "label": "50-59",
-                "value": "age_50_to_59"
-              },
-              {
-                "label": "60 or older",
-                "value": "age_60_or_older"
-              },
-              {
-                "label": "I prefer not to answer",
-                "value": "prefer_not_to_answer"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "what_is_your_gender_identity",
-        "label": "What is your gender identity?",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": "8d7dcc65-3a0b-476a-b679-574b869780bb",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "label": "Man",
-                "value": "man"
-              },
-              {
-                "label": "Woman",
-                "value": "woman"
-              },
-              {
-                "label": "Non-Binary",
-                "value": "non_binary"
-              },
-              {
-                "label": "Another Gender Identity",
-                "value": "another_identity"
-              },
-              {
-                "label": "I prefer not to answer",
-                "value": "prefer_not_to_answer"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "do_you_identify_as_transgender",
-        "label": "Do you identify as transgender?",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": "0a90dc7e-908c-449f-9151-95612d844b10",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "label": "Yes",
-                "value": "yes"
-              },
-              {
-                "label": "No",
-                "value": "no"
-              },
-              {
-                "label": "I prefer not to answer",
-                "value": "prefer_not_to_answer"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "how_do_you_identify_your_sexual_orientation_please_select_al",
-        "label": "How do you identify your sexual orientation? Please select all that apply.",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": "a63b6f87-d090-40f0-a462-bf5bb03f5e45",
-            "selector": null,
-            "type": "multi_select",
-            "options": [
-              {
-                "label": "Bisexual",
-                "value": "bisexual"
-              },
-              {
-                "label": "Lesbian",
-                "value": "lesbian"
-              },
-              {
-                "label": "Gay",
-                "value": "gay"
-              },
-              {
-                "label": "Queer",
-                "value": "queer"
-              },
-              {
-                "label": "Heterosexual / straight",
-                "value": "heterosexual"
-              },
-              {
-                "label": "Other",
-                "value": "other"
-              },
-              {
-                "label": "I prefer not to answer",
-                "value": "prefer_not_to_answer"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "which_ethnicity_do_you_identify_with",
-        "label": "Which ethnicity do you identify with?",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": "1e21d43f-548e-481a-aa5f-f048c73f3de3",
-            "selector": null,
-            "type": "multi_select",
-            "options": [
-              {
-                "label": "Asian - (Asian British, Indian, Pakistani, Bangladeshi, Chinese, Asian any other background)",
-                "value": "Asian - (Asian British, Indian, Pakistani, Bangladeshi, Chinese, Asian any other background)"
-              },
-              {
-                "label": "Black - (Black Caribean, Black African, Black American, Black British, Black any other background)",
-                "value": "Black - (Black Caribean, Black African, Black American, Black British, Black any other background)"
-              },
-              {
-                "label": "Latine, Latina, Latino - (South American, Central American)",
-                "value": "Latine, Latina, Latino - (South American, Central American)"
-              },
-              {
-                "label": "Indigenous or Native American",
-                "value": "indigenous"
-              },
-              {
-                "label": "Native Hawaiian or Other Pacific Islander",
-                "value": "pacific_islander"
-              },
-              {
-                "label": "Mixed Ethnic Background",
-                "value": "Mixed Ethnic Background"
-              },
-              {
-                "label": "White",
-                "value": "White"
-              },
-              {
-                "label": "Other",
-                "value": "Other"
-              },
-              {
-                "label": "I prefer not to answer",
-                "value": "I prefer not to answer"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "do_you_identify_as_disabled_disability_includes_but_is_not_l",
-        "label": "Do you identify as disabled (Disability includes but is not limited to physical disabilities, mental illness, learning disabilities, chronic illness)? [Please note, the results of this survey are anonymous, voluntary and aggregated. If you would like to make our team aware of reasonable adjustments that would support you in the recruitment process, please complete the adjustments textbox earlier in the application.]",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": "425ffaa2-f458-4327-84dc-1d65cd7622a7",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "label": "Yes",
-                "value": "Yes"
-              },
-              {
-                "label": "No",
-                "value": "No"
-              },
-              {
-                "label": "I prefer not to answer",
-                "value": "prefer_not_to_answer"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "have_you_spent_time_in_the_armed_forces_this_includes_reserv",
-        "label": "Have you spent time in the armed forces? (This includes reserves)",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": "8869ac83-51af-43c9-a1f9-d0f43db306d8",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "label": "Yes",
-                "value": "Yes"
-              },
-              {
-                "label": "No",
-                "value": "No"
-              },
-              {
-                "label": "I prefer not to answer",
-                "value": "prefer_not_to_answer"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "are_you_a_caretaker_or_carer_anyone_who_cares_unpaid_for_a_f",
-        "label": "Are you a caretaker or carer? (Anyone who cares, unpaid, for a friend or family member who due to illness, disability, a mental health problem or an addiction cannot cope without their support)",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": "4ece9e72-c191-4c97-98dc-cc23b006799d",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "label": "Yes",
-                "value": "Yes"
-              },
-              {
-                "label": "No",
-                "value": "No"
-              },
-              {
-                "label": "I prefer not to answer",
-                "value": "prefer_not_to_answer"
-              }
-            ]
-          }
-        ]
-      }
-    ]
   }
 }
