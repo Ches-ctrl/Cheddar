@@ -475,15 +475,15 @@
         ]
       },
       {
-        "attribute": "QA_8458381",
-        "label": "Why would Starling Bank regret not hiring you?",
+        "attribute": "QA_8458439",
+        "label": "Do you have the right to work in the UK without requiring sponsorship?",
         "description": null,
         "required": true,
         "fields": [
           {
-            "name": "QA_8458381",
+            "name": "QA_8458439",
             "selector": null,
-            "type": "textarea",
+            "type": "boolean",
             "options": [
 
             ]
@@ -491,15 +491,15 @@
         ]
       },
       {
-        "attribute": "QA_8458382",
-        "label": "Do you have the right to work in Ireland?",
+        "attribute": "QA_8458440",
+        "label": "Why would Starling Bank regret not hiring you?",
         "description": null,
         "required": true,
         "fields": [
           {
-            "name": "QA_8458382",
+            "name": "QA_8458440",
             "selector": null,
-            "type": "boolean",
+            "type": "textarea",
             "options": [
 
             ]

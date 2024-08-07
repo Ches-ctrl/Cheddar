@@ -274,6 +274,22 @@
         ]
       },
       {
+        "attribute": "CA_23831",
+        "description": null,
+        "label": "What is your notice period?",
+        "required": true,
+        "fields": [
+          {
+            "name": "CA_23831",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
         "attribute": "CA_13028",
         "description": null,
         "label": "Do you need any reasonable adjustments for the recruitment process?",
@@ -460,15 +476,15 @@
         ]
       },
       {
-        "attribute": "QA_8315201",
+        "attribute": "QA_8458439",
         "description": null,
-        "label": "Why would Starling Bank regret not hiring you?",
+        "label": "Do you have the right to work in the UK without requiring sponsorship?",
         "required": true,
         "fields": [
           {
-            "name": "QA_8315201",
+            "name": "QA_8458439",
             "selector": null,
-            "type": "textarea",
+            "type": "boolean",
             "options": [
 
             ]
@@ -476,15 +492,15 @@
         ]
       },
       {
-        "attribute": "QA_8315202",
+        "attribute": "QA_8458440",
         "description": null,
-        "label": "Do you have the right to work in the UK without requiring sponsorship?",
+        "label": "Why would Starling Bank regret not hiring you?",
         "required": true,
         "fields": [
           {
-            "name": "QA_8315202",
+            "name": "QA_8458440",
             "selector": null,
-            "type": "boolean",
+            "type": "textarea",
             "options": [
 
             ]
