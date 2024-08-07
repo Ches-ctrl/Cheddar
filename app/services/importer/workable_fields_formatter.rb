@@ -15,29 +15,25 @@ module Importer
     private
 
     def select_transform_data
-      # TODO
-      # debugger
-      # {
-      #   core_questions: { title: "Main application", description: nil, questions: core_questions(@data[:formFields].except(:customQuestions)) },
-      #   additional_questions: additional_formatter(@data.dig(:formFields, :customQuestions))
-      # }
+      {
+        core_questions: { title: "Main application", description: nil, questions: any_questions(@data.except('Details').map { |_k, hash| hash[:fields] }.flatten) },
+        additional_questions: additional_formatter(@data.dig(:Details, :fields))
+      }
     end
 
     ###
 
-    def core_questions(questions_data)
+    def any_questions(questions_data)
       return {} unless questions_data
 
-      questions_data.map do |raw_attribute, raw_question|
-        next unless raw_question.present?
+      questions_data.map do |raw_question|
+        attribute = raw_question[:id]
+        options = raw_question[:options]&.map { |option| option.transform_keys({ 'id' => 'value', 'value' => 'label' }) } || []
+        type = INPUT_TYPES[raw_question[:type]]
+        fields = [{ name: attribute, selector: nil, type:, options: }]
+        label = raw_question[:label]
 
-        attribute = attribute(raw_attribute)
-        options = raw_question[:options]&.map { |option| option.transform_keys({ 'id' => 'value', 'text' => 'label' }) } || []
-        type = input_type(attribute, options)
-        fields = [{ name: raw_attribute, selector: nil, type:, options: }]
-        label = attribute.underscore.humanize
-
-        { attribute:, label:, description: nil, required: raw_question[:isRequired], fields: }
+        { attribute:, label:, description: nil, required: raw_question[:required], fields: }
       end.compact
     end
 
@@ -47,22 +43,8 @@ module Importer
       {
         title: 'Additional questions',
         description: nil,
-        questions: additional_questions(additional_data)
+        questions: any_questions(additional_data)
       }
-    end
-
-    def additional_questions(questions_data)
-      return {} unless questions_data
-
-      questions_data.map do |raw_question|
-        attribute = attribute(raw_question[:question])
-        options = raw_question[:options]&.map { |option| option.transform_keys({ 'id' => 'value', 'text' => 'label' }) } || []
-        type = INPUT_TYPES[raw_question[:type]]
-        fields = [{ name: raw_question[:id], selector: nil, type:, options: }]
-        label = raw_question[:question]
-
-        { attribute:, label:, description: nil, required: raw_question[:isRequired], fields: }
-      end
     end
 
     ###
@@ -71,12 +53,7 @@ module Importer
 
     def attribute(raw_attribute)
       attribute_strict_match(raw_attribute) ||
-        attribute_inclusive_match(raw_attribute) ||
         default_attribute(raw_attribute)
-    end
-
-    def attribute_inclusive_match(key)
-      ATTRIBUTES_DICTIONARY.find { |k, _v| default_attribute(key).include?(k) }&.last
     end
 
     def attribute_strict_match(key)
@@ -89,36 +66,32 @@ module Importer
     end
 
     ATTRIBUTES_DICTIONARY = {
-      'firstName' => 'first_name',
-      'lastName' => 'last_name',
+      'firstname' => 'first_name',
+      'lastname' => 'last_name',
+      'gdpr' => 'gdpr',
       'email' => 'email',
-      'streetAddress' => 'address_applicant',
-      'city' => 'city_applicant',
-      'state' => 'state_applicant',
-      'zip' => 'zip_applicant',
-      'countryId' => 'country_applicant',
       'phone' => 'phone_number',
-      'linkedin' => 'linkedin',
-      'coverLetterFileId' => 'cover_letter',
-      'resumeFileId' => 'resume',
-      'genderId' => 'gender',
-      'ethnicityId' => 'ethnicity'
+      'address' => 'address_applicant',
+      'resume' => 'resume',
+      'cover_letter' => 'cover_letter'
     }
 
     ###
     ### types
     ###
 
-    def input_type(attribute, options)
-      return :upload if %w[resume cover_letter].include?(attribute)
-
-      options.present? ? :select : :input
-    end
-
     INPUT_TYPES = {
-      'checkbox' => :boolean,
-      'long' => :textarea,
-      'short' => :input
+      'boolean' => :boolean,
+      'date' => :date,
+      'dropdown' => :select,
+      'email' => :input,
+      'file' => :upload,
+      'multiple' => :multi_select,
+      'paragraph' => :textarea,
+      'phone' => :input,
+      'text' => :input
     }
+
+    def output_file_name = 'workable_formatter_output.json'
   end
 end

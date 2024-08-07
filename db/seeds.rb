@@ -93,11 +93,11 @@ companies = {
     'narvar',
   ],
   workable: [
-    # 'builderai',
-    # 'carbonclean',
-    # 'grayce',
-    # 'nqc',
-    # 'starling-bank'
+    'builderai',
+    'carbonclean',
+    'grayce',
+    'nqc',
+    'starling-bank'
   ]
 }
 

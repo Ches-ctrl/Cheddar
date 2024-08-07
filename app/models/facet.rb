@@ -46,7 +46,7 @@ class Facet
 
   def public_attribute = attribute.titleize
 
-  def public_value = value.titleize
+  def public_value = value&.titleize || 'Unknown value'
 
   def multi_attribute?
     type.eql?('checkbox')
