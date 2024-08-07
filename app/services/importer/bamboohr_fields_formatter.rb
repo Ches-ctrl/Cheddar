@@ -107,9 +107,10 @@ module Importer
     end
 
     INPUT_TYPES = {
-      'checkbox' => :boolean,
+      'checkbox' => :select,
       'long' => :textarea,
-      'short' => :input
+      'short' => :input,
+      'yes_no' => :boolean
     }
 
     def output_file_name = 'bamboohr_formatter_output.json'
