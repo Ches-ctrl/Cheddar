@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Importer
-  # This service object is responsible for formatting data received from Ashbyhq, another recruiting platform, into a structured format suitable for our application.
+  # This service object is responsible for formatting data received from Ashbyhq, into a structured format suitable for our application.
   # It extracts specific sections (core questions and surveys) and transforms them into a standardized format.
   # The output of this service is used by fields_builder.
 

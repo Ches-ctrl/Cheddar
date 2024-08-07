@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 module Importer
+  # This service object is responsible for formatting data received from Workable, into a structured format suitable for our application.
+  # It extracts specific sections (core questions and Details) and transforms them into a standardized format.
+  # The output of this service is used by fields_builder.
+
   class WorkableFieldsFormatter < ApplicationTask
     def initialize(data)
       @data = data
