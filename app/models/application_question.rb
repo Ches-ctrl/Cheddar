@@ -23,9 +23,11 @@ class ApplicationQuestion
 
   # nb: attribute can be nil, so safe navigation operator is necessary with #include?
 
+  def agreement_checkbox? = type.eql?("agreement_checkbox")
   def boolean? = type.eql?("boolean")
   def checkbox? = type.eql?("checkbox")
   def cover_letter? = attribute&.include?("cover_letter")
+  def date_picker? = type.eql?("date_picker")
   def input? = type.eql?("input") || type.eql?("education_input")
   def linkedin_related? = attribute&.include?('linkedin')
   def multi_select? = type.eql?("multi_select")
@@ -61,14 +63,14 @@ class ApplicationQuestion
   end
 
   def options
-    field['options'].map { |option| [option['label'], option['id']] }
+    field['options'].map { |option| [option['label'], option['value']] }
   end
 
   def payload(job_application)
     { locator:, interaction: type, value: answered_value(job_application) }
   end
 
-  def selector = field['selector'] || field['id']
+  def selector = field['selector'] || field['name'].to_s
 
   def type = field['type']
 

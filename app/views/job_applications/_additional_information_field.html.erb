@@ -7,12 +7,36 @@
       value: prefilled_value(question, job_application, last_applicant_answers)
     }
   %>
+<% elsif question.valid? && question.boolean? %>
+  <%= field_form.input question.attribute,
+    collection: question.boolean_options,
+    hint: question.description&.html_safe,
+    label: question.label,
+    required: question.required,
+    selected: prefilled_value(question, job_application, last_applicant_answers),
+    type: :select
+  %>
+<% elsif question.valid? && question.agreement_checkbox? %>
+  <%= field_form.input question.attribute,
+    collection: [[question.label, 'true']],
+    hint: question.description&.html_safe,
+    label: ' ',
+    required: question.required,
+    checked: prefilled_value(question, job_application, last_applicant_answers),
+    as: :check_boxes,
+    input_html: {
+      class: 'd-none me-5'
+    },
+    label_html: {
+      class: 'd-none'
+    }
+  %>
 <% elsif question.valid? && question.select? %>
   <%= field_form.input question.attribute,
     collection: question.options,
     include_blank: true,
     hint: question.description&.html_safe,
-    label: question.label,
+    label: question.label + '++',
     required: question.required,
     selected: prefilled_value(question, job_application, last_applicant_answers),
     type: :select
@@ -23,7 +47,7 @@
     collection: question.options,
     hint: question.description&.html_safe,
     label: question.label,
-    required: question.required,
+    # required: question.required,
     checked: prefilled_value(question, job_application, last_applicant_answers),
     input_html: { 
       class: 'h-5 w-5 my-3 me-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600',
@@ -31,28 +55,22 @@
   %>
 <% elsif question.valid? && question.textarea? %>
   <%= field_form.input question.attribute,
+    as: :text,
     hint: question.description&.html_safe,
     label: question.label,
     required: question.required,
-    as: :text,
     input_html: {
       class: 'block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
       rows: 5,
       value: prefilled_value(question, job_application, last_applicant_answers)
     }
   %>
-<% elsif question.valid? && question.boolean? %>
+<% elsif question.valid? && question.date_picker? %>
   <%= field_form.input question.attribute,
-    collection: question.boolean_options,
-    label: question.label,
+    as: :date,
     hint: question.description&.html_safe,
-    required: question.required,
-    selected: prefilled_value(question, job_application, last_applicant_answers)
-  %>
-<% elsif false && question.valid? && question.radiogroup? %>
-  <%= field_form.input question.attribute,
+    html5: true,
     label: question.label,
-    hint: question.description&.html_safe,
     required: question.required,
     input_html: { 
       value: prefilled_value(question, job_application, last_applicant_answers)

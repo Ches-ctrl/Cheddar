@@ -1,0 +1,124 @@
+{
+  "core_questions": {
+    "title": "Main application",
+    "description": null,
+    "questions": [
+      {
+        "attribute": "full_name",
+        "label": "Name",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "_systemfield_name",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "email",
+        "label": "Email",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "_systemfield_email",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "where_are_you_based_or_where_would_you_be_planning_on_workin",
+        "label": "Where are you based or where would you be planning on working from?",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "00415714-75f3-49b9-b856-ac674fd5ce8b",
+            "selector": null,
+            "type": "location",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "linkedin",
+        "label": "Can we get a link to your Linkedin profile? ",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "36913b1f-c34f-4693-919c-400304a2a11d",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "can_you_tell_us_what_attracted_you_to_apply_to_lightdash",
+        "label": "Can you tell us what attracted you to apply to Lightdash?",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "f93bff8c-2442-42b7-b040-3876fa160aba",
+            "selector": null,
+            "type": "textarea",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "resume",
+        "label": "Do you have a resume or CV you can share? ",
+        "description": null,
+        "required": false,
+        "fields": [
+          {
+            "name": "_systemfield_resume",
+            "selector": null,
+            "type": "upload",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "were_you_referred_to_this_role",
+        "label": "Were you referred to this role? ",
+        "description": null,
+        "required": false,
+        "fields": [
+          {
+            "name": "7b4cc459-7701-44ea-a4fb-c8d409810487",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "detail_questions": {
+  },
+  "survey_questions": {
+  }
+}

@@ -1,0 +1,286 @@
+{
+  "build_type": "api",
+  "core_questions": {
+    "title": "Main application",
+    "description": null,
+    "questions": [
+      {
+        "attribute": "firstname",
+        "description": null,
+        "label": "First name",
+        "required": true,
+        "fields": [
+          {
+            "name": "firstname",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "lastname",
+        "description": null,
+        "label": "Last name",
+        "required": true,
+        "fields": [
+          {
+            "name": "lastname",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "email",
+        "description": null,
+        "label": "Email",
+        "required": true,
+        "fields": [
+          {
+            "name": "email",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "phone",
+        "description": null,
+        "label": "Phone",
+        "required": true,
+        "fields": [
+          {
+            "name": "phone",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "resume",
+        "description": null,
+        "label": "Resume",
+        "required": true,
+        "fields": [
+          {
+            "name": "resume",
+            "selector": null,
+            "type": "upload",
+            "options": [
+
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "additional_questions": {
+    "title": "Additional questions",
+    "description": null,
+    "questions": [
+      {
+        "attribute": "QA_5947083",
+        "description": null,
+        "label": "Do you have at least 3 years of experience in system, network or application security?",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_5947083",
+            "selector": null,
+            "type": "boolean",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "QA_7692993",
+        "description": null,
+        "label": "What is your current (or most recent) salary?",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_7692993",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "QA_7692994",
+        "description": null,
+        "label": "What are your salary requirements for this role?",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_7692994",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "QA_7692995",
+        "description": null,
+        "label": "What is your current notice period?",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_7692995",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "QA_7692996",
+        "description": null,
+        "label": "What is your right to work in the UK please?  \n(For example: British Citizenship, Indefinite Leave to Remain, Settlement Status, Student Visa, Tier 1 or 2 visa etc)",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_7692996",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "QA_5947034",
+        "description": null,
+        "label": "Do you have demonstrable experience in security operations, network security or applications security?",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_5947034",
+            "selector": null,
+            "type": "textarea",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "QA_5947035",
+        "description": null,
+        "label": "Do you have any experience of working in a Fintech or a regulated environment?",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_5947035",
+            "selector": null,
+            "type": "textarea",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "QA_5947036",
+        "description": null,
+        "label": "Do you have working knowledge of SAST, DAST, RASP, and IAST tools and building security into existing SDLC processes?",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_5947036",
+            "selector": null,
+            "type": "textarea",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "QA_6302137",
+        "description": null,
+        "label": "Please select your preferred pronoun?",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_6302137",
+            "selector": null,
+            "type": "select",
+            "options": [
+              {
+                "value": "2998915",
+                "label": "She/her"
+              },
+              {
+                "value": "2998916",
+                "label": "He/him"
+              },
+              {
+                "value": "2998917",
+                "label": "They/Them"
+              },
+              {
+                "value": "2998918",
+                "label": "Prefer not to say"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "QA_6302138",
+        "description": null,
+        "label": "If the above does not capture your preferred pronoun, please could you state what it is?",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_6302138",
+            "selector": null,
+            "type": "textarea",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "QA_7694028",
+        "description": null,
+        "label": "If a current Kroo Bank employee referred you, please share their name. If not, just write \"no.\"",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_7694028",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
