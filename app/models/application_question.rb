@@ -67,7 +67,6 @@ class ApplicationQuestion
   end
 
   def payload(job_application)
-    byebug
     { locator:, interaction: type, value: answered_value(job_application) }
   end
 
