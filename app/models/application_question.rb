@@ -41,6 +41,8 @@ class ApplicationQuestion
     return job_application.resume.blob.url if resume? && job_application.resume.attached?
     return job_application.cover_letter.blob.url if cover_letter? && job_application.cover_letter.attached?
 
+    # byebug if label.eql? " Why do you want to join the Turn.io team?"
+
     job_application.additional_info[attribute]
   end
 

@@ -11,6 +11,7 @@
   <%= field_form.input question.attribute,
     collection: question.boolean_options,
     hint: question.description&.html_safe,
+    include_blank: true,
     label: question.label,
     required: question.required,
     selected: prefilled_value(question, job_application, last_applicant_answers),
@@ -36,7 +37,7 @@
     collection: question.options,
     include_blank: true,
     hint: question.description&.html_safe,
-    label: question.label + '++',
+    label: question.label,
     required: question.required,
     selected: prefilled_value(question, job_application, last_applicant_answers),
     type: :select

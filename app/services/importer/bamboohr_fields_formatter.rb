@@ -78,7 +78,7 @@ module Importer
 
     # attribute is CamelCase variable or a Text Question
     def default_attribute(key)
-      key.underscore.first(60).gsub(' ', '_').gsub('.', '_')
+      key.underscore.parameterize.first(60) # .gsub(' ', '_').gsub('.', '_')
     end
 
     ATTRIBUTES_DICTIONARY = {

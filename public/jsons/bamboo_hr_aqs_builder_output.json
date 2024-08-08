@@ -1455,6 +1455,38 @@
         ]
       },
       {
+        "attribute": "cover_letter",
+        "description": null,
+        "label": "Cover letter",
+        "required": false,
+        "fields": [
+          {
+            "name": "coverLetterFileId",
+            "selector": null,
+            "type": "upload",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "referred_by",
+        "description": null,
+        "label": "Referred by",
+        "required": false,
+        "fields": [
+          {
+            "name": "referredBy",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
         "attribute": "website_url",
         "description": null,
         "label": "Website url",
@@ -1489,10 +1521,41 @@
     ]
   },
   "additional_questions": {
-    "title": null,
+    "title": "Additional questions",
     "description": null,
     "questions": [
+      {
+        "attribute": "by-submitting-your-application-you-are-agreeing-to-prezi-com",
+        "description": null,
+        "label": "By submitting your application you are agreeing to Prezi.com Kft processing your personal data in accordance with our Recruitment Policy. To understand more about how and why we collect your personal data, the type of information we collect about you, how we use and share your personal data, how long we store your personal data and to learn more about your choices and rights we encourage you to read through the policy. Please find the policies here: https://prezi.com/recruitment-policy/ and  https://prezi.com/cms/legal/privacy-policy/",
+        "required": true,
+        "fields": [
+          {
+            "name": "89",
+            "selector": null,
+            "type": "agreement_checkbox",
+            "options": [
 
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "do-you-have-a-legal-right-to-work-in-the-country-you-are-loc",
+        "description": null,
+        "label": "Do you have a legal right to work in the country you are located in without additional visa?",
+        "required": true,
+        "fields": [
+          {
+            "name": "90",
+            "selector": null,
+            "type": "boolean",
+            "options": [
+
+            ]
+          }
+        ]
+      }
     ]
   }
 }

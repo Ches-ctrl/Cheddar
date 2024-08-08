@@ -122,6 +122,22 @@
         ]
       },
       {
+        "attribute": "CA_10642",
+        "label": "Why should our search for this role stop with you?",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "CA_10642",
+            "selector": null,
+            "type": "textarea",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
         "attribute": "CA_19347",
         "label": "As a regulated bank, we require our successful candidates to go through background checks (including but not limited to social media, employment references, fraud checks and criminal history). If we were to conduct these checks, is there anything you would like to flag for us to be aware of? If so, please provide details.",
         "description": null,
@@ -459,15 +475,15 @@
         ]
       },
       {
-        "attribute": "QA_8387785",
-        "label": "Why would Starling regret not hiring you?",
+        "attribute": "QA_8474126",
+        "label": "Do you have the right to work in the UK without requiring sponsorship?",
         "description": null,
         "required": true,
         "fields": [
           {
-            "name": "QA_8387785",
+            "name": "QA_8474126",
             "selector": null,
-            "type": "textarea",
+            "type": "boolean",
             "options": [
 
             ]
@@ -475,15 +491,15 @@
         ]
       },
       {
-        "attribute": "QA_8387786",
-        "label": "Do you have the right to work in the UK without requiring sponsorship?",
+        "attribute": "QA_8474127",
+        "label": "Why would Engine regret not hiring you?",
         "description": null,
         "required": true,
         "fields": [
           {
-            "name": "QA_8387786",
+            "name": "QA_8474127",
             "selector": null,
-            "type": "boolean",
+            "type": "textarea",
             "options": [
 
             ]
