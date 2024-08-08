@@ -314,6 +314,7 @@ module Importer
       'checkbox' => :boolean,
       'long' => :textarea,
       'short' => :input
+      # 'yes_no' => :radiogroup
     }
   end
 end

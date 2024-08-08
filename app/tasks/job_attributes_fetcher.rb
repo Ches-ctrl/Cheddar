@@ -32,7 +32,8 @@ class JobAttributesFetcher < ApplicationTask
     save_and_return_job
   end
 
-  def application_question_set
+  # May trigger an API call, depending on the ATS
+  def fetch_application_question_set
     @ats.respond_to?(:get_application_question_set) ? @ats.get_application_question_set(@job, @data) : []
   end
 
@@ -41,10 +42,11 @@ class JobAttributesFetcher < ApplicationTask
   # i.e : autocomplete & mandatory location
   # Returns true if no such question is found, indicating the user can apply with Cheddar.
   def apply_with_cheddar
-    return false unless application_question_set.dig(:core_questions, :questions)
+    form_structure = @job.application_question_set.form_structure
+    return false unless form_structure&.first&.dig(:questions)
 
-    application_question_set.dig(:core_questions, :questions)
-                            .none? { |question| apply_with_cheddar_conditions(question) }
+    form_structure.first[:questions]
+                  .none? { |question| apply_with_cheddar_conditions(question) }
   end
 
   def apply_with_cheddar_conditions(question)
