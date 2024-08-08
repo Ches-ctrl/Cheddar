@@ -30,6 +30,18 @@ module Importer
       select_transform_data
     end
 
+    def attribute_inclusive_match(key)
+      ATTRIBUTES_DICTIONARY.find { |k, _v| default_attribute(key).include?(k) }&.last
+    end
+
+    def attribute_strict_match(key)
+      ATTRIBUTES_DICTIONARY[key]
+    end
+
+    def default_attribute(key)
+      key.underscore.parameterize.first(60)
+    end
+
     # We have a deeply nested hash structure and aim to extract all values
     # associated with the key 'attribute' into a new data structure.
     # use : extract_attributes(:attribute, hash)

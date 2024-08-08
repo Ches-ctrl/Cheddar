@@ -51,15 +51,6 @@ module Importer
         default_attribute(raw_attribute)
     end
 
-    def attribute_strict_match(key)
-      ATTRIBUTES_DICTIONARY[key]
-    end
-
-    # attribute is CamelCase variable or a Text Question
-    def default_attribute(key)
-      key.underscore.first(60).gsub(' ', '_').gsub('.', '_')
-    end
-
     ATTRIBUTES_DICTIONARY = {
       'address' => 'address_applicant',
       'avatar' => 'photo',

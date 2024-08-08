@@ -98,21 +98,9 @@ module Importer
 
     def attribute(question)
       (attribute_strict_match(question[:fields].first[:name]) unless question[:fields].nil?) ||
-        attribute_strict_match(question[:label].parameterize.underscore.first(60)) ||
-        attribute_inclusive_match(question) ||
-        default_attribute(question)
-    end
-
-    def attribute_inclusive_match(question)
-      ATTRIBUTES_DICTIONARY.find { |k, _v| default_attribute(question).include?(k) }&.last
-    end
-
-    def attribute_strict_match(key)
-      ATTRIBUTES_DICTIONARY[key]
-    end
-
-    def default_attribute(question)
-      question[:label].parameterize.underscore.first(60)
+        attribute_strict_match(default_attribute(question[:label])) ||
+        attribute_inclusive_match(question[:label]) ||
+        default_attribute(question[:label])
     end
 
     ATTRIBUTES_DICTIONARY = {
