@@ -109,244 +109,9 @@
           {
             "name": "state",
             "selector": null,
-            "type": "select",
+            "type": "input",
             "options": [
-              {
-                "value": "2",
-                "label": "AK"
-              },
-              {
-                "value": "1",
-                "label": "AL"
-              },
-              {
-                "value": "4",
-                "label": "AR"
-              },
-              {
-                "value": "361",
-                "label": "AS"
-              },
-              {
-                "value": "3",
-                "label": "AZ"
-              },
-              {
-                "value": "5",
-                "label": "CA"
-              },
-              {
-                "value": "6",
-                "label": "CO"
-              },
-              {
-                "value": "7",
-                "label": "CT"
-              },
-              {
-                "value": "9",
-                "label": "DC"
-              },
-              {
-                "value": "8",
-                "label": "DE"
-              },
-              {
-                "value": "10",
-                "label": "FL"
-              },
-              {
-                "value": "356",
-                "label": "FM"
-              },
-              {
-                "value": "11",
-                "label": "GA"
-              },
-              {
-                "value": "354",
-                "label": "GU"
-              },
-              {
-                "value": "12",
-                "label": "HI"
-              },
-              {
-                "value": "16",
-                "label": "IA"
-              },
-              {
-                "value": "13",
-                "label": "ID"
-              },
-              {
-                "value": "14",
-                "label": "IL"
-              },
-              {
-                "value": "15",
-                "label": "IN"
-              },
-              {
-                "value": "17",
-                "label": "KS"
-              },
-              {
-                "value": "18",
-                "label": "KY"
-              },
-              {
-                "value": "19",
-                "label": "LA"
-              },
-              {
-                "value": "22",
-                "label": "MA"
-              },
-              {
-                "value": "21",
-                "label": "MD"
-              },
-              {
-                "value": "20",
-                "label": "ME"
-              },
-              {
-                "value": "355",
-                "label": "MH"
-              },
-              {
-                "value": "23",
-                "label": "MI"
-              },
-              {
-                "value": "24",
-                "label": "MN"
-              },
-              {
-                "value": "26",
-                "label": "MO"
-              },
-              {
-                "value": "357",
-                "label": "MP"
-              },
-              {
-                "value": "25",
-                "label": "MS"
-              },
-              {
-                "value": "27",
-                "label": "MT"
-              },
-              {
-                "value": "34",
-                "label": "NC"
-              },
-              {
-                "value": "35",
-                "label": "ND"
-              },
-              {
-                "value": "28",
-                "label": "NE"
-              },
-              {
-                "value": "30",
-                "label": "NH"
-              },
-              {
-                "value": "31",
-                "label": "NJ"
-              },
-              {
-                "value": "32",
-                "label": "NM"
-              },
-              {
-                "value": "29",
-                "label": "NV"
-              },
-              {
-                "value": "33",
-                "label": "NY"
-              },
-              {
-                "value": "36",
-                "label": "OH"
-              },
-              {
-                "value": "37",
-                "label": "OK"
-              },
-              {
-                "value": "38",
-                "label": "OR"
-              },
-              {
-                "value": "39",
-                "label": "PA"
-              },
-              {
-                "value": "359",
-                "label": "PR"
-              },
-              {
-                "value": "358",
-                "label": "PW"
-              },
-              {
-                "value": "40",
-                "label": "RI"
-              },
-              {
-                "value": "41",
-                "label": "SC"
-              },
-              {
-                "value": "42",
-                "label": "SD"
-              },
-              {
-                "value": "43",
-                "label": "TN"
-              },
-              {
-                "value": "44",
-                "label": "TX"
-              },
-              {
-                "value": "45",
-                "label": "UT"
-              },
-              {
-                "value": "47",
-                "label": "VA"
-              },
-              {
-                "value": "360",
-                "label": "VI"
-              },
-              {
-                "value": "46",
-                "label": "VT"
-              },
-              {
-                "value": "48",
-                "label": "WA"
-              },
-              {
-                "value": "50",
-                "label": "WI"
-              },
-              {
-                "value": "49",
-                "label": "WV"
-              },
-              {
-                "value": "51",
-                "label": "WY"
-              }
+
             ]
           }
         ]
@@ -1455,38 +1220,6 @@
         ]
       },
       {
-        "attribute": "cover_letter",
-        "description": null,
-        "label": "Cover letter",
-        "required": false,
-        "fields": [
-          {
-            "name": "coverLetterFileId",
-            "selector": null,
-            "type": "upload",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "referred_by",
-        "description": null,
-        "label": "Referred by",
-        "required": false,
-        "fields": [
-          {
-            "name": "referredBy",
-            "selector": null,
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
         "attribute": "website_url",
         "description": null,
         "label": "Website url",
@@ -1525,15 +1258,15 @@
     "description": null,
     "questions": [
       {
-        "attribute": "by_submitting_your_application_you_are_agreeing_to_prezi_com",
+        "attribute": "do_you_have_experience_with_experience_with_gig_economy_plat",
         "description": null,
-        "label": "By submitting your application you are agreeing to Prezi.com Kft processing your personal data in accordance with our Recruitment Policy. To understand more about how and why we collect your personal data, the type of information we collect about you, how we use and share your personal data, how long we store your personal data and to learn more about your choices and rights we encourage you to read through the policy. Please find the policies here: https://prezi.com/recruitment-policy/ and  https://prezi.com/cms/legal/privacy-policy/",
-        "required": true,
+        "label": "Do you have experience with experience with Gig economy platforms or two-sided marketplaces?",
+        "required": false,
         "fields": [
           {
-            "name": "89",
+            "name": "128",
             "selector": null,
-            "type": "agreement_checkbox",
+            "type": "input",
             "options": [
 
             ]
@@ -1541,15 +1274,15 @@
         ]
       },
       {
-        "attribute": "do_you_have_a_legal_right_to_work_in_the_country_you_are_loc",
+        "attribute": "do_you_have_experience_working_with_cp_gs_and_retail_executi",
         "description": null,
-        "label": "Do you have a legal right to work in the country you are located in without additional visa?",
-        "required": true,
+        "label": "Do you have experience working with CPGs and Retail Execution fields?",
+        "required": false,
         "fields": [
           {
-            "name": "90",
+            "name": "97",
             "selector": null,
-            "type": "boolean",
+            "type": "input",
             "options": [
 
             ]

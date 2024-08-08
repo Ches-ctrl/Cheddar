@@ -27,7 +27,7 @@ class JobAttributesFetcher < ApplicationTask
   def process
     @job.assign_attributes(core_params)
     @job.assign_attributes(job_details)
-    @job.build_application_question_set(form_structure: application_question_set)
+    @job.build_application_question_set(form_structure: fetch_application_question_set)
     @job.assign_attributes(apply_with_cheddar:)
     save_and_return_job
   end
@@ -42,10 +42,9 @@ class JobAttributesFetcher < ApplicationTask
   # i.e : autocomplete & mandatory location
   # Returns true if no such question is found, indicating the user can apply with Cheddar.
   def apply_with_cheddar
-    form_structure = @job.application_question_set.form_structure
-    return false unless form_structure&.first&.dig(:questions)
+    return false unless form_structure.dig(:core_questions, :questions)
 
-    form_structure.first[:questions]
+    form_structure.dig(:core_questions, :questions)
                   .none? { |question| apply_with_cheddar_conditions(question) }
   end
 
@@ -61,6 +60,8 @@ class JobAttributesFetcher < ApplicationTask
     }
   end
 
+  def form_structure = @job.application_question_set.form_structure
+
   def job_details
     @ats.job_details(@job, @data)
   end
@@ -74,6 +75,6 @@ class JobAttributesFetcher < ApplicationTask
   def output_application_question_set
     output_file_name = "#{@ats.name.underscore}_aqs_builder_output.json"
     output_file_path = Rails.root.join('public', 'jsons', output_file_name)
-    File.write(output_file_path, JSON.pretty_generate(application_question_set))
+    File.write(output_file_path, JSON.pretty_generate(form_structure))
   end
 end

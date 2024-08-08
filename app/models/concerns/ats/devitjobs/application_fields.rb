@@ -3,7 +3,7 @@ module Ats
     module ApplicationFields
       def get_application_question_set(_job, _data)
         # CORE_FIELDS
-        []
+        {}
       end
 
       CORE_FIELDS = [

@@ -7,7 +7,7 @@ module Ats
         # TODO : implement new application_question_structure structure
         # data = fetch_application_fields(job)
         # job.application_question_set = build_application_question_set_from(data)
-        []
+        {}
         # TODO: update job.requirement
       end
 

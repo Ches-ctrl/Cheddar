@@ -6,7 +6,7 @@ module Ats
 
         # TODO : implement new application_question_structure structure
         # job.application_question_set = CORE_FIELDS.merge(WEB_FIELDS).merge(ADDITIONAL_FIELDS)
-        []
+        {}
       end
 
       CORE_FIELDS = {

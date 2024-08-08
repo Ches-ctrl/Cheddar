@@ -1,0 +1,526 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://avidbots.bamboohr.com/careers/company-info/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 08 Aug 2024 10:47:04 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=V%2Cr4KDm6tQdMEggDFDob4RkBrqJYo%2CQr; path=/; secure; HttpOnly;
+        SameSite=None
+      - _cfuvid=A3JdU6jU8aKjz8B3gEer5VAQUJiMy9FefZ95EDr9QSc-1723114024947-0.0.1.1-604800000;
+        path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache, private
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self'' data: blob: https://*.bamboohr.com https://*.bamboohr.co.uk
+        *.cloudfront.net d24d2g0g8l15q8.cloudfront.net d3lfqt3qfgn8k7.cloudfront.net
+        dwc7c3b4xwlvf.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://*.browser-intake-datadoghq.com https://*.facebook.com
+        https://*.linkedin.com https://*.segment.io https://*.small-improvements.com
+        https://api.rollbar.com https://app.bamboohr.co.uk https://bam.nr-data.net
+        https://connect.facebook.net *.algolianet.com *.algolia.net embedwistia-a.akamaihd.net
+        app.pendo.io cdn.pendo.io pendo-io-extensions.storage.googleapis.com pendo-static-5734959405072384.storage.googleapis.com
+        https://*.wistia.com https://*.wistia.net https://fonts.googleapis.com https://fonts.gstatic.com
+        https://example.com https://www.google-analytics.com https://payments.subscriptionplatform.com
+        https://s-static.ak.facebook.com themes.googleusercontent.com https://wufoo.com
+        https://*.wufoo.com https://www.google.com https://tagmanager.google.com https://bamboohr.formstack.com
+        https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://portal-2.flatfile.io
+        https://*.zuora.com https://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com
+        https://*.salesforceliveagent.com https://*.force.com https://*.site.com wss://*.pusher.com
+        https://*.checkr.com https://accounts.google.com https://login.microsoftonline.com
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; script-src ''self'' *.bamboohr.com *.bamboohr.co.uk data:
+        blob: about https://*.bamboohr.com https://cdn.api.twitter.com https://connect.facebook.net
+        https://bam.nr-data.net *.cloudfront.net d24d2g0g8l15q8.cloudfront.net dwc7c3b4xwlvf.cloudfront.net
+        d3lfqt3qfgn8k7.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://accounts.google.com https://login.microsoftonline.com
+        *.newrelic.com http://*.newrelic.com https://fast.wistia.net https://fast.wistia.com
+        get.bamboohr.com *.algolianet.com *.algolia.net app.pendo.io pendo-io-static.storage.googleapis.com
+        cdn.pendo.io pendo-static-5734959405072384.storage.googleapis.com https://pi.pardot.com
+        https://www.my1login.com https://app.onelogin.com https://ajax.googleapis.com
+        http://ajax.googleapis.com https://ssl.google-analytics.com https://www.googletagmanager.com
+        https://tagmanager.google.com https://www.google-analytics.com https://www.google.com
+        https://s3.amazonaws.com https://cdnjs.cloudflare.com https://wufoo.com https://*.wufoo.com
+        https://*.linkedin.com https://bat.bing.com/bat.js https://www.googleadservices.com/pagead/conversion_async.js
+        https://s.adroll.com/j/roundtrip.js https://*.segment.com https://*.segment.io
+        https://bamboohr.formstack.com https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://*.zuora.com https://*.pusher.com
+        wss://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com https://*.salesforceliveagent.com
+        https://*.force.com https://*.site.com https://*.checkr.com https://www.google.com/recaptcha/
+        https://www.gstatic.com/recaptcha/ https://www.recaptcha.net/recaptcha/ https://portal-2.flatfile.io
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; img-src * data: blob: ; report-uri /ajax/parse_csp_report.php
+        ; worker-src ''self'' data: blob: ;'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Authorization,User-Agent
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8afeed1d09bfd188-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"meta":[],"result":{"name":"Avidbots","id":"72799","logoUrl":"https:\/\/images3.bamboohr.com\/72799\/logos\/cropped.jpg?v=32","careerShareUrl":"https:\/\/avidbots.bamboohr.com\/careers","shareImageUrl":"https:\/\/avidbots.bamboohr.com\/jobs\/share_image\/32","inTrial":false,"appSessId":"0f2287ac16729ad77dcf2094a532bf1f3977c379"}}'
+  recorded_at: Thu, 08 Aug 2024 10:47:04 GMT
+- request:
+    method: get
+    uri: https://avidbots.bamboohr.com/careers/list
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 08 Aug 2024 10:47:05 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=nP4GAF9AVbNcBKlA7s%2C7vconiBOkfYZc; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=xJHGWr8OBqBZwUyG4RtXyBGpzNjFRnePU1ZmwyVMUao-1723114025583-0.0.1.1-604800000;
+        path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache, private
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self'' data: blob: https://*.bamboohr.com https://*.bamboohr.co.uk
+        *.cloudfront.net d24d2g0g8l15q8.cloudfront.net d3lfqt3qfgn8k7.cloudfront.net
+        dwc7c3b4xwlvf.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://*.browser-intake-datadoghq.com https://*.facebook.com
+        https://*.linkedin.com https://*.segment.io https://*.small-improvements.com
+        https://api.rollbar.com https://app.bamboohr.co.uk https://bam.nr-data.net
+        https://connect.facebook.net *.algolianet.com *.algolia.net embedwistia-a.akamaihd.net
+        app.pendo.io cdn.pendo.io pendo-io-extensions.storage.googleapis.com pendo-static-5734959405072384.storage.googleapis.com
+        https://*.wistia.com https://*.wistia.net https://fonts.googleapis.com https://fonts.gstatic.com
+        https://example.com https://www.google-analytics.com https://payments.subscriptionplatform.com
+        https://s-static.ak.facebook.com themes.googleusercontent.com https://wufoo.com
+        https://*.wufoo.com https://www.google.com https://tagmanager.google.com https://bamboohr.formstack.com
+        https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://portal-2.flatfile.io
+        https://*.zuora.com https://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com
+        https://*.salesforceliveagent.com https://*.force.com https://*.site.com wss://*.pusher.com
+        https://*.checkr.com https://accounts.google.com https://login.microsoftonline.com
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; script-src ''self'' *.bamboohr.com *.bamboohr.co.uk data:
+        blob: about https://*.bamboohr.com https://cdn.api.twitter.com https://connect.facebook.net
+        https://bam.nr-data.net *.cloudfront.net d24d2g0g8l15q8.cloudfront.net dwc7c3b4xwlvf.cloudfront.net
+        d3lfqt3qfgn8k7.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://accounts.google.com https://login.microsoftonline.com
+        *.newrelic.com http://*.newrelic.com https://fast.wistia.net https://fast.wistia.com
+        get.bamboohr.com *.algolianet.com *.algolia.net app.pendo.io pendo-io-static.storage.googleapis.com
+        cdn.pendo.io pendo-static-5734959405072384.storage.googleapis.com https://pi.pardot.com
+        https://www.my1login.com https://app.onelogin.com https://ajax.googleapis.com
+        http://ajax.googleapis.com https://ssl.google-analytics.com https://www.googletagmanager.com
+        https://tagmanager.google.com https://www.google-analytics.com https://www.google.com
+        https://s3.amazonaws.com https://cdnjs.cloudflare.com https://wufoo.com https://*.wufoo.com
+        https://*.linkedin.com https://bat.bing.com/bat.js https://www.googleadservices.com/pagead/conversion_async.js
+        https://s.adroll.com/j/roundtrip.js https://*.segment.com https://*.segment.io
+        https://bamboohr.formstack.com https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://*.zuora.com https://*.pusher.com
+        wss://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com https://*.salesforceliveagent.com
+        https://*.force.com https://*.site.com https://*.checkr.com https://www.google.com/recaptcha/
+        https://www.gstatic.com/recaptcha/ https://www.recaptcha.net/recaptcha/ https://portal-2.flatfile.io
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; img-src * data: blob: ; report-uri /ajax/parse_csp_report.php
+        ; worker-src ''self'' data: blob: ;'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Authorization,User-Agent
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8afeed20fc91bead-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"meta":{"totalCount":15},"result":[{"id":"693","jobOpeningName":"Technical
+        Support Specialist English","departmentId":"19493","departmentLabel":"Technical
+        Support","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"792","jobOpeningName":"Head
+        of FP&A","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Waterloo"},"isRemote":null,"locationType":"1"},{"id":"795","jobOpeningName":"Traveling
+        Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
+        Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Brampton"},"isRemote":null,"locationType":"1"},{"id":"796","jobOpeningName":"Traveling
+        Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
+        Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Mississauga"},"isRemote":null,"locationType":"1"},{"id":"798","jobOpeningName":"Traveling
+        Service Technician ","departmentId":"19494","departmentLabel":"Field Service","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Mississauga"},"isRemote":null,"locationType":"1"},{"id":"799","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Toronto"},"isRemote":null,"locationType":"1"},{"id":"800","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Illinois","province":null,"city":"Chicago"},"isRemote":null,"locationType":"1"},{"id":"801","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Massachusetts","province":null,"city":"Boston"},"isRemote":null,"locationType":"1"},{"id":"802","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Texas","province":null,"city":"Dallas"},"isRemote":null,"locationType":"1"},{"id":"803","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"North Carolina","province":null,"city":"Charlotte"},"isRemote":null,"locationType":"1"},{"id":"804","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Michigan","province":null,"city":"Detroit"},"isRemote":null,"locationType":"1"},{"id":"805","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Minnesota","province":null,"city":"Minneapolis"},"isRemote":null,"locationType":"1"},{"id":"806","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Utah","province":null,"city":"Salt Lake City"},"isRemote":null,"locationType":"1"},{"id":"807","jobOpeningName":"Customer
+        Care Associate, CPG Coordinator","departmentId":"19492","departmentLabel":"Support
+        Operations","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"808","jobOpeningName":"Senior
+        Manager, Software Development, Web & Mobile","departmentId":"18433","departmentLabel":"Engineering
+        ","employmentStatusLabel":"Full-Time","location":{"city":"Kitchener","state":"Ontario"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"}]}'
+  recorded_at: Thu, 08 Aug 2024 10:47:05 GMT
+- request:
+    method: get
+    uri: https://avidbots.bamboohr.com/careers/list
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 08 Aug 2024 10:47:06 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=zCLkz9JaY7Rx3TsD1PH3zVmV%2Cv6z2mHl; path=/; secure; HttpOnly; SameSite=None
+      - _cfuvid=jRZMn4o_W266H2ScRqoWmjsFtB2A7nZPBQDjU66iQN0-1723114026189-0.0.1.1-604800000;
+        path=/; domain=.bamboohr.com; HttpOnly; Secure; SameSite=None
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-cache, private
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self'' data: blob: https://*.bamboohr.com https://*.bamboohr.co.uk
+        *.cloudfront.net d24d2g0g8l15q8.cloudfront.net d3lfqt3qfgn8k7.cloudfront.net
+        dwc7c3b4xwlvf.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://*.browser-intake-datadoghq.com https://*.facebook.com
+        https://*.linkedin.com https://*.segment.io https://*.small-improvements.com
+        https://api.rollbar.com https://app.bamboohr.co.uk https://bam.nr-data.net
+        https://connect.facebook.net *.algolianet.com *.algolia.net embedwistia-a.akamaihd.net
+        app.pendo.io cdn.pendo.io pendo-io-extensions.storage.googleapis.com pendo-static-5734959405072384.storage.googleapis.com
+        https://*.wistia.com https://*.wistia.net https://fonts.googleapis.com https://fonts.gstatic.com
+        https://example.com https://www.google-analytics.com https://payments.subscriptionplatform.com
+        https://s-static.ak.facebook.com themes.googleusercontent.com https://wufoo.com
+        https://*.wufoo.com https://www.google.com https://tagmanager.google.com https://bamboohr.formstack.com
+        https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://portal-2.flatfile.io
+        https://*.zuora.com https://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com
+        https://*.salesforceliveagent.com https://*.force.com https://*.site.com wss://*.pusher.com
+        https://*.checkr.com https://accounts.google.com https://login.microsoftonline.com
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; script-src ''self'' *.bamboohr.com *.bamboohr.co.uk data:
+        blob: about https://*.bamboohr.com https://cdn.api.twitter.com https://connect.facebook.net
+        https://bam.nr-data.net *.cloudfront.net d24d2g0g8l15q8.cloudfront.net dwc7c3b4xwlvf.cloudfront.net
+        d3lfqt3qfgn8k7.cloudfront.net d1h5lrfdup83bf.cloudfront.net d2z5bglz9ff013.cloudfront.net
+        d6rj0pc050pw5.cloudfront.net df8ckbxqap8g7.cloudfront.net dbmdctpg7vrzn.cloudfront.net
+        d28wuos6rv4976.cloudfront.net d1r9mt3fn8flr0.cloudfront.net staticfe.bamboohr.com
+        staticfe.bamboohr.net https://accounts.google.com https://login.microsoftonline.com
+        *.newrelic.com http://*.newrelic.com https://fast.wistia.net https://fast.wistia.com
+        get.bamboohr.com *.algolianet.com *.algolia.net app.pendo.io pendo-io-static.storage.googleapis.com
+        cdn.pendo.io pendo-static-5734959405072384.storage.googleapis.com https://pi.pardot.com
+        https://www.my1login.com https://app.onelogin.com https://ajax.googleapis.com
+        http://ajax.googleapis.com https://ssl.google-analytics.com https://www.googletagmanager.com
+        https://tagmanager.google.com https://www.google-analytics.com https://www.google.com
+        https://s3.amazonaws.com https://cdnjs.cloudflare.com https://wufoo.com https://*.wufoo.com
+        https://*.linkedin.com https://bat.bing.com/bat.js https://www.googleadservices.com/pagead/conversion_async.js
+        https://s.adroll.com/j/roundtrip.js https://*.segment.com https://*.segment.io
+        https://bamboohr.formstack.com https://static.formstack.com https://storage.googleapis.com/code.snapengage.com/
+        https://www.snapengage.com https://cdn.plaid.com https://*.zuora.com https://*.pusher.com
+        wss://*.pusher.com https://*.sfdcstatic.com https://*.salesforce.com https://*.salesforceliveagent.com
+        https://*.force.com https://*.site.com https://*.checkr.com https://www.google.com/recaptcha/
+        https://www.gstatic.com/recaptcha/ https://www.recaptcha.net/recaptcha/ https://portal-2.flatfile.io
+        https://*.typeform.com https://app.cronofy.com maps.googleapis.com ''unsafe-inline''
+        ''unsafe-eval'' ; img-src * data: blob: ; report-uri /ajax/parse_csp_report.php
+        ; worker-src ''self'' data: blob: ;'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Authorization,User-Agent
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 8afeed24cdf8bd79-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"meta":{"totalCount":15},"result":[{"id":"693","jobOpeningName":"Technical
+        Support Specialist English","departmentId":"19493","departmentLabel":"Technical
+        Support","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"792","jobOpeningName":"Head
+        of FP&A","departmentId":"18609","departmentLabel":"Finance","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Waterloo"},"isRemote":null,"locationType":"1"},{"id":"795","jobOpeningName":"Traveling
+        Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
+        Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Brampton"},"isRemote":null,"locationType":"1"},{"id":"796","jobOpeningName":"Traveling
+        Service Technician (fixed term contract until June 2025)","departmentId":"19494","departmentLabel":"Field
+        Service","employmentStatusLabel":"Contract - Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Mississauga"},"isRemote":null,"locationType":"1"},{"id":"798","jobOpeningName":"Traveling
+        Service Technician ","departmentId":"19494","departmentLabel":"Field Service","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Mississauga"},"isRemote":null,"locationType":"1"},{"id":"799","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"Canada","state":"Ontario","province":null,"city":"Toronto"},"isRemote":null,"locationType":"1"},{"id":"800","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Illinois","province":null,"city":"Chicago"},"isRemote":null,"locationType":"1"},{"id":"801","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Massachusetts","province":null,"city":"Boston"},"isRemote":null,"locationType":"1"},{"id":"802","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Texas","province":null,"city":"Dallas"},"isRemote":null,"locationType":"1"},{"id":"803","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"North Carolina","province":null,"city":"Charlotte"},"isRemote":null,"locationType":"1"},{"id":"804","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Michigan","province":null,"city":"Detroit"},"isRemote":null,"locationType":"1"},{"id":"805","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Minnesota","province":null,"city":"Minneapolis"},"isRemote":null,"locationType":"1"},{"id":"806","jobOpeningName":"Strategic
+        Account Executive","departmentId":"18446","departmentLabel":"Sales","employmentStatusLabel":"Full-Time","location":{"city":null,"state":null},"atsLocation":{"country":"United
+        States","state":"Utah","province":null,"city":"Salt Lake City"},"isRemote":null,"locationType":"1"},{"id":"807","jobOpeningName":"Customer
+        Care Associate, CPG Coordinator","departmentId":"19492","departmentLabel":"Support
+        Operations","employmentStatusLabel":"Full-Time","location":{"city":"Cali","state":"Colombia"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"},{"id":"808","jobOpeningName":"Senior
+        Manager, Software Development, Web & Mobile","departmentId":"18433","departmentLabel":"Engineering
+        ","employmentStatusLabel":"Full-Time","location":{"city":"Kitchener","state":"Ontario"},"atsLocation":{"country":null,"state":null,"province":null,"city":null},"isRemote":null,"locationType":"2"}]}'
+  recorded_at: Thu, 08 Aug 2024 10:47:06 GMT
+- request:
+    method: get
+    uri: http://dev.virtualearth.net/REST/v1/Locations/Cali,%20Colombia?key=As9GK0TwxULCFyDaoq4D-Y69ba9KgY2PSUp3XopYkZuhJWWm_gYcGosV7sjd7b8l
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 08 Aug 2024 10:47:06 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '2254'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Headers:
+      - Content-Type,X-FD-Features,X-FD-FLIGHT,PreferAnonymous
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cache-Control:
+      - no-cache
+      X-Bm-Traceid:
+      - e063ea5fe3d874e7e0177e1bcaf83382
+      X-Msedge-Ref:
+      - 'Ref A: D8D87CA600CA43F2B8F3FCE0A3B8B09F Ref B: DB3EDGE3012 Ref C: 2024-08-08T10:47:06Z|Ref
+        SnR: 66b4a22a43a6410f91d61aa636763018'
+      X-Bm-Srv:
+      - mapsplatform-frontend-5756bf4655-jdnjj, mapsplatform-forwardgeocoder-service-69b95d964b-qz2dd
+      X-Ms-Bm-Ws-Info:
+      - '0'
+      X-Bm-Fe-Elapsed:
+      - '45'
+      X-Azure-Ref:
+      - 20240808T104706Z-154b59dbc6dtrx6z6hyzfwtyaw00000000c000000000rcfz
+      X-Cache:
+      - CONFIG_NOCACHE
+      Accept-Ranges:
+      - bytes
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cDovL2Rldi52aXJ0dWFsZWFydGgubmV0L0JyYW5kaW5nL2xvZ29fcG93ZXJlZF9ieS5wbmciLCJjb3B5cmlnaHQiOiJDb3B5cmlnaHQgwqkgMjAyNCBNaWNyb3NvZnQgYW5kIGl0cyBzdXBwbGllcnMuIEFsbCByaWdodHMgcmVzZXJ2ZWQuIFRoaXMgQVBJIGNhbm5vdCBiZSBhY2Nlc3NlZCBhbmQgdGhlIGNvbnRlbnQgYW5kIGFueSByZXN1bHRzIG1heSBub3QgYmUgdXNlZCwgcmVwcm9kdWNlZCBvciB0cmFuc21pdHRlZCBpbiBhbnkgbWFubmVyIHdpdGhvdXQgZXhwcmVzcyB3cml0dGVuIHBlcm1pc3Npb24gZnJvbSBNaWNyb3NvZnQgQ29ycG9yYXRpb24uIiwicmVzb3VyY2VTZXRzIjpbeyJlc3RpbWF0ZWRUb3RhbCI6MywicmVzb3VyY2VzIjpbeyJfX3R5cGUiOiJMb2NhdGlvbjpodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3NlYXJjaC9sb2NhbC93cy9yZXN0L3YxIiwiYmJveCI6WzMuMzMyMTkyNDIwOTU5NDcyNywtNzYuNTkyODQ5NzMxNDQ1MzEsMy41MDYyNDI3NTIwNzUxOTUzLC03Ni40NjEzMTg5Njk3MjY1Nl0sIm5hbWUiOiJDYWxpLCBDb2xvbWJpYSIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMy40NTE5MjM4NSwtNzYuNTMyODc1MDZdfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiVkFDIiwiYWRtaW5EaXN0cmljdDIiOiJDYWxpIiwiY291bnRyeVJlZ2lvbiI6IkNvbG9tYmlhIiwiZm9ybWF0dGVkQWRkcmVzcyI6IkNhbGksIENvbG9tYmlhIiwibG9jYWxpdHkiOiJDYWxpIn0sImNvbmZpZGVuY2UiOiJIaWdoIiwiZW50aXR5VHlwZSI6IlBvcHVsYXRlZFBsYWNlIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlszLjQ1MTkyMzg1LC03Ni41MzI4NzUwNl0sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc2VhcmNoL2xvY2FsL3dzL3Jlc3QvdjEiLCJiYm94IjpbMy4yNzMzOTY5Njg4NDE1NTI3LC03Ni43MDcwOTIyODUxNTYyNSwzLjU0NzkxOTAzNDk1Nzg4NTcsLTc2LjQ1ODc2MzEyMjU1ODZdLCJuYW1lIjoiQ2FsaSIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMy4zOTkwNDM4LC03Ni41NzY0OTIzMV19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJWQUMiLCJhZG1pbkRpc3RyaWN0MiI6IkNhbGkiLCJjb3VudHJ5UmVnaW9uIjoiQ29sb21iaWEiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiQ2FsaSJ9LCJjb25maWRlbmNlIjoiSGlnaCIsImVudGl0eVR5cGUiOiJBZG1pbkRpdmlzaW9uMiIsImdlb2NvZGVQb2ludHMiOlt7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMy4zOTkwNDM4LC03Ni41NzY0OTIzMV0sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc2VhcmNoL2xvY2FsL3dzL3Jlc3QvdjEiLCJiYm94IjpbMy40NjEyMTEzNDQ3NzY3MzU2LC03Ni41Mjc2MTMwMTAwMjA1NywzLjQ2ODkzNjc3OTkxODA4ODYsLTc2LjUxNzI5MzYwNjE5MDM2XSwibmFtZSI6IkNhbGksIENvbG9tYmlhIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlszLjQ2NTA3NDA2LC03Ni41MjI0NTMzMV19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJWQUMiLCJhZG1pbkRpc3RyaWN0MiI6IkNhbGkiLCJjb3VudHJ5UmVnaW9uIjoiQ29sb21iaWEiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiQ2FsaSwgQ29sb21iaWEiLCJsb2NhbGl0eSI6IkNvbXVuYSAyIn0sImNvbmZpZGVuY2UiOiJMb3ciLCJlbnRpdHlUeXBlIjoiUmFpbHdheVN0YXRpb24iLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzMuNDY1MDc0MDYsLTc2LjUyMjQ1MzMxXSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19XX1dLCJzdGF0dXNDb2RlIjoyMDAsInN0YXR1c0Rlc2NyaXB0aW9uIjoiT0siLCJ0cmFjZUlkIjoiZTA2M2VhNWZlM2Q4NzRlN2UwMTc3ZTFiY2FmODMzODIifQ==
+  recorded_at: Thu, 08 Aug 2024 10:47:06 GMT
+- request:
+    method: get
+    uri: http://dev.virtualearth.net/REST/v1/Locations/Cali,%20Colombia?key=As9GK0TwxULCFyDaoq4D-Y69ba9KgY2PSUp3XopYkZuhJWWm_gYcGosV7sjd7b8l
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 08 Aug 2024 10:47:06 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '2254'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Headers:
+      - Content-Type,X-FD-Features,X-FD-FLIGHT,PreferAnonymous
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cache-Control:
+      - no-cache
+      X-Bm-Traceid:
+      - edfdeebc82a1cc03164102e67f00a11e
+      X-Msedge-Ref:
+      - 'Ref A: 58782EA22EA34B878574A6D8601B9558 Ref B: LON212050703021 Ref C: 2024-08-08T10:47:06Z|Ref
+        SnR: 66b4a22a6ddb436882400238161d4aaa'
+      X-Bm-Srv:
+      - mapsplatform-frontend-5756bf4655-md82h, mapsplatform-forwardgeocoder-service-69b95d964b-m7hqd
+      X-Ms-Bm-Ws-Info:
+      - '0'
+      X-Bm-Fe-Elapsed:
+      - '69'
+      X-Azure-Ref:
+      - 20240808T104706Z-17cc7bff7582nvcf490sc4en6w0000000rb00000000097fk
+      X-Cache:
+      - CONFIG_NOCACHE
+      Accept-Ranges:
+      - bytes
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cDovL2Rldi52aXJ0dWFsZWFydGgubmV0L0JyYW5kaW5nL2xvZ29fcG93ZXJlZF9ieS5wbmciLCJjb3B5cmlnaHQiOiJDb3B5cmlnaHQgwqkgMjAyNCBNaWNyb3NvZnQgYW5kIGl0cyBzdXBwbGllcnMuIEFsbCByaWdodHMgcmVzZXJ2ZWQuIFRoaXMgQVBJIGNhbm5vdCBiZSBhY2Nlc3NlZCBhbmQgdGhlIGNvbnRlbnQgYW5kIGFueSByZXN1bHRzIG1heSBub3QgYmUgdXNlZCwgcmVwcm9kdWNlZCBvciB0cmFuc21pdHRlZCBpbiBhbnkgbWFubmVyIHdpdGhvdXQgZXhwcmVzcyB3cml0dGVuIHBlcm1pc3Npb24gZnJvbSBNaWNyb3NvZnQgQ29ycG9yYXRpb24uIiwicmVzb3VyY2VTZXRzIjpbeyJlc3RpbWF0ZWRUb3RhbCI6MywicmVzb3VyY2VzIjpbeyJfX3R5cGUiOiJMb2NhdGlvbjpodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3NlYXJjaC9sb2NhbC93cy9yZXN0L3YxIiwiYmJveCI6WzMuMzMyMTkyNDIwOTU5NDcyNywtNzYuNTkyODQ5NzMxNDQ1MzEsMy41MDYyNDI3NTIwNzUxOTUzLC03Ni40NjEzMTg5Njk3MjY1Nl0sIm5hbWUiOiJDYWxpLCBDb2xvbWJpYSIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMy40NTE5MjM4NSwtNzYuNTMyODc1MDZdfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiVkFDIiwiYWRtaW5EaXN0cmljdDIiOiJDYWxpIiwiY291bnRyeVJlZ2lvbiI6IkNvbG9tYmlhIiwiZm9ybWF0dGVkQWRkcmVzcyI6IkNhbGksIENvbG9tYmlhIiwibG9jYWxpdHkiOiJDYWxpIn0sImNvbmZpZGVuY2UiOiJIaWdoIiwiZW50aXR5VHlwZSI6IlBvcHVsYXRlZFBsYWNlIiwiZ2VvY29kZVBvaW50cyI6W3sidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlszLjQ1MTkyMzg1LC03Ni41MzI4NzUwNl0sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc2VhcmNoL2xvY2FsL3dzL3Jlc3QvdjEiLCJiYm94IjpbMy4yNzMzOTY5Njg4NDE1NTI3LC03Ni43MDcwOTIyODUxNTYyNSwzLjU0NzkxOTAzNDk1Nzg4NTcsLTc2LjQ1ODc2MzEyMjU1ODZdLCJuYW1lIjoiQ2FsaSIsInBvaW50Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMy4zOTkwNDM4LC03Ni41NzY0OTIzMV19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJWQUMiLCJhZG1pbkRpc3RyaWN0MiI6IkNhbGkiLCJjb3VudHJ5UmVnaW9uIjoiQ29sb21iaWEiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiQ2FsaSJ9LCJjb25maWRlbmNlIjoiSGlnaCIsImVudGl0eVR5cGUiOiJBZG1pbkRpdmlzaW9uMiIsImdlb2NvZGVQb2ludHMiOlt7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMy4zOTkwNDM4LC03Ni41NzY0OTIzMV0sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc2VhcmNoL2xvY2FsL3dzL3Jlc3QvdjEiLCJiYm94IjpbMy40NjEyMTEzNDQ3NzY3MzU2LC03Ni41Mjc2MTMwMTAwMjA1NywzLjQ2ODkzNjc3OTkxODA4ODYsLTc2LjUxNzI5MzYwNjE5MDM2XSwibmFtZSI6IkNhbGksIENvbG9tYmlhIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlszLjQ2NTA3NDA2LC03Ni41MjI0NTMzMV19LCJhZGRyZXNzIjp7ImFkbWluRGlzdHJpY3QiOiJWQUMiLCJhZG1pbkRpc3RyaWN0MiI6IkNhbGkiLCJjb3VudHJ5UmVnaW9uIjoiQ29sb21iaWEiLCJmb3JtYXR0ZWRBZGRyZXNzIjoiQ2FsaSwgQ29sb21iaWEiLCJsb2NhbGl0eSI6IkNvbXVuYSAyIn0sImNvbmZpZGVuY2UiOiJMb3ciLCJlbnRpdHlUeXBlIjoiUmFpbHdheVN0YXRpb24iLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzMuNDY1MDc0MDYsLTc2LjUyMjQ1MzMxXSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19XX1dLCJzdGF0dXNDb2RlIjoyMDAsInN0YXR1c0Rlc2NyaXB0aW9uIjoiT0siLCJ0cmFjZUlkIjoiZWRmZGVlYmM4MmExY2MwMzE2NDEwMmU2N2YwMGExMWUifQ==
+  recorded_at: Thu, 08 Aug 2024 10:47:06 GMT
+- request:
+    method: get
+    uri: http://dev.virtualearth.net/REST/v1/Locations/Kitchener,%20Ontario?key=As9GK0TwxULCFyDaoq4D-Y69ba9KgY2PSUp3XopYkZuhJWWm_gYcGosV7sjd7b8l
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 08 Aug 2024 10:47:06 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '1708'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Headers:
+      - Content-Type,X-FD-Features,X-FD-FLIGHT,PreferAnonymous
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Cache-Control:
+      - no-cache
+      X-Bm-Traceid:
+      - e44b172ec91e500e003b667fb21fcf29
+      X-Msedge-Ref:
+      - 'Ref SnR: 66b4a22ac1684075b1f92ee3cadb6000|Ref A: 43078CE7F0FB4572844AD25CA8489DEA
+        Ref B: LON212050702033 Ref C: 2024-08-08T10:47:06Z'
+      X-Bm-Srv:
+      - mapsplatform-frontend-5756bf4655-96fdk, mapsplatform-forwardgeocoder-service-69b95d964b-cxqmh
+      X-Ms-Bm-Ws-Info:
+      - '0'
+      X-Bm-Fe-Elapsed:
+      - '91'
+      X-Azure-Ref:
+      - 20240808T104706Z-154b59dbc6d8p8s8yn4b9wysr00000000byg000000008d3m
+      X-Cache:
+      - CONFIG_NOCACHE
+      Accept-Ranges:
+      - bytes
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhdXRoZW50aWNhdGlvblJlc3VsdENvZGUiOiJWYWxpZENyZWRlbnRpYWxzIiwiYnJhbmRMb2dvVXJpIjoiaHR0cDovL2Rldi52aXJ0dWFsZWFydGgubmV0L0JyYW5kaW5nL2xvZ29fcG93ZXJlZF9ieS5wbmciLCJjb3B5cmlnaHQiOiJDb3B5cmlnaHQgwqkgMjAyNCBNaWNyb3NvZnQgYW5kIGl0cyBzdXBwbGllcnMuIEFsbCByaWdodHMgcmVzZXJ2ZWQuIFRoaXMgQVBJIGNhbm5vdCBiZSBhY2Nlc3NlZCBhbmQgdGhlIGNvbnRlbnQgYW5kIGFueSByZXN1bHRzIG1heSBub3QgYmUgdXNlZCwgcmVwcm9kdWNlZCBvciB0cmFuc21pdHRlZCBpbiBhbnkgbWFubmVyIHdpdGhvdXQgZXhwcmVzcyB3cml0dGVuIHBlcm1pc3Npb24gZnJvbSBNaWNyb3NvZnQgQ29ycG9yYXRpb24uIiwicmVzb3VyY2VTZXRzIjpbeyJlc3RpbWF0ZWRUb3RhbCI6MiwicmVzb3VyY2VzIjpbeyJfX3R5cGUiOiJMb2NhdGlvbjpodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3NlYXJjaC9sb2NhbC93cy9yZXN0L3YxIiwiYmJveCI6WzQzLjM1Mzg1NTEzMzA1NjY0LC04MC41NzM1ODU1MTAyNTM5LDQzLjUwNjg1NTAxMDk4NjMzLC04MC4zNzkwNDM1NzkxMDE1Nl0sIm5hbWUiOiJLaXRjaGVuZXIsIE9OIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOls0My40NDk3ODcxNCwtODAuNDg5MDg5OTddfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiT04iLCJhZG1pbkRpc3RyaWN0MiI6IldhdGVybG9vIiwiY291bnRyeVJlZ2lvbiI6IkNhbmFkYSIsImZvcm1hdHRlZEFkZHJlc3MiOiJLaXRjaGVuZXIsIE9OIiwibG9jYWxpdHkiOiJLaXRjaGVuZXIifSwiY29uZmlkZW5jZSI6IkhpZ2giLCJlbnRpdHlUeXBlIjoiUG9wdWxhdGVkUGxhY2UiLCJnZW9jb2RlUG9pbnRzIjpbeyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6WzQzLjQ0OTc4NzE0LC04MC40ODkwODk5N10sImNhbGN1bGF0aW9uTWV0aG9kIjoiUm9vZnRvcCIsInVzYWdlVHlwZXMiOlsiRGlzcGxheSJdfV0sIm1hdGNoQ29kZXMiOlsiR29vZCJdfSx7Il9fdHlwZSI6IkxvY2F0aW9uOmh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc2VhcmNoL2xvY2FsL3dzL3Jlc3QvdjEiLCJiYm94IjpbNDMuNDUxODM3MjAzMDgzNjIsLTgwLjUwMTM5NTM2NzU2Njk2LDQzLjQ1OTU2MjYzODIyNDk3LC04MC40ODcyMDYzMTcwMDMzNl0sIm5hbWUiOiJLaXRjaGVuZXIsIE9OIiwicG9pbnQiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOls0My40NTU2OTk5MiwtODAuNDk0MzAwODRdfSwiYWRkcmVzcyI6eyJhZG1pbkRpc3RyaWN0IjoiT04iLCJhZG1pbkRpc3RyaWN0MiI6IldhdGVybG9vIiwiY291bnRyeVJlZ2lvbiI6IkNhbmFkYSIsImZvcm1hdHRlZEFkZHJlc3MiOiJLaXRjaGVuZXIsIE9OIiwibG9jYWxpdHkiOiJLaXRjaGVuZXIifSwiY29uZmlkZW5jZSI6IkxvdyIsImVudGl0eVR5cGUiOiJSYWlsd2F5U3RhdGlvbiIsImdlb2NvZGVQb2ludHMiOlt7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbNDMuNDU1Njk5OTIsLTgwLjQ5NDMwMDg0XSwiY2FsY3VsYXRpb25NZXRob2QiOiJSb29mdG9wIiwidXNhZ2VUeXBlcyI6WyJEaXNwbGF5Il19XSwibWF0Y2hDb2RlcyI6WyJHb29kIl19XX1dLCJzdGF0dXNDb2RlIjoyMDAsInN0YXR1c0Rlc2NyaXB0aW9uIjoiT0siLCJ0cmFjZUlkIjoiZTQ0YjE3MmVjOTFlNTAwZTAwM2I2NjdmYjIxZmNmMjkifQ==
+  recorded_at: Thu, 08 Aug 2024 10:47:06 GMT
+recorded_with: VCR 6.2.0
