@@ -63,16 +63,16 @@ companies = {
     # 'multiverse'
   ],
   bamboohr: [
-    'avidbots',
-    'gfo',
-    'heirloom',
-    'hyperjar',
-    'kiteworks',
-    'meedan',
-    'prezi',
-    'resurgo',
-    'turn',
-    'xtm'
+    # 'avidbots',
+    # 'gfo',
+    # 'heirloom',
+    # 'hyperjar',
+    # 'kiteworks',
+    # 'meedan',
+    # 'prezi',
+    # 'resurgo',
+    # 'turn',
+    # 'xtm'
   ],
   greenhouse: [
     # 'cleoai',
@@ -93,11 +93,11 @@ companies = {
     # 'narvar',
   ],
   workable: [
-    # 'builderai',
-    # 'carbonclean',
-    # 'grayce',
-    # 'nqc',
-    # 'starling-bank'
+    'builderai',
+    'carbonclean',
+    'grayce',
+    'nqc',
+    'starling-bank'
   ]
 }
 

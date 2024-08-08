@@ -5,7 +5,7 @@
     "description": null,
     "questions": [
       {
-        "attribute": "firstname",
+        "attribute": "first_name",
         "description": null,
         "label": "First name",
         "required": true,
@@ -21,7 +21,7 @@
         ]
       },
       {
-        "attribute": "lastname",
+        "attribute": "last_name",
         "description": null,
         "label": "Last name",
         "required": true,
@@ -53,7 +53,23 @@
         ]
       },
       {
-        "attribute": "phone",
+        "attribute": "headline",
+        "description": null,
+        "label": "Headline",
+        "required": true,
+        "fields": [
+          {
+            "name": "headline",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "phone_number",
         "description": null,
         "label": "Phone",
         "required": true,
@@ -62,6 +78,54 @@
             "name": "phone",
             "selector": null,
             "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "address_applicant",
+        "description": null,
+        "label": "Address",
+        "required": true,
+        "fields": [
+          {
+            "name": "address",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "photo",
+        "description": null,
+        "label": "Photo",
+        "required": false,
+        "fields": [
+          {
+            "name": "avatar",
+            "selector": null,
+            "type": "upload",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "summary",
+        "description": null,
+        "label": "Summary",
+        "required": false,
+        "fields": [
+          {
+            "name": "summary",
+            "selector": null,
+            "type": "textarea",
             "options": [
 
             ]
@@ -85,15 +149,31 @@
         ]
       },
       {
-        "attribute": "gdpr",
+        "attribute": "ca_18008",
         "description": null,
-        "label": null,
+        "label": "Why do you think you’d be a good fit for the role based on the requirements listed?",
         "required": true,
         "fields": [
           {
-            "name": "gdpr",
+            "name": "CA_18008",
             "selector": null,
-            "type": "boolean",
+            "type": "textarea",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "ca_18009",
+        "description": null,
+        "label": "What interests you about working for Builder?",
+        "required": false,
+        "fields": [
+          {
+            "name": "CA_18009",
+            "selector": null,
+            "type": "textarea",
             "options": [
 
             ]
@@ -123,13 +203,13 @@
         ]
       },
       {
-        "attribute": "CA_10642",
+        "attribute": "qa_8314309",
         "description": null,
-        "label": "Why should our search for this role stop with you?",
+        "label": "What salary range are you looking for? We ask this to check we're in the same ballpark before asking you to invest your time interviewing.",
         "required": true,
         "fields": [
           {
-            "name": "CA_10642",
+            "name": "QA_8314309",
             "selector": null,
             "type": "textarea",
             "options": [
@@ -139,29 +219,13 @@
         ]
       },
       {
-        "attribute": "CA_19347",
+        "attribute": "qa_8314310",
         "description": null,
-        "label": "As a regulated bank, we require our successful candidates to go through background checks (including but not limited to social media, employment references, fraud checks and criminal history). If we were to conduct these checks, is there anything you would like to flag for us to be aware of? If so, please provide details.",
+        "label": "Are you eligible to work lawfully for a UK company without requiring visa sponsorship?",
         "required": true,
         "fields": [
           {
-            "name": "CA_19347",
-            "selector": null,
-            "type": "textarea",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "CA_10643",
-        "description": null,
-        "label": "Will you now, or in the future, require sponsorship to work in the UK?",
-        "required": true,
-        "fields": [
-          {
-            "name": "CA_10643",
+            "name": "QA_8314310",
             "selector": null,
             "type": "boolean",
             "options": [
@@ -171,336 +235,15 @@
         ]
       },
       {
-        "attribute": "CA_23830",
+        "attribute": "qa_8314311",
         "description": null,
-        "label": "Please confirm the current right to work document you hold, eg. British passport, settled status, ILR, Skilled Worker Visa (If visa, please confirm type and expiry):",
+        "label": "Will you now, or in the future, require Builder.ai to commence an immigration case in order to employ you (for example, Skilled Worker VISA)? Please clarify your requirements",
         "required": true,
         "fields": [
           {
-            "name": "CA_23830",
+            "name": "QA_8314311",
             "selector": null,
             "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "CA_10644",
-        "description": null,
-        "label": "Have you been convicted of any criminal offences that are not yet spent under the Rehabilitation of Offenders Act?",
-        "required": true,
-        "fields": [
-          {
-            "name": "CA_10644",
-            "selector": null,
-            "type": "boolean",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "CA_19346",
-        "description": null,
-        "label": "In the last 5 years, have you had any CCJs, IVAs, bankruptcies or debt management plans? If yes, please provide received & settled dates & amounts.",
-        "required": true,
-        "fields": [
-          {
-            "name": "CA_19346",
-            "selector": null,
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "CA_21612",
-        "description": null,
-        "label": "Have you been dismissed from any employment in the past five years, other than for reasons of ill-health or redundancy?",
-        "required": true,
-        "fields": [
-          {
-            "name": "CA_21612",
-            "selector": null,
-            "type": "multi_select",
-            "options": [
-              {
-                "value": "217166",
-                "label": "Yes"
-              },
-              {
-                "value": "217167",
-                "label": "No"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "CA_10646",
-        "description": null,
-        "label": "Have you previously worked for Starling Bank (either directly employed or as a contractor / temporary worker)?",
-        "required": true,
-        "fields": [
-          {
-            "name": "CA_10646",
-            "selector": null,
-            "type": "boolean",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "CA_1750",
-        "description": null,
-        "label": "What are your salary expectations?",
-        "required": true,
-        "fields": [
-          {
-            "name": "CA_1750",
-            "selector": null,
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "CA_10647",
-        "description": null,
-        "label": "Please can you confirm your current location?",
-        "required": true,
-        "fields": [
-          {
-            "name": "CA_10647",
-            "selector": null,
-            "type": "textarea",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "CA_13028",
-        "description": null,
-        "label": "Do you need any reasonable adjustments for the recruitment process?",
-        "required": false,
-        "fields": [
-          {
-            "name": "CA_13028",
-            "selector": null,
-            "type": "textarea",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "CA_13029",
-        "description": null,
-        "label": "We want to make sure we're referring to you properly in your notes and interview communication so please tell us, what are your pronouns?",
-        "required": false,
-        "fields": [
-          {
-            "name": "CA_13029",
-            "selector": null,
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "CA_23832",
-        "description": null,
-        "label": "Where did you hear about this role?",
-        "required": true,
-        "fields": [
-          {
-            "name": "CA_23832",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "value": "231353",
-                "label": "Starling Bank Careers Page"
-              },
-              {
-                "value": "231354",
-                "label": "LinkedIn"
-              },
-              {
-                "value": "231355",
-                "label": "Referred by a Friend (Starling Employee)"
-              },
-              {
-                "value": "231356",
-                "label": "Agency"
-              },
-              {
-                "value": "231357",
-                "label": "Otta"
-              },
-              {
-                "value": "231358",
-                "label": "Cord"
-              },
-              {
-                "value": "231359",
-                "label": "Facebook"
-              },
-              {
-                "value": "231360",
-                "label": "Indeed"
-              },
-              {
-                "value": "231361",
-                "label": "Google Jobs"
-              },
-              {
-                "value": "231362",
-                "label": "Women in Tech"
-              },
-              {
-                "value": "231363",
-                "label": "Diversity Jobs Group"
-              },
-              {
-                "value": "231364",
-                "label": "Working Mums/Dads/Wise"
-              },
-              {
-                "value": "231365",
-                "label": "Job Centre"
-              },
-              {
-                "value": "231366",
-                "label": "Careers Fair"
-              },
-              {
-                "value": "231367",
-                "label": "Job Alert"
-              },
-              {
-                "value": "231368",
-                "label": "Starling Marketing"
-              },
-              {
-                "value": "247942",
-                "label": "10k Interns"
-              },
-              {
-                "value": "231369",
-                "label": "Other"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "CA_23834",
-        "description": null,
-        "label": "If referred by a friend, please confirm their full name & employee ID:",
-        "required": false,
-        "fields": [
-          {
-            "name": "CA_23834",
-            "selector": null,
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "CA_30788",
-        "description": null,
-        "label": "Do you know anyone who works at (or is in the process of joining) Starling Bank or Engine by Starling? (Please select all that apply)",
-        "required": true,
-        "fields": [
-          {
-            "name": "CA_30788",
-            "selector": null,
-            "type": "multi_select",
-            "options": [
-              {
-                "value": "284845",
-                "label": "No - I don't know anyone who works at or is joining Starling Bank or Engine by Starling"
-              },
-              {
-                "value": "284846",
-                "label": "Yes - Family Member (including Cousin or In-Laws)"
-              },
-              {
-                "value": "284847",
-                "label": "Yes - Someone I live with"
-              },
-              {
-                "value": "284848",
-                "label": "Yes - Partner (Someone I am in a relationship with)"
-              },
-              {
-                "value": "284849",
-                "label": "Yes - Friend/(ex)Colleague/Other"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "CA_30789",
-        "description": null,
-        "label": "If you have answered yes, please provide their full names:",
-        "required": false,
-        "fields": [
-          {
-            "name": "CA_30789",
-            "selector": null,
-            "type": "textarea",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "QA_8474126",
-        "description": null,
-        "label": "Do you have the right to work in the UK without requiring sponsorship?",
-        "required": true,
-        "fields": [
-          {
-            "name": "QA_8474126",
-            "selector": null,
-            "type": "boolean",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "QA_8474127",
-        "description": null,
-        "label": "Why would Engine regret not hiring you?",
-        "required": true,
-        "fields": [
-          {
-            "name": "QA_8474127",
-            "selector": null,
-            "type": "textarea",
             "options": [
 
             ]

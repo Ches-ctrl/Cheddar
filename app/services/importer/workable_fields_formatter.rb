@@ -21,11 +21,11 @@ module Importer
       return {} unless questions_data
 
       questions_data.map do |raw_question|
-        attribute = raw_question[:id]
+        attribute = attribute(raw_question[:id])
         options = raw_question[:options]&.map { |option| option.transform_keys({ 'value' => 'label' }) }&.map { |option| option.transform_keys({ 'name' => 'value' }) } || []
 
         type = INPUT_TYPES[raw_question[:type]]
-        fields = [{ name: attribute, selector: nil, type:, options: }]
+        fields = [{ name: raw_question[:id], selector: nil, type:, options: }]
         label = raw_question[:label]
 
         { attribute:, label:, description: nil, required: raw_question[:required], fields: }
@@ -61,14 +61,15 @@ module Importer
     end
 
     ATTRIBUTES_DICTIONARY = {
-      'firstname' => 'first_name',
-      'lastname' => 'last_name',
-      'gdpr' => 'gdpr',
-      'email' => 'email',
-      'phone' => 'phone_number',
       'address' => 'address_applicant',
-      'resume' => 'resume',
-      'cover_letter' => 'cover_letter'
+      'avatar' => 'photo',
+      'cover_letter' => 'cover_letter',
+      'email' => 'email',
+      'firstname' => 'first_name',
+      'gdpr' => 'gdpr',
+      'lastname' => 'last_name',
+      'phone' => 'phone_number',
+      'resume' => 'resume'
     }
 
     ###
