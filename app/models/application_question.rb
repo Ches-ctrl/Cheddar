@@ -61,7 +61,7 @@ class ApplicationQuestion
   def option_text_values(values)
     return values if options.none?
 
-    options.to_h.invert.slice(*values).values
+    options.to_h.select { |_k, v| values.include?(v.to_s) }.keys
   end
 
   def options
