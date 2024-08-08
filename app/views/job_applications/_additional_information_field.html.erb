@@ -93,7 +93,7 @@
     }
   %>
   <%= render "shared/forms/attachments_list", attachments: [job_application.attachment(question)], document_attached: job_application.attachment(question).attached? %>
-<% elsif question.upload? && byebug %>
+<% elsif question.upload? %>
   We don't manage the type of upload yet.
 <% else %>
   <%= "Question: #{ question.to_json.html_safe }" %>
