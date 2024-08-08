@@ -68,6 +68,8 @@ module Importer
         default_attribute(raw_attribute)
     end
 
+    def attributes_dictionary = ATTRIBUTES_DICTIONARY
+
     ATTRIBUTES_DICTIONARY = {
       'firstName' => 'first_name',
       'lastName' => 'last_name',

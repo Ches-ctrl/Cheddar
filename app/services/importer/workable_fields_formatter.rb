@@ -51,6 +51,8 @@ module Importer
         default_attribute(raw_attribute)
     end
 
+    def attributes_dictionary = ATTRIBUTES_DICTIONARY
+
     ATTRIBUTES_DICTIONARY = {
       'address' => 'address_applicant',
       'avatar' => 'photo',

@@ -103,6 +103,8 @@ module Importer
         default_attribute(question[:label])
     end
 
+    def attributes_dictionary = ATTRIBUTES_DICTIONARY
+
     ATTRIBUTES_DICTIONARY = {
       'email' => 'email',
       'location' => 'location',

@@ -71,6 +71,8 @@ module Importer
         default_attribute(question[:field][:title])
     end
 
+    def attributes_dictionary = ATTRIBUTES_DICTIONARY
+
     ATTRIBUTES_DICTIONARY = {
       '_systemfield_name' => 'full_name',
       '_systemfield_email' => 'email',

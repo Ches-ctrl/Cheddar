@@ -31,11 +31,11 @@ module Importer
     end
 
     def attribute_inclusive_match(key)
-      ATTRIBUTES_DICTIONARY.find { |k, _v| default_attribute(key).include?(k) }&.last
+      attributes_dictionary.find { |k, _v| default_attribute(key).include?(k) }&.last
     end
 
     def attribute_strict_match(key)
-      ATTRIBUTES_DICTIONARY[key]
+      attributes_dictionary[key]
     end
 
     def default_attribute(key)
