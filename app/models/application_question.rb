@@ -50,7 +50,7 @@ class ApplicationQuestion
 
   def field = fields.first
 
-  def locator = field['selector'] || "##{field['id']}"
+  def locator = field['selector'] || field['name']
 
   def multi_checkbox?
     type.eql?("checkbox") && (options&.count&.> 1)
@@ -67,6 +67,7 @@ class ApplicationQuestion
   end
 
   def payload(job_application)
+    byebug
     { locator:, interaction: type, value: answered_value(job_application) }
   end
 
