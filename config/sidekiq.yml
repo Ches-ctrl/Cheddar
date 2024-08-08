@@ -18,10 +18,13 @@
       cron: '0 1 * * *' # Runs once per day (at 1 am)
       class: Updater::ExistingCompanyJobsJob
       queue: updates
-    devitjobs_updater:
+      enabled: <%= Rails.env.production? %> # production only as it interferes with end-to-end testing
+    devitjobs_updater: # off temporarily as interferes with end-to-end testing
       cron: '0 2 * * *' # Runs once per day (at 2 am)
       class: Importer::Api::DevitJobsJob
       queue: updates
+      enabled: <%= Rails.env.production? %> # production only as it interferes with end-to-end testing
+
     # true_up_scraper: # off for now as we have already pulled all the ATS identifiers
     #   cron: '0 2 * * *' # Runs once per day (at 2 am)
     #   class: Importer::Scraper::TrueUpJob

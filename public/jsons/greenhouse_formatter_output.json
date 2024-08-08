@@ -51,7 +51,7 @@
       {
         "description": null,
         "label": "Phone",
-        "required": false,
+        "required": true,
         "fields": [
           {
             "name": "phone",
@@ -113,7 +113,7 @@
         "required": true,
         "fields": [
           {
-            "name": "question_4168750007",
+            "name": "question_47715686",
             "type": "input",
             "options": [
 
@@ -124,26 +124,26 @@
       },
       {
         "description": null,
-        "label": "Why are you interested in working at CodePath?",
+        "label": "Do you have any open source contribution you can share?\n",
         "required": true,
         "fields": [
           {
-            "name": "question_4168751007",
-            "type": "textarea",
+            "name": "question_47715688",
+            "type": "input",
             "options": [
 
             ]
           }
         ],
-        "attribute": "why_are_you_interested_in_working_at_codepath"
+        "attribute": "do_you_have_any_open_source_contribution_you_can_share"
       },
       {
         "description": null,
-        "label": "Are you currently authorized to work in the United States?",
+        "label": "Do you have experience at a SaaS Company? ",
         "required": true,
         "fields": [
           {
-            "name": "question_4168752007",
+            "name": "question_47715689",
             "type": "select",
             "options": [
               {
@@ -157,376 +157,55 @@
             ]
           }
         ],
-        "attribute": "are_you_currently_authorized_to_work_in_the_united_states"
+        "attribute": "do_you_have_experience_at_a_saas_company"
       },
       {
         "description": null,
-        "label": "How did you hear about CodePath? ",
+        "label": "Do you have startup experience?  ",
         "required": true,
         "fields": [
           {
-            "name": "question_6811200007",
+            "name": "question_47715690",
             "type": "select",
             "options": [
               {
-                "label": "LinkedIn",
-                "value": 10170367007
+                "label": "Yes",
+                "value": 1
               },
               {
-                "label": "EDsurge",
-                "value": 10170368007
-              },
-              {
-                "label": "Idealist",
-                "value": 10170369007
-              },
-              {
-                "label": "Event/Conferences - Industry",
-                "value": 10170370007
-              },
-              {
-                "label": "News/Media",
-                "value": 10170371007
-              },
-              {
-                "label": "Referred by CodePath employee",
-                "value": 10170372007
-              },
-              {
-                "label": "Friend or Family (Non-employee)",
-                "value": 10170373007
-              },
-              {
-                "label": "Other",
-                "value": 10170374007
+                "label": "No",
+                "value": 0
               }
             ]
           }
         ],
-        "attribute": "how_did_you_hear_about_codepath"
+        "attribute": "do_you_have_startup_experience"
       },
       {
         "description": null,
-        "label": "If you selected \"Referred by CodePath employee,\" please list their name.\n",
-        "required": false,
+        "label": "Have you been employed by Narvar in the past?",
+        "required": true,
         "fields": [
           {
-            "name": "question_6811201007",
-            "type": "input",
+            "name": "question_47715691",
+            "type": "select",
             "options": [
-
+              {
+                "label": "Yes",
+                "value": 1
+              },
+              {
+                "label": "No",
+                "value": 0
+              }
             ]
           }
         ],
-        "attribute": "if_you_selected_referred_by_codepath_employee_please_list_th"
+        "attribute": "have_you_been_employed_by_narvar_in_the_past"
       }
     ]
   },
   "demographic_questions": {
-    "title": "U.S. Standard Demographic Questions",
-    "description": "We invite applicants to share their demographic background. If you choose to complete this survey, your responses may be used to identify areas of improvement in our hiring process.",
-    "questions": [
-      {
-        "attribute": "how_would_you_describe_your_gender_identity_mark_all_that_ap",
-        "label": "How would you describe your gender identity? (mark all that apply)",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": 4006277007,
-            "type": "multi_select",
-            "options": [
-              {
-                "value": 4037604007,
-                "label": "Man",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037605007,
-                "label": "Non-binary",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037606007,
-                "label": "Woman",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037607007,
-                "label": "I prefer to self-describe",
-                "free_form": true,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037608007,
-                "label": "I don't wish to answer",
-                "free_form": false,
-                "decline_to_answer": false
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "how_would_you_describe_your_racial_ethnic_background_mark_al",
-        "label": "How would you describe your racial/ethnic background? (mark all that apply)",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": 4006278007,
-            "type": "multi_select",
-            "options": [
-              {
-                "value": 4037609007,
-                "label": "Black or of African descent",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037610007,
-                "label": "East Asian",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037611007,
-                "label": "Hispanic, Latinx or of Spanish Origin",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037612007,
-                "label": "Indigenous, American Indian or Alaska Native",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037613007,
-                "label": "Middle Eastern or North African",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037614007,
-                "label": "Native Hawaiian or Pacific Islander",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037615007,
-                "label": "South Asian",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037616007,
-                "label": "Southeast Asian",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037617007,
-                "label": "White or European",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037618007,
-                "label": "I prefer to self-describe",
-                "free_form": true,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037619007,
-                "label": "I don't wish to answer",
-                "free_form": false,
-                "decline_to_answer": false
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "how_would_you_describe_your_sexual_orientation_mark_all_that",
-        "label": "How would you describe your sexual orientation? (mark all that apply)",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": 4006279007,
-            "type": "multi_select",
-            "options": [
-              {
-                "value": 4037620007,
-                "label": "Asexual",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037621007,
-                "label": "Bisexual and/or pansexual",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037622007,
-                "label": "Gay",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037623007,
-                "label": "Heterosexual",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037624007,
-                "label": "Lesbian",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037625007,
-                "label": "Queer",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037626007,
-                "label": "I prefer to self-describe",
-                "free_form": true,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037627007,
-                "label": "I don't wish to answer",
-                "free_form": false,
-                "decline_to_answer": false
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "do_you_identify_as_transgender_select_one",
-        "label": "Do you identify as transgender? (select one)",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": 4006280007,
-            "type": "select",
-            "options": [
-              {
-                "value": 4037628007,
-                "label": "Yes",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037629007,
-                "label": "No",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037630007,
-                "label": "I prefer to self-describe",
-                "free_form": true,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037631007,
-                "label": "I don't wish to answer",
-                "free_form": false,
-                "decline_to_answer": false
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "do_you_have_a_disability_or_chronic_condition_physical_visua",
-        "label": "Do you have a disability or chronic condition (physical, visual, auditory, cognitive, mental, emotional, or other) that substantially limits one or more of your major life activities, including mobility, communication (seeing, hearing, speaking), and learning? (select one)",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": 4006281007,
-            "type": "select",
-            "options": [
-              {
-                "value": 4037632007,
-                "label": "Yes",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037633007,
-                "label": "No",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037634007,
-                "label": "I prefer to self-describe",
-                "free_form": true,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037635007,
-                "label": "I don't wish to answer",
-                "free_form": false,
-                "decline_to_answer": false
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "are_you_a_veteran_or_active_member_of_the_united_states_arme",
-        "label": "Are you a veteran or active member of the United States Armed Forces? (select one)",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": 4006282007,
-            "type": "select",
-            "options": [
-              {
-                "value": 4037636007,
-                "label": "Yes, I am a veteran or active member",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037637007,
-                "label": "No, I am not a veteran or active member",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037638007,
-                "label": "I prefer to self-describe",
-                "free_form": true,
-                "decline_to_answer": false
-              },
-              {
-                "value": 4037639007,
-                "label": "I don't wish to answer",
-                "free_form": false,
-                "decline_to_answer": false
-              }
-            ]
-          }
-        ]
-      }
-    ]
   },
   "compliance_questions": {
     "title": "EEOC compliance questions",
@@ -587,7 +266,7 @@
       {
         "attribute": "race",
         "label": "Race",
-        "description": "&lt;h3&gt;&lt;strong&gt;Voluntary Self-Identification&lt;/strong&gt;&lt;/h3&gt;&lt;br/&gt;&lt;p&gt;For government reporting purposes, we ask candidates to respond to the below self-identification survey.\nCompletion of the form is entirely voluntary. Whatever your decision, it will not be considered in the hiring\nprocess or thereafter. Any information that you do provide will be recorded and maintained in a\nconfidential file.&lt;/p&gt;\n\n&lt;p&gt;As set forth in Codepath.org’s Equal Employment Opportunity policy,\nwe do not discriminate on the basis of any protected group status under any applicable law.&lt;/p&gt;\n",
+        "description": "&lt;h3&gt;&lt;strong&gt;Voluntary Self-Identification&lt;/strong&gt;&lt;/h3&gt;&lt;br/&gt;&lt;p&gt;For government reporting purposes, we ask candidates to respond to the below self-identification survey.\nCompletion of the form is entirely voluntary. Whatever your decision, it will not be considered in the hiring\nprocess or thereafter. Any information that you do provide will be recorded and maintained in a\nconfidential file.&lt;/p&gt;\n\n&lt;p&gt;As set forth in Narvar’s Equal Employment Opportunity policy,\nwe do not discriminate on the basis of any protected group status under any applicable law.&lt;/p&gt;\n",
         "required": false,
         "fields": [
           {
@@ -633,7 +312,7 @@
       {
         "attribute": "gender",
         "label": "Gender",
-        "description": "&lt;h3&gt;&lt;strong&gt;Voluntary Self-Identification&lt;/strong&gt;&lt;/h3&gt;&lt;br/&gt;&lt;p&gt;For government reporting purposes, we ask candidates to respond to the below self-identification survey.\nCompletion of the form is entirely voluntary. Whatever your decision, it will not be considered in the hiring\nprocess or thereafter. Any information that you do provide will be recorded and maintained in a\nconfidential file.&lt;/p&gt;\n\n&lt;p&gt;As set forth in Codepath.org’s Equal Employment Opportunity policy,\nwe do not discriminate on the basis of any protected group status under any applicable law.&lt;/p&gt;\n",
+        "description": "&lt;h3&gt;&lt;strong&gt;Voluntary Self-Identification&lt;/strong&gt;&lt;/h3&gt;&lt;br/&gt;&lt;p&gt;For government reporting purposes, we ask candidates to respond to the below self-identification survey.\nCompletion of the form is entirely voluntary. Whatever your decision, it will not be considered in the hiring\nprocess or thereafter. Any information that you do provide will be recorded and maintained in a\nconfidential file.&lt;/p&gt;\n\n&lt;p&gt;As set forth in Narvar’s Equal Employment Opportunity policy,\nwe do not discriminate on the basis of any protected group status under any applicable law.&lt;/p&gt;\n",
         "required": false,
         "fields": [
           {
@@ -662,7 +341,23 @@
     "title": null,
     "description": null,
     "questions": [
+      {
+        "attribute": "city_applicant",
+        "required": false,
+        "label": "Location (City))",
+        "description": null,
+        "fields": [
+          {
+            "id": "auto_complete_input",
+            "selector": "input[name=\"job_application[location]\"]",
+            "type": "location",
+            "max_length": 255,
+            "options": [
 
+            ]
+          }
+        ]
+      }
     ]
   }
 }
