@@ -71,7 +71,7 @@ module Importer
 
     INPUT_TYPES = {
       'boolean' => :boolean,
-      'date' => :date,
+      'date' => :date_picker,
       'dropdown' => :select,
       'email' => :input,
       'file' => :upload,
