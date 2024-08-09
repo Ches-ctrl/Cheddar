@@ -60,7 +60,7 @@ module Applier
     end
 
     def click_submit_button
-      sleep 2 # temporary -- just for testing
+      sleep 8 # temporary -- just for testing
       p "I didn't submit the form. Change the FormFiller#click_submit_button method to actually submit it."
       # submit_button.click
     end
@@ -93,6 +93,11 @@ module Applier
     def handle_boolean = (boolean_field.click if @value)
 
     def handle_checkbox = check(@value)
+
+    def handle_date_picker
+      puts "date_picker is not a valid type!"
+      handle_input
+    end
 
     def handle_input = verify_input { fill_in(@locator, with: @value) }
 
