@@ -14,7 +14,7 @@ include TestHelpers
 RSpec.feature 'ApplyToJob', type: :feature, apply_to_job: true do
   before do
     skip 'No URL available to test' if ENV['URL_FOR_TESTING'].nil?
-    @sleep_time = ENV['SLEEP_TIME'] || 10
+    @sleep_time = ENV['SLEEP_TIME'].to_i || 10
 
     # switch to visible browser for this test
     @original_driver = Capybara.current_driver

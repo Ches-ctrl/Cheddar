@@ -409,22 +409,6 @@
         ]
       },
       {
-        "attribute": "ca_23833",
-        "description": null,
-        "label": "If Agency, please confirm the agency name:",
-        "required": false,
-        "fields": [
-          {
-            "name": "CA_23833",
-            "selector": null,
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
         "attribute": "ca_30788",
         "description": null,
         "label": "Do you know anyone who works at (or is in the process of joining) Starling Bank or Engine by Starling? (Please select all that apply)",
@@ -476,13 +460,13 @@
         ]
       },
       {
-        "attribute": "qa_8594860",
+        "attribute": "qa_8555724",
         "description": null,
-        "label": "Why would Starling regret not hiring you?",
+        "label": "Why would Engine regret not hiring you?",
         "required": true,
         "fields": [
           {
-            "name": "QA_8594860",
+            "name": "QA_8555724",
             "selector": null,
             "type": "textarea",
             "options": [
@@ -492,291 +476,15 @@
         ]
       },
       {
-        "attribute": "qa_8594861",
+        "attribute": "qa_8555725",
         "description": null,
         "label": "Do you have the right to work in the UK without requiring sponsorship?",
         "required": true,
         "fields": [
           {
-            "name": "QA_8594861",
+            "name": "QA_8555725",
             "selector": null,
             "type": "boolean",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "qa_8594862",
-        "description": null,
-        "label": "Please select the right to work documents that you currently hold:",
-        "required": true,
-        "fields": [
-          {
-            "name": "QA_8594862",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "value": "4552979",
-                "label": "UK Passport"
-              },
-              {
-                "value": "4552980",
-                "label": "Indefinite leave to remain"
-              },
-              {
-                "value": "4552981",
-                "label": "EU/EEA Passport - settled status"
-              },
-              {
-                "value": "4552982",
-                "label": "EU/EEA Passport - pre-settled status"
-              },
-              {
-                "value": "4552983",
-                "label": "Tier 2 General"
-              },
-              {
-                "value": "4552984",
-                "label": "Tier 2 Dependant"
-              },
-              {
-                "value": "4552985",
-                "label": "Tier 4 - Student Visa"
-              },
-              {
-                "value": "4552986",
-                "label": "Tier 5 - Youth Mobility Scheme"
-              },
-              {
-                "value": "4552987",
-                "label": "Graduate Visa"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "qa_8594863",
-        "description": null,
-        "label": "Tell us why Starling would be mad not to hire you.",
-        "required": true,
-        "fields": [
-          {
-            "name": "QA_8594863",
-            "selector": null,
-            "type": "textarea",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "qa_8594864",
-        "description": null,
-        "label": "If 'Yes', please provide details of the type of Passport / Visa you hold:",
-        "required": true,
-        "fields": [
-          {
-            "name": "QA_8594864",
-            "selector": null,
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "qa_8594865",
-        "description": null,
-        "label": "Please select the right to work documents that you currently hold:",
-        "required": true,
-        "fields": [
-          {
-            "name": "QA_8594865",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "value": "4552988",
-                "label": "UK Passport"
-              },
-              {
-                "value": "4552989",
-                "label": "Indefinite leave to remain"
-              },
-              {
-                "value": "4552990",
-                "label": "Tier 2 General"
-              },
-              {
-                "value": "4552991",
-                "label": "Tier 2 Dependant"
-              },
-              {
-                "value": "4552992",
-                "label": "Tier 5 - Youth Mobility Scheme"
-              },
-              {
-                "value": "4552993",
-                "label": "None - sponsorship required"
-              },
-              {
-                "value": "4552994",
-                "label": "EU/EEA Passport - settled status"
-              },
-              {
-                "value": "4552995",
-                "label": "EU/EEA Passport - pre-settled status"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "qa_8594866",
-        "description": null,
-        "label": "Would you prefer to be based from London or Southampton?",
-        "required": true,
-        "fields": [
-          {
-            "name": "QA_8594866",
-            "selector": null,
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "qa_8594867",
-        "description": null,
-        "label": "What is your office location preference?",
-        "required": true,
-        "fields": [
-          {
-            "name": "QA_8594867",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "value": "4552996",
-                "label": "London"
-              },
-              {
-                "value": "4552997",
-                "label": "Southampton"
-              },
-              {
-                "value": "4552998",
-                "label": "Always remote"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "qa_8594868",
-        "description": null,
-        "label": "Please select the right to work document that you currently hold:",
-        "required": true,
-        "fields": [
-          {
-            "name": "QA_8594868",
-            "selector": null,
-            "type": "multi_select",
-            "options": [
-              {
-                "value": "4552999",
-                "label": "UK Passport"
-              },
-              {
-                "value": "4553000",
-                "label": "EU/EEA Passport - settled status"
-              },
-              {
-                "value": "4553001",
-                "label": "EU/EEA Passport - pre-settled status"
-              },
-              {
-                "value": "4553002",
-                "label": "Indefinite leave to remain"
-              },
-              {
-                "value": "4553003",
-                "label": "Tier 1 Exceptional Talent"
-              },
-              {
-                "value": "4553004",
-                "label": "Tier 2 General Sponsored"
-              },
-              {
-                "value": "4553005",
-                "label": "Tier 2 Dependant"
-              },
-              {
-                "value": "4553006",
-                "label": "Tier 4 Student Visa"
-              },
-              {
-                "value": "4553007",
-                "label": "Tier 5 - Youth Mobility Scheme"
-              },
-              {
-                "value": "4553008",
-                "label": "None - sponsorship required"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "qa_8594869",
-        "description": null,
-        "label": "Please confirm the right to work document you hold eg. British Passport, Indefinite Leave to Remain, Settled Status, etc.:",
-        "required": true,
-        "fields": [
-          {
-            "name": "QA_8594869",
-            "selector": null,
-            "type": "textarea",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "qa_8594870",
-        "description": null,
-        "label": "One of the major projects we have at the moment would require you to work once a week from Fleet, Hampshire. Is that something you’d be willing to do?",
-        "required": true,
-        "fields": [
-          {
-            "name": "QA_8594870",
-            "selector": null,
-            "type": "boolean",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "qa_8594871",
-        "description": null,
-        "label": "Do you have a preference for working on user-facing teams or working on internal-facing teams?",
-        "required": true,
-        "fields": [
-          {
-            "name": "QA_8594871",
-            "selector": null,
-            "type": "textarea",
             "options": [
 
             ]

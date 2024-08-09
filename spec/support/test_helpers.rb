@@ -42,7 +42,6 @@ module TestHelpers
       options = field.all('option')[1..] # ignore the null option
       random_option = options.sample
       field.select(random_option.text)
-      # sleep 0.2 # avoid obstructing the next element
     end
   end
 
@@ -88,8 +87,9 @@ module TestHelpers
   def resume_file = 'public/Obretetskiy_cv.pdf'
 
   def submit_form
+    puts "Submitting the form..."
     application_form.find('input[type="submit"]').click
     find('a', text: 'Submit your applications').click
-    sleep @sleep_time # verify
+    sleep 25 # verify
   end
 end

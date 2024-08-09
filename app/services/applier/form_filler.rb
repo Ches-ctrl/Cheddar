@@ -94,14 +94,18 @@ module Applier
 
     def handle_input = verify_input { fill_in(@locator, with: @value) }
 
-    def handle_radiogroup
-      choose(option: @value, name: @locator)
+    def handle_location
+      puts "Location questions not handled!"
     end
 
     def handle_multi_select
       within response_field do
         @value.each { |value| check(value) }
       end
+    end
+
+    def handle_radiogroup
+      choose(option: @value, name: @locator)
     end
 
     def handle_select

@@ -87,14 +87,21 @@
         ]
       },
       {
-        "attribute": "website",
+        "attribute": "cover_letter",
         "description": null,
-        "label": "Website",
+        "label": "Cover Letter",
         "required": false,
         "fields": [
           {
-            "name": "question_6851483007",
-            "type": "input",
+            "name": "cover_letter",
+            "type": "upload",
+            "options": [
+
+            ]
+          },
+          {
+            "name": "cover_letter_text",
+            "type": "textarea",
             "options": [
 
             ]
@@ -102,28 +109,28 @@
         ]
       },
       {
-        "attribute": "linked_in-profile",
+        "attribute": "where-are-you-based",
         "description": null,
-        "label": "LinkedIn Profile",
-        "required": false,
-        "fields": [
-          {
-            "name": "question_48542634",
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "would-you-require-a-visa-for-employment-for-where-this-job-i",
-        "description": null,
-        "label": "Would you require a visa for employment for where this job is based (London)?",
+        "label": "Where are you based?",
         "required": true,
         "fields": [
           {
-            "name": "question_48542635",
+            "name": "question_13506014003",
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "location",
+        "description": null,
+        "label": "Are you authorised to work in the location to which you are applying?",
+        "required": true,
+        "fields": [
+          {
+            "name": "question_13505957003",
             "type": "select",
             "options": [
               {
@@ -139,16 +146,124 @@
         ]
       },
       {
-        "attribute": "what-are-you-compensation-expectations",
+        "attribute": "please-provide-your-salary-expectations",
         "description": null,
-        "label": "What are you compensation expectations?",
+        "label": "Please provide your salary expectations ",
         "required": true,
         "fields": [
           {
-            "name": "question_48542638",
+            "name": "question_13505959003",
             "type": "input",
             "options": [
 
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "what-is-your-notice-period",
+        "description": null,
+        "label": "What is your notice period?",
+        "required": true,
+        "fields": [
+          {
+            "name": "question_15753321003",
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "proficiency-in-net-and-c",
+        "description": null,
+        "label": "Proficiency in .Net and C#?",
+        "required": true,
+        "fields": [
+          {
+            "name": "question_15753322003",
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "how-did-you-hear-about-us",
+        "description": null,
+        "label": "How did you hear about us? ",
+        "required": true,
+        "fields": [
+          {
+            "name": "question_16299576003",
+            "type": "select",
+            "options": [
+              {
+                "label": "Careers Fair",
+                "value": 100842535003
+              },
+              {
+                "label": "Facebook",
+                "value": 100842536003
+              },
+              {
+                "label": "Indeed",
+                "value": 100842537003
+              },
+              {
+                "label": "Internal Referral",
+                "value": 100842538003
+              },
+              {
+                "label": "Industry Event",
+                "value": 100842539003
+              },
+              {
+                "label": "Instagram",
+                "value": 100842540003
+              },
+              {
+                "label": "Glassdoor",
+                "value": 100842541003
+              },
+              {
+                "label": "Google Search",
+                "value": 100842542003
+              },
+              {
+                "label": "Hired.com",
+                "value": 100842543003
+              },
+              {
+                "label": "LinkedIn (Inmail)",
+                "value": 100842544003
+              },
+              {
+                "label": "LinkedIn (Job Advert)",
+                "value": 100842545003
+              },
+              {
+                "label": "LinkedIn (Post/Feed)",
+                "value": 100842546003
+              },
+              {
+                "label": "Otta.com",
+                "value": 100842547003
+              },
+              {
+                "label": "Recruitment Agency",
+                "value": 100842548003
+              },
+              {
+                "label": "Wellfound",
+                "value": 100842549003
+              },
+              {
+                "label": "Word of Mouth",
+                "value": 100842550003
+              }
             ]
           }
         ]
@@ -156,45 +271,57 @@
     ]
   },
   "demographic_questions": {
-    "title": "Voluntary Demographic Survey (UK)",
-    "description": "<p>These questions are voluntary, and help us understand more about our candidates.&nbsp;One of our core values at Deliveroo is&nbsp;<strong>We celebrate difference</strong>, and we are always working to make sure our hiring processes are equitable and inclusive. By answering the questions below, you'll help us do that.</p>\n<p>Your responses are confidential, will not be tied to your application, and has no bearing on your candidacy. We only use aggregated demographic data to measure the performance of recruiting efforts.</p>\n<p>Before answering our questions below, please read our <a href=\"https://careers.deliveroo.co.uk/privacy-policy/\">privacy notice</a>.</p>",
+    "title": "Global D&I Demographics",
+    "description": "<p><em><span style=\"color: #203864;\">At Genius Sports &amp; Second Spectrum, we believe in better together, which means we don&rsquo;t only value diversity, but we are determined to make sure that everyone here feels included and valued.</span></em></p>\n<p><em><span style=\"color: #203864;\">We invite all applicants to share their demographic background. If you choose to complete this survey, your responses may be used to identify areas of improvement in our hiring process. All data that you provide will be <strong><u>completely anonymous</u></strong>, you will not be personally identifiable by any of the data you include. </span></em></p>\n<p><em><span style=\"color: #203864;\">This also means that if you choose to disclose a disability the Talent Acquisition team will not be able to identify you personally to assist with any measures that might help during the process. &nbsp;Therefore, if you require any support throughout the application or interview process please ensure to reach out to the team directly and make them aware of any requirements, and we will do what we can to help.</span></em></p>",
     "questions": [
       {
-        "attribute": "how-would-you-describe-your-gender-identity",
+        "attribute": "gender",
         "description": null,
-        "label": "How would you describe your gender identity?",
+        "label": "Gender",
         "required": true,
         "fields": [
           {
-            "name": 953,
+            "name": 4018039003,
             "type": "select",
             "options": [
               {
-                "value": 5189,
+                "value": 4108780003,
                 "label": "Female",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 5187,
+                "value": 4108781003,
                 "label": "Male",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 5188,
-                "label": "Non-binary / non-conforming",
+                "value": 4108797003,
+                "label": "Non-Binary ",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 5191,
-                "label": "Prefer to self-describe",
+                "value": 4108798003,
+                "label": "Transgender - Male ",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4108799003,
+                "label": "Transgender - Female ",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4113529003,
+                "label": "Other (please specify)",
                 "free_form": true,
                 "decline_to_answer": false
               },
               {
-                "value": 8100,
+                "value": 4113530003,
                 "label": "I don't wish to answer",
                 "free_form": false,
                 "decline_to_answer": true
@@ -204,41 +331,53 @@
         ]
       },
       {
-        "attribute": "what-is-your-sexual-orientation",
+        "attribute": "sexual-orientation",
         "description": null,
-        "label": "What is your sexual orientation?",
+        "label": "Sexual Orientation ",
         "required": true,
         "fields": [
           {
-            "name": 954,
+            "name": 4018040003,
             "type": "select",
             "options": [
               {
-                "value": 5192,
-                "label": "Heterosexual / Straight",
+                "value": 4108782003,
+                "label": "Heterosexual",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 5193,
-                "label": "Gay / Lesbian",
+                "value": 4108783003,
+                "label": "Gay",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 5194,
-                "label": "Bisexual",
+                "value": 4108784003,
+                "label": "Lesbian ",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 5196,
-                "label": "Prefer to self-describe",
+                "value": 4108785003,
+                "label": "Bisexual ",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4108786003,
+                "label": "Questioning ",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4113531003,
+                "label": "Other (please specify)",
                 "free_form": true,
                 "decline_to_answer": false
               },
               {
-                "value": 8101,
+                "value": 4113532003,
                 "label": "I don't wish to answer",
                 "free_form": false,
                 "decline_to_answer": true
@@ -248,29 +387,65 @@
         ]
       },
       {
-        "attribute": "would-you-say-you-have-a-disability",
+        "attribute": "disability",
         "description": null,
-        "label": "Would you say you have a disability?",
+        "label": "Disability ",
         "required": true,
         "fields": [
           {
-            "name": 955,
+            "name": 4018042003,
             "type": "select",
             "options": [
               {
-                "value": 5197,
-                "label": "Yes, I have a disability",
+                "value": 4108803003,
+                "label": "Sensory impairment",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 5198,
-                "label": "No, I do not have a disability",
+                "value": 4108804003,
+                "label": "Learning/cognitive impairment",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 8102,
+                "value": 4108805003,
+                "label": "Chronic condition",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4108806003,
+                "label": "Mental illness",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4108807003,
+                "label": "Neurodiverse ",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4108808003,
+                "label": "Physical impairment",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4108965003,
+                "label": "None",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4113533003,
+                "label": "Other (please specify)",
+                "free_form": true,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4113534003,
                 "label": "I don't wish to answer",
                 "free_form": false,
                 "decline_to_answer": true
@@ -280,195 +455,197 @@
         ]
       },
       {
-        "attribute": "how-would-your-describe-your-ethnicity",
+        "attribute": "race-ethnicity",
         "description": null,
-        "label": "How would your describe your ethnicity?",
+        "label": "Race & Ethnicity ",
         "required": true,
         "fields": [
           {
-            "name": 956,
+            "name": 4018043003,
             "type": "select",
             "options": [
               {
-                "value": 8150,
-                "label": "Asian: Bangladeshi",
+                "value": 4108811003,
+                "label": "Asian - Indian ",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 8151,
-                "label": "Asian: Chinese",
+                "value": 4108812003,
+                "label": "Asian - Pakistani ",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 8152,
-                "label": "Asian: Indian",
+                "value": 4108813003,
+                "label": "Asian - Bangladeshi ",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 8153,
-                "label": "Asian: Pakistani",
+                "value": 4108814003,
+                "label": "Asian - Other (Please Specify) ",
+                "free_form": true,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4108815003,
+                "label": "American Indian or Alaska Native",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 8154,
-                "label": "Asian: Other",
+                "value": 4108816003,
+                "label": "Aboriginal and/or Torres Strait Islander (Please Specify)",
+                "free_form": true,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4108817003,
+                "label": "African American",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 8155,
-                "label": "Black: African",
+                "value": 4108818003,
+                "label": "Black - Caribbean",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 8156,
-                "label": "Black: Caribbean",
+                "value": 4108819003,
+                "label": "Black - African",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 8157,
-                "label": "Black: Other",
+                "value": 4108820003,
+                "label": "Black British ",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 5202,
-                "label": "Mixed ethnic groups",
+                "value": 4108821003,
+                "label": "Black - Other (Please Specify) ",
+                "free_form": true,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4108822003,
+                "label": "Hispanic, Latino or Spanish ",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 8158,
-                "label": "White: British",
+                "value": 4108839003,
+                "label": "Mestizo Colombian",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 8159,
-                "label": "White: Irish",
+                "value": 4108843003,
+                "label": "Afro-Colombian",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 8160,
-                "label": "White: Other",
+                "value": 4108823003,
+                "label": "Middle Eastern ",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 5204,
-                "label": "Any other ethnic group",
+                "value": 4108824003,
+                "label": "North African",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 8103,
-                "label": "I don't wish to answer",
-                "free_form": false,
-                "decline_to_answer": true
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "would-you-describe-yourself-as-neurodivergent",
-        "description": null,
-        "label": "Would you describe yourself as neurodivergent?",
-        "required": true,
-        "fields": [
-          {
-            "name": 41738,
-            "type": "select",
-            "options": [
-              {
-                "value": 252206,
-                "label": "Yes",
+                "value": 4108825003,
+                "label": "Mixed - White & Black Caribbean ",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 252207,
-                "label": "No",
+                "value": 4108826003,
+                "label": "Mixed - White & Black African ",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 252208,
-                "label": "I don't wish to answer",
-                "free_form": false,
-                "decline_to_answer": true
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "what-was-the-occupation-of-your-main-household-earner-when-y",
-        "description": null,
-        "label": "What was the occupation of your main household earner when you were aged 14? ",
-        "required": true,
-        "fields": [
-          {
-            "name": 41739,
-            "type": "select",
-            "options": [
-              {
-                "value": 252209,
-                "label": "Modern professional & traditional professional occupations such as: teacher, nurse, physiotherapist, social worker, musician, police officer (sergeant or above), software designer, accountant, solicitor, medical practitioner, scientist, civil / mechanical",
+                "value": 4108827003,
+                "label": "Mixed - White & Asian ",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 252210,
-                "label": "Senior, middle or junior managers or administrators such as: finance manager, chief executive, large business owner, office manager, retail manager, bank manager, restaurant manager, warehouse manager.",
+                "value": 4108828003,
+                "label": "Mixed - Other (Please Specify) ",
+                "free_form": true,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4108829003,
+                "label": "White - British ",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 252211,
-                "label": "Clerical and intermediate occupations such as: secretary, personal assistant, call centre agent, clerical worker, nursery nurse.",
+                "value": 4108830003,
+                "label": "White - European (Please Specify)",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 252212,
-                "label": "Technical and craft occupations such as: motor mechanic, plumber, printer, electrician, gardener, train driver.",
+                "value": 4108831003,
+                "label": "White - US",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 252213,
-                "label": "Routine, semi-routine manual and service occupations such as: postal worker, machine operative, security guard, caretaker, farm worker, catering assistant, sales assistant, HGV driver, cleaner, porter, packer, labourer, waiter/waitress, bar staff.",
+                "value": 4108832003,
+                "label": "White - Other (Please Specify)",
+                "free_form": true,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4108835003,
+                "label": "East Asian - Chinese",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 252214,
-                "label": "Long-term unemployed (claimed Jobseeker’s Allowance or earlier unemployment benefit for more than a year).",
+                "value": 4108836003,
+                "label": "East Asian - Japanese ",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 252215,
-                "label": "Small business owners who employed less than 25 people such as: corner shop owners, small plumbing companies, retail shop owner, single restaurant or cafe owner, taxi owner, garage owner.",
+                "value": 4108837003,
+                "label": "East Asian - Malaysian  ",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 252216,
-                "label": "Other such as: retired, this question does not apply to me, I don’t know.",
+                "value": 4108838003,
+                "label": "East Asian - Korean ",
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
-                "value": 252217,
+                "value": 4108840003,
+                "label": "East Asian - Other (Please Specify) ",
+                "free_form": true,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4108841003,
+                "label": "Other (Please Specify)",
+                "free_form": true,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4113535003,
                 "label": "I don't wish to answer",
                 "free_form": false,
                 "decline_to_answer": true
@@ -490,7 +667,23 @@
     "title": null,
     "description": null,
     "questions": [
+      {
+        "attribute": "city_applicant",
+        "description": null,
+        "label": "Location (City))",
+        "required": false,
+        "fields": [
+          {
+            "id": "auto_complete_input",
+            "selector": "input[name=\"job_application[location]\"]",
+            "type": "location",
+            "max_length": 255,
+            "options": [
 
+            ]
+          }
+        ]
+      }
     ]
   }
 }
