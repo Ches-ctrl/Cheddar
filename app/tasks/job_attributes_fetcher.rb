@@ -48,7 +48,8 @@ class JobAttributesFetcher < ApplicationTask
   end
 
   def apply_with_cheddar_conditions(question)
-    question['required'] && question['fields'].find { |field| field['type'].eql?('location') }
+    (question['required'] && question['fields'].find { |field| field['type'].eql?('location') }) ||
+      question['fields'].find { |field| field['type'].eql?(:group) }
   end
 
   def core_params
