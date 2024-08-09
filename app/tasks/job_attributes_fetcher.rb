@@ -42,14 +42,13 @@ class JobAttributesFetcher < ApplicationTask
   # i.e : autocomplete & mandatory location
   # Returns true if no such question is found, indicating the user can apply with Cheddar.
   def apply_with_cheddar
-    return false unless form_structure.dig(:core_questions, :questions)
+    return false unless form_structure.dig('core_questions', 'questions')
 
-    form_structure.dig(:core_questions, :questions)
-                  .none? { |question| apply_with_cheddar_conditions(question) }
+    form_structure.dig('core_questions', 'questions').none? { |question| apply_with_cheddar_conditions(question) }
   end
 
   def apply_with_cheddar_conditions(question)
-    question[:required] && question[:fields].find { |field| field[:type].eql?(:location) }
+    question['required'] && question['fields'].find { |field| field['type'].eql?('location') }
   end
 
   def core_params

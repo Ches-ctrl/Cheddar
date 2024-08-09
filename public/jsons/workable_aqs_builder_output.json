@@ -5,7 +5,7 @@
     "description": null,
     "questions": [
       {
-        "attribute": "firstname",
+        "attribute": "first_name",
         "description": null,
         "label": "First name",
         "required": true,
@@ -21,7 +21,7 @@
         ]
       },
       {
-        "attribute": "lastname",
+        "attribute": "last_name",
         "description": null,
         "label": "Last name",
         "required": true,
@@ -53,7 +53,7 @@
         ]
       },
       {
-        "attribute": "phone",
+        "attribute": "phone_number",
         "description": null,
         "label": "Phone",
         "required": true,
@@ -123,7 +123,7 @@
         ]
       },
       {
-        "attribute": "CA_19347",
+        "attribute": "ca_19347",
         "description": null,
         "label": "As a regulated bank, we require our successful candidates to go through background checks (including but not limited to social media, employment references, fraud checks and criminal history). If we were to conduct these checks, is there anything you would like to flag for us to be aware of? If so, please provide details.",
         "required": true,
@@ -139,7 +139,7 @@
         ]
       },
       {
-        "attribute": "CA_10643",
+        "attribute": "ca_10643",
         "description": null,
         "label": "Will you now, or in the future, require sponsorship to work in the UK?",
         "required": true,
@@ -155,7 +155,7 @@
         ]
       },
       {
-        "attribute": "CA_23830",
+        "attribute": "ca_23830",
         "description": null,
         "label": "Please confirm the current right to work document you hold, eg. British passport, settled status, ILR, Skilled Worker Visa (If visa, please confirm type and expiry):",
         "required": true,
@@ -171,7 +171,7 @@
         ]
       },
       {
-        "attribute": "CA_10644",
+        "attribute": "ca_10644",
         "description": null,
         "label": "Have you been convicted of any criminal offences that are not yet spent under the Rehabilitation of Offenders Act?",
         "required": true,
@@ -187,7 +187,7 @@
         ]
       },
       {
-        "attribute": "CA_19346",
+        "attribute": "ca_19346",
         "description": null,
         "label": "In the last 5 years, have you had any CCJs, IVAs, bankruptcies or debt management plans? If yes, please provide received & settled dates & amounts.",
         "required": true,
@@ -203,7 +203,7 @@
         ]
       },
       {
-        "attribute": "CA_21612",
+        "attribute": "ca_21612",
         "description": null,
         "label": "Have you been dismissed from any employment in the past five years, other than for reasons of ill-health or redundancy?",
         "required": true,
@@ -226,7 +226,7 @@
         ]
       },
       {
-        "attribute": "CA_10646",
+        "attribute": "ca_10646",
         "description": null,
         "label": "Have you previously worked for Starling Bank (either directly employed or as a contractor / temporary worker)?",
         "required": true,
@@ -242,7 +242,7 @@
         ]
       },
       {
-        "attribute": "CA_1750",
+        "attribute": "ca_1750",
         "description": null,
         "label": "What are your salary expectations?",
         "required": true,
@@ -258,7 +258,7 @@
         ]
       },
       {
-        "attribute": "CA_10647",
+        "attribute": "ca_10647",
         "description": null,
         "label": "Please can you confirm your current location?",
         "required": true,
@@ -274,7 +274,7 @@
         ]
       },
       {
-        "attribute": "CA_13028",
+        "attribute": "ca_13028",
         "description": null,
         "label": "Do you need any reasonable adjustments for the recruitment process?",
         "required": false,
@@ -290,7 +290,7 @@
         ]
       },
       {
-        "attribute": "CA_13029",
+        "attribute": "ca_13029",
         "description": null,
         "label": "We want to make sure we're referring to you properly in your notes and interview communication so please tell us, what are your pronouns?",
         "required": false,
@@ -306,7 +306,7 @@
         ]
       },
       {
-        "attribute": "CA_23832",
+        "attribute": "ca_23832",
         "description": null,
         "label": "Where did you hear about this role?",
         "required": true,
@@ -393,7 +393,7 @@
         ]
       },
       {
-        "attribute": "CA_23834",
+        "attribute": "ca_23834",
         "description": null,
         "label": "If referred by a friend, please confirm their full name & employee ID:",
         "required": false,
@@ -409,7 +409,23 @@
         ]
       },
       {
-        "attribute": "CA_30788",
+        "attribute": "ca_23833",
+        "description": null,
+        "label": "If Agency, please confirm the agency name:",
+        "required": false,
+        "fields": [
+          {
+            "name": "CA_23833",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "ca_30788",
         "description": null,
         "label": "Do you know anyone who works at (or is in the process of joining) Starling Bank or Engine by Starling? (Please select all that apply)",
         "required": true,
@@ -444,7 +460,7 @@
         ]
       },
       {
-        "attribute": "CA_30789",
+        "attribute": "ca_30789",
         "description": null,
         "label": "If you have answered yes, please provide their full names:",
         "required": false,
@@ -460,13 +476,13 @@
         ]
       },
       {
-        "attribute": "QA_8387785",
+        "attribute": "qa_8594860",
         "description": null,
         "label": "Why would Starling regret not hiring you?",
         "required": true,
         "fields": [
           {
-            "name": "QA_8387785",
+            "name": "QA_8594860",
             "selector": null,
             "type": "textarea",
             "options": [
@@ -476,15 +492,291 @@
         ]
       },
       {
-        "attribute": "QA_8387786",
+        "attribute": "qa_8594861",
         "description": null,
         "label": "Do you have the right to work in the UK without requiring sponsorship?",
         "required": true,
         "fields": [
           {
-            "name": "QA_8387786",
+            "name": "QA_8594861",
             "selector": null,
             "type": "boolean",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "qa_8594862",
+        "description": null,
+        "label": "Please select the right to work documents that you currently hold:",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_8594862",
+            "selector": null,
+            "type": "select",
+            "options": [
+              {
+                "value": "4552979",
+                "label": "UK Passport"
+              },
+              {
+                "value": "4552980",
+                "label": "Indefinite leave to remain"
+              },
+              {
+                "value": "4552981",
+                "label": "EU/EEA Passport - settled status"
+              },
+              {
+                "value": "4552982",
+                "label": "EU/EEA Passport - pre-settled status"
+              },
+              {
+                "value": "4552983",
+                "label": "Tier 2 General"
+              },
+              {
+                "value": "4552984",
+                "label": "Tier 2 Dependant"
+              },
+              {
+                "value": "4552985",
+                "label": "Tier 4 - Student Visa"
+              },
+              {
+                "value": "4552986",
+                "label": "Tier 5 - Youth Mobility Scheme"
+              },
+              {
+                "value": "4552987",
+                "label": "Graduate Visa"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "qa_8594863",
+        "description": null,
+        "label": "Tell us why Starling would be mad not to hire you.",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_8594863",
+            "selector": null,
+            "type": "textarea",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "qa_8594864",
+        "description": null,
+        "label": "If 'Yes', please provide details of the type of Passport / Visa you hold:",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_8594864",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "qa_8594865",
+        "description": null,
+        "label": "Please select the right to work documents that you currently hold:",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_8594865",
+            "selector": null,
+            "type": "select",
+            "options": [
+              {
+                "value": "4552988",
+                "label": "UK Passport"
+              },
+              {
+                "value": "4552989",
+                "label": "Indefinite leave to remain"
+              },
+              {
+                "value": "4552990",
+                "label": "Tier 2 General"
+              },
+              {
+                "value": "4552991",
+                "label": "Tier 2 Dependant"
+              },
+              {
+                "value": "4552992",
+                "label": "Tier 5 - Youth Mobility Scheme"
+              },
+              {
+                "value": "4552993",
+                "label": "None - sponsorship required"
+              },
+              {
+                "value": "4552994",
+                "label": "EU/EEA Passport - settled status"
+              },
+              {
+                "value": "4552995",
+                "label": "EU/EEA Passport - pre-settled status"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "qa_8594866",
+        "description": null,
+        "label": "Would you prefer to be based from London or Southampton?",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_8594866",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "qa_8594867",
+        "description": null,
+        "label": "What is your office location preference?",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_8594867",
+            "selector": null,
+            "type": "select",
+            "options": [
+              {
+                "value": "4552996",
+                "label": "London"
+              },
+              {
+                "value": "4552997",
+                "label": "Southampton"
+              },
+              {
+                "value": "4552998",
+                "label": "Always remote"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "qa_8594868",
+        "description": null,
+        "label": "Please select the right to work document that you currently hold:",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_8594868",
+            "selector": null,
+            "type": "multi_select",
+            "options": [
+              {
+                "value": "4552999",
+                "label": "UK Passport"
+              },
+              {
+                "value": "4553000",
+                "label": "EU/EEA Passport - settled status"
+              },
+              {
+                "value": "4553001",
+                "label": "EU/EEA Passport - pre-settled status"
+              },
+              {
+                "value": "4553002",
+                "label": "Indefinite leave to remain"
+              },
+              {
+                "value": "4553003",
+                "label": "Tier 1 Exceptional Talent"
+              },
+              {
+                "value": "4553004",
+                "label": "Tier 2 General Sponsored"
+              },
+              {
+                "value": "4553005",
+                "label": "Tier 2 Dependant"
+              },
+              {
+                "value": "4553006",
+                "label": "Tier 4 Student Visa"
+              },
+              {
+                "value": "4553007",
+                "label": "Tier 5 - Youth Mobility Scheme"
+              },
+              {
+                "value": "4553008",
+                "label": "None - sponsorship required"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "qa_8594869",
+        "description": null,
+        "label": "Please confirm the right to work document you hold eg. British Passport, Indefinite Leave to Remain, Settled Status, etc.:",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_8594869",
+            "selector": null,
+            "type": "textarea",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "qa_8594870",
+        "description": null,
+        "label": "One of the major projects we have at the moment would require you to work once a week from Fleet, Hampshire. Is that something you’d be willing to do?",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_8594870",
+            "selector": null,
+            "type": "boolean",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "qa_8594871",
+        "description": null,
+        "label": "Do you have a preference for working on user-facing teams or working on internal-facing teams?",
+        "required": true,
+        "fields": [
+          {
+            "name": "QA_8594871",
+            "selector": null,
+            "type": "textarea",
             "options": [
 
             ]

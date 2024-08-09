@@ -24,6 +24,7 @@ class ApplicationQuestion
   # nb: attribute can be nil, so safe navigation operator is necessary with #include?
 
   def agreement_checkbox? = type.eql?("agreement_checkbox")
+  def attachment? = cover_letter? || photo? || resume?
   def boolean? = type.eql?("boolean")
   def checkbox? = type.eql?("checkbox")
   def cover_letter? = attribute&.include?("cover_letter")
@@ -31,6 +32,7 @@ class ApplicationQuestion
   def input? = type.eql?("input") || type.eql?("education_input")
   def linkedin_related? = attribute&.include?('linkedin')
   def multi_select? = type.eql?("multi_select")
+  def photo? = attribute.eql?("photo")
   def radiogroup? = type.eql?("radiogroup")
   def resume? = attribute.eql?("resume")
   def select? = type.eql?("select") || type.eql?("education_select")
@@ -59,7 +61,7 @@ class ApplicationQuestion
   def option_text_values(values)
     return values if options.none?
 
-    options.to_h.invert.slice(*values).values
+    options.to_h.select { |_k, v| values.include?(v.to_s) }.keys
   end
 
   def options

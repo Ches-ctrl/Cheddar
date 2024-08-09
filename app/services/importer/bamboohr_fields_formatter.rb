@@ -68,18 +68,7 @@ module Importer
         default_attribute(raw_attribute)
     end
 
-    def attribute_inclusive_match(key)
-      ATTRIBUTES_DICTIONARY.find { |k, _v| default_attribute(key).include?(k) }&.last
-    end
-
-    def attribute_strict_match(key)
-      ATTRIBUTES_DICTIONARY[key]
-    end
-
-    # attribute is CamelCase variable or a Text Question
-    def default_attribute(key)
-      key.underscore.first(60).gsub(' ', '_').gsub('.', '_')
-    end
+    def attributes_dictionary = ATTRIBUTES_DICTIONARY
 
     ATTRIBUTES_DICTIONARY = {
       'firstName' => 'first_name',
