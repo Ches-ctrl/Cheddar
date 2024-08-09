@@ -87,44 +87,21 @@
         ]
       },
       {
-        "attribute": "website",
+        "attribute": "cover_letter",
         "description": null,
-        "label": "Website",
+        "label": "Cover Letter",
         "required": false,
         "fields": [
           {
-            "name": "question_6851483007",
-            "type": "input",
+            "name": "cover_letter",
+            "type": "upload",
             "options": [
 
             ]
-          }
-        ]
-      },
-      {
-        "attribute": "current-company",
-        "description": null,
-        "label": "Current Company",
-        "required": true,
-        "fields": [
+          },
           {
-            "name": "question_49159746",
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "current-title",
-        "description": null,
-        "label": "Current Title",
-        "required": true,
-        "fields": [
-          {
-            "name": "question_49159747",
-            "type": "input",
+            "name": "cover_letter_text",
+            "type": "textarea",
             "options": [
 
             ]
@@ -138,7 +115,7 @@
         "required": true,
         "fields": [
           {
-            "name": "question_49159748",
+            "name": "question_49679679",
             "type": "input",
             "options": [
 
@@ -147,13 +124,13 @@
         ]
       },
       {
-        "attribute": "do-you-have-experience-at-a-saa_s-company",
+        "attribute": "had-you-heard-of-deliveroo-before-you-started-your-job-searc",
         "description": null,
-        "label": "Do you have experience at a SaaS Company? ",
+        "label": "Had you heard of Deliveroo before you started your job search?",
         "required": true,
         "fields": [
           {
-            "name": "question_49159749",
+            "name": "question_49679681",
             "type": "select",
             "options": [
               {
@@ -169,13 +146,13 @@
         ]
       },
       {
-        "attribute": "do-you-have-startup-experience",
+        "attribute": "would-you-require-a-visa-for-employment-for-where-this-job-i",
         "description": null,
-        "label": "Do you have startup experience?  ",
+        "label": "Would you require a visa for employment for where this job is based (London)?",
         "required": true,
         "fields": [
           {
-            "name": "question_49159750",
+            "name": "question_49694953",
             "type": "select",
             "options": [
               {
@@ -191,45 +168,16 @@
         ]
       },
       {
-        "attribute": "are-you-based-in-the-london-area-and-available-to-come-into-",
+        "attribute": "what-are-you-compensation-expectations",
         "description": null,
-        "label": "Are you based in the London area and available to come into office a couple times a week? ",
+        "label": "What are you compensation expectations?",
         "required": true,
         "fields": [
           {
-            "name": "question_49159751",
-            "type": "select",
+            "name": "question_49694954",
+            "type": "input",
             "options": [
-              {
-                "label": "Yes",
-                "value": 1
-              },
-              {
-                "label": "No",
-                "value": 0
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "have-you-been-employed-by-narvar-in-the-past",
-        "description": null,
-        "label": "Have you been employed by Narvar in the past? \n\n",
-        "required": true,
-        "fields": [
-          {
-            "name": "question_49159754",
-            "type": "select",
-            "options": [
-              {
-                "label": "Yes",
-                "value": 1
-              },
-              {
-                "label": "No",
-                "value": 0
-              }
+
             ]
           }
         ]
@@ -237,23 +185,357 @@
     ]
   },
   "demographic_questions": {
-    "title": null,
-    "description": null,
+    "title": "Voluntary Demographic Survey (UK)",
+    "description": "<p>These questions are voluntary, and help us understand more about our candidates.&nbsp;One of our core values at Deliveroo is&nbsp;<strong>We celebrate difference</strong>, and we are always working to make sure our hiring processes are equitable and inclusive. By answering the questions below, you'll help us do that.</p>\n<p>Your responses are confidential, will not be tied to your application, and has no bearing on your candidacy. We only use aggregated demographic data to measure the performance of recruiting efforts.</p>\n<p>Before answering our questions below, please read our <a href=\"https://careers.deliveroo.co.uk/privacy-policy/\">privacy notice</a>.</p>",
     "questions": [
-
+      {
+        "attribute": "how-would-you-describe-your-gender-identity",
+        "description": null,
+        "label": "How would you describe your gender identity?",
+        "required": true,
+        "fields": [
+          {
+            "name": 953,
+            "type": "select",
+            "options": [
+              {
+                "value": 5189,
+                "label": "Female",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 5187,
+                "label": "Male",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 5188,
+                "label": "Non-binary / non-conforming",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 5191,
+                "label": "Prefer to self-describe",
+                "free_form": true,
+                "decline_to_answer": false
+              },
+              {
+                "value": 8100,
+                "label": "I don't wish to answer",
+                "free_form": false,
+                "decline_to_answer": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "what-is-your-sexual-orientation",
+        "description": null,
+        "label": "What is your sexual orientation?",
+        "required": true,
+        "fields": [
+          {
+            "name": 954,
+            "type": "select",
+            "options": [
+              {
+                "value": 5192,
+                "label": "Heterosexual / Straight",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 5193,
+                "label": "Gay / Lesbian",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 5194,
+                "label": "Bisexual",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 5196,
+                "label": "Prefer to self-describe",
+                "free_form": true,
+                "decline_to_answer": false
+              },
+              {
+                "value": 8101,
+                "label": "I don't wish to answer",
+                "free_form": false,
+                "decline_to_answer": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "would-you-say-you-have-a-disability",
+        "description": null,
+        "label": "Would you say you have a disability?",
+        "required": true,
+        "fields": [
+          {
+            "name": 955,
+            "type": "select",
+            "options": [
+              {
+                "value": 5197,
+                "label": "Yes, I have a disability",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 5198,
+                "label": "No, I do not have a disability",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 8102,
+                "label": "I don't wish to answer",
+                "free_form": false,
+                "decline_to_answer": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "how-would-your-describe-your-ethnicity",
+        "description": null,
+        "label": "How would your describe your ethnicity?",
+        "required": true,
+        "fields": [
+          {
+            "name": 956,
+            "type": "select",
+            "options": [
+              {
+                "value": 8150,
+                "label": "Asian: Bangladeshi",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 8151,
+                "label": "Asian: Chinese",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 8152,
+                "label": "Asian: Indian",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 8153,
+                "label": "Asian: Pakistani",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 8154,
+                "label": "Asian: Other",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 8155,
+                "label": "Black: African",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 8156,
+                "label": "Black: Caribbean",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 8157,
+                "label": "Black: Other",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 5202,
+                "label": "Mixed ethnic groups",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 8158,
+                "label": "White: British",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 8159,
+                "label": "White: Irish",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 8160,
+                "label": "White: Other",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 5204,
+                "label": "Any other ethnic group",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 8103,
+                "label": "I don't wish to answer",
+                "free_form": false,
+                "decline_to_answer": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "would-you-describe-yourself-as-neurodivergent",
+        "description": null,
+        "label": "Would you describe yourself as neurodivergent?",
+        "required": true,
+        "fields": [
+          {
+            "name": 41738,
+            "type": "select",
+            "options": [
+              {
+                "value": 252206,
+                "label": "Yes",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 252207,
+                "label": "No",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 252208,
+                "label": "I don't wish to answer",
+                "free_form": false,
+                "decline_to_answer": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "what-was-the-occupation-of-your-main-household-earner-when-y",
+        "description": null,
+        "label": "What was the occupation of your main household earner when you were aged 14? ",
+        "required": true,
+        "fields": [
+          {
+            "name": 41739,
+            "type": "select",
+            "options": [
+              {
+                "value": 252209,
+                "label": "Modern professional & traditional professional occupations such as: teacher, nurse, physiotherapist, social worker, musician, police officer (sergeant or above), software designer, accountant, solicitor, medical practitioner, scientist, civil / mechanical",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 252210,
+                "label": "Senior, middle or junior managers or administrators such as: finance manager, chief executive, large business owner, office manager, retail manager, bank manager, restaurant manager, warehouse manager.",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 252211,
+                "label": "Clerical and intermediate occupations such as: secretary, personal assistant, call centre agent, clerical worker, nursery nurse.",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 252212,
+                "label": "Technical and craft occupations such as: motor mechanic, plumber, printer, electrician, gardener, train driver.",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 252213,
+                "label": "Routine, semi-routine manual and service occupations such as: postal worker, machine operative, security guard, caretaker, farm worker, catering assistant, sales assistant, HGV driver, cleaner, porter, packer, labourer, waiter/waitress, bar staff.",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 252214,
+                "label": "Long-term unemployed (claimed Jobseeker’s Allowance or earlier unemployment benefit for more than a year).",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 252215,
+                "label": "Small business owners who employed less than 25 people such as: corner shop owners, small plumbing companies, retail shop owner, single restaurant or cafe owner, taxi owner, garage owner.",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 252216,
+                "label": "Other such as: retired, this question does not apply to me, I don’t know.",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 252217,
+                "label": "I don't wish to answer",
+                "free_form": false,
+                "decline_to_answer": true
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   "compliance_questions": {
     "title": null,
     "description": null,
     "questions": [
+
     ]
   },
   "location_questions": {
     "title": null,
     "description": null,
     "questions": [
+      {
+        "attribute": "city_applicant",
+        "description": null,
+        "label": "Location (City))",
+        "required": false,
+        "fields": [
+          {
+            "id": "auto_complete_input",
+            "selector": "input[name=\"job_application[location]\"]",
+            "type": "location",
+            "max_length": 255,
+            "options": [
 
+            ]
+          }
+        ]
+      }
     ]
   }
 }

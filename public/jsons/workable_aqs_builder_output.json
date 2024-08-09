@@ -460,13 +460,13 @@
         ]
       },
       {
-        "attribute": "qa_8555724",
+        "attribute": "qa_8315183",
         "description": null,
-        "label": "Why would Engine regret not hiring you?",
+        "label": "Why would Starling Bank regret not hiring you?",
         "required": true,
         "fields": [
           {
-            "name": "QA_8555724",
+            "name": "QA_8315183",
             "selector": null,
             "type": "textarea",
             "options": [
@@ -476,13 +476,13 @@
         ]
       },
       {
-        "attribute": "qa_8555725",
+        "attribute": "qa_8315184",
         "description": null,
         "label": "Do you have the right to work in the UK without requiring sponsorship?",
         "required": true,
         "fields": [
           {
-            "name": "QA_8555725",
+            "name": "QA_8315184",
             "selector": null,
             "type": "boolean",
             "options": [

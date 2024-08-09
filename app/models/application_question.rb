@@ -60,25 +60,11 @@ class ApplicationQuestion
     fields.first
   end
 
-  def formatted_answered_value(job_application)
+  def answered_value(job_application)
     return job_application.resume.blob.url if resume? && job_application.resume.attached?
     return job_application.cover_letter.blob.url if cover_letter? && job_application.cover_letter.attached?
 
-    formatted_value(job_application, job_application.additional_info[attribute])
-  end
-
-  # formatted values depending on that ATS will required a specific formatter service object in the future
-  # ats = job_application.job.applicant_tracking_system.name
-  def formatted_date_value(_job_application, date)
-    return nil unless date
-
-    date.to_datetime.strftime('%m/%d/%Y')
-  end
-
-  def formatted_value(job_application, value)
-    return formatted_date_value(job_application, value) if date_picker?
-
-    value
+    job_application.additional_info[attribute]
   end
 
   def locator = field['selector'] || field['name']
@@ -98,7 +84,7 @@ class ApplicationQuestion
   end
 
   def payload(job_application)
-    { locator:, interaction: converted_type, value: formatted_answered_value(job_application) }
+    { locator:, interaction: converted_type, value: answered_value(job_application) }
   end
 
   def selector = field['selector'] || field['name'].to_s
