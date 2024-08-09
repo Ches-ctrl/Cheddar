@@ -47,7 +47,15 @@ class ApplicationQuestion
     type.eql?('textarea') ? 'input' : type
   end
 
-  def field = fields.first
+  def cover_letter_text_available?
+    attribute.eql?('cover_letter') && fields.count > 1 && fields.any? { |field| field['name'].eql?('cover_letter_text') }
+  end
+
+  def field
+    return fields.find { |field| field['name'].eql?('cover_letter_text') } if cover_letter_text_available?
+
+    fields.first
+  end
 
   def formatted_answered_value(job_application)
     return job_application.resume.blob.url if resume? && job_application.resume.attached?
