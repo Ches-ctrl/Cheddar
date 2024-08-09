@@ -64,7 +64,9 @@ class ApplicationQuestion
     return job_application.resume.blob.url if resume? && job_application.resume.attached?
     return job_application.cover_letter.blob.url if cover_letter? && job_application.cover_letter.attached?
 
-    job_application.additional_info[attribute]
+    value = job_application.additional_info[attribute]
+    value = value.reject(&:blank?) if value.is_a?(Array)
+    value.is_a?(Array) && value.count.eql?(1) ? value.first : value
   end
 
   def locator = field['selector'] || field['name']
