@@ -51,7 +51,7 @@
       {
         "description": null,
         "label": "Phone",
-        "required": true,
+        "required": false,
         "fields": [
           {
             "name": "phone",
@@ -109,17 +109,42 @@
       },
       {
         "description": null,
+<<<<<<< HEAD
         "label": "Where are you based?",
         "required": true,
         "fields": [
           {
             "name": "question_13506014003",
             "type": "input",
+=======
+        "label": "LinkedIn Profile",
+        "required": false,
+        "fields": [
+          {
+            "name": "question_4159819007",
+            "type": "input",
             "options": [
 
             ]
           }
         ],
+        "attribute": "linked_in-profile"
+      },
+      {
+        "description": null,
+        "label": "Why are you interested in working at CodePath?",
+        "required": true,
+        "fields": [
+          {
+            "name": "question_4159820007",
+            "type": "textarea",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
+            "options": [
+
+            ]
+          }
+        ],
+<<<<<<< HEAD
         "attribute": "where-are-you-based"
       },
       {
@@ -129,6 +154,32 @@
         "fields": [
           {
             "name": "question_13505957003",
+=======
+        "attribute": "why-are-you-interested-in-working-at-code_path"
+      },
+      {
+        "description": null,
+        "label": "Please describe the project you are most proud of.",
+        "required": true,
+        "fields": [
+          {
+            "name": "question_4179768007",
+            "type": "textarea",
+            "options": [
+
+            ]
+          }
+        ],
+        "attribute": "please-describe-the-project-you-are-most-proud-of"
+      },
+      {
+        "description": null,
+        "label": "Are you currently authorized to work in the United States?",
+        "required": true,
+        "fields": [
+          {
+            "name": "question_4159821007",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
             "type": "select",
             "options": [
               {
@@ -142,6 +193,7 @@
             ]
           }
         ],
+<<<<<<< HEAD
         "attribute": "location"
       },
       {
@@ -151,12 +203,70 @@
         "fields": [
           {
             "name": "question_13505959003",
+=======
+        "attribute": "are-you-currently-authorized-to-work-in-the-united-states"
+      },
+      {
+        "description": null,
+        "label": "How did you hear about CodePath? ",
+        "required": true,
+        "fields": [
+          {
+            "name": "question_4782743007",
+            "type": "select",
+            "options": [
+              {
+                "label": "LinkedIn",
+                "value": 6001295007
+              },
+              {
+                "label": "EDsurge",
+                "value": 6001296007
+              },
+              {
+                "label": "Idealist",
+                "value": 6001297007
+              },
+              {
+                "label": "Event/Conferences - Industry",
+                "value": 6001298007
+              },
+              {
+                "label": "News/Media",
+                "value": 6001299007
+              },
+              {
+                "label": "Referred by CodePath employee",
+                "value": 6001300007
+              },
+              {
+                "label": "Friend or Family (Non-employee)",
+                "value": 6001301007
+              },
+              {
+                "label": "Other",
+                "value": 6026487007
+              }
+            ]
+          }
+        ],
+        "attribute": "how-did-you-hear-about-code_path"
+      },
+      {
+        "description": null,
+        "label": "If you selected \"Referred by CodePath employee,\" please list their name.\n",
+        "required": false,
+        "fields": [
+          {
+            "name": "question_6561969007",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
             "type": "input",
             "options": [
 
             ]
           }
         ],
+<<<<<<< HEAD
         "attribute": "please-provide-your-salary-expectations"
       },
       {
@@ -266,42 +376,74 @@
           }
         ],
         "attribute": "how-did-you-hear-about-us"
+=======
+        "attribute": "if-you-selected-referred-by-code_path-employee-please-list-t"
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
       }
     ]
   },
   "demographic_questions": {
+<<<<<<< HEAD
     "title": "Global D&I Demographics",
     "description": "<p><em><span style=\"color: #203864;\">At Genius Sports &amp; Second Spectrum, we believe in better together, which means we don&rsquo;t only value diversity, but we are determined to make sure that everyone here feels included and valued.</span></em></p>\n<p><em><span style=\"color: #203864;\">We invite all applicants to share their demographic background. If you choose to complete this survey, your responses may be used to identify areas of improvement in our hiring process. All data that you provide will be <strong><u>completely anonymous</u></strong>, you will not be personally identifiable by any of the data you include. </span></em></p>\n<p><em><span style=\"color: #203864;\">This also means that if you choose to disclose a disability the Talent Acquisition team will not be able to identify you personally to assist with any measures that might help during the process. &nbsp;Therefore, if you require any support throughout the application or interview process please ensure to reach out to the team directly and make them aware of any requirements, and we will do what we can to help.</span></em></p>",
     "questions": [
       {
         "attribute": "gender",
         "label": "Gender",
+=======
+    "title": "U.S. Standard Demographic Questions",
+    "description": "We invite applicants to share their demographic background. If you choose to complete this survey, your responses may be used to identify areas of improvement in our hiring process.",
+    "questions": [
+      {
+        "attribute": "how-would-you-describe-your-gender-identity-mark-all-that-ap",
+        "label": "How would you describe your gender identity? (mark all that apply)",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
         "description": null,
-        "required": true,
+        "required": false,
         "fields": [
           {
+<<<<<<< HEAD
             "name": 4018039003,
             "type": "select",
             "options": [
               {
                 "value": 4108780003,
                 "label": "Female",
+=======
+            "name": 4006277007,
+            "type": "multi_select",
+            "options": [
+              {
+                "value": 4037604007,
+                "label": "Man",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4108781003,
                 "label": "Male",
+=======
+                "value": 4037605007,
+                "label": "Non-binary",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4108797003,
                 "label": "Non-Binary ",
+=======
+                "value": 4037606007,
+                "label": "Woman",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4108798003,
                 "label": "Transgender - Male ",
                 "free_form": false,
@@ -316,122 +458,237 @@
               {
                 "value": 4113529003,
                 "label": "Other (please specify)",
+=======
+                "value": 4037607007,
+                "label": "I prefer to self-describe",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": true,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4113530003,
+=======
+                "value": 4037608007,
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "label": "I don't wish to answer",
                 "free_form": false,
-                "decline_to_answer": true
+                "decline_to_answer": false
               }
             ]
           }
         ]
       },
       {
+<<<<<<< HEAD
         "attribute": "sexual-orientation",
         "label": "Sexual Orientation ",
+=======
+        "attribute": "how-would-you-describe-your-racial-ethnic-background-mark-al",
+        "label": "How would you describe your racial/ethnic background? (mark all that apply)",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
         "description": null,
-        "required": true,
+        "required": false,
         "fields": [
           {
+<<<<<<< HEAD
             "name": 4018040003,
             "type": "select",
             "options": [
               {
                 "value": 4108782003,
                 "label": "Heterosexual",
+=======
+            "name": 4006278007,
+            "type": "multi_select",
+            "options": [
+              {
+                "value": 4037609007,
+                "label": "Black or of African descent",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4108783003,
                 "label": "Gay",
+=======
+                "value": 4037610007,
+                "label": "East Asian",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4108784003,
                 "label": "Lesbian ",
+=======
+                "value": 4037611007,
+                "label": "Hispanic, Latinx or of Spanish Origin",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4108785003,
                 "label": "Bisexual ",
+=======
+                "value": 4037612007,
+                "label": "Indigenous, American Indian or Alaska Native",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4108786003,
                 "label": "Questioning ",
+=======
+                "value": 4037613007,
+                "label": "Middle Eastern or North African",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4113531003,
                 "label": "Other (please specify)",
+=======
+                "value": 4037614007,
+                "label": "Native Hawaiian or Pacific Islander",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4037615007,
+                "label": "South Asian",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4037616007,
+                "label": "Southeast Asian",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4037617007,
+                "label": "White or European",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4037618007,
+                "label": "I prefer to self-describe",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": true,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4113532003,
+=======
+                "value": 4037619007,
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "label": "I don't wish to answer",
                 "free_form": false,
-                "decline_to_answer": true
+                "decline_to_answer": false
               }
             ]
           }
         ]
       },
       {
+<<<<<<< HEAD
         "attribute": "disability",
         "label": "Disability ",
+=======
+        "attribute": "how-would-you-describe-your-sexual-orientation-mark-all-that",
+        "label": "How would you describe your sexual orientation? (mark all that apply)",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
         "description": null,
-        "required": true,
+        "required": false,
         "fields": [
           {
+<<<<<<< HEAD
             "name": 4018042003,
             "type": "select",
             "options": [
               {
                 "value": 4108803003,
                 "label": "Sensory impairment",
+=======
+            "name": 4006279007,
+            "type": "multi_select",
+            "options": [
+              {
+                "value": 4037620007,
+                "label": "Asexual",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4108804003,
                 "label": "Learning/cognitive impairment",
+=======
+                "value": 4037621007,
+                "label": "Bisexual and/or pansexual",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4108805003,
                 "label": "Chronic condition",
+=======
+                "value": 4037622007,
+                "label": "Gay",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4108806003,
                 "label": "Mental illness",
+=======
+                "value": 4037623007,
+                "label": "Heterosexual",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4108807003,
                 "label": "Neurodiverse ",
+=======
+                "value": 4037624007,
+                "label": "Lesbian",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4108808003,
                 "label": "Physical impairment",
+=======
+                "value": 4037625007,
+                "label": "Queer",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4108965003,
                 "label": "None",
                 "free_form": false,
@@ -440,26 +697,40 @@
               {
                 "value": 4113533003,
                 "label": "Other (please specify)",
+=======
+                "value": 4037626007,
+                "label": "I prefer to self-describe",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": true,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4113534003,
+=======
+                "value": 4037627007,
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "label": "I don't wish to answer",
                 "free_form": false,
-                "decline_to_answer": true
+                "decline_to_answer": false
               }
             ]
           }
         ]
       },
       {
+<<<<<<< HEAD
         "attribute": "race-ethnicity",
         "label": "Race & Ethnicity ",
+=======
+        "attribute": "do-you-identify-as-transgender-select-one",
+        "label": "Do you identify as transgender? (select one)",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
         "description": null,
-        "required": true,
+        "required": false,
         "fields": [
           {
+<<<<<<< HEAD
             "name": 4018043003,
             "type": "select",
             "options": [
@@ -562,22 +833,67 @@
               {
                 "value": 4108825003,
                 "label": "Mixed - White & Black Caribbean ",
+=======
+            "name": 4006280007,
+            "type": "select",
+            "options": [
+              {
+                "value": 4037628007,
+                "label": "Yes",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4108826003,
                 "label": "Mixed - White & Black African ",
+=======
+                "value": 4037629007,
+                "label": "No",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4108827003,
                 "label": "Mixed - White & Asian ",
+=======
+                "value": 4037630007,
+                "label": "I prefer to self-describe",
+                "free_form": true,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4037631007,
+                "label": "I don't wish to answer",
+                "free_form": false,
+                "decline_to_answer": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "do-you-have-a-disability-or-chronic-condition-physical-visua",
+        "label": "Do you have a disability or chronic condition (physical, visual, auditory, cognitive, mental, emotional, or other) that substantially limits one or more of your major life activities, including mobility, communication (seeing, hearing, speaking), and learning? (select one)",
+        "description": null,
+        "required": false,
+        "fields": [
+          {
+            "name": 4006281007,
+            "type": "select",
+            "options": [
+              {
+                "value": 4037632007,
+                "label": "Yes",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4108828003,
                 "label": "Mixed - Other (Please Specify) ",
                 "free_form": true,
@@ -586,10 +902,15 @@
               {
                 "value": 4108829003,
                 "label": "White - British ",
+=======
+                "value": 4037633007,
+                "label": "No",
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "free_form": false,
                 "decline_to_answer": false
               },
               {
+<<<<<<< HEAD
                 "value": 4108830003,
                 "label": "White - European (Please Specify)",
                 "free_form": false,
@@ -645,9 +966,56 @@
               },
               {
                 "value": 4113535003,
+=======
+                "value": 4037634007,
+                "label": "I prefer to self-describe",
+                "free_form": true,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4037635007,
+>>>>>>> 0b83b89973af414de54c83068dabf7e0b91f658b
                 "label": "I don't wish to answer",
                 "free_form": false,
-                "decline_to_answer": true
+                "decline_to_answer": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "are-you-a-veteran-or-active-member-of-the-united-states-arme",
+        "label": "Are you a veteran or active member of the United States Armed Forces? (select one)",
+        "description": null,
+        "required": false,
+        "fields": [
+          {
+            "name": 4006282007,
+            "type": "select",
+            "options": [
+              {
+                "value": 4037636007,
+                "label": "Yes, I am a veteran or active member",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4037637007,
+                "label": "No, I am not a veteran or active member",
+                "free_form": false,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4037638007,
+                "label": "I prefer to self-describe",
+                "free_form": true,
+                "decline_to_answer": false
+              },
+              {
+                "value": 4037639007,
+                "label": "I don't wish to answer",
+                "free_form": false,
+                "decline_to_answer": false
               }
             ]
           }
@@ -656,6 +1024,10 @@
     ]
   },
   "compliance_questions": {
+    "title": "EEOC compliance questions",
+    "description": "&lt;p&gt;PUBLIC BURDEN STATEMENT: According to the Paperwork Reduction Act of 1995 no persons are required to respond to a collection of information unless such collection displays a valid OMB control number. This survey should take about 5 minutes to complete.&lt;/p&gt;\n",
+    "questions": [
+    ]
   },
   "location_questions": {
     "title": null,

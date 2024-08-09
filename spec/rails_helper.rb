@@ -107,8 +107,3 @@ Capybara.configure do |config|
   config.server = :default
   config.default_driver = :selenium_chrome_headless
 end
-
-# Background jobs run immediately in test environment
-# require 'sidekiq/testing'
-# Sidekiq::Testing.inline!
-# Capybara.server = :puma, { Silent: true }

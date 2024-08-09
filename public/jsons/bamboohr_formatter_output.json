@@ -68,6 +68,22 @@
         ]
       },
       {
+        "attribute": "resume",
+        "label": "Resume",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "resumeFileId",
+            "selector": null,
+            "type": "upload",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
         "attribute": "address_applicant",
         "label": "Address applicant",
         "description": null,
@@ -1406,13 +1422,13 @@
         ]
       },
       {
-        "attribute": "linkedin",
-        "label": "Linkedin",
+        "attribute": "referred_by",
+        "label": "Referred by",
         "description": null,
-        "required": false,
+        "required": true,
         "fields": [
           {
-            "name": "linkedinUrl",
+            "name": "referredBy",
             "selector": null,
             "type": "input",
             "options": [
@@ -1425,7 +1441,7 @@
         "attribute": "date_available",
         "label": "Date available",
         "description": null,
-        "required": false,
+        "required": true,
         "fields": [
           {
             "name": "dateAvailable",
@@ -1436,7 +1452,13 @@
             ]
           }
         ]
-      },
+      }
+    ]
+  },
+  "additional_questions": {
+    "title": "Additional questions",
+    "description": null,
+    "questions": [
       {
         "attribute": "desired_pay",
         "label": "Desired pay",
@@ -1508,9 +1530,169 @@
         "required": true,
         "fields": [
           {
-            "name": "resumeFileId",
+            "name": "1965",
             "selector": null,
-            "type": "upload",
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "have-you-applied-for-a-post-at-a-spear-centre-or-resurgo-tru",
+        "label": "Have you applied for a post at a Spear Centre or Resurgo Trust within the last 2 years?  If so, please state the role and date of application: ",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "1966",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "what-excites-you-about-the-work-of-resurgo-and-the-spear-pro",
+        "label": "What excites you about the work of Resurgo and the Spear Programme? (4000 character limit)",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "1968",
+            "selector": null,
+            "type": "textarea",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "it-is-an-occupational-requirement-to-be-a-practising-christi",
+        "label": "It is an occupational requirement to be a practising Christian. Please let us know a bit more about how you practise your Christian faith (for example, your engagement with a church community), and how you'd feel joining the church in which the Spear Centre is based at.",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "1967",
+            "selector": null,
+            "type": "textarea",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "we-are-committed-to-improving-our-diversity-as-an-organisati",
+        "label": "We are committed to improving our diversity as an organisation, and ensuring that at all levels we grow to reflect the communities we work in and with, as well as maximising opportunities for those who are under-represented in the charity sector. If you are from a socially disadvantaged or UK ethnic minority background, or have a disability, please indicate here (this question is optional so please feel free to leave blank if either this does not apply to you, or you prefer not to say).",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "1969",
+            "selector": null,
+            "type": "textarea",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "we-strongly-welcome-applications-from-people-with-physical-o",
+        "label": "We strongly welcome applications from people with physical or mental health conditions, neurodiversity or invisible illnesses. We do not discriminate against applicants on this basis, but please let us know if there are any adjustments you would need to help you thrive in this role.",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "1970",
+            "selector": null,
+            "type": "textarea",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "number-of-days-absence-through-illness-injury-in-the-last-tw",
+        "label": "Number of days absence through illness / injury in the last two years:",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "1971",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "if-you-are-currently-working-how-much-notice-are-you-require",
+        "label": "If you are currently working, how much notice are you required to give your employer?",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "1972",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "do-you-have-a-legal-right-to-work-in-the-uk-please-also-stat",
+        "label": "Do you have a legal right to work in the UK? (Please also state any restrictions or time limitations on this.) Please note - we are unable to offer visa sponsorship for this role. ",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "1973",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "do-you-have-any-unspent-criminal-convictions-if-yes-please-g",
+        "label": "Do you have any unspent criminal convictions? If yes, please give details (declaration subject to the rehabilitation of Offenders Act 1974)",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "1974",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "please-check-to-confirm-you-acknowledge-the-folllowing-all-o",
+        "label": "Please check to confirm you acknowledge the folllowing: • All of the information collected in this form is necessary and relevant to the performance of the job you’re applying for, and we will only use this for recruitment purposes. • We will treat all personal information with the utmost confidentiality, and this will only be processed in line with the Data Protection Act 2018. By signing this form, you consent to Resurgo Trust obtaining, keeping, using and producing any information in this form accordingly. • Should you be successful in your application, the information provided, and further information which will be gathered from any referees you have given, will be used for the administration of your employment and if you have any questions in relation to our recruitment practices. • For more information on how we use the information you have provided, please see our privacy policy: www.resurgo.org.uk/pages/privacy/ • I am aware that any formal offer of employment may be subject to a DBS check. • I confirm that to the best of my knowledge, the information I have given is true and correct. I understand that any false or misleading statements may lead to disqualification from the selection process or dismissal if appointed.",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "1975",
+            "selector": null,
+            "type": "agreement_checkbox",
             "options": [
 
             ]

@@ -60,7 +60,7 @@ module ApplicationProcessesHelper
   end
 
   def filled_value(question, job_application)
-    question.answered_value(job_application)
+    question.formatted_answered_value(job_application)
   end
 
   def previously_answered_value(question, last_applicant_answers)
