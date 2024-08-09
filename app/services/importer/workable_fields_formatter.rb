@@ -75,6 +75,7 @@ module Importer
       'dropdown' => :select,
       'email' => :input,
       'file' => :upload,
+      'group' => :group,
       'multiple' => :multi_select,
       'paragraph' => :textarea,
       'phone' => :input,
