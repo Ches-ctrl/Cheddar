@@ -24,6 +24,7 @@ class ApplicationQuestion
   # nb: attribute can be nil, so safe navigation operator is necessary with #include?
 
   def agreement_checkbox? = type.eql?("agreement_checkbox")
+  def attachment? = cover_letter? || photo? || resume?
   def boolean? = type.eql?("boolean")
   def checkbox? = type.eql?("checkbox")
   def cover_letter? = attribute&.include?("cover_letter")
@@ -31,26 +32,53 @@ class ApplicationQuestion
   def input? = type.eql?("input") || type.eql?("education_input")
   def linkedin_related? = attribute&.include?('linkedin')
   def multi_select? = type.eql?("multi_select")
+  def photo? = attribute.eql?("photo")
   def radiogroup? = type.eql?("radiogroup")
   def resume? = attribute.eql?("resume")
   def select? = type.eql?("select") || type.eql?("education_select")
   def textarea? = type.eql?("textarea")
   def upload? = type.eql?("upload")
 
-  def answered_value(job_application)
-    return job_application.resume.blob.url if resume? && job_application.resume.attached?
-    return job_application.cover_letter.blob.url if cover_letter? && job_application.cover_letter.attached?
-
-    job_application.additional_info[attribute]
-  end
-
   def boolean_options
     [['Yes', 'true'], ['No', 'false']]
   end
 
-  def field = fields.first
+  def converted_type
+    type.eql?('textarea') ? 'input' : type
+  end
 
-  def locator = field['selector'] || "##{field['id']}"
+  def cover_letter_text_available?
+    attribute.eql?('cover_letter') && fields.count > 1 && fields.any? { |field| field['name'].eql?('cover_letter_text') }
+  end
+
+  def field
+    return fields.find { |field| field['name'].eql?('cover_letter_text') } if cover_letter_text_available?
+
+    fields.first
+  end
+
+  def formatted_answered_value(job_application)
+    return job_application.resume.blob.url if resume? && job_application.resume.attached?
+    return job_application.cover_letter.blob.url if cover_letter? && job_application.cover_letter.attached?
+
+    formatted_value(job_application, job_application.additional_info[attribute])
+  end
+
+  # formatted values depending on that ATS will required a specific formatter service object in the future
+  # ats = job_application.job.applicant_tracking_system.name
+  def formatted_date_value(_job_application, date)
+    return nil unless date
+
+    date.to_datetime.strftime('%m/%d/%Y')
+  end
+
+  def formatted_value(job_application, value)
+    return formatted_date_value(job_application, value) if date_picker?
+
+    value
+  end
+
+  def locator = field['selector'] || field['name']
 
   def multi_checkbox?
     type.eql?("checkbox") && (options&.count&.> 1)
@@ -59,7 +87,7 @@ class ApplicationQuestion
   def option_text_values(values)
     return values if options.none?
 
-    options.to_h.invert.slice(*values).values
+    options.to_h.select { |_k, v| values.include?(v.to_s) }.keys
   end
 
   def options
@@ -67,7 +95,7 @@ class ApplicationQuestion
   end
 
   def payload(job_application)
-    { locator:, interaction: type, value: answered_value(job_application) }
+    { locator:, interaction: converted_type, value: formatted_answered_value(job_application) }
   end
 
   def selector = field['selector'] || field['name'].to_s

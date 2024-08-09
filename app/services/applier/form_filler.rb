@@ -13,6 +13,8 @@ module Applier
 
     def initialize(payload)
       @fields = payload[:fields]
+      puts "Here are the payload fields:" # for testing
+      p @fields
       @session = Capybara::Session.new(:selenium)
       @url = payload[:apply_url]
       @user_fullname = payload[:user_fullname]
@@ -58,7 +60,7 @@ module Applier
     end
 
     def click_submit_button
-      sleep 2 # temporary -- just for testing
+      sleep 8 # temporary -- just for testing
       p "I didn't submit the form. Change the FormFiller#click_submit_button method to actually submit it."
       # submit_button.click
     end
@@ -92,16 +94,25 @@ module Applier
 
     def handle_checkbox = check(@value)
 
+    def handle_date_picker
+      puts "date_picker is not a valid type!"
+      handle_input
+    end
+
     def handle_input = verify_input { fill_in(@locator, with: @value) }
 
-    def handle_radiogroup
-      choose(option: @value, name: @locator)
+    def handle_location
+      puts "Location questions not handled!"
     end
 
     def handle_multi_select
       within response_field do
         @value.each { |value| check(value) }
       end
+    end
+
+    def handle_radiogroup
+      choose(option: @value, name: @locator)
     end
 
     def handle_select

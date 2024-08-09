@@ -15,6 +15,7 @@ class JobApplication < ApplicationRecord
   belongs_to :job
 
   has_one_attached :cover_letter
+  has_one_attached :photo
   has_one_attached :resume
   has_one :application_question_set, through: :job
   has_one :applicant_tracking_system, through: :job
@@ -29,10 +30,19 @@ class JobApplication < ApplicationRecord
   enum :status, { initial: "initial", completed: "completed", uncompleted: "uncompleted", submitted: "submitted", rejected: "rejected" },
        default: :initial, validate: true
 
+  def attachment(question)
+    return photo if question.photo?
+    return cover_letter if question.cover_letter?
+
+    resume
+  end
+
   def payload
     apply_url = job.apply_url || job.posting_url
     user_fullname = application_process.user.user_detail.full_name
     fields = application_question_set.questions.map do |question|
+      next unless question.type
+
       question.payload(self)
     end
     { user_fullname:, apply_url:, fields: }
