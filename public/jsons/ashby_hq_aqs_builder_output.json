@@ -7,7 +7,7 @@
       {
         "attribute": "full_name",
         "description": null,
-        "label": "Name",
+        "label": "Full Name",
         "required": true,
         "fields": [
           {
@@ -37,6 +37,22 @@
         ]
       },
       {
+        "attribute": "phone_number",
+        "description": null,
+        "label": "Phone",
+        "required": true,
+        "fields": [
+          {
+            "name": "3c92c16b-a322-458f-8f66-fa80c7f128ca",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
         "attribute": "resume",
         "description": null,
         "label": "Resume",
@@ -53,45 +69,13 @@
         ]
       },
       {
-        "attribute": "cover_letter",
-        "description": null,
-        "label": "Cover Letter (optional)",
-        "required": false,
-        "fields": [
-          {
-            "name": "1e68a3c6-1709-40e3-ad14-379c7f5bb56d",
-            "selector": null,
-            "type": "upload",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "best_contact_number",
-        "description": null,
-        "label": "Best Contact Number",
-        "required": false,
-        "fields": [
-          {
-            "name": "569d6217-f421-453e-b860-49a3c33c0359",
-            "selector": null,
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
         "attribute": "linkedin",
         "description": null,
-        "label": "LinkedIn Profile",
-        "required": false,
+        "label": "Linkedin",
+        "required": true,
         "fields": [
           {
-            "name": "28412d74-aaaa-41c2-9cee-7305e6e4d496",
+            "name": "3f39438c-96ef-4f9b-b959-840f741f4278",
             "selector": null,
             "type": "input",
             "options": [
@@ -101,29 +85,63 @@
         ]
       },
       {
-        "attribute": "please_share_your_preferred_pronouns",
+        "attribute": "the_job_can_be_based_in_either_singapore_or_london_where_are",
         "description": null,
-        "label": "Please share your preferred pronouns.",
-        "required": false,
+        "label": "The job can be based in either Singapore or London. Where are you currently based?",
+        "required": true,
         "fields": [
           {
-            "name": "a46e0f80-7b7d-4125-8edd-b17be1c967f9",
+            "name": "6a95db52-efde-44ed-b821-e856a0af0764",
             "selector": null,
-            "type": "input",
+            "type": "select",
             "options": [
-
+              {
+                "label": "Singapore",
+                "value": "Singapore"
+              },
+              {
+                "label": "London",
+                "value": "London"
+              },
+              {
+                "label": "Other",
+                "value": "Other"
+              }
             ]
           }
         ]
       },
       {
-        "attribute": "please_share_your_preferred_name_if_applicable",
+        "attribute": "will_you_require_visa_sponsorship_in_your_current_location_a",
         "description": null,
-        "label": "Please share your preferred name (if applicable).",
-        "required": false,
+        "label": "Will you require visa sponsorship in your current location as stated above?",
+        "required": true,
         "fields": [
           {
-            "name": "42fb1f5b-4a09-4039-aafe-ae7ec9ae57fd",
+            "name": "fbe09600-5a9b-4bb0-a044-33ae6e9ad8f3",
+            "selector": null,
+            "type": "select",
+            "options": [
+              {
+                "label": "Yes",
+                "value": "Yes"
+              },
+              {
+                "label": "No",
+                "value": "No"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "what_are_your_salary_expectations",
+        "description": null,
+        "label": "What are your salary expectations?",
+        "required": true,
+        "fields": [
+          {
+            "name": "c0f2c177-a1b2-4d00-b8e1-fc12b4a24864",
             "selector": null,
             "type": "input",
             "options": [
@@ -135,371 +153,17 @@
     ]
   },
   "detail_questions": {
-    "title": "Detail information",
+    "title": null,
     "description": null,
     "questions": [
-      {
-        "attribute": "why_multiverse",
-        "description": null,
-        "label": "Why Multiverse?",
-        "required": true,
-        "fields": [
-          {
-            "name": "457eb7ca-14cf-4c02-9332-7a4b31cc4623",
-            "selector": null,
-            "type": "textarea",
-            "options": [
 
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "do_you_require_any_reasonable_adjustments_to_be_made_through",
-        "description": null,
-        "label": "Do you require any reasonable adjustments to be made throughout our hiring process? (If you would prefer to share over email, please reach out to talentoperations@multiverse.io and we would be happy to assist)",
-        "required": false,
-        "fields": [
-          {
-            "name": "3195b1dd-b981-434f-a7dd-7a57f4c62419",
-            "selector": null,
-            "type": "textarea",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "where_did_you_hear_about_us",
-        "description": null,
-        "label": "Where did you hear about us?",
-        "required": true,
-        "fields": [
-          {
-            "name": "9b73492f-1411-4863-8883-cf426cf197f0",
-            "selector": null,
-            "type": "textarea",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "notice_period",
-        "description": null,
-        "label": "Notice Period",
-        "required": false,
-        "fields": [
-          {
-            "name": "bfdda3fa-f75f-48ef-9870-f4f168ac71ae",
-            "selector": null,
-            "type": "textarea",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "will_you_now_or_in_the_future_require_sponsorship_to_work_wi",
-        "description": null,
-        "label": "Will you now or in the future require sponsorship to work within the UK?",
-        "required": true,
-        "fields": [
-          {
-            "name": "2c1cc015-c579-4c80-954a-b10e627abbb9",
-            "selector": null,
-            "type": "boolean",
-            "options": [
-
-            ]
-          }
-        ]
-      }
     ]
   },
   "survey_questions": {
-    "title": "Diversity Survey",
-    "description": "<p><strong>Welcome to the Multiverse Candidate Diversity, Equity &amp; Inclusion Survey</strong></p><p>Inclusion is at the heart of Multiverse's mission and values. As part of Multiverse's commitment to monitoring diversity, equity and inclusion, we'd appreciate it if you would be happy to complete our survey. We collect this information so that we can continuously improve our inclusive hiring practices throughout our recruitment process. Your answers will be anonymous and will not affect the outcome of your application.</p><p><em>*This survey is not mandatory for you to continue with this application.</em></p>",
+    "title": null,
+    "description": null,
     "questions": [
-      {
-        "attribute": "what_is_your_current_age",
-        "description": null,
-        "label": "What is your current age?",
-        "required": false,
-        "fields": [
-          {
-            "name": "cf0f1bc7-7ce6-4eb3-aebc-b6562141cb68",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "label": "Under 30",
-                "value": "age_under_30"
-              },
-              {
-                "label": "30-39",
-                "value": "age_30_to_39"
-              },
-              {
-                "label": "40-49",
-                "value": "age_40_to_49"
-              },
-              {
-                "label": "50-59",
-                "value": "age_50_to_59"
-              },
-              {
-                "label": "60 or older",
-                "value": "age_60_or_older"
-              },
-              {
-                "label": "I prefer not to answer",
-                "value": "prefer_not_to_answer"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "what_is_your_gender_identity",
-        "description": null,
-        "label": "What is your gender identity?",
-        "required": false,
-        "fields": [
-          {
-            "name": "8d7dcc65-3a0b-476a-b679-574b869780bb",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "label": "Man",
-                "value": "man"
-              },
-              {
-                "label": "Woman",
-                "value": "woman"
-              },
-              {
-                "label": "Non-Binary",
-                "value": "non_binary"
-              },
-              {
-                "label": "Another Gender Identity",
-                "value": "another_identity"
-              },
-              {
-                "label": "I prefer not to answer",
-                "value": "prefer_not_to_answer"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "do_you_identify_as_transgender",
-        "description": null,
-        "label": "Do you identify as transgender?",
-        "required": false,
-        "fields": [
-          {
-            "name": "0a90dc7e-908c-449f-9151-95612d844b10",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "label": "Yes",
-                "value": "yes"
-              },
-              {
-                "label": "No",
-                "value": "no"
-              },
-              {
-                "label": "I prefer not to answer",
-                "value": "prefer_not_to_answer"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "how_do_you_identify_your_sexual_orientation_please_select_al",
-        "description": null,
-        "label": "How do you identify your sexual orientation? Please select all that apply.",
-        "required": false,
-        "fields": [
-          {
-            "name": "a63b6f87-d090-40f0-a462-bf5bb03f5e45",
-            "selector": null,
-            "type": "multi_select",
-            "options": [
-              {
-                "label": "Bisexual",
-                "value": "bisexual"
-              },
-              {
-                "label": "Lesbian",
-                "value": "lesbian"
-              },
-              {
-                "label": "Gay",
-                "value": "gay"
-              },
-              {
-                "label": "Queer",
-                "value": "queer"
-              },
-              {
-                "label": "Heterosexual / straight",
-                "value": "heterosexual"
-              },
-              {
-                "label": "Other",
-                "value": "other"
-              },
-              {
-                "label": "I prefer not to answer",
-                "value": "prefer_not_to_answer"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "which_ethnicity_do_you_identify_with",
-        "description": null,
-        "label": "Which ethnicity do you identify with?",
-        "required": false,
-        "fields": [
-          {
-            "name": "1e21d43f-548e-481a-aa5f-f048c73f3de3",
-            "selector": null,
-            "type": "multi_select",
-            "options": [
-              {
-                "label": "Asian - (Asian British, Indian, Pakistani, Bangladeshi, Chinese, Asian any other background)",
-                "value": "Asian - (Asian British, Indian, Pakistani, Bangladeshi, Chinese, Asian any other background)"
-              },
-              {
-                "label": "Black - (Black Caribean, Black African, Black American, Black British, Black any other background)",
-                "value": "Black - (Black Caribean, Black African, Black American, Black British, Black any other background)"
-              },
-              {
-                "label": "Latine, Latina, Latino - (South American, Central American)",
-                "value": "Latine, Latina, Latino - (South American, Central American)"
-              },
-              {
-                "label": "Indigenous or Native American",
-                "value": "indigenous"
-              },
-              {
-                "label": "Native Hawaiian or Other Pacific Islander",
-                "value": "pacific_islander"
-              },
-              {
-                "label": "Mixed Ethnic Background",
-                "value": "Mixed Ethnic Background"
-              },
-              {
-                "label": "White",
-                "value": "White"
-              },
-              {
-                "label": "Other",
-                "value": "Other"
-              },
-              {
-                "label": "I prefer not to answer",
-                "value": "I prefer not to answer"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "do_you_identify_as_disabled_disability_includes_but_is_not_l",
-        "description": null,
-        "label": "Do you identify as disabled (Disability includes but is not limited to physical disabilities, mental illness, learning disabilities, chronic illness)? [Please note, the results of this survey are anonymous, voluntary and aggregated. If you would like to make our team aware of reasonable adjustments that would support you in the recruitment process, please complete the adjustments textbox earlier in the application.]",
-        "required": false,
-        "fields": [
-          {
-            "name": "425ffaa2-f458-4327-84dc-1d65cd7622a7",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "label": "Yes",
-                "value": "Yes"
-              },
-              {
-                "label": "No",
-                "value": "No"
-              },
-              {
-                "label": "I prefer not to answer",
-                "value": "prefer_not_to_answer"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "have_you_spent_time_in_the_armed_forces_this_includes_reserv",
-        "description": null,
-        "label": "Have you spent time in the armed forces? (This includes reserves)",
-        "required": false,
-        "fields": [
-          {
-            "name": "8869ac83-51af-43c9-a1f9-d0f43db306d8",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "label": "Yes",
-                "value": "Yes"
-              },
-              {
-                "label": "No",
-                "value": "No"
-              },
-              {
-                "label": "I prefer not to answer",
-                "value": "prefer_not_to_answer"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "are_you_a_caretaker_or_carer_anyone_who_cares_unpaid_for_a_f",
-        "description": null,
-        "label": "Are you a caretaker or carer? (Anyone who cares, unpaid, for a friend or family member who due to illness, disability, a mental health problem or an addiction cannot cope without their support)",
-        "required": false,
-        "fields": [
-          {
-            "name": "4ece9e72-c191-4c97-98dc-cc23b006799d",
-            "selector": null,
-            "type": "select",
-            "options": [
-              {
-                "label": "Yes",
-                "value": "Yes"
-              },
-              {
-                "label": "No",
-                "value": "No"
-              },
-              {
-                "label": "I prefer not to answer",
-                "value": "prefer_not_to_answer"
-              }
-            ]
-          }
-        ]
-      }
+
     ]
   }
 }

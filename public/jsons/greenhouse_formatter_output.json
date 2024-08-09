@@ -66,7 +66,7 @@
       {
         "description": null,
         "label": "Resume/CV",
-        "required": false,
+        "required": true,
         "fields": [
           {
             "name": "resume",
@@ -87,33 +87,26 @@
       },
       {
         "description": null,
-        "label": "Cover Letter",
+        "label": "Website",
         "required": false,
         "fields": [
           {
-            "name": "cover_letter",
-            "type": "upload",
-            "options": [
-
-            ]
-          },
-          {
-            "name": "cover_letter_text",
-            "type": "textarea",
+            "name": "question_6851483007",
+            "type": "input",
             "options": [
 
             ]
           }
         ],
-        "attribute": "cover_letter"
+        "attribute": "website"
       },
       {
         "description": null,
         "label": "LinkedIn Profile",
-        "required": true,
+        "required": false,
         "fields": [
           {
-            "name": "question_47715686",
+            "name": "question_6851484007",
             "type": "input",
             "options": [
 
@@ -124,26 +117,11 @@
       },
       {
         "description": null,
-        "label": "Do you have any open source contribution you can share?\n",
-        "required": true,
+        "label": "Do you reside within North America (Mexico, United States, Canada)? ",
+        "required": false,
         "fields": [
           {
-            "name": "question_47715688",
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ],
-        "attribute": "do_you_have_any_open_source_contribution_you_can_share"
-      },
-      {
-        "description": null,
-        "label": "Do you have experience at a SaaS Company? ",
-        "required": true,
-        "fields": [
-          {
-            "name": "question_47715689",
+            "name": "question_6851486007",
             "type": "select",
             "options": [
               {
@@ -157,15 +135,15 @@
             ]
           }
         ],
-        "attribute": "do_you_have_experience_at_a_saas_company"
+        "attribute": "do_you_reside_within_north_america_mexico_united_states_cana"
       },
       {
         "description": null,
-        "label": "Do you have startup experience?  ",
-        "required": true,
+        "label": "Will you now or in the future require visa sponsorship? ",
+        "required": false,
         "fields": [
           {
-            "name": "question_47715690",
+            "name": "question_6851487007",
             "type": "select",
             "options": [
               {
@@ -179,29 +157,7 @@
             ]
           }
         ],
-        "attribute": "do_you_have_startup_experience"
-      },
-      {
-        "description": null,
-        "label": "Have you been employed by Narvar in the past?",
-        "required": true,
-        "fields": [
-          {
-            "name": "question_47715691",
-            "type": "select",
-            "options": [
-              {
-                "label": "Yes",
-                "value": 1
-              },
-              {
-                "label": "No",
-                "value": 0
-              }
-            ]
-          }
-        ],
-        "attribute": "have_you_been_employed_by_narvar_in_the_past"
+        "attribute": "will_you_now_or_in_the_future_require_visa_sponsorship"
       }
     ]
   },
@@ -266,7 +222,7 @@
       {
         "attribute": "race",
         "label": "Race",
-        "description": "&lt;h3&gt;&lt;strong&gt;Voluntary Self-Identification&lt;/strong&gt;&lt;/h3&gt;&lt;br/&gt;&lt;p&gt;For government reporting purposes, we ask candidates to respond to the below self-identification survey.\nCompletion of the form is entirely voluntary. Whatever your decision, it will not be considered in the hiring\nprocess or thereafter. Any information that you do provide will be recorded and maintained in a\nconfidential file.&lt;/p&gt;\n\n&lt;p&gt;As set forth in Narvar’s Equal Employment Opportunity policy,\nwe do not discriminate on the basis of any protected group status under any applicable law.&lt;/p&gt;\n",
+        "description": "&lt;h3&gt;&lt;strong&gt;Voluntary Self-Identification&lt;/strong&gt;&lt;/h3&gt;&lt;br/&gt;&lt;p&gt;For government reporting purposes, we ask candidates to respond to the below self-identification survey.\nCompletion of the form is entirely voluntary. Whatever your decision, it will not be considered in the hiring\nprocess or thereafter. Any information that you do provide will be recorded and maintained in a\nconfidential file.&lt;/p&gt;\n\n&lt;p&gt;As set forth in Forage’s Equal Employment Opportunity policy,\nwe do not discriminate on the basis of any protected group status under any applicable law.&lt;/p&gt;\n",
         "required": false,
         "fields": [
           {
@@ -312,7 +268,7 @@
       {
         "attribute": "gender",
         "label": "Gender",
-        "description": "&lt;h3&gt;&lt;strong&gt;Voluntary Self-Identification&lt;/strong&gt;&lt;/h3&gt;&lt;br/&gt;&lt;p&gt;For government reporting purposes, we ask candidates to respond to the below self-identification survey.\nCompletion of the form is entirely voluntary. Whatever your decision, it will not be considered in the hiring\nprocess or thereafter. Any information that you do provide will be recorded and maintained in a\nconfidential file.&lt;/p&gt;\n\n&lt;p&gt;As set forth in Narvar’s Equal Employment Opportunity policy,\nwe do not discriminate on the basis of any protected group status under any applicable law.&lt;/p&gt;\n",
+        "description": "&lt;h3&gt;&lt;strong&gt;Voluntary Self-Identification&lt;/strong&gt;&lt;/h3&gt;&lt;br/&gt;&lt;p&gt;For government reporting purposes, we ask candidates to respond to the below self-identification survey.\nCompletion of the form is entirely voluntary. Whatever your decision, it will not be considered in the hiring\nprocess or thereafter. Any information that you do provide will be recorded and maintained in a\nconfidential file.&lt;/p&gt;\n\n&lt;p&gt;As set forth in Forage’s Equal Employment Opportunity policy,\nwe do not discriminate on the basis of any protected group status under any applicable law.&lt;/p&gt;\n",
         "required": false,
         "fields": [
           {
@@ -341,23 +297,7 @@
     "title": null,
     "description": null,
     "questions": [
-      {
-        "attribute": "city_applicant",
-        "required": false,
-        "label": "Location (City))",
-        "description": null,
-        "fields": [
-          {
-            "id": "auto_complete_input",
-            "selector": "input[name=\"job_application[location]\"]",
-            "type": "location",
-            "max_length": 255,
-            "options": [
 
-            ]
-          }
-        ]
-      }
     ]
   }
 }
