@@ -44,7 +44,10 @@ class ApplicationQuestion
   end
 
   def converted_type
-    type.eql?('textarea') ? 'input' : type
+    return 'input' if type.eql?('textarea') || type.eql?('date_picker')
+    return 'boolean' if type.eql?('agreement_checkbox')
+
+    type
   end
 
   def cover_letter_text_available?

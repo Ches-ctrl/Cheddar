@@ -125,23 +125,7 @@
           {
             "name": "42fb1f5b-4a09-4039-aafe-ae7ec9ae57fd",
             "selector": null,
-            "type": "boolean",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "why-do-you-want-to-join-us",
-        "description": null,
-        "label": "Why do you want to join us?",
-        "required": true,
-        "fields": [
-          {
-            "name": "f569f5f7-0f5a-46ba-8b31-7a29f3b75740",
-            "selector": null,
-            "type": "textarea",
+            "type": "input",
             "options": [
 
             ]

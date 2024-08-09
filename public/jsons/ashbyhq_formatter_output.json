@@ -55,7 +55,7 @@
         "attribute": "cover-letter-optional",
         "label": "Cover Letter (optional)",
         "description": null,
-        "required": true,
+        "required": false,
         "fields": [
           {
             "name": "1e68a3c6-1709-40e3-ad14-379c7f5bb56d",
@@ -124,23 +124,7 @@
           {
             "name": "42fb1f5b-4a09-4039-aafe-ae7ec9ae57fd",
             "selector": null,
-            "type": "boolean",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "why-do-you-want-to-join-us",
-        "label": "Why do you want to join us?",
-        "description": null,
-        "required": true,
-        "fields": [
-          {
-            "name": "f569f5f7-0f5a-46ba-8b31-7a29f3b75740",
-            "selector": null,
-            "type": "textarea",
+            "type": "input",
             "options": [
 
             ]
