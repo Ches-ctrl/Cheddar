@@ -1,3 +1,5 @@
+require './app/helpers/rake_helpers'
+
 namespace :tests do
   # Call this with e.g. rake "tests:end_to_end[https://apply.workable.com/starling-bank/j/60ACE7278C, 15]"
   desc "Conduct end-to-end tests on a given url"
