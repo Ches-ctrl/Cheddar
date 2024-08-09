@@ -41,6 +41,8 @@ class JobApplication < ApplicationRecord
     apply_url = job.apply_url || job.posting_url
     user_fullname = application_process.user.user_detail.full_name
     fields = application_question_set.questions.map do |question|
+      next unless question.type
+
       question.payload(self)
     end
     { user_fullname:, apply_url:, fields: }

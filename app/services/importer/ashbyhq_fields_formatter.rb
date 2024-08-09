@@ -22,8 +22,6 @@ module Importer
         detail_questions: detail_formatter(@data.dig(:applicationForm, :sections)&.second&.[](:fieldEntries)),
         survey_questions: survey_formatter(@data[:surveyForms])
       }
-      # debugger if @data.to_s.include?('Why Multiverse?')
-      # @select_transform_data
     end
 
     ###

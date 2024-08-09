@@ -12,8 +12,6 @@ module Importer
         core_questions: { title: "Main application", description: nil, questions: core_questions(@data[:formFields].except(:customQuestions)) },
         additional_questions: additional_formatter(@data.dig(:formFields, :customQuestions))
       }
-      # debugger if @select_transform_data.to_s.include?('By submitting your application')
-      # @select_transform_data
     end
 
     ###
