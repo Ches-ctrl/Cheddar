@@ -21,7 +21,7 @@ class ApplicationSubmissionsController < ApplicationController
   end
 
   def enqueue_job_applications
-    @application_process.job_applications.each { |app| Applier::ApplyJob.call(app) }
+    @application_process.job_applications.each { |app| Applier::ApplyJob.perform_later(app) }
   end
 
   def load_application_process
