@@ -14,7 +14,7 @@ module Applier
     def initialize(payload)
       @fields = payload[:fields]
       puts "Here are the payload fields:" # for testing
-      p @fields
+      p @fields # for testing
       @session = Capybara::Session.new(:selenium)
       @url = payload[:apply_url]
       @user_fullname = payload[:user_fullname]
@@ -169,7 +169,7 @@ module Applier
     end
 
     def verify_submission
-      sleep 4 # temporary -- just for testing
+      sleep 10 # temporary -- just for testing
       # TODO: add logic to check for successful submission message or other indicators
     end
 

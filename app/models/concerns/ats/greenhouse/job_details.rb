@@ -27,6 +27,7 @@ module Ats
         title, location = fetch_title_and_location(data)
         {
           posting_url: data['absolute_url'],
+          apply_url: "#{data['absolute_url']}#app",
           title:,
           description: Flipper.enabled?(:job_description) ? CGI.unescapeHTML(data['content']) : 'Not added yet',
           non_geocoded_location_string: location,

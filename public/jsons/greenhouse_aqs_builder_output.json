@@ -53,7 +53,7 @@
         "attribute": "phone_number",
         "description": null,
         "label": "Phone",
-        "required": true,
+        "required": false,
         "fields": [
           {
             "name": "phone",
@@ -68,7 +68,7 @@
         "attribute": "resume",
         "description": null,
         "label": "Resume/CV",
-        "required": true,
+        "required": false,
         "fields": [
           {
             "name": "resume",
@@ -112,10 +112,10 @@
         "attribute": "linked_in-profile",
         "description": null,
         "label": "LinkedIn Profile",
-        "required": true,
+        "required": false,
         "fields": [
           {
-            "name": "question_49679679",
+            "name": "question_42669078",
             "type": "input",
             "options": [
 
@@ -124,13 +124,28 @@
         ]
       },
       {
-        "attribute": "had-you-heard-of-deliveroo-before-you-started-your-job-searc",
+        "attribute": "website",
         "description": null,
-        "label": "Had you heard of Deliveroo before you started your job search?",
+        "label": "Website",
+        "required": false,
+        "fields": [
+          {
+            "name": "question_42669079",
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "do-you-require-visa-sponsorship-to-work-in-the-uk",
+        "description": null,
+        "label": "Do you require visa sponsorship to work in the UK?",
         "required": true,
         "fields": [
           {
-            "name": "question_49679681",
+            "name": "question_44285206",
             "type": "select",
             "options": [
               {
@@ -141,43 +156,6 @@
                 "label": "No",
                 "value": 0
               }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "would-you-require-a-visa-for-employment-for-where-this-job-i",
-        "description": null,
-        "label": "Would you require a visa for employment for where this job is based (London)?",
-        "required": true,
-        "fields": [
-          {
-            "name": "question_49694953",
-            "type": "select",
-            "options": [
-              {
-                "label": "Yes",
-                "value": 1
-              },
-              {
-                "label": "No",
-                "value": 0
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "what-are-you-compensation-expectations",
-        "description": null,
-        "label": "What are you compensation expectations?",
-        "required": true,
-        "fields": [
-          {
-            "name": "question_49694954",
-            "type": "input",
-            "options": [
-
             ]
           }
         ]
@@ -519,23 +497,7 @@
     "title": null,
     "description": null,
     "questions": [
-      {
-        "attribute": "city_applicant",
-        "description": null,
-        "label": "Location (City))",
-        "required": false,
-        "fields": [
-          {
-            "id": "auto_complete_input",
-            "selector": "input[name=\"job_application[location]\"]",
-            "type": "location",
-            "max_length": 255,
-            "options": [
 
-            ]
-          }
-        ]
-      }
     ]
   }
 }
