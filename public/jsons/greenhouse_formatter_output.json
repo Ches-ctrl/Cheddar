@@ -51,7 +51,7 @@
       {
         "description": null,
         "label": "Phone",
-        "required": false,
+        "required": true,
         "fields": [
           {
             "name": "phone",
@@ -66,7 +66,7 @@
       {
         "description": null,
         "label": "Resume/CV",
-        "required": false,
+        "required": true,
         "fields": [
           {
             "name": "resume",
@@ -110,10 +110,10 @@
       {
         "description": null,
         "label": "LinkedIn Profile",
-        "required": false,
+        "required": true,
         "fields": [
           {
-            "name": "question_42669078",
+            "name": "question_6946904003",
             "type": "input",
             "options": [
 
@@ -128,7 +128,7 @@
         "required": false,
         "fields": [
           {
-            "name": "question_42669079",
+            "name": "question_6946905003",
             "type": "input",
             "options": [
 
@@ -139,11 +139,11 @@
       },
       {
         "description": null,
-        "label": "Do you require visa sponsorship to work in the UK?",
+        "label": "Are you legally authorized to work in the US?",
         "required": true,
         "fields": [
           {
-            "name": "question_44285206",
+            "name": "question_6946906003",
             "type": "select",
             "options": [
               {
@@ -157,333 +157,11 @@
             ]
           }
         ],
-        "attribute": "do-you-require-visa-sponsorship-to-work-in-the-uk"
+        "attribute": "are-you-legally-authorized-to-work-in-the-us"
       }
     ]
   },
   "demographic_questions": {
-    "title": "Voluntary Demographic Survey (UK)",
-    "description": "<p>These questions are voluntary, and help us understand more about our candidates.&nbsp;One of our core values at Deliveroo is&nbsp;<strong>We celebrate difference</strong>, and we are always working to make sure our hiring processes are equitable and inclusive. By answering the questions below, you'll help us do that.</p>\n<p>Your responses are confidential, will not be tied to your application, and has no bearing on your candidacy. We only use aggregated demographic data to measure the performance of recruiting efforts.</p>\n<p>Before answering our questions below, please read our <a href=\"https://careers.deliveroo.co.uk/privacy-policy/\">privacy notice</a>.</p>",
-    "questions": [
-      {
-        "attribute": "how-would-you-describe-your-gender-identity",
-        "label": "How would you describe your gender identity?",
-        "description": null,
-        "required": true,
-        "fields": [
-          {
-            "name": 953,
-            "type": "select",
-            "options": [
-              {
-                "value": 5189,
-                "label": "Female",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 5187,
-                "label": "Male",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 5188,
-                "label": "Non-binary / non-conforming",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 5191,
-                "label": "Prefer to self-describe",
-                "free_form": true,
-                "decline_to_answer": false
-              },
-              {
-                "value": 8100,
-                "label": "I don't wish to answer",
-                "free_form": false,
-                "decline_to_answer": true
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "what-is-your-sexual-orientation",
-        "label": "What is your sexual orientation?",
-        "description": null,
-        "required": true,
-        "fields": [
-          {
-            "name": 954,
-            "type": "select",
-            "options": [
-              {
-                "value": 5192,
-                "label": "Heterosexual / Straight",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 5193,
-                "label": "Gay / Lesbian",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 5194,
-                "label": "Bisexual",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 5196,
-                "label": "Prefer to self-describe",
-                "free_form": true,
-                "decline_to_answer": false
-              },
-              {
-                "value": 8101,
-                "label": "I don't wish to answer",
-                "free_form": false,
-                "decline_to_answer": true
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "would-you-say-you-have-a-disability",
-        "label": "Would you say you have a disability?",
-        "description": null,
-        "required": true,
-        "fields": [
-          {
-            "name": 955,
-            "type": "select",
-            "options": [
-              {
-                "value": 5197,
-                "label": "Yes, I have a disability",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 5198,
-                "label": "No, I do not have a disability",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 8102,
-                "label": "I don't wish to answer",
-                "free_form": false,
-                "decline_to_answer": true
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "how-would-your-describe-your-ethnicity",
-        "label": "How would your describe your ethnicity?",
-        "description": null,
-        "required": true,
-        "fields": [
-          {
-            "name": 956,
-            "type": "select",
-            "options": [
-              {
-                "value": 8150,
-                "label": "Asian: Bangladeshi",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 8151,
-                "label": "Asian: Chinese",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 8152,
-                "label": "Asian: Indian",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 8153,
-                "label": "Asian: Pakistani",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 8154,
-                "label": "Asian: Other",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 8155,
-                "label": "Black: African",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 8156,
-                "label": "Black: Caribbean",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 8157,
-                "label": "Black: Other",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 5202,
-                "label": "Mixed ethnic groups",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 8158,
-                "label": "White: British",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 8159,
-                "label": "White: Irish",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 8160,
-                "label": "White: Other",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 5204,
-                "label": "Any other ethnic group",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 8103,
-                "label": "I don't wish to answer",
-                "free_form": false,
-                "decline_to_answer": true
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "would-you-describe-yourself-as-neurodivergent",
-        "label": "Would you describe yourself as neurodivergent?",
-        "description": null,
-        "required": true,
-        "fields": [
-          {
-            "name": 41738,
-            "type": "select",
-            "options": [
-              {
-                "value": 252206,
-                "label": "Yes",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 252207,
-                "label": "No",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 252208,
-                "label": "I don't wish to answer",
-                "free_form": false,
-                "decline_to_answer": true
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "what-was-the-occupation-of-your-main-household-earner-when-y",
-        "label": "What was the occupation of your main household earner when you were aged 14? ",
-        "description": null,
-        "required": true,
-        "fields": [
-          {
-            "name": 41739,
-            "type": "select",
-            "options": [
-              {
-                "value": 252209,
-                "label": "Modern professional & traditional professional occupations such as: teacher, nurse, physiotherapist, social worker, musician, police officer (sergeant or above), software designer, accountant, solicitor, medical practitioner, scientist, civil / mechanical",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 252210,
-                "label": "Senior, middle or junior managers or administrators such as: finance manager, chief executive, large business owner, office manager, retail manager, bank manager, restaurant manager, warehouse manager.",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 252211,
-                "label": "Clerical and intermediate occupations such as: secretary, personal assistant, call centre agent, clerical worker, nursery nurse.",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 252212,
-                "label": "Technical and craft occupations such as: motor mechanic, plumber, printer, electrician, gardener, train driver.",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 252213,
-                "label": "Routine, semi-routine manual and service occupations such as: postal worker, machine operative, security guard, caretaker, farm worker, catering assistant, sales assistant, HGV driver, cleaner, porter, packer, labourer, waiter/waitress, bar staff.",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 252214,
-                "label": "Long-term unemployed (claimed Jobseeker’s Allowance or earlier unemployment benefit for more than a year).",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 252215,
-                "label": "Small business owners who employed less than 25 people such as: corner shop owners, small plumbing companies, retail shop owner, single restaurant or cafe owner, taxi owner, garage owner.",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 252216,
-                "label": "Other such as: retired, this question does not apply to me, I don’t know.",
-                "free_form": false,
-                "decline_to_answer": false
-              },
-              {
-                "value": 252217,
-                "label": "I don't wish to answer",
-                "free_form": false,
-                "decline_to_answer": true
-              }
-            ]
-          }
-        ]
-      }
-    ]
   },
   "compliance_questions": {
   },

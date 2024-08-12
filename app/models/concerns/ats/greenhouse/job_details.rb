@@ -25,9 +25,10 @@ module Ats
 
       def job_details(_job, data)
         title, location = fetch_title_and_location(data)
+        posting_url, apply_url = fetch_job_urls(data)
         {
-          posting_url: data['absolute_url'],
-          apply_url: "#{data['absolute_url']}#app",
+          posting_url:,
+          apply_url:,
           title:,
           description: Flipper.enabled?(:job_description) ? CGI.unescapeHTML(data['content']) : 'Not added yet',
           non_geocoded_location_string: location,
@@ -40,6 +41,12 @@ module Ats
       end
 
       private
+
+      def fetch_job_urls(data)
+        posting_url = data['absolute_url']
+        apply_url = "#{posting_url}#app" unless new_format?(posting_url)
+        [posting_url, apply_url]
+      end
 
       def fetch_employment_type(data)
         default = 'Full-time'
@@ -57,6 +64,10 @@ module Ats
         currency = salary_data['currency_type']
         symbol = CURRENCY_CONVERTER[currency&.downcase]&.first
         salary_low == salary_high ? "#{symbol}#{salary_low} #{currency}" : "#{symbol}#{salary_low} - #{symbol}#{salary_high} #{currency}"
+      end
+
+      def new_format?(url)
+        url.include?('job-boards')
       end
     end
   end
