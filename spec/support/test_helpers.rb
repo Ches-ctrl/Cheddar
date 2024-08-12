@@ -18,7 +18,6 @@ module TestHelpers
       complete_select_fields
       complete_checkbox_fields
     end
-    sleep @sleep_time # verify
   end
 
   def complete_checkbox_fields
@@ -76,7 +75,8 @@ module TestHelpers
   def initialize_user_and_job_application(job_id)
     puts 'Initiating application with admin user...'
 
-    user = FactoryBot.create(:user, email: "admin@example.com", admin: true)
+    user = User.find_by(email: "admin@example.com", admin: true)
+    user ||= FactoryBot.create(:user, email: "admin@example.com", admin: true)
     user.saved_jobs.create(job_id:)
     application_process = user.application_processes.create
     job_application = application_process.job_applications.create(job_id:, additional_info: { email: user.user_detail.email })
@@ -84,12 +84,13 @@ module TestHelpers
     [user, application_process, job_application]
   end
 
+  def pause_for_review = sleep @sleep_time
+
   def resume_file = 'public/Obretetskiy_cv.pdf'
 
   def submit_form
     puts "Submitting the form..."
     application_form.find('input[type="submit"]').click
     find('a', text: 'Submit your applications').click
-    sleep 25 # verify
   end
 end

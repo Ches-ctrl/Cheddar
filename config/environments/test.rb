@@ -67,4 +67,11 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+
+  # Enqueued jobs run immediately in test env
+  config.active_job.queue_adapter = :inline
+
+  # Store uploaded files on the local file system (see config/storage.yml for options).
+  config.active_storage.service = :cloudinary
+  config.action_mailer.default_url_options = { host: "http://localhost:3000" }
 end

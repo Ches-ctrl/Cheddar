@@ -5,6 +5,7 @@ module Applier
   # TODO: Add routing logic - in future will route to either FormFiller or ApiApply depending on the ATS
   class ApplyToJob < ApplicationTask
     def initialize(job_application)
+      p "Initializing job_application: #{job_application}" # for testing
       @job_application = job_application
       @payload = @job_application.payload
     end
