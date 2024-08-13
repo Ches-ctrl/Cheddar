@@ -13,8 +13,6 @@ module Applier
 
     def initialize(payload)
       @fields = payload[:fields]
-      puts "Here's the full payload:" # for testing
-      p payload # for testing
       @session = Capybara::Session.new(:selenium)
       @url = payload[:apply_url]
       @user_fullname = payload[:user_fullname]

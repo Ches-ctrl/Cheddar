@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :user_detail do
     first_name { 'Pablo' }
     last_name { 'Picasso' }
-    email { 'admin@example.com' }
+    email { 'awesome_web_developer@outlook.com' }
     phone_number { '7555555555' }
     address_first { 'Shoreditch Stables North' }
     address_second { '138 Kingsland Rd' }

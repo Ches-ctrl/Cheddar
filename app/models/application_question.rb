@@ -24,7 +24,7 @@ class ApplicationQuestion
   # nb: attribute can be nil, so safe navigation operator is necessary with #include?
 
   def agreement_checkbox? = type.eql?("agreement_checkbox")
-  def attachment? = cover_letter? || photo? || resume?
+  def attachment? = photo? || resume?
   def boolean? = type.eql?("boolean")
   def checkbox? = type.eql?("checkbox")
   def cover_letter? = attribute&.include?("cover_letter")
@@ -38,14 +38,16 @@ class ApplicationQuestion
   def select? = type.eql?("select") || type.eql?("education_select")
   def textarea? = type.eql?("textarea")
   def upload? = type.eql?("upload")
+  def yes_no_radiogroup? = type.eql?("yes_no_radiogroup")
 
   def boolean_options
     [['Yes', 'true'], ['No', 'false']]
   end
 
   def converted_type
-    return 'input' if type.eql?('textarea')
-    return 'boolean' if type.eql?('agreement_checkbox')
+    return 'input' if textarea?
+    return 'boolean' if agreement_checkbox?
+    return 'radiogroup' if yes_no_radiogroup? # Daniel's edit
 
     type
   end

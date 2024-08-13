@@ -111,7 +111,7 @@ puts "Created #{Role.count} roles"
 puts "-------------------------------------"
 
 # ats_list = ['AshbyHQ', 'BambooHR', 'Greenhouse', 'Workable']
-ats_list = ['Greenhouse']
+ats_list = ['BambooHR']
 defunct_urls = []
 
 puts "Preparing to re-seed database with #{response} #{ats_list.to_sentence} jobs...\n"

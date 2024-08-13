@@ -46,7 +46,8 @@ module TestHelpers
   def complete_select_fields
     puts "Completing select fields..."
     all('select').each do |field|
-      next field.select('United Kingdom') if field.sibling('label').text.include?('Country applicant')
+      standard_value = fetch_standard_attribute(field)
+      next field.select(standard_value) if standard_value
 
       options = field.all('option')[1..] # ignore the null option
       random_option = options.sample
@@ -98,14 +99,37 @@ module TestHelpers
   def resume_file = 'public/Obretetskiy_cv.pdf'
 
   def set_value(field)
-    return field.set("#{@user.user_detail.address_first}, #{@user.user_detail.address_second}") if field.sibling('label').text.include?('Address')
+    value = fetch_standard_attribute(field) || Faker::Color.color_name
 
-    field.set(Faker::Color.color_name)
+    field.set(value)
   end
+
+  # Shouldn't be necessary once Cheddar form is fully aligned with user_detail
+  def fetch_standard_attribute(field)
+    standard_attributes.each do |attribute|
+      return send(:"user_#{attribute}") if field.sibling('label').text.downcase.include?(attribute)
+    end
+    nil
+  end
+
+  def standard_attributes = [
+    'address',
+    'city',
+    'country',
+    'zip'
+  ]
 
   def submit_form
     puts "Submitting the form..."
     application_form.find('input[type="submit"]').click
     find('a', text: 'Submit your applications').click
   end
+
+  def user_address = "#{@user.user_detail.address_first}, #{@user.user_detail.address_second}"
+
+  def user_city = @user.user_detail.city
+
+  def user_country = 'United Kingdom'
+
+  def user_zip = @user.user_detail.post_code
 end

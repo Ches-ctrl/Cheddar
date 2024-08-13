@@ -4,8 +4,6 @@ module Importer
   # TODO
   class FieldsFormatter < ApplicationTask
     def initialize(data)
-      p "Here's the raw data:" # for testing
-      p data # for testing
       @data = data
     end
 
