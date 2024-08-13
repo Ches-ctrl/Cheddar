@@ -12,9 +12,10 @@ module TestHelpers
 
   def complete_all_fields
     within application_form do
-      attach_resume
+      attach_resume # this shouldn't be necessary if the user is stubbed correctly
       complete_input_fields
       complete_textarea_fields
+      complete_date_fields
       complete_select_fields
       complete_checkbox_fields
     end
@@ -28,16 +29,25 @@ module TestHelpers
     end
   end
 
+  def complete_date_fields
+    puts "Completing datepicker fields..."
+    all('input[type="date"]').each do |field|
+      field.set('13/01/2024')
+    end
+  end
+
   def complete_input_fields
     puts "Completing input fields..."
-    all('input', visible: true)
-      .reject { |field| %w[checkbox email file submit].include?(field['type']) }
-      .each { |field| field.set(Faker::Color.color_name) }
+    all('input', visible: true) { |i| i.value == '' }
+      .reject { |field| %w[checkbox date email file submit].include?(field['type']) }
+      .each { |field| set_value(field) }
   end
 
   def complete_select_fields
     puts "Completing select fields..."
     all('select').each do |field|
+      next field.select('United Kingdom') if field.sibling('label').text.include?('Country applicant')
+
       options = field.all('option')[1..] # ignore the null option
       random_option = options.sample
       field.select(random_option.text)
@@ -75,8 +85,7 @@ module TestHelpers
   def initialize_user_and_job_application(job_id)
     puts 'Initiating application with admin user...'
 
-    user = User.find_by(email: "admin@example.com", admin: true)
-    user ||= FactoryBot.create(:user, email: "admin@example.com", admin: true)
+    user = FactoryBot.create(:user, admin: true)
     user.saved_jobs.create(job_id:)
     application_process = user.application_processes.create
     job_application = application_process.job_applications.create(job_id:, additional_info: { email: user.user_detail.email })
@@ -87,6 +96,12 @@ module TestHelpers
   def pause_for_review = sleep @sleep_time
 
   def resume_file = 'public/Obretetskiy_cv.pdf'
+
+  def set_value(field)
+    return field.set("#{@user.user_detail.address_first}, #{@user.user_detail.address_second}") if field.sibling('label').text.include?('Address')
+
+    field.set(Faker::Color.color_name)
+  end
 
   def submit_form
     puts "Submitting the form..."

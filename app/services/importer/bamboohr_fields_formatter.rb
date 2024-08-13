@@ -49,7 +49,7 @@ module Importer
         attribute = attribute(raw_question[:question])
         options = raw_question[:options]&.map { |option| option.transform_keys({ 'id' => 'value', 'text' => 'label' }) } || []
         type = input_type(attribute, raw_question[:type], options)
-        fields = [{ name: raw_question[:id], selector: nil, type:, options: }]
+        fields = [{ name: "customQuestions[#{raw_question[:id]}]", selector: nil, type:, options: }] # Daniel's edit
         label = raw_question[:question]
 
         { attribute:, label:, description: nil, required: raw_question[:isRequired], fields: }

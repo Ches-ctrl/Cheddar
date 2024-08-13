@@ -13,8 +13,8 @@ module Applier
 
     def initialize(payload)
       @fields = payload[:fields]
-      puts "Here are the payload fields:" # for testing
-      p @fields # for testing
+      puts "Here's the full payload:" # for testing
+      p payload # for testing
       @session = Capybara::Session.new(:selenium)
       @url = payload[:apply_url]
       @user_fullname = payload[:user_fullname]
@@ -94,10 +94,7 @@ module Applier
 
     def handle_checkbox = check(@value)
 
-    def handle_date_picker
-      puts "date_picker is not a valid type!"
-      handle_input
-    end
+    def handle_date_picker = handle_input
 
     def handle_input = verify_input { fill_in(@locator, with: @value) }
 

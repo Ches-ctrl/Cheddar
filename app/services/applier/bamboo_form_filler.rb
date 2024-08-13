@@ -15,6 +15,17 @@ module Applier
 
     def boolean_field = find(:css, "label[for='#{@locator}']")
 
+    def convert_date
+      date_string = @value
+      @value = Date.strptime(date_string, '%Y-%m-%d')
+                   .strftime('%d/%m/%Y')
+    end
+
+    def handle_date_picker
+      convert_date
+      handle_input
+    end
+
     def handle_select
       @hidden_select_field = find("select[name='#{@locator}']")
       return if option_prefilled?
