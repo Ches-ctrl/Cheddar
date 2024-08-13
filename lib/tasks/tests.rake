@@ -1,3 +1,5 @@
+require './app/helpers/rake_helpers'
+
 namespace :tests do
   # Call this with e.g. rake "tests:end_to_end[https://apply.workable.com/starling-bank/j/60ACE7278C, 15]"
   # It takes a required argument, the posting_url of the job to be tested.
@@ -13,5 +15,11 @@ namespace :tests do
     end
 
     Rake::Task[:spec_task].invoke
+  end
+
+  desc "Conduct end-to-end batch testing"
+  task batch_test: :environment do
+    include RakeHelpers
+    prompt_for_ats
   end
 end
