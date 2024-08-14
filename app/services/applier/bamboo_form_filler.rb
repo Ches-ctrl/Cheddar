@@ -18,7 +18,7 @@ module Applier
 
     def click_submit_button
       sleep 12 # temporary -- just for testing
-      # submit_button.click
+      submit_button.click
     end
 
     def convert_date
