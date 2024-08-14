@@ -32,7 +32,7 @@
       class: 'd-none'
     }
   %>
-<% elsif question.valid? && question.select? || question.yes_no_radiogroup? # Daniel's edit %>
+<% elsif question.valid? && question.select? || question.radiogroup? # Daniel's edit %>
   <%= field_form.input question.attribute,
     collection: question.options,
     include_blank: true,

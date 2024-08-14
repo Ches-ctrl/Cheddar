@@ -2210,15 +2210,15 @@
         ]
       },
       {
-        "attribute": "cover_letter",
-        "label": "Cover letter",
+        "attribute": "website_url",
+        "label": "Website url",
         "description": null,
-        "required": true,
+        "required": false,
         "fields": [
           {
-            "name": "coverLetterFileId",
+            "name": "websiteUrl",
             "selector": null,
-            "type": "upload",
+            "type": "input",
             "options": [
 
             ]
@@ -2248,15 +2248,15 @@
     "description": null,
     "questions": [
       {
-        "attribute": "why-do-you-want-to-join-the-turn-io-team",
-        "label": " Why do you want to join the Turn.io team?",
+        "attribute": "by-submitting-your-application-you-are-agreeing-to-prezi-com",
+        "label": "By submitting your application you are agreeing to Prezi.com Kft processing your personal data in accordance with our Recruitment Policy. To understand more about how and why we collect your personal data, the type of information we collect about you, how we use and share your personal data, how long we store your personal data and to learn more about your choices and rights we encourage you to read through the policy. Please find the policies here: https://prezi.com/recruitment-policy/ and  https://prezi.com/cms/legal/privacy-policy/",
         "description": null,
-        "required": false,
+        "required": true,
         "fields": [
           {
-            "name": "customQuestions[82]",
+            "name": "customQuestions[97]",
             "selector": null,
-            "type": "textarea",
+            "type": "agreement_checkbox",
             "options": [
 
             ]
@@ -2264,33 +2264,24 @@
         ]
       },
       {
-        "attribute": "turn-is-a-value_driven-company-tell-us-about-one-of-your-per",
-        "label": "Turn is a value-driven company. Tell us about one of your personal values and how you apply it at work?",
+        "attribute": "do-you-have-a-legal-right-to-work-in-the-country-you-are-loc",
+        "label": "Do you have a legal right to work in the country you are located in without additional visa?",
         "description": null,
-        "required": false,
+        "required": true,
         "fields": [
           {
-            "name": "customQuestions[83]",
+            "name": "customQuestions[98]",
             "selector": null,
-            "type": "textarea",
+            "type": "radiogroup",
             "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "how-did-you-hear-about-this-position",
-        "label": "How did you hear about this position? ",
-        "description": null,
-        "required": false,
-        "fields": [
-          {
-            "name": "customQuestions[84]",
-            "selector": null,
-            "type": "input",
-            "options": [
-
+              {
+                "value": "yes",
+                "label": "Yes"
+              },
+              {
+                "value": "no",
+                "label": "No"
+              }
             ]
           }
         ]

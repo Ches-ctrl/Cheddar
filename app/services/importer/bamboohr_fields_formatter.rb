@@ -96,7 +96,7 @@ module Importer
     def input_type(attribute, type, options)
       return :agreement_checkbox if type.eql?('checkbox') && options.empty?
       return :date_picker if attribute.eql?('date_available')
-      return :yes_no_radiogroup if type.eql?('yes_no') # Daniel's edit
+      return :radiogroup if type.eql?('yes_no') # Daniel's edit
       return :select if options.present?
       return :upload if %w[resume cover_letter].include?(attribute)
 
@@ -107,7 +107,7 @@ module Importer
       'checkbox' => :select,
       'long' => :textarea,
       'short' => :input,
-      'yes_no' => :yes_no_radiogroup
+      'yes_no' => :radiogroup
     }
 
     def output_file_name = 'bamboohr_formatter_output.json'
