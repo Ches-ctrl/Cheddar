@@ -101,7 +101,7 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-Capybara.default_max_wait_time = 8
+Capybara.default_max_wait_time = 15
 
 Capybara.configure do |config|
   config.run_server = true

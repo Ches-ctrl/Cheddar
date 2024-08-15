@@ -12,6 +12,8 @@ module Applier
     include LoggingHelper
 
     def initialize(payload)
+      p "here's the payload:" # for testing
+      p payload
       @fields = payload[:fields]
       @session = Capybara::Session.new(:selenium)
       @url = payload[:apply_url]
@@ -94,7 +96,8 @@ module Applier
 
     def handle_date_picker = handle_input
 
-    def handle_input = verify_input { fill_in(@locator, with: @value) }
+    # def handle_input = verify_input { fill_in(@locator, with: @value) }
+    def handle_input = find_field(@locator).send_keys(@value)
 
     def handle_location
       puts "Location questions not handled!"

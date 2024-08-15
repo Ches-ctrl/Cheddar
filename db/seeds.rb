@@ -1,3 +1,6 @@
+require './lib/constants'
+include Constants::CompaniesToSeed
+
 puts "How many jobs would you like to seed?"
 
 response = nil
@@ -54,53 +57,6 @@ puts "Created #{ApplicantTrackingSystem.count} ATSs"
 
 puts "-------------------------------------"
 
-companies = {
-  ashbyhq: [
-    'airwallex',
-    'Crusoe',
-    'isometric',
-    'lightdash',
-    'multiverse'
-  ],
-  bamboohr: [
-    'avidbots',
-    'gfo',
-    'heirloom',
-    'hyperjar',
-    'kiteworks',
-    'meedan',
-    'prezi',
-    'resurgo',
-    'turn',
-    'xtm'
-  ],
-  greenhouse: [
-    'cleoai',
-    '11fs',
-    'codepath',
-    'copperco',
-    'deliveroo',
-    'doctolib',
-    'epicgames',
-    'figma',
-    'forter',
-    'geniussports',
-    'getir',
-    'gomotive',
-    'intercom',
-    'janestreet',
-    'knowde',
-    'narvar',
-  ],
-  workable: [
-    'builderai',
-    'carbonclean',
-    'grayce',
-    'nqc',
-    'starling-bank'
-  ]
-}
-
 puts "Creating new roles..."
 
 roles = %w(front_end back_end full_stack dev_ops qa_test_engineer mobile data_engineer)
@@ -122,7 +78,7 @@ ats_list.each_with_index do |ats_name, i|
   puts "This may take a little while, worry not young padawan...\n\n"
 
   ats = ApplicantTrackingSystem.find_by(name: ats_name)
-  company_list = companies[ats_name.downcase.to_sym]
+  company_list = COMPANIES[ats_name.downcase.to_sym]
   relevant_job_urls = Importer::GetRelevantJobUrls.new(ats, company_list).fetch_jobs
   number_of_jobs = (response - Job.count) / (ats_list.size - i)
   jobs_to_seed = relevant_job_urls.shuffle.take(number_of_jobs)

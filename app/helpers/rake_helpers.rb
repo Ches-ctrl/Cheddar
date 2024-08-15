@@ -1,4 +1,6 @@
 module RakeHelpers
+  # presents a menu of the ATSs that we can seed and test end-to-end
+  # user's selection is parsed by parse_response
   def prompt_for_ats
     ats_list = {
       AshbyHQ: true,
@@ -13,10 +15,10 @@ module RakeHelpers
     until user_ready
       display_options(ats_list)
       response = fetch_input(options_count)
-      user_ready, ats_list = parse_response(ats_list, response, options_count)
+      user_ready, ats_list = parse_response(ats_list, response)
     end
 
-    ats_list
+    ats_list.select { |_, value| value.present? }.keys # return an array of the user-selected values
   end
 
   private
@@ -37,12 +39,12 @@ module RakeHelpers
     $stdin.gets.chomp.downcase
   end
 
-  def parse_response(ats_list, response, options_count)
-    return 1 if response == 'c'
+  def parse_response(ats_list, response)
+    return [true, ats_list] if response == 'c' # user_ready = true
     return select_deselect_all(ats_list) if response == 'x'
 
     response = response.to_i
-    ats_list = select_deselect_option(ats_list, response) if response.positive? && response <= options_count
+    ats_list = select_deselect_option(ats_list, response) if response.positive? && response <= ats_list.count
     [false, ats_list]
   end
 

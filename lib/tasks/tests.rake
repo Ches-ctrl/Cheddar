@@ -1,4 +1,5 @@
 require './app/helpers/rake_helpers'
+require './app/services/batch_test'
 
 namespace :tests do
   # Call this with e.g. rake "tests:end_to_end[https://apply.workable.com/starling-bank/j/60ACE7278C, 15]"
@@ -20,6 +21,7 @@ namespace :tests do
   desc "Conduct end-to-end batch testing"
   task batch_test: :environment do
     include RakeHelpers
-    prompt_for_ats
+    response = prompt_for_ats
+    BatchTest.call(response)
   end
 end

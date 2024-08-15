@@ -24,7 +24,7 @@ module Importer
         attribute = attribute(raw_question[:id])
         options = raw_question[:options]&.map { |option| option.transform_keys({ 'value' => 'label' }) }&.map { |option| option.transform_keys({ 'name' => 'value' }) } || []
 
-        type = INPUT_TYPES[raw_question[:type]]
+        type = fetch_type(raw_question)
         fields = [{ name: raw_question[:id], selector: nil, type:, options: }]
         label = raw_question[:label]
 
@@ -68,6 +68,14 @@ module Importer
     ###
     ### types
     ###
+
+    # Daniel's edit
+    def fetch_type(raw_question)
+      return :agreement_checkbox if raw_question[:onlyTrueAllowed]
+      return :radiogroup if raw_question[:type] == 'multiple' && raw_question[:singleOption]
+
+      INPUT_TYPES[raw_question[:type]]
+    end
 
     INPUT_TYPES = {
       'boolean' => :boolean,
