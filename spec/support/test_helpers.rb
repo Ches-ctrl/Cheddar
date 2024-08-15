@@ -32,7 +32,7 @@ module TestHelpers
   def complete_date_fields
     puts "Completing datepicker fields..."
     all('input[type="date"]').each do |field|
-      field.set('13/01/2024')
+      field.set((Date.today + 14).strftime('%d/%m/%Y'))
     end
   end
 
@@ -70,6 +70,16 @@ module TestHelpers
     result
   end
 
+  # Shouldn't be necessary once Cheddar form is fully aligned with user_detail
+  def fetch_standard_attribute(field)
+    return if nonstandard_field?(field)
+
+    standard_attributes.each do |attribute|
+      return send(:"user_#{attribute}") if field.sibling('label').text.downcase.include?(attribute)
+    end
+    nil
+  end
+
   # seeds ATS to test db, creates job from url and returns job_id
   def initialize_job(url)
     puts 'Creating a new job...'
@@ -94,28 +104,27 @@ module TestHelpers
     [user, application_process, job_application]
   end
 
+  def nonstandard_field?(field)
+    field['id'].include?('-')
+  end
+
   def pause_for_review = sleep @sleep_time
 
   def resume_file = 'public/Obretetskiy_cv.pdf'
 
   def set_value(field)
-    value = fetch_standard_attribute(field) || Faker::Color.color_name
+    value = fetch_standard_attribute(field)
+    value ||= Faker::Color.color_name
 
     field.set(value)
-  end
-
-  # Shouldn't be necessary once Cheddar form is fully aligned with user_detail
-  def fetch_standard_attribute(field)
-    standard_attributes.each do |attribute|
-      return send(:"user_#{attribute}") if field.sibling('label').text.downcase.include?(attribute)
-    end
-    nil
   end
 
   def standard_attributes = [
     'address',
     'city',
     'country',
+    'linkedin',
+    'url',
     'zip'
   ]
 
@@ -130,6 +139,10 @@ module TestHelpers
   def user_city = @user.user_detail.city
 
   def user_country = 'United Kingdom'
+
+  def user_linkedin = 'https://www.linkedin.com/in/my_profile'
+
+  def user_url = Faker::Internet.url
 
   def user_zip = @user.user_detail.post_code
 end
