@@ -2197,7 +2197,7 @@
         "attribute": "desired_pay",
         "label": "Desired pay",
         "description": null,
-        "required": false,
+        "required": true,
         "fields": [
           {
             "name": "desiredPay",
@@ -2248,29 +2248,13 @@
     "description": null,
     "questions": [
       {
-        "attribute": "by-submitting-your-application-you-are-agreeing-to-prezi-com",
-        "label": "By submitting your application you are agreeing to Prezi.com Kft processing your personal data in accordance with our Recruitment Policy. To understand more about how and why we collect your personal data, the type of information we collect about you, how we use and share your personal data, how long we store your personal data and to learn more about your choices and rights we encourage you to read through the policy. Please find the policies here: https://prezi.com/recruitment-policy/ and  https://prezi.com/cms/legal/privacy-policy/",
+        "attribute": "do-you-have-an-existing-right-to-work-in-the-uk-uk-citizensh",
+        "label": "Do you have an existing right to work in the UK (UK citizenship, visa, settled status etc.)?",
         "description": null,
         "required": true,
         "fields": [
           {
-            "name": "customQuestions[97]",
-            "selector": null,
-            "type": "agreement_checkbox",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "do-you-have-a-legal-right-to-work-in-the-country-you-are-loc",
-        "label": "Do you have a legal right to work in the country you are located in without additional visa?",
-        "description": null,
-        "required": true,
-        "fields": [
-          {
-            "name": "customQuestions[98]",
+            "name": "customQuestions[194]",
             "selector": null,
             "type": "radiogroup",
             "options": [
@@ -2282,6 +2266,38 @@
                 "value": "no",
                 "label": "No"
               }
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "i-confirm-that-i-have-read-the-hyper_jar-limited-data-privac",
+        "label": "I confirm that I have read the HyperJar Limited Data Privacy Notice for prospective employees and I am happy for HyperJar to store and use my data in line with this policy.  click this link",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "customQuestions[195]",
+            "selector": null,
+            "type": "agreement_checkbox",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "i-am-aware-that-this-is-an-office_based_role-london-paddingo",
+        "label": "I am aware that this is an office-based-role (London, Paddingon) that will require a minimum of four days per week in the office.",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "customQuestions[196]",
+            "selector": null,
+            "type": "agreement_checkbox",
+            "options": [
+
             ]
           }
         ]

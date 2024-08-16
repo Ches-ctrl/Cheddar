@@ -1,5 +1,6 @@
 require './lib/constants'
 include Constants::CompaniesToSeed
+include RakeHelpers
 
 puts "How many jobs would you like to seed?"
 
@@ -67,7 +68,7 @@ puts "Created #{Role.count} roles"
 puts "-------------------------------------"
 
 # ats_list = ['AshbyHQ', 'BambooHR', 'Greenhouse', 'Workable']
-ats_list = ['BambooHR']
+ats_list = prompt_for_ats
 defunct_urls = []
 
 puts "Preparing to re-seed database with #{response} #{ats_list.to_sentence} jobs...\n"

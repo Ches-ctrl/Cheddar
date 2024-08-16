@@ -6,7 +6,6 @@
       {
         "attribute": "first_name",
         "label": "First name",
-        "description": null,
         "required": true,
         "fields": [
           {
@@ -22,7 +21,6 @@
       {
         "attribute": "last_name",
         "label": "Last name",
-        "description": null,
         "required": true,
         "fields": [
           {
@@ -38,7 +36,6 @@
       {
         "attribute": "email",
         "label": "Email",
-        "description": null,
         "required": true,
         "fields": [
           {
@@ -54,7 +51,6 @@
       {
         "attribute": "headline",
         "label": "Headline",
-        "description": null,
         "required": true,
         "fields": [
           {
@@ -70,7 +66,6 @@
       {
         "attribute": "phone_number",
         "label": "Phone",
-        "description": null,
         "required": true,
         "fields": [
           {
@@ -86,7 +81,6 @@
       {
         "attribute": "address_applicant",
         "label": "Address",
-        "description": null,
         "required": true,
         "fields": [
           {
@@ -102,7 +96,6 @@
       {
         "attribute": "photo",
         "label": "Photo",
-        "description": null,
         "required": false,
         "fields": [
           {
@@ -118,7 +111,6 @@
       {
         "attribute": "education",
         "label": "Education",
-        "description": null,
         "required": false,
         "fields": [
           {
@@ -129,12 +121,98 @@
 
             ]
           }
+        ],
+        "sub_questions": [
+          {
+            "attribute": "school",
+            "label": "School",
+            "description": "education",
+            "required": true,
+            "group_id": "education",
+            "fields": [
+              {
+                "name": "school",
+                "selector": null,
+                "type": "input",
+                "options": [
+
+                ]
+              }
+            ]
+          },
+          {
+            "attribute": "field_of_study",
+            "label": "Field of study",
+            "description": "education",
+            "required": false,
+            "group_id": "education",
+            "fields": [
+              {
+                "name": "field_of_study",
+                "selector": null,
+                "type": "input",
+                "options": [
+
+                ]
+              }
+            ]
+          },
+          {
+            "attribute": "degree",
+            "label": "Degree",
+            "description": "education",
+            "required": false,
+            "group_id": "education",
+            "fields": [
+              {
+                "name": "degree",
+                "selector": null,
+                "type": "input",
+                "options": [
+
+                ]
+              }
+            ]
+          },
+          {
+            "attribute": "start_date",
+            "label": "Start date",
+            "description": "education",
+            "required": false,
+            "group_id": "education",
+            "fields": [
+              {
+                "name": "start_date",
+                "selector": null,
+                "type": "date_picker",
+                "options": [
+
+                ]
+              }
+            ]
+          },
+          {
+            "attribute": "end_date",
+            "label": "End date",
+            "description": "education",
+            "required": false,
+            "group_id": "education",
+            "fields": [
+              {
+                "name": "end_date",
+                "selector": null,
+                "type": "date_picker",
+                "options": [
+
+                ]
+              }
+            ]
+          }
         ]
       },
       {
         "attribute": "experience",
         "label": "Experience",
-        "description": null,
         "required": false,
         "fields": [
           {
@@ -145,12 +223,132 @@
 
             ]
           }
+        ],
+        "sub_questions": [
+          {
+            "attribute": "title",
+            "label": "Title",
+            "description": "experience",
+            "required": true,
+            "group_id": "experience",
+            "fields": [
+              {
+                "name": "title",
+                "selector": null,
+                "type": "input",
+                "options": [
+
+                ]
+              }
+            ]
+          },
+          {
+            "attribute": "company",
+            "label": "Company",
+            "description": "experience",
+            "required": false,
+            "group_id": "experience",
+            "fields": [
+              {
+                "name": "company",
+                "selector": null,
+                "type": "input",
+                "options": [
+
+                ]
+              }
+            ]
+          },
+          {
+            "attribute": "industry",
+            "label": "Industry",
+            "description": "experience",
+            "required": false,
+            "group_id": "experience",
+            "fields": [
+              {
+                "name": "industry",
+                "selector": null,
+                "type": "input",
+                "options": [
+
+                ]
+              }
+            ]
+          },
+          {
+            "attribute": "summary",
+            "label": "Summary",
+            "description": "experience",
+            "required": false,
+            "group_id": "experience",
+            "fields": [
+              {
+                "name": "summary",
+                "selector": null,
+                "type": "textarea",
+                "options": [
+
+                ]
+              }
+            ]
+          },
+          {
+            "attribute": "start_date",
+            "label": "Start date",
+            "description": "experience",
+            "required": false,
+            "group_id": "experience",
+            "fields": [
+              {
+                "name": "start_date",
+                "selector": null,
+                "type": "date_picker",
+                "options": [
+
+                ]
+              }
+            ]
+          },
+          {
+            "attribute": "end_date",
+            "label": "End date",
+            "description": "experience",
+            "required": false,
+            "group_id": "experience",
+            "fields": [
+              {
+                "name": "end_date",
+                "selector": null,
+                "type": "date_picker",
+                "options": [
+
+                ]
+              }
+            ]
+          },
+          {
+            "attribute": "current",
+            "label": "I currently work here",
+            "description": "experience",
+            "required": false,
+            "group_id": "experience",
+            "fields": [
+              {
+                "name": "current",
+                "selector": null,
+                "type": "boolean",
+                "options": [
+
+                ]
+              }
+            ]
+          }
         ]
       },
       {
         "attribute": "summary",
         "label": "Summary",
-        "description": null,
         "required": true,
         "fields": [
           {
@@ -166,7 +364,6 @@
       {
         "attribute": "resume",
         "label": "Resume",
-        "description": null,
         "required": true,
         "fields": [
           {
@@ -188,7 +385,6 @@
       {
         "attribute": "cover_letter",
         "label": "Cover letter",
-        "description": null,
         "required": true,
         "fields": [
           {
@@ -204,7 +400,6 @@
       {
         "attribute": "qa_8503059",
         "label": "¿Qué nivel de inglés tienes?",
-        "description": null,
         "required": true,
         "fields": [
           {
@@ -243,7 +438,6 @@
       {
         "attribute": "qa_8503060",
         "label": "¿Cuál es tu salario bruto mensual deseado?",
-        "description": null,
         "required": true,
         "fields": [
           {
@@ -259,7 +453,6 @@
       {
         "attribute": "qa_8503061",
         "label": "¿En caso de ser el perfil seleccionado cuánto tiempo necesitas para incorporarte?",
-        "description": null,
         "required": true,
         "fields": [
           {

@@ -64,7 +64,9 @@ module Importer
         description: question[:description],
         label: question[:label],
         required: question[:required],
-        fields: question[:fields]
+        group_id: question[:group_id], # Daniel's edit
+        fields: question[:fields],
+        sub_questions: question[:sub_questions]
       }
     end
   end

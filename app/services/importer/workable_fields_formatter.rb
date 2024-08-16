@@ -17,18 +17,18 @@ module Importer
 
     ###
 
-    def any_questions(questions_data)
+    def any_questions(questions_data, group_id = nil)
       return {} unless questions_data
 
       questions_data.map do |raw_question|
         attribute = attribute(raw_question[:id])
         options = raw_question[:options]&.map { |option| option.transform_keys({ 'value' => 'label' }) }&.map { |option| option.transform_keys({ 'name' => 'value' }) } || []
-
         type = fetch_type(raw_question)
         fields = [{ name: raw_question[:id], selector: nil, type:, options: }]
         label = raw_question[:label]
+        sub_questions = any_questions(raw_question[:fields], attribute) if raw_question[:fields].present? # Daniel's edit
 
-        { attribute:, label:, description: nil, required: raw_question[:required], fields: }
+        { attribute:, label:, description: group_id, required: raw_question[:required], group_id:, fields:, sub_questions: }
       end.compact
     end
 

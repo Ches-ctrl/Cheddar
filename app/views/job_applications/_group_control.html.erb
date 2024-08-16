@@ -1,0 +1,14 @@
+<div>
+<%= question.label %>
+
+<div>
+  <% question.fetch_sub_questions.each do |sub_question| %>
+
+    <div class="col-span-full" data-mandatory-fields-only-target="field" data-required-value="<%= question.required %>">
+      <%= form.simple_fields_for :additional_info do |field_form| %>
+        <%= render 'additional_information_field', job_application:, last_applicant_answers:, question: sub_question, form:, field_form: %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+</div>

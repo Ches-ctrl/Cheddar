@@ -2,7 +2,7 @@
 
 class ApplicationQuestion
   # == PORO - Accessors =====================================================
-  attr_accessor :section, :attribute, :label, :fields, :required, :description
+  attr_accessor :section, :attribute, :label, :fields, :group_id, :required, :description, :sub_questions
 
   # == Attributes ===========================================================
   # == Callbacks ============================================================
@@ -29,6 +29,8 @@ class ApplicationQuestion
   def checkbox? = type.eql?("checkbox")
   def cover_letter? = attribute&.include?("cover_letter")
   def date_picker? = type.eql?("date_picker")
+  # Daniel's edit below:
+  def group? = type.eql?("group")
   def input? = type.eql?("input") || type.eql?("education_input")
   def linkedin_related? = attribute&.include?('linkedin')
   def multi_select? = type.eql?("multi_select")
@@ -36,6 +38,8 @@ class ApplicationQuestion
   def radiogroup? = type.eql?("radiogroup")
   def resume? = attribute.eql?("resume")
   def select? = type.eql?("select") || type.eql?("education_select")
+  # Daniel's edit below:
+  def sub_question? = group_id.present?
   def textarea? = type.eql?("textarea")
   def upload? = type.eql?("upload")
 
@@ -67,6 +71,11 @@ class ApplicationQuestion
     value = job_application.additional_info[attribute]
     value = value.reject(&:blank?) if value.is_a?(Array)
     value.is_a?(Array) && value.count.eql?(1) ? value.first : value
+  end
+
+  # Daniel's edit
+  def fetch_sub_questions
+    sub_questions.map { |question| ApplicationQuestion.new(question.merge(section:)) }
   end
 
   def locator = field['selector'] || field['name']

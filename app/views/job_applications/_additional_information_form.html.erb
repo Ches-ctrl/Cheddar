@@ -1,12 +1,12 @@
 <%= simple_form_for job_application,
   url: application_process_job_application_path,
-  html: { 
+  html: {
     method: :put, class: "md:col-span-2",
-    data: { mandatory_fields_only_target: 'form' } 
+    data: { mandatory_fields_only_target: 'form' }
   },
   defaults: {
     autofocus: false,
-    input_html: { 
+    input_html: {
       class: 'rounded-4 block w-full rounded-md border-0 py-1.5 dark:bg-white/5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 placeholder:text-gray-400 dark:placeholder:text-gray-99 focus:ring-1 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6'
     },
     hint_html: {
@@ -15,11 +15,18 @@
     label_html: {
       class: 'mb-2 ml-0.5 block text-sm font-medium leading-6 text-gray-700 dark:text-gray-400'
     }
-  } do |form| 
+  } do |form|
 %>
   <div class="grid gap-x-6 gap-y-8 sm:max-w-6xl sm:grid-cols-6">
     <% previous_question = nil %>
     <% job_application.application_question_set.questions.each do |question| %>
+      <% if question.group? %>
+        <div class="col-span-full">
+          <%= render 'group_control', job_application:, last_applicant_answers:, question:, form: %>
+        </div>
+        <% next %>
+      <% end %>
+
       <% if different_section?(previous_question, question) %>
         <p class="col-span-full mt-3 mb-2 border-b border-gray-900/10 dark:border-gray-300">
           <h3 class="col-span-full text-lg font-semibold text-indigo-600 dark:text-indigo-400">
