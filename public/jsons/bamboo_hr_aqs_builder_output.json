@@ -9,6 +9,7 @@
         "description": null,
         "label": "First name",
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "firstName",
@@ -18,13 +19,15 @@
 
             ]
           }
-        ]
+        ],
+        "sub_questions": null
       },
       {
         "attribute": "last_name",
         "description": null,
         "label": "Last name",
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "lastName",
@@ -34,13 +37,15 @@
 
             ]
           }
-        ]
+        ],
+        "sub_questions": null
       },
       {
         "attribute": "email",
         "description": null,
         "label": "Email",
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "email",
@@ -50,13 +55,15 @@
 
             ]
           }
-        ]
+        ],
+        "sub_questions": null
       },
       {
         "attribute": "phone_number",
         "description": null,
         "label": "Phone number",
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "phone",
@@ -66,13 +73,51 @@
 
             ]
           }
-        ]
+        ],
+        "sub_questions": null
+      },
+      {
+        "attribute": "resume",
+        "description": null,
+        "label": "Resume",
+        "required": true,
+        "group_id": null,
+        "fields": [
+          {
+            "name": "resumeFileId",
+            "selector": null,
+            "type": "upload",
+            "options": [
+
+            ]
+          }
+        ],
+        "sub_questions": null
+      },
+      {
+        "attribute": "desired_pay",
+        "description": null,
+        "label": "Desired pay",
+        "required": false,
+        "group_id": null,
+        "fields": [
+          {
+            "name": "desiredPay",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ],
+        "sub_questions": null
       },
       {
         "attribute": "address_applicant",
         "description": null,
         "label": "Address applicant",
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "streetAddress",
@@ -82,13 +127,15 @@
 
             ]
           }
-        ]
+        ],
+        "sub_questions": null
       },
       {
         "attribute": "city_applicant",
         "description": null,
         "label": "City applicant",
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "city",
@@ -98,13 +145,15 @@
 
             ]
           }
-        ]
+        ],
+        "sub_questions": null
       },
       {
         "attribute": "state_applicant",
         "description": null,
         "label": "State applicant",
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "state",
@@ -1105,13 +1154,15 @@
               }
             ]
           }
-        ]
+        ],
+        "sub_questions": null
       },
       {
         "attribute": "zip_applicant",
         "description": null,
         "label": "Zip applicant",
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "zip",
@@ -1121,13 +1172,15 @@
 
             ]
           }
-        ]
+        ],
+        "sub_questions": null
       },
       {
         "attribute": "country_applicant",
         "description": null,
         "label": "Country applicant",
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "countryId",
@@ -2160,13 +2213,33 @@
               }
             ]
           }
-        ]
+        ],
+        "sub_questions": null
+      },
+      {
+        "attribute": "cover_letter",
+        "description": null,
+        "label": "Cover letter",
+        "required": false,
+        "group_id": null,
+        "fields": [
+          {
+            "name": "coverLetterFileId",
+            "selector": null,
+            "type": "upload",
+            "options": [
+
+            ]
+          }
+        ],
+        "sub_questions": null
       },
       {
         "attribute": "linkedin",
         "description": null,
         "label": "Linkedin",
         "required": false,
+        "group_id": null,
         "fields": [
           {
             "name": "linkedinUrl",
@@ -2176,13 +2249,15 @@
 
             ]
           }
-        ]
+        ],
+        "sub_questions": null
       },
       {
         "attribute": "date_available",
         "description": null,
         "label": "Date available",
         "required": false,
+        "group_id": null,
         "fields": [
           {
             "name": "dateAvailable",
@@ -2192,29 +2267,15 @@
 
             ]
           }
-        ]
-      },
-      {
-        "attribute": "desired_pay",
-        "description": null,
-        "label": "Desired pay",
-        "required": true,
-        "fields": [
-          {
-            "name": "desiredPay",
-            "selector": null,
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
+        ],
+        "sub_questions": null
       },
       {
         "attribute": "website_url",
         "description": null,
         "label": "Website url",
         "required": false,
+        "group_id": null,
         "fields": [
           {
             "name": "websiteUrl",
@@ -2224,85 +2285,16 @@
 
             ]
           }
-        ]
-      },
-      {
-        "attribute": "resume",
-        "description": null,
-        "label": "Resume",
-        "required": true,
-        "fields": [
-          {
-            "name": "resumeFileId",
-            "selector": null,
-            "type": "upload",
-            "options": [
-
-            ]
-          }
-        ]
+        ],
+        "sub_questions": null
       }
     ]
   },
   "additional_questions": {
-    "title": "Additional questions",
+    "title": null,
     "description": null,
     "questions": [
-      {
-        "attribute": "do-you-have-an-existing-right-to-work-in-the-uk-uk-citizensh",
-        "description": null,
-        "label": "Do you have an existing right to work in the UK (UK citizenship, visa, settled status etc.)?",
-        "required": true,
-        "fields": [
-          {
-            "name": "customQuestions[194]",
-            "selector": null,
-            "type": "radiogroup",
-            "options": [
-              {
-                "value": "yes",
-                "label": "Yes"
-              },
-              {
-                "value": "no",
-                "label": "No"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "i-confirm-that-i-have-read-the-hyper_jar-limited-data-privac",
-        "description": null,
-        "label": "I confirm that I have read the HyperJar Limited Data Privacy Notice for prospective employees and I am happy for HyperJar to store and use my data in line with this policy.  click this link",
-        "required": true,
-        "fields": [
-          {
-            "name": "customQuestions[195]",
-            "selector": null,
-            "type": "agreement_checkbox",
-            "options": [
 
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "i-am-aware-that-this-is-an-office_based_role-london-paddingo",
-        "description": null,
-        "label": "I am aware that this is an office-based-role (London, Paddingon) that will require a minimum of four days per week in the office.",
-        "required": true,
-        "fields": [
-          {
-            "name": "customQuestions[196]",
-            "selector": null,
-            "type": "agreement_checkbox",
-            "options": [
-
-            ]
-          }
-        ]
-      }
     ]
   }
 }

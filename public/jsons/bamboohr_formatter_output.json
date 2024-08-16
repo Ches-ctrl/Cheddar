@@ -68,6 +68,38 @@
         ]
       },
       {
+        "attribute": "resume",
+        "label": "Resume",
+        "description": null,
+        "required": true,
+        "fields": [
+          {
+            "name": "resumeFileId",
+            "selector": null,
+            "type": "upload",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "attribute": "desired_pay",
+        "label": "Desired pay",
+        "description": null,
+        "required": false,
+        "fields": [
+          {
+            "name": "desiredPay",
+            "selector": null,
+            "type": "input",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
         "attribute": "address_applicant",
         "label": "Address applicant",
         "description": null,
@@ -2162,6 +2194,22 @@
         ]
       },
       {
+        "attribute": "cover_letter",
+        "label": "Cover letter",
+        "description": null,
+        "required": false,
+        "fields": [
+          {
+            "name": "coverLetterFileId",
+            "selector": null,
+            "type": "upload",
+            "options": [
+
+            ]
+          }
+        ]
+      },
+      {
         "attribute": "linkedin",
         "label": "Linkedin",
         "description": null,
@@ -2194,22 +2242,6 @@
         ]
       },
       {
-        "attribute": "desired_pay",
-        "label": "Desired pay",
-        "description": null,
-        "required": true,
-        "fields": [
-          {
-            "name": "desiredPay",
-            "selector": null,
-            "type": "input",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
         "attribute": "website_url",
         "label": "Website url",
         "description": null,
@@ -2224,84 +2256,9 @@
             ]
           }
         ]
-      },
-      {
-        "attribute": "resume",
-        "label": "Resume",
-        "description": null,
-        "required": true,
-        "fields": [
-          {
-            "name": "resumeFileId",
-            "selector": null,
-            "type": "upload",
-            "options": [
-
-            ]
-          }
-        ]
       }
     ]
   },
   "additional_questions": {
-    "title": "Additional questions",
-    "description": null,
-    "questions": [
-      {
-        "attribute": "do-you-have-an-existing-right-to-work-in-the-uk-uk-citizensh",
-        "label": "Do you have an existing right to work in the UK (UK citizenship, visa, settled status etc.)?",
-        "description": null,
-        "required": true,
-        "fields": [
-          {
-            "name": "customQuestions[194]",
-            "selector": null,
-            "type": "radiogroup",
-            "options": [
-              {
-                "value": "yes",
-                "label": "Yes"
-              },
-              {
-                "value": "no",
-                "label": "No"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "i-confirm-that-i-have-read-the-hyper_jar-limited-data-privac",
-        "label": "I confirm that I have read the HyperJar Limited Data Privacy Notice for prospective employees and I am happy for HyperJar to store and use my data in line with this policy.  click this link",
-        "description": null,
-        "required": true,
-        "fields": [
-          {
-            "name": "customQuestions[195]",
-            "selector": null,
-            "type": "agreement_checkbox",
-            "options": [
-
-            ]
-          }
-        ]
-      },
-      {
-        "attribute": "i-am-aware-that-this-is-an-office_based_role-london-paddingo",
-        "label": "I am aware that this is an office-based-role (London, Paddingon) that will require a minimum of four days per week in the office.",
-        "description": null,
-        "required": true,
-        "fields": [
-          {
-            "name": "customQuestions[196]",
-            "selector": null,
-            "type": "agreement_checkbox",
-            "options": [
-
-            ]
-          }
-        ]
-      }
-    ]
   }
 }

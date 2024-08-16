@@ -1,14 +1,26 @@
-<div>
-<%= question.label %>
+<div data-controller="group" data-group-target="group">
+  <%= question.label %>
+  <% if question.required %>
+    <abbr title="required">*</abbr>
+  <% end %>
+  <br>
 
-<div>
-  <% question.fetch_sub_questions.each do |sub_question| %>
+  <template id="<%= question.attribute %>-question-template" data-group-target="template">
+    <div class="question-group">
+      <% question.fetch_sub_questions.each do |sub_question| %>
 
-    <div class="col-span-full" data-mandatory-fields-only-target="field" data-required-value="<%= question.required %>">
-      <%= form.simple_fields_for :additional_info do |field_form| %>
-        <%= render 'additional_information_field', job_application:, last_applicant_answers:, question: sub_question, form:, field_form: %>
+        <div class="col-span-full" data-mandatory-fields-only-target="field" data-required-value="<%= sub_question.required %>">
+          <%= form.simple_fields_for :additional_info do |field_form| %>
+            <%# Need to find some way to dynamically increment the attribute below so that the keys in the job_application.additional_info hash aren't overwritten with each new answer to the same sub_question %>
+            <%= render 'additional_information_field', job_application:, last_applicant_answers:, question: sub_question, attribute: :"#{sub_question.attribute}_0", form:, field_form: %>
+          <% end %>
+        </div>
       <% end %>
     </div>
-  <% end %>
-</div>
+    <hr>
+  </template>
+
+  <div data-group-target="placeholder"></div>
+  <hr>
+  <button data-action="group#addGroup">Add <%= question.label %></button>
 </div>

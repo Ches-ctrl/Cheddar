@@ -6,7 +6,9 @@
       {
         "attribute": "first_name",
         "label": "First name",
+        "description": null,
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "firstname",
@@ -16,12 +18,17 @@
 
             ]
           }
+        ],
+        "sub_questions": [
+
         ]
       },
       {
         "attribute": "last_name",
         "label": "Last name",
+        "description": null,
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "lastname",
@@ -31,12 +38,17 @@
 
             ]
           }
+        ],
+        "sub_questions": [
+
         ]
       },
       {
         "attribute": "email",
         "label": "Email",
+        "description": null,
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "email",
@@ -46,12 +58,17 @@
 
             ]
           }
+        ],
+        "sub_questions": [
+
         ]
       },
       {
         "attribute": "headline",
         "label": "Headline",
+        "description": null,
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "headline",
@@ -61,12 +78,17 @@
 
             ]
           }
+        ],
+        "sub_questions": [
+
         ]
       },
       {
         "attribute": "phone_number",
         "label": "Phone",
+        "description": null,
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "phone",
@@ -76,12 +98,17 @@
 
             ]
           }
+        ],
+        "sub_questions": [
+
         ]
       },
       {
         "attribute": "address_applicant",
         "label": "Address",
+        "description": null,
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "address",
@@ -91,12 +118,17 @@
 
             ]
           }
+        ],
+        "sub_questions": [
+
         ]
       },
       {
         "attribute": "photo",
         "label": "Photo",
+        "description": null,
         "required": false,
+        "group_id": null,
         "fields": [
           {
             "name": "avatar",
@@ -106,12 +138,17 @@
 
             ]
           }
+        ],
+        "sub_questions": [
+
         ]
       },
       {
         "attribute": "education",
         "label": "Education",
+        "description": null,
         "required": false,
+        "group_id": null,
         "fields": [
           {
             "name": "education",
@@ -138,6 +175,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -155,6 +195,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -172,6 +215,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -189,6 +235,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -206,6 +255,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           }
         ]
@@ -213,7 +265,9 @@
       {
         "attribute": "experience",
         "label": "Experience",
+        "description": null,
         "required": false,
+        "group_id": null,
         "fields": [
           {
             "name": "experience",
@@ -240,6 +294,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -257,6 +314,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -274,6 +334,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -291,6 +354,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -308,6 +374,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -325,6 +394,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -342,6 +414,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           }
         ]
@@ -349,7 +424,9 @@
       {
         "attribute": "summary",
         "label": "Summary",
+        "description": null,
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "summary",
@@ -359,12 +436,17 @@
 
             ]
           }
+        ],
+        "sub_questions": [
+
         ]
       },
       {
         "attribute": "resume",
         "label": "Resume",
+        "description": null,
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "resume",
@@ -374,6 +456,9 @@
 
             ]
           }
+        ],
+        "sub_questions": [
+
         ]
       }
     ]
@@ -385,7 +470,9 @@
       {
         "attribute": "cover_letter",
         "label": "Cover letter",
+        "description": null,
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "cover_letter",
@@ -395,12 +482,17 @@
 
             ]
           }
+        ],
+        "sub_questions": [
+
         ]
       },
       {
         "attribute": "qa_8503059",
         "label": "¿Qué nivel de inglés tienes?",
+        "description": null,
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "QA_8503059",
@@ -433,12 +525,17 @@
               }
             ]
           }
+        ],
+        "sub_questions": [
+
         ]
       },
       {
         "attribute": "qa_8503060",
         "label": "¿Cuál es tu salario bruto mensual deseado?",
+        "description": null,
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "QA_8503060",
@@ -448,12 +545,17 @@
 
             ]
           }
+        ],
+        "sub_questions": [
+
         ]
       },
       {
         "attribute": "qa_8503061",
         "label": "¿En caso de ser el perfil seleccionado cuánto tiempo necesitas para incorporarte?",
+        "description": null,
         "required": true,
+        "group_id": null,
         "fields": [
           {
             "name": "QA_8503061",
@@ -463,6 +565,9 @@
 
             ]
           }
+        ],
+        "sub_questions": [
+
         ]
       }
     ]

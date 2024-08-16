@@ -20,7 +20,9 @@
             ]
           }
         ],
-        "sub_questions": null
+        "sub_questions": [
+
+        ]
       },
       {
         "attribute": "last_name",
@@ -38,7 +40,9 @@
             ]
           }
         ],
-        "sub_questions": null
+        "sub_questions": [
+
+        ]
       },
       {
         "attribute": "email",
@@ -56,7 +60,9 @@
             ]
           }
         ],
-        "sub_questions": null
+        "sub_questions": [
+
+        ]
       },
       {
         "attribute": "headline",
@@ -74,7 +80,9 @@
             ]
           }
         ],
-        "sub_questions": null
+        "sub_questions": [
+
+        ]
       },
       {
         "attribute": "phone_number",
@@ -92,7 +100,9 @@
             ]
           }
         ],
-        "sub_questions": null
+        "sub_questions": [
+
+        ]
       },
       {
         "attribute": "address_applicant",
@@ -110,7 +120,9 @@
             ]
           }
         ],
-        "sub_questions": null
+        "sub_questions": [
+
+        ]
       },
       {
         "attribute": "photo",
@@ -128,7 +140,9 @@
             ]
           }
         ],
-        "sub_questions": null
+        "sub_questions": [
+
+        ]
       },
       {
         "attribute": "education",
@@ -162,6 +176,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -179,6 +196,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -196,6 +216,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -213,6 +236,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -230,6 +256,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           }
         ]
@@ -266,6 +295,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -283,6 +315,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -300,6 +335,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -317,6 +355,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -334,6 +375,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -351,6 +395,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           },
           {
@@ -368,6 +415,9 @@
 
                 ]
               }
+            ],
+            "sub_questions": [
+
             ]
           }
         ]
@@ -388,7 +438,9 @@
             ]
           }
         ],
-        "sub_questions": null
+        "sub_questions": [
+
+        ]
       },
       {
         "attribute": "resume",
@@ -406,7 +458,9 @@
             ]
           }
         ],
-        "sub_questions": null
+        "sub_questions": [
+
+        ]
       }
     ]
   },
@@ -430,7 +484,9 @@
             ]
           }
         ],
-        "sub_questions": null
+        "sub_questions": [
+
+        ]
       },
       {
         "attribute": "qa_8503059",
@@ -471,7 +527,9 @@
             ]
           }
         ],
-        "sub_questions": null
+        "sub_questions": [
+
+        ]
       },
       {
         "attribute": "qa_8503060",
@@ -489,7 +547,9 @@
             ]
           }
         ],
-        "sub_questions": null
+        "sub_questions": [
+
+        ]
       },
       {
         "attribute": "qa_8503061",
@@ -507,7 +567,9 @@
             ]
           }
         ],
-        "sub_questions": null
+        "sub_questions": [
+
+        ]
       }
     ]
   }

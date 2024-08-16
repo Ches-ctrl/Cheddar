@@ -26,7 +26,7 @@ module Importer
         type = fetch_type(raw_question)
         fields = [{ name: raw_question[:id], selector: nil, type:, options: }]
         label = raw_question[:label]
-        sub_questions = any_questions(raw_question[:fields], attribute) if raw_question[:fields].present? # Daniel's edit
+        sub_questions = raw_question[:fields].present? ? any_questions(raw_question[:fields], attribute) : [] # Daniel's edit
 
         { attribute:, label:, description: group_id, required: raw_question[:required], group_id:, fields:, sub_questions: }
       end.compact

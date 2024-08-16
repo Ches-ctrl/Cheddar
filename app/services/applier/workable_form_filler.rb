@@ -19,6 +19,11 @@ module Applier
 
     def click_apply_button = false
 
+    def click_submit_button
+      sleep 12 # temporary -- just for testing
+      # submit_button.click
+    end
+
     def div_element = find("div[data-ui='#{@locator}']")
 
     def handle_boolean
