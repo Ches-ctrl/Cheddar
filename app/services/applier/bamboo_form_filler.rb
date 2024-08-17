@@ -18,26 +18,7 @@ module Applier
 
     def click_submit_button
       sleep 12 # temporary -- just for testing
-      # submit_button.click
-    end
-
-    def convert_date
-      date_string_from_payload = @value
-      @value = Date.strptime(date_string_from_payload, '%Y-%m-%d')
-                   .strftime(fetch_date_format)
-    end
-
-    # Determines the strftime format based on the form element's placeholder value
-    def fetch_date_format
-      format_map = {
-        'mm' => '%m',
-        'dd' => '%d',
-        'yy' => '%y',
-        'yyyy' => '%Y'
-      }
-
-      find_by_id(@locator)['placeholder']
-        .gsub(/[mdy]+/) { |match| format_map[match] }
+      submit_button.click
     end
 
     # country must be filled in first

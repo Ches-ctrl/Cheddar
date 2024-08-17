@@ -65,6 +65,25 @@ module Applier
       # submit_button.click
     end
 
+    def convert_date
+      date_string_from_payload = @value
+      @value = Date.strptime(date_string_from_payload, '%Y-%m-%d')
+                   .strftime(fetch_date_format)
+    end
+
+    # Determines the strftime format based on the form element's placeholder value
+    def fetch_date_format
+      format_map = {
+        'mm' => '%m',
+        'dd' => '%d',
+        'yy' => '%y',
+        'yyyy' => '%Y'
+      }
+
+      find_field(@locator)['placeholder']
+        .gsub(/[mdy]+/i) { |match| format_map[match.downcase] }
+    end
+
     def doc_tmp_file
       docx = Htmltoword::Document.create(@value)
       @filepath = Rails.root.join("tmp", "Cover Letter_#{unique_string}.docx")

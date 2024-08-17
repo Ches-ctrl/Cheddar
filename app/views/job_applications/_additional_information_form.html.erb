@@ -20,7 +20,7 @@
   <div class="grid gap-x-6 gap-y-8 sm:max-w-6xl sm:grid-cols-6">
     <% previous_question = nil %>
     <% job_application.application_question_set.questions.each do |question| %>
-      <%# Daniel's edit (moderately hacky) %>
+      <%# Daniel's edit below (moderately hacky) %>
       <% if question.group? %>
         <div class="col-span-full">
           <%= render 'group_control', job_application:, last_applicant_answers:, question:, form: %>
@@ -39,7 +39,7 @@
       <% end %>
       <div class="col-span-full" data-mandatory-fields-only-target="field" data-required-value="<%= question.required %>">
         <%= form.simple_fields_for :additional_info do |field_form| %>
-          <%= render 'additional_information_field', job_application:, last_applicant_answers:, question:, form:, field_form:, attribute: question.attribute %>
+          <%= render 'additional_information_field', job_application:, last_applicant_answers:, question:, form:, field_form: %>
         <% end %>
       </div>
       <% previous_question = question %>

@@ -64,11 +64,13 @@ class ApplicationQuestion
     fields.first
   end
 
-  def answered_value(job_application)
+  def answered_value(job_application, key = nil)
     return job_application.resume.blob.url if resume? && job_application.resume.attached?
     return job_application.cover_letter.blob.url if cover_letter? && job_application.cover_letter.attached?
 
-    value = job_application.additional_info[attribute]
+    value = key.present? ? job_application.additional_info[attribute][key] : job_application.additional_info[attribute] # Daniel's edit
+    return value.values.last if value.is_a?(Hash) # Daniel's edit
+
     value = value.reject(&:blank?) if value.is_a?(Array)
     value.is_a?(Array) && value.count.eql?(1) ? value.first : value
   end
@@ -94,8 +96,15 @@ class ApplicationQuestion
     field['options'].map { |option| [option['label'], option['value']] }
   end
 
-  def payload(job_application)
-    { locator:, interaction: converted_type, value: answered_value(job_application) }
+  def payload(job_application, key = nil)
+    { locator:, interaction: converted_type, value: payload_value(job_application, key) }
+  end
+
+  # Daniel's edit
+  def payload_value(job_application, key)
+    return answered_value(job_application, key) unless group?
+
+    fetch_sub_questions.map { |question| question.payload(job_application, key) }
   end
 
   def selector = field['selector'] || field['name'].to_s

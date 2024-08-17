@@ -14,7 +14,7 @@ class ApplicationQuestionSet < ApplicationRecord
   # == Instance Methods =====================================================
   # == Class Methods ========================================================
   def question_by_attribute(attribute)
-    questions.find { |question| question.attribute.eql?(attribute) }
+    questions.find { |question| question.attribute.eql?(attribute) || question.fetch_sub_questions.find { |question| question.attribute.eql?(attribute) } } # Daniel's edit
   end
 
   def questions

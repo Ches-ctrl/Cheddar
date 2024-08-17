@@ -21,7 +21,7 @@ module Applier
 
     def click_submit_button
       sleep 12 # temporary -- just for testing
-      # submit_button.click
+      submit_button.click
     end
 
     def div_element = find("div[data-ui='#{@locator}']")
@@ -38,7 +38,8 @@ module Applier
       check(@locator)
     end
 
-    def handle_date
+    def handle_date_picker
+      convert_date
       handle_input
       send_keys(:return) # close datepicker
     end

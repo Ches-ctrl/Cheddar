@@ -40,11 +40,12 @@ class JobApplication < ApplicationRecord
   def payload
     apply_url = job.apply_url || job.posting_url
     user_fullname = application_process.user.user_detail.full_name
+    # Daniel's edit below: messy but it works
     fields = application_question_set.questions.map do |question|
-      next unless question.type
+      next unless question.type && (additional_info.keys.include?(question.attribute) || question.attachment?) # Why aren't attachments part of additional_info?
 
-      question.payload(self)
-    end
+      question.group? ? additional_info[question.attribute].map { |key, _| question.payload(self, key) } : question.payload(self)
+    end.compact.flatten
     { user_fullname:, apply_url:, fields: }
   end
 

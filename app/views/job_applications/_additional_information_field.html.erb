@@ -1,5 +1,5 @@
 <% if question.valid? && question.input? %>
-  <%= field_form.input attribute,
+  <%= field_form.input question.attribute,
     hint: question.description&.html_safe,
     label: question.label,
     required: question.required,
