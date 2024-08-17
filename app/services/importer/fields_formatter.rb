@@ -5,7 +5,6 @@ module Importer
   class FieldsFormatter < ApplicationTask
     def initialize(data)
       @data = data
-      @group_questions = [] # Daniel's edit
     end
 
     def call

@@ -21,7 +21,7 @@ module Importer
       return {} unless questions_data
 
       questions_data.map do |raw_question|
-        attribute = attribute(raw_question[:id])
+        attribute = group_id.present? ? "#{group_id}##{attribute(raw_question[:id])}" : attribute(raw_question[:id]) # some group questions have the same id as non-group questions (e.g. summary), so attribute is prefaced by group_id
         options = raw_question[:options]&.map { |option| option.transform_keys({ 'value' => 'label' }) }&.map { |option| option.transform_keys({ 'name' => 'value' }) } || []
         type = fetch_type(raw_question)
         fields = [{ name: raw_question[:id], selector: nil, type:, options: }]

@@ -162,7 +162,7 @@
         ],
         "sub_questions": [
           {
-            "attribute": "school",
+            "attribute": "education#school",
             "label": "School",
             "description": "education",
             "required": true,
@@ -182,7 +182,7 @@
             ]
           },
           {
-            "attribute": "field_of_study",
+            "attribute": "education#field_of_study",
             "label": "Field of study",
             "description": "education",
             "required": false,
@@ -202,7 +202,7 @@
             ]
           },
           {
-            "attribute": "degree",
+            "attribute": "education#degree",
             "label": "Degree",
             "description": "education",
             "required": false,
@@ -222,7 +222,7 @@
             ]
           },
           {
-            "attribute": "start_date",
+            "attribute": "education#start_date",
             "label": "Start date",
             "description": "education",
             "required": false,
@@ -242,7 +242,7 @@
             ]
           },
           {
-            "attribute": "end_date",
+            "attribute": "education#end_date",
             "label": "End date",
             "description": "education",
             "required": false,
@@ -281,7 +281,7 @@
         ],
         "sub_questions": [
           {
-            "attribute": "title",
+            "attribute": "experience#title",
             "label": "Title",
             "description": "experience",
             "required": true,
@@ -301,7 +301,7 @@
             ]
           },
           {
-            "attribute": "company",
+            "attribute": "experience#company",
             "label": "Company",
             "description": "experience",
             "required": false,
@@ -321,7 +321,7 @@
             ]
           },
           {
-            "attribute": "industry",
+            "attribute": "experience#industry",
             "label": "Industry",
             "description": "experience",
             "required": false,
@@ -341,7 +341,7 @@
             ]
           },
           {
-            "attribute": "summary",
+            "attribute": "experience#summary",
             "label": "Summary",
             "description": "experience",
             "required": false,
@@ -361,7 +361,7 @@
             ]
           },
           {
-            "attribute": "start_date",
+            "attribute": "experience#start_date",
             "label": "Start date",
             "description": "experience",
             "required": false,
@@ -381,7 +381,7 @@
             ]
           },
           {
-            "attribute": "end_date",
+            "attribute": "experience#end_date",
             "label": "End date",
             "description": "experience",
             "required": false,
@@ -401,7 +401,7 @@
             ]
           },
           {
-            "attribute": "current",
+            "attribute": "experience#current",
             "label": "I currently work here",
             "description": "experience",
             "required": false,

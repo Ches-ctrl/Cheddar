@@ -25,13 +25,6 @@ class ApplicationQuestionSet < ApplicationRecord
     end.compact.flatten
   end
 
-  # Daniel's edit
-  def group_questions(section_questions, section_title)
-    #  + group_questions(section_data['questions'], section_data['title']) # Daniel's edit
-    section_questions.inject([]) { |array, question| array + question['sub_questions'] }
-                     .map { |sub_question| ApplicationQuestion.new(sub_question.merge(section: section_title)) }
-  end
-
   def no_of_qs
     form_structure.select { |section| section['questions'] }.flatten.count
   end

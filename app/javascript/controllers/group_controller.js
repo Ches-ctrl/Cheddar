@@ -1,11 +1,9 @@
 import { Controller } from "@hotwired/stimulus";
 
+// Adds groups to forms and adjusts the id and name attributes of each group element
+// This makes it possible to distinguish between duplicated groups
 export default class extends Controller {
   static targets = ['group', 'template', 'placeholder'];
-
-  connect() {
-    console.log("Hello from Group Controller!");
-  }
 
   increment_ids(fields, labels, nextId) {
     fields.forEach(field => {
