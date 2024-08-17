@@ -3,7 +3,7 @@
     hint: question.description&.html_safe,
     label: question.label,
     required: question.required,
-    input_html: { 
+    input_html: {
       value: prefilled_value(question, job_application, last_applicant_answers)
     }
   %>
@@ -11,6 +11,7 @@
   <%= field_form.input question.attribute,
     collection: question.boolean_options,
     hint: question.description&.html_safe,
+    include_blank: true,
     label: question.label,
     required: question.required,
     selected: prefilled_value(question, job_application, last_applicant_answers),
@@ -31,12 +32,12 @@
       class: 'd-none'
     }
   %>
-<% elsif question.valid? && question.select? %>
+<% elsif question.valid? && question.select? || question.radiogroup? # Daniel's edit %>
   <%= field_form.input question.attribute,
     collection: question.options,
     include_blank: true,
     hint: question.description&.html_safe,
-    label: question.label + '++',
+    label: question.label,
     required: question.required,
     selected: prefilled_value(question, job_application, last_applicant_answers),
     type: :select
@@ -49,20 +50,18 @@
     label: question.label,
     # required: question.required,
     checked: prefilled_value(question, job_application, last_applicant_answers),
-    input_html: { 
+    input_html: {
       class: 'h-5 w-5 my-3 me-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600',
     }
   %>
-<% elsif question.valid? && question.textarea? %>
+<% elsif question.valid? && question.textarea? || question.cover_letter? # Daniel's edit %>
   <%= field_form.input question.attribute,
     as: :text,
     hint: question.description&.html_safe,
     label: question.label,
     required: question.required,
     input_html: {
-      class: 'block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
-      rows: 5,
-      value: prefilled_value(question, job_application, last_applicant_answers)
+      class: 'block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
     }
   %>
 <% elsif question.valid? && question.date_picker? %>
@@ -72,18 +71,17 @@
     html5: true,
     label: question.label,
     required: question.required,
-    input_html: { 
+    input_html: {
       value: prefilled_value(question, job_application, last_applicant_answers)
     }
   %>
-<% elsif question.resume? || question.cover_letter? %>
-  <% document = question.resume? ? job_application.resume : job_application.cover_letter %>
+<% elsif question.attachment? %>
   <%= form.input question.attribute,
     as: :file,
     hint: question.description&.html_safe,
     label: question.label,
-    required: attachment_required_but_absent?(question, document),
-    input_html: { 
+    required: attachment_required_but_absent?(question, job_application.attachment(question)),
+    input_html: {
       direct_upload: true,
       class: 'block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400
               file:bg-gray-200 file:border-0
@@ -92,7 +90,7 @@
               dark:file:bg-neutral-700 dark:file:text-neutral-400'
     }
   %>
-  <%= render "shared/forms/attachments_list", attachments: [document], document_attached: document.attached? %>
+  <%= render "shared/forms/attachments_list", attachments: [job_application.attachment(question)], document_attached: job_application.attachment(question).attached? %>
 <% elsif question.upload? %>
   We don't manage the type of upload yet.
 <% else %>

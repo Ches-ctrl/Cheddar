@@ -17,18 +17,18 @@ module Importer
 
     ###
 
-    def any_questions(questions_data)
+    def any_questions(questions_data, group_id = nil)
       return {} unless questions_data
 
       questions_data.map do |raw_question|
-        attribute = raw_question[:id]
+        attribute = group_id.present? ? "#{group_id}##{attribute(raw_question[:id])}" : attribute(raw_question[:id]) # some group questions have the same id as non-group questions (e.g. summary), so attribute is prefaced by group_id
         options = raw_question[:options]&.map { |option| option.transform_keys({ 'value' => 'label' }) }&.map { |option| option.transform_keys({ 'name' => 'value' }) } || []
-
-        type = INPUT_TYPES[raw_question[:type]]
-        fields = [{ name: attribute, selector: nil, type:, options: }]
+        type = fetch_type(raw_question)
+        fields = [{ name: raw_question[:id], selector: nil, type:, options: }]
         label = raw_question[:label]
+        sub_questions = raw_question[:fields].present? ? any_questions(raw_question[:fields], attribute) : [] # Daniel's edit
 
-        { attribute:, label:, description: nil, required: raw_question[:required], fields: }
+        { attribute:, label:, description: group_id, required: raw_question[:required], group_id:, fields:, sub_questions: }
       end.compact
     end
 
@@ -51,36 +51,39 @@ module Importer
         default_attribute(raw_attribute)
     end
 
-    def attribute_strict_match(key)
-      ATTRIBUTES_DICTIONARY[key]
-    end
-
-    # attribute is CamelCase variable or a Text Question
-    def default_attribute(key)
-      key.underscore.first(60).gsub(' ', '_').gsub('.', '_')
-    end
+    def attributes_dictionary = ATTRIBUTES_DICTIONARY
 
     ATTRIBUTES_DICTIONARY = {
-      'firstname' => 'first_name',
-      'lastname' => 'last_name',
-      'gdpr' => 'gdpr',
-      'email' => 'email',
-      'phone' => 'phone_number',
       'address' => 'address_applicant',
-      'resume' => 'resume',
-      'cover_letter' => 'cover_letter'
+      'avatar' => 'photo',
+      'cover_letter' => 'cover_letter',
+      'email' => 'email',
+      'firstname' => 'first_name',
+      'gdpr' => 'gdpr',
+      'lastname' => 'last_name',
+      'phone' => 'phone_number',
+      'resume' => 'resume'
     }
 
     ###
     ### types
     ###
 
+    # Daniel's edit
+    def fetch_type(raw_question)
+      return :agreement_checkbox if raw_question[:onlyTrueAllowed]
+      return :radiogroup if raw_question[:type] == 'multiple' && raw_question[:singleOption]
+
+      INPUT_TYPES[raw_question[:type]]
+    end
+
     INPUT_TYPES = {
       'boolean' => :boolean,
-      'date' => :date,
+      'date' => :date_picker,
       'dropdown' => :select,
       'email' => :input,
       'file' => :upload,
+      'group' => :group,
       'multiple' => :multi_select,
       'paragraph' => :textarea,
       'phone' => :input,

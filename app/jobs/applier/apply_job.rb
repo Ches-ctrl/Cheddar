@@ -8,7 +8,9 @@ module Applier
     sidekiq_options retry: false
 
     def perform(job_application)
-      Applier::ApplyToJob.call(job_application) if job_application.status == 'submitted'
+      # NB: There isn't enough time for job_application.status to update from 'completed' to 'submitted' when running the job inline in test environment
+      Applier::ApplyToJob.call(job_application)
+      # Applier::ApplyToJob.call(job_application) if job_application.status == 'submitted'
     end
   end
 end

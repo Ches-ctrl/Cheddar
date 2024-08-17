@@ -19,6 +19,55 @@ module Constants
     ].freeze
   end
 
+  module CompaniesToSeed
+    COMPANIES = {
+      ashbyhq: [
+        'airwallex',
+        'Crusoe',
+        'isometric',
+        'lightdash',
+        'multiverse'
+      ],
+      bamboohr: [
+        'avidbots',
+        'gfo',
+        'heirloom',
+        'hyperjar',
+        'kiteworks',
+        'meedan',
+        'prezi',
+        'resurgo',
+        'turn',
+        'xtm'
+      ],
+      greenhouse: [
+        'cleoai',
+        '11fs',
+        'codepath',
+        'copperco',
+        'deliveroo',
+        'doctolib',
+        'epicgames',
+        'figma',
+        'forter',
+        'geniussports',
+        'getir',
+        'gomotive',
+        'intercom',
+        'janestreet',
+        'knowde',
+        'narvar'
+      ],
+      workable: [
+        'builderai',
+        'carbonclean',
+        'grayce',
+        'nqc',
+        'starling-bank'
+      ]
+    }
+  end
+
   module DateConversion
     CONVERT_TO_DAYS = {
       'today' => 0,

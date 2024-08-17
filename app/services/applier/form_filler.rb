@@ -12,6 +12,8 @@ module Applier
     include LoggingHelper
 
     def initialize(payload)
+      p "here's the payload:" # for testing
+      p payload
       @fields = payload[:fields]
       @session = Capybara::Session.new(:selenium)
       @url = payload[:apply_url]
@@ -58,9 +60,28 @@ module Applier
     end
 
     def click_submit_button
-      sleep 2 # temporary -- just for testing
+      sleep 8 # temporary -- just for testing
       p "I didn't submit the form. Change the FormFiller#click_submit_button method to actually submit it."
       # submit_button.click
+    end
+
+    def convert_date
+      date_string_from_payload = @value
+      @value = Date.strptime(date_string_from_payload, '%Y-%m-%d')
+                   .strftime(fetch_date_format)
+    end
+
+    # Determines the strftime format based on the form element's placeholder value
+    def fetch_date_format
+      format_map = {
+        'mm' => '%m',
+        'dd' => '%d',
+        'yy' => '%y',
+        'yyyy' => '%Y'
+      }
+
+      find_field(@locator)['placeholder']
+        .gsub(/[mdy]+/i) { |match| format_map[match.downcase] }
     end
 
     def doc_tmp_file
@@ -92,16 +113,23 @@ module Applier
 
     def handle_checkbox = check(@value)
 
-    def handle_input = verify_input { fill_in(@locator, with: @value) }
+    def handle_date_picker = handle_input
 
-    def handle_radiogroup
-      choose(option: @value, name: @locator)
+    # def handle_input = verify_input { fill_in(@locator, with: @value) }
+    def handle_input = find_field(@locator).send_keys(@value)
+
+    def handle_location
+      puts "Location questions not handled!"
     end
 
     def handle_multi_select
       within response_field do
         @value.each { |value| check(value) }
       end
+    end
+
+    def handle_radiogroup
+      choose(option: @value, name: @locator)
     end
 
     def handle_select
@@ -158,7 +186,7 @@ module Applier
     end
 
     def verify_submission
-      sleep 4 # temporary -- just for testing
+      sleep 10 # temporary -- just for testing
       # TODO: add logic to check for successful submission message or other indicators
     end
 

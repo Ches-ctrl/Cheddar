@@ -22,8 +22,6 @@ module Importer
         detail_questions: detail_formatter(@data.dig(:applicationForm, :sections)&.second&.[](:fieldEntries)),
         survey_questions: survey_formatter(@data[:surveyForms])
       }
-      # debugger if @data.to_s.include?('Why Multiverse?')
-      # @select_transform_data
     end
 
     ###
@@ -66,22 +64,12 @@ module Importer
     def attribute(question)
       attribute_strict_match(question[:field][:path]) ||
         attribute_strict_match(question[:field][:type]) ||
-        attribute_strict_match(question[:field][:title].parameterize.underscore.first(60)) ||
-        attribute_inclusive_match(question) ||
-        default_attribute(question)
+        attribute_strict_match(default_attribute(question[:field][:title])) ||
+        attribute_inclusive_match(question[:field][:title]) ||
+        default_attribute(question[:field][:title])
     end
 
-    def attribute_inclusive_match(question)
-      ATTRIBUTES_DICTIONARY.find { |k, _v| default_attribute(question).include?(k) }&.last
-    end
-
-    def attribute_strict_match(key)
-      ATTRIBUTES_DICTIONARY[key]
-    end
-
-    def default_attribute(question)
-      question[:field][:title].parameterize.underscore.first(60)
-    end
+    def attributes_dictionary = ATTRIBUTES_DICTIONARY
 
     ATTRIBUTES_DICTIONARY = {
       '_systemfield_name' => 'full_name',

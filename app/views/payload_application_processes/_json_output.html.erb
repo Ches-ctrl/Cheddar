@@ -2,6 +2,7 @@
 <code class="language-json">
 <span><span style="color: var(--shiki-color-text)">{</span></span>
 <% questions.each do |question| %>
+<% next unless question.payload(job_application)[:interaction] %>
 <%= ('<span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-keyword)">"' + question.attribute + '"</span><span style="color: var(--shiki-token-punctuation)">:</span><span style="color: var(--shiki-color-text)"> </span><span style="color: var(--shiki-color-text)">{</span>').html_safe %>
 <%= ('<span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-keyword)">"selector: "</span><span style="color: var(--shiki-token-punctuation)">:</span><span style="color: var(--shiki-color-text)"> </span><span style="color: var(--shiki-token-string-expression)">"' + question.selector + '"</span><span style="color: var(--shiki-token-punctuation)">,</span></span>').html_safe %>
 <%= ('<span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-color-text)">  </span><span style="color: var(--shiki-token-keyword)">"type: "</span><span style="color: var(--shiki-token-punctuation)">:</span><span style="color: var(--shiki-color-text)"> </span><span style="color: var(--shiki-token-string-expression)">"' + question.type + '"</span><span style="color: var(--shiki-token-punctuation)">,</span></span>').html_safe %>

@@ -1,6 +1,7 @@
 RSpec.describe Importer::Api::TrueUp, type: :service do
   before do
     allow(ApplicantTrackingSystem).to receive(:find_by).with(name: 'TrueUp').and_return(double('ATS', name: 'TrueUp', url_all_jobs: 'https://XXX-dsn.algolia.net/1/indexes/*/queries'))
+    allow(subject).to receive(:process_redirect_jobs) # stub this method
     allow_any_instance_of(LocalDataStorer).to receive(:fetch_local_data).and_return(nil)
   end
 
