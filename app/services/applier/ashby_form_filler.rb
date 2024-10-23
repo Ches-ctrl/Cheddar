@@ -12,6 +12,8 @@ module Applier
       @value ? 'Yes' : 'No'
     end
 
+    def click_apply_button = false
+
     def handle_boolean
       hidden_element
         .sibling('button', text: boolean_string)

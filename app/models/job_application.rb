@@ -15,6 +15,7 @@ class JobApplication < ApplicationRecord
   belongs_to :job
 
   has_one_attached :cover_letter
+  has_one_attached :photo
   has_one_attached :resume
   has_one :application_question_set, through: :job
   has_one :applicant_tracking_system, through: :job
@@ -29,12 +30,22 @@ class JobApplication < ApplicationRecord
   enum :status, { initial: "initial", completed: "completed", uncompleted: "uncompleted", submitted: "submitted", rejected: "rejected" },
        default: :initial, validate: true
 
+  def attachment(question)
+    return photo if question.photo?
+    return cover_letter if question.cover_letter?
+
+    resume
+  end
+
   def payload
     apply_url = job.apply_url || job.posting_url
     user_fullname = application_process.user.user_detail.full_name
+    # Daniel's edit below: messy but it works
     fields = application_question_set.questions.map do |question|
-      question.payload(self)
-    end
+      next unless question.type && (additional_info.keys.include?(question.attribute) || question.attachment?) # Why aren't attachments part of additional_info?
+
+      question.group? ? additional_info[question.attribute].map { |key, _| question.payload(self, key) } : question.payload(self)
+    end.compact.flatten
     { user_fullname:, apply_url:, fields: }
   end
 

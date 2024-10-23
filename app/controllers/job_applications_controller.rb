@@ -61,7 +61,7 @@ class JobApplicationsController < ApplicationController
 
   def job_application_params
     params.require(:job_application)
-          .permit(:application_process_id, :id, :resume, :cover_letter, { additional_info: {} })
+          .permit(:application_process_id, :id, :cover_letter, :photo, :resume, { additional_info: {} })
           .reject { |_key, value| value.blank? }
   end
 

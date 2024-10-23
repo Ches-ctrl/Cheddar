@@ -65,7 +65,7 @@ ASHBY_PAYLOADS =
     {
       epithet: :sample_payload,
       user_fullname: 'John Smith',
-      apply_url: 'https://jobs.ashbyhq.com/lightdash/9efa292a-cc34-4388-90a2-2bed5126ace4',
+      apply_url: 'https://jobs.ashbyhq.com/lightdash/9efa292a-cc34-4388-90a2-2bed5126ace4/application',
       fields: [
         {
           locator: '_systemfield_name',
@@ -102,7 +102,7 @@ ASHBY_PAYLOADS =
     {
       epithet: :multiverse_payload,
       user_fullname: 'Jean-Jacques Rousseau',
-      apply_url: 'https://jobs.ashbyhq.com/multiverse/69afde82-dad8-4923-937e-a8d7f0551db4',
+      apply_url: 'https://jobs.ashbyhq.com/multiverse/69afde82-dad8-4923-937e-a8d7f0551db4/application',
       fields: [
         {
           locator: '_systemfield_name',
@@ -572,6 +572,53 @@ GREENHOUSE_PAYLOADS = [
         locator: '4024833002',
         interaction: :demographic_select,
         value: "Other such as: retired, this question does not apply to me, I don’t know."
+      }
+    ]
+  },
+  {
+    epithet: :copperco_payload,
+    user_fullname: 'John Smith',
+    apply_url: 'https://job-boards.eu.greenhouse.io/copperco/jobs/4337935101',
+    fields: [
+      {
+        locator: 'first_name',
+        interaction: :input,
+        value: 'John'
+      },
+      {
+        locator: 'last_name',
+        interaction: :input,
+        value: 'Smith'
+      },
+      {
+        locator: 'email',
+        interaction: :input,
+        value: 'j.smith@example.com'
+      },
+      {
+        locator: 'phone',
+        interaction: :input,
+        value: '(555) 555-5555'
+      },
+      {
+        locator: 'resume',
+        interaction: :upload,
+        value: 'https://res.cloudinary.com/dzpupuayh/image/upload/v1/development/nd4p85sryuu40oz77n0bhs29b2sz.pdf?_a=BACCd2Bn'
+      },
+      {
+        locator: 'cover_letter',
+        interaction: :upload,
+        value: 'Thank you for considering my application. It really is an honor to apply to your company. Please hire me. I would like to work here very much. I promise to work very very hard and always get along well with my coworkers.'
+      },
+      {
+        locator: 'question_5722372101',
+        interaction: :input,
+        value: 'https://www.linkedin.com/in/my_profile'
+      },
+      {
+        locator: 'question_5722374101',
+        interaction: :select,
+        value: '0'
       }
     ]
   }

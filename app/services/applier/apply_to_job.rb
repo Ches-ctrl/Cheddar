@@ -41,7 +41,9 @@ module Applier
       {
         'Greenhouse' => check_which_greenhouse,
         'AshbyHQ' => AshbyFormFiller,
-        'DevITJobs' => DevitFormFiller
+        'BambooHR' => BambooFormFiller,
+        'DevITJobs' => DevitFormFiller,
+        'Workable' => WorkableFormFiller
       }
     end
 

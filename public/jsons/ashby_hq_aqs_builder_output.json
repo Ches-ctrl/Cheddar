@@ -37,7 +37,7 @@
         ]
       },
       {
-        "attribute": "where_are_you_based_or_where_would_you_be_planning_on_workin",
+        "attribute": "where-are-you-based-or-where-would-you-be-planning-on-workin",
         "description": null,
         "label": "Where are you based or where would you be planning on working from?",
         "required": true,
@@ -69,7 +69,7 @@
         ]
       },
       {
-        "attribute": "can_you_tell_us_what_attracted_you_to_apply_to_lightdash",
+        "attribute": "can-you-tell-us-what-attracted-you-to-apply-to-lightdash",
         "description": null,
         "label": "Can you tell us what attracted you to apply to Lightdash?",
         "required": true,
@@ -101,7 +101,7 @@
         ]
       },
       {
-        "attribute": "were_you_referred_to_this_role",
+        "attribute": "were-you-referred-to-this-role",
         "description": null,
         "label": "Were you referred to this role? ",
         "required": false,

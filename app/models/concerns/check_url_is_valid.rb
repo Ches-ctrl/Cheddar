@@ -22,7 +22,7 @@ module CheckUrlIsValid
     uri = URI.parse(url)
     domain = uri.host
     path = response['location']
-    "#{domain}/#{path}"
+    domain + path
   end
 
   def get_response(url, max_retries = 1)

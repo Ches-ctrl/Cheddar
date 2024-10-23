@@ -66,7 +66,8 @@ module ApplicationProcessesHelper
   def previously_answered_value(question, last_applicant_answers)
     return previously_answered_linkedin_value(last_applicant_answers) if question.linkedin_related?
 
-    last_applicant_answers.find { |hash| hash[question.attribute] }&.values&.first
+    value = last_applicant_answers.find { |hash| hash[question.attribute] }&.values&.first
+    value.is_a?(Hash) ? value.values.last : value # Daniel's edit
   end
 
   def previously_answered_linkedin_value(last_applicant_answers)
